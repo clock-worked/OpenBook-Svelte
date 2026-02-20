@@ -13,6 +13,7 @@ import type {
 import { storeProjectHandle } from './persistence';
 
 let rootDirHandle: FileSystemDirectoryHandle | null = null;
+const API_BASE_URL = 'http://127.0.0.1:8010';
 
 /**
  * Timeout wrapper for promises to prevent indefinite hanging
@@ -157,6 +158,115 @@ export async function resolveBookRootPath(handle: FileSystemDirectoryHandle | nu
     if (absolutePath) return absolutePath;
   }
   return get(bookRootPathOverride) || null;
+}
+
+export function isLikelyAbsolutePath(value: string): boolean {
+  return /^[a-zA-Z]:\\/.test(value) || value.startsWith('\\\\') || value.startsWith('/');
+}
+
+export async function setBackendBookRoot(rootPath: string): Promise<boolean> {
+  if (!rootPath || !isLikelyAbsolutePath(rootPath)) return false;
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/set-book-root`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ root_path: rootPath }),
+    });
+    if (!response.ok) {
+      console.warn('[fs] Failed to set backend book root:', await response.text());
+      return false;
+    }
+    return true;
+  } catch (error) {
+    console.warn('[fs] Error setting backend book root:', error);
+    return false;
+  }
+}
+
+export async function setBackendAudioRoot(audioRoot: string): Promise<boolean> {
+  if (!audioRoot || !isLikelyAbsolutePath(audioRoot)) return false;
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/set-audio-root`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ audio_root: audioRoot }),
+    });
+    if (!response.ok) {
+      console.warn('[fs] Failed to set backend audio root:', await response.text());
+      return false;
+    }
+    return true;
+  } catch (error) {
+    console.warn('[fs] Error setting backend audio root:', error);
+    return false;
+  }
+}
+
+export async function syncBackendRoots(opts: {
+  handle?: FileSystemDirectoryHandle | null;
+  bookRootPath?: string | null;
+  audioRootPath?: string | null;
+}): Promise<{ resolvedBookRoot: string | null; bookRootSynced: boolean; audioRootSynced: boolean }> {
+  const resolvedBookRoot = opts.bookRootPath ?? await resolveBookRootPath(opts.handle ?? null);
+  const bookRootSynced = resolvedBookRoot ? await setBackendBookRoot(resolvedBookRoot) : false;
+
+  const hasExplicitAudioRoot = typeof opts.audioRootPath === 'string' && opts.audioRootPath.length > 0;
+  const candidateAudioRoot = hasExplicitAudioRoot ? opts.audioRootPath : resolvedBookRoot;
+  const audioRootSynced = candidateAudioRoot ? await setBackendAudioRoot(candidateAudioRoot) : false;
+
+  return {
+    resolvedBookRoot,
+    bookRootSynced,
+    audioRootSynced,
+  };
+}
+
+export async function syncBookRootFromHandle(opts: {
+  handle: FileSystemDirectoryHandle;
+  audioRootPath?: string | null;
+}): Promise<{ resolvedBookRoot: string | null; bookRootSynced: boolean; audioRootSynced: boolean }> {
+  const resolvedBookRoot = await resolveBookRootPath(opts.handle);
+  if (!resolvedBookRoot) {
+    return {
+      resolvedBookRoot: null,
+      bookRootSynced: false,
+      audioRootSynced: false,
+    };
+  }
+
+  return syncBackendRoots({
+    bookRootPath: resolvedBookRoot,
+    audioRootPath: opts.audioRootPath ?? null,
+  });
+}
+
+export async function listChaptersFromBackend(): Promise<ChapterStatus[]> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/list-chapters`);
+    if (!response.ok) {
+      console.warn('[fs] Failed to list chapters from backend:', response.statusText);
+      return [];
+    }
+
+    const payload = await response.json();
+    const backendChapters = Array.isArray(payload?.chapters) ? payload.chapters : [];
+    return backendChapters.map((ch: any) => {
+      const title = String(ch?.name || '').replace(/\.txt$/i, '');
+      return {
+        path: String(ch?.path || ''),
+        title,
+        parsed: !!ch?.parsed,
+        complete: false,
+        audio: false,
+        scriptPath: ch?.scriptPath,
+      } as ChapterStatus;
+    });
+  } catch (error) {
+    console.warn('[fs] Error listing chapters from backend:', error);
+    return [];
+  }
 }
 
 async function getFileHandle(dirHandle: FileSystemDirectoryHandle, path: string[], create = false): Promise<FileSystemFileHandle | null> {
@@ -394,25 +504,14 @@ export async function triggerStatsUpdate(): Promise<void> {
       return;
     }
 
-    // Set book root path on backend
-    try {
-      const setRootResponse = await fetch('http://127.0.0.1:8010/api/set-book-root', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ root_path: resolvedPath })
-      });
-
-      if (!setRootResponse.ok) {
-        console.warn('[triggerStatsUpdate] Failed to set book root on backend:', setRootResponse.statusText);
-        return;
-      }
-    } catch (err) {
-      console.warn('[triggerStatsUpdate] Could not set book root on backend:', err);
+    const didSync = await setBackendBookRoot(resolvedPath);
+    if (!didSync) {
+      console.warn('[triggerStatsUpdate] Could not set book root on backend');
       return;
     }
 
     // Now trigger the stats update
-    const response = await fetch('http://127.0.0.1:8010/api/update-character-stats', {
+    const response = await fetch(`${API_BASE_URL}/api/update-character-stats`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }
     });

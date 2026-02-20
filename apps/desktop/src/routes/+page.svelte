@@ -1,11 +1,14 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
-import { bookRoot, bookRootHandle, chapters, bookRootAbsolutePath, audioRoot } from '$lib/stores/bookState';
-import { scanChapters, selectBookDirectory, setRootDirHandle, getAbsolutePathFromHandle, resolveBookRootPath } from '$lib/services/fs';
-import { onMount } from 'svelte';
-import { get } from 'svelte/store';
-import { isFileSystemAccessApiSupported } from '$lib/utils/feature-detection';
-import { getStoredProjectHandle, verifyHandlePermission, clearStoredProjectHandle, updateLastAccessed } from '$lib/services/persistence';
+  import { bookRoot, chapters, bookRootAbsolutePath, audioRoot } from '$lib/stores/bookState';
+  import { selectBookDirectory } from '$lib/services/fs';
+  import { loadProjectFromHandle, loadProjectFromAbsolutePath } from '$lib/services/landingProject';
+  import { onMount } from 'svelte';
+  import { get } from 'svelte/store';
+  import { isFileSystemAccessApiSupported } from '$lib/utils/feature-detection';
+  import { clearStoredProjectHandle } from '$lib/services/persistence';
+  import { applyProjectHandle, getStoredProjectAvailability, restoreStoredProject } from '$lib/services/projectSession';
+  import { beginLandingAction, clearFlagAfterDelay } from '$lib/services/landingInteraction';
 
   // Dev mode detection
   const isDev = import.meta.env.DEV;
@@ -70,44 +73,30 @@ import { getStoredProjectHandle, verifyHandlePermission, clearStoredProjectHandl
   });
 
   async function checkForStoredProject() {
-    try {
-      const stored = await getStoredProjectHandle();
-      if (stored && stored.handle) {
-        // Verify we still have permission
-        const hasPermission = await verifyHandlePermission(stored.handle, false);
-        if (hasPermission) {
-          hasStoredProject = true;
-          storedProjectName = stored.name;
-        } else {
-          // Permission lost, clear the stored handle
-          console.log('Lost permission to stored project, clearing');
-          await clearStoredProjectHandle();
-        }
-      }
-    } catch (error) {
-      console.error('Error checking for stored project:', error);
-      // Clear potentially corrupted data
+    const availability = await getStoredProjectAvailability();
+    if (availability.available) {
+      hasStoredProject = true;
+      storedProjectName = availability.name;
+      return;
+    }
+
+    hasStoredProject = false;
+    if ('shouldClear' in availability && availability.shouldClear) {
+      console.log('Lost permission to stored project, clearing');
       await clearStoredProjectHandle().catch(() => {});
     }
   }
 
   async function continueWithStoredProject(event?: MouseEvent) {
-    // Stop event propagation to prevent conflicts with parent div
-    if (event) {
-      event.stopPropagation();
-      event.preventDefault();
-    }
-
-    // Debounce rapid clicks
-    const now = Date.now();
-    if (now - lastClickTime < DEBOUNCE_MS) {
-      console.log('Click debounced - too soon after last click');
-      return;
-    }
-    lastClickTime = now;
-
-    if (isLoadingStoredProject) {
-      console.log('Already loading stored project');
+    const gate = beginLandingAction({
+      event,
+      lastClickTime,
+      debounceMs: DEBOUNCE_MS,
+      isBusy: isLoadingStoredProject,
+      busyLogMessage: 'Already loading stored project',
+    });
+    lastClickTime = gate.nextLastClickTime;
+    if (!gate.proceed) {
       return;
     }
 
@@ -115,39 +104,24 @@ import { getStoredProjectHandle, verifyHandlePermission, clearStoredProjectHandl
       isLoadingStoredProject = true;
       
       console.log('[Landing] Attempting to continue with stored project...');
-      const stored = await getStoredProjectHandle();
-      if (!stored || !stored.handle) {
+      const restored = await restoreStoredProject({ requestPermission: true, touchLastAccessed: true });
+      if (!restored.ok) {
         console.error('[Landing] No stored project found');
         hasStoredProject = false;
+        if ('reason' in restored && restored.reason === 'permission_denied') {
+          await clearStoredProjectHandle();
+        }
         return;
       }
 
-      console.log('[Landing] Found stored project:', stored.name);
-      // Request permission if we don't have it
-      const hasPermission = await verifyHandlePermission(stored.handle, true);
-      if (!hasPermission) {
-        console.error('[Landing] Permission denied for stored project');
-        // Clear the stored project since we can't access it
-        await clearStoredProjectHandle();
-        hasStoredProject = false;
-        return;
-      }
-
-      console.log('[Landing] Permission granted, setting up project...');
-      // Set up the handle
-      setRootDirHandle(stored.handle);
-      bookRootHandle.set(stored.handle);
-      bookRoot.set(stored.handle.name);
-      
-      // Try to get the absolute path and send it to backend
-      await setBookRootPath(stored.handle);
-      
-      // Update last accessed time
-      await updateLastAccessed();
-      
-      // Scan chapters
+      console.log('[Landing] Found stored project:', restored.name);
       console.log('[Landing] Scanning chapters...');
-      const chapterList = await scanChapters(stored.handle);
+      const loadResult = await loadProjectFromHandle({
+        handle: restored.handle,
+        audioRootPath: get(audioRoot) || null,
+      });
+      bookRootAbsolutePath.set(loadResult.resolvedBookRoot);
+      const chapterList = loadResult.chapters;
       console.log('[Landing] Found', chapterList.length, 'chapters');
       chapters.set(chapterList);
       
@@ -165,30 +139,22 @@ import { getStoredProjectHandle, verifyHandlePermission, clearStoredProjectHandl
       const errorMsg = error instanceof Error ? error.message : 'Unknown error';
       console.error('Failed to load stored project:', errorMsg);
     } finally {
-      setTimeout(() => {
-        isLoadingStoredProject = false;
-      }, 100);
+      clearFlagAfterDelay((value) => {
+        isLoadingStoredProject = value;
+      });
     }
   }
 
   async function selectNewProject(event?: MouseEvent) {
-    // Stop event propagation to prevent conflicts with parent div
-    if (event) {
-      event.stopPropagation();
-      event.preventDefault();
-    }
-
-    // Debounce rapid clicks
-    const now = Date.now();
-    if (now - lastClickTime < DEBOUNCE_MS) {
-      console.log('Click debounced - too soon after last click');
-      return;
-    }
-    lastClickTime = now;
-
-    // Prevent multiple simultaneous folder picker invocations
-    if (isPickingFolder) {
-      console.log('Folder picker already open');
+    const gate = beginLandingAction({
+      event,
+      lastClickTime,
+      debounceMs: DEBOUNCE_MS,
+      isBusy: isPickingFolder,
+      busyLogMessage: 'Folder picker already open',
+    });
+    lastClickTime = gate.nextLastClickTime;
+    if (!gate.proceed) {
       return;
     }
 
@@ -209,16 +175,16 @@ import { getStoredProjectHandle, verifyHandlePermission, clearStoredProjectHandl
       
       console.log('[Landing] Selected folder:', dirHandle.name);
       // Store the handle for use in other pages
-      setRootDirHandle(dirHandle);
-      bookRootHandle.set(dirHandle);
-      bookRoot.set(dirHandle.name);
-      
-      // Try to get the absolute path and send it to backend
-      await setBookRootPath(dirHandle);
-      
-      // Scan chapters - this could throw if files are malformed
+      applyProjectHandle(dirHandle);
+
+      // Scan and sync backend roots
       console.log('[Landing] Scanning chapters...');
-      const chapterList = await scanChapters(dirHandle);
+      const loadResult = await loadProjectFromHandle({
+        handle: dirHandle,
+        audioRootPath: get(audioRoot) || null,
+      });
+      bookRootAbsolutePath.set(loadResult.resolvedBookRoot);
+      const chapterList = loadResult.chapters;
       console.log('[Landing] Found', chapterList.length, 'chapters');
       chapters.set(chapterList);
       
@@ -248,30 +214,22 @@ import { getStoredProjectHandle, verifyHandlePermission, clearStoredProjectHandl
         // Consider implementing a toast notification system for better UX
       }
     } finally {
-      // Always reset the picking state after a delay to ensure cleanup
-      setTimeout(() => {
-        isPickingFolder = false;
-      }, 100);
+      clearFlagAfterDelay((value) => {
+        isPickingFolder = value;
+      });
     }
   }
 
   async function selectDevTestFolder(event?: MouseEvent) {
-    // Stop event propagation
-    if (event) {
-      event.stopPropagation();
-      event.preventDefault();
-    }
-
-    // Debounce rapid clicks
-    const now = Date.now();
-    if (now - lastClickTime < DEBOUNCE_MS) {
-      console.log('Click debounced - too soon after last click');
-      return;
-    }
-    lastClickTime = now;
-
-    if (isLoadingStoredProject || isPickingFolder) {
-      console.log('Already loading or picking folder');
+    const gate = beginLandingAction({
+      event,
+      lastClickTime,
+      debounceMs: DEBOUNCE_MS,
+      isBusy: isLoadingStoredProject || isPickingFolder,
+      busyLogMessage: 'Already loading or picking folder',
+    });
+    lastClickTime = gate.nextLastClickTime;
+    if (!gate.proceed) {
       return;
     }
 
@@ -288,74 +246,15 @@ import { getStoredProjectHandle, verifyHandlePermission, clearStoredProjectHandl
       
       // Set the absolute path directly
       bookRootAbsolutePath.set(DEV_TEST_FOLDER_PATH);
-      
-      // Send it to the backend
-      try {
-        const response = await fetch('http://127.0.0.1:8010/api/set-book-root', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ root_path: DEV_TEST_FOLDER_PATH })
-        });
-        
-        if (response.ok) {
-          const result = await response.json();
-          console.log('[Landing] Book root path set in backend:', result.path);
-        } else {
-          console.error('[Landing] Failed to set book root path in backend:', await response.text());
-        }
-      } catch (error) {
-        console.error('[Landing] Error setting book root path in backend:', error);
-      }
-      
-      // Also set the audio root in backend
-      const currentAudioRoot = get(audioRoot);
-      if (currentAudioRoot) {
-        try {
-          const audioResponse = await fetch('http://127.0.0.1:8010/api/set-audio-root', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ audio_root: currentAudioRoot })
-          });
-          
-          if (audioResponse.ok) {
-            const result = await audioResponse.json();
-            console.log('[Landing] Audio root path set in backend:', result.path);
-          } else {
-            console.error('[Landing] Failed to set audio root path in backend:', await audioResponse.text());
-          }
-        } catch (error) {
-          console.error('[Landing] Error setting audio root path in backend:', error);
-        }
-      }
-      
-      // In dev mode, fetch chapters from backend
-      try {
-        const chaptersResponse = await fetch('http://127.0.0.1:8010/api/list-chapters');
-        if (chaptersResponse.ok) {
-          const chaptersData = await chaptersResponse.json();
-          const chapterList = chaptersData.chapters.map((ch: any) => {
-            // Remove .txt extension to get the title
-            const title = ch.name.replace(/\.txt$/, '');
-            return {
-              path: ch.path,
-              title: title,
-              parsed: ch.parsed || false,
-              complete: false,
-              audio: false,
-              scriptPath: ch.scriptPath
-            };
-          });
-          chapters.set(chapterList);
-          const parsedCount = chapterList.filter((ch: any) => ch.parsed).length;
-          console.log('[Landing] Loaded', chapterList.length, 'chapters from backend', parsedCount > 0 ? `(${parsedCount} parsed)` : '');
-        } else {
-          console.error('[Landing] Failed to fetch chapters from backend');
-          chapters.set([]);
-        }
-      } catch (error) {
-        console.error('[Landing] Error fetching chapters from backend:', error);
-        chapters.set([]);
-      }
+
+      const loadResult = await loadProjectFromAbsolutePath({
+        rootPath: DEV_TEST_FOLDER_PATH,
+        audioRootPath: get(audioRoot) || null,
+      });
+      const chapterList = loadResult.chapters;
+      chapters.set(chapterList);
+      const parsedCount = chapterList.filter((ch) => ch.parsed).length;
+      console.log('[Landing] Loaded', chapterList.length, 'chapters from backend', parsedCount > 0 ? `(${parsedCount} parsed)` : '');
       
       // Update stored project state
       hasStoredProject = false; // We don't have a handle to store
@@ -373,80 +272,9 @@ import { getStoredProjectHandle, verifyHandlePermission, clearStoredProjectHandl
       const errorMsg = error instanceof Error ? error.message : 'Unknown error';
       console.error('Failed to set dev test folder:', errorMsg);
     } finally {
-      setTimeout(() => {
-        isLoadingStoredProject = false;
-      }, 100);
-    }
-  }
-
-  function isLikelyAbsolutePath(value: string): boolean {
-    return /^[a-zA-Z]:\\/.test(value) || value.startsWith('\\\\') || value.startsWith('/');
-  }
-
-  async function setBookRootPath(handle: FileSystemDirectoryHandle) {
-    try {
-      // Try to get the absolute path from the handle or overrides
-      let absolutePath = await resolveBookRootPath(handle);
-      
-      // If we couldn't get it from the handle, try to construct it
-      // This is a fallback - we'll use the handle name and try common locations
-      if (!absolutePath) {
-        // Try to get it from the handle's internal properties in Chromium
-        const handleAny = handle as any;
-        if (handleAny.__proto__?.constructor?.name === 'FileSystemDirectoryHandle') {
-          // Try accessing through the handle's query method or other internal APIs
-          // This is browser-specific and may not work
-        }
-        
-        console.warn('[Landing] Could not extract absolute path from handle; skipping backend root setup');
-      }
-      
-      // Store the absolute path if we have one
-      bookRootAbsolutePath.set(absolutePath || null);
-      if (!absolutePath) return;
-      
-      // Send it to the backend
-      try {
-        const response = await fetch('http://127.0.0.1:8010/api/set-book-root', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ root_path: absolutePath })
-        });
-        
-        if (response.ok) {
-          const result = await response.json();
-          console.log('[Landing] Book root path set in backend:', result.path);
-        } else {
-          console.error('[Landing] Failed to set book root path in backend:', await response.text());
-        }
-      } catch (error) {
-        console.error('[Landing] Error setting book root path in backend:', error);
-      }
-      
-      // Also set the audio root in backend
-      const currentAudioRoot = get(audioRoot);
-      if (currentAudioRoot && isLikelyAbsolutePath(currentAudioRoot)) {
-        try {
-          const audioResponse = await fetch('http://127.0.0.1:8010/api/set-audio-root', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ audio_root: currentAudioRoot })
-          });
-          
-          if (audioResponse.ok) {
-            const result = await audioResponse.json();
-            console.log('[Landing] Audio root path set in backend:', result.path);
-          } else {
-            console.error('[Landing] Failed to set audio root path in backend:', await audioResponse.text());
-          }
-        } catch (error) {
-          console.error('[Landing] Error setting audio root path in backend:', error);
-        }
-      } else if (currentAudioRoot) {
-        console.warn('[Landing] Audio root path is not absolute; skipping backend audio root setup');
-      }
-    } catch (error) {
-      console.error('[Landing] Error getting absolute path:', error);
+      clearFlagAfterDelay((value) => {
+        isLoadingStoredProject = value;
+      });
     }
   }
 

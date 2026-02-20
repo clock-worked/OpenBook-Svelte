@@ -8,9 +8,10 @@
   import AudioQueueOverlay from '$lib/components/chapter/AudioQueueOverlay.svelte';
   import PlaybackBar from '$lib/components/chapter/PlaybackBar.svelte';
   import Toolbar from '$lib/components/chapter/Toolbar.svelte';
-  import { bookRootHandle, bookRoot, chapters, autoSelectChapter, bookRootAbsolutePath } from '$lib/stores/bookState';
-  import { scanChapters, setRootDirHandle } from '$lib/services/fs';
-  import { getStoredProjectHandle, verifyHandlePermission, updateLastAccessed } from '$lib/services/persistence';
+  import { bookRoot, chapters, autoSelectChapter } from '$lib/stores/bookState';
+  import { scanChapters } from '$lib/services/fs';
+  import { initRouteProjectContext } from '$lib/services/projectSession';
+  import { getProjectInitFailurePolicy } from '$lib/services/routePolicy';
   import { get } from 'svelte/store';
   import { toolMode } from '$lib/stores/selection';
   import { isAudioActive, audioState } from '$lib/stores/audio';
@@ -27,54 +28,35 @@
 
   onMount(async () => {
     try {
-      // First check if we already have a handle in the store
-      let rootHandle = get(bookRootHandle);
-      
-      // Check if we're in dev mode (have path but no handle)
-      const devModePath = get(bookRootAbsolutePath);
-      const isDevMode = devModePath && !rootHandle;
-      
-      // If not in store and not in dev mode, try to load from persistence
-      if (!rootHandle && !isDevMode) {
+      const context = await initRouteProjectContext({
+        allowDevModeWithoutHandle: true,
+        requestPermission: true,
+        touchLastAccessed: true,
+      });
+
+      if (!context.ok) {
         console.warn('[Review] No handle in store, checking persistence...');
-        const stored = await getStoredProjectHandle();
-        
-        if (stored && stored.handle) {
-          console.log('[Review] Found stored project:', stored.name);
-          // Verify we still have permission
-          const hasPermission = await verifyHandlePermission(stored.handle, true);
-          
-          if (hasPermission) {
-            console.log('[Review] Permission granted, restoring project:', stored.name);
-            rootHandle = stored.handle;
-            
-            // Set up the stores
-            setRootDirHandle(rootHandle);
-            bookRootHandle.set(rootHandle);
-            bookRoot.set(rootHandle.name);
-            
-            // Update last accessed time
-            await updateLastAccessed();
-          } else {
-            console.error('[Review] Permission denied for stored project');
-            loadError = 'Permission denied. Please select a project from the landing page.';
-            isLoading = false;
-            // Redirect back to landing page after a delay
-            setTimeout(() => goto('/'), 2000);
-            return;
-          }
+        const reason = ('reason' in context ? context.reason : 'error');
+        const policy = getProjectInitFailurePolicy(reason);
+
+        if (policy.logLevel === 'error') {
+          console.error('[Review] Project init failed:', reason, 'error' in context ? context.error : undefined);
         } else {
-          console.warn('[Review] No stored project found');
-          loadError = 'No project loaded. Redirecting to landing page...';
-          isLoading = false;
-          // Redirect back to landing page
-          setTimeout(() => goto('/'), 1500);
-          return;
+          console.warn('[Review] Project init failed:', reason);
         }
-      } else if (isDevMode) {
-        console.log('[Review] Running in dev mode with path:', devModePath);
+
+        loadError = policy.chapterMessage;
+        isLoading = false;
+        setTimeout(() => goto('/'), policy.delayMs);
+        return;
+      }
+
+      const rootHandle = context.rootHandle;
+      const isDevMode = context.isDevMode;
+      if (isDevMode) {
+        console.log('[Review] Running in dev mode with path:', context.devModePath);
       } else {
-        console.log('[Review] Using existing handle from store:', get(bookRoot));
+        console.log('[Review] Using active project:', get(bookRoot));
       }
       
       // Now we have a handle or are in dev mode, handle chapters

@@ -2,9 +2,11 @@
   import { onDestroy, onMount } from 'svelte';
   import { goto } from '$app/navigation';
   import { get } from 'svelte/store';
-  import { bookRoot, bookRootHandle, chapters, audioRoot, bookRootAbsolutePath, voiceSamplesRoot } from '$lib/stores/bookState';
-  import { scanChapters, getRootDirHandle, setRootDirHandle, readSettings, writeSettings, readSpeakerBlocklist, resolveBookRootPath, getAbsolutePathFromHandle } from '$lib/services/fs';
-  import { getStoredProjectHandle, verifyHandlePermission, updateLastAccessed } from '$lib/services/persistence';
+  import { bookRoot, chapters, audioRoot, bookRootAbsolutePath, voiceSamplesRoot } from '$lib/stores/bookState';
+  import { scanChapters, getRootDirHandle, readSettings, writeSettings, readSpeakerBlocklist, resolveBookRootPath, setBackendAudioRoot, triggerStatsUpdate } from '$lib/services/fs';
+  import { pickDirectoryAbsolutePath } from '$lib/services/directoryPicker';
+  import { initRouteProjectContext } from '$lib/services/projectSession';
+  import { getProjectInitFailurePolicy } from '$lib/services/routePolicy';
   import { audiobookSettings, parserHints } from '$lib/stores/settings';
   import {
     bookCharacters,
@@ -164,63 +166,34 @@
       console.log('[book route] Audio root defaulted to book root:', nextAudioRoot);
     }
 
-    if (nextAudioRoot && (/^[a-zA-Z]:\\/.test(nextAudioRoot) || nextAudioRoot.startsWith('\\') || nextAudioRoot.startsWith('/'))) {
-      try {
-        const response = await fetch('http://127.0.0.1:8010/api/set-audio-root', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ audio_root: nextAudioRoot })
-        });
-
-        if (!response.ok) {
-          console.warn('[book route] Failed to set audio root on backend:', await response.text());
-        }
-      } catch (error) {
-        console.warn('[book route] Error setting audio root on backend:', error);
+    if (nextAudioRoot) {
+      const synced = await setBackendAudioRoot(nextAudioRoot);
+      if (!synced) {
+        console.warn('[book route] Failed to set audio root on backend');
       }
     }
   }
 
   onMount(async () => {
-    // First check if we already have a handle
-    let rootHandle = getRootDirHandle();
-    
-    // If not in memory, try to load from persistence
-    if (!rootHandle) {
-      try {
-        const stored = await getStoredProjectHandle();
-        
-        if (stored && stored.handle) {
-          // Verify we still have permission
-          const hasPermission = await verifyHandlePermission(stored.handle, true);
-          
-          if (hasPermission) {
-            rootHandle = stored.handle;
-            
-            // Set up the stores
-            setRootDirHandle(rootHandle);
-            bookRootHandle.set(rootHandle);
-            bookRoot.set(rootHandle.name);
-            
-            // Update last accessed time
-            await updateLastAccessed();
-          } else {
-            // Permission denied, redirect to landing page
-            console.error('Permission denied for stored project');
-            setTimeout(() => goto('/'), 2000);
-            return;
-          }
-        } else {
-          // No stored project, redirect to landing page
-          setTimeout(() => goto('/'), 1500);
-          return;
-        }
-      } catch (error) {
-        console.error('Error loading stored project:', error);
-        setTimeout(() => goto('/'), 2000);
-        return;
+    const context = await initRouteProjectContext({
+      allowDevModeWithoutHandle: false,
+      requestPermission: true,
+      touchLastAccessed: true,
+    });
+
+    if (!context.ok || !context.rootHandle) {
+      if (!context.ok && 'reason' in context && context.reason === 'permission_denied') {
+        console.error('Permission denied for stored project');
+      } else if (!context.ok && 'reason' in context && context.reason === 'error') {
+        console.error('Error loading stored project:', context.error);
       }
+      const reason = (!context.ok && 'reason' in context) ? context.reason : 'error';
+      const policy = getProjectInitFailurePolicy(reason);
+      setTimeout(() => goto('/'), policy.delayMs);
+      return;
     }
+
+    const rootHandle = context.rootHandle;
     
     // Now scan chapters
     if (rootHandle) {
@@ -470,57 +443,7 @@
   async function refreshCharacterCounts() {
     refreshingCounts = true;
     try {
-      // First, ensure backend knows the book root path
-      const rootHandle = getRootDirHandle();
-      if (!rootHandle) {
-        console.error('No book root handle available');
-        return;
-      }
-      
-      // Try to get absolute path for backend
-      const resolvedPath = await resolveBookRootPath(rootHandle);
-      if (!resolvedPath) {
-        console.error('Could not get absolute path for book root');
-        // Fallback: try using the directory name (may not work if backend needs full path)
-        console.warn('Backend may not be able to access files without absolute path');
-      }
-      
-      // Set book root path on backend if we have it
-      if (resolvedPath) {
-        try {
-          const setRootResponse = await fetch('http://127.0.0.1:8010/api/set-book-root', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ root_path: resolvedPath })
-          });
-          
-          if (!setRootResponse.ok) {
-            console.warn('Failed to set book root on backend:', setRootResponse.statusText);
-          } else {
-            console.log('Backend book root set to:', resolvedPath);
-          }
-        } catch (err) {
-          console.warn('Could not set book root on backend:', err);
-        }
-      }
-      
-      // Then trigger backend to recalculate stats from dialogue files
-      try {
-        const response = await fetch('http://127.0.0.1:8010/api/update-character-stats', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' }
-        });
-        
-        if (response.ok) {
-          const result = await response.json();
-          console.log('Backend stats update:', result);
-        } else {
-          const errorText = await response.text();
-          console.warn('Backend stats update failed:', response.statusText, errorText);
-        }
-      } catch (err) {
-        console.warn('Could not reach backend for stats update:', err);
-      }
+      await triggerStatsUpdate();
       
       // Then reload from disk (picks up the backend's changes)
       await forceRefreshBookCharacters();
@@ -620,20 +543,18 @@
   }
 
   async function handlePickVoiceSamplesFolder() {
-    if (!window.showDirectoryPicker) {
-      alert('Folder picker is not supported in this browser. Enter the path manually.');
-      return;
-    }
-
     try {
-      const handle = await window.showDirectoryPicker({ mode: 'read' });
-      const absolutePath = await getAbsolutePathFromHandle(handle);
+      const absolutePath = await pickDirectoryAbsolutePath('read');
       if (!absolutePath) {
         alert('Could not read absolute path. Enter the path manually.');
         return;
       }
       voiceSamplesRoot.set(absolutePath);
     } catch (err) {
+      if (err instanceof Error && err.message.includes('not supported')) {
+        alert('Folder picker is not supported in this browser. Enter the path manually.');
+        return;
+      }
       if (err instanceof Error && err.name === 'AbortError') {
         return;
       }
