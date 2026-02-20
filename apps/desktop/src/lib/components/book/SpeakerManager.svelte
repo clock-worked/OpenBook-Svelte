@@ -1,0 +1,785 @@
+<script lang="ts">
+  import { createEventDispatcher } from 'svelte';
+  import { get } from 'svelte/store';
+  import type { Voice, TtsProvider, Character } from '$lib/types';
+  import SpeakerCard from './SpeakerCard.svelte';
+  import { Plus, X, Play, RefreshCw } from 'lucide-svelte';
+  import { getCharacterNamesByIds } from '$lib/stores/characters';
+  import { voiceSamplesRoot } from '$lib/stores/bookState';
+  import { listVoiceSamples } from '$lib/services/vibevoice';
+
+  export let voices: Voice[] = [];
+  export let assignments: Array<{ characterId: string; voiceId: string }> = [];
+  export let characters: Character[] = [];
+
+  const dispatch = createEventDispatcher<{
+    update: Voice[];
+    deduplicate: void;
+  }>();
+
+  let showModal = false;
+  let editingId: string | null = null;
+  let formData: Partial<Voice> = {
+    displayName: '',
+    provider: 'elevenlabs',
+    providerVoiceId: '',
+    notes: '',
+    previewUrl: null,
+    metadata: {
+      gender: 'U',
+      imageUrl: null,
+    },
+  };
+
+  const PROVIDER_OPTIONS: Array<{ value: TtsProvider; label: string }> = [
+    { value: 'elevenlabs', label: 'ElevenLabs' },
+    { value: 'chirp3', label: 'Chirp3' },
+    { value: 'vibevoice_local', label: 'VibeVoice (Local)' },
+  ];
+
+  // Chirp3 voices grouped by locale (all 12 voices available in all 4 locales = 48 total)
+  const CHIRP3_VOICES_BY_LOCALE: Record<string, Array<{ id: string; name: string; gender: string; previewUrl: string }>> = {
+    'en-US': [
+      { id: 'en-US-Chirp3-HD-Zephyr', name: 'Zephyr (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Zephyr_en_US.mp3' },
+      { id: 'en-US-Chirp3-HD-Enceladus', name: 'Enceladus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Enceladus_en_US.mp3' },
+      { id: 'en-US-Chirp3-HD-Autonoe', name: 'Autonoe (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Autonoe_en_US.mp3' },
+      { id: 'en-US-Chirp3-HD-Algieba', name: 'Algieba (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Algieba_en_US.mp3' },
+      { id: 'en-US-Chirp3-HD-Charon', name: 'Charon (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Charon_en_US.mp3' },
+      { id: 'en-US-Chirp3-HD-Kore', name: 'Kore (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Kore_en_US.mp3' },
+      { id: 'en-US-Chirp3-HD-Orus', name: 'Orus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Orus_en_US.mp3' },
+      { id: 'en-US-Chirp3-HD-Iapetus', name: 'Iapetus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Iapetus_en_US.mp3' },
+      { id: 'en-US-Chirp3-HD-Gacrux', name: 'Gacrux (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Gacrux_en_US.mp3' },
+      { id: 'en-US-Chirp3-HD-Fenrir', name: 'Fenrir (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Fenrir_en_US.mp3' },
+      { id: 'en-US-Chirp3-HD-Vindemiatrix', name: 'Vindemiatrix (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Vindemiatrix_en_US.mp3' },
+      { id: 'en-US-Chirp3-HD-Aoede', name: 'Aoede (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Aoede_en_US.mp3' },
+    ],
+    'en-GB': [
+      { id: 'en-GB-Chirp3-HD-Zephyr', name: 'Zephyr (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Zephyr_en_GB.mp3' },
+      { id: 'en-GB-Chirp3-HD-Enceladus', name: 'Enceladus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Enceladus_en_GB.mp3' },
+      { id: 'en-GB-Chirp3-HD-Autonoe', name: 'Autonoe (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Autonoe_en_GB.mp3' },
+      { id: 'en-GB-Chirp3-HD-Algieba', name: 'Algieba (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Algieba_en_GB.mp3' },
+      { id: 'en-GB-Chirp3-HD-Charon', name: 'Charon (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Charon_en_GB.mp3' },
+      { id: 'en-GB-Chirp3-HD-Kore', name: 'Kore (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Kore_en_GB.mp3' },
+      { id: 'en-GB-Chirp3-HD-Orus', name: 'Orus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Orus_en_GB.mp3' },
+      { id: 'en-GB-Chirp3-HD-Iapetus', name: 'Iapetus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Iapetus_en_GB.mp3' },
+      { id: 'en-GB-Chirp3-HD-Gacrux', name: 'Gacrux (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Gacrux_en_GB.mp3' },
+      { id: 'en-GB-Chirp3-HD-Fenrir', name: 'Fenrir (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Fenrir_en_GB.mp3' },
+      { id: 'en-GB-Chirp3-HD-Vindemiatrix', name: 'Vindemiatrix (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Vindemiatrix_en_GB.mp3' },
+      { id: 'en-GB-Chirp3-HD-Aoede', name: 'Aoede (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Aoede_en_GB.mp3' },
+    ],
+    'en-AU': [
+      { id: 'en-AU-Chirp3-HD-Zephyr', name: 'Zephyr (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Zephyr_en_AU.mp3' },
+      { id: 'en-AU-Chirp3-HD-Enceladus', name: 'Enceladus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Enceladus_en_AU.mp3' },
+      { id: 'en-AU-Chirp3-HD-Autonoe', name: 'Autonoe (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Autonoe_en_AU.mp3' },
+      { id: 'en-AU-Chirp3-HD-Algieba', name: 'Algieba (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Algieba_en_AU.mp3' },
+      { id: 'en-AU-Chirp3-HD-Charon', name: 'Charon (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Charon_en_AU.mp3' },
+      { id: 'en-AU-Chirp3-HD-Kore', name: 'Kore (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Kore_en_AU.mp3' },
+      { id: 'en-AU-Chirp3-HD-Orus', name: 'Orus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Orus_en_AU.mp3' },
+      { id: 'en-AU-Chirp3-HD-Iapetus', name: 'Iapetus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Iapetus_en_AU.mp3' },
+      { id: 'en-AU-Chirp3-HD-Gacrux', name: 'Gacrux (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Gacrux_en_AU.mp3' },
+      { id: 'en-AU-Chirp3-HD-Fenrir', name: 'Fenrir (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Fenrir_en_AU.mp3' },
+      { id: 'en-AU-Chirp3-HD-Vindemiatrix', name: 'Vindemiatrix (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Vindemiatrix_en_AU.mp3' },
+      { id: 'en-AU-Chirp3-HD-Aoede', name: 'Aoede (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Aoede_en_AU.mp3' },
+    ],
+    'en-IN': [
+      { id: 'en-IN-Chirp3-HD-Zephyr', name: 'Zephyr (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Zephyr_en_IN.mp3' },
+      { id: 'en-IN-Chirp3-HD-Enceladus', name: 'Enceladus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Enceladus_en_IN.mp3' },
+      { id: 'en-IN-Chirp3-HD-Autonoe', name: 'Autonoe (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Autonoe_en_IN.mp3' },
+      { id: 'en-IN-Chirp3-HD-Algieba', name: 'Algieba (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Algieba_en_IN.mp3' },
+      { id: 'en-IN-Chirp3-HD-Charon', name: 'Charon (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Charon_en_IN.mp3' },
+      { id: 'en-IN-Chirp3-HD-Kore', name: 'Kore (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Kore_en_IN.mp3' },
+      { id: 'en-IN-Chirp3-HD-Orus', name: 'Orus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Orus_en_IN.mp3' },
+      { id: 'en-IN-Chirp3-HD-Iapetus', name: 'Iapetus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Iapetus_en_IN.mp3' },
+      { id: 'en-IN-Chirp3-HD-Gacrux', name: 'Gacrux (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Gacrux_en_IN.mp3' },
+      { id: 'en-IN-Chirp3-HD-Fenrir', name: 'Fenrir (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Fenrir_en_IN.mp3' },
+      { id: 'en-IN-Chirp3-HD-Vindemiatrix', name: 'Vindemiatrix (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Vindemiatrix_en_IN.mp3' },
+      { id: 'en-IN-Chirp3-HD-Aoede', name: 'Aoede (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Aoede_en_IN.mp3' },
+    ],
+  };
+
+  let selectedLocale = 'en-US';
+  let voiceSamples: string[] = [];
+  let voiceSamplesError: string | null = null;
+  let isLoadingSamples = false;
+  let lastSamplesRoot: string | null = null;
+
+  async function loadVoiceSamples(force: boolean = false) {
+    const root = get(voiceSamplesRoot);
+    if (!root) {
+      voiceSamples = [];
+      voiceSamplesError = 'Select a samples folder to list files.';
+      return;
+    }
+
+    if (!force && root === lastSamplesRoot && voiceSamples.length > 0) return;
+
+    isLoadingSamples = true;
+    voiceSamplesError = null;
+    try {
+      voiceSamples = await listVoiceSamples(root);
+      lastSamplesRoot = root;
+      if (voiceSamples.length === 0) {
+        voiceSamplesError = 'No sample files found in the selected folder.';
+      }
+    } catch (err) {
+      voiceSamplesError = err instanceof Error ? err.message : 'Failed to load samples.';
+      voiceSamples = [];
+    } finally {
+      isLoadingSamples = false;
+    }
+  }
+
+  $: if (showModal && formData.provider === 'vibevoice_local') {
+    void loadVoiceSamples();
+  }
+
+  async function refreshVoiceSamples() {
+    lastSamplesRoot = null;
+    await loadVoiceSamples(true);
+  }
+
+  function openCreateModal() {
+    editingId = null;
+    formData = {
+      displayName: '',
+      provider: 'elevenlabs',
+      providerVoiceId: '',
+      notes: '',
+      previewUrl: null,
+      metadata: {
+        gender: 'U',
+        imageUrl: null,
+      },
+    };
+    showModal = true;
+  }
+  
+  function handleDeduplicate() {
+    dispatch('deduplicate');
+  }
+
+  function openEditModal(event: CustomEvent<Voice>) {
+    const v = event.detail;
+    editingId = v.id;
+    formData = { ...v, metadata: { ...v.metadata } };
+    
+    // For Chirp3 voices, detect the locale from the providerVoiceId
+    if (v.provider === 'chirp3' && v.providerVoiceId) {
+      const locale = v.providerVoiceId.split('-').slice(0, 2).join('-'); // e.g., "en-US" from "en-US-Chirp3-HD-Zephyr"
+      if (CHIRP3_VOICES_BY_LOCALE[locale]) {
+        selectedLocale = locale;
+      } else {
+        selectedLocale = 'en-US'; // fallback
+      }
+    }
+    
+    showModal = true;
+  }
+  
+  // Get the names of characters using a specific voice
+  function getCharacterNames(voiceId: string): string[] {
+    const characterIds = assignments
+      .filter(a => a.voiceId === voiceId)
+      .map(a => a.characterId);
+    
+    return getCharacterNamesByIds(characterIds, characters);
+  }
+
+  function closeModal() {
+    showModal = false;
+    editingId = null;
+  }
+
+  function generateId(): string {
+    const provider = formData.provider || 'elevenlabs';
+    const voiceId = formData.providerVoiceId || 'unknown';
+    return `${provider}-${voiceId}`;
+  }
+
+  function handleSubmit() {
+    if (!formData.displayName?.trim()) {
+      alert('Voice name is required');
+      return;
+    }
+
+    if (!formData.providerVoiceId?.trim()) {
+      alert('Provider Voice ID is required');
+      return;
+    }
+
+    if (editingId) {
+      // Update existing voice
+      voices = voices.map(v => 
+        v.id === editingId 
+          ? { ...formData, id: editingId, metadata: { ...formData.metadata } } as Voice
+          : v
+      );
+    } else {
+      // Create new voice
+      const newVoice: Voice = {
+        id: generateId(),
+        displayName: formData.displayName!,
+        provider: formData.provider || 'elevenlabs',
+        providerVoiceId: formData.providerVoiceId!,
+        notes: formData.notes || '',
+        previewUrl: formData.previewUrl || null,
+        metadata: {
+          gender: formData.metadata?.gender || 'U',
+          imageUrl: formData.metadata?.imageUrl || null,
+        },
+      };
+      voices = [...voices, newVoice];
+    }
+
+    dispatch('update', voices);
+    closeModal();
+  }
+
+  function handleDelete(event: CustomEvent<string>) {
+    const id = event.detail;
+    if (confirm('Are you sure you want to delete this voice?')) {
+      voices = voices.filter(v => v.id !== id);
+      dispatch('update', voices);
+    }
+  }
+
+  function handlePreview(event: CustomEvent<string>) {
+    const id = event.detail;
+    const voice = voices.find(v => v.id === id);
+    if (voice) {
+      console.log('Preview voice:', voice);
+      if (voice.previewUrl) {
+        const audio = new Audio(voice.previewUrl);
+        audio.play().catch(err => console.error('Preview error:', err));
+      } else {
+        alert('No preview available for this voice');
+      }
+    }
+  }
+
+  function handleModalPreview() {
+    if (!editingId) return;
+    const voice = voices.find(v => v.id === editingId);
+    if (voice && voice.previewUrl) {
+      const audio = new Audio(voice.previewUrl);
+      audio.play().catch(err => console.error('Preview error:', err));
+    }
+  }
+
+  function handlePlayChirp3Preview() {
+    if (!formData.providerVoiceId) return;
+    
+    // Find the preview URL for the selected voice
+    let previewUrl = null;
+    for (const locale in CHIRP3_VOICES_BY_LOCALE) {
+      const voiceObj = CHIRP3_VOICES_BY_LOCALE[locale].find(v => v.id === formData.providerVoiceId);
+      if (voiceObj) {
+        previewUrl = voiceObj.previewUrl;
+        break;
+      }
+    }
+    
+    if (previewUrl) {
+      const audio = new Audio(previewUrl);
+      audio.play().catch(err => console.error('Preview error:', err));
+    } else {
+      alert('No preview available for this voice');
+    }
+  }
+</script>
+
+<div class="speaker-manager">
+  <div class="manager-header">
+    <h2 class="section-title">Voices</h2>
+    <div class="header-actions">
+      <button class="dedupe-btn" on:click={handleDeduplicate} title="Remove duplicate voices with the same provider voice ID">
+        <RefreshCw size={18} />
+        <span>Deduplicate</span>
+      </button>
+      <button class="add-speaker-btn" on:click={openCreateModal}>
+        <Plus size={18} />
+        <span>Add Voice</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="speakers-grid">
+    {#each voices as voice (voice.id)}
+      <SpeakerCard
+        {voice}
+        characters={getCharacterNames(voice.id)}
+        on:edit={openEditModal}
+        on:delete={handleDelete}
+        on:preview={handlePreview}
+      />
+    {/each}
+
+    {#if voices.length === 0}
+      <div class="empty-state">
+        <p>No voices yet. Voices are automatically discovered from audio manifests. Click "Add Voice" to create one manually.</p>
+      </div>
+    {/if}
+  </div>
+</div>
+
+{#if showModal}
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
+  <div class="modal-backdrop" on:click={closeModal}>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <div class="modal-content" on:click|stopPropagation>
+      <div class="modal-header">
+        <h3>{editingId ? 'Edit Voice' : 'Create Voice'}</h3>
+        <button class="close-btn" on:click={closeModal}>
+          <X size={20} />
+        </button>
+      </div>
+
+      <form class="modal-form" on:submit|preventDefault={handleSubmit}>
+        <div class="form-group">
+          <label for="display-name">Display Name *</label>
+          <input
+            id="display-name"
+            type="text"
+            bind:value={formData.displayName}
+            placeholder="e.g., Black Knight Voice, Narrator"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="provider">Provider *</label>
+          <div class="provider-with-preview">
+            <select id="provider" bind:value={formData.provider}>
+              {#each PROVIDER_OPTIONS as option}
+                <option value={option.value}>{option.label}</option>
+              {/each}
+            </select>
+            {#if editingId}
+              {@const currentVoice = voices.find(v => v.id === editingId)}
+              {#if currentVoice?.previewUrl}
+                <button type="button" class="preview-btn-inline" on:click={handleModalPreview} title="Play preview">
+                  <Play size={14} />
+                  <span>Preview</span>
+                </button>
+              {/if}
+            {/if}
+          </div>
+        </div>
+
+        {#if formData.provider === 'chirp3'}
+          <div class="form-group">
+            <label for="chirp3-locale">Locale/Accent *</label>
+            <select id="chirp3-locale" bind:value={selectedLocale}>
+              {#each Object.keys(CHIRP3_VOICES_BY_LOCALE) as locale}
+                <option value={locale}>{locale}</option>
+              {/each}
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="chirp3-voice">Voice *</label>
+            <div class="voice-select-with-preview">
+              <select id="chirp3-voice" bind:value={formData.providerVoiceId} required>
+                {#each CHIRP3_VOICES_BY_LOCALE[selectedLocale] || [] as voiceOption}
+                  <option value={voiceOption.id}>{voiceOption.name}</option>
+                {/each}
+              </select>
+              {#if formData.providerVoiceId}
+                <button type="button" class="preview-btn-inline" on:click={handlePlayChirp3Preview} title="Play preview">
+                  <span>Preview</span>
+                </button>
+              {/if}
+            </div>
+            <span class="help-text">Select a Chirp3 voice from the dropdown</span>
+          </div>
+        {:else if formData.provider === 'vibevoice_local'}
+          <div class="form-group">
+            <label for="vibevoice-sample">Voice Sample *</label>
+            {#if voiceSamplesError}
+              <span class="help-text">{voiceSamplesError}</span>
+            {:else if $voiceSamplesRoot}
+              <span class="help-text">Using samples from: {$voiceSamplesRoot}</span>
+            {/if}
+          </div>
+
+          <div class="form-group">
+            <div class="voice-select-with-preview">
+              <select id="vibevoice-sample" bind:value={formData.providerVoiceId} required>
+              <option value="">-- Select sample --</option>
+              {#each voiceSamples as sample}
+                <option value={sample}>{sample}</option>
+              {/each}
+              </select>
+              <button type="button" class="preview-btn-inline" on:click={refreshVoiceSamples}>
+                {isLoadingSamples ? 'Loading...' : 'Refresh'}
+              </button>
+            </div>
+            {#if isLoadingSamples}
+              <span class="help-text">Loading samples...</span>
+            {:else if voiceSamples.length === 0 && $voiceSamplesRoot}
+              <span class="help-text">No audio samples found in this folder.</span>
+            {/if}
+            <span class="help-text">Uses the selected file as the VibeVoice sample.</span>
+          </div>
+        {:else}
+          <div class="form-group">
+            <label for="voice-id">ElevenLabs Voice ID *</label>
+            <input
+              id="voice-id"
+              type="text"
+              bind:value={formData.providerVoiceId}
+              placeholder="e.g., kNS2rxxquHK0xi0lmF1f"
+              required
+            />
+            <span class="help-text">Get this from your ElevenLabs dashboard</span>
+          </div>
+        {/if}
+
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <div class="gender-selector">
+            <label class="gender-option">
+              <input type="radio" bind:group={formData.metadata.gender} value="M" />
+              <span class="gender-circle male">M</span>
+            </label>
+            <label class="gender-option">
+              <input type="radio" bind:group={formData.metadata.gender} value="F" />
+              <span class="gender-circle female">F</span>
+            </label>
+            <label class="gender-option">
+              <input type="radio" bind:group={formData.metadata.gender} value="U" />
+              <span class="gender-circle unknown">U</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="notes">Notes</label>
+          <textarea
+            id="notes"
+            bind:value={formData.notes}
+            placeholder="Add any notes about this voice..."
+            rows="3"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="image-url">Image URL (optional)</label>
+          <input
+            id="image-url"
+            type="text"
+            bind:value={formData.metadata.imageUrl}
+            placeholder="https://..."
+          />
+          <span class="help-text">URL to character image (for future use)</span>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="cancel-btn" on:click={closeModal}>
+            Cancel
+          </button>
+          <button type="submit" class="submit-btn">
+            {editingId ? 'Update' : 'Create'} Voice
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+{/if}
+
+<style>
+  .speaker-manager {
+    padding: 20px;
+  }
+
+  .manager-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .section-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 12px;
+  }
+
+  .dedupe-btn,
+  .add-speaker-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+
+  .add-speaker-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .dedupe-btn {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  }
+
+  .dedupe-btn:hover,
+  .add-speaker-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: #6b7280;
+    font-size: 16px;
+  }
+
+  /* Modal Styles */
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+  }
+
+  .modal-content {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .modal-header h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6b7280;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+  }
+
+  .close-btn:hover {
+    color: #1f2937;
+  }
+
+  .modal-form {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  .form-group input[type="text"],
+  .form-group select,
+  .form-group textarea {
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #111827;
+    transition: border-color 0.15s ease;
+  }
+
+  .form-group input[type="text"]:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    font-family: inherit;
+  }
+
+  .help-text {
+    font-size: 12px;
+    color: #6b7280;
+    font-style: italic;
+  }
+
+  .gender-selector {
+    display: flex;
+    gap: 16px;
+  }
+
+  .gender-option {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .gender-option input[type="radio"] {
+    display: none;
+  }
+
+  .gender-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    border: 3px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .gender-circle.male {
+    background: #3b82f6;
+  }
+
+  .gender-circle.female {
+    background: #ec4899;
+  }
+
+  .gender-circle.unknown {
+    background: #8b5cf6;
+  }
+
+  .gender-option input[type="radio"]:checked + .gender-circle {
+    border-color: #1f2937;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 8px;
+  }
+
+  .cancel-btn,
+  .submit-btn {
+    flex: 1;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .cancel-btn {
+    background: #f3f4f6;
+    color: #1f2937;
+  }
+
+  .cancel-btn:hover {
+    background: #e5e7eb;
+  }
+
+  .submit-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Voice Selector in Modal */
+  .voice-select-with-preview,
+  .provider-with-preview {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .voice-select-with-preview select,
+  .provider-with-preview select {
+    flex: 1;
+  }
+
+  .preview-btn-inline {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    background: #3b82f6;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .preview-btn-inline:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+  }
+
+  .preview-btn-inline:active {
+    transform: translateY(0);
+  }
+</style>
+
