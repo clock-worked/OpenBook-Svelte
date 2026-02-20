@@ -3,8 +3,8 @@ import { parserHints } from '$lib/stores/settings';
 import type { Line, DialogueJson, DialogueLine, Character, LineCandidate, ParserHints } from '$lib/types';
 import { readTextFile, getRootDirHandle, readCentralCharacters, writeCentralCharacters } from '$lib/services/fs';
 import { buildNameToIdMap } from '$lib/stores/characters';
+import { API_ENDPOINTS, apiRequestJson, toApiClientError } from '$lib/services/apiClient';
 
-const API_BASE_URL = 'http://127.0.0.1:8010';
 const ALWAYS_BLOCKED_CHARACTER_NAMES = new Set(['he', 'she', 'as']);
 
 interface ParserOutput {
@@ -263,7 +263,7 @@ export async function runParserForChapter(args: {
     );
     const parserOptions = buildParserOptions(hints);
 
-    const response = await fetch(`${API_BASE_URL}/api/parse`, {
+    const parsed = await apiRequestJson<ParserOutput>(API_ENDPOINTS.parse, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -275,13 +275,6 @@ export async function runParserForChapter(args: {
         parser_options: parserOptions,
       }),
     });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || 'Parser API request failed');
-    }
-
-    const parsed: ParserOutput = await response.json();
     const parsedCharacters = Array.isArray(parsed.characters) ? parsed.characters : [];
     if (!Array.isArray(parsed.characters)) {
       console.warn('[parser] Missing or invalid characters list in parser response');
@@ -422,8 +415,9 @@ export async function runParserForChapter(args: {
     };
 
   } catch (e) {
-    console.error('[parser] Failed', e);
-    return { ok: false, error: String(e) };
+    const apiError = toApiClientError(e);
+    console.error('[parser] Failed', apiError);
+    return { ok: false, error: `[${apiError.type}] ${apiError.message}` };
   }
 }
 

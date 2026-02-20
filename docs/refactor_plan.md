@@ -206,3 +206,45 @@
 ✅ Completed: normalized project-init redirect/message policy via shared route policy service (`routePolicy.ts`).  
 ✅ Completed: extracted landing interaction/debounce helpers (`landingInteraction.ts`) and removed repeated gating logic from `+page`.  
 🏁 Lane 1 complete.
+
+---
+
+## Lane 2 Current Status
+
+✅ Started: added centralized API client module (`apiClient.ts`) with canonical endpoint map + single base URL support.  
+✅ Completed: introduced typed request/response helpers and shared error classification (`network` / `validation` / `server`).  
+✅ Completed: migrated service HTTP callsites (`fs.ts`, `parser.ts`, `audio.ts`, `voices.ts`, `vibevoice.ts`) to the centralized client.  
+✅ Completed: migrated remaining UI hardcoded backend callsites (`ChapterView.svelte`, `ChapterCharacterPanel.svelte`, `audioHandlers.ts`, `settings/+page.svelte`).  
+✅ Completed: added API contract/governance doc (`docs/api_contract.md`).  
+✅ Completed: tightened typed API payload handling in Lane 2 services (`fs.ts`, `audio.ts`, `vibevoice.ts`, `voices.ts`) to reduce `any` parsing paths.  
+🏁 Lane 2 foundation complete.
+
+---
+
+## Lane 3 Current Status
+
+✅ Started: extracted chapter dialogue normalization/attribution logic from `ChapterView.svelte` into shared module (`chapterNormalization.ts`).  
+✅ Completed: wired chapter-load normalization in `ChapterView.svelte` to consume `normalizeScriptData` from shared tools module.  
+✅ Completed: preserved existing save/sync attribution behavior by reusing shared `normalizeAttribution` helper.  
+✅ Completed: extracted chapter animation-planning and paragraph-run builders into shared presentation module (`chapterPresentation.ts`).  
+✅ Completed: rewired `ChapterView.svelte` to use shared presentation helpers (`buildChapterAnimationPlanData`, `buildParagraphRuns`, `createStaticChapterAnimationPlan`).  
+✅ Completed: extracted chapter load/save orchestration into shared persistence module (`chapterPersistence.ts`).  
+✅ Completed: rewired `ChapterView.svelte` to delegate dialogue load and save flows through shared persistence helpers (`loadChapterContent`, `saveDialogueFromNormalized`).  
+✅ Completed: extracted chapter character bootstrap/cache helpers into shared module (`chapterCharacterBootstrap.ts`) and removed slug/alias bootstrap internals from `ChapterView.svelte`.  
+✅ Completed: extracted legacy↔normalized script sync + generated audio marker refresh logic into shared state-sync module (`chapterStateSync.ts`).  
+✅ Completed: rewired `ChapterView.svelte` to use shared state-sync helpers (`buildLegacyScriptFromNormalized`, `mergeNormalizedFromLegacy`, `buildGeneratedAudioMarkerState`).  
+✅ Completed: smoke-checked touched chapter files for compile errors.  
+🏁 Lane 3 complete.  
+
+---
+
+## Lane 4 Current Status
+
+✅ Started: extracted character identity/remap/alias transforms into shared domain service (`characterDomain.ts`).  
+✅ Completed: `bookCharacters.ts` now acts as store orchestration and delegates remap logic with explicit chapter targets.  
+✅ Completed: extracted character load/derive/persist data logic into repository service (`bookCharacterRepository.ts`) and removed those internals from `bookCharacters.ts`.  
+✅ Completed: consolidated repeated `setBookCharacter*` mutation paths behind a shared upsert helper in `bookCharacters.ts`.  
+✅ Completed: extracted rename/merge/alias mutation orchestration into dedicated service (`characterMutationService.ts`) with thin store wrappers.  
+✅ Completed: centralized voice-manifest scan API in `voices.ts` (`scanVoiceManifests`) to remove duplicate endpoint wiring.  
+✅ Completed: extracted voice merge/assignment/dedup rules into shared domain service (`voiceDomain.ts`) and wired `speakers.ts` to use it.
+🏁 Lane 4 complete.

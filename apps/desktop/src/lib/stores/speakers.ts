@@ -1,7 +1,12 @@
 import { writable, get } from 'svelte/store';
 import type { Voice, VoicesJson, VoiceAssignment } from '$lib/types';
 import { bookRoot, audioRoot } from '$lib/stores/bookState';
-import { discoverVoicesFromManifests } from '$lib/services/voices';
+import { discoverVoicesFromManifests, scanVoiceManifests } from '$lib/services/voices';
+import {
+  createAssignmentsFromManifests,
+  deduplicateVoicesAndAssignments,
+  mergeDiscoveredVoices,
+} from '$lib/services/voiceDomain';
 import { readVoices, writeVoices } from '$lib/services/fs';
 
 export const voices = writable<VoicesJson>({
@@ -56,50 +61,12 @@ export async function discoverVoices(): Promise<number> {
 
     const current = get(voices);
 
-    // Build a map of existing voices by provider:providerVoiceId
-    const existingVoicesMap = new Map<string, Voice>();
-    current.voices.forEach(v => {
-      existingVoicesMap.set(`${v.provider}:${v.providerVoiceId}`, v);
-    });
+    const merged = mergeDiscoveredVoices(current.voices, discovered);
 
-    const newVoices: Voice[] = [];
-    const updatedVoices = [...current.voices];
-
-    // Process discovered voices
-    for (const discoveredVoice of discovered) {
-      const key = `${discoveredVoice.provider}:${discoveredVoice.providerVoiceId}`;
-      const existing = existingVoicesMap.get(key);
-
-      if (existing) {
-        // Voice already exists - merge metadata
-        const mergedMetadata = {
-          ...existing.metadata,
-          totalClips: discoveredVoice.metadata.totalClips || existing.metadata.totalClips,
-          usedByCharacters: [
-            ...(existing.metadata.usedByCharacters || []),
-            ...(discoveredVoice.metadata.usedByCharacters || [])
-          ].filter((v, i, a) => a.indexOf(v) === i), // dedupe
-          discoveredFrom: existing.metadata.discoveredFrom || discoveredVoice.metadata.discoveredFrom,
-        };
-
-        // Update the existing voice in the array
-        const index = updatedVoices.findIndex(v => v.id === existing.id);
-        if (index !== -1) {
-          updatedVoices[index] = {
-            ...existing,
-            metadata: mergedMetadata
-          };
-        }
-      } else {
-        // New voice - add it
-        newVoices.push(discoveredVoice);
-      }
-    }
-
-    if (newVoices.length > 0 || updatedVoices.length !== current.voices.length) {
+    if (merged.hasUpdates || merged.newVoicesCount > 0) {
       voices.set({
         formatVersion: '2.0',
-        voices: [...updatedVoices, ...newVoices],
+        voices: merged.mergedVoices,
         assignments: current.assignments
       });
       await saveVoicesData();
@@ -110,8 +77,8 @@ export async function discoverVoices(): Promise<number> {
       await autoCreateAssignmentsFromManifests(audio);
     }
 
-    console.log('[voices] Discovered', newVoices.length, 'new voices');
-    return newVoices.length;
+    console.log('[voices] Discovered', merged.newVoicesCount, 'new voices');
+    return merged.newVoicesCount;
   } catch (err) {
     console.error('Error discovering voices:', err);
     return 0;
@@ -126,17 +93,7 @@ async function autoCreateAssignmentsFromManifests(audioRoot: string): Promise<vo
     const root = get(bookRoot);
     if (!root) return;
 
-    // Call backend to get manifest data
-    const response = await fetch('http://127.0.0.1:8010/api/scan-voice-manifests', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ audioRoot }),
-    });
-
-    if (!response.ok) return;
-
-    const data = await response.json();
-    const manifestsData: any[] = data.manifests || [];
+    const manifestsData = await scanVoiceManifests(audioRoot);
 
     // Read characters.json to get character IDs
     const { readCentralCharacters } = await import('$lib/services/fs');
@@ -148,55 +105,20 @@ async function autoCreateAssignmentsFromManifests(audioRoot: string): Promise<vo
     const nameToIdMap = buildNameToIdMap(charactersData.characters);
 
     const current = get(voices);
-    const newAssignments = [...current.assignments];
-    let assignmentCount = 0;
+    const assignmentResult = createAssignmentsFromManifests(
+      manifestsData,
+      nameToIdMap,
+      current.voices,
+      current.assignments,
+    );
 
-    // Process each manifest
-    for (const manifest of manifestsData) {
-      if (manifest.formatVersion === '2.0' && manifest.metadata?.primaryVoiceId) {
-        const characterName = manifest.characterName;
-        const characterId = nameToIdMap.get(characterName);
-        const primaryVoiceId = manifest.metadata.primaryVoiceId;
-
-        if (!characterId) {
-          console.warn(`[voices] Character "${characterName}" not found in characters.json`);
-          continue;
-        }
-
-        // Check if assignment already exists
-        const existingAssignment = newAssignments.find(a => a.characterId === characterId);
-        if (existingAssignment) {
-          console.log(`[voices] Assignment already exists for ${characterName}`);
-          continue;
-        }
-
-        // Find the voice in our voices list
-        const voice = current.voices.find(v => v.providerVoiceId === primaryVoiceId);
-        if (!voice) {
-          console.warn(`[voices] Voice ${primaryVoiceId} not found for character ${characterName}`);
-          continue;
-        }
-
-        // Create assignment
-        newAssignments.push({
-          characterId,
-          voiceId: voice.id,
-          priority: 1,
-          contextOverrides: []
-        });
-
-        assignmentCount++;
-        console.log(`[voices] Auto-assigned ${voice.displayName} to ${characterName}`);
-      }
-    }
-
-    if (assignmentCount > 0) {
+    if (assignmentResult.createdCount > 0) {
       voices.set({
         ...current,
-        assignments: newAssignments
+        assignments: assignmentResult.assignments
       });
       await saveVoicesData();
-      console.log(`[voices] Created ${assignmentCount} automatic assignments`);
+      console.log(`[voices] Created ${assignmentResult.createdCount} automatic assignments`);
     }
   } catch (err) {
     // Check if this is a connection error (backend not running)
@@ -221,100 +143,19 @@ async function autoCreateAssignmentsFromManifests(audioRoot: string): Promise<vo
  */
 export async function deduplicateVoices(): Promise<{ removed: number; updated: number }> {
   const current = get(voices);
-
-  // Group voices by provider:providerVoiceId
-  const voiceGroups = new Map<string, Voice[]>();
-  current.voices.forEach(v => {
-    const key = `${v.provider}:${v.providerVoiceId}`;
-    if (!voiceGroups.has(key)) {
-      voiceGroups.set(key, []);
-    }
-    voiceGroups.get(key)!.push(v);
-  });
-
-  // Find duplicates and select which one to keep
-  const voiceIdMapping = new Map<string, string>(); // old ID -> kept ID
-  const keptVoices: Voice[] = [];
-  let removedCount = 0;
-
-  for (const [key, voiceList] of voiceGroups.entries()) {
-    if (voiceList.length === 1) {
-      // No duplicates
-      keptVoices.push(voiceList[0]);
-    } else {
-      // Has duplicates - select the best one to keep
-      console.log(`[voices] Found ${voiceList.length} duplicates for ${key}`);
-
-      // Sort by: 1) has usage data, 2) total clips, 3) has notes
-      const sorted = voiceList.sort((a, b) => {
-        const aScore = (a.metadata.totalClips || 0) * 100 +
-          (a.metadata.usedByCharacters?.length || 0) * 10 +
-          (a.notes ? 1 : 0);
-        const bScore = (b.metadata.totalClips || 0) * 100 +
-          (b.metadata.usedByCharacters?.length || 0) * 10 +
-          (b.notes ? 1 : 0);
-        return bScore - aScore;
-      });
-
-      const kept = sorted[0];
-
-      // Merge metadata from all duplicates
-      const allUsedByCharacters = new Set<string>();
-      let totalClips = 0;
-      const allNotes: string[] = [];
-
-      for (const voice of sorted) {
-        (voice.metadata.usedByCharacters || []).forEach(c => allUsedByCharacters.add(c));
-        totalClips += voice.metadata.totalClips || 0;
-        if (voice.notes && !allNotes.includes(voice.notes)) {
-          allNotes.push(voice.notes);
-        }
-      }
-
-      const mergedVoice: Voice = {
-        ...kept,
-        notes: allNotes.join('; ') || kept.notes,
-        metadata: {
-          ...kept.metadata,
-          totalClips,
-          usedByCharacters: Array.from(allUsedByCharacters)
-        }
-      };
-
-      keptVoices.push(mergedVoice);
-
-      // Map all old IDs to the kept ID
-      for (const voice of sorted) {
-        if (voice.id !== kept.id) {
-          voiceIdMapping.set(voice.id, kept.id);
-          removedCount++;
-          console.log(`[voices] Merging "${voice.displayName}" (${voice.id}) into "${kept.displayName}" (${kept.id})`);
-        }
-      }
-    }
-  }
-
-  // Update assignments to use the kept voice IDs
-  const updatedAssignments = current.assignments.map(a => {
-    if (voiceIdMapping.has(a.voiceId)) {
-      const newVoiceId = voiceIdMapping.get(a.voiceId)!;
-      console.log(`[voices] Updating assignment for ${a.characterId}: ${a.voiceId} -> ${newVoiceId}`);
-      return { ...a, voiceId: newVoiceId };
-    }
-    return a;
-  });
+  const deduped = deduplicateVoicesAndAssignments(current.voices, current.assignments);
 
   // Save the deduplicated data
   voices.set({
     formatVersion: '2.0',
-    voices: keptVoices,
-    assignments: updatedAssignments
+    voices: deduped.voices,
+    assignments: deduped.assignments
   });
 
   await saveVoicesData();
 
-  console.log(`[voices] Deduplication complete: removed ${removedCount} duplicate voices`);
-  return { removed: removedCount, updated: voiceIdMapping.size };
+  console.log(`[voices] Deduplication complete: removed ${deduped.removed} duplicate voices`);
+  return { removed: deduped.removed, updated: deduped.updated };
 }
 
 /**

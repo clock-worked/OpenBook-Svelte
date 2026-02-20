@@ -21,7 +21,7 @@
   let editingId: string | null = null;
   let formData: Partial<Voice> = {
     displayName: '',
-    provider: 'elevenlabs',
+    provider: 'vibevoice_local',
     providerVoiceId: '',
     notes: '',
     previewUrl: null,
@@ -32,72 +32,8 @@
   };
 
   const PROVIDER_OPTIONS: Array<{ value: TtsProvider; label: string }> = [
-    { value: 'elevenlabs', label: 'ElevenLabs' },
-    { value: 'chirp3', label: 'Chirp3' },
     { value: 'vibevoice_local', label: 'VibeVoice (Local)' },
   ];
-
-  // Chirp3 voices grouped by locale (all 12 voices available in all 4 locales = 48 total)
-  const CHIRP3_VOICES_BY_LOCALE: Record<string, Array<{ id: string; name: string; gender: string; previewUrl: string }>> = {
-    'en-US': [
-      { id: 'en-US-Chirp3-HD-Zephyr', name: 'Zephyr (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Zephyr_en_US.mp3' },
-      { id: 'en-US-Chirp3-HD-Enceladus', name: 'Enceladus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Enceladus_en_US.mp3' },
-      { id: 'en-US-Chirp3-HD-Autonoe', name: 'Autonoe (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Autonoe_en_US.mp3' },
-      { id: 'en-US-Chirp3-HD-Algieba', name: 'Algieba (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Algieba_en_US.mp3' },
-      { id: 'en-US-Chirp3-HD-Charon', name: 'Charon (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Charon_en_US.mp3' },
-      { id: 'en-US-Chirp3-HD-Kore', name: 'Kore (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Kore_en_US.mp3' },
-      { id: 'en-US-Chirp3-HD-Orus', name: 'Orus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Orus_en_US.mp3' },
-      { id: 'en-US-Chirp3-HD-Iapetus', name: 'Iapetus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Iapetus_en_US.mp3' },
-      { id: 'en-US-Chirp3-HD-Gacrux', name: 'Gacrux (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Gacrux_en_US.mp3' },
-      { id: 'en-US-Chirp3-HD-Fenrir', name: 'Fenrir (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Fenrir_en_US.mp3' },
-      { id: 'en-US-Chirp3-HD-Vindemiatrix', name: 'Vindemiatrix (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Vindemiatrix_en_US.mp3' },
-      { id: 'en-US-Chirp3-HD-Aoede', name: 'Aoede (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Aoede_en_US.mp3' },
-    ],
-    'en-GB': [
-      { id: 'en-GB-Chirp3-HD-Zephyr', name: 'Zephyr (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Zephyr_en_GB.mp3' },
-      { id: 'en-GB-Chirp3-HD-Enceladus', name: 'Enceladus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Enceladus_en_GB.mp3' },
-      { id: 'en-GB-Chirp3-HD-Autonoe', name: 'Autonoe (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Autonoe_en_GB.mp3' },
-      { id: 'en-GB-Chirp3-HD-Algieba', name: 'Algieba (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Algieba_en_GB.mp3' },
-      { id: 'en-GB-Chirp3-HD-Charon', name: 'Charon (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Charon_en_GB.mp3' },
-      { id: 'en-GB-Chirp3-HD-Kore', name: 'Kore (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Kore_en_GB.mp3' },
-      { id: 'en-GB-Chirp3-HD-Orus', name: 'Orus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Orus_en_GB.mp3' },
-      { id: 'en-GB-Chirp3-HD-Iapetus', name: 'Iapetus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Iapetus_en_GB.mp3' },
-      { id: 'en-GB-Chirp3-HD-Gacrux', name: 'Gacrux (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Gacrux_en_GB.mp3' },
-      { id: 'en-GB-Chirp3-HD-Fenrir', name: 'Fenrir (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Fenrir_en_GB.mp3' },
-      { id: 'en-GB-Chirp3-HD-Vindemiatrix', name: 'Vindemiatrix (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Vindemiatrix_en_GB.mp3' },
-      { id: 'en-GB-Chirp3-HD-Aoede', name: 'Aoede (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Aoede_en_GB.mp3' },
-    ],
-    'en-AU': [
-      { id: 'en-AU-Chirp3-HD-Zephyr', name: 'Zephyr (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Zephyr_en_AU.mp3' },
-      { id: 'en-AU-Chirp3-HD-Enceladus', name: 'Enceladus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Enceladus_en_AU.mp3' },
-      { id: 'en-AU-Chirp3-HD-Autonoe', name: 'Autonoe (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Autonoe_en_AU.mp3' },
-      { id: 'en-AU-Chirp3-HD-Algieba', name: 'Algieba (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Algieba_en_AU.mp3' },
-      { id: 'en-AU-Chirp3-HD-Charon', name: 'Charon (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Charon_en_AU.mp3' },
-      { id: 'en-AU-Chirp3-HD-Kore', name: 'Kore (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Kore_en_AU.mp3' },
-      { id: 'en-AU-Chirp3-HD-Orus', name: 'Orus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Orus_en_AU.mp3' },
-      { id: 'en-AU-Chirp3-HD-Iapetus', name: 'Iapetus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Iapetus_en_AU.mp3' },
-      { id: 'en-AU-Chirp3-HD-Gacrux', name: 'Gacrux (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Gacrux_en_AU.mp3' },
-      { id: 'en-AU-Chirp3-HD-Fenrir', name: 'Fenrir (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Fenrir_en_AU.mp3' },
-      { id: 'en-AU-Chirp3-HD-Vindemiatrix', name: 'Vindemiatrix (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Vindemiatrix_en_AU.mp3' },
-      { id: 'en-AU-Chirp3-HD-Aoede', name: 'Aoede (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Aoede_en_AU.mp3' },
-    ],
-    'en-IN': [
-      { id: 'en-IN-Chirp3-HD-Zephyr', name: 'Zephyr (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Zephyr_en_IN.mp3' },
-      { id: 'en-IN-Chirp3-HD-Enceladus', name: 'Enceladus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Enceladus_en_IN.mp3' },
-      { id: 'en-IN-Chirp3-HD-Autonoe', name: 'Autonoe (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Autonoe_en_IN.mp3' },
-      { id: 'en-IN-Chirp3-HD-Algieba', name: 'Algieba (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Algieba_en_IN.mp3' },
-      { id: 'en-IN-Chirp3-HD-Charon', name: 'Charon (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Charon_en_IN.mp3' },
-      { id: 'en-IN-Chirp3-HD-Kore', name: 'Kore (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Kore_en_IN.mp3' },
-      { id: 'en-IN-Chirp3-HD-Orus', name: 'Orus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Orus_en_IN.mp3' },
-      { id: 'en-IN-Chirp3-HD-Iapetus', name: 'Iapetus (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Iapetus_en_IN.mp3' },
-      { id: 'en-IN-Chirp3-HD-Gacrux', name: 'Gacrux (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Gacrux_en_IN.mp3' },
-      { id: 'en-IN-Chirp3-HD-Fenrir', name: 'Fenrir (M)', gender: 'M', previewUrl: '/voice-previews/Chirp3_Fenrir_en_IN.mp3' },
-      { id: 'en-IN-Chirp3-HD-Vindemiatrix', name: 'Vindemiatrix (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Vindemiatrix_en_IN.mp3' },
-      { id: 'en-IN-Chirp3-HD-Aoede', name: 'Aoede (F)', gender: 'F', previewUrl: '/voice-previews/Chirp3_Aoede_en_IN.mp3' },
-    ],
-  };
-
-  let selectedLocale = 'en-US';
   let voiceSamples: string[] = [];
   let voiceSamplesError: string | null = null;
   let isLoadingSamples = false;
@@ -142,7 +78,7 @@
     editingId = null;
     formData = {
       displayName: '',
-      provider: 'elevenlabs',
+      provider: 'vibevoice_local',
       providerVoiceId: '',
       notes: '',
       previewUrl: null,
@@ -161,17 +97,11 @@
   function openEditModal(event: CustomEvent<Voice>) {
     const v = event.detail;
     editingId = v.id;
-    formData = { ...v, metadata: { ...v.metadata } };
-    
-    // For Chirp3 voices, detect the locale from the providerVoiceId
-    if (v.provider === 'chirp3' && v.providerVoiceId) {
-      const locale = v.providerVoiceId.split('-').slice(0, 2).join('-'); // e.g., "en-US" from "en-US-Chirp3-HD-Zephyr"
-      if (CHIRP3_VOICES_BY_LOCALE[locale]) {
-        selectedLocale = locale;
-      } else {
-        selectedLocale = 'en-US'; // fallback
-      }
-    }
+    formData = {
+      ...v,
+      provider: 'vibevoice_local',
+      metadata: { ...v.metadata }
+    };
     
     showModal = true;
   }
@@ -191,7 +121,7 @@
   }
 
   function generateId(): string {
-    const provider = formData.provider || 'elevenlabs';
+    const provider = formData.provider || 'vibevoice_local';
     const voiceId = formData.providerVoiceId || 'unknown';
     return `${provider}-${voiceId}`;
   }
@@ -219,7 +149,7 @@
       const newVoice: Voice = {
         id: generateId(),
         displayName: formData.displayName!,
-        provider: formData.provider || 'elevenlabs',
+        provider: formData.provider || 'vibevoice_local',
         providerVoiceId: formData.providerVoiceId!,
         notes: formData.notes || '',
         previewUrl: formData.previewUrl || null,
@@ -266,26 +196,6 @@
     }
   }
 
-  function handlePlayChirp3Preview() {
-    if (!formData.providerVoiceId) return;
-    
-    // Find the preview URL for the selected voice
-    let previewUrl = null;
-    for (const locale in CHIRP3_VOICES_BY_LOCALE) {
-      const voiceObj = CHIRP3_VOICES_BY_LOCALE[locale].find(v => v.id === formData.providerVoiceId);
-      if (voiceObj) {
-        previewUrl = voiceObj.previewUrl;
-        break;
-      }
-    }
-    
-    if (previewUrl) {
-      const audio = new Audio(previewUrl);
-      audio.play().catch(err => console.error('Preview error:', err));
-    } else {
-      alert('No preview available for this voice');
-    }
-  }
 </script>
 
 <div class="speaker-manager">
@@ -368,33 +278,7 @@
           </div>
         </div>
 
-        {#if formData.provider === 'chirp3'}
-          <div class="form-group">
-            <label for="chirp3-locale">Locale/Accent *</label>
-            <select id="chirp3-locale" bind:value={selectedLocale}>
-              {#each Object.keys(CHIRP3_VOICES_BY_LOCALE) as locale}
-                <option value={locale}>{locale}</option>
-              {/each}
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="chirp3-voice">Voice *</label>
-            <div class="voice-select-with-preview">
-              <select id="chirp3-voice" bind:value={formData.providerVoiceId} required>
-                {#each CHIRP3_VOICES_BY_LOCALE[selectedLocale] || [] as voiceOption}
-                  <option value={voiceOption.id}>{voiceOption.name}</option>
-                {/each}
-              </select>
-              {#if formData.providerVoiceId}
-                <button type="button" class="preview-btn-inline" on:click={handlePlayChirp3Preview} title="Play preview">
-                  <span>Preview</span>
-                </button>
-              {/if}
-            </div>
-            <span class="help-text">Select a Chirp3 voice from the dropdown</span>
-          </div>
-        {:else if formData.provider === 'vibevoice_local'}
+        {#if formData.provider === 'vibevoice_local'}
           <div class="form-group">
             <label for="vibevoice-sample">Voice Sample *</label>
             {#if voiceSamplesError}
@@ -422,18 +306,6 @@
               <span class="help-text">No audio samples found in this folder.</span>
             {/if}
             <span class="help-text">Uses the selected file as the VibeVoice sample.</span>
-          </div>
-        {:else}
-          <div class="form-group">
-            <label for="voice-id">ElevenLabs Voice ID *</label>
-            <input
-              id="voice-id"
-              type="text"
-              bind:value={formData.providerVoiceId}
-              placeholder="e.g., kNS2rxxquHK0xi0lmF1f"
-              required
-            />
-            <span class="help-text">Get this from your ElevenLabs dashboard</span>
           </div>
         {/if}
 

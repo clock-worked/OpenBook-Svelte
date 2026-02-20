@@ -2,7 +2,7 @@
 // Schema v2.0 - Primary Types
 // ============================================================================
 
-export type TtsProvider = 'elevenlabs' | 'chirp3' | 'vibevoice_local';
+export type TtsProvider = 'vibevoice_local';
 export type Gender = 'Male' | 'Female' | 'Unknown';
 
 // === Characters (Story Characters) ===
@@ -38,10 +38,10 @@ export interface CharactersJson {
 // === Voices (TTS Voices / Speakers) ===
 
 export interface Voice {
-  id: string;  // Unique voice ID (e.g., "elevenlabs-kNS2rxxquHK0xi0lmF1f")
+  id: string;  // Unique voice ID (e.g., "vibevoice_local-my_sample.wav")
   displayName: string;  // UI display name (e.g., "Black Knight Voice", "Narrator")
   provider: TtsProvider;
-  providerVoiceId: string;  // ID used by TTS provider (ElevenLabs voice ID, Google voice name, etc.)
+  providerVoiceId: string;  // Local sample/voice identifier for VibeVoice
   previewUrl: string | null;
   notes: string;  // User notes about the voice/speaker
   metadata: {
@@ -53,7 +53,7 @@ export interface Voice {
     // Audio generation stats
     totalClips?: number;  // Total clips generated with this voice
     usedByCharacters?: string[];  // Character IDs using this voice
-    discoveredFrom?: 'manifest' | 'manual' | 'elevenlabs';  // How was this voice added
+    discoveredFrom?: 'manifest' | 'manual';  // How was this voice added
   };
 }
 

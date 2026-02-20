@@ -10,7 +10,8 @@ import {
   getAudioPath, 
   generateAudioForLine, 
   getAudioPathIfExists, 
-  getCharacterNameFromId 
+  getCharacterNameFromId,
+  deleteAudioLineForCharacter,
 } from '$lib/services/audio';
 import { triggerAudioUpdate } from '$lib/stores/audioUpdates';
 
@@ -196,18 +197,9 @@ export async function deleteAudioLine(
   if (!line || !line.characterName) return;
 
   try {
-    // Delete the audio file via API
-    const response = await fetch('http://127.0.0.1:8010/api/delete_audio_line', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chapter_title: ch.title,
-        character_name: line.characterName,
-        line_id: lineId
-      })
-    });
+    const deleted = await deleteAudioLineForCharacter(ch.title, line.characterName, lineId);
 
-    if (response.ok) {
+    if (deleted) {
       // Update cache
       const cacheKey = `${ch.title}-${line.characterName}-${lineId}`;
       audioExistsCache.set(cacheKey, false);
@@ -217,8 +209,7 @@ export async function deleteAudioLine(
       
       console.log('[Audio] Audio deleted successfully');
     } else {
-      const error = await response.json();
-      alert(`Failed to delete audio: ${error.detail || 'Unknown error'}`);
+      alert('Failed to delete audio: Unknown error');
     }
   } catch (error) {
     console.error('[Audio] Error deleting audio:', error);

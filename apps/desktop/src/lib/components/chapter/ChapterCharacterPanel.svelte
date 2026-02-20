@@ -5,6 +5,7 @@
   import { selection, conflictCursor } from '$lib/stores/selection';
   import { characters, colorForCharacter, rgbaToOpaqueHex, opaqueHexToRgba, refreshChapterCharactersFromFile } from '$lib/stores/characters';
   import { getScriptPath, readScript, writeScript, writeCentralCharacters, readCentralCharacters, readCharacters, writeCharacters, getCharactersPath } from '$lib/services/fs';
+  import { API_ENDPOINTS, apiFetch } from '$lib/services/apiClient';
   // removed generateChapterAudio per UI change
   import { defaultColors } from '$lib/theme/colors';
   import { Plus, ArrowUpDown } from 'lucide-svelte';
@@ -734,7 +735,7 @@
         file_path: 'characters.json',
         content: data
       };
-      const response = await fetch('http://127.0.0.1:8010/api/save', {
+      const response = await apiFetch(API_ENDPOINTS.save, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

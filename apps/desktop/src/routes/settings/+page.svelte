@@ -1,43 +1,8 @@
 <script lang="ts">
-    import { googleTtsCredentials, elevenLabsApiKey } from '$lib/stores/credentials';
     import { bookRootPathOverride, parserHints } from '$lib/stores/settings';
-    import { validateCredentials as validateGoogle } from '$lib/services/google-tts';
-    import { fetchElevenLabsVoices } from '$lib/services/elevenlabs';
+    import { setBackendBookRoot } from '$lib/services/fs';
 
-    let googleCredsFile: FileList;
-    let elApiKeyInput = $elevenLabsApiKey || '';
     let bookRootPathInput = $bookRootPathOverride || '';
-
-    async function handleGoogleCredsUpload() {
-        const file = googleCredsFile[0];
-        if (file) {
-            const text = await file.text();
-            try {
-                const json = JSON.parse(text);
-                const isValid = await validateGoogle(json);
-                if (isValid) {
-                    googleTtsCredentials.set(json);
-                    alert('Google Credentials are valid and saved.');
-                } else {
-                    alert('Invalid Google Credentials.');
-                }
-            } catch (e) {
-                alert('Failed to parse credentials file.');
-            }
-        }
-    }
-
-    async function handleElApiKeySave() {
-        if (elApiKeyInput) {
-            try {
-                await fetchElevenLabsVoices(elApiKeyInput);
-                elevenLabsApiKey.set(elApiKeyInput);
-                alert('ElevenLabs API key is valid and saved.');
-            } catch (e) {
-                alert('Invalid ElevenLabs API Key.');
-            }
-        }
-    }
 
     async function handleBookRootPathSave() {
         const trimmed = bookRootPathInput.trim();
@@ -46,16 +11,11 @@
         
         if (value) {
             try {
-                // Try to sync with backend immediately
-                const response = await fetch('http://127.0.0.1:8010/api/set-book-root', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ root_path: value })
-                });
-                if (response.ok) {
+                const didSync = await setBackendBookRoot(value);
+                if (didSync) {
                     alert('Book root path saved and synced with backend.');
                 } else {
-                    alert('Book root path saved locally, but backend sync failed: ' + (await response.text()));
+                    alert('Book root path saved locally, but backend sync failed.');
                 }
             } catch (e) {
                 console.error(e);
@@ -92,28 +52,6 @@
 </script>
 
 <h1>Settings</h1>
-
-<section>
-    <h2>Google Cloud TTS</h2>
-    {#if $googleTtsCredentials}
-        <p>Google Credentials are configured.</p>
-        <button on:click={() => googleTtsCredentials.set(null)}>Clear Credentials</button>
-    {:else}
-        <p>Upload your Google Cloud service account JSON file.</p>
-        <input type="file" bind:files={googleCredsFile} on:change={handleGoogleCredsUpload} accept=".json" />
-    {/if}
-</section>
-
-<section>
-    <h2>ElevenLabs TTS</h2>
-    <p>Enter your ElevenLabs API key.</p>
-    <input type="password" bind:value={elApiKeyInput} placeholder="ElevenLabs API Key" />
-    <button on:click={handleElApiKeySave}>Save and Validate</button>
-    {#if $elevenLabsApiKey}
-        <p>ElevenLabs API key is configured.</p>
-        <button on:click={() => {elevenLabsApiKey.set(null); elApiKeyInput = ''}}>Clear Key</button>
-    {/if}
-</section>
 
 <section>
     <h2>Book Root Path (Backend)</h2>

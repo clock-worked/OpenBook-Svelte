@@ -3,6 +3,7 @@ import { audioRoot, bookRoot, bookRootAbsolutePath, voiceSamplesRoot } from '$li
 import { bookRootPathOverride } from '$lib/stores/settings';
 import type { DialogueLine, CharactersJson } from '$lib/types';
 import { readCentralCharacters, readJsonRelative } from '$lib/services/fs';
+import { API_ENDPOINTS, apiFetch, apiRequestVoid, toApiUrl } from '$lib/services/apiClient';
 
 export interface AudioManifest {
   formatVersion: string;
@@ -41,6 +42,25 @@ interface ChapterVoiceAssignmentPayload {
   character_name: string;
   voice_id: string;
   provider: string;
+}
+
+interface GenerateAudioLineSuccessResponse {
+  audio_path?: string;
+}
+
+interface GenerateAudioChapterResponse {
+  success?: boolean;
+  generatedCount?: number;
+  skippedCount?: number;
+  totalLines?: number;
+  errors?: string[];
+  detail?: string;
+}
+
+interface BackendErrorPayload {
+  detail?: string;
+  error?: string;
+  message?: string;
 }
 
 const manifestCache = new Map<string, AudioManifest | null>();
@@ -112,7 +132,7 @@ export function getAudioPath(
 ): string {
   // Use HTTP endpoint to serve audio files instead of file:// paths
   // The backend will handle file system access
-  const baseUrl = `http://127.0.0.1:8010/api/audio/${encodeURIComponent(chapterTitle)}/${encodeURIComponent(characterName)}/${lineId}`;
+  const baseUrl = toApiUrl(API_ENDPOINTS.audioLine(chapterTitle, characterName, lineId));
 
   // Add cache-busting parameter to force fresh audio
   if (bustCache) {
@@ -179,7 +199,7 @@ export async function readManifest(
       console.log('[audio] Reading manifest from:', manifestPath);
 
       // Try to read the file using Node fs (via backend) with absolute path
-      const response = await fetch('http://127.0.0.1:8010/api/read_file_absolute', {
+      const response = await apiFetch(API_ENDPOINTS.readFileAbsolute, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ file_path: manifestPath }),
@@ -187,9 +207,9 @@ export async function readManifest(
 
       if (response.ok) {
         absoluteReadApiAvailable = true;
-        const data = await response.json();
+        const data = await response.json() as AudioManifest;
         console.log('[audio] Manifest loaded for', characterName, '- clips:', data.clips?.length);
-        return data as AudioManifest;
+        return data;
       } else if (response.status === 404) {
         absoluteReadApiAvailable = false;
         console.warn('[audio] /api/read_file_absolute returned 404; disabling absolute manifest reads for this session');
@@ -263,10 +283,10 @@ export async function generateAudioForLine(
     const includeSamplesRoot = isVibeVoice && samplesRoot;
     const resolvedAudioRoot = get(audioRoot) || get(bookRootAbsolutePath) || get(bookRootPathOverride);
     const endpoint = isVibeVoice
-      ? 'http://127.0.0.1:8010/api/vibevoice/line'
-      : 'http://127.0.0.1:8010/api/generate_audio_line';
+      ? API_ENDPOINTS.generateVibeVoiceLine
+      : API_ENDPOINTS.generateAudioLine;
 
-    const response = await fetch(endpoint, {
+    const response = await apiFetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -284,7 +304,7 @@ export async function generateAudioForLine(
     });
 
     if (response.ok) {
-      const data = await response.json();
+      const data = await response.json() as GenerateAudioLineSuccessResponse;
       invalidateManifestCache(chapterTitle, characterName);
       return {
         success: true,
@@ -293,7 +313,7 @@ export async function generateAudioForLine(
     } else {
       let errorDetail = `HTTP ${response.status}`;
       try {
-        const errorJson = await response.json();
+        const errorJson = await response.json() as BackendErrorPayload;
         errorDetail = errorJson?.detail || errorJson?.error || JSON.stringify(errorJson);
       } catch {
         try {
@@ -386,7 +406,7 @@ export async function generateAudioForChapterVibeVoice(
     const samplesRoot = get(voiceSamplesRoot);
     const resolvedAudioRoot = get(audioRoot) || get(bookRootAbsolutePath) || get(bookRootPathOverride);
 
-    const response = await fetch('http://127.0.0.1:8010/api/vibevoice/chapter', {
+    const response = await apiFetch(API_ENDPOINTS.generateVibeVoiceChapter, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -399,14 +419,14 @@ export async function generateAudioForChapterVibeVoice(
       }),
     });
 
-    const data = await response.json();
+    const data = await response.json() as GenerateAudioChapterResponse;
     if (!response.ok) {
       return {
         success: false,
         generatedCount: 0,
         skippedCount: 0,
         totalLines: 0,
-        errors: [data.detail || 'Failed to generate chapter audio'],
+        errors: [data.detail || data.error || 'Failed to generate chapter audio'],
       };
     }
 
@@ -450,7 +470,7 @@ export async function deleteAudioForCharacter(
   characterName: string
 ): Promise<boolean> {
   try {
-    const response = await fetch('http://127.0.0.1:8010/api/delete_character_audio', {
+    await apiRequestVoid(API_ENDPOINTS.deleteCharacterAudio, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -458,12 +478,8 @@ export async function deleteAudioForCharacter(
         character_name: characterName,
       }),
     });
-
-    if (response.ok) {
-      invalidateManifestCache(chapterTitle, characterName);
-      return true;
-    }
-    return false;
+    invalidateManifestCache(chapterTitle, characterName);
+    return true;
   } catch (error) {
     console.error('Error deleting audio:', error);
     return false;
@@ -476,7 +492,7 @@ export async function deleteAudioLineForCharacter(
   lineId: number
 ): Promise<boolean> {
   try {
-    const response = await fetch('http://127.0.0.1:8010/api/delete_audio_line', {
+    await apiRequestVoid(API_ENDPOINTS.deleteAudioLine, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -485,12 +501,8 @@ export async function deleteAudioLineForCharacter(
         line_id: lineId,
       }),
     });
-
-    if (response.ok) {
-      invalidateManifestCache(chapterTitle, characterName);
-      return true;
-    }
-    return false;
+    invalidateManifestCache(chapterTitle, characterName);
+    return true;
   } catch (error) {
     console.error('Error deleting audio line:', error);
     return false;

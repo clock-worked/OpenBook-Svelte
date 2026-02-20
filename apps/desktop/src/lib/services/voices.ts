@@ -1,4 +1,25 @@
 import type { Voice, TtsProvider } from '$lib/types';
+import { API_ENDPOINTS, apiRequestJson, toApiClientError } from './apiClient';
+import type {
+  ManifestData,
+  ScanVoiceManifestsRequest,
+  ScanVoiceManifestsResponse,
+} from './apiContracts';
+
+export type { ManifestData } from './apiContracts';
+
+export async function scanVoiceManifests(audioRoot: string): Promise<ManifestData[]> {
+  if (!audioRoot) return [];
+
+  const payload: ScanVoiceManifestsRequest = { audioRoot };
+  const data = await apiRequestJson<ScanVoiceManifestsResponse>(API_ENDPOINTS.scanVoiceManifests, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+
+  return data.manifests || [];
+}
 
 /**
  * Discovers voices from manifest data provided by the Python backend.
@@ -10,20 +31,8 @@ export async function discoverVoicesFromManifests(audioRoot: string): Promise<Vo
   try {
     // Call Python backend to scan manifests
     console.log(`[voices] Requesting manifest scan from backend for:`, audioRoot);
-    
-    const response = await fetch('http://127.0.0.1:8010/api/scan-voice-manifests', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ audioRoot }),
-    });
+    const manifestsData = await scanVoiceManifests(audioRoot);
 
-    if (!response.ok) {
-      throw new Error(`Backend returned ${response.status}: ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    const manifestsData: ManifestData[] = data.manifests || [];
-    
     console.log(`[voices] Received ${manifestsData.length} manifest entries from backend`);
 
     const voiceMap = new Map<string, Voice>();
@@ -46,8 +55,8 @@ export async function discoverVoicesFromManifests(audioRoot: string): Promise<Vo
             if (!voiceMap.has(voiceKey)) {
               voiceMap.set(voiceKey, {
                 id: voiceKey,
-                displayName: voiceId === primaryVoiceId 
-                  ? `${characterName} (Primary)` 
+                displayName: voiceId === primaryVoiceId
+                  ? `${characterName} (Primary)`
                   : `${characterName} Voice`,
                 provider: provider,
                 providerVoiceId: voiceId,
@@ -75,116 +84,44 @@ export async function discoverVoicesFromManifests(audioRoot: string): Promise<Vo
       }
     }
 
-    return Array.from(voiceMap.values()).sort((a, b) => 
+    return Array.from(voiceMap.values()).sort((a, b) =>
       (b.metadata.totalClips || 0) - (a.metadata.totalClips || 0)
     );
   } catch (error) {
+    const apiError = toApiClientError(error);
     // Check if this is a connection error (backend not running)
-    const isConnectionError = error instanceof TypeError && 
-      (error.message.includes('Failed to fetch') || 
-       error.message.includes('ERR_CONNECTION_REFUSED') ||
-       error.message.includes('NetworkError'));
-    
+    const isConnectionError = apiError.type === 'network';
+
     if (isConnectionError) {
       console.warn('[voices] Backend server not available. Voice discovery requires the Python backend to be running on localhost:8000');
       console.warn('[voices] You can still manually add voices using the "Add Voice" button');
     } else {
-      console.error('[voices] Error discovering voices:', error);
+      console.error(`[voices] Error discovering voices (${apiError.type}):`, apiError.message);
     }
     // Return empty array instead of throwing - allows graceful fallback
     return [];
   }
 }
 
-interface ManifestData {
-  formatVersion: string;
-  characterId?: string;
-  characterName: string;
-  metadata?: {
-    primaryVoiceId?: string;
-    voiceIds?: Record<string, number>;
-    sources?: Record<string, number>;
-  };
-  clips?: Array<{
-    voiceId?: string;
-    voice_id?: string;
-    provider?: string;
-  }>;
-}
-
-function determineProvider(sources: Record<string, number>, clips: any[], voiceId: string): TtsProvider {
-  // Check sources metadata first
-  const sourceKeys = Object.keys(sources);
-  if (sourceKeys.includes('ElevenLabs')) return 'elevenlabs';
-  if (sourceKeys.includes('Chirp3')) return 'chirp3';
-  if (sourceKeys.includes('VibeVoice')) return 'vibevoice_local';
-
-  // Check clips array
-  const clip = clips?.find(c => c.voiceId === voiceId || c.voice_id === voiceId);
+function determineProvider(
+  sources: Record<string, number>,
+  clips: Array<{ voiceId?: string; voice_id?: string; provider?: string }> = [],
+  voiceId: string
+): TtsProvider {
+  // Check clips array/provider hint first
+  const clip = clips.find((entry) => entry.voiceId === voiceId || entry.voice_id === voiceId);
   if (clip?.provider) {
     const provider = clip.provider.toLowerCase();
-    // Only return valid providers
-    if (provider === 'elevenlabs' || provider === 'chirp3' || provider === 'vibevoice_local') {
-      return provider as TtsProvider;
-    }
+    if (provider === 'vibevoice_local' || provider === 'vibevoice') return 'vibevoice_local';
   }
 
-  // Default to elevenlabs if voice ID looks like an ElevenLabs ID
-  if (voiceId && voiceId.length > 15) {
-    return 'elevenlabs';
+  // Fall back to source metadata hints
+  const sourceKeys = Object.keys(sources);
+  if (sourceKeys.includes('VibeVoice')) {
+    return 'vibevoice_local';
   }
 
-  return 'elevenlabs';
-}
-
-
-/**
- * Fetches voice metadata from ElevenLabs API
- */
-export async function enrichVoiceWithElevenLabsData(
-  voice: Voice,
-  apiKey: string
-): Promise<Voice> {
-  if (voice.provider !== 'elevenlabs') return voice;
-
-  try {
-    const response = await fetch(
-      `https://api.elevenlabs.io/v1/voices/${voice.providerVoiceId}`,
-      {
-        headers: { 'xi-api-key': apiKey },
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error(`ElevenLabs API error: ${response.status}`);
-    }
-
-    const data = await response.json();
-    
-    return {
-      ...voice,
-      displayName: data.name || voice.displayName,
-      previewUrl: data.preview_url || voice.previewUrl,
-      metadata: {
-        ...voice.metadata,
-        gender: inferGender(data.labels?.gender),
-        accent: data.labels?.accent,
-        tags: data.labels ? Object.keys(data.labels) : voice.metadata.tags,
-        discoveredFrom: 'elevenlabs',
-      },
-    };
-  } catch (error) {
-    console.error('[voices] Error enriching voice with ElevenLabs data:', error);
-    return voice;
-  }
-}
-
-function inferGender(label?: string): 'M' | 'F' | 'U' {
-  if (!label) return 'U';
-  const lower = label.toLowerCase();
-  if (lower.includes('male') && !lower.includes('female')) return 'M';
-  if (lower.includes('female')) return 'F';
-  return 'U';
+  return 'vibevoice_local';
 }
 
 /**
