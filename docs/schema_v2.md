@@ -4,6 +4,7 @@
 >
 > - Use [schema_v3.md](./schema_v3.md) for current dialogue schema.
 > - This v2 document remains as reference for v2-era structures and migration history.
+> - Active policy: legacy reads are supported as needed, but current writes target v3 dialogue.
 
 ## Overview
 
@@ -12,6 +13,14 @@ This document describes the new normalized data schema that properly separates:
 - **Voices**: TTS voice options available for assignment
 - **Voice Assignments**: Mapping between characters and voices
 - **Dialogue**: Lines of text with character assignments and metadata
+
+## Scope Note
+
+This document is a historical/reference schema description.
+
+- For current runtime ownership and flow, see `docs/architecture.md`.
+- For parser/backend integration behavior, see `docs/parser_integration.md`.
+- For current dialogue write semantics and attribution fields, see `docs/schema_v3.md`.
 
 ## File Structure
 

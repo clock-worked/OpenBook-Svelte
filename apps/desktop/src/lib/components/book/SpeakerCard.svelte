@@ -33,6 +33,19 @@
       case 'U': return '#8b5cf6'; // purple
     }
   }
+
+  function formatMetaValue(value?: string): string {
+    if (!value) return '—';
+    return value
+      .replace(/_/g, ' ')
+      .replace(/\b\w/g, (c) => c.toUpperCase());
+  }
+
+  function getStyleValue(): string {
+    const styleTag = voice.metadata.tags?.find((tag) => tag.startsWith('style:'));
+    if (!styleTag) return 'normal';
+    return styleTag.slice('style:'.length) || 'normal';
+  }
 </script>
 
 <div class="speaker-card">
@@ -69,6 +82,21 @@
           </div>
         </div>
       {/if}
+
+      <div class="stat-row">
+        <span class="stat-label">AGE</span>
+        <span class="stat-value">{formatMetaValue(voice.metadata.ageRange || 'adult')}</span>
+      </div>
+
+      <div class="stat-row">
+        <span class="stat-label">ACCENT</span>
+        <span class="stat-value">{formatMetaValue(voice.metadata.accent || 'american')}</span>
+      </div>
+
+      <div class="stat-row">
+        <span class="stat-label">STYLE</span>
+        <span class="stat-value">{formatMetaValue(getStyleValue())}</span>
+      </div>
     </div>
 
     {#if voice.notes}
@@ -97,91 +125,103 @@
 
 <style>
   .speaker-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
     overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    width: 280px;
-    min-height: 380px;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    width: 100%;
+    min-height: 0;
     display: flex;
     flex-direction: column;
   }
 
   .speaker-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(15, 23, 42, 0.14);
   }
 
   .card-body {
     background: #ffffff;
-    padding: 20px;
+    padding: 14px;
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 10px;
   }
 
   .speaker-name {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 700;
     color: #1f2937;
     text-align: center;
     margin: 0;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #e5e7eb;
-    letter-spacing: 0.5px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e5e7eb;
+    line-height: 1.2;
   }
 
   .speaker-stats {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
 
   .stat-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 12px;
+    padding: 7px 10px;
     background: #f9fafb;
-    border-radius: 8px;
+    border-radius: 7px;
     border: 1px solid #e5e7eb;
   }
 
   .characters-section {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding: 8px 12px;
+    gap: 6px;
+    padding: 7px 10px;
     background: #f9fafb;
-    border-radius: 8px;
+    border-radius: 7px;
     border: 1px solid #e5e7eb;
   }
 
   .characters-pills {
     display: flex;
     flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .characters-pills :global(.pill-list-container) {
+    gap: 4px;
+  }
+
+  .characters-pills :global(.pill) {
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 12px;
   }
 
   .stat-label {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     color: #6b7280;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
     text-transform: uppercase;
   }
 
   .stat-value {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     color: #1f2937;
   }
 
   .stat-value.voice-id {
     font-family: 'Courier New', monospace;
-    font-size: 12px;
-    max-width: 150px;
+    font-size: 11px;
+    max-width: 132px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -194,14 +234,14 @@
     width: 28px;
     height: 28px;
     border-radius: 50%;
-    color: white;
+    color: #ffffff;
     font-size: 13px;
     font-weight: 700;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   }
 
   .speaker-notes {
-    padding: 10px 12px;
+    padding: 8px 10px;
     background: #fef3c7;
     border-left: 3px solid #f59e0b;
     border-radius: 6px;
@@ -210,16 +250,16 @@
 
   .speaker-notes p {
     margin: 0;
-    font-size: 13px;
+    font-size: 12px;
     color: #78350f;
-    line-height: 1.5;
+    line-height: 1.35;
   }
 
   .card-actions {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     margin-top: auto;
-    padding-top: 8px;
+    padding-top: 6px;
     border-top: 1px solid #e5e7eb;
   }
 
@@ -229,10 +269,10 @@
     align-items: center;
     justify-content: center;
     gap: 4px;
-    padding: 8px 10px;
+    padding: 7px 8px;
     border: none;
     border-radius: 6px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -260,9 +300,9 @@
 
   .delete-btn {
     background: #ef4444;
-    color: white;
+    color: #ffffff;
     flex: 0 0 auto;
-    min-width: 40px;
+    min-width: 34px;
   }
 
   .delete-btn:hover {

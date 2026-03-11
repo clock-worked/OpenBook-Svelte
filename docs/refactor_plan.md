@@ -217,7 +217,10 @@
 ✅ Completed: migrated remaining UI hardcoded backend callsites (`ChapterView.svelte`, `ChapterCharacterPanel.svelte`, `audioHandlers.ts`, `settings/+page.svelte`).  
 ✅ Completed: added API contract/governance doc (`docs/api_contract.md`).  
 ✅ Completed: tightened typed API payload handling in Lane 2 services (`fs.ts`, `audio.ts`, `vibevoice.ts`, `voices.ts`) to reduce `any` parsing paths.  
-🏁 Lane 2 foundation complete.
+✅ Completed: centralized shared API payload contracts in `services/apiContracts.ts` and migrated Lane 2 service consumers to import these contracts.  
+✅ Completed: reduced duplicated runtime response guards in `audio.ts` by routing generation flows through shared API request/error handling.  
+✅ Completed: centralized JSON POST request boilerplate in `apiClient.ts` (`apiPostJson` / `apiPostVoid`) and migrated Lane 2 service callsites.  
+🏁 Lane 2 complete.
 
 ---
 
@@ -248,3 +251,15 @@
 ✅ Completed: centralized voice-manifest scan API in `voices.ts` (`scanVoiceManifests`) to remove duplicate endpoint wiring.  
 ✅ Completed: extracted voice merge/assignment/dedup rules into shared domain service (`voiceDomain.ts`) and wired `speakers.ts` to use it.
 🏁 Lane 4 complete.
+
+---
+
+## Lane 5 Current Status
+
+✅ Started: extracted shared FastAPI request models into `py_services/api_models.py`.  
+✅ Completed: split parser/chapter routes into dedicated router module (`py_services/parser_router.py`).  
+✅ Completed: split audio routes into dedicated router module (`py_services/audio_router.py`).  
+✅ Completed: reduced `py_services/api_server.py` to composition/root wiring + path state endpoints and router registration.  
+✅ Completed: preserved VibeVoice as integration-boundary router (`audio/vibevoice.py`) wired through shared audio-service callbacks.  
+✅ Completed: smoke-validated refactor modules via Python compile/import check (`py_compile`).
+✅ Completed: added and ran router split smoke script (`py_services/router_split_smoke_test.py`) to validate route registration + lightweight endpoint behavior.

@@ -126,3 +126,4 @@ Behavior:
 - Reader supports both `formatVersion: "2.0"` and `"3.0"`.
 - Writer now emits `formatVersion: "3.0"` for dialogue.
 - Existing v2 dialogue files remain readable and are normalized at runtime.
+- Legacy v1-era inputs are compatibility-read paths only; they are not a current write target.

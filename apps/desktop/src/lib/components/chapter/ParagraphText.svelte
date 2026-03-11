@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { createEventDispatcher, onDestroy } from 'svelte';
+  import { createEventDispatcher, onDestroy, onMount } from 'svelte';
   import { colorForCharacter, hexToRgba, characters } from '$lib/stores/characters';
   import { conflictCursor } from '$lib/stores/selection';
   import type { ParagraphRun } from '$lib/types';
   import type { ToolMode } from '$lib/stores/selection';
   import { currentChapter, currentScript } from '$lib/stores/bookState';
-  import { audioState } from '$lib/stores/audio';
+  import { audioState, seek } from '$lib/stores/audio';
   import { get } from 'svelte/store';
-  import { CheckCircle2 } from 'lucide-svelte';
+  import { CheckCircle2, Music } from 'lucide-svelte';
 
   export let runs: ParagraphRun[] = [];
   export let hoveredCharacter: string | null = null;
@@ -20,64 +20,67 @@
   export let highlightDelayMs = 0;
   export let generatedAudioLineIds: Set<number> = new Set();
   export let generatedAudioLineTexts: Set<string> = new Set();
-  
-  // Store element references by lineId
-  let elementRefs = new Map<number, HTMLElement>();
-  
-  // Svelte action to track element reference
-  function trackElement(node: HTMLElement, lineId: number | undefined) {
-    if (lineId !== undefined) {
-      elementRefs.set(lineId, node);
-      elementRefs = elementRefs; // Trigger reactivity
-    }
-    return {
-      destroy() {
-        if (lineId !== undefined) {
-          elementRefs.delete(lineId);
-          elementRefs = elementRefs; // Trigger reactivity
-        }
-      }
-    };
-  }
+
+  let layoutVersion = 0;
   
   // Reactively get the current playing element
-  $: currentPlayingElement = $audioState.currentLineId !== null 
-    ? elementRefs.get($audioState.currentLineId) || null 
-    : null;
+  $: currentPlayingElement = (() => {
+    const currentLineId = $audioState.currentLineId;
+    if (currentLineId === null) return null;
+    return document.getElementById(`line-${currentLineId}`) as HTMLElement | null;
+  })();
+
+  function sortedTextRects(lineElement: HTMLElement): DOMRect[] {
+    const textElement = lineElement.querySelector('.run-text') as HTMLElement | null;
+    if (!textElement) return [];
+
+    return Array.from(textElement.getClientRects())
+      .filter((rect) => rect.width > 0 && rect.height > 0)
+      .sort((a, b) => (a.top - b.top) || (a.left - b.left));
+  }
   
   // Reactive calculation of marker position - explicitly depends on currentProgress and currentPlayingElement
   $: markerPosition = (() => {
-    // Force dependency on currentProgress
     const progress = currentProgress;
+    const _layoutVersion = layoutVersion;
     
-    if (!currentPlayingElement || !$audioState.isPlaying) {
+    if (!currentPlayingElement || ($audioState.currentLineId == null) || (!$audioState.isPlaying && !$audioState.isPaused)) {
       return null;
     }
-    
-    const textNode = currentPlayingElement.querySelector('.run-text')?.firstChild;
-    if (!textNode || textNode.nodeType !== Node.TEXT_NODE) {
+
+    const lineRects = sortedTextRects(currentPlayingElement);
+    if (lineRects.length === 0) {
       return null;
     }
-    
-    const text = textNode.textContent || '';
-    const totalChars = text.length;
-    const charPosition = Math.floor((progress / 100) * totalChars);
-    
-    try {
-      const range = document.createRange();
-      range.setStart(textNode, Math.min(charPosition, totalChars));
-      range.setEnd(textNode, Math.min(charPosition, totalChars));
-      
-      const rect = range.getBoundingClientRect();
-      const containerRect = currentPlayingElement.getBoundingClientRect();
-      
-      return {
-        left: rect.left - containerRect.left,
-        top: rect.top - containerRect.top
-      };
-    } catch (e) {
-      return null;
+
+    const totalWidth = lineRects.reduce((sum, rect) => sum + rect.width, 0);
+    if (totalWidth <= 0) return null;
+
+    const clampedProgress = Math.max(0, Math.min(100, progress));
+    const targetDistance = (clampedProgress / 100) * totalWidth;
+
+    let traversed = 0;
+    let activeRect = lineRects[0];
+    let activeLeft = activeRect.left;
+
+    for (const rect of lineRects) {
+      const nextTraversed = traversed + rect.width;
+      if (targetDistance <= nextTraversed) {
+        activeRect = rect;
+        activeLeft = rect.left + (targetDistance - traversed);
+        break;
+      }
+
+      traversed = nextTraversed;
+      activeRect = rect;
+      activeLeft = rect.right;
     }
+
+    return {
+      left: activeLeft,
+      top: activeRect.top,
+      height: activeRect.height,
+    };
   })();
   
   // Make this reactive so it updates when audioState changes
@@ -94,34 +97,35 @@
     if ($audioState.currentLineId !== lineId || !$audioState.isPlaying) return;
     
     const target = event.currentTarget as HTMLElement;
-    const textNode = target.querySelector('.run-text')?.firstChild;
-    
-    if (!textNode || textNode.nodeType !== Node.TEXT_NODE) return;
-    
-    const text = textNode.textContent || '';
-    const totalChars = text.length;
-    
-    // Use caretRangeFromPoint to find which character was clicked
-    let clickedCharPosition = 0;
-    
-    if (document.caretRangeFromPoint) {
-      const range = document.caretRangeFromPoint(event.clientX, event.clientY);
-      if (range && range.startContainer === textNode) {
-        clickedCharPosition = range.startOffset;
-      }
-    } else if ((document as any).caretPositionFromPoint) {
-      // Firefox fallback
-      const position = (document as any).caretPositionFromPoint(event.clientX, event.clientY);
-      if (position && position.offsetNode === textNode) {
-        clickedCharPosition = position.offset;
+    const lineRects = sortedTextRects(target);
+    if (lineRects.length === 0) return;
+
+    const totalWidth = lineRects.reduce((sum, rect) => sum + rect.width, 0);
+    if (totalWidth <= 0 || !$audioState.duration || !isFinite($audioState.duration)) return;
+
+    let chosenIndex = lineRects.findIndex((rect) => event.clientY >= rect.top && event.clientY <= rect.bottom);
+    if (chosenIndex === -1) {
+      let bestDistance = Number.POSITIVE_INFINITY;
+      for (let index = 0; index < lineRects.length; index += 1) {
+        const rect = lineRects[index];
+        const midY = rect.top + (rect.height / 2);
+        const distance = Math.abs(event.clientY - midY);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          chosenIndex = index;
+        }
       }
     }
-    
-    // Calculate percentage based on character position
-    const percentage = (clickedCharPosition / totalChars) * 100;
-    
-    const { seek } = await import('$lib/stores/audio');
-    seek((percentage / 100) * $audioState.duration);
+
+    const chosenRect = lineRects[Math.max(0, chosenIndex)];
+    const clampedX = Math.max(chosenRect.left, Math.min(chosenRect.right, event.clientX));
+    const prefixWidth = lineRects
+      .slice(0, Math.max(0, chosenIndex))
+      .reduce((sum, rect) => sum + rect.width, 0);
+    const offsetInRect = clampedX - chosenRect.left;
+    const progressRatio = Math.max(0, Math.min(1, (prefixWidth + offsetInRect) / totalWidth));
+
+    seek(progressRatio * $audioState.duration);
   }
 
   const DISPLAY_ALPHA = 1.0; // Must match CharacterPanel
@@ -309,6 +313,20 @@
   onDestroy(() => {
     stopTypingAnimation();
     resetHighlightState();
+  });
+
+  onMount(() => {
+    const refreshLayout = () => {
+      layoutVersion += 1;
+    };
+
+    window.addEventListener('scroll', refreshLayout, { passive: true });
+    window.addEventListener('resize', refreshLayout);
+
+    return () => {
+      window.removeEventListener('scroll', refreshLayout);
+      window.removeEventListener('resize', refreshLayout);
+    };
   });
   
   // Subscribe to characters to force re-render when colors change
@@ -591,7 +609,6 @@
           on:focus={() => { if (run.characterId?.toLowerCase() !== 'narrator') setHovered(run.characterId); }}
           on:blur={() => setHovered(null)}
           data-lineid={run.lineId}
-          use:trackElement={run.lineId}
           on:click={(e) => { 
             if (run.lineId == null) return;
             if (toolMode === 'review') {
@@ -636,10 +653,24 @@
             } 
           }}
         >
-          {#if showRunMarkers && info.confidenceBadge}<span class="confidence-badge" class:low={info.confidenceBadge.low} class:unknown={info.confidenceBadge.unknown} class:confirmed={info.badgeShowsCheck}>{#if info.badgeShowsCheck}<CheckCircle2 size={16} strokeWidth={2.2} class="confirmed-icon" aria-hidden="true" />{:else}{info.confidenceBadge.label}{/if}</span>{/if}{#if showRunMarkers && run.lineId != null && $audioState.currentLineId === run.lineId && ($audioState.isPlaying || $audioState.isPaused) && markerPosition}<span class="audio-progress-line" style="left: {markerPosition.left}px; top: {markerPosition.top}px;"></span>{/if}{#if showRunMarkers && info.hasGeneratedAudio}<span class="generated-audio-marker" aria-hidden="true">♪</span>{/if}<span class="run-text">{#if animationPhase === 'typing'}{#each info.lineChunks as lineChunk, lineIndex}<span class="run-line" class:is-revealed={lineIndex < info.revealedLines}>{lineChunk}</span>{/each}{:else if isAnimationActive}{#if info.whiteText}<span class="run-text-white">{info.whiteText}</span>{/if}{#if info.colorText}<span class="run-text-color">{info.colorText}</span>{/if}{:else}{info.typedText}{/if}</span>
+          {#if showRunMarkers && info.confidenceBadge}<span class="confidence-badge" class:low={info.confidenceBadge.low} class:unknown={info.confidenceBadge.unknown} class:confirmed={info.badgeShowsCheck}>{#if info.badgeShowsCheck}<CheckCircle2 size={16} strokeWidth={2.2} class="confirmed-icon" aria-hidden="true" />{:else}{info.confidenceBadge.label}{/if}</span>{/if}{#if showRunMarkers && run.lineId != null && $audioState.currentLineId === run.lineId && ($audioState.isPlaying || $audioState.isPaused) && markerPosition}<span class="audio-progress-line" style="left: {markerPosition.left}px; top: {markerPosition.top}px; height: {Math.max(12, markerPosition.height)}px;"></span>{/if}{#if showRunMarkers && info.hasGeneratedAudio}<span class="generated-audio-marker" aria-hidden="true"><Music size={12} strokeWidth={2.25} /></span>{/if}<span class="run-text">{#if animationPhase === 'typing'}{#each info.lineChunks as lineChunk, lineIndex}<span class="run-line" class:is-revealed={lineIndex < info.revealedLines}>{lineChunk}</span>{/each}{:else if isAnimationActive}{#if info.whiteText}<span class="run-text-white">{info.whiteText}</span>{/if}{#if info.colorText}<span class="run-text-color">{info.colorText}</span>{/if}{:else}{info.typedText}{/if}</span>
         </span>
       {:else}
-        <span class="run run-plain" class:is-revealed={info.isRevealed}><span class="run-text">{#if animationPhase === 'typing'}{#each info.lineChunks as lineChunk, lineIndex}<span class="run-line" class:is-revealed={lineIndex < info.revealedLines}>{lineChunk}</span>{/each}{:else}{info.typedText}{/if}</span></span>
+        <span
+          id={run.lineId != null ? 'line-'+run.lineId : undefined}
+          class="run run-plain"
+          class:is-revealed={info.isRevealed}
+          class:is-playing={run.lineId != null && $audioState.currentLineId === run.lineId && ($audioState.isPlaying || $audioState.isPaused)}
+          data-lineid={run.lineId}
+        >
+          {#if showRunMarkers && run.lineId != null && $audioState.currentLineId === run.lineId && ($audioState.isPlaying || $audioState.isPaused) && markerPosition}
+            <span class="audio-progress-line" style="left: {markerPosition.left}px; top: {markerPosition.top}px; height: {Math.max(12, markerPosition.height)}px;"></span>
+          {/if}
+          {#if showRunMarkers && info.hasGeneratedAudio}
+            <span class="generated-audio-marker" aria-hidden="true"><Music size={12} strokeWidth={2.25} /></span>
+          {/if}
+          <span class="run-text">{#if animationPhase === 'typing'}{#each info.lineChunks as lineChunk, lineIndex}<span class="run-line" class:is-revealed={lineIndex < info.revealedLines}>{lineChunk}</span>{/each}{:else}{info.typedText}{/if}</span>
+        </span>
       {/if}
     {/each}
   {/key}
@@ -733,11 +764,11 @@
   }
 
   .generated-audio-marker {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     margin-right: 3px;
-    font-size: 0.9em;
-    font-weight: 700;
-    line-height: 1;
+    line-height: 0;
     vertical-align: baseline;
     color: #4f46e5;
     opacity: 1;
@@ -795,8 +826,8 @@
   }
   
   .audio-progress-line {
-    position: absolute;
-    width: 2px;
+    position: fixed;
+    width: 1px;
     height: 1.2em;
     background: #000000;
     pointer-events: none;

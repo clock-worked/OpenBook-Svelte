@@ -1,17 +1,15 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { audioState, pause, resume, seek, next, previous, nextSpeaker, previousSpeaker } from '$lib/stores/audio';
+  import { audioState, pause, resume, seek, next, previous, nextSpeaker, previousSpeaker, formatTime } from '$lib/stores/audio';
   import { getAudioPathIfExists } from '$lib/services/audio';
   import { Play, Pause, SkipBack, SkipForward } from 'lucide-svelte';
-  
-  onMount(() => {
-    console.log('[PlaybackBar] Component mounted');
-  });
   
   $: isPlaying = $audioState.isPlaying;
   $: isPaused = $audioState.isPaused;
   $: chapterTitle = $audioState.currentChapterTitle || '';
   $: isActive = isPlaying || isPaused;
+  $: currentTime = $audioState.currentTime || 0;
+  $: duration = $audioState.duration || 0;
+  $: progressPercent = duration > 0 ? Math.max(0, Math.min(100, (currentTime / duration) * 100)) : 0;
 
   function handlePlayPause() {
     if (!isActive) return;

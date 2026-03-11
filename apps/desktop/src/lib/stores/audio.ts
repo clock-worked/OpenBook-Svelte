@@ -1,5 +1,5 @@
 import { writable, derived, get } from 'svelte/store';
-import { currentScript } from './bookState';
+import { currentScript, currentChapter } from './bookState';
 import { readManifest, getCharacterNameFromId, type AudioManifest } from '$lib/services/audio';
 
 export interface AudioState {
@@ -36,7 +36,20 @@ export const isAudioActive = derived(
   ($audioState) => $audioState.isPlaying || $audioState.isPaused
 );
 
+currentChapter.subscribe((chapter) => {
+  const nextChapterTitle = chapter?.title ?? null;
+  const state = get(audioState);
+  if (!state.audioElement || !state.currentChapterTitle) return;
+  if (state.currentChapterTitle !== nextChapterTitle) {
+    stop();
+  }
+});
+
 let timeUpdateInterval: number | null = null;
+
+function isCurrentAudioElement(audio: HTMLAudioElement): boolean {
+  return get(audioState).audioElement === audio;
+}
 
 /**
  * Auto-advance to next dialogue when current one ends
@@ -46,7 +59,7 @@ async function autoAdvanceToNext(
 ): Promise<void> {
   const state = get(audioState);
   const script = get(currentScript);
-  
+
   if (!state.currentLineId || !script || !state.currentChapterTitle) {
     // Stop playback if no current line
     audioState.update(s => ({
@@ -184,20 +197,13 @@ export async function playLine(
   getAudioPath?: (lineId: number, characterName: string) => string | null | Promise<string | null>
 ): Promise<void> {
   console.log('[audio] playLine called:', { lineId, characterName, chapterTitle, audioPath });
-  
+
   const state = get(audioState);
-  
+
   // Stop current playback if any
   if (state.audioElement) {
     console.log('[audio] Stopping previous playback');
     state.audioElement.pause();
-    // Remove all event listeners before clearing src to prevent error events
-    const oldAudio = state.audioElement;
-    oldAudio.onloadedmetadata = null;
-    oldAudio.onended = null;
-    oldAudio.onerror = null;
-    oldAudio.src = '';
-    oldAudio.load(); // Force clear
     if (timeUpdateInterval) {
       clearInterval(timeUpdateInterval);
       timeUpdateInterval = null;
@@ -207,17 +213,19 @@ export async function playLine(
   // Create new audio element
   const audio = new Audio(audioPath);
   console.log('[audio] Created audio element with src:', audioPath);
-  
+
   // Set up event listeners
   audio.addEventListener('loadedmetadata', () => {
+    if (!isCurrentAudioElement(audio)) return;
     console.log('[audio] Metadata loaded, duration:', audio.duration);
     audioState.update(s => ({ ...s, duration: audio.duration }));
   });
 
   audio.addEventListener('ended', () => {
+    if (!isCurrentAudioElement(audio)) return;
     console.log('[audio] Playback ended');
     const state = get(audioState);
-    
+
     // Auto-advance to next dialogue
     if (state.getAudioPath) {
       autoAdvanceToNext(state.getAudioPath);
@@ -236,6 +244,10 @@ export async function playLine(
   });
 
   audio.addEventListener('error', (e) => {
+    if (!isCurrentAudioElement(audio)) {
+      console.warn('[audio] Ignoring stale playback error from previous audio element:', e, audio.error);
+      return;
+    }
     console.error('[audio] Playback error:', e, audio.error);
     audioState.update(s => ({
       ...s,
@@ -271,16 +283,16 @@ export async function playLine(
     audioElement: audio,
     getAudioPath: getAudioPath || null,
   });
-  
+
   console.log('[audio] State updated, isPlaying=true');
 
   // Start time update interval
   timeUpdateInterval = setInterval(() => {
     const state = get(audioState);
-    if (state.audioElement && state.isPlaying) {
+    if (state.audioElement === audio && state.isPlaying) {
       // Also update duration if it wasn't available initially
-      audioState.update(s => ({ 
-        ...s, 
+      audioState.update(s => ({
+        ...s,
         currentTime: audio.currentTime,
         duration: s.duration || audio.duration || 0
       }));
@@ -293,6 +305,9 @@ export async function playLine(
     await audio.play();
     console.log('[audio] Playback started successfully');
   } catch (error) {
+    if (!isCurrentAudioElement(audio)) {
+      return;
+    }
     console.error('[audio] Failed to play audio:', error);
     audioState.update(s => ({
       ...s,
@@ -346,7 +361,6 @@ export function stop(): void {
   const state = get(audioState);
   if (state.audioElement) {
     state.audioElement.pause();
-    state.audioElement.src = '';
   }
   if (timeUpdateInterval) {
     clearInterval(timeUpdateInterval);
@@ -363,7 +377,7 @@ export async function next(
 ): Promise<void> {
   const state = get(audioState);
   const script = get(currentScript);
-  
+
   if (!state.currentLineId || !script || !state.currentChapterTitle) return;
 
   const currentIndex = script.lines.findIndex(l => l.id === state.currentLineId);
@@ -391,7 +405,7 @@ export async function previous(
 ): Promise<void> {
   const state = get(audioState);
   const script = get(currentScript);
-  
+
   if (!state.currentLineId || !script || !state.currentChapterTitle) return;
 
   const currentIndex = script.lines.findIndex(l => l.id === state.currentLineId);
@@ -419,7 +433,7 @@ export async function nextSpeaker(
 ): Promise<void> {
   const state = get(audioState);
   const script = get(currentScript);
-  
+
   if (!state.currentLineId || !script || !state.currentChapterTitle || !state.currentCharacterName) return;
 
   const currentIndex = script.lines.findIndex(l => l.id === state.currentLineId);
@@ -447,7 +461,7 @@ export async function previousSpeaker(
 ): Promise<void> {
   const state = get(audioState);
   const script = get(currentScript);
-  
+
   if (!state.currentLineId || !script || !state.currentChapterTitle || !state.currentCharacterName) return;
 
   const currentIndex = script.lines.findIndex(l => l.id === state.currentLineId);

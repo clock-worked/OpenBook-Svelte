@@ -361,7 +361,7 @@
 <style>
   .queue-overlay {
     position: fixed;
-    top: 32px;
+    top: 10px;
     right: 16px;
     width: 420px;
     max-height: 70vh;

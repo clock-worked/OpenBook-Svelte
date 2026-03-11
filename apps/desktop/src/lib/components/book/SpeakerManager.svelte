@@ -1,16 +1,18 @@
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher, onDestroy } from 'svelte';
   import { get } from 'svelte/store';
   import type { Voice, TtsProvider, Character } from '$lib/types';
   import SpeakerCard from './SpeakerCard.svelte';
   import { Plus, X, Play, RefreshCw } from 'lucide-svelte';
   import { getCharacterNamesByIds } from '$lib/stores/characters';
   import { voiceSamplesRoot } from '$lib/stores/bookState';
-  import { listVoiceSamples } from '$lib/services/vibevoice';
+  import { getVoiceSamplePreviewUrl, listVoiceSamples } from '$lib/services/vibevoice';
 
   export let voices: Voice[] = [];
   export let assignments: Array<{ characterId: string; voiceId: string }> = [];
   export let characters: Character[] = [];
+
+  let voiceRows: Array<{ voice: Voice; uiKey: string }> = [];
 
   const dispatch = createEventDispatcher<{
     update: Voice[];
@@ -34,10 +36,50 @@
   const PROVIDER_OPTIONS: Array<{ value: TtsProvider; label: string }> = [
     { value: 'vibevoice_local', label: 'VibeVoice (Local)' },
   ];
+  const AGE_OPTIONS = [
+    { value: 'child', label: 'Child' },
+    { value: 'adult', label: 'Adult' },
+    { value: 'old', label: 'Old' },
+  ];
+  const ACCENT_OPTIONS = [
+    { value: 'american', label: 'American' },
+    { value: 'british', label: 'British' },
+    { value: 'japanese', label: 'Japanese' },
+    { value: 'french', label: 'French' },
+    { value: 'southern', label: 'Southern' },
+    { value: 'middle_east', label: 'Middle East' },
+    { value: 'other', label: 'Other' },
+  ];
+  const STYLE_OPTIONS = [
+    { value: 'normal', label: 'Normal' },
+    { value: 'monotone', label: 'Monotone' },
+    { value: 'deep', label: 'Deep' },
+    { value: 'slow', label: 'Slow' },
+    { value: 'gruffly', label: 'Gruffly' },
+    { value: 'other', label: 'Other' },
+  ];
   let voiceSamples: string[] = [];
   let voiceSamplesError: string | null = null;
   let isLoadingSamples = false;
   let lastSamplesRoot: string | null = null;
+  let previewAudio: HTMLAudioElement | null = null;
+
+  function getStyleFromTags(tags?: string[]): string {
+    const styleTag = tags?.find((tag) => tag.startsWith('style:'));
+    if (!styleTag) return 'normal';
+    return styleTag.slice('style:'.length) || 'normal';
+  }
+
+  function setStyleTag(tags: string[] | undefined, style: string): string[] {
+    const sanitized = (tags || []).filter((tag) => !tag.startsWith('style:'));
+    sanitized.push(`style:${style}`);
+    return sanitized;
+  }
+
+  onDestroy(() => {
+    previewAudio?.pause();
+    previewAudio = null;
+  });
 
   async function loadVoiceSamples(force: boolean = false) {
     const root = get(voiceSamplesRoot);
@@ -74,6 +116,11 @@
     await loadVoiceSamples(true);
   }
 
+  $: voiceRows = voices.map((voice, index) => ({
+    voice,
+    uiKey: `${voice.id}::${index}`,
+  }));
+
   function openCreateModal() {
     editingId = null;
     formData = {
@@ -84,6 +131,9 @@
       previewUrl: null,
       metadata: {
         gender: 'U',
+        ageRange: 'adult',
+        accent: 'american',
+        tags: ['style:normal'],
         imageUrl: null,
       },
     };
@@ -100,7 +150,12 @@
     formData = {
       ...v,
       provider: 'vibevoice_local',
-      metadata: { ...v.metadata }
+      metadata: {
+        ...v.metadata,
+        ageRange: v.metadata?.ageRange || 'adult',
+        accent: v.metadata?.accent || 'american',
+        tags: setStyleTag(v.metadata?.tags, getStyleFromTags(v.metadata?.tags)),
+      }
     };
     
     showModal = true;
@@ -120,6 +175,25 @@
     editingId = null;
   }
 
+  function resolvePreviewUrl(voice: Voice): string | null {
+    const explicitPreview = typeof voice.previewUrl === 'string' ? voice.previewUrl.trim() : '';
+    if (explicitPreview.length > 0) return explicitPreview;
+
+    if (voice.provider !== 'vibevoice_local' || !voice.providerVoiceId?.trim()) {
+      return null;
+    }
+
+    const root = get(voiceSamplesRoot);
+    if (!root) return null;
+    return getVoiceSamplePreviewUrl(root, voice.providerVoiceId.trim());
+  }
+
+  async function playPreview(url: string) {
+    previewAudio?.pause();
+    previewAudio = new Audio(url);
+    await previewAudio.play();
+  }
+
   function generateId(): string {
     const provider = formData.provider || 'vibevoice_local';
     const voiceId = formData.providerVoiceId || 'unknown';
@@ -137,11 +211,33 @@
       return;
     }
 
+    const metadata = formData.metadata || {};
+    const normalizedStyle = getStyleFromTags(metadata.tags);
+    const normalizedTags = setStyleTag(metadata.tags, normalizedStyle);
+
+    const selectedSamplesRoot = get(voiceSamplesRoot);
+    const selectedProviderVoiceId = formData.providerVoiceId?.trim() || '';
+    const autoPreviewUrl =
+      formData.provider === 'vibevoice_local' && selectedProviderVoiceId && selectedSamplesRoot
+        ? getVoiceSamplePreviewUrl(selectedSamplesRoot, selectedProviderVoiceId)
+        : null;
+
     if (editingId) {
       // Update existing voice
       voices = voices.map(v => 
         v.id === editingId 
-          ? { ...formData, id: editingId, metadata: { ...formData.metadata } } as Voice
+          ? {
+              ...formData,
+              id: editingId,
+              providerVoiceId: selectedProviderVoiceId,
+              previewUrl: autoPreviewUrl || formData.previewUrl || null,
+              metadata: {
+                ...metadata,
+                ageRange: metadata.ageRange || 'adult',
+                accent: metadata.accent || 'american',
+                tags: normalizedTags,
+              },
+            } as Voice
           : v
       );
     } else {
@@ -150,12 +246,15 @@
         id: generateId(),
         displayName: formData.displayName!,
         provider: formData.provider || 'vibevoice_local',
-        providerVoiceId: formData.providerVoiceId!,
+        providerVoiceId: selectedProviderVoiceId,
         notes: formData.notes || '',
-        previewUrl: formData.previewUrl || null,
+        previewUrl: autoPreviewUrl || formData.previewUrl || null,
         metadata: {
-          gender: formData.metadata?.gender || 'U',
-          imageUrl: formData.metadata?.imageUrl || null,
+          gender: metadata.gender || 'U',
+          ageRange: metadata.ageRange || 'adult',
+          accent: metadata.accent || 'american',
+          tags: normalizedTags,
+          imageUrl: metadata.imageUrl || null,
         },
       };
       voices = [...voices, newVoice];
@@ -177,23 +276,29 @@
     const id = event.detail;
     const voice = voices.find(v => v.id === id);
     if (voice) {
-      console.log('Preview voice:', voice);
-      if (voice.previewUrl) {
-        const audio = new Audio(voice.previewUrl);
-        audio.play().catch(err => console.error('Preview error:', err));
-      } else {
+      const previewUrl = resolvePreviewUrl(voice);
+      if (!previewUrl) {
         alert('No preview available for this voice');
+        return;
       }
+
+      playPreview(previewUrl).catch(err => console.error('Preview error:', err));
     }
   }
 
   function handleModalPreview() {
-    if (!editingId) return;
-    const voice = voices.find(v => v.id === editingId);
-    if (voice && voice.previewUrl) {
-      const audio = new Audio(voice.previewUrl);
-      audio.play().catch(err => console.error('Preview error:', err));
+    if (formData.provider !== 'vibevoice_local' || !formData.providerVoiceId?.trim()) {
+      return;
     }
+
+    const root = get(voiceSamplesRoot);
+    if (!root) {
+      alert('Select a samples folder to enable preview.');
+      return;
+    }
+
+    const previewUrl = getVoiceSamplePreviewUrl(root, formData.providerVoiceId.trim());
+    playPreview(previewUrl).catch(err => console.error('Preview error:', err));
   }
 
 </script>
@@ -214,10 +319,10 @@
   </div>
 
   <div class="speakers-grid">
-    {#each voices as voice (voice.id)}
+    {#each voiceRows as row (row.uiKey)}
       <SpeakerCard
-        {voice}
-        characters={getCharacterNames(voice.id)}
+        voice={row.voice}
+        characters={getCharacterNames(row.voice.id)}
         on:edit={openEditModal}
         on:delete={handleDelete}
         on:preview={handlePreview}
@@ -266,15 +371,10 @@
                 <option value={option.value}>{option.label}</option>
               {/each}
             </select>
-            {#if editingId}
-              {@const currentVoice = voices.find(v => v.id === editingId)}
-              {#if currentVoice?.previewUrl}
-                <button type="button" class="preview-btn-inline" on:click={handleModalPreview} title="Play preview">
-                  <Play size={14} />
-                  <span>Preview</span>
-                </button>
-              {/if}
-            {/if}
+            <button type="button" class="preview-btn-inline" on:click={handleModalPreview} title="Play preview sample" disabled={!formData.providerVoiceId?.trim()}>
+              <Play size={14} />
+              <span>Preview</span>
+            </button>
           </div>
         </div>
 
@@ -328,6 +428,40 @@
         </div>
 
         <div class="form-group">
+          <label for="age-range">Age</label>
+          <select id="age-range" bind:value={formData.metadata.ageRange}>
+            {#each AGE_OPTIONS as option}
+              <option value={option.value}>{option.label}</option>
+            {/each}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="accent">Accent</label>
+          <select id="accent" bind:value={formData.metadata.accent}>
+            {#each ACCENT_OPTIONS as option}
+              <option value={option.value}>{option.label}</option>
+            {/each}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="style">Style</label>
+          <select
+            id="style"
+            value={getStyleFromTags(formData.metadata.tags)}
+            on:change={(e) => {
+              const target = e.currentTarget as HTMLSelectElement;
+              formData.metadata.tags = setStyleTag(formData.metadata.tags, target.value);
+            }}
+          >
+            {#each STYLE_OPTIONS as option}
+              <option value={option.value}>{option.label}</option>
+            {/each}
+          </select>
+        </div>
+
+        <div class="form-group">
           <label for="notes">Notes</label>
           <textarea
             id="notes"
@@ -363,18 +497,18 @@
 
 <style>
   .speaker-manager {
-    padding: 20px;
+    padding: 12px;
   }
 
   .manager-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 14px;
   }
 
   .section-title {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 700;
     color: #1f2937;
     margin: 0;
@@ -382,7 +516,7 @@
 
   .header-actions {
     display: flex;
-    gap: 12px;
+    gap: 8px;
   }
 
   .dedupe-btn,
@@ -390,10 +524,10 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 18px;
+    padding: 8px 12px;
     border: none;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -417,8 +551,8 @@
 
   .speakers-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
   }
 
   .empty-state {
@@ -643,6 +777,12 @@
     cursor: pointer;
     transition: all 0.2s ease;
     white-space: nowrap;
+  }
+
+  .preview-btn-inline:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
   }
 
   .preview-btn-inline:hover {

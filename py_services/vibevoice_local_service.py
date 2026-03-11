@@ -48,6 +48,7 @@ def normalize_text(text: str) -> str:
     }
     for src, dst in replacements.items():
         text = text.replace(src, dst)
+    text = " ".join(text.split())
     return text.strip()
 
 
@@ -94,7 +95,7 @@ def load_vibevoice_backend(
     import torch  # noqa: WPS433
     import sys
     from transformers.utils import logging
-    
+
     # Prefer explicit/local repo path first.
     if repo_path and os.path.isdir(repo_path):
         if repo_path not in sys.path:
@@ -111,26 +112,26 @@ def load_vibevoice_backend(
         from vibevoice.processor.vibevoice_processor import VibeVoiceProcessor
     except ImportError:
         comfy_vibevoice_path = DEFAULT_VIBEVOICE_REPO_PATH
-        
+
         # Check for vvembed (embedded version)
         vvembed_path = os.path.join(comfy_vibevoice_path, "vvembed")
         if os.path.exists(vvembed_path):
             if vvembed_path not in sys.path:
                 sys.path.append(vvembed_path)
-            
+
             try:
                 from modular.modeling_vibevoice_inference import (
                     VibeVoiceForConditionalGenerationInference,
                 )
                 from processor.vibevoice_processor import VibeVoiceProcessor
             except ImportError as ie:
-                 print(f"Failed to import from vvembed: {ie}")
-                 raise ie
+                print(f"Failed to import from vvembed: {ie}")
+                raise ie
         else:
             # Fallback to repo root if not embedded?
             if os.path.exists(comfy_vibevoice_path) and comfy_vibevoice_path not in sys.path:
                 sys.path.append(comfy_vibevoice_path)
-            
+
             from vibevoice.modular.modeling_vibevoice_inference import (
                 VibeVoiceForConditionalGenerationInference,
             )
@@ -244,31 +245,34 @@ class VibeVoiceLocalService:
         # Also try exact path first (in case extension is already provided)
         search_paths = [sample_path]
         if not sample_path.lower().endswith(('.wav', '.mp3', '.flac', '.m4a', '.ogg')):
-             search_paths.extend([sample_path + ext for ext in ['.wav', '.mp3', '.flac', '.m4a', '.ogg']])
-        
+            search_paths.extend(
+                [sample_path + ext for ext in ['.wav', '.mp3', '.flac', '.m4a', '.ogg']])
+
         final_path = None
         for path in search_paths:
             if os.path.exists(path):
                 final_path = path
                 break
-        
+
         if not final_path:
-             # Look for partial matches in the parent directory to help user debug
-             parent_dir = os.path.dirname(sample_path)
-             filename = os.path.basename(sample_path)
-             candidates = []
-             if os.path.exists(parent_dir):
-                 try:
-                     candidates = [f for f in os.listdir(parent_dir) if f.startswith(filename)]
-                 except: pass
-             
-             msg = f"Voice sample not found at: {sample_path}"
-             if candidates:
-                 msg += f". Did you mean one of these? {candidates}"
-             elif not os.path.exists(parent_dir):
-                 msg += f". The directory also does not exist: {parent_dir}"
-             
-             raise FileNotFoundError(msg)
+            # Look for partial matches in the parent directory to help user debug
+            parent_dir = os.path.dirname(sample_path)
+            filename = os.path.basename(sample_path)
+            candidates = []
+            if os.path.exists(parent_dir):
+                try:
+                    candidates = [f for f in os.listdir(
+                        parent_dir) if f.startswith(filename)]
+                except:
+                    pass
+
+            msg = f"Voice sample not found at: {sample_path}"
+            if candidates:
+                msg += f". Did you mean one of these? {candidates}"
+            elif not os.path.exists(parent_dir):
+                msg += f". The directory also does not exist: {parent_dir}"
+
+            raise FileNotFoundError(msg)
 
         sample_path = final_path
 

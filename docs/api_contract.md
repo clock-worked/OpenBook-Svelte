@@ -6,6 +6,7 @@
 ## Ownership
 
 - Canonical frontend endpoint definitions live in `apps/desktop/src/lib/services/apiClient.ts`.
+- Canonical shared request/response payload shapes live in `apps/desktop/src/lib/services/apiContracts.ts`.
 - Service modules must import `API_ENDPOINTS` and client helpers instead of hardcoding backend URLs.
 - Default API base URL is `http://127.0.0.1:8010`, overrideable with `VITE_API_BASE_URL`.
 

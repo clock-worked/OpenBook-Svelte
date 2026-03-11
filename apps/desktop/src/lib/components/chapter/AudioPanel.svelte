@@ -4,7 +4,14 @@
   import { currentChapter, bookRoot, currentScript, chapters } from '$lib/stores/bookState';
   import { characters, colorForCharacter, rgbaToOpaqueHex, buildNameToIdMap, buildIdToNameMap } from '$lib/stores/characters';
   import { voices } from '$lib/stores/speakers';
-  import { checkAudioExistsForCharacter, checkAudioExistsForLine, generateAudioForCharacter, readManifest, deleteAudioLineForCharacter } from '$lib/services/audio';
+  import {
+    checkAudioExistsForCharacter,
+    checkAudioExistsForLine,
+    generateAudioForCharacter,
+    readManifest,
+    deleteAudioLineForCharacter,
+    reconcileAudioManifestForCharacter,
+  } from '$lib/services/audio';
   import { Headphones, Loader, Scissors, FileText, BookOpen } from 'lucide-svelte';
   import type { DialogueLine, Character } from '$lib/types';
   import { audioUpdateTrigger, triggerAudioUpdate } from '$lib/stores/audioUpdates';
@@ -307,16 +314,24 @@
 
     pruningStale = true;
     try {
-      let removedTotal = 0;
+      let removedMissingFileTotal = 0;
+      let removedStaleLineTotal = 0;
       for (const item of sortedCharactersById) {
-        removedTotal += await pruneStaleCharacterAudio(item.id, item.name, scr, ch.title, { suppressRefresh: true });
+        const reconciled = await reconcileAudioManifestForCharacter(ch.title, item.name);
+        removedMissingFileTotal += reconciled.removedCount;
+        removedStaleLineTotal += await pruneStaleCharacterAudio(item.id, item.name, scr, ch.title, { suppressRefresh: true });
       }
 
       await loadAudioClipCounts();
       triggerAudioUpdate();
 
+      const removedTotal = removedMissingFileTotal + removedStaleLineTotal;
       if (removedTotal > 0) {
-        alert(`Removed ${removedTotal} stale audio clip${removedTotal === 1 ? '' : 's'}.`);
+        alert(
+          `Removed ${removedTotal} stale audio clip${removedTotal === 1 ? '' : 's'} ` +
+          `(${removedMissingFileTotal} missing file${removedMissingFileTotal === 1 ? '' : 's'}, ` +
+          `${removedStaleLineTotal} invalid line mapping${removedStaleLineTotal === 1 ? '' : 's'}).`
+        );
       } else {
         alert('No stale audio clips found.');
       }

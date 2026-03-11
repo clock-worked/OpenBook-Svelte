@@ -11,18 +11,13 @@ import type {
   LineItem
 } from '$lib/types';
 import { storeProjectHandle } from './persistence';
-import { API_ENDPOINTS, apiFetch, apiRequestJson, apiRequestVoid, toApiClientError } from './apiClient';
-
-interface BackendChapterEntry {
-  path?: string;
-  name?: string;
-  parsed?: boolean;
-  scriptPath?: string;
-}
-
-interface ListChaptersResponse {
-  chapters?: BackendChapterEntry[];
-}
+import { API_ENDPOINTS, apiPostJson, apiPostVoid, apiRequestJson, toApiClientError } from './apiClient';
+import type {
+  ListChaptersResponse,
+  SetAudioRootRequest,
+  SetBookRootRequest,
+  UpdateCharacterStatsResponse,
+} from './apiContracts';
 
 let rootDirHandle: FileSystemDirectoryHandle | null = null;
 
@@ -179,11 +174,8 @@ export async function setBackendBookRoot(rootPath: string): Promise<boolean> {
   if (!rootPath || !isLikelyAbsolutePath(rootPath)) return false;
 
   try {
-    await apiRequestVoid(API_ENDPOINTS.setBookRoot, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ root_path: rootPath }),
-    });
+    const payload: SetBookRootRequest = { root_path: rootPath };
+    await apiPostVoid<SetBookRootRequest>(API_ENDPOINTS.setBookRoot, payload);
     return true;
   } catch (error) {
     const apiError = toApiClientError(error);
@@ -196,11 +188,8 @@ export async function setBackendAudioRoot(audioRoot: string): Promise<boolean> {
   if (!audioRoot || !isLikelyAbsolutePath(audioRoot)) return false;
 
   try {
-    await apiRequestVoid(API_ENDPOINTS.setAudioRoot, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ audio_root: audioRoot }),
-    });
+    const payload: SetAudioRootRequest = { audio_root: audioRoot };
+    await apiPostVoid<SetAudioRootRequest>(API_ENDPOINTS.setAudioRoot, payload);
     return true;
   } catch (error) {
     const apiError = toApiClientError(error);
@@ -258,7 +247,7 @@ export async function listChaptersFromBackend(): Promise<ChapterStatus[]> {
         title,
         parsed: !!ch?.parsed,
         complete: false,
-        audio: false,
+        audio: !!ch?.audio,
         scriptPath: ch?.scriptPath,
       } as ChapterStatus;
     });
@@ -303,6 +292,45 @@ async function getDirectoryHandle(dirHandle: FileSystemDirectoryHandle, path: st
   return currentHandle;
 }
 
+async function chapterHasAudio(chapterDirHandle: FileSystemDirectoryHandle): Promise<boolean> {
+  const audioDirHandle = await chapterDirHandle.getDirectoryHandle('audio_lines', { create: false }).catch(() => null);
+  if (!audioDirHandle) return false;
+
+  const audioExtensions = ['.wav', '.mp3', '.m4a', '.flac', '.ogg'];
+
+  for await (const characterEntry of audioDirHandle.values()) {
+    if (characterEntry.kind !== 'directory' || characterEntry.name.startsWith('.')) continue;
+    const characterDirHandle = characterEntry as FileSystemDirectoryHandle;
+
+    const manifestHandle = await characterDirHandle.getFileHandle('manifest.json', { create: false }).catch(() => null);
+    if (manifestHandle) {
+      try {
+        const manifestFile = await manifestHandle.getFile();
+        const manifestText = await manifestFile.text();
+        const manifest = JSON.parse(manifestText) as {
+          clips?: unknown[];
+          metadata?: { totalClips?: number };
+        };
+
+        if (Array.isArray(manifest.clips) && manifest.clips.length > 0) return true;
+        if (typeof manifest.metadata?.totalClips === 'number' && manifest.metadata.totalClips > 0) return true;
+      } catch {
+        return true;
+      }
+    }
+
+    for await (const clipEntry of characterDirHandle.values()) {
+      if (clipEntry.kind !== 'file') continue;
+      const lowerName = clipEntry.name.toLowerCase();
+      if (audioExtensions.some((ext) => lowerName.endsWith(ext))) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
 export async function scanChapters(root: FileSystemDirectoryHandle): Promise<ChapterStatus[]> {
   const chapters: ChapterStatus[] = [];
   for await (const entry of root.values()) {
@@ -335,7 +363,7 @@ export async function scanChapters(root: FileSystemDirectoryHandle): Promise<Cha
         title: title,
         parsed: parsed,
         complete: false, // This will need to be updated based on metadata file
-        audio: false, // This will need to be updated
+        audio: await chapterHasAudio(chapterDirHandle),
         scriptPath: scriptPath,
       });
     }
@@ -511,17 +539,8 @@ export async function triggerStatsUpdate(): Promise<void> {
     }
 
     // Now trigger the stats update
-    const response = await apiFetch(API_ENDPOINTS.updateCharacterStats, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' }
-    });
-
-    if (!response.ok) {
-      console.warn('[triggerStatsUpdate] Failed to update character stats:', response.statusText);
-    } else {
-      const result = await response.json();
-      console.log('[triggerStatsUpdate] Character stats updated:', result.stats);
-    }
+    const result = await apiPostJson<UpdateCharacterStatsResponse>(API_ENDPOINTS.updateCharacterStats);
+    console.log('[triggerStatsUpdate] Character stats updated:', result.stats);
   } catch (error) {
     console.warn('[triggerStatsUpdate] Could not update character stats:', error);
     // Non-blocking - don't fail the save if stats update fails

@@ -3,7 +3,20 @@ import { audioRoot, bookRoot, bookRootAbsolutePath, voiceSamplesRoot } from '$li
 import { bookRootPathOverride } from '$lib/stores/settings';
 import type { DialogueLine, CharactersJson } from '$lib/types';
 import { readCentralCharacters, readJsonRelative } from '$lib/services/fs';
-import { API_ENDPOINTS, apiFetch, apiRequestVoid, toApiUrl } from '$lib/services/apiClient';
+import { API_ENDPOINTS, ApiClientError, apiFetch, apiPostJson, apiPostVoid, toApiUrl } from '$lib/services/apiClient';
+import type {
+  BackendErrorPayload,
+  ChapterVoiceAssignmentPayload,
+  DeleteAudioLineRequest,
+  DeleteCharacterAudioRequest,
+  GenerateAudioChapterRequest,
+  GenerateAudioChapterResponse,
+  GenerateAudioLineRequest,
+  GenerateAudioLineSuccessResponse,
+  ReadFileAbsoluteRequest,
+  ReconcileAudioManifestRequest,
+  ReconcileAudioManifestResponse,
+} from '$lib/services/apiContracts';
 
 export interface AudioManifest {
   formatVersion: string;
@@ -30,43 +43,34 @@ export interface AudioClip {
   sourceFile: string;
   voiceId: string;
   provider: string;
-  emotion: string | null;
-  metadata: {
-    generatedAt: string;
-    duration: number;
-  };
-}
-
-interface ChapterVoiceAssignmentPayload {
-  character_id: string;
-  character_name: string;
-  voice_id: string;
-  provider: string;
-}
-
-interface GenerateAudioLineSuccessResponse {
-  audio_path?: string;
-}
-
-interface GenerateAudioChapterResponse {
-  success?: boolean;
-  generatedCount?: number;
-  skippedCount?: number;
-  totalLines?: number;
-  errors?: string[];
-  detail?: string;
-}
-
-interface BackendErrorPayload {
-  detail?: string;
-  error?: string;
-  message?: string;
 }
 
 const manifestCache = new Map<string, AudioManifest | null>();
 const manifestRequestCache = new Map<string, Promise<AudioManifest | null>>();
 let absoluteReadApiAvailable: boolean | null = null;
+let reconcileManifestApiAvailable: boolean | null = null;
 let hasWarnedMissingAudioRoot = false;
+
+function getBackendErrorMessage(error: unknown, fallback: string): string {
+  if (error instanceof ApiClientError) {
+    const details = error.details as BackendErrorPayload | string | undefined;
+    if (typeof details === 'string' && details.trim()) {
+      return details;
+    }
+    if (details && typeof details === 'object') {
+      const payload = details as BackendErrorPayload;
+      const detailMessage = payload.detail || payload.error || payload.message;
+      if (detailMessage) return detailMessage;
+    }
+    return error.message || fallback;
+  }
+
+  if (error instanceof Error && error.message) {
+    return error.message;
+  }
+
+  return fallback;
+}
 
 function getManifestCacheKey(chapterTitle: string, characterName: string): string {
   return `${chapterTitle}::${characterName.toLowerCase()}`;
@@ -133,13 +137,20 @@ export function getAudioPath(
   // Use HTTP endpoint to serve audio files instead of file:// paths
   // The backend will handle file system access
   const baseUrl = toApiUrl(API_ENDPOINTS.audioLine(chapterTitle, characterName, lineId));
+  const resolvedRoot = get(audioRoot) || get(bookRootAbsolutePath) || get(bookRootPathOverride);
+
+  const params = new URLSearchParams();
+  if (resolvedRoot) {
+    params.set('root', resolvedRoot);
+  }
 
   // Add cache-busting parameter to force fresh audio
   if (bustCache) {
-    return `${baseUrl}?t=${Date.now()}`;
+    params.set('t', String(Date.now()));
   }
 
-  return baseUrl;
+  const query = params.toString();
+  return query ? `${baseUrl}?${query}` : baseUrl;
 }
 
 /**
@@ -192,6 +203,33 @@ export async function readManifest(
 
       if (absoluteReadApiAvailable === false) {
         return await readJsonRelative<AudioManifest>(relativePath);
+      }
+
+      if (reconcileManifestApiAvailable !== false) {
+        try {
+          const reconcilePayload: ReconcileAudioManifestRequest = {
+            chapter_title: chapterTitle,
+            character_name: characterName,
+            audio_root: root || null,
+          };
+          const reconcileData = await apiPostJson<
+            ReconcileAudioManifestResponse,
+            ReconcileAudioManifestRequest
+          >(API_ENDPOINTS.reconcileAudioManifest, reconcilePayload);
+
+          reconcileManifestApiAvailable = true;
+
+          if (reconcileData?.manifest && typeof reconcileData.manifest === 'object') {
+            return reconcileData.manifest as AudioManifest;
+          }
+        } catch (reconcileError) {
+          if (reconcileError instanceof ApiClientError && reconcileError.status === 404) {
+            reconcileManifestApiAvailable = false;
+            console.warn('[audio] /api/reconcile-audio-manifest returned 404; disabling manifest reconciliation for this session');
+          } else {
+            console.warn('[audio] Manifest reconciliation failed; falling back to manifest read:', reconcileError);
+          }
+        }
       }
 
       // Get the full absolute path
@@ -264,6 +302,48 @@ export async function checkAudioExistsForCharacter(
   };
 }
 
+export async function reconcileAudioManifestForCharacter(
+  chapterTitle: string,
+  characterName: string,
+): Promise<{ success: boolean; removedCount: number; clipCount: number }> {
+  try {
+    const resolvedAudioRoot = get(audioRoot) || get(bookRootAbsolutePath) || get(bookRootPathOverride);
+    const payload: ReconcileAudioManifestRequest = {
+      chapter_title: chapterTitle,
+      character_name: characterName,
+      audio_root: resolvedAudioRoot || null,
+    };
+
+    const data = await apiPostJson<ReconcileAudioManifestResponse, ReconcileAudioManifestRequest>(
+      API_ENDPOINTS.reconcileAudioManifest,
+      payload,
+    );
+
+    const key = getManifestCacheKey(chapterTitle, characterName);
+    manifestRequestCache.delete(key);
+
+    if (data?.manifest && typeof data.manifest === 'object') {
+      manifestCache.set(key, data.manifest as AudioManifest);
+    } else {
+      manifestCache.delete(key);
+    }
+
+    return {
+      success: true,
+      removedCount: Number(data?.removed_count || 0),
+      clipCount: Number(data?.clip_count || 0),
+    };
+  } catch (error) {
+    console.warn('[audio] Failed to reconcile manifest for character:', characterName, error);
+    invalidateManifestCache(chapterTitle, characterName);
+    return {
+      success: false,
+      removedCount: 0,
+      clipCount: 0,
+    };
+  }
+}
+
 /**
  * Generate audio for a single dialogue line
  */
@@ -286,53 +366,31 @@ export async function generateAudioForLine(
       ? API_ENDPOINTS.generateVibeVoiceLine
       : API_ENDPOINTS.generateAudioLine;
 
-    const response = await apiFetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        line_id: lineId,
-        text,
-        character_name: characterName,
-        character_id: characterId,
-        voice_id: voiceId,
-        provider,
-        chapter_title: chapterTitle,
-        source_file: sourceFile,
-        voice_sample_root: includeSamplesRoot ? samplesRoot : null,
-        audio_root: resolvedAudioRoot || null,
-      }),
-    });
+    const payload: GenerateAudioLineRequest = {
+      line_id: lineId,
+      text,
+      character_name: characterName,
+      character_id: characterId,
+      voice_id: voiceId,
+      provider,
+      chapter_title: chapterTitle,
+      source_file: sourceFile,
+      voice_sample_root: includeSamplesRoot ? samplesRoot : null,
+      audio_root: resolvedAudioRoot || null,
+    };
 
-    if (response.ok) {
-      const data = await response.json() as GenerateAudioLineSuccessResponse;
-      invalidateManifestCache(chapterTitle, characterName);
-      return {
-        success: true,
-        audioPath: data.audio_path,
-      };
-    } else {
-      let errorDetail = `HTTP ${response.status}`;
-      try {
-        const errorJson = await response.json() as BackendErrorPayload;
-        errorDetail = errorJson?.detail || errorJson?.error || JSON.stringify(errorJson);
-      } catch {
-        try {
-          const errorText = await response.text();
-          if (errorText) errorDetail = errorText;
-        } catch {
-          // Keep default status-only message
-        }
-      }
-      return {
-        success: false,
-        error: `Failed to generate audio: ${errorDetail}`,
-      };
-    }
+    const data = await apiPostJson<GenerateAudioLineSuccessResponse, GenerateAudioLineRequest>(endpoint, payload);
+
+    invalidateManifestCache(chapterTitle, characterName);
+    return {
+      success: true,
+      audioPath: data.audio_path,
+    };
   } catch (error) {
     console.error('Error generating audio for line:', error);
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Unknown error',
+      error: `Failed to generate audio: ${getBackendErrorMessage(error, 'Unknown error')}`,
     };
   }
 }
@@ -406,29 +464,19 @@ export async function generateAudioForChapterVibeVoice(
     const samplesRoot = get(voiceSamplesRoot);
     const resolvedAudioRoot = get(audioRoot) || get(bookRootAbsolutePath) || get(bookRootPathOverride);
 
-    const response = await apiFetch(API_ENDPOINTS.generateVibeVoiceChapter, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        dialogue_path: dialoguePath,
-        chapter_title: chapterTitle,
-        source_file: sourceFile,
-        assignments,
-        voice_sample_root: samplesRoot || null,
-        audio_root: resolvedAudioRoot || null,
-      }),
-    });
+    const payload: GenerateAudioChapterRequest = {
+      dialogue_path: dialoguePath,
+      chapter_title: chapterTitle,
+      source_file: sourceFile,
+      assignments,
+      voice_sample_root: samplesRoot || null,
+      audio_root: resolvedAudioRoot || null,
+    };
 
-    const data = await response.json() as GenerateAudioChapterResponse;
-    if (!response.ok) {
-      return {
-        success: false,
-        generatedCount: 0,
-        skippedCount: 0,
-        totalLines: 0,
-        errors: [data.detail || data.error || 'Failed to generate chapter audio'],
-      };
-    }
+    const data = await apiPostJson<GenerateAudioChapterResponse, GenerateAudioChapterRequest>(
+      API_ENDPOINTS.generateVibeVoiceChapter,
+      payload,
+    );
 
     return {
       success: Boolean(data.success),
@@ -438,12 +486,13 @@ export async function generateAudioForChapterVibeVoice(
       errors: Array.isArray(data.errors) ? data.errors : [],
     };
   } catch (error) {
+    const errorMessage = getBackendErrorMessage(error, 'Failed to generate chapter audio');
     return {
       success: false,
       generatedCount: 0,
       skippedCount: 0,
       totalLines: 0,
-      errors: [error instanceof Error ? error.message : 'Unknown error'],
+      errors: [errorMessage],
     };
   }
 }
@@ -470,14 +519,11 @@ export async function deleteAudioForCharacter(
   characterName: string
 ): Promise<boolean> {
   try {
-    await apiRequestVoid(API_ENDPOINTS.deleteCharacterAudio, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chapter_title: chapterTitle,
-        character_name: characterName,
-      }),
-    });
+    const payload: DeleteCharacterAudioRequest = {
+      chapter_title: chapterTitle,
+      character_name: characterName,
+    };
+    await apiPostVoid<DeleteCharacterAudioRequest>(API_ENDPOINTS.deleteCharacterAudio, payload);
     invalidateManifestCache(chapterTitle, characterName);
     return true;
   } catch (error) {
@@ -492,15 +538,12 @@ export async function deleteAudioLineForCharacter(
   lineId: number
 ): Promise<boolean> {
   try {
-    await apiRequestVoid(API_ENDPOINTS.deleteAudioLine, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chapter_title: chapterTitle,
-        character_name: characterName,
-        line_id: lineId,
-      }),
-    });
+    const payload: DeleteAudioLineRequest = {
+      chapter_title: chapterTitle,
+      character_name: characterName,
+      line_id: lineId,
+    };
+    await apiPostVoid<DeleteAudioLineRequest>(API_ENDPOINTS.deleteAudioLine, payload);
     invalidateManifestCache(chapterTitle, characterName);
     return true;
   } catch (error) {

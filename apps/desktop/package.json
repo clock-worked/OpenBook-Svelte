@@ -4,12 +4,12 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "cross-env NODE_OPTIONS=--max-old-space-size=2048 vite",
-    "dev:inspect": "cross-env NODE_OPTIONS=\"--max-old-space-size=2048 --inspect\" vite",
-    "dev:debug": "cross-env NODE_OPTIONS=--max-old-space-size=2048 vite --debug",
+    "dev": "node --max-old-space-size=2048 ./node_modules/vite/bin/vite.js",
+    "dev:inspect": "node --max-old-space-size=2048 --inspect ./node_modules/vite/bin/vite.js",
+    "dev:debug": "node --max-old-space-size=2048 ./node_modules/vite/bin/vite.js --debug",
     "build": "vite build",
     "preview": "vite preview",
-    "dev:backend": "cd ../../py_services && python -m uvicorn api_server:app --reload --port 8010",
+    "dev:backend": "node ./scripts/dev-backend.mjs",
     "dev:all": "concurrently -n \"frontend,backend\" -c \"blue,green\" \"npm run dev\" \"npm run dev:backend\""
   },
   "devDependencies": {

@@ -5,11 +5,11 @@ import { audioState, playLine } from '$lib/stores/audio';
 import { voices } from '$lib/stores/speakers';
 import { readCentralCharacters } from '$lib/services/fs';
 import { buildNameToIdMap } from '$lib/stores/characters';
-import { 
-  checkAudioExistsForLine, 
-  getAudioPath, 
-  generateAudioForLine, 
-  getAudioPathIfExists, 
+import {
+  checkAudioExistsForLine,
+  getAudioPath,
+  generateAudioForLine,
+  getAudioPathIfExists,
   getCharacterNameFromId,
   deleteAudioLineForCharacter,
 } from '$lib/services/audio';
@@ -46,13 +46,13 @@ export async function handleLineAudioClick(
   }
 
   console.log('[Audio] Audio click on line', lineId, 'characterId:', characterId);
-  
+
   // Convert character ID to proper display name for audio file lookup
   const characterName = await getCharacterNameFromId(characterId);
   console.log('[Audio] Resolved character name:', characterName);
 
   const cacheKey = `${ch.title}-${characterName}-${lineId}`;
-  
+
   // Check cache first
   let audioExists = audioExistsCache.get(cacheKey);
   if (audioExists === undefined) {
@@ -64,11 +64,14 @@ export async function handleLineAudioClick(
 
   if (audioExists) {
     // Play the audio
-    const audioPath = getAudioPath(ch.title, characterName, lineId);
+    const audioPath = getAudioPath(ch.title, characterName, lineId, true);
     console.log('[Audio] Playing audio from:', audioPath);
     await playLine(lineId, characterName, ch.title, audioPath, async (lineId, charId) => {
       const charName = await getCharacterNameFromId(charId);
-      return getAudioPathIfExists(ch.title, charName, lineId).then(path => path);
+      return getAudioPathIfExists(ch.title, charName, lineId).then(path => {
+        if (!path) return null;
+        return getAudioPath(ch.title, charName, lineId, true);
+      });
     });
   } else {
     // Show generate dropdown
@@ -91,7 +94,7 @@ export async function handleLineAudioContextMenu(
 
   // Convert character ID to proper display name
   const characterName = await getCharacterNameFromId(characterId);
-  
+
   // Check if audio exists for this line
   const cacheKey = `${ch.title}-${characterName}-${lineId}`;
   let audioExists = audioExistsCache.get(cacheKey);
@@ -162,10 +165,10 @@ export async function handleGenerateLineAudio(
     // Update cache
     const cacheKey = `${ch.title}-${line.characterName}-${lineId}`;
     audioExistsCache.set(cacheKey, true);
-    
+
     // Trigger audio update for AudioPanel
     triggerAudioUpdate();
-    
+
     // Auto-play the generated audio with cache-busting to ensure fresh audio
     if (result.audioPath) {
       // Use cache-busting to force browser to load the new audio
@@ -203,10 +206,10 @@ export async function deleteAudioLine(
       // Update cache
       const cacheKey = `${ch.title}-${line.characterName}-${lineId}`;
       audioExistsCache.set(cacheKey, false);
-      
+
       // Trigger audio update for AudioPanel
       triggerAudioUpdate();
-      
+
       console.log('[Audio] Audio deleted successfully');
     } else {
       alert('Failed to delete audio: Unknown error');
@@ -228,7 +231,7 @@ export async function regenerateAudioLine(
 ): Promise<void> {
   // Delete existing audio first
   await deleteAudioLine(lineId, normalizedScript, audioExistsCache);
-  
+
   // Generate new audio
   await handleGenerateLineAudio(lineId, normalizedScript, audioExistsCache, setGenerating);
 }
@@ -239,12 +242,12 @@ export async function regenerateAudioLine(
 export async function handleLineSeek(lineId: number, event: MouseEvent): Promise<void> {
   const state = get(audioState);
   if (state.currentLineId !== lineId) return;
-  
+
   const target = event.currentTarget as HTMLElement;
   const rect = target.getBoundingClientRect();
   const x = event.clientX - rect.left;
   const percentage = x / rect.width;
-  
+
   // Import seek function from audio store
   const { seek } = await import('$lib/stores/audio');
   seek(percentage * state.duration);

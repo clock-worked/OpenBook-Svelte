@@ -1,5 +1,5 @@
 import type { Voice, TtsProvider } from '$lib/types';
-import { API_ENDPOINTS, apiRequestJson, toApiClientError } from './apiClient';
+import { API_ENDPOINTS, apiPostJson, toApiClientError } from './apiClient';
 import type {
   ManifestData,
   ScanVoiceManifestsRequest,
@@ -12,11 +12,10 @@ export async function scanVoiceManifests(audioRoot: string): Promise<ManifestDat
   if (!audioRoot) return [];
 
   const payload: ScanVoiceManifestsRequest = { audioRoot };
-  const data = await apiRequestJson<ScanVoiceManifestsResponse>(API_ENDPOINTS.scanVoiceManifests, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  });
+  const data = await apiPostJson<ScanVoiceManifestsResponse, ScanVoiceManifestsRequest>(
+    API_ENDPOINTS.scanVoiceManifests,
+    payload,
+  );
 
   return data.manifests || [];
 }

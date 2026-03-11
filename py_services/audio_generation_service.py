@@ -6,6 +6,8 @@ Handles TTS provider integration and manifest management.
 import os
 import sys
 import json
+import asyncio
+import threading
 from pathlib import Path
 from typing import Optional, Dict, Any, Tuple
 import httpx
@@ -41,6 +43,7 @@ class AudioGenerationService:
         self.google_access_token = None
         self.google_token_expiry = None
         self.vibevoice_local_service: Optional[VibeVoiceLocalService] = None
+        self._vibevoice_lock = threading.Lock()
         
         # Load Google credentials
         self._load_google_credentials()
@@ -84,14 +87,15 @@ class AudioGenerationService:
                 # chirp3 is Google's Chirp 3 model
                 success = await self._generate_google_tts(normalized_text, voice_id, audio_path)
             elif provider_lower in ["vibevoice_local", "vibevoice-local", "vibevoice"]:
-                success, error_details = self._generate_vibevoice_local(
+                success, error_details = await asyncio.to_thread(
+                    self._generate_vibevoice_local,
                     normalized_text,
                     voice_id,
                     audio_path,
                     voice_sample_root,
                 )
                 if not success:
-                     return {
+                    return {
                         "success": False,
                         "error": f"VibeVoice generation failed: {error_details}"
                     }
@@ -114,19 +118,20 @@ class AudioGenerationService:
             
             # Update manifest
             manifest_path = character_dir / "manifest.json"
-            self._update_manifest(
-                manifest_path=manifest_path,
-                line_id=line_id,
-                character_id=character_id,
-                character_name=character_name,
-                text=text,
-                audio_file=audio_filename,
-                chapter=chapter_title,
-                source_file=source_file,
-                voice_id=voice_id,
-                provider=provider,
-                emotion=emotion,
-                duration=estimated_duration
+            await asyncio.to_thread(
+                self._update_manifest,
+                manifest_path,
+                line_id,
+                character_id,
+                character_name,
+                text,
+                audio_filename,
+                chapter_title,
+                source_file,
+                voice_id,
+                provider,
+                emotion,
+                estimated_duration,
             )
             
             return {
@@ -364,11 +369,12 @@ class AudioGenerationService:
             if self.vibevoice_local_service is None:
                 self.vibevoice_local_service = VibeVoiceLocalService()
 
-            self.vibevoice_local_service.generate_audio(
-                text=text,
-                sample_path=sample_path,
-                output_path=str(output_path),
-            )
+            with self._vibevoice_lock:
+                self.vibevoice_local_service.generate_audio(
+                    text=text,
+                    sample_path=sample_path,
+                    output_path=str(output_path),
+                )
             return True, None
         except Exception as exc:
             error_msg = str(exc).encode('utf-8', errors='replace').decode('utf-8', errors='replace')
@@ -570,6 +576,106 @@ class AudioGenerationService:
         except Exception as e:
             print(f"Error deleting audio line: {e}")
             return False
+
+    def reconcile_character_manifest(
+        self,
+        chapter_title: str,
+        character_name: str,
+    ) -> Dict[str, Any]:
+        """Remove manifest clips whose referenced audio files are missing."""
+        character_dir = self.audio_root / chapter_title / "audio_lines" / character_name
+        manifest_path = character_dir / "manifest.json"
+
+        if not manifest_path.exists() or not manifest_path.is_file():
+            return {
+                "updated": False,
+                "removed_count": 0,
+                "clip_count": 0,
+                "manifest": None,
+            }
+
+        try:
+            with open(manifest_path, 'r', encoding='utf-8') as handle:
+                manifest = json.load(handle)
+        except Exception as exc:
+            print(f"Error reading manifest for reconciliation: {manifest_path} - {exc}")
+            return {
+                "updated": False,
+                "removed_count": 0,
+                "clip_count": 0,
+                "manifest": None,
+            }
+
+        clips = manifest.get("clips")
+        if not isinstance(clips, list):
+            clips = []
+            manifest["clips"] = clips
+
+        kept_clips = []
+        removed_count = 0
+        for clip in clips:
+            if not isinstance(clip, dict):
+                removed_count += 1
+                continue
+
+            audio_file = clip.get("audioFile")
+            if not isinstance(audio_file, str) or not audio_file.strip():
+                removed_count += 1
+                continue
+
+            clip_path = character_dir / audio_file
+            if not clip_path.exists() or not clip_path.is_file():
+                removed_count += 1
+                continue
+
+            kept_clips.append(clip)
+
+        updated = removed_count > 0
+        manifest["clips"] = kept_clips
+
+        metadata = manifest.get("metadata")
+        if not isinstance(metadata, dict):
+            metadata = {}
+            manifest["metadata"] = metadata
+
+        metadata["totalClips"] = len(kept_clips)
+
+        chapters = sorted({str(c.get("chapter")) for c in kept_clips if isinstance(c.get("chapter"), str) and c.get("chapter")})
+        metadata["chapters"] = chapters
+
+        source_counts: Dict[str, int] = {}
+        voice_counts: Dict[str, int] = {}
+        for clip in kept_clips:
+            source_file = clip.get("sourceFile")
+            if isinstance(source_file, str) and source_file:
+                source_counts[source_file] = source_counts.get(source_file, 0) + 1
+
+            voice_id = clip.get("voiceId")
+            if isinstance(voice_id, str) and voice_id:
+                voice_counts[voice_id] = voice_counts.get(voice_id, 0) + 1
+
+        metadata["sources"] = source_counts
+        metadata["voiceIds"] = voice_counts
+
+        existing_primary = metadata.get("primaryVoiceId")
+        if isinstance(existing_primary, str) and existing_primary in voice_counts:
+            metadata["primaryVoiceId"] = existing_primary
+        elif voice_counts:
+            metadata["primaryVoiceId"] = max(voice_counts.items(), key=lambda item: item[1])[0]
+        else:
+            metadata["primaryVoiceId"] = None
+
+        if updated:
+            metadata["lastUpdated"] = datetime.utcnow().isoformat() + "Z"
+            with open(manifest_path, 'w', encoding='utf-8') as handle:
+                json.dump(manifest, handle, indent=2, ensure_ascii=False)
+
+        return {
+            "updated": updated,
+            "removed_count": removed_count,
+            "clip_count": len(kept_clips),
+            "manifest": manifest,
+        }
     
     def delete_character_audio(
         self,

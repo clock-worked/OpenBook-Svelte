@@ -13,7 +13,6 @@
   import ParagraphRow from '$lib/components/chapter/ParagraphRow.svelte';
   import RawTextBlock from '$lib/components/chapter/RawTextBlock.svelte';
   import Dropdown from '$lib/components/common/Dropdown.svelte';
-  import { audioState } from '$lib/stores/audio';
   
   // Tool modules
   import type { UnifiedLine, MenuContext } from '$lib/components/chapter/tools/types';

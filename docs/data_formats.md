@@ -5,6 +5,12 @@
 > - Current dialogue schema: [schema_v3.md](./schema_v3.md)
 > - Previous normalized schema reference: [schema_v2.md](./schema_v2.md)
 
+## Current Compatibility Policy
+
+- **Write policy:** current app flows write `dialogue.json` with `formatVersion: "3.0"`.
+- **Read policy:** legacy formats are read only where needed for compatibility.
+- **Migration policy:** legacy `script.json`/v1-era data should be treated as transitional input, not the canonical output target.
+
 ## Legacy v1.0 Format (Deprecated)
 
 ### script.json (v1.0)
@@ -49,7 +55,7 @@
 
 ---
 
-## Current v3.0 Format
+## Current v3.0 Format (Write Target)
 
 See **[schema_v3.md](./schema_v3.md)** for complete documentation.
 
@@ -81,9 +87,14 @@ For v2.0 structure details and migration context, see **[schema_v2.md](./schema_
    - Expandable line metadata (emotion, pacing, prefix)
    - Edit tracking (lastEdited, editCount)
 
-### Migration
+### Migration Notes
 
-To migrate from v1.0 to v2.0:
+Historical migration script references may still mention v2.0 naming, but active product direction is:
+
+- preserve legacy reads where required,
+- write current `dialogue.json` v3 format.
+
+Legacy migration command (reference only):
 
 ```bash
 cd py_services

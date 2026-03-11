@@ -1,11 +1,16 @@
-import { API_ENDPOINTS, apiRequestJson } from './apiClient';
+import { API_ENDPOINTS, apiPostJson, toApiUrl } from './apiClient';
+import type { ListVoiceSamplesRequest, ListVoiceSamplesResponse } from './apiContracts';
 
 export async function listVoiceSamples(samplesRoot: string): Promise<string[]> {
-  const data = await apiRequestJson<{ samples?: string[] }>(API_ENDPOINTS.listVoiceSamples, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ samples_root: samplesRoot }),
-  });
+  const payload: ListVoiceSamplesRequest = { samples_root: samplesRoot };
+  const data = await apiPostJson<ListVoiceSamplesResponse, ListVoiceSamplesRequest>(
+    API_ENDPOINTS.listVoiceSamples,
+    payload,
+  );
 
   return data.samples || [];
+}
+
+export function getVoiceSamplePreviewUrl(samplesRoot: string, sampleFile: string): string {
+  return toApiUrl(API_ENDPOINTS.voiceSamplePreview(sampleFile, samplesRoot));
 }

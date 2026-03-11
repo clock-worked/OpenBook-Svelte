@@ -35,6 +35,7 @@ export interface BackendChapterEntry {
   name?: string;
   parsed?: boolean;
   scriptPath?: string;
+  audio?: boolean;
 }
 
 export interface ListChaptersResponse {
@@ -109,6 +110,19 @@ export interface DeleteAudioLineRequest {
   chapter_title: string;
   character_name: string;
   line_id: number;
+}
+
+export interface ReconcileAudioManifestRequest {
+  chapter_title: string;
+  character_name: string;
+  audio_root: string | null;
+}
+
+export interface ReconcileAudioManifestResponse {
+  updated?: boolean;
+  removed_count?: number;
+  clip_count?: number;
+  manifest?: ManifestData | Record<string, unknown> | null;
 }
 
 export interface BackendErrorPayload {

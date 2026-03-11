@@ -3,7 +3,7 @@ import { parserHints } from '$lib/stores/settings';
 import type { Line, DialogueJson, DialogueLine, Character, LineCandidate, ParserHints } from '$lib/types';
 import { readTextFile, getRootDirHandle, readCentralCharacters, writeCentralCharacters } from '$lib/services/fs';
 import { buildNameToIdMap } from '$lib/stores/characters';
-import { API_ENDPOINTS, apiRequestJson, toApiClientError } from '$lib/services/apiClient';
+import { API_ENDPOINTS, apiPostJson, apiRequestJson, toApiClientError } from '$lib/services/apiClient';
 
 const ALWAYS_BLOCKED_CHARACTER_NAMES = new Set(['he', 'she', 'as']);
 
@@ -263,17 +263,11 @@ export async function runParserForChapter(args: {
     );
     const parserOptions = buildParserOptions(hints);
 
-    const parsed = await apiRequestJson<ParserOutput>(API_ENDPOINTS.parse, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        text: fileContent,
-        filename: args.input,
-        manual_blocklist: manualBlockList,
-        parser_options: parserOptions,
-      }),
+    const parsed = await apiPostJson<ParserOutput>(API_ENDPOINTS.parse, {
+      text: fileContent,
+      filename: args.input,
+      manual_blocklist: manualBlockList,
+      parser_options: parserOptions,
     });
     const parsedCharacters = Array.isArray(parsed.characters) ? parsed.characters : [];
     if (!Array.isArray(parsed.characters)) {

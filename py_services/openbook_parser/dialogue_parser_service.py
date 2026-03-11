@@ -13,7 +13,6 @@ os.environ.setdefault("TRANSFORMERS_NO_TF", "1")
 os.environ.setdefault("USE_TF", "0")
 os.environ.setdefault("USE_FLAX", "0")
 
-from fastcoref import FCoref
 from .knowledge_store import load_knowledge_for_file
 try:
     from .models.character import Character
@@ -770,6 +769,9 @@ class DialogueParserService:
         if self.coref_model or self.coref_error:
             return
         try:
+            # Import lazily so backend startup still works when coref deps are incompatible.
+            from fastcoref import FCoref  # pylint: disable=import-outside-toplevel
+
             self.coref_model = FCoref(
                 model_name_or_path="biu-nlp/f-coref",
                 device=None,

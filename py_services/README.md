@@ -34,6 +34,31 @@ Output is a single JSON string to stdout:
 }
 ```
 
+## Lane 5 Router Split Smoke Test
+
+Run a lightweight API smoke test that validates parser/audio router registration and key non-heavy endpoints.
+
+```bash
+../.venv/Scripts/python.exe py_services/router_split_smoke_test.py
+```
+
+Expected output ends with:
+
+```text
+Lane 5 router split smoke test passed
+```
+
+## ASR validation + audio experiments
+
+For ASR word timestamps and short-segment generation experiments, use:
+
+- `py_services/asr_word_timestamps.py`
+- `py_services/asr_experiment_runner.py`
+
+Detailed workflow and example commands:
+
+- `docs/asr_validation_experiments.md`
+
 ## Heuristic Quality Gate (curated dialogue)
 
 Before and after heuristic changes, run the curated gate and compare dialogue accuracy.
