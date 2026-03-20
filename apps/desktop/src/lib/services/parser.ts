@@ -2,6 +2,7 @@ import { get } from 'svelte/store';
 import { parserHints } from '$lib/stores/settings';
 import type { Line, DialogueJson, DialogueLine, Character, LineCandidate, ParserHints } from '$lib/types';
 import { readTextFile, getRootDirHandle, readCentralCharacters, writeCentralCharacters } from '$lib/services/fs';
+import { computeReturningFlags } from '$lib/services/dialogueReturning';
 import { buildNameToIdMap } from '$lib/stores/characters';
 import { API_ENDPOINTS, apiPostJson, apiRequestJson, toApiClientError } from '$lib/services/apiClient';
 
@@ -99,7 +100,7 @@ function estimateDialogueConfidence(line: Line, index: number, allLines: Line[],
 }
 
 /**
- * Convert Line format to DialogueLine format (v2.0)
+ * Convert parser output into the persisted dialogue.json line shape.
  */
 function convertLineToDialogueLine(line: Line, id: number, nameToCharIdMap: Map<string, string>, index: number, allLines: Line[]): DialogueLine {
   const isNarration = line.line_type === 'narration';
@@ -191,6 +192,7 @@ function convertLineToDialogueLine(line: Line, id: number, nameToCharIdMap: Map<
     },
     candidates,
     isConflict: isNarration ? false : (line.is_suggestion || false || shouldAbstain),
+    isReturning: false,
     attribution: isNarration
       ? {
         confidence: 1,
@@ -215,7 +217,7 @@ function convertLineToDialogueLine(line: Line, id: number, nameToCharIdMap: Map<
 }
 
 /**
- * Write DialogueJson to file (v2.0 format)
+ * Write DialogueJson to file.
  */
 async function writeDialogue(path: string, data: DialogueJson): Promise<boolean> {
   const rootHandle = getRootDirHandle();
@@ -369,10 +371,18 @@ export async function runParserForChapter(args: {
     // Write updated central characters.json
     await writeCentralCharacters(root, { formatVersion: existingBookChars.formatVersion || '2.0', characters: allBookChars });
 
-    // Convert lines to DialogueLine format (v2.0)
-    const dialogueLines = parsed.script.map((line, idx) =>
+    const baseDialogueLines = parsed.script.map((line, idx) =>
       convertLineToDialogueLine(line, idx + 1, nameToCharIdMap, idx, parsed.script)
     );
+    const returningFlags = computeReturningFlags(
+      baseDialogueLines,
+      fileContent,
+      (_line, index) => parsed.script[index]?.line_type === 'dialogue'
+    );
+    const dialogueLines = baseDialogueLines.map((line, index) => ({
+      ...line,
+      isReturning: returningFlags[index],
+    }));
 
     // Calculate character breakdown for stats
     const characterBreakdown: Record<string, number> = {};
@@ -385,7 +395,7 @@ export async function runParserForChapter(args: {
     const numConflicts = dialogueLines.filter(line => line.isConflict).length;
 
     const dialogueJson: DialogueJson = {
-      formatVersion: '3.0',
+      formatVersion: '3.1',
       chapterId: chapterName,
       lines: dialogueLines,
       stats: {
@@ -397,7 +407,7 @@ export async function runParserForChapter(args: {
 
     const dialoguePath = `${chapterName}/dialogue.json`;
 
-    // Write the dialogue.json file (v2.0 format)
+    // Write the chapter dialogue.json file.
     await writeDialogue(dialoguePath, dialogueJson);
 
     return {

@@ -48,6 +48,7 @@ class DialogueLine(BaseModel):
     metadata: Metadata
     candidates: List[Candidate]
     isConflict: bool
+    isReturning: bool = False
 
 
 class Stats(BaseModel):

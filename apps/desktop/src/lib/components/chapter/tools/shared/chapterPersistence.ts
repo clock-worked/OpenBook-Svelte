@@ -1,5 +1,6 @@
 import type { DialogueJson, ScriptJson } from '$lib/types';
 import type { UnifiedLine } from '$lib/components/chapter/tools/types';
+import { computeReturningFlags, isDialogueSpan } from '$lib/services/dialogueReturning';
 
 type ChapterLike = {
     title: string;
@@ -21,6 +22,29 @@ type NormalizedAttributionFn = (
     fallbackSourceCandidates?: string[],
     unknownSpeakerLabel?: string
 ) => any;
+
+function applyReturningFlags(lines: UnifiedLine[], rawText: string | null): UnifiedLine[] {
+    if (!lines.length) return lines;
+    if (!rawText) {
+        return lines.map((line) => ({
+            ...line,
+            isReturning: line.isReturning || false,
+        }));
+    }
+
+    const returningFlags = computeReturningFlags(lines, rawText, (line) => {
+        if (line.span) {
+            return isDialogueSpan(rawText, line.span.start);
+        }
+        const normalizedName = String(line.characterName || '').trim().toLowerCase();
+        return normalizedName.length > 0 && normalizedName !== 'narrator';
+    });
+
+    return lines.map((line, index) => ({
+        ...line,
+        isReturning: returningFlags[index],
+    }));
+}
 
 export async function loadChapterContent(params: {
     chapter: ChapterLike;
@@ -54,7 +78,7 @@ export async function loadChapterContent(params: {
     if (dialogue) {
         isV2Format =
             'formatVersion' in dialogue &&
-            (dialogue.formatVersion === '2.0' || dialogue.formatVersion === '3.0');
+            (dialogue.formatVersion === '2.0' || dialogue.formatVersion === '3.0' || dialogue.formatVersion === '3.1');
 
         normalized = await params.normalizeScriptData(dialogue, {
             root,
@@ -63,28 +87,34 @@ export async function loadChapterContent(params: {
             readCentralCharacters: params.readCentralCharacters,
             buildIdToNameMap: params.buildIdToNameMap,
         });
-
-        if (normalized) {
-            currentScript = {
-                chapter: chapter.title,
-                sourceFile: chapter.path || '',
-                lines: normalized.lines.map((line) => ({
-                    id: line.id,
-                    text: line.text,
-                    span: line.span,
-                    chosenSpeaker: line.characterName,
-                    candidates: line.candidates,
-                    isConflict: line.isConflict,
-                    attribution: line.attribution,
-                })),
-                stats: normalized.stats,
-            };
-        }
     }
 
     let rawText: string | null = null;
     if (chapter.path) {
         rawText = await params.readTextFile(chapter.path);
+    }
+
+    if (normalized) {
+        const normalizedWithReturning = applyReturningFlags(normalized.lines, rawText);
+        normalized = {
+            ...normalized,
+            lines: normalizedWithReturning,
+        };
+        currentScript = {
+            chapter: chapter.title,
+            sourceFile: chapter.path || '',
+            lines: normalizedWithReturning.map((line) => ({
+                id: line.id,
+                text: line.text,
+                span: line.span,
+                chosenSpeaker: line.characterName,
+                candidates: line.candidates,
+                isConflict: line.isConflict,
+                isReturning: line.isReturning,
+                attribution: line.attribution,
+            })),
+            stats: normalized.stats,
+        };
     }
 
     return {
@@ -99,6 +129,7 @@ export async function saveDialogueFromNormalized(params: {
     normalized: { lines: UnifiedLine[]; stats: any };
     chapter: ChapterLike;
     root: string;
+    rawText: string | null;
     unknownThreshold: number;
     unknownSpeakerLabel: string;
     ensureCentralCharactersForNames: (names: string[]) => Promise<void>;
@@ -111,18 +142,19 @@ export async function saveDialogueFromNormalized(params: {
 }): Promise<void> {
     const scr = params.normalized;
     const ch = params.chapter;
+    const linesWithReturning = applyReturningFlags(scr.lines, params.rawText);
 
     const rootInfo = params.getRootDirInfo();
     console.log('[ChapterView] Saving changes...', {
-        format: 'v3.0',
-        numLines: scr.lines.length,
+        format: 'v3.1',
+        numLines: linesWithReturning.length,
         chapter: ch.title,
         root: params.root,
         rootDirHandle: rootInfo,
     });
 
     const allNames = new Set<string>();
-    for (const line of scr.lines) {
+    for (const line of linesWithReturning) {
         if (line.characterName) allNames.add(line.characterName);
         for (const candidate of line.candidates || []) {
             if (candidate?.name) allNames.add(candidate.name);
@@ -133,7 +165,7 @@ export async function saveDialogueFromNormalized(params: {
     const nameToIdMap = await params.ensureCharacterNameToIdMap();
 
     const characterBreakdown: Record<string, number> = {};
-    for (const line of scr.lines) {
+    for (const line of linesWithReturning) {
         if (!line.characterName) continue;
         const charId = nameToIdMap.get(line.characterName.toLowerCase());
         if (charId) {
@@ -145,10 +177,10 @@ export async function saveDialogueFromNormalized(params: {
         }
     }
 
-    const v2Dialogue: DialogueJson = {
-        formatVersion: '3.0',
+    const dialoguePayload: DialogueJson = {
+        formatVersion: '3.1',
         chapterId: ch.title,
-        lines: scr.lines.map((line) => {
+        lines: linesWithReturning.map((line) => {
             const attribution = params.normalizeAttribution(
                 line.attribution || null,
                 (line.candidates || []).map((candidate) => ({
@@ -208,11 +240,12 @@ export async function saveDialogueFromNormalized(params: {
                     })
                     .filter((candidate): candidate is { characterId: string; confidence: number } => !!candidate),
                 isConflict: line.isConflict || attribution.resolutionStatus === 'unknown',
+                isReturning: line.isReturning,
                 attribution,
             };
         }),
         stats: {
-            totalLines: scr.lines.length,
+            totalLines: linesWithReturning.length,
             conflicts: scr.stats?.numConflicts || 0,
             characterBreakdown,
         },
@@ -221,7 +254,7 @@ export async function saveDialogueFromNormalized(params: {
     const relativePath = `${ch.title}/dialogue.json`;
     console.log('[ChapterView] Writing dialogue to relative path:', relativePath);
 
-    const savedLocally = await params.writeDialogue(relativePath, v2Dialogue);
+    const savedLocally = await params.writeDialogue(relativePath, dialoguePayload);
     if (savedLocally) {
         console.log('[ChapterView] ✓ Successfully saved dialogue.json via File System API');
         return;
@@ -234,7 +267,7 @@ export async function saveDialogueFromNormalized(params: {
     }
 
     try {
-        const response = await params.apiSave(relativePath, v2Dialogue);
+        const response = await params.apiSave(relativePath, dialoguePayload);
         if (response.ok) {
             console.log('[ChapterView] ✓ Successfully saved dialogue.json via API');
         } else {

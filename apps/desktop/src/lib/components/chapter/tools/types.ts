@@ -8,6 +8,7 @@ export type UnifiedLine = {
   characterName: string | null;  // Normalized field name
   candidates: { name: string; confidence: number }[];
   isConflict: boolean;
+  isReturning: boolean;
   attribution?: {
     confidence: number;
     topCandidateConfidence: number;

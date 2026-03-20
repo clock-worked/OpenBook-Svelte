@@ -164,7 +164,8 @@ export function splitLine(
     span: null, // We'll need to recalculate spans or set to null
     characterName: line.characterName, // Inherit character assignment
     candidates: [...line.candidates], // Copy candidates
-    isConflict: line.isConflict
+    isConflict: line.isConflict,
+    isReturning: line.isReturning,
   };
 
   // Update span if it exists

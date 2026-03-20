@@ -118,6 +118,7 @@ export interface DialogueLine {
   metadata: LineMetadata;
   candidates: LineCandidate[];
   isConflict: boolean;
+  isReturning?: boolean;
   attribution?: LineAttribution;
 }
 
@@ -152,6 +153,7 @@ export interface LineItem {
   chosenSpeaker: string | null;  // v1: character name (not ID)
   candidates: { name: string; confidence: number }[];  // v1: uses name
   isConflict: boolean;
+  isReturning?: boolean;
   attribution?: {
     confidence?: number;
     topCandidateConfidence?: number;

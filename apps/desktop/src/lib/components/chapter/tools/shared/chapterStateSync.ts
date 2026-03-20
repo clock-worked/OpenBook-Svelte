@@ -15,6 +15,7 @@ export function buildLegacyScriptFromNormalized(
             chosenSpeaker: line.characterName,
             candidates: line.candidates,
             isConflict: line.isConflict,
+            isReturning: line.isReturning,
             attribution: line.attribution,
         })),
         stats: normalized.stats,

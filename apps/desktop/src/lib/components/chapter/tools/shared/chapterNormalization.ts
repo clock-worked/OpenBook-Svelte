@@ -134,6 +134,7 @@ function normalizeLine(
             fallbackSourceCandidates,
             unknownSpeakerLabel
         );
+        const isReturning = typeof line.isReturning === 'boolean' ? line.isReturning : false;
 
         if (normalizedAttribution.resolutionStatus === 'unknown') {
             charName = unknownSpeakerLabel;
@@ -146,6 +147,7 @@ function normalizeLine(
             characterName: charName,
             candidates: normalizedCandidates.map((candidate) => ({ name: candidate.name, confidence: candidate.confidence })),
             isConflict: line.isConflict || normalizedAttribution.resolutionStatus === 'unknown',
+            isReturning,
             attribution: normalizedAttribution
         };
     }
@@ -175,6 +177,7 @@ function normalizeLine(
         characterName: normalizedSpeaker,
         candidates: normalizedCandidates,
         isConflict: line.isConflict || normalizedAttribution.resolutionStatus === 'unknown',
+        isReturning: typeof (line as any).isReturning === 'boolean' ? Boolean((line as any).isReturning) : false,
         attribution: normalizedAttribution
     };
 }

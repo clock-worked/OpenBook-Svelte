@@ -570,6 +570,7 @@
         normalized: scr,
         chapter: { title: ch.title, path: ch.path },
         root,
+        rawText: get(rawText),
         unknownThreshold: getUnknownThreshold(),
         unknownSpeakerLabel: UNKNOWN_SPEAKER_LABEL,
         ensureCentralCharactersForNames,

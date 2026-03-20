@@ -7,7 +7,7 @@
 
 ## Current Compatibility Policy
 
-- **Write policy:** current app flows write `dialogue.json` with `formatVersion: "3.0"`.
+- **Write policy:** current app flows write `dialogue.json` with `formatVersion: "3.1"`.
 - **Read policy:** legacy formats are read only where needed for compatibility.
 - **Migration policy:** legacy `script.json`/v1-era data should be treated as transitional input, not the canonical output target.
 
@@ -55,15 +55,16 @@
 
 ---
 
-## Current v3.0 Format (Write Target)
+## Current v3.1 Format (Write Target)
 
 See **[schema_v3.md](./schema_v3.md)** for complete documentation.
 
-### v3.0 Highlights:
+### v3.1 Highlights:
 
-1. **Attribution confidence model:** Adds `line.attribution` with confidence, margin, and risk.
-2. **Unknown workflow:** Uses `resolutionStatus` (`auto`, `unknown`, `user_confirmed`) and allows unresolved `characterId: null`.
-3. **Alias-cluster feedback:** Persists `sourceAlias` and `sourceCandidates` for user-driven alias learning.
+1. **Paragraph return marker:** Adds `line.isReturning` for the final spoken line in a paragraph.
+2. **Attribution confidence model:** Adds `line.attribution` with confidence, margin, and risk.
+3. **Unknown workflow:** Uses `resolutionStatus` (`auto`, `unknown`, `user_confirmed`) and allows unresolved `characterId: null`.
+4. **Alias-cluster feedback:** Persists `sourceAlias` and `sourceCandidates` for user-driven alias learning.
 
 For v2.0 structure details and migration context, see **[schema_v2.md](./schema_v2.md)**.
 
@@ -92,7 +93,7 @@ For v2.0 structure details and migration context, see **[schema_v2.md](./schema_
 Historical migration script references may still mention v2.0 naming, but active product direction is:
 
 - preserve legacy reads where required,
-- write current `dialogue.json` v3 format.
+- write current `dialogue.json` v3.1 format.
 
 Legacy migration command (reference only):
 
