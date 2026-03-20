@@ -9,6 +9,8 @@ import type {
   ChapterVoiceAssignmentPayload,
   DeleteAudioLineRequest,
   DeleteCharacterAudioRequest,
+  GenerateAudioCharacterRequest,
+  GenerateAudioCharacterResponse,
   GenerateAudioChapterRequest,
   GenerateAudioChapterResponse,
   GenerateAudioLineRequest,
@@ -396,7 +398,7 @@ export async function generateAudioForLine(
 }
 
 /**
- * Generate audio for all lines of a character in a chapter
+ * Generate audio for a character line batch (chapter-scoped or cross-chapter)
  */
 export async function generateAudioForCharacter(
   characterName: string,
@@ -409,49 +411,140 @@ export async function generateAudioForCharacter(
   onProgress?: (current: number, total: number) => void,
   shouldCancel?: () => boolean
 ): Promise<{ success: boolean; generatedCount: number; errors: string[]; canceled: boolean }> {
-  const errors: string[] = [];
-  let generatedCount = 0;
+  if (shouldCancel?.()) {
+    return {
+      success: false,
+      generatedCount: 0,
+      errors: [],
+      canceled: true,
+    };
+  }
 
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
+  const providerLower = provider.toLowerCase();
+  if (!providerLower.includes('vibevoice')) {
+    return {
+      success: false,
+      generatedCount: 0,
+      errors: [
+        `Unsupported provider '${provider}'. OpenBook generation is VibeVoice-only.`,
+      ],
+      canceled: false,
+    };
+  }
 
-    if (shouldCancel?.()) {
+  const totalLines = lines.length;
+  if (onProgress) {
+    onProgress(0, totalLines);
+  }
+
+  try {
+    const samplesRoot = get(voiceSamplesRoot);
+    const resolvedAudioRoot = get(audioRoot) || get(bookRootAbsolutePath) || get(bookRootPathOverride);
+
+    const payload: GenerateAudioCharacterRequest = {
+      character_name: characterName,
+      character_id: characterId,
+      lines: lines.map((line) => ({
+        id: Number(line.id),
+        text: String((line as any)?.text ?? ''),
+        characterId: (line as any)?.characterId ? String((line as any).characterId) : undefined,
+        chosenSpeaker: (line as any)?.chosenSpeaker ? String((line as any).chosenSpeaker) : undefined,
+        chapterTitle:
+          typeof (line as any)?.chapterTitle === 'string' && String((line as any).chapterTitle).trim()
+            ? String((line as any).chapterTitle).trim()
+            : typeof (line as any)?.__queueChapterTitle === 'string' && String((line as any).__queueChapterTitle).trim()
+              ? String((line as any).__queueChapterTitle).trim()
+              : chapterTitle,
+        sourceFile:
+          typeof (line as any)?.sourceFile === 'string' && String((line as any).sourceFile).trim()
+            ? String((line as any).sourceFile).trim()
+            : typeof (line as any)?.__queueSourceFile === 'string' && String((line as any).__queueSourceFile).trim()
+              ? String((line as any).__queueSourceFile).trim()
+              : sourceFile,
+      })),
+      voice_id: voiceId,
+      provider,
+      chapter_title: chapterTitle,
+      source_file: sourceFile,
+      voice_sample_root: samplesRoot || null,
+      audio_root: resolvedAudioRoot || null,
+    };
+
+    const data = await apiPostJson<GenerateAudioCharacterResponse, GenerateAudioCharacterRequest>(
+      API_ENDPOINTS.generateVibeVoiceCharacter,
+      payload,
+    );
+
+    const pipelineMode = String(data.pipelineMode || '').trim();
+    const generationMode = String(data.summary?.generation?.mode || '').trim();
+    const isChunked = pipelineMode === 'chunked-character-v1' || generationMode === 'line-chunked';
+
+    if (!isChunked) {
       return {
         success: false,
-        generatedCount,
-        errors,
-        canceled: true,
+        generatedCount: 0,
+        errors: [
+          'Backend did not confirm chunked character generation. Restart backend and retry.',
+        ],
+        canceled: false,
       };
     }
 
-    const result = await generateAudioForLine(
-      line.id,
-      line.text,
-      characterName,
-      characterId,
-      voiceId,
-      provider,
-      chapterTitle,
-      sourceFile
-    );
+    const affectedChapters = new Set<string>();
 
-    if (result.success) {
-      generatedCount++;
-    } else {
-      errors.push(`Line ${line.id}: ${result.error}`);
+    if (Array.isArray(data.chaptersAffected)) {
+      for (const chapter of data.chaptersAffected) {
+        if (typeof chapter !== 'string') continue;
+        const normalized = chapter.trim();
+        if (normalized) {
+          affectedChapters.add(normalized);
+        }
+      }
     }
+
+    if (affectedChapters.size === 0) {
+      for (const line of lines) {
+        const lineChapter =
+          (typeof (line as any)?.chapterTitle === 'string' && String((line as any).chapterTitle).trim())
+            ? String((line as any).chapterTitle).trim()
+            : (typeof (line as any)?.__queueChapterTitle === 'string' && String((line as any).__queueChapterTitle).trim())
+              ? String((line as any).__queueChapterTitle).trim()
+              : chapterTitle;
+        if (lineChapter) {
+          affectedChapters.add(lineChapter);
+        }
+      }
+    }
+
+    if (affectedChapters.size === 0) {
+      affectedChapters.add(chapterTitle);
+    }
+
+    for (const affectedChapter of affectedChapters) {
+      invalidateManifestCache(affectedChapter, characterName);
+    }
+
+    const generatedCount = Number(data.generatedCount || 0);
+    const responseErrors = Array.isArray(data.errors) ? data.errors : [];
 
     if (onProgress) {
-      onProgress(i + 1, lines.length);
+      onProgress(totalLines, totalLines);
     }
-  }
 
-  return {
-    success: errors.length === 0,
-    generatedCount,
-    errors,
-    canceled: false,
-  };
+    return {
+      success: Boolean(data.success) && responseErrors.length === 0,
+      generatedCount,
+      errors: responseErrors,
+      canceled: false,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      generatedCount: 0,
+      errors: [getBackendErrorMessage(error, 'Failed to generate character audio')],
+      canceled: false,
+    };
+  }
 }
 
 export async function generateAudioForChapterVibeVoice(

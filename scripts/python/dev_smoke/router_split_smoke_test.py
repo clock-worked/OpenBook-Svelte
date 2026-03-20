@@ -9,13 +9,23 @@ lightweight endpoints still work after splitting `api_server.py`.
 from __future__ import annotations
 
 import json
+import sys
 import tempfile
 from pathlib import Path
 
+
+SCRIPTS_PYTHON_DIR = Path(__file__).resolve().parents[1]
+if str(SCRIPTS_PYTHON_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_PYTHON_DIR))
+
+from _path_setup import bootstrap_python_script_paths
+
+bootstrap_python_script_paths(__file__)
+
 from fastapi.testclient import TestClient
 
-from api_server import app
-from api_runtime_state import runtime_state
+from py_services.api_runtime_state import runtime_state
+from py_services.api_server import app
 
 
 EXPECTED_ROUTES = {

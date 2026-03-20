@@ -141,6 +141,7 @@
   type RunConfidenceBadge = { label: string; low: boolean; unknown: boolean; confirmed: boolean } | null;
   type RunRenderInfo = {
     run: ParagraphRun;
+    audioLineNumberLabel: string | null;
     confidenceBadge: RunConfidenceBadge;
     badgeShowsCheck: boolean;
     hasGeneratedAudio: boolean;
@@ -458,14 +459,16 @@
   }
 
   $: runRenderInfo = runs.map((run) => {
+    const audioLineNumberLabel = toolMode === 'audio' && run.lineId != null ? `L${run.lineId}` : null;
     const confidenceBadge = confidenceBadgeForRun(run);
     const badgeShowsCheck = Boolean(confidenceBadge && (confidenceBadge.confirmed || confidenceBadge.label === '100%'));
     const hasGeneratedAudio = runHasGeneratedAudio(run);
-    const hasPrefixMarker = Boolean(confidenceBadge) || hasGeneratedAudio;
+    const hasPrefixMarker = Boolean(audioLineNumberLabel) || Boolean(confidenceBadge) || hasGeneratedAudio;
     const displayText = displayTextForRun(run, hasPrefixMarker);
 
     return {
       run,
+      audioLineNumberLabel,
       confidenceBadge,
       badgeShowsCheck,
       hasGeneratedAudio,
@@ -653,7 +656,36 @@
             } 
           }}
         >
-          {#if showRunMarkers && info.confidenceBadge}<span class="confidence-badge" class:low={info.confidenceBadge.low} class:unknown={info.confidenceBadge.unknown} class:confirmed={info.badgeShowsCheck}>{#if info.badgeShowsCheck}<CheckCircle2 size={16} strokeWidth={2.2} class="confirmed-icon" aria-hidden="true" />{:else}{info.confidenceBadge.label}{/if}</span>{/if}{#if showRunMarkers && run.lineId != null && $audioState.currentLineId === run.lineId && ($audioState.isPlaying || $audioState.isPaused) && markerPosition}<span class="audio-progress-line" style="left: {markerPosition.left}px; top: {markerPosition.top}px; height: {Math.max(12, markerPosition.height)}px;"></span>{/if}{#if showRunMarkers && info.hasGeneratedAudio}<span class="generated-audio-marker" aria-hidden="true"><Music size={12} strokeWidth={2.25} /></span>{/if}<span class="run-text">{#if animationPhase === 'typing'}{#each info.lineChunks as lineChunk, lineIndex}<span class="run-line" class:is-revealed={lineIndex < info.revealedLines}>{lineChunk}</span>{/each}{:else if isAnimationActive}{#if info.whiteText}<span class="run-text-white">{info.whiteText}</span>{/if}{#if info.colorText}<span class="run-text-color">{info.colorText}</span>{/if}{:else}{info.typedText}{/if}</span>
+          {#if showRunMarkers && info.audioLineNumberLabel}
+            <span class="line-number-badge">{info.audioLineNumberLabel}</span>
+          {/if}
+          {#if showRunMarkers && info.confidenceBadge}
+            <span class="confidence-badge" class:low={info.confidenceBadge.low} class:unknown={info.confidenceBadge.unknown} class:confirmed={info.badgeShowsCheck}>
+              {#if info.badgeShowsCheck}
+                <CheckCircle2 size={16} strokeWidth={2.2} class="confirmed-icon" aria-hidden="true" />
+              {:else}
+                {info.confidenceBadge.label}
+              {/if}
+            </span>
+          {/if}
+          {#if showRunMarkers && run.lineId != null && $audioState.currentLineId === run.lineId && ($audioState.isPlaying || $audioState.isPaused) && markerPosition}
+            <span class="audio-progress-line" style="left: {markerPosition.left}px; top: {markerPosition.top}px; height: {Math.max(12, markerPosition.height)}px;"></span>
+          {/if}
+          {#if showRunMarkers && info.hasGeneratedAudio}
+            <span class="generated-audio-marker" aria-hidden="true"><Music size={12} strokeWidth={2.25} /></span>
+          {/if}
+          <span class="run-text">
+            {#if animationPhase === 'typing'}
+              {#each info.lineChunks as lineChunk, lineIndex}
+                <span class="run-line" class:is-revealed={lineIndex < info.revealedLines}>{lineChunk}</span>
+              {/each}
+            {:else if isAnimationActive}
+              {#if info.whiteText}<span class="run-text-white">{info.whiteText}</span>{/if}
+              {#if info.colorText}<span class="run-text-color">{info.colorText}</span>{/if}
+            {:else}
+              {info.typedText}
+            {/if}
+          </span>
         </span>
       {:else}
         <span
@@ -665,6 +697,9 @@
         >
           {#if showRunMarkers && run.lineId != null && $audioState.currentLineId === run.lineId && ($audioState.isPlaying || $audioState.isPaused) && markerPosition}
             <span class="audio-progress-line" style="left: {markerPosition.left}px; top: {markerPosition.top}px; height: {Math.max(12, markerPosition.height)}px;"></span>
+          {/if}
+          {#if showRunMarkers && info.audioLineNumberLabel}
+            <span class="line-number-badge">{info.audioLineNumberLabel}</span>
           {/if}
           {#if showRunMarkers && info.hasGeneratedAudio}
             <span class="generated-audio-marker" aria-hidden="true"><Music size={12} strokeWidth={2.25} /></span>
@@ -772,6 +807,25 @@
     vertical-align: baseline;
     color: #4f46e5;
     opacity: 1;
+  }
+
+  .line-number-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 28px;
+    height: 16px;
+    margin-right: 4px;
+    padding: 0 6px;
+    border-radius: 999px;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    background: rgba(241, 245, 249, 0.96);
+    color: #334155;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+    vertical-align: middle;
   }
 
   .confidence-badge {

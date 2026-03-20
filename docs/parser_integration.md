@@ -4,6 +4,8 @@
 
 Parser functionality is exposed through the Python FastAPI sidecar in `py_services`, not through a direct per-call Tauri CLI bridge.
 
+Standalone Python maintenance, audit, and smoke scripts now live under `scripts/python` so `py_services` can stay runtime-focused.
+
 Primary modules:
 
 - `py_services/api_server.py` (composition root)
@@ -51,13 +53,13 @@ This keeps parser/audio/root routers aligned on a single schema source.
 From repo root (Windows):
 
 ```bash
-../.venv/Scripts/python.exe py_services/api_server.py
+.venv/Scripts/python.exe py_services/api_server.py
 ```
 
 Or via uvicorn module style:
 
 ```bash
-../.venv/Scripts/python.exe -m uvicorn py_services.api_server:app --host 0.0.0.0 --port 8000
+.venv/Scripts/python.exe -m uvicorn py_services.api_server:app --host 0.0.0.0 --port 8000
 ```
 
 ## Smoke Validation
@@ -65,7 +67,7 @@ Or via uvicorn module style:
 Lane 5 regression check:
 
 ```bash
-../.venv/Scripts/python.exe py_services/router_split_smoke_test.py
+.venv/Scripts/python.exe scripts/python/dev_smoke/router_split_smoke_test.py
 ```
 
 This verifies parser/audio/vibevoice route registration and key endpoint behavior after backend refactors.

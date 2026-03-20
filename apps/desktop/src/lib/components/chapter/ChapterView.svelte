@@ -3,7 +3,7 @@
   import { currentChapter, currentScript, bookRoot, bookRootAbsolutePath } from '$lib/stores/bookState';
   import type { ScriptJson, DialogueJson } from '$lib/types';
   import { writable } from 'svelte/store';
-  import { conflictCursor, toolMode } from '$lib/stores/selection';
+  import { conflictCursor, toolMode, audioGenerateLineId } from '$lib/stores/selection';
   import { get } from 'svelte/store';
   import { readTextFile, readDialogueForChapter, readScript, readCentralCharacters, writeCentralCharacters, getRootDirInfo, writeDialogue, writeScript, readJsonRelative } from '$lib/services/fs';
   import { readManifest } from '$lib/services/audio';
@@ -292,6 +292,7 @@
     audioExistsCache.clear();
     generatedAudioLineIds = new Set();
     generatedAudioLineTexts = new Set();
+    audioGenerateLineId.set(null);
   }
 
   async function refreshGeneratedAudioLineIds() {
@@ -432,13 +433,14 @@
 
   async function confirmGenerateAudio() {
     if (generatePromptLineId === null) return;
+    const lineId = generatePromptLineId;
     closeGeneratePrompt();
-    const ch = get(currentChapter);
-    await handleGenerateLineAudio(generatePromptLineId, normalizedScript, audioExistsCache, (id) => { generatingLineId = id; });
+    await handleGenerateLineAudio(lineId, normalizedScript, audioExistsCache, (id) => { generatingLineId = id; });
   }
 
   async function handleLineAudioContextMenu(lineId: number, characterId: string, event: MouseEvent) {
     event.preventDefault();
+    audioGenerateLineId.set(lineId);
     await audioHandleContextMenu(
       lineId,
       characterId,

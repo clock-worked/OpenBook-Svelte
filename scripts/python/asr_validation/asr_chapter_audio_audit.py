@@ -422,6 +422,26 @@ def discover_chapter_dirs(book_dir: Path, chapter_regex: str | None) -> list[Pat
     return chapter_dirs
 
 
+def is_direct_character_line_audio(audio_path: Path, audio_dir: Path) -> bool:
+    """Return True only for direct `audio_lines/<Character>/<line>-<Character>.*` clips."""
+    try:
+        rel = audio_path.resolve().relative_to(audio_dir.resolve())
+    except ValueError:
+        return False
+
+    if any(part in {"_chunk_pipeline", "generation_chunks"} for part in rel.parts):
+        return False
+
+    if len(rel.parts) != 2:
+        return False
+
+    parent_dir = rel.parts[0]
+    if parent_dir.startswith("_"):
+        return False
+
+    return True
+
+
 def run_chapter_audit(
     *,
     chapter_dir: Path,
@@ -443,7 +463,13 @@ def run_chapter_audit(
     output_dir.mkdir(parents=True, exist_ok=True)
 
     dialogue_by_id, dialogue_lines = load_dialogue_lines(dialogue_path)
-    audio_files = collect_audio_files([], audio_dir)
+    raw_audio_files = collect_audio_files([], audio_dir)
+    audio_files = [
+        item for item in raw_audio_files if is_direct_character_line_audio(item, audio_dir)
+    ]
+    excluded_audio_files = [
+        str(item) for item in raw_audio_files if not is_direct_character_line_audio(item, audio_dir)
+    ]
 
     parsed_audio: list[tuple[Path, int]] = []
     unparsable_files: list[str] = []
@@ -459,7 +485,9 @@ def run_chapter_audit(
         [line_id for line_id in dialogue_by_id.keys() if line_id not in present_ids])
 
     print(f"[{chapter_dir.name}] dialogue lines: {len(dialogue_by_id)}")
-    print(f"[{chapter_dir.name}] audio clips discovered: {len(audio_files)}")
+    print(f"[{chapter_dir.name}] audio clips discovered: {len(raw_audio_files)}")
+    print(f"[{chapter_dir.name}] direct character line clips: {len(audio_files)}")
+    print(f"[{chapter_dir.name}] excluded non-line clips: {len(excluded_audio_files)}")
     print(f"[{chapter_dir.name}] parseable line id clips: {len(parsed_audio)}")
     print(f"[{chapter_dir.name}] missing clips by line id: {len(missing_line_ids)}")
 
@@ -486,13 +514,16 @@ def run_chapter_audit(
             "model": model,
             "counts": {
                 "dialogueLines": len(dialogue_by_id),
-                "audioDiscovered": len(audio_files),
+                "audioDiscovered": len(raw_audio_files),
+                "audioDirectCharacterLine": len(audio_files),
+                "audioExcludedNonLine": len(excluded_audio_files),
                 "audioParseable": len(parsed_audio),
                 "audioUnparseable": len(unparsable_files),
                 "missingAudio": len(missing_line_ids),
                 "markedForRegenerate": len(regenerate_reasons),
             },
             "missingLineIds": missing_line_ids,
+            "excludedNonLineAudioFiles": excluded_audio_files,
             "unparseableAudioFiles": unparsable_files,
             "regenerate": regenerate_reasons,
         }
@@ -599,7 +630,9 @@ def run_chapter_audit(
         },
         "counts": {
             "dialogueLines": len(dialogue_by_id),
-            "audioDiscovered": len(audio_files),
+            "audioDiscovered": len(raw_audio_files),
+            "audioDirectCharacterLine": len(audio_files),
+            "audioExcludedNonLine": len(excluded_audio_files),
             "audioParseable": len(parsed_audio),
             "audioUnparseable": len(unparsable_files),
             "missingAudio": len(missing_line_ids),
@@ -607,6 +640,7 @@ def run_chapter_audit(
         },
         "autoDetection": auto_detection,
         "missingLineIds": missing_line_ids,
+        "excludedNonLineAudioFiles": excluded_audio_files,
         "unparseableAudioFiles": unparsable_files,
         "clips": clip_reports,
         "regenerate": regenerate_reasons,

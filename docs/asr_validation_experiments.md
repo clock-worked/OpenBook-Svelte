@@ -10,7 +10,9 @@ This document defines the ASR artifact format and how to run two experiments wit
 
 ## 1) Word-timestamp artifact format
 
-Use `py_services/asr_word_timestamps.py` to generate per-clip artifacts.
+Use `scripts/python/asr_validation/asr_word_timestamps.py` to generate per-clip artifacts.
+
+These scripts are standalone offline utilities, not backend runtime modules.
 
 Canonical format version:
 
@@ -44,7 +46,7 @@ This is the format intended for future per-word highlighting in playback (if ASR
 Example (chapter-level scan):
 
 ```bash
-.venv/Scripts/python.exe py_services/asr_word_timestamps.py \
+.venv/Scripts/python.exe scripts/python/asr_validation/asr_word_timestamps.py \
   --audio-dir "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Data/Resources/Primal-Hunter/Book-14/03 - The Most Important Question/audio_lines" \
   --dialogue "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Data/Resources/Primal-Hunter/Book-14/03 - The Most Important Question/dialogue.json" \
   --model microsoft/VibeVoice-ASR
@@ -56,7 +58,7 @@ Outputs default to `<audio-dir>/asr_words/*.asr.json`.
 
 ## 3) Merged generation experiment (Character + narration + Character)
 
-Use `py_services/asr_experiment_runner.py merged-split`.
+Use `scripts/python/asr_validation/asr_experiment_runner.py merged-split`.
 
 What it does:
 
@@ -73,7 +75,7 @@ Outputs:
 Example using existing merged audio:
 
 ```bash
-.venv/Scripts/python.exe py_services/asr_experiment_runner.py merged-split \
+.venv/Scripts/python.exe scripts/python/asr_validation/asr_experiment_runner.py merged-split \
   --output-dir "C:/temp/asr_exp/ch03_line_pattern" \
   --merged-audio "C:/temp/asr_exp/ch03_line_pattern/merged_character_full.wav" \
   --segment-a-text "Right," \
@@ -85,7 +87,7 @@ Example using existing merged audio:
 Example generating merged audio with character sample:
 
 ```bash
-.venv/Scripts/python.exe py_services/asr_experiment_runner.py merged-split \
+.venv/Scripts/python.exe scripts/python/asr_validation/asr_experiment_runner.py merged-split \
   --output-dir "C:/temp/asr_exp/ch03_line_pattern" \
   --sample-path "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Data/Resources/Primal-Hunter/Audio Samples/carmen-b13-c24-60.wav" \
   --segment-a-text "Right," \
@@ -100,7 +102,7 @@ Read `viability.isViable` and `splitSuggestion` in `merged_split_experiment.json
 
 ## 4) Punctuation A/B experiment (comma vs period)
 
-Use `py_services/asr_experiment_runner.py punctuation-ab`.
+Use `scripts/python/asr_validation/asr_experiment_runner.py punctuation-ab`.
 
 What it does:
 
@@ -117,7 +119,7 @@ Outputs:
 Example:
 
 ```bash
-.venv/Scripts/python.exe py_services/asr_experiment_runner.py punctuation-ab \
+.venv/Scripts/python.exe scripts/python/asr_validation/asr_experiment_runner.py punctuation-ab \
   --output-dir "C:/temp/asr_exp/ch03_punctuation" \
   --sample-path "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Data/Resources/Primal-Hunter/Audio Samples/carmen-b13-c24-60.wav" \
   --text-a "Right," \
@@ -208,7 +210,7 @@ Interpretation: for this sample, comma form is dramatically more stable; period 
 
 ## 6) Chapter/Book audit for missing or wrong-line clips
 
-Use `py_services/asr_chapter_audio_audit.py` to scan generated chapter audio against `dialogue.json` and produce:
+Use `scripts/python/asr_validation/asr_chapter_audio_audit.py` to scan generated chapter audio against `dialogue.json` and produce:
 
 - per-chapter audit report
 - per-chapter regenerate manifest
@@ -224,7 +226,7 @@ Defaults are tuned for speed on smaller GPUs:
 ### 6.1 Single chapter example
 
 ```bash
-.venv/Scripts/python.exe py_services/asr_chapter_audio_audit.py \
+.venv/Scripts/python.exe scripts/python/asr_validation/asr_chapter_audio_audit.py \
   --chapter-dir "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Data/Resources/Primal-Hunter/Book-14/03 - The Most Important Question" \
   --model distil-whisper/distil-small.en \
   --device cuda
@@ -239,7 +241,7 @@ Output (default):
 ### 6.2 Full Book-14 audit (all chapters)
 
 ```bash
-.venv/Scripts/python.exe py_services/asr_chapter_audio_audit.py \
+.venv/Scripts/python.exe scripts/python/asr_validation/asr_chapter_audio_audit.py \
   --book-dir "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Data/Resources/Primal-Hunter/Book-14" \
   --model distil-whisper/distil-small.en \
   --device cuda \
@@ -259,7 +261,7 @@ Consolidated outputs:
 Use dry-run first to catch missing files and naming issues quickly:
 
 ```bash
-.venv/Scripts/python.exe py_services/asr_chapter_audio_audit.py \
+.venv/Scripts/python.exe scripts/python/asr_validation/asr_chapter_audio_audit.py \
   --book-dir "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Data/Resources/Primal-Hunter/Book-14" \
   --output-dir "C:/temp/book14_asr_audit" \
   --dry-run

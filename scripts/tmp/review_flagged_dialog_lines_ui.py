@@ -53,17 +53,49 @@ def to_wav_target(path: Path | None) -> tuple[Path | None, Path | None]:
     return None, None
 
 
+def is_non_line_audio_path(path: Path, chapter_dir: Path) -> bool:
+    resolved = path.resolve()
+    audio_root = (chapter_dir / "audio_lines").resolve()
+    try:
+        rel = resolved.relative_to(audio_root)
+    except ValueError:
+        return False
+
+    lower_name = resolved.name.lower()
+    if lower_name in {"full_character.wav", "_manual_split_preview.wav"}:
+        return True
+
+    if any(part in {"_chunk_pipeline", "generation_chunks"} for part in rel.parts):
+        return True
+
+    if len(rel.parts) != 2:
+        return True
+
+    if rel.parts[0].startswith("_"):
+        return True
+
+    return False
+
+
 def find_line_audio_paths(chapter_dir: Path, line_id: int) -> list[Path]:
     audio_root = chapter_dir / "audio_lines"
     if not audio_root.exists():
         return []
 
-    wavs = sorted(audio_root.rglob(f"{line_id}-*.wav"))
+    wavs = [
+        item.resolve()
+        for item in sorted(audio_root.rglob(f"{line_id}-*.wav"))
+        if not is_non_line_audio_path(item.resolve(), chapter_dir)
+    ]
     if wavs:
-        return [item.resolve() for item in wavs]
+        return wavs
 
-    regen = sorted(audio_root.rglob(f"{line_id}-*.wav.REGEN"))
-    return [item.resolve() for item in regen]
+    regen = [
+        item.resolve()
+        for item in sorted(audio_root.rglob(f"{line_id}-*.wav.REGEN"))
+        if not is_non_line_audio_path(item.resolve(), chapter_dir)
+    ]
+    return regen
 
 
 @dataclass
@@ -131,7 +163,7 @@ class FlaggedReviewApp:
             return
         try:
             payload = json.loads(self.state_file.read_text(encoding="utf-8"))
-        except Exception:
+        except (OSError, ValueError, TypeError):
             return
 
         saved_index = payload.get("index")
@@ -344,7 +376,7 @@ class FlaggedReviewApp:
                 finally:
                     try:
                         temp_play.unlink(missing_ok=True)
-                    except Exception:
+                    except OSError:
                         pass
             else:
                 play_wav(temp_play)
@@ -495,14 +527,20 @@ class FlaggedReviewApp:
         widget.configure(state="disabled")
 
 
-def build_review_items(audit_json_path: Path, chapter_regex: str | None = None) -> list[ReviewItem]:
+def build_review_items(
+    audit_json_path: Path,
+    chapter_regex: str | None = None,
+    *,
+    ignore_non_line_audio: bool = True,
+) -> tuple[list[ReviewItem], int]:
     payload = read_json(audit_json_path)
     chapters = payload.get("chapters", [])
     if not isinstance(chapters, list):
-        return []
+        return [], 0
 
     filter_re = re.compile(chapter_regex) if chapter_regex else None
     review_items: list[ReviewItem] = []
+    skipped_non_line = 0
 
     for chapter in chapters:
         if not isinstance(chapter, dict):
@@ -532,6 +570,14 @@ def build_review_items(audit_json_path: Path, chapter_regex: str | None = None) 
                 regen_item.get("lineId"), int) else None
             audio_path_text = regen_item.get("audioPath") if isinstance(
                 regen_item.get("audioPath"), str) else None
+
+            target_source: Path | None = None
+            if audio_path_text:
+                target_source = Path(audio_path_text).resolve()
+                if ignore_non_line_audio and is_non_line_audio_path(target_source, chapter_dir):
+                    skipped_non_line += 1
+                    continue
+
             status = str(regen_item.get("status", "unknown"))
             reasons = regen_item.get("reasons") if isinstance(
                 regen_item.get("reasons"), list) else []
@@ -542,6 +588,11 @@ def build_review_items(audit_json_path: Path, chapter_regex: str | None = None) 
                     continue
                 clip_line = clip.get("lineIdFromFile")
                 clip_audio = clip.get("audioPath")
+
+                if ignore_non_line_audio and isinstance(clip_audio, str):
+                    clip_audio_path = Path(clip_audio).resolve()
+                    if is_non_line_audio_path(clip_audio_path, chapter_dir):
+                        continue
 
                 if isinstance(line_id, int) and clip_line != line_id:
                     continue
@@ -581,10 +632,7 @@ def build_review_items(audit_json_path: Path, chapter_regex: str | None = None) 
                     candidate_options.append(CandidateOption(
                         line_id=cand_line, score=score, text=text, audio_paths=paths))
 
-            target_source: Path | None = None
-            if audio_path_text:
-                target_source = Path(audio_path_text).resolve()
-            elif isinstance(line_id, int):
+            if target_source is None and isinstance(line_id, int):
                 possible = find_line_audio_paths(chapter_dir, line_id)
                 if possible:
                     target_source = possible[0]
@@ -608,7 +656,7 @@ def build_review_items(audit_json_path: Path, chapter_regex: str | None = None) 
 
     review_items.sort(key=lambda item: (*chapter_sort_key(item.chapter_name),
                       item.line_id if isinstance(item.line_id, int) else 999999))
-    return review_items
+    return review_items, skipped_non_line
 
 
 def main() -> None:
@@ -639,19 +687,34 @@ def main() -> None:
         default=None,
         help="Optional regex to filter chapter names",
     )
+    parser.add_argument(
+        "--include-non-line-audio",
+        action="store_true",
+        help="Include _chunk_pipeline/generation_chunks/full_character entries in review.",
+    )
     args = parser.parse_args()
 
     audit_json = args.audit_json.resolve()
     if not audit_json.exists():
         raise SystemExit(f"Audit json not found: {audit_json}")
 
-    items = build_review_items(audit_json, args.chapter_regex)
+    items, skipped_non_line = build_review_items(
+        audit_json,
+        args.chapter_regex,
+        ignore_non_line_audio=not args.include_non_line_audio,
+    )
+    if skipped_non_line > 0 and not args.include_non_line_audio:
+        print(
+            "Skipped "
+            f"{skipped_non_line} non-line audio entries "
+            "(_chunk_pipeline/generation_chunks/full_character)."
+        )
     if not items:
         print("No flagged items found to review.")
         return
 
     root = tk.Tk()
-    app = FlaggedReviewApp(
+    _ = FlaggedReviewApp(
         root=root,
         items=items,
         decisions_log=args.decisions_log.resolve(),

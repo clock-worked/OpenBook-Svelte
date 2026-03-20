@@ -383,6 +383,21 @@ class AudioGenerationService:
             traceback.print_exc()
             return False, error_msg
 
+    def generate_vibevoice_text_to_path(
+        self,
+        *,
+        text: str,
+        voice_id: str,
+        output_path: Path,
+        voice_sample_root: Optional[str],
+    ) -> Tuple[bool, Optional[str]]:
+        return self._generate_vibevoice_local(
+            text=text,
+            voice_id=voice_id,
+            output_path=output_path,
+            voice_sample_root=voice_sample_root,
+        )
+
     def _resolve_vibevoice_sample_path(
         self,
         voice_id: str,
@@ -390,11 +405,24 @@ class AudioGenerationService:
     ) -> Tuple[Optional[str], Optional[str]]:
         candidate_paths = []
 
+        def _append_candidate(path_value: str) -> None:
+            if not path_value:
+                return
+            candidate_paths.append(path_value)
+
+            # Support Git Bash style absolute paths on Windows (e.g. /c/Users/...)
+            if os.name == "nt" and len(path_value) > 3 and path_value[0] == "/" and path_value[1].isalpha() and path_value[2] == "/":
+                drive_style = f"{path_value[1]}:{path_value[2:]}"
+                candidate_paths.append(drive_style)
+
         if os.path.isabs(voice_id):
-            candidate_paths.append(voice_id)
+            _append_candidate(voice_id)
         else:
             if voice_sample_root:
-                candidate_paths.append(os.path.join(voice_sample_root, voice_id))
+                _append_candidate(os.path.join(voice_sample_root, voice_id))
+
+                # If caller provides Audio Samples root, also try its common previews subdir.
+                _append_candidate(os.path.join(voice_sample_root, "voice-previews", voice_id))
 
             # Auto-discovery fallbacks for common layouts.
             candidate_roots = [
@@ -403,13 +431,14 @@ class AudioGenerationService:
                 self.audio_root.parent.parent / "Audio Samples",
             ]
             for root in candidate_roots:
-                candidate_paths.append(str(root / voice_id))
+                _append_candidate(str(root / voice_id))
+                _append_candidate(str(root / "voice-previews" / voice_id))
 
         expanded_candidates = []
         audio_exts = [".wav", ".mp3", ".flac", ".m4a", ".ogg"]
         for path in candidate_paths:
             expanded_candidates.append(path)
-            base, ext = os.path.splitext(path)
+            _, ext = os.path.splitext(path)
             if not ext:
                 for audio_ext in audio_exts:
                     expanded_candidates.append(path + audio_ext)

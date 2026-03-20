@@ -262,4 +262,4 @@
 ✅ Completed: reduced `py_services/api_server.py` to composition/root wiring + path state endpoints and router registration.  
 ✅ Completed: preserved VibeVoice as integration-boundary router (`audio/vibevoice.py`) wired through shared audio-service callbacks.  
 ✅ Completed: smoke-validated refactor modules via Python compile/import check (`py_compile`).
-✅ Completed: added and ran router split smoke script (`py_services/router_split_smoke_test.py`) to validate route registration + lightweight endpoint behavior.
+✅ Completed: added and ran router split smoke script (now stored at `scripts/python/dev_smoke/router_split_smoke_test.py`) to validate route registration + lightweight endpoint behavior.

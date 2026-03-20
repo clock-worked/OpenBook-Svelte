@@ -1,28 +1,23 @@
-# OpenBook Svelte: Python Parser Sidecar
+# OpenBook Svelte: Python Backend Runtime
 
-This directory hosts the Python dialogue parser copied from the OpenBook Python app, packaged for use from the Svelte/Tauri app via a local virtual environment.
+This directory now holds the Python runtime backend for OpenBook: FastAPI composition, routers, runtime state, parser packages, and shared support code that the backend imports directly.
+
+Standalone developer utilities were moved out to `scripts/python/` so `py_services/` can stay focused on runtime modules.
 
 ## Setup
 
-Windows (PowerShell):
-```powershell
-cd web_applications/OpenBook-svelte/py_services
-./bootstrap.ps1
-```
+From repo root, install the shared backend dependencies into the repo virtual environment:
 
-macOS/Linux:
 ```bash
-cd web_applications/OpenBook-svelte/py_services
-./bootstrap.sh
+.venv/Scripts/python.exe -m pip install -r py_services/requirements.txt
 ```
 
 ## CLI
 
+Frontend/Tauri still calls the parser CLI from here.
+
 ```bash
-# Windows
-../.venv/Scripts/python.exe py_services/openbook_cli.py parse --input <path-to-txt>
-# macOS/Linux
-../.venv/bin/python py_services/openbook_cli.py parse --input <path-to-txt>
+.venv/Scripts/python.exe py_services/openbook_cli.py parse --input <path-to-txt>
 ```
 
 Output is a single JSON string to stdout:
@@ -39,7 +34,7 @@ Output is a single JSON string to stdout:
 Run a lightweight API smoke test that validates parser/audio router registration and key non-heavy endpoints.
 
 ```bash
-../.venv/Scripts/python.exe py_services/router_split_smoke_test.py
+.venv/Scripts/python.exe scripts/python/dev_smoke/router_split_smoke_test.py
 ```
 
 Expected output ends with:
@@ -50,10 +45,10 @@ Lane 5 router split smoke test passed
 
 ## ASR validation + audio experiments
 
-For ASR word timestamps and short-segment generation experiments, use:
+For ASR word timestamps and short-segment generation experiments, use the standalone utilities under `scripts/python/asr_validation/`:
 
-- `py_services/asr_word_timestamps.py`
-- `py_services/asr_experiment_runner.py`
+- `scripts/python/asr_validation/asr_word_timestamps.py`
+- `scripts/python/asr_validation/asr_experiment_runner.py`
 
 Detailed workflow and example commands:
 
@@ -65,14 +60,14 @@ Before and after heuristic changes, run the curated gate and compare dialogue ac
 
 ```bash
 # BookNLP current state (save baseline snapshot)
-../.venv/Scripts/python.exe py_services/openbook_parser/evaluate_heuristics_gate.py \
+.venv/Scripts/python.exe py_services/openbook_parser/evaluate_heuristics_gate.py \
   "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Data/Resources/A-Practical-Guide-To-Evil/Book-1" \
   --backend booknlp \
   --chapter-regex "^(0[1-9]|1[0-8])-" \
   --save-summary "C:/temp/openbook_book1_first18_baseline.json"
 
 # After heuristics change: compare against baseline and fail on regression
-../.venv/Scripts/python.exe py_services/openbook_parser/evaluate_heuristics_gate.py \
+.venv/Scripts/python.exe py_services/openbook_parser/evaluate_heuristics_gate.py \
   "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Data/Resources/A-Practical-Guide-To-Evil/Book-1" \
   --backend booknlp \
   --chapter-regex "^(0[1-9]|1[0-8])-" \
@@ -86,14 +81,14 @@ This gate reports dialogue accuracy (overall + per chapter) and exits with code 
 
 ```bash
 # Save baseline for Book-14 Chapter 1 sample
-../.venv/Scripts/python.exe py_services/openbook_parser/evaluate_heuristics_gate.py \
+.venv/Scripts/python.exe py_services/openbook_parser/evaluate_heuristics_gate.py \
   "C:/Users/Chad/Documents/Code/JavaScript/OpenBook-svelte/py_services/samples" \
   --backend booknlp \
   --chapter-regex "^primal-hunter-book14-ch01$" \
   --save-summary "C:/temp/primal_hunter_book14_ch1_baseline.json"
 
 # Compare current heuristics to the saved baseline and fail on regression
-../.venv/Scripts/python.exe py_services/openbook_parser/evaluate_heuristics_gate.py \
+.venv/Scripts/python.exe py_services/openbook_parser/evaluate_heuristics_gate.py \
   "C:/Users/Chad/Documents/Code/JavaScript/OpenBook-svelte/py_services/samples" \
   --backend booknlp \
   --chapter-regex "^primal-hunter-book14-ch01$" \

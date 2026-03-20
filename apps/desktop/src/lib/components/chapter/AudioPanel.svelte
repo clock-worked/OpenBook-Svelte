@@ -7,6 +7,7 @@
   import {
     checkAudioExistsForCharacter,
     checkAudioExistsForLine,
+    generateAudioForLine,
     generateAudioForCharacter,
     readManifest,
     deleteAudioLineForCharacter,
@@ -14,6 +15,7 @@
   } from '$lib/services/audio';
   import { Headphones, Loader, Scissors, FileText, BookOpen } from 'lucide-svelte';
   import type { DialogueLine, Character } from '$lib/types';
+  import { audioGenerateLineId } from '$lib/stores/selection';
   import { audioUpdateTrigger, triggerAudioUpdate } from '$lib/stores/audioUpdates';
   import { readCentralCharacters, readDialogueForChapter } from '$lib/services/fs';
   import {
@@ -40,10 +42,16 @@
   let pruningStale = false;
   let audioClipCounts = new Map<string, number>();
   let queueProcessing = false;
+  type QueuedDialogueLine = DialogueLine & {
+    chapterTitle?: string;
+    sourceFile?: string;
+    __queueChapterTitle?: string;
+    __queueSourceFile?: string;
+  };
   type QueuedJobPayload = {
     characterId: string;
     characterName: string;
-    lines: DialogueLine[];
+    lines: QueuedDialogueLine[];
     cumulativeCharacterCounts: number[];
     totalCharacters: number;
     voiceInfo: { voiceId: string; provider: string; displayName: string; characterId: string };
@@ -195,11 +203,17 @@
       return;
     }
 
+    type ChapterQueueTotals = {
+      queuedCharacterBatches: number;
+      queuedLines: number;
+      missingVoiceLines: number;
+    };
+
     const missingVoiceCharacterIds = new Set<string>();
-    let totalJobsQueued = 0;
+    const jobsByCharacterId = new Map<string, QueuedJobPayload>();
+    const characterQueueOrder: string[] = [];
+    const chapterQueueTotals = new Map<string, ChapterQueueTotals>();
     let totalLinesQueued = 0;
-    let chaptersWithQueuedJobs = 0;
-    let jobCounter = 0;
 
     for (const chapter of allChapters) {
       const script = await readDialogueForChapter(chapter.title);
@@ -222,9 +236,11 @@
         linesByCharacterId.set(characterId, existingLines);
       }
 
-      let chapterQueuedJobs = 0;
-      let chapterQueuedLines = 0;
-      let chapterMissingVoiceLines = 0;
+      const chapterTotals: ChapterQueueTotals = {
+        queuedCharacterBatches: 0,
+        queuedLines: 0,
+        missingVoiceLines: 0,
+      };
 
       for (const [characterId, characterLines] of linesByCharacterId.entries()) {
         if (characterLines.length === 0) continue;
@@ -233,7 +249,7 @@
         const voiceInfo = getVoiceForCharacter(characterId);
         if (!voiceInfo) {
           missingVoiceCharacterIds.add(characterId);
-          chapterMissingVoiceLines += characterLines.length;
+          chapterTotals.missingVoiceLines += characterLines.length;
           continue;
         }
 
@@ -247,45 +263,42 @@
         const linesToGenerate = checks.filter(check => !check.exists).map(check => check.line);
         if (linesToGenerate.length === 0) continue;
 
-        const jobId = `${chapter.title}-${characterId}-missing-${Date.now()}-${jobCounter++}`;
-        const { cumulative, total } = buildCumulativeCharacterCounts(linesToGenerate);
-        queuedJobs.set(jobId, {
-          characterId,
-          characterName,
-          lines: linesToGenerate,
-          cumulativeCharacterCounts: cumulative,
-          totalCharacters: total,
-          voiceInfo,
-          chapterTitle: chapter.title,
-          sourceFile: chapter.path || `${chapter.title}/chapter.txt`,
-        });
+        const sourceFile = chapter.path || `${chapter.title}/chapter.txt`;
+        const linesWithContext: QueuedDialogueLine[] = linesToGenerate.map((line) => ({
+          ...(line as any),
+          __queueChapterTitle: chapter.title,
+          __queueSourceFile: sourceFile,
+        }));
 
-        enqueueAudioJob({
-          id: jobId,
-          characterId,
-          characterName,
-          chapterTitle: chapter.title,
-          generationMode: 'missing',
-          total: linesToGenerate.length,
-          totalCharacters: total,
-        });
+        let payload = jobsByCharacterId.get(characterId);
+        if (!payload) {
+          payload = {
+            characterId,
+            characterName,
+            lines: [],
+            cumulativeCharacterCounts: [],
+            totalCharacters: 0,
+            voiceInfo,
+            chapterTitle: chapter.title,
+            sourceFile,
+          };
+          jobsByCharacterId.set(characterId, payload);
+          characterQueueOrder.push(characterId);
+        }
 
-        totalJobsQueued += 1;
-        totalLinesQueued += linesToGenerate.length;
-        chapterQueuedJobs += 1;
-        chapterQueuedLines += linesToGenerate.length;
+        payload.lines.push(...linesWithContext);
+
+        totalLinesQueued += linesWithContext.length;
+        chapterTotals.queuedCharacterBatches += 1;
+        chapterTotals.queuedLines += linesWithContext.length;
       }
 
-      if (chapterQueuedLines > 0 || chapterMissingVoiceLines > 0) {
-        setQueueChapterOverview(chapter.title, chapterQueuedLines, chapterMissingVoiceLines);
-      }
-
-      if (chapterQueuedJobs > 0) {
-        chaptersWithQueuedJobs += 1;
+      if (chapterTotals.queuedLines > 0 || chapterTotals.missingVoiceLines > 0) {
+        chapterQueueTotals.set(chapter.title, chapterTotals);
       }
     }
 
-    if (totalJobsQueued === 0) {
+    if (jobsByCharacterId.size === 0) {
       const missingVoicesNote = missingVoiceCharacterIds.size > 0
         ? ` ${missingVoiceCharacterIds.size} character(s) are missing voice assignments.`
         : '';
@@ -293,17 +306,53 @@
       return;
     }
 
+    const queueRunTimestamp = Date.now();
+    let jobCounter = 0;
+
+    for (const characterId of characterQueueOrder) {
+      const payload = jobsByCharacterId.get(characterId);
+      if (!payload || payload.lines.length === 0) continue;
+
+      const { cumulative, total } = buildCumulativeCharacterCounts(payload.lines);
+      payload.cumulativeCharacterCounts = cumulative;
+      payload.totalCharacters = total;
+
+      const jobId = `book-${characterId}-missing-${queueRunTimestamp}-${jobCounter++}`;
+      queuedJobs.set(jobId, payload);
+      enqueueAudioJob({
+        id: jobId,
+        characterId: payload.characterId,
+        characterName: payload.characterName,
+        chapterTitle: payload.chapterTitle,
+        generationMode: 'missing',
+        total: payload.lines.length,
+        totalCharacters: payload.totalCharacters,
+      });
+    }
+
+    for (const [chapterTitle, totals] of chapterQueueTotals.entries()) {
+      setQueueChapterOverview(chapterTitle, totals.queuedLines, totals.missingVoiceLines);
+    }
+
     if (!queueProcessing) {
       void processQueue();
     }
+
+    const chaptersWithQueuedJobs = Array.from(chapterQueueTotals.values())
+      .filter((totals) => totals.queuedCharacterBatches > 0)
+      .length;
+    const totalJobsQueued = jobsByCharacterId.size;
+    const charactersWithQueuedJobs = totalJobsQueued;
 
     const missingVoicesNote = missingVoiceCharacterIds.size > 0
       ? ` Skipped ${missingVoiceCharacterIds.size} character(s) with no assigned voice.`
       : '';
     alert(
       `Queued ${totalLinesQueued} missing line${totalLinesQueued === 1 ? '' : 's'} ` +
-      `across ${totalJobsQueued} job${totalJobsQueued === 1 ? '' : 's'} in ` +
-      `${chaptersWithQueuedJobs} chapter${chaptersWithQueuedJobs === 1 ? '' : 's'}.${missingVoicesNote}`
+      `across ${totalJobsQueued} character job${totalJobsQueued === 1 ? '' : 's'} in ` +
+      `${chaptersWithQueuedJobs} chapter${chaptersWithQueuedJobs === 1 ? '' : 's'} ` +
+      `for ${charactersWithQueuedJobs} character${charactersWithQueuedJobs === 1 ? '' : 's'}, ` +
+      `batched by character across chapters.${missingVoicesNote}`
     );
   }
 
@@ -387,6 +436,30 @@
     if (!ch || !root || !scr) return;
 
     const characterName = characterIdToName.get(characterId) || characterId;
+    const voiceInfo = getVoiceForCharacter(characterId);
+    const selectedLineId = get(audioGenerateLineId);
+    const characterLines = getCharacterLinesForCurrentScript(characterId, characterName, scr);
+    const selectedLine = selectedLineId == null
+      ? null
+      : characterLines.find((line) => Number((line as any).id) === Number(selectedLineId)) || null;
+
+    if (selectedLine) {
+      if (!voiceInfo) {
+        alert(`No voice assigned to ${characterName}`);
+        return;
+      }
+
+      await generateSingleSelectedLine(
+        selectedLine,
+        characterId,
+        characterName,
+        voiceInfo,
+        ch.title,
+        ch.path || '',
+      );
+      return;
+    }
+
     await pruneStaleCharacterAudio(characterId, characterName, scr, ch.title);
     
     // Check if audio already exists
@@ -419,6 +492,53 @@
 
   function getCharacterLinesForCurrentScript(characterId: string, characterName: string, scr: any): DialogueLine[] {
     return getCharacterLinesForScript(characterId, characterName, scr);
+  }
+
+  async function generateSingleSelectedLine(
+    line: DialogueLine,
+    characterId: string,
+    characterName: string,
+    voiceInfo: { voiceId: string; provider: string; displayName: string; characterId: string },
+    chapterTitle: string,
+    sourceFile: string,
+  ): Promise<boolean> {
+    const lineId = Number((line as any)?.id);
+    const text = String((line as any)?.text ?? '').trim();
+
+    if (!Number.isFinite(lineId) || !text) {
+      alert('Selected line is missing an ID or text and could not be generated.');
+      return false;
+    }
+
+    generatingCharacter = characterId;
+    generationProgress = { current: 0, total: 1 };
+
+    try {
+      const result = await generateAudioForLine(
+        lineId,
+        text,
+        characterName,
+        characterId,
+        voiceInfo.voiceId,
+        voiceInfo.provider,
+        chapterTitle,
+        sourceFile,
+      );
+
+      if (!result.success) {
+        alert(result.error || 'Failed to generate selected line audio.');
+        return false;
+      }
+
+      generationProgress = { current: 1, total: 1 };
+      audioGenerateLineId.set(null);
+      triggerAudioUpdate();
+      await loadAudioClipCounts();
+      return true;
+    } finally {
+      generatingCharacter = null;
+      generationProgress = { current: 0, total: 0 };
+    }
   }
 
   async function buildPayloadFromQueueItem(item: AudioQueueItem): Promise<{ payload: QueuedJobPayload | null; markComplete?: boolean; error?: string }> {

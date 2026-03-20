@@ -70,6 +70,18 @@ def detect_default_device() -> str:
     return "cpu"
 
 
+def resolve_attention_implementation(device: str) -> str:
+    forced_attn_impl = os.getenv("VIBEVOICE_ATTN_IMPL", "").strip().lower()
+    if forced_attn_impl in {"sdpa", "flash_attention_2", "eager"}:
+        return forced_attn_impl
+
+    if device == "cuda" and os.name == "nt":
+        return "sdpa"
+    if device == "cuda":
+        return "flash_attention_2"
+    return "sdpa"
+
+
 def resolve_device(device: str, torch_module) -> Tuple[str, Any, str]:
     if device.lower() == "mpx":
         device = "mps"
@@ -77,10 +89,11 @@ def resolve_device(device: str, torch_module) -> Tuple[str, Any, str]:
         print("Warning: MPS not available, falling back to CPU.")
         device = "cpu"
 
+    attn_impl = resolve_attention_implementation(device)
     if device == "mps":
         return device, torch_module.float32, "sdpa"
     if device == "cuda":
-        return device, torch_module.bfloat16, "flash_attention_2"
+        return device, torch_module.bfloat16, attn_impl
     return "cpu", torch_module.float32, "sdpa"
 
 
@@ -143,6 +156,8 @@ def load_vibevoice_backend(
         device = detect_default_device()
 
     device, torch_dtype, attn_impl = resolve_device(device, torch)
+    if device == "cuda" and attn_impl == "sdpa" and os.name == "nt":
+        print("Using SDPA attention for VibeVoice CUDA on Windows.")
 
     model_path_abs = os.path.abspath(model_path)
     if not os.path.isdir(model_path_abs):

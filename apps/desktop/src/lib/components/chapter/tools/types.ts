@@ -17,6 +17,9 @@ export type UnifiedLine = {
     thresholdUsed: number;
     sourceAlias: string | null;
     sourceCandidates?: string[];
+    sourceDescriptors?: string[];
+    contextGender?: string | null;
+    genderConflict?: boolean;
     candidates: { name: string; characterId?: string | null; confidence: number; reasons?: string[] }[];
   };
 };

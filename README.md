@@ -5,7 +5,8 @@ OpenBook is a desktop-first workflow for chapter parsing, dialogue review, chara
 ## Project Layout
 
 - Frontend app: `apps/desktop`
-- Python sidecar services: `py_services`
+- Python runtime backend: `py_services`
+- Standalone Python utilities: `scripts/python`
 - Architecture and planning docs: `docs`
 
 ## Current Runtime Model
@@ -25,5 +26,5 @@ OpenBook is a desktop-first workflow for chapter parsing, dialogue review, chara
 ## Backend Smoke Check
 
 ```bash
-../.venv/Scripts/python.exe py_services/router_split_smoke_test.py
+.venv/Scripts/python.exe scripts/python/dev_smoke/router_split_smoke_test.py
 ```

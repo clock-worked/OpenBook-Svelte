@@ -3,6 +3,8 @@
 This script generates one WAV per dialogue line from a dialogue.json file.
 Default backend is direct VibeVoice in Python (no ComfyUI required).
 
+Status: legacy/manual fallback workflow. This script is not part of the frontend runtime path.
+
 ## Quick Start (ComfyUI venv)
 
 1) Install deps into the ComfyUI venv:
@@ -15,7 +17,7 @@ C:/Users/Chad/Documents/ComfyUI/.venv/Scripts/python.exe -m pip install tqdm
 2) Run on a chapter:
 
 ```bash
-C:/Users/Chad/Documents/ComfyUI/.venv/Scripts/python.exe "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Speech/generate_chapter_audio.py" \
+.venv/Scripts/python.exe scripts/python/audio_batch/generate_chapter_audio.py \
   --backend vibevoice \
   --model_path "C:/Users/Chad/Documents/ComfyUI/models/vibevoice/VibeVoice-Large-Q8" \
   --dialogue "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Data/Resources/Primal-Hunter/Book-14/01 - A False God & Proactive Measures/dialogue.json"
@@ -40,7 +42,7 @@ Output goes to: <chapter-folder>/audio_lines/
 ## Regenerate a single line
 
 ```bash
-C:/Users/Chad/Documents/ComfyUI/.venv/Scripts/python.exe "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Speech/generate_chapter_audio.py" \
+.venv/Scripts/python.exe scripts/python/audio_batch/generate_chapter_audio.py \
   --backend vibevoice \
   --model_path "C:/Users/Chad/Documents/ComfyUI/models/vibevoice/VibeVoice-Large-Q8" \
   --dialogue "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Data/Resources/Primal-Hunter/Book-14/01 - A False God & Proactive Measures/dialogue.json" \
@@ -72,7 +74,7 @@ The script can drive ComfyUI if you set --backend comfy. It will:
 Example:
 
 ```bash
-C:/Users/Chad/Documents/ComfyUI/.venv/Scripts/python.exe "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Speech/generate_chapter_audio.py" \
+.venv/Scripts/python.exe scripts/python/audio_batch/generate_chapter_audio.py \
   --backend comfy \
   --workflow "C:/Users/Chad/Documents/ComfyUI/custom_nodes/VibeVoice-ComfyUI/examples/Single-Speaker.json" \
   --comfy_url "http://127.0.0.1:8000" \

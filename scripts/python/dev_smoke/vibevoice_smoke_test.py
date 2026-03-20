@@ -4,6 +4,16 @@ import sys
 from pathlib import Path
 
 
+SCRIPTS_PYTHON_DIR = Path(__file__).resolve().parents[1]
+if str(SCRIPTS_PYTHON_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_PYTHON_DIR))
+
+from _path_setup import bootstrap_python_script_paths
+
+PATHS = bootstrap_python_script_paths(__file__)
+REPO_ROOT = PATHS["repoRoot"]
+
+
 def normalize_text(text: str) -> str:
     replacements = {
         "\u2018": "'",
@@ -26,8 +36,8 @@ def format_script(text: str) -> str:
 
 def parse_args() -> argparse.Namespace:
     script_dir = Path(__file__).resolve().parent
-    default_model = script_dir / "openbook_parser" / "data" / "VibeVoice-Large-Q8"
-    default_repo = script_dir / "openbook_parser" / "data" / "VibeVoice-ComfyUI"
+    default_model = REPO_ROOT / "py_services" / "openbook_parser" / "data" / "VibeVoice-Large-Q8"
+    default_repo = REPO_ROOT / "py_services" / "openbook_parser" / "data" / "VibeVoice-ComfyUI"
     default_output = script_dir / "samples" / "vibevoice_smoke_test.wav"
 
     parser = argparse.ArgumentParser(description="Simple VibeVoice smoke test")

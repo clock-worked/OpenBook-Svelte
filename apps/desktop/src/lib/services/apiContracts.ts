@@ -91,6 +91,44 @@ export interface GenerateAudioChapterRequest {
   audio_root: string | null;
 }
 
+export interface VibeVoiceCharacterLineRequest {
+  id: number;
+  text: string;
+  characterId?: string;
+  chosenSpeaker?: string;
+  chapterTitle?: string;
+  sourceFile?: string;
+}
+
+export interface GenerateAudioCharacterRequest {
+  character_name: string;
+  character_id: string;
+  lines: VibeVoiceCharacterLineRequest[];
+  voice_id: string;
+  provider: string;
+  chapter_title: string;
+  source_file: string;
+  voice_sample_root: string | null;
+  audio_root: string | null;
+}
+
+export interface GenerateAudioCharacterResponse {
+  pipelineMode?: string;
+  success?: boolean;
+  generatedCount?: number;
+  totalLines?: number;
+  chaptersAffected?: string[];
+  errors?: string[];
+  warnings?: string[];
+  summary?: {
+    generation?: {
+      mode?: string;
+      chunkCount?: number;
+      minChunkChars?: number;
+    };
+  };
+}
+
 export interface GenerateAudioChapterResponse {
   success?: boolean;
   generatedCount?: number;

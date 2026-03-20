@@ -35,6 +35,7 @@ export const API_ENDPOINTS = {
     readFileAbsolute: '/api/read_file_absolute',
     generateAudioLine: '/api/generate_audio_line',
     generateVibeVoiceLine: '/api/vibevoice/line',
+    generateVibeVoiceCharacter: '/api/vibevoice/character',
     generateVibeVoiceChapter: '/api/vibevoice/chapter',
     deleteCharacterAudio: '/api/delete_character_audio',
     deleteAudioLine: '/api/delete_audio_line',

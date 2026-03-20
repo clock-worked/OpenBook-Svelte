@@ -1,0 +1,1 @@
+"""OpenBook standalone script package root."""

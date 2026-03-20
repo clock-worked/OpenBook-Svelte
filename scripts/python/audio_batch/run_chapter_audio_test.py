@@ -5,31 +5,41 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from pathlib import Path
 from typing import Any
 
+
+SCRIPTS_PYTHON_DIR = Path(__file__).resolve().parents[1]
+if str(SCRIPTS_PYTHON_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_PYTHON_DIR))
+
+from _path_setup import bootstrap_python_script_paths
+
+bootstrap_python_script_paths(__file__)
+
 import soundfile as sf
 
-from chapter_audio_test.asr_alignment import (
+from py_services.chapter_audio_test.asr_alignment import (
     build_line_timestamps,
     collect_asr_word_tokens,
 )
-from chapter_audio_test.audio_ops import (
+from py_services.chapter_audio_test.audio_ops import (
     load_audio_float_2d,
     refine_line_boundaries_with_silence,
     split_audio_by_lines,
 )
-from chapter_audio_test.generation import (
+from py_services.chapter_audio_test.generation import (
     build_line_chunk_generation_plan,
     generate_line_chunked_chapter_audio,
 )
-from chapter_audio_test.manifest_ops import (
+from py_services.chapter_audio_test.manifest_ops import (
     build_character_manifests,
     load_existing_split_state,
     load_manifest_lines,
 )
-from chapter_audio_test.text_utils import normalize_chapter_text, tokenize, utc_now_iso
-from chapter_audio_test.validation import (
+from py_services.chapter_audio_test.text_utils import normalize_chapter_text, tokenize, utc_now_iso
+from py_services.chapter_audio_test.validation import (
     attach_validation_summary_to_split_lines,
     attempt_boundary_shift,
     build_split_validation_payload,
@@ -38,11 +48,11 @@ from chapter_audio_test.validation import (
     summarize_validation_reports,
     validate_split_lines,
 )
-from transcribe_whisper_small_en_gpu import (
+from py_services.vibevoice_local_service import VibeVoiceLocalService
+from scripts.python.asr_validation.transcribe_whisper_small_en_gpu import (
     transcribe_with_openai_whisper,
     transcribe_with_whisperx,
 )
-from vibevoice_local_service import VibeVoiceLocalService
 
 
 def parse_args() -> argparse.Namespace:
