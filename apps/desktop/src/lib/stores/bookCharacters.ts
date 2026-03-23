@@ -1,5 +1,5 @@
 import { writable, get } from 'svelte/store';
-import type { CharacterManifestStats, CharacterVoiceMeta, CharactersJson, TtsProvider, Character } from '$lib/types';
+import type { CharacterManifestStats, CharacterVoiceMeta, CharactersJson, TtsProvider, Character, Gender } from '$lib/types';
 import { audioRoot, bookRoot, chapters } from '$lib/stores/bookState';
 import { getCharactersPath, readCharacters, writeCharacters, readCentralCharacters } from '$lib/services/fs';
 import { loadCharacterManifestSummary } from '$lib/services/manifests';
@@ -17,6 +17,7 @@ import {
 import {
   resolveCanonicalCharacterName,
 } from '$lib/services/characterDomain';
+import { normalizeCharacterGender } from '$lib/services/characterGender';
 
 export const bookCharacters = writable<CharactersJson>({ formatVersion: '2.0', characters: [] });
 
@@ -76,7 +77,14 @@ export async function persistBookCharacters(): Promise<void> {
 function createEmptyBookCharacter(name: string): Character {
   return {
     name,
+    gender: 'Unknown',
+    aliases: [],
     color: null,
+    notes: '',
+    stats: {
+      totalLines: 0,
+      chapterCount: 0,
+    },
     voice: null,
     provider: null,
     voiceId: null,
@@ -92,12 +100,18 @@ async function upsertBookCharacter(name: string, updates: Partial<Character>): P
   const data = get(bookCharacters);
   const canonicalName = resolveCanonicalCharacterName(data, name) ?? name;
   const exists = data.characters.some((character) => character.name === canonicalName);
+  const normalizedUpdates: Partial<Character> = {
+    ...updates,
+    ...(Object.prototype.hasOwnProperty.call(updates, 'gender')
+      ? { gender: normalizeCharacterGender(updates.gender) }
+      : {}),
+  };
 
   const next: CharactersJson = exists
     ? {
       formatVersion: data.formatVersion,
       characters: data.characters.map((character) =>
-        character.name === canonicalName ? { ...character, ...updates } : character,
+        character.name === canonicalName ? { ...character, ...normalizedUpdates } : character,
       ),
     }
     : {
@@ -106,7 +120,7 @@ async function upsertBookCharacter(name: string, updates: Partial<Character>): P
         ...data.characters,
         {
           ...createEmptyBookCharacter(canonicalName),
-          ...updates,
+          ...normalizedUpdates,
         } as Character,
       ],
     };
@@ -121,6 +135,10 @@ export async function setBookCharacterVoice(name: string, voice: string | null):
 
 export async function setBookCharacterColor(name: string, color: string | null): Promise<void> {
   await upsertBookCharacter(name, { color });
+}
+
+export async function setBookCharacterGender(name: string, gender: Gender): Promise<void> {
+  await upsertBookCharacter(name, { gender: normalizeCharacterGender(gender) });
 }
 
 export async function setBookCharacterProvider(name: string, provider: TtsProvider | null): Promise<void> {
@@ -252,6 +270,7 @@ export async function syncAllChapterColorsFromBook(): Promise<{ updated: number;
             const bookChar = bookColorMap.get(c.name);
             return {
               ...c,
+              gender: normalizeCharacterGender(bookChar?.gender ?? c.gender ?? 'Unknown'),
               color: bookChar?.color ?? c.color ?? null,
               voice: bookChar?.voice ?? c.voice ?? null,
               provider: bookChar?.provider ?? c.provider ?? null,

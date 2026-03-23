@@ -94,6 +94,13 @@ export interface LineAttributionCandidate {
   reasons?: string[];
 }
 
+export interface LineAttributionDecisionTrace {
+  selectedCandidate?: string | null;
+  selectedReasons?: string[];
+  overrideReason?: string | null;
+  signals?: Record<string, any>;
+}
+
 export interface LineAttribution {
   confidence: number;
   topCandidateConfidence: number;
@@ -107,7 +114,18 @@ export interface LineAttribution {
   contextGender?: string | null;
   contextGenderCue?: string | null;
   genderConflict?: boolean;
+  parserBackend?: string | null;
+  decisionTrace?: LineAttributionDecisionTrace | null;
   candidates: LineAttributionCandidate[];
+}
+
+export interface ParserLineAttribution {
+  parserBackend?: string | null;
+  contextGender?: string | null;
+  contextGenderCue?: string | null;
+  genderConflict?: boolean;
+  candidates?: LineAttributionCandidate[];
+  decisionTrace?: LineAttributionDecisionTrace | null;
 }
 
 export interface DialogueLine {
@@ -167,6 +185,8 @@ export interface LineItem {
     contextGender?: string | null;
     contextGenderCue?: string | null;
     genderConflict?: boolean;
+    parserBackend?: string | null;
+    decisionTrace?: LineAttributionDecisionTrace | null;
     candidates?: { name: string; characterId?: string | null; confidence: number; reasons?: string[] }[];
   };
 }
@@ -181,9 +201,17 @@ export interface ScriptJson {
 
 /** @deprecated Use Character instead */
 export interface CharacterConfig {
+  id?: string;
   name: string;
+  gender?: Gender;
+  aliases?: string[];
   color: string | null;
   voice: string | null;
+  notes?: string;
+  stats?: {
+    totalLines: number;
+    chapterCount: number;
+  };
   count?: number;
   provider?: TtsProvider | null;
   voiceId?: string | null;
@@ -224,6 +252,7 @@ export interface Line {
   suggestions: any[];
   span_start?: number;
   span_end?: number;
+  attribution?: ParserLineAttribution;
 }
 
 export type Segment = TextSegment | PauseSegment;

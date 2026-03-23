@@ -28,7 +28,16 @@
     PenSquare,
     Music,
   } from "lucide-svelte";
-  import { forceRefreshBookCharacters } from "$lib/stores/bookCharacters";
+  import {
+    bookCharacters,
+    forceRefreshBookCharacters,
+    persistBookCharacters,
+  } from "$lib/stores/bookCharacters";
+  import {
+    hasUsableGenderCue,
+    learnCharacterGendersFromChapter,
+    summarizeCharacterGenderLearning,
+  } from "$lib/services/characterGender";
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
 
@@ -41,8 +50,28 @@
     0,
   );
   const busy = writable<boolean>(false);
+  const genderBusy = writable<boolean>(false);
   const folderBusy = writable<boolean>(false);
   const lastError = writable<string | null>(null);
+  const genderStatusMessage = writable<string | null>(null);
+  const genderStatusTone = writable<"success" | "info" | "error">("info");
+  const genderCueCount = derived(
+    currentScript,
+    (scr) => {
+      if (!scr) return 0;
+      return scr.lines.filter((line) => hasUsableGenderCue(line)).length;
+    },
+    0,
+  );
+  let lastStatusChapterTitle: string | null = null;
+
+  $: {
+    const chapterTitle = $currentChapter?.title ?? null;
+    if (chapterTitle !== lastStatusChapterTitle) {
+      lastStatusChapterTitle = chapterTitle;
+      genderStatusMessage.set(null);
+    }
+  }
 
   function prev() {
     jump(-1);
@@ -136,6 +165,46 @@
       lastError.set(String(e));
     } finally {
       busy.set(false);
+    }
+  }
+
+  async function processChapterGenders() {
+    const scr = get(currentScript);
+    if (!scr?.lines?.length) return;
+
+    genderBusy.set(true);
+    genderStatusMessage.set(null);
+
+    try {
+      if (!get(bookCharacters).characters.length) {
+        await forceRefreshBookCharacters();
+      }
+
+      const currentCharacters = get(bookCharacters);
+      const result = learnCharacterGendersFromChapter(scr.lines, currentCharacters);
+      const updatedEntries = result.entries.filter((entry) => entry.status === "updated");
+
+      if (updatedEntries.length > 0) {
+        const previousCharacters = currentCharacters;
+        bookCharacters.set(result.nextCharacters);
+        try {
+          await persistBookCharacters();
+        } catch (error) {
+          bookCharacters.set(previousCharacters);
+          throw error;
+        }
+      }
+
+      genderStatusTone.set(updatedEntries.length > 0 ? "success" : "info");
+      genderStatusMessage.set(summarizeCharacterGenderLearning(result));
+    } catch (error) {
+      console.error("[Toolbar] Failed to process chapter genders", error);
+      genderStatusTone.set("error");
+      genderStatusMessage.set(
+        error instanceof Error ? error.message : "Failed to process character genders.",
+      );
+    } finally {
+      genderBusy.set(false);
     }
   }
 
@@ -257,6 +326,19 @@
             {$currentChapter?.parsed ? "Regenerate" : "Generate"}
           </span>
         </button>
+        <button
+          class="reload-btn gender-btn"
+          on:click={processChapterGenders}
+          disabled={$busy || $genderBusy || $folderBusy || !$currentScript || $genderCueCount === 0}
+          title={$genderCueCount > 0
+            ? `Learn character genders from ${$genderCueCount} chapter cue${$genderCueCount === 1 ? "" : "s"}`
+            : "No usable gender cues found in the current chapter"}
+          style="padding-left: 12px; padding-right: 12px;"
+        >
+          <span style="font-weight: 500; font-size: 14px;">
+            {$genderBusy ? "Processing..." : `Process Genders${$genderCueCount > 0 ? ` (${$genderCueCount})` : ""}`}
+          </span>
+        </button>
       {/if}
 
       {#if $conflicts > 0}
@@ -309,6 +391,13 @@
   <div class="error-box">
     <strong>Parser error:</strong>
     <div class="error-text">{$lastError}</div>
+  </div>
+{/if}
+
+{#if $genderStatusMessage}
+  <div class="status-box" class:success={$genderStatusTone === 'success'} class:error={$genderStatusTone === 'error'}>
+    <strong>{$genderStatusTone === 'error' ? 'Gender processing failed:' : 'Gender processing:'}</strong>
+    <div class="error-text">{$genderStatusMessage}</div>
   </div>
 {/if}
 
@@ -397,6 +486,10 @@
     opacity: 0.5;
   }
 
+  .gender-btn {
+    min-width: 154px;
+  }
+
   .icon-btn {
     display: flex;
     align-items: center;
@@ -452,6 +545,36 @@
   }
 
   .error-box strong {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .status-box {
+    background: #f6f8fb;
+    color: #1f2937;
+    border: 1px solid #d6dbe5;
+    border-left: 4px solid #64748b;
+    margin: 12px 16px;
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+
+  .status-box.success {
+    background: #f0fdf4;
+    border-color: #c4f0cf;
+    border-left-color: #15803d;
+    color: #166534;
+  }
+
+  .status-box.error {
+    background: #fef7f7;
+    border-color: #f5c2c7;
+    border-left-color: #b00020;
+    color: #b00020;
+  }
+
+  .status-box strong {
     display: block;
     margin-bottom: 8px;
   }

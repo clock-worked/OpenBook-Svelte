@@ -8,6 +8,7 @@ import {
     writeCharacters,
     writeCentralCharacters,
 } from '$lib/services/fs';
+import { normalizeCharacterGender } from '$lib/services/characterGender';
 import { normalizeCharacterKey } from '$lib/services/characterDomain';
 
 export interface ChapterCharacterContext {
@@ -18,9 +19,17 @@ export interface ChapterCharacterContext {
 
 function normalizeCharacterConfig(input: CharacterConfig | null | undefined): CharacterConfig {
     return {
+        id: input?.id,
         name: input?.name ?? '',
+        gender: normalizeCharacterGender((input as any)?.gender),
+        aliases: Array.isArray((input as any)?.aliases) ? (input as any).aliases : [],
         color: input?.color ?? null,
         voice: input?.voice ?? null,
+        notes: typeof (input as any)?.notes === 'string' ? (input as any).notes : '',
+        stats: {
+            totalLines: typeof (input as any)?.stats?.totalLines === 'number' ? (input as any).stats.totalLines : (input?.count ?? 0),
+            chapterCount: typeof (input as any)?.stats?.chapterCount === 'number' ? (input as any).stats.chapterCount : (input?.chapterCount ?? 0),
+        },
         count: input?.count ?? 0,
         provider: input?.provider ?? null,
         voiceId: input?.voiceId ?? null,
@@ -45,14 +54,21 @@ export async function deriveCharactersFromChapters(
                     const normalized = normalizeCharacterConfig(character as any);
                     const prev = accMap.get(normalized.name);
                     accMap.set(normalized.name, {
+                        id: prev?.id ?? normalized.id,
                         name: normalized.name,
+                        gender: prev?.gender ?? normalized.gender ?? 'Unknown',
+                        aliases: prev?.aliases ?? normalized.aliases ?? [],
                         color: prev?.color ?? normalized.color ?? null,
                         voice: prev?.voice ?? normalized.voice ?? null,
                         provider: prev?.provider ?? normalized.provider ?? null,
                         voiceId: prev?.voiceId ?? normalized.voiceId ?? null,
                         voiceMeta: prev?.voiceMeta ?? normalized.voiceMeta ?? null,
                         manifestStats: prev?.manifestStats ?? normalized.manifestStats ?? null,
+                        notes: prev?.notes ?? normalized.notes ?? '',
+                        stats: prev?.stats ?? normalized.stats ?? { totalLines: 0, chapterCount: 0 },
                         count: prev?.count ?? normalized.count ?? 0,
+                        firstAppearance: prev?.firstAppearance ?? normalized.firstAppearance ?? null,
+                        chapterCount: prev?.chapterCount ?? normalized.chapterCount ?? 0,
                     });
                 }
                 continue;
@@ -69,12 +85,19 @@ export async function deriveCharactersFromChapters(
 
                     accMap.set(name, {
                         name,
+                        gender: 'Unknown',
+                        aliases: [],
                         color: null,
                         voice: null,
                         provider: null,
                         voiceId: null,
                         voiceMeta: null,
                         manifestStats: null,
+                        notes: '',
+                        stats: {
+                            totalLines: 0,
+                            chapterCount: 0,
+                        },
                         count: 0,
                         firstAppearance: chapter.title,
                         chapterCount: 0,
@@ -116,6 +139,7 @@ export function mapRawBookCharacters(rawData: CharactersJson): CharactersJson {
             return {
                 id: char.id,
                 name: char.name,
+                gender: normalizeCharacterGender(char.gender),
                 aliases: Array.isArray(char.aliases) ? char.aliases : [],
                 color: char.color ?? null,
                 voice: char.voice ?? null,
@@ -123,6 +147,11 @@ export function mapRawBookCharacters(rawData: CharactersJson): CharactersJson {
                 voiceId: char.voiceId ?? null,
                 voiceMeta: char.voiceMeta ?? null,
                 manifestStats: char.manifestStats ?? null,
+                notes: typeof char.notes === 'string' ? char.notes : '',
+                stats: {
+                    totalLines: lineCount,
+                    chapterCount: char.stats?.chapterCount ?? char.chapterCount ?? 0,
+                },
                 count: lineCount,
                 firstAppearance: char.firstAppearance ?? null,
                 chapterCount: char.stats?.chapterCount ?? char.chapterCount ?? 0,
@@ -284,18 +313,25 @@ export async function persistBookCharactersData(root: string, data: CharactersJs
 
                     return {
                         ...char,
+                        gender: normalizeCharacterGender(updated.gender ?? char.gender),
                         color: updated.color,
                         voice: updated.voice,
                         provider: updated.provider,
                         voiceId: updated.voiceId,
                         voiceMeta: updated.voiceMeta,
                         aliases: Array.isArray(updated.aliases) ? updated.aliases : char.aliases,
+                        notes: typeof updated.notes === 'string' ? updated.notes : char.notes,
                         stats: char.stats,
                         firstAppearance: char.firstAppearance,
                     };
                 });
 
-            const added = data.characters.filter((character) => !existingNames.has(character.name));
+            const added = data.characters
+                .filter((character) => !existingNames.has(character.name))
+                .map((character) => ({
+                    ...character,
+                    gender: normalizeCharacterGender(character.gender),
+                }));
             await writeCharacters(path, {
                 ...existing,
                 characters: [...updatedExisting, ...added],

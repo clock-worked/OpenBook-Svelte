@@ -78,7 +78,12 @@ export async function loadChapterContent(params: {
     if (dialogue) {
         isV2Format =
             'formatVersion' in dialogue &&
-            (dialogue.formatVersion === '2.0' || dialogue.formatVersion === '3.0' || dialogue.formatVersion === '3.1');
+            (
+                dialogue.formatVersion === '2.0'
+                || dialogue.formatVersion === '3.0'
+                || dialogue.formatVersion === '3.1'
+                || dialogue.formatVersion === '3.2'
+            );
 
         normalized = await params.normalizeScriptData(dialogue, {
             root,
@@ -146,7 +151,7 @@ export async function saveDialogueFromNormalized(params: {
 
     const rootInfo = params.getRootDirInfo();
     console.log('[ChapterView] Saving changes...', {
-        format: 'v3.1',
+        format: 'v3.2',
         numLines: linesWithReturning.length,
         chapter: ch.title,
         root: params.root,
@@ -178,7 +183,7 @@ export async function saveDialogueFromNormalized(params: {
     }
 
     const dialoguePayload: DialogueJson = {
-        formatVersion: '3.1',
+        formatVersion: '3.2',
         chapterId: ch.title,
         lines: linesWithReturning.map((line) => {
             const attribution = params.normalizeAttribution(
@@ -225,20 +230,24 @@ export async function saveDialogueFromNormalized(params: {
                         sourceCandidates: attribution.sourceCandidates,
                     },
                 },
-                candidates: line.candidates
-                    .map((candidate) => {
+                candidates: Array.from(
+                    (line.candidates || []).reduce((acc, candidate) => {
                         const candidateId = candidate.name ? (nameToIdMap.get(candidate.name.toLowerCase()) || null) : null;
                         if (candidate.name && !candidateId) {
                             console.warn(`[ChapterView] Candidate "${candidate.name}" not found in characters.json`);
-                            return null;
+                            return acc;
                         }
-                        if (!candidateId) return null;
-                        return {
-                            characterId: candidateId,
-                            confidence: candidate.confidence,
-                        };
-                    })
-                    .filter((candidate): candidate is { characterId: string; confidence: number } => !!candidate),
+                        if (!candidateId) return acc;
+                        const existing = acc.get(candidateId);
+                        if (!existing || candidate.confidence > existing.confidence) {
+                            acc.set(candidateId, {
+                                characterId: candidateId,
+                                confidence: candidate.confidence,
+                            });
+                        }
+                        return acc;
+                    }, new Map<string, { characterId: string; confidence: number }>()).values()
+                ).sort((left, right) => right.confidence - left.confidence),
                 isConflict: line.isConflict || attribution.resolutionStatus === 'unknown',
                 isReturning: line.isReturning,
                 attribution,

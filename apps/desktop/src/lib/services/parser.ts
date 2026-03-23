@@ -3,10 +3,10 @@ import { parserHints } from '$lib/stores/settings';
 import type { Line, DialogueJson, DialogueLine, Character, LineCandidate, ParserHints } from '$lib/types';
 import { readTextFile, getRootDirHandle, readCentralCharacters, writeCentralCharacters } from '$lib/services/fs';
 import { computeReturningFlags } from '$lib/services/dialogueReturning';
-import { buildNameToIdMap } from '$lib/stores/characters';
+import { buildIdToNameMap, buildNameToIdMap } from '$lib/stores/characters';
 import { API_ENDPOINTS, apiPostJson, apiRequestJson, toApiClientError } from '$lib/services/apiClient';
 
-const ALWAYS_BLOCKED_CHARACTER_NAMES = new Set(['he', 'she', 'as']);
+const ALWAYS_BLOCKED_CHARACTER_NAMES = new Set(['he', 'she', 'as', 'it', 'that', 'they', 'them', 'the', 'this', 'these', 'those']);
 
 interface ParserOutput {
   script: Line[];
@@ -61,6 +61,66 @@ function clampConfidence(value: number): number {
   return value;
 }
 
+type RankedParserCandidate = {
+  name: string;
+  characterId: string | null;
+  confidence: number;
+  reasons?: string[];
+};
+
+function mergeReasonLists(...lists: Array<string[] | undefined>): string[] | undefined {
+  const merged = new Set<string>();
+  for (const list of lists) {
+    for (const reason of list || []) {
+      const value = String(reason || '').trim();
+      if (value) merged.add(value);
+    }
+  }
+  return merged.size > 0 ? Array.from(merged) : undefined;
+}
+
+function collapseMappedCandidates(
+  rawCandidates: Array<{ name: string; confidence: number; reasons?: string[] }>,
+  nameToCharIdMap: Map<string, string>,
+  idToNameMap: Map<string, string>
+): RankedParserCandidate[] {
+  const collapsed = new Map<string, RankedParserCandidate & { order: number }>();
+
+  rawCandidates.forEach((candidate, index) => {
+    const normalizedName = normalizeCharacterToken(candidate.name);
+    if (!normalizedName || isBlockedCharacterToken(normalizedName)) return;
+
+    const mappedId = nameToCharIdMap.get(normalizedName) || null;
+    const canonicalName = mappedId
+      ? (idToNameMap.get(mappedId.toLowerCase()) || candidate.name)
+      : candidate.name;
+    const key = mappedId ? `id:${mappedId.toLowerCase()}` : `name:${normalizedName}`;
+    const existing = collapsed.get(key);
+    if (!existing) {
+      collapsed.set(key, {
+        name: canonicalName,
+        characterId: mappedId,
+        confidence: clampConfidence(candidate.confidence),
+        reasons: mergeReasonLists(candidate.reasons),
+        order: index,
+      });
+      return;
+    }
+
+    if (candidate.confidence > existing.confidence) {
+      existing.name = canonicalName;
+      existing.confidence = clampConfidence(candidate.confidence);
+    }
+    existing.characterId = existing.characterId || mappedId;
+    existing.reasons = mergeReasonLists(existing.reasons, candidate.reasons);
+    existing.order = Math.min(existing.order, index);
+  });
+
+  return Array.from(collapsed.values())
+    .sort((left, right) => right.confidence - left.confidence || left.order - right.order)
+    .map(({ order: _order, ...candidate }) => candidate);
+}
+
 function estimateDialogueConfidence(line: Line, index: number, allLines: Line[], sourceSuggestions: string[]): number {
   if (line.line_type !== 'dialogue') return 1;
 
@@ -102,7 +162,14 @@ function estimateDialogueConfidence(line: Line, index: number, allLines: Line[],
 /**
  * Convert parser output into the persisted dialogue.json line shape.
  */
-function convertLineToDialogueLine(line: Line, id: number, nameToCharIdMap: Map<string, string>, index: number, allLines: Line[]): DialogueLine {
+function convertLineToDialogueLine(
+  line: Line,
+  id: number,
+  nameToCharIdMap: Map<string, string>,
+  idToNameMap: Map<string, string>,
+  index: number,
+  allLines: Line[]
+): DialogueLine {
   const isNarration = line.line_type === 'narration';
 
   // Convert segments to text string
@@ -121,10 +188,14 @@ function convertLineToDialogueLine(line: Line, id: number, nameToCharIdMap: Map<
   // Convert speaker name to character ID
   const speakerKey = line.speaker ? line.speaker.toLowerCase().trim() : '';
   const speakerIsBlocked = isBlockedCharacterToken(speakerKey);
+  const parserAttribution = line.attribution;
 
-  // Create candidates from suggestions (convert names to character IDs) - default to empty string if not found
   const sourceSuggestions = !isNarration
     ? (() => {
+      const fromAttribution = Array.isArray(parserAttribution?.candidates)
+        ? parserAttribution.candidates.map((candidate) => String(candidate?.name || '').trim()).filter(Boolean)
+        : [];
+      if (fromAttribution.length > 0) return fromAttribution;
       const fromParser = Array.isArray(line.suggestions)
         ? line.suggestions.map((name) => String(name || '').trim()).filter(Boolean)
         : [];
@@ -135,45 +206,55 @@ function convertLineToDialogueLine(line: Line, id: number, nameToCharIdMap: Map<
       .filter((name) => !isBlockedCharacterToken(name))
     : [];
 
-  const baseConfidence = estimateDialogueConfidence(line, index, allLines, sourceSuggestions);
+  const estimatedConfidence = estimateDialogueConfidence(line, index, allLines, sourceSuggestions);
+  const rawCandidates = !isNarration && Array.isArray(parserAttribution?.candidates) && parserAttribution.candidates.length > 0
+    ? parserAttribution.candidates
+      .map((candidate) => ({
+        name: String(candidate?.name || '').trim(),
+        confidence: clampConfidence(candidate?.confidence),
+        reasons: Array.isArray(candidate?.reasons)
+          ? candidate.reasons.filter((reason) => typeof reason === 'string' && reason.trim().length > 0)
+          : undefined,
+      }))
+      .filter((candidate) => candidate.name.length > 0)
+    : sourceSuggestions.map((name, idx) => ({
+      name,
+      confidence: Math.max(0.15, estimatedConfidence - (idx * 0.1)),
+    }));
+  const collapsedCandidates = collapseMappedCandidates(rawCandidates, nameToCharIdMap, idToNameMap);
+  const baseConfidence = collapsedCandidates[0]?.confidence ?? estimatedConfidence;
 
-  const hasNamedCandidates = sourceSuggestions.some((name) => {
-    const candidateKey = String(name || '').toLowerCase().trim();
-    return !!candidateKey && !!nameToCharIdMap.get(candidateKey);
-  });
+  const hasNamedCandidates = collapsedCandidates.some((candidate) => !!candidate.characterId);
 
   const shouldAbstain = !isNarration && (
     line.is_suggestion === true
     || baseConfidence < 0.74
-    || (sourceSuggestions.length > 1 && baseConfidence < 0.86)
+    || (collapsedCandidates.length > 1 && baseConfidence < 0.86)
     || !hasNamedCandidates
     || speakerIsBlocked
   );
 
+  const resolvedSpeakerId = speakerKey ? (nameToCharIdMap.get(speakerKey) || null) : null;
   const characterId = isNarration
     ? 'narrator'
     : (shouldAbstain
       ? null
-      : (speakerKey ? (nameToCharIdMap.get(speakerKey) || null) : null));
+      : resolvedSpeakerId);
 
-  if (!isNarration && !shouldAbstain && line.speaker && !nameToCharIdMap.get(speakerKey)) {
+  if (!isNarration && !shouldAbstain && line.speaker && !resolvedSpeakerId) {
     console.warn(`[parser] Speaker "${line.speaker}" not found in characters.json, leaving unknown`);
   }
 
-  const candidates: LineCandidate[] = sourceSuggestions.length > 0
-    ? sourceSuggestions.map((name, idx) => {
-      const candidateKey = String(name).toLowerCase().trim();
-      const candidateId = nameToCharIdMap.get(candidateKey) || '';
-      if (name && !nameToCharIdMap.get(candidateKey)) {
-        console.warn(`[parser] Candidate "${name}" not found in characters.json`);
-      }
-      return {
-        characterId: candidateId,
-        confidence: Math.max(0.15, baseConfidence - (idx * 0.1))
-      };
-    })
-    : [];
-
+  const candidates: LineCandidate[] = collapsedCandidates
+    .filter((candidate) => !!candidate.characterId)
+    .map((candidate) => ({
+      characterId: candidate.characterId || '',
+      confidence: candidate.confidence,
+    }));
+  const topCandidateConfidence = collapsedCandidates[0]?.confidence ?? baseConfidence;
+  const secondCandidateConfidence = collapsedCandidates[1]?.confidence ?? 0;
+  const marginToSecond = Math.max(0, topCandidateConfidence - secondCandidateConfidence);
+  const misattributionRisk = clampConfidence((1 - topCandidateConfidence) * 0.7 + (1 - marginToSecond) * 0.3);
   const hasSpan = typeof (line as any).span_start === 'number' && typeof (line as any).span_end === 'number';
   return {
     id,
@@ -212,7 +293,27 @@ function convertLineToDialogueLine(line: Line, id: number, nameToCharIdMap: Map<
           }
         ]
       }
-      : undefined
+      : {
+        confidence: topCandidateConfidence,
+        topCandidateConfidence,
+        marginToSecond,
+        misattributionRisk,
+        resolutionStatus: shouldAbstain ? 'unknown' : 'auto',
+        thresholdUsed: 0.62,
+        sourceAlias: line.speaker || null,
+        sourceCandidates: sourceSuggestions,
+        contextGender: parserAttribution?.contextGender ?? null,
+        contextGenderCue: parserAttribution?.contextGenderCue ?? null,
+        genderConflict: parserAttribution?.genderConflict ?? false,
+        parserBackend: parserAttribution?.parserBackend ?? null,
+        decisionTrace: parserAttribution?.decisionTrace ?? null,
+        candidates: collapsedCandidates.map((candidate) => ({
+          characterId: candidate.characterId,
+          name: candidate.name,
+          confidence: candidate.confidence,
+          reasons: candidate.reasons,
+        })),
+      }
   };
 }
 
@@ -371,8 +472,10 @@ export async function runParserForChapter(args: {
     // Write updated central characters.json
     await writeCentralCharacters(root, { formatVersion: existingBookChars.formatVersion || '2.0', characters: allBookChars });
 
+    const idToNameMap = buildIdToNameMap(allBookChars);
+
     const baseDialogueLines = parsed.script.map((line, idx) =>
-      convertLineToDialogueLine(line, idx + 1, nameToCharIdMap, idx, parsed.script)
+      convertLineToDialogueLine(line, idx + 1, nameToCharIdMap, idToNameMap, idx, parsed.script)
     );
     const returningFlags = computeReturningFlags(
       baseDialogueLines,
@@ -395,7 +498,7 @@ export async function runParserForChapter(args: {
     const numConflicts = dialogueLines.filter(line => line.isConflict).length;
 
     const dialogueJson: DialogueJson = {
-      formatVersion: '3.1',
+      formatVersion: '3.2',
       chapterId: chapterName,
       lines: dialogueLines,
       stats: {

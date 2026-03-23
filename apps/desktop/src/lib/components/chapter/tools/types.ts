@@ -20,7 +20,10 @@ export type UnifiedLine = {
     sourceCandidates?: string[];
     sourceDescriptors?: string[];
     contextGender?: string | null;
+    contextGenderCue?: string | null;
     genderConflict?: boolean;
+    parserBackend?: string | null;
+    decisionTrace?: Record<string, any> | null;
     candidates: { name: string; characterId?: string | null; confidence: number; reasons?: string[] }[];
   };
 };
@@ -28,7 +31,7 @@ export type UnifiedLine = {
 /**
  * Context for character menu operations
  */
-export type MenuContext = 
+export type MenuContext =
   | { kind: 'line'; lineIds: number[] }
   | { kind: 'paragraph'; lineIds: number[] }
   | { kind: 'selection'; lineIds: number[] };

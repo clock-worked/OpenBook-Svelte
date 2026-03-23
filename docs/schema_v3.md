@@ -1,12 +1,19 @@
-# OpenBook Schema v3.1
+# OpenBook Schema v3.2
 
 ## Overview
 
-Schema v3.1 extends v3.0 with paragraph-aware dialogue return metadata used to mark the final persisted line entry for a source paragraph that contains dialogue.
+Schema v3.2 extends v3.1 with richer attribution provenance for parser output, including gender-cue metadata, parser backend provenance, decision trace details, and candidate collapse semantics.
 
 This is a **dialogue format evolution**. `characters.json` and `voices.json` remain v2-compatible structures.
 
-## What Changed from v3.0
+## What Changed from v3.1
+
+1. Added `contextGender` and `contextGenderCue` so attribution can record nearby pronoun-based gender cues such as `he said` or `she asked`.
+2. Added `genderConflict` to flag when the selected speaker conflicts with the detected context gender cue.
+3. Added `parserBackend` and `decisionTrace` to preserve how the parser reached the selected candidate.
+4. Candidate lists are now expected to be collapsed by canonical `characterId` before persistence so duplicate aliases do not create repeated options.
+
+## Prior v3.1 Changes
 
 1. Added per-line `isReturning` to mark the final `dialogue.json` line emitted from a source paragraph that contains dialogue.
 
@@ -17,11 +24,11 @@ This is a **dialogue format evolution**. `characters.json` and `voices.json` rem
 3. Allows unresolved lines to persist with `characterId: null` (instead of defaulting to narrator).
 4. Stores parser/source speaker hints for feedback-driven alias clustering.
 
-## dialogue.json (v3.1)
+## dialogue.json (v3.2)
 
 ```json
 {
-  "formatVersion": "3.1",
+  "formatVersion": "3.2",
   "chapterId": "01-Chapter-1",
   "lines": [
     {
@@ -47,6 +54,18 @@ This is a **dialogue format evolution**. `characters.json` and `voices.json` rem
             "thresholdUsed": 0.62,
             "sourceAlias": "the hunter",
             "sourceCandidates": ["jake", "jake thayne"],
+            "contextGender": "male",
+            "contextGenderCue": "he said",
+            "genderConflict": false,
+            "parserBackend": "legacy",
+            "decisionTrace": {
+              "selectedCandidate": "Jake Thayne",
+              "selectedReasons": ["legacy_match", "context_gender_match"],
+              "signals": {
+                "contextGender": "male",
+                "contextGenderCue": "he said"
+              }
+            },
             "candidates": [
               { "characterId": "jake-thayne", "name": "Jake Thayne", "confidence": 0.54 },
               { "characterId": "narrator", "name": "Narrator", "confidence": 0.50 }
@@ -68,6 +87,18 @@ This is a **dialogue format evolution**. `characters.json` and `voices.json` rem
         "thresholdUsed": 0.62,
         "sourceAlias": "the hunter",
         "sourceCandidates": ["jake", "jake thayne"],
+        "contextGender": "male",
+        "contextGenderCue": "he said",
+        "genderConflict": false,
+        "parserBackend": "legacy",
+        "decisionTrace": {
+          "selectedCandidate": "Jake Thayne",
+          "selectedReasons": ["legacy_match", "context_gender_match"],
+          "signals": {
+            "contextGender": "male",
+            "contextGenderCue": "he said"
+          }
+        },
         "candidates": [
           { "characterId": "jake-thayne", "name": "Jake Thayne", "confidence": 0.54 },
           { "characterId": "narrator", "name": "Narrator", "confidence": 0.50 }
@@ -99,6 +130,16 @@ This is a **dialogue format evolution**. `characters.json` and `voices.json` rem
 - `thresholdUsed` (0.0-1.0): active unknown threshold at decision time.
 - `sourceAlias` (string|null): upstream source name/alias for the line.
 - `sourceCandidates` (string[]): upstream source candidate names.
+- `sourceDescriptors` (string[], optional): extra parser/source descriptors preserved for review workflows.
+- `contextGender` (string|null): detected pronoun-based gender cue near the line (`male`, `female`, `neutral`).
+- `contextGenderCue` (string|null): the cue phrase that produced `contextGender`, such as `he said`.
+- `genderConflict` (boolean): `true` when the selected candidate conflicts with the detected context gender cue.
+- `parserBackend` (string|null): parser backend that produced the attribution payload.
+- `decisionTrace` (object|null): parser scoring trace for inspection and debugging.
+  - `selectedCandidate` (string|null)
+  - `selectedReasons` (string[])
+  - `overrideReason` (string|null, optional)
+  - `signals` (object|null)
 - `candidates` (array): richer candidate list for review UI.
   - `characterId` (string|null)
   - `name` (string)
@@ -135,8 +176,8 @@ Behavior:
 
 ## Compatibility Notes
 
-- Reader supports `formatVersion: "2.0"`, `"3.0"`, and `"3.1"`.
-- Writer now emits `formatVersion: "3.1"` for dialogue.
-- Existing v3.0 dialogue files can be upgraded in place by adding `isReturning` and bumping the version.
+- Reader supports `formatVersion: "2.0"`, `"3.0"`, `"3.1"`, and `"3.2"`.
+- Writer now emits `formatVersion: "3.2"` for dialogue.
+- Existing v3.1 dialogue files can be upgraded in place by adding the new attribution provenance fields and bumping the version.
 - Existing v2 dialogue files remain readable and are normalized at runtime.
 - Legacy v1-era inputs are compatibility-read paths only; they are not a current write target.

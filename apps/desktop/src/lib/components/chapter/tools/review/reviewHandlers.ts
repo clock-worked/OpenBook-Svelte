@@ -109,8 +109,12 @@ export function syncCharactersWithUsage(
       const chapterChar = byName.get(name);
       return {
         name,
+        gender: bookChar?.gender ?? chapterChar?.gender ?? 'Unknown',
         color: bookChar?.color ?? chapterChar?.color ?? null,
-        voice: bookChar?.voice ?? chapterChar?.voice ?? null
+        voice: bookChar?.voice ?? chapterChar?.voice ?? null,
+        provider: bookChar?.provider ?? chapterChar?.provider ?? null,
+        voiceId: bookChar?.voiceId ?? chapterChar?.voiceId ?? null,
+        voiceMeta: bookChar?.voiceMeta ?? chapterChar?.voiceMeta ?? null,
       } as Character;
     })
   };
@@ -140,6 +144,9 @@ export function assignCharacterToLines(
     if (!line.candidates.some(c => c.name === characterName)) {
       line.candidates.push({ name: characterName, confidence: 1 });
     }
+    const attributionCandidatesByName = new Map(
+      (line.attribution?.candidates || []).map((candidate) => [candidate.name, candidate] as const)
+    );
     const topConfidence = Math.max(
       0,
       ...line.candidates.map((candidate) => Number.isFinite(candidate.confidence) ? candidate.confidence : 0)
@@ -153,9 +160,17 @@ export function assignCharacterToLines(
       thresholdUsed: line.attribution?.thresholdUsed ?? 0.62,
       sourceAlias: line.attribution?.sourceAlias ?? null,
       sourceCandidates: line.attribution?.sourceCandidates ?? [],
+      sourceDescriptors: line.attribution?.sourceDescriptors ?? [],
+      contextGender: line.attribution?.contextGender ?? null,
+      contextGenderCue: line.attribution?.contextGenderCue ?? null,
+      genderConflict: line.attribution?.genderConflict ?? false,
+      parserBackend: line.attribution?.parserBackend ?? null,
+      decisionTrace: line.attribution?.decisionTrace ?? null,
       candidates: line.candidates.map((candidate) => ({
         name: candidate.name,
+        characterId: attributionCandidatesByName.get(candidate.name)?.characterId ?? null,
         confidence: candidate.name === characterName ? 1 : candidate.confidence,
+        reasons: attributionCandidatesByName.get(candidate.name)?.reasons,
       })),
     };
     line.isConflict = false;
@@ -181,8 +196,12 @@ export function assignCharacterToLines(
           formatVersion: chars?.formatVersion || '2.0',
           characters: [...(chars?.characters ?? []), {
             name: characterName,
+            gender: bookChar?.gender ?? 'Unknown',
             color: bookChar?.color ?? null,
-            voice: bookChar?.voice ?? null
+            voice: bookChar?.voice ?? null,
+            provider: bookChar?.provider ?? null,
+            voiceId: bookChar?.voiceId ?? null,
+            voiceMeta: bookChar?.voiceMeta ?? null,
           } as Character]
         };
         const path = getCharactersPath(root, ch.title);

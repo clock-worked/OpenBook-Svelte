@@ -92,6 +92,14 @@ export function normalizeAttribution(
         thresholdUsed: clampConfidence(typeof existing?.thresholdUsed === 'number' ? existing.thresholdUsed : threshold),
         sourceAlias: sourceAlias || null,
         sourceCandidates,
+        sourceDescriptors: Array.isArray(existing?.sourceDescriptors)
+            ? existing.sourceDescriptors.filter((value: any) => typeof value === 'string' && value.trim().length > 0)
+            : undefined,
+        contextGender: typeof existing?.contextGender === 'string' ? existing.contextGender : null,
+        contextGenderCue: typeof existing?.contextGenderCue === 'string' ? existing.contextGenderCue : null,
+        genderConflict: typeof existing?.genderConflict === 'boolean' ? existing.genderConflict : false,
+        parserBackend: typeof existing?.parserBackend === 'string' ? existing.parserBackend : null,
+        decisionTrace: existing?.decisionTrace ?? null,
         candidates: sortedCandidates,
     };
 }

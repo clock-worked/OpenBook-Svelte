@@ -1,10 +1,10 @@
 # OpenBook Schema v2.0
 
-> **Status:** Dialogue format has advanced to **v3.1**.
+> **Status:** Dialogue format has advanced to **v3.2**.
 >
 > - Use [schema_v3.md](./schema_v3.md) for current dialogue schema.
 > - This v2 document remains as reference for v2-era structures and migration history.
-> - Active policy: legacy reads are supported as needed, but current writes target v3.1 dialogue.
+> - Active policy: legacy reads are supported as needed, but current writes target v3.2 dialogue.
 
 ## Overview
 

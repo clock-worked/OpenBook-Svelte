@@ -49,11 +49,37 @@
   function getCurrentColor(name: string): string {
     return colorMap.get(name) || colorForCharacter(name);
   }
+
+  type GenderTone = 'male' | 'female' | 'unknown';
+
+  function normalizeGenderTone(value: unknown): GenderTone {
+    const normalized = String(value ?? '').trim().toLowerCase();
+    if (normalized === 'm' || normalized === 'male') return 'male';
+    if (normalized === 'f' || normalized === 'female') return 'female';
+    return 'unknown';
+  }
+
+  function getGenderGradient(name: string): string {
+    const bookChar = $bookCharacters?.characters?.find((character) => character.name === name);
+    const chapterChar = $characters?.characters?.find((character) => character.name === name);
+    const tone = normalizeGenderTone(bookChar?.gender ?? chapterChar?.gender ?? null);
+
+    if (tone === 'male') {
+      return 'linear-gradient(90deg, rgba(96, 165, 250, 0.32) 0%, rgba(255, 255, 255, 0.96) 78%)';
+    }
+
+    if (tone === 'female') {
+      return 'linear-gradient(90deg, rgba(244, 114, 182, 0.30) 0%, rgba(255, 255, 255, 0.96) 78%)';
+    }
+
+    return 'linear-gradient(90deg, rgba(148, 163, 184, 0.24) 0%, rgba(255, 255, 255, 0.96) 78%)';
+  }
 </script>
 
 <style>
   .character-row {
-    border: 1px solid #eee;
+    border: 1px solid rgba(226, 232, 240, 0.92);
+    background: var(--gender-gradient, linear-gradient(90deg, #ffffff 0%, #ffffff 100%));
     padding: 8px;
     border-radius: 6px;
     display: flex;
@@ -63,6 +89,12 @@
     cursor: move;
     -webkit-app-region: no-drag;
     box-sizing: border-box;
+    transition: border-color 120ms ease, box-shadow 120ms ease;
+  }
+
+  .character-row:hover {
+    border-color: rgba(148, 163, 184, 0.58);
+    box-shadow: 0 8px 18px rgba(148, 163, 184, 0.12);
   }
 
   .line-count-badge {
@@ -171,6 +203,7 @@
       <div class="character-row" draggable="true"
            role="button"
            tabindex="0"
+           style={`--gender-gradient:${getGenderGradient(item.character.name)};`}
            on:dragstart={(e) => {
              if (!e.dataTransfer) return;
              e.dataTransfer.setData('application/x-openbook-chapter-character-index', String(item.origIndex));

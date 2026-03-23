@@ -1,27 +1,33 @@
-"""BookNLP-first parser adapter for OpenBook parse API."""
+"""Legacy-only parser adapter for OpenBook parse API."""
 
 import os
 import re
-import tempfile
-import builtins
-from collections import Counter
 from typing import Dict, List, Optional, Tuple
 
-from .dialogue_parser_service import DialogueParserService, DialogueLine
-from .knowledge_store import load_knowledge_for_file
 from .attribution_passes import (
     LineSignals,
+    build_paragraph_ranges,
     detect_nearby_speech_verb,
     extract_explicit_mentions,
     extract_first_sentence,
     extract_last_sentence,
+    find_paragraph_index_for_offset,
     infer_addressed_name,
+    infer_pronoun_attributed_gender,
+    infer_previous_paragraph_named_mention,
+    infer_recent_named_mention,
     infer_sentence_attributed_speaker,
     quote_boundary_quality,
     rank_candidates,
 )
+from .dialogue_parser_service import DialogueLine, DialogueParserService
+from .knowledge_store import load_knowledge_for_file
 
-BLOCKED_CHARACTER_TOKENS = {"he", "she", "as"}
+
+BLOCKED_CHARACTER_TOKENS = {
+    "he", "she", "as", "it", "that", "they", "them", "the",
+    "this", "these", "those",
+}
 
 
 def _normalize_text(value: str) -> str:
@@ -32,125 +38,40 @@ def _normalize_text(value: str) -> str:
         .replace("\u201c", '"')
         .replace("\u201d", '"')
     )
+    text = re.sub(r"(?<=\w)\s*'\s*(?=\w)", "'", text)
+    text = re.sub(r"(?<=\w)\s*-\s*(?=\w)", "-", text)
+    text = re.sub(r"\s+([,.;:!?])", r"\1", text)
     text = re.sub(r"^[\s\"'`“”‘’]+|[\s\"'`“”‘’]+$", "", text)
     text = re.sub(r"\s+", " ", text).strip()
     return text
 
 
-def _read_tsv(path: str) -> List[List[str]]:
-    rows: List[List[str]] = []
-    with open(path, "r", encoding="utf-8") as handle:
-        for line in handle:
-            line = line.rstrip("\n")
-            if not line:
-                continue
-            rows.append(line.split("\t"))
-    return rows
+def _normalize_gender_label(value: Optional[str]) -> Optional[str]:
+    lowered = str(value or "").strip().lower()
+    if not lowered:
+        return None
+    if lowered in {"m", "male", "man", "boy"}:
+        return "male"
+    if lowered in {"f", "female", "woman", "girl"}:
+        return "female"
+    if lowered in {"u", "unknown", "narrator"}:
+        return None
+    if lowered.startswith("he/"):
+        return "male"
+    if lowered.startswith("she/"):
+        return "female"
+    if lowered.startswith("they/"):
+        return "neutral"
+    return None
 
 
-def _build_coref_name_map(entities_path: str) -> Dict[str, str]:
-    rows = _read_tsv(entities_path)
-    if not rows:
-        return {}
-    start_idx = 1 if rows and rows[0] and rows[0][0].upper() == "COREF" else 0
-    names: Dict[str, Counter] = {}
-    for cols in rows[start_idx:]:
-        if len(cols) < 6:
-            continue
-        coref = cols[0]
-        prop = cols[3]
-        cat = cols[4]
-        text = cols[5].strip()
-        if cat != "PER" or not text:
-            continue
-        if coref not in names:
-            names[coref] = Counter()
-        weight = 10.0 if prop == "PROP" else (1.0 if prop == "NOM" else 0.001)
-        names[coref][text] += weight
-
-    best: Dict[str, str] = {}
-    for coref, counter in names.items():
-        if counter:
-            best[coref] = counter.most_common(1)[0][0]
-    return best
-
-
-def _canonicalize_name(raw_name: str, aliases: Dict[str, str], canonicals: Dict[str, str]) -> str:
-    if not raw_name:
-        return "narrator"
-    name = re.sub(r"\s+", " ", raw_name.strip())
-    lowered = name.lower()
-
-    if lowered in aliases:
-        return aliases[lowered]
-    if lowered in canonicals:
-        return canonicals[lowered]
-
-    simplified = re.sub(r"[^a-z0-9\s'-]", "", lowered)
-    if simplified in aliases:
-        return aliases[simplified]
-    if simplified in canonicals:
-        return canonicals[simplified]
-
-    return lowered
-
-
-def _canonicalize_name_with_strength(
-    raw_name: str,
-    aliases: Dict[str, str],
-    canonicals: Dict[str, str],
-) -> Tuple[str, float]:
-    if not raw_name:
-        return "narrator", 0.0
-    name = re.sub(r"\s+", " ", raw_name.strip())
-    lowered = name.lower()
-
-    if lowered in aliases:
-        return aliases[lowered], 1.0
-    if lowered in canonicals:
-        return canonicals[lowered], 0.85
-
-    simplified = re.sub(r"[^a-z0-9\s'-]", "", lowered)
-    if simplified in aliases:
-        return aliases[simplified], 0.7
-    if simplified in canonicals:
-        return canonicals[simplified], 0.55
-
-    return lowered, 0.2
-
-
-def _load_booknlp_quotes(
-    quotes_path: str,
-    coref_name_map: Dict[str, str],
-    aliases: Dict[str, str],
-    canonicals: Dict[str, str],
-) -> List[Dict[str, str]]:
-    rows = _read_tsv(quotes_path)
-    if not rows:
-        return []
-    start_idx = 1 if rows and rows[0] and rows[0][0] == "quote_start" else 0
-    out: List[Dict[str, str]] = []
-    for cols in rows[start_idx:]:
-        if len(cols) < 7:
-            continue
-        char_id = cols[5].strip()
-        quote_text = cols[6].strip()
-        raw_name = coref_name_map.get(char_id) or cols[4].strip() or "narrator"
-        canonical, alias_strength = _canonicalize_name_with_strength(
-            raw_name,
-            aliases=aliases,
-            canonicals=canonicals,
-        )
-        out.append(
-            {
-                "quote": quote_text,
-                "quote_norm": _normalize_text(quote_text),
-                "speaker": canonical,
-                "alias_strength": alias_strength,
-                "has_coref_name": bool(coref_name_map.get(char_id)),
-            }
-        )
-    return out
+def _read_text_with_fallback(file_path: str) -> str:
+    with open(file_path, "rb") as source_handle:
+        raw_bytes = source_handle.read()
+    try:
+        return raw_bytes.decode("utf-8")
+    except UnicodeDecodeError:
+        return raw_bytes.decode("cp1252", errors="replace")
 
 
 def _unique_suggestions(*names: Optional[str]) -> List[str]:
@@ -168,109 +89,100 @@ def _unique_suggestions(*names: Optional[str]) -> List[str]:
     return ordered
 
 
+def _build_line_attribution(signals: LineSignals, decision) -> Dict[str, object]:
+    selected_entry = next(
+        (
+            entry
+            for entry in decision.ranked
+            if _normalize_text(entry.name) == _normalize_text(decision.chosen_name)
+        ),
+        decision.ranked[0] if decision.ranked else None,
+    )
+    selected_reasons = list(selected_entry.reasons) if selected_entry else []
+
+    return {
+        "parserBackend": "legacy",
+        "contextGender": signals.context_gender,
+        "contextGenderCue": signals.context_gender_cue,
+        "genderConflict": bool(
+            selected_entry and "context_gender_conflict" in selected_entry.reasons
+        ),
+        "candidates": [
+            {
+                "name": entry.name,
+                "confidence": round(float(entry.score), 4),
+                "reasons": list(entry.reasons),
+            }
+            for entry in decision.ranked
+        ],
+        "decisionTrace": {
+            "selectedCandidate": decision.chosen_name,
+            "selectedReasons": selected_reasons,
+            "signals": {
+                "usedFallbackAlignment": signals.used_fallback_alignment,
+                "exactQuoteMatch": signals.exact_quote_match,
+                "quoteBoundaryQuality": round(float(signals.quote_boundary_quality), 4),
+                "nearbySpeechVerb": signals.nearby_speech_verb,
+                "hasCorefName": signals.has_coref_name,
+                "aliasMatchStrength": round(float(signals.alias_match_strength), 4),
+                "addressedNamePrevSentence": signals.addressed_name_prev_sentence,
+                "explicitQuoteMentions": list(signals.explicit_quote_mentions or []),
+                "nextSentenceAttributedSpeaker": signals.next_sentence_attributed_speaker,
+                "recentNamedMentionBeforeQuote": signals.recent_named_mention_before_quote,
+                "previousParagraphNamedMention": signals.previous_paragraph_named_mention,
+                "isReturning": signals.is_returning,
+                "continuesParagraphDialogue": signals.continues_paragraph_dialogue,
+                "lineEndsWithQuestion": signals.line_ends_with_question,
+                "nextDialogueLegacy": signals.next_dialogue_legacy,
+                "contextGender": signals.context_gender,
+                "contextGenderCue": signals.context_gender_cue,
+            },
+        },
+    }
+
+
+def _apply_attribution_override(line: DialogueLine, chosen_name: str, override_reason: str) -> None:
+    if not isinstance(line.attribution, dict):
+        return
+
+    candidate_rows = line.attribution.get("candidates")
+    if not isinstance(candidate_rows, list):
+        return
+
+    chosen_key = _normalize_text(chosen_name)
+    chosen_index = next(
+        (
+            index
+            for index, row in enumerate(candidate_rows)
+            if _normalize_text((row or {}).get("name")) == chosen_key
+        ),
+        None,
+    )
+    if chosen_index is None:
+        return
+
+    if chosen_index > 0:
+        chosen_row = candidate_rows.pop(chosen_index)
+        candidate_rows.insert(0, chosen_row)
+
+    selected_row = candidate_rows[0] if candidate_rows else {}
+    selected_reasons = list(selected_row.get("reasons") or [])
+    if override_reason not in selected_reasons:
+        selected_reasons.append(override_reason)
+        selected_row["reasons"] = selected_reasons
+
+    line.attribution["genderConflict"] = "context_gender_conflict" in selected_reasons
+    trace = line.attribution.setdefault("decisionTrace", {})
+    trace["selectedCandidate"] = chosen_name
+    trace["selectedReasons"] = selected_reasons
+    trace["overrideReason"] = override_reason
+
+
 class BookNLPParserService:
-    """BookNLP-first adapter that preserves legacy parse response shape."""
+    """Compatibility adapter that keeps parsing on the fast legacy path."""
 
     def __init__(self) -> None:
         self.legacy_service = DialogueParserService()
-        self.booknlp_cls = None
-        self.booknlp = None
-        self.model_unavailable_reason: Optional[str] = None
-
-    def _ensure_booknlp(self) -> bool:
-        if self.booknlp is not None:
-            return True
-        if self.model_unavailable_reason:
-            return False
-        try:
-            from booknlp.booknlp import BookNLP  # pylint: disable=import-outside-toplevel
-
-            self.booknlp_cls = BookNLP
-            self.booknlp = self.booknlp_cls(
-                "en",
-                {
-                    "pipeline": "entity,quote,coref",
-                    "model": "small",
-                },
-            )
-            return True
-        except Exception as exc:  # pylint: disable=broad-except
-            self.model_unavailable_reason = str(exc)
-            return False
-
-    def _run_booknlp(self, file_path: str) -> Tuple[str, str]:
-        with tempfile.TemporaryDirectory(prefix="openbook_booknlp_") as temp_dir:
-            chapter_out_dir = os.path.join(temp_dir, "chapter")
-            os.makedirs(chapter_out_dir, exist_ok=True)
-            book_id = "chapter"
-            quotes_path = os.path.join(chapter_out_dir, f"{book_id}.quotes")
-            entities_path = os.path.join(chapter_out_dir, f"{book_id}.entities")
-
-            normalized_input = os.path.join(chapter_out_dir, f"{book_id}.input.utf8.txt")
-            with open(file_path, "rb") as source_handle:
-                raw_bytes = source_handle.read()
-            try:
-                decoded = raw_bytes.decode("utf-8")
-            except UnicodeDecodeError:
-                decoded = raw_bytes.decode("cp1252", errors="replace")
-
-            # BookNLP may read plain text files using the platform default encoding.
-            # On Windows this is commonly cp1252, so write a Windows-compatible file
-            # to avoid charmap decode errors during processing.
-            input_encoding = "cp1252" if os.name == "nt" else "utf-8"
-            with open(
-                normalized_input,
-                "w",
-                encoding=input_encoding,
-                errors="replace",
-                newline="",
-            ) as normalized_handle:
-                normalized_handle.write(decoded)
-
-            original_open = builtins.open
-
-            def _utf8_default_open(file, mode="r", *args, **kwargs):
-                if os.name == "nt" and "b" not in mode and "encoding" not in kwargs:
-                    kwargs["encoding"] = "utf-8"
-                    kwargs.setdefault("errors", "replace")
-                return original_open(file, mode, *args, **kwargs)
-
-            try:
-                if os.name == "nt":
-                    builtins.open = _utf8_default_open
-                self.booknlp.process(normalized_input, chapter_out_dir, book_id)
-            finally:
-                if os.name == "nt":
-                    builtins.open = original_open
-
-            with open(quotes_path, "r", encoding="utf-8") as quote_handle:
-                quotes_content = quote_handle.read()
-            with open(entities_path, "r", encoding="utf-8") as entities_handle:
-                entities_content = entities_handle.read()
-
-        # Persist temporary outputs for parsing outside temp context
-        tmp_quotes = tempfile.NamedTemporaryFile(
-            mode="w", delete=False, encoding="utf-8", suffix=".quotes"
-        )
-        tmp_entities = tempfile.NamedTemporaryFile(
-            mode="w", delete=False, encoding="utf-8", suffix=".entities"
-        )
-        try:
-            tmp_quotes.write(quotes_content)
-            tmp_entities.write(entities_content)
-            tmp_quotes.close()
-            tmp_entities.close()
-            return tmp_quotes.name, tmp_entities.name
-        except Exception:
-            try:
-                os.unlink(tmp_quotes.name)
-            except OSError:
-                pass
-            try:
-                os.unlink(tmp_entities.name)
-            except OSError:
-                pass
-            raise
 
     def parse_file(
         self,
@@ -279,7 +191,7 @@ class BookNLPParserService:
         manual_blocklist: Optional[List[str]] = None,
         source_path: Optional[str] = None,
     ) -> Tuple[List[DialogueLine], List[str], Dict[str, object]]:
-        """Parse a chapter file with BookNLP-first attribution and legacy fallback."""
+        """Parse a chapter file with the legacy parser plus deterministic attribution scoring."""
         normalized_manual_blocklist = {
             _normalize_text(name)
             for name in (manual_blocklist or [])
@@ -290,258 +202,272 @@ class BookNLPParserService:
 
         self.legacy_service.blocked_speakers.update(effective_blocklist)
 
-        legacy_input_path = (
-            source_path
-            if (source_path and os.path.exists(source_path))
-            else file_path
-        )
+        legacy_input_path = source_path if (source_path and os.path.exists(source_path)) else file_path
         base_lines, _ = self.legacy_service.parse_file(legacy_input_path, options=options or {})
 
-        if not self._ensure_booknlp():
-            names = sorted(
-                list(
-                    set(
-                        line.speaker
-                        for line in base_lines
-                        if _normalize_text(line.speaker) not in effective_blocklist
-                    )
-                )
+        knowledge_store = load_knowledge_for_file(source_path or legacy_input_path)
+        display_name_by_key: Dict[str, str] = {}
+        known_gender_by_key: Dict[str, str] = {}
+
+        if knowledge_store:
+            for canonical in knowledge_store.genders.keys():
+                key = _normalize_text(canonical)
+                if not key:
+                    continue
+                display_name_by_key[key] = canonical
+                gender = _normalize_gender_label(knowledge_store.genders.get(canonical))
+                if gender:
+                    known_gender_by_key[key] = gender
+            for alias, canonical in knowledge_store.aliases.items():
+                alias_key = _normalize_text(alias)
+                canonical_key = _normalize_text(canonical)
+                if not alias_key or not canonical_key:
+                    continue
+                display_name_by_key.setdefault(alias_key, canonical)
+                if canonical_key in known_gender_by_key:
+                    known_gender_by_key[alias_key] = known_gender_by_key[canonical_key]
+
+        for line in base_lines:
+            speaker = str(line.speaker or "").strip()
+            if speaker:
+                display_name_by_key.setdefault(_normalize_text(speaker), speaker)
+            for suggestion in line.suggestions or []:
+                suggestion_name = str(suggestion or "").strip()
+                if suggestion_name:
+                    display_name_by_key.setdefault(_normalize_text(suggestion_name), suggestion_name)
+
+        known_names = sorted(set(display_name_by_key.values()))
+        original_text = _read_text_with_fallback(legacy_input_path)
+
+        paragraph_ranges = build_paragraph_ranges(original_text)
+        line_paragraph_index: Dict[int, int] = {}
+        last_entry_by_paragraph: Dict[int, int] = {}
+        previous_dialogue_by_line: Dict[int, Optional[int]] = {}
+        last_dialogue_by_paragraph: Dict[int, int] = {}
+        paragraphs_with_dialogue = set()
+
+        for idx, base_line in enumerate(base_lines):
+            paragraph_index = find_paragraph_index_for_offset(
+                paragraph_ranges,
+                base_line.span_start,
             )
-            return base_lines, names, {
-                "backend": "legacy",
-                "fallback_reason": self.model_unavailable_reason or "booknlp_unavailable",
-            }
+            line_paragraph_index[idx] = paragraph_index
+            if paragraph_index < 0:
+                continue
+            last_entry_by_paragraph[paragraph_index] = idx
+            if base_line.line_type != "dialogue":
+                continue
+            paragraphs_with_dialogue.add(paragraph_index)
+            previous_dialogue_by_line[idx] = last_dialogue_by_paragraph.get(paragraph_index)
+            last_dialogue_by_paragraph[paragraph_index] = idx
 
-        quotes_path = ""
-        entities_path = ""
-        try:
-            quotes_path, entities_path = self._run_booknlp(file_path)
-
-            knowledge_store = load_knowledge_for_file(source_path or file_path)
-            aliases: Dict[str, str] = {}
-            canonicals: Dict[str, str] = {}
-            display_name_by_key: Dict[str, str] = {}
-
-            if knowledge_store:
-                for alias, canonical in knowledge_store.aliases.items():
-                    aliases[_normalize_text(alias)] = _normalize_text(canonical)
-                for canonical in knowledge_store.genders.keys():
-                    key = _normalize_text(canonical)
-                    canonicals[key] = key
-                    display_name_by_key[key] = canonical
-
-            # Fallback display names from legacy parser output
-            for line in base_lines:
-                if line.speaker:
-                    key = _normalize_text(line.speaker)
-                    if key and key not in display_name_by_key:
-                        display_name_by_key[key] = line.speaker
-
-            known_names = sorted(set(display_name_by_key.values()))
-
-            coref_name_map = _build_coref_name_map(entities_path)
-            quotes = _load_booknlp_quotes(
-                quotes_path=quotes_path,
-                coref_name_map=coref_name_map,
-                aliases=aliases,
-                canonicals=canonicals,
+        is_returning_by_line = {
+            idx: (
+                paragraph_index >= 0
+                and paragraph_index in paragraphs_with_dialogue
+                and last_entry_by_paragraph.get(paragraph_index) == idx
             )
+            for idx, paragraph_index in line_paragraph_index.items()
+        }
 
-            with open(file_path, "rb") as source_handle:
-                raw_bytes = source_handle.read()
-            try:
-                original_text = raw_bytes.decode("utf-8")
-            except UnicodeDecodeError:
-                original_text = raw_bytes.decode("cp1252", errors="replace")
+        uncertain_lines = 0
+        resolved_dialogue_by_paragraph: Dict[int, str] = {}
 
-            qpos = 0
-            aligned = 0
-            exact_aligned = 0
-            fallback_aligned = 0
-            agreement_hits = 0
-            uncertain_lines = 0
+        next_legacy_by_line: Dict[int, Optional[str]] = {}
+        next_dialogue_legacy: Optional[str] = None
+        for idx in range(len(base_lines) - 1, -1, -1):
+            base_line = base_lines[idx]
+            if base_line.line_type != "dialogue":
+                continue
+            next_legacy_by_line[idx] = next_dialogue_legacy
+            current = str(base_line.speaker or "").strip()
+            if current:
+                next_dialogue_legacy = current
 
-            next_legacy_by_line: Dict[int, Optional[str]] = {}
-            next_dialogue_legacy: Optional[str] = None
-            for idx in range(len(base_lines) - 1, -1, -1):
-                base_line = base_lines[idx]
-                if base_line.line_type != "dialogue":
-                    continue
-                next_legacy_by_line[idx] = next_dialogue_legacy
-                current = str(base_line.speaker or "").strip()
-                if current:
-                    next_dialogue_legacy = current
+        for line_idx, line in enumerate(base_lines):
+            if line.line_type != "dialogue":
+                continue
 
-            for line_idx, line in enumerate(base_lines):
-                if line.line_type != "dialogue":
-                    continue
-
-                legacy_name = str(line.speaker or "").strip()
-                legacy_key = _normalize_text(legacy_name)
-                line_norm = _normalize_text(line.text)
-                chosen = None
-                used_fallback = False
-
-                lookahead = min(qpos + 8, len(quotes))
-                for idx in range(qpos, lookahead):
-                    if quotes[idx]["quote_norm"] == line_norm and line_norm:
-                        chosen = idx
-                        break
-
-                if chosen is None and qpos < len(quotes):
-                    chosen = qpos
-                    used_fallback = True
-
-                if chosen is None:
-                    continue
-
-                predicted_key = _normalize_text(quotes[chosen]["speaker"])
-                if not predicted_key:
-                    continue
-
-                predicted_name = display_name_by_key.get(
-                    predicted_key,
-                    quotes[chosen]["speaker"].title(),
-                )
-                if _normalize_text(predicted_name) in effective_blocklist:
-                    continue
-
-                if used_fallback:
-                    fallback_aligned += 1
+            legacy_name = str(line.speaker or "").strip()
+            paragraph_index = line_paragraph_index.get(line_idx, -1)
+            paragraph_range = (
+                paragraph_ranges[paragraph_index]
+                if 0 <= paragraph_index < len(paragraph_ranges)
+                else None
+            )
+            raw_context = ""
+            pre_quote_context = ""
+            post_quote_context = ""
+            if isinstance(line.span_start, int) and isinstance(line.span_end, int):
+                if paragraph_range:
+                    left = max(paragraph_range.start, line.span_start - 120)
+                    right = min(paragraph_range.end, line.span_end + 120)
+                    pre_left = paragraph_range.start
+                    post_right = paragraph_range.end
                 else:
-                    if legacy_key and legacy_key == predicted_key:
-                        agreement_hits += 1
-                    exact_aligned += 1
-
-                raw_context = ""
-                pre_quote_context = ""
-                post_quote_context = ""
-                if isinstance(line.span_start, int) and isinstance(line.span_end, int):
                     left = max(0, line.span_start - 120)
                     right = min(len(original_text), line.span_end + 120)
-                    raw_context = original_text[left:right]
                     pre_left = max(0, line.span_start - 240)
-                    pre_quote_context = original_text[pre_left:line.span_start]
                     post_right = min(len(original_text), line.span_end + 280)
-                    post_quote_context = original_text[line.span_end:post_right]
+                raw_context = original_text[left:right]
+                pre_quote_context = original_text[pre_left:line.span_start]
+                post_quote_context = original_text[line.span_end:post_right]
 
-                last_sentence = extract_last_sentence(pre_quote_context)
-                next_sentence = extract_first_sentence(post_quote_context)
-                addressed_name = infer_addressed_name(last_sentence, known_names)
-                explicit_mentions = extract_explicit_mentions(line.text, known_names)
-                next_sentence_speaker = infer_sentence_attributed_speaker(next_sentence, known_names)
-                next_legacy = next_legacy_by_line.get(line_idx)
-
-                dialogue_candidates = _unique_suggestions(predicted_name, legacy_name)
-                signals = LineSignals(
-                    predicted_name=predicted_name,
-                    legacy_name=legacy_name,
-                    prev_resolved=None,
-                    next_resolved=None,
-                    used_fallback_alignment=used_fallback,
-                    exact_quote_match=not used_fallback,
-                    quote_boundary_quality=quote_boundary_quality(raw_context, line.text),
-                    nearby_speech_verb=detect_nearby_speech_verb(raw_context),
-                    has_coref_name=bool(quotes[chosen].get("has_coref_name")),
-                    alias_match_strength=float(quotes[chosen].get("alias_strength") or 0.0),
-                    addressed_name_prev_sentence=addressed_name,
-                    explicit_quote_mentions=explicit_mentions,
-                    next_sentence_attributed_speaker=next_sentence_speaker,
-                    line_ends_with_question=str(line.text or "").strip().endswith("?"),
-                    next_dialogue_legacy=next_legacy,
+            last_sentence = extract_last_sentence(pre_quote_context)
+            next_sentence = extract_first_sentence(post_quote_context)
+            addressed_name = infer_addressed_name(last_sentence, known_names)
+            explicit_mentions = extract_explicit_mentions(line.text, known_names)
+            next_sentence_speaker = infer_sentence_attributed_speaker(next_sentence, known_names)
+            recent_named_mention = infer_recent_named_mention(pre_quote_context, known_names)
+            previous_paragraph_named_mention = None
+            context_gender = None
+            context_gender_cue = None
+            for sentence in (next_sentence, last_sentence):
+                context_gender, context_gender_cue = infer_pronoun_attributed_gender(sentence)
+                if context_gender:
+                    break
+            if (
+                context_gender
+                and next_sentence_speaker is None
+                and recent_named_mention is None
+                and previous_paragraph_named_mention is None
+                and paragraph_index > 0
+            ):
+                previous_paragraph_range = paragraph_ranges[paragraph_index - 1]
+                previous_paragraph_text = original_text[
+                    previous_paragraph_range.start:previous_paragraph_range.end
+                ]
+                previous_paragraph_named_mention = infer_previous_paragraph_named_mention(
+                    previous_paragraph_text,
+                    known_names,
                 )
-                decision = rank_candidates(dialogue_candidates, signals)
-                line.speaker = decision.chosen_name
-                line.is_suggestion = decision.is_suggestion
-                line.suggestions = [entry.name for entry in decision.ranked]
-                if decision.is_suggestion:
-                    uncertain_lines += 1
 
-                aligned += 1
-                qpos = chosen + 1
-
-            # Context-consistency pass:
-            # For uncertain lines, prefer a candidate that matches both neighboring
-            # high-confidence dialogue speakers when available.
-            dialogue_indices = [
-                idx for idx, value in enumerate(base_lines)
-                if value.line_type == "dialogue"
-            ]
-
-            for idx_pos, line_idx in enumerate(dialogue_indices):
-                line = base_lines[line_idx]
-                if not line.is_suggestion:
-                    continue
-                if not line.suggestions or len(line.suggestions) < 2:
-                    continue
-
-                previous_speaker = None
-                next_speaker = None
-
-                for prev_pos in range(idx_pos - 1, -1, -1):
-                    prev_line = base_lines[dialogue_indices[prev_pos]]
-                    if prev_line.line_type == "dialogue" and not prev_line.is_suggestion:
-                        previous_speaker = str(prev_line.speaker or "").strip()
-                        break
-
-                for next_pos in range(idx_pos + 1, len(dialogue_indices)):
-                    next_line = base_lines[dialogue_indices[next_pos]]
-                    if next_line.line_type == "dialogue" and not next_line.is_suggestion:
-                        next_speaker = str(next_line.speaker or "").strip()
-                        break
-
-                if not previous_speaker or not next_speaker:
-                    continue
-                if _normalize_text(previous_speaker) != _normalize_text(next_speaker):
-                    continue
-
-                for candidate in line.suggestions:
-                    if _normalize_text(candidate) == _normalize_text(previous_speaker):
-                        reordered = _unique_suggestions(candidate, *line.suggestions)
-                        line.speaker = reordered[0]
-                        line.suggestions = reordered
-                        break
-
-            names = sorted(
-                list(
-                    set(
-                        line.speaker
-                        for line in base_lines
-                        if _normalize_text(line.speaker) not in effective_blocklist
-                    )
-                )
+            next_legacy = next_legacy_by_line.get(line_idx)
+            prev_resolved = (
+                resolved_dialogue_by_paragraph.get(paragraph_index)
+                if paragraph_index >= 0
+                else None
             )
-            return base_lines, names, {
-                "backend": "booknlp",
-                "quotes": len(quotes),
-                "aligned_quotes": aligned,
-                "exact_aligned_quotes": exact_aligned,
-                "fallback_aligned_quotes": fallback_aligned,
-                "agreement_hits": agreement_hits,
-                "uncertain_lines": uncertain_lines,
-            }
-        except Exception as exc:  # pylint: disable=broad-except
-            names = sorted(
-                list(
-                    set(
-                        line.speaker
-                        for line in base_lines
-                        if _normalize_text(line.speaker) not in effective_blocklist
-                    )
-                )
+            continues_paragraph_dialogue = bool(
+                previous_dialogue_by_line.get(line_idx) is not None and prev_resolved
             )
-            return base_lines, names, {
-                "backend": "legacy",
-                "fallback_reason": f"booknlp_error: {exc}",
+
+            dialogue_candidates = _unique_suggestions(
+                *(line.suggestions or []),
+                legacy_name,
+                prev_resolved,
+                next_sentence_speaker,
+                recent_named_mention if context_gender else None,
+                previous_paragraph_named_mention if context_gender else None,
+            )
+            if not dialogue_candidates:
+                dialogue_candidates = _unique_suggestions(
+                    legacy_name,
+                    prev_resolved,
+                    next_sentence_speaker,
+                    recent_named_mention if context_gender else None,
+                    previous_paragraph_named_mention if context_gender else None,
+                )
+
+            candidate_genders: Dict[str, str] = {}
+            for candidate_name in dialogue_candidates:
+                candidate_key = _normalize_text(candidate_name)
+                candidate_gender = known_gender_by_key.get(candidate_key)
+                if candidate_gender:
+                    candidate_genders[candidate_key] = candidate_gender
+
+            signals = LineSignals(
+                predicted_name=legacy_name,
+                legacy_name=legacy_name,
+                prev_resolved=prev_resolved,
+                next_resolved=None,
+                used_fallback_alignment=False,
+                exact_quote_match=True,
+                quote_boundary_quality=quote_boundary_quality(raw_context, line.text),
+                nearby_speech_verb=detect_nearby_speech_verb(raw_context),
+                has_coref_name=False,
+                alias_match_strength=0.0,
+                addressed_name_prev_sentence=addressed_name,
+                explicit_quote_mentions=explicit_mentions,
+                next_sentence_attributed_speaker=next_sentence_speaker,
+                recent_named_mention_before_quote=recent_named_mention if context_gender else None,
+                previous_paragraph_named_mention=previous_paragraph_named_mention if context_gender else None,
+                candidate_genders=candidate_genders,
+                context_gender=context_gender,
+                context_gender_cue=context_gender_cue,
+                is_returning=is_returning_by_line.get(line_idx, False),
+                continues_paragraph_dialogue=continues_paragraph_dialogue,
+                line_ends_with_question=str(line.text or "").strip().endswith("?"),
+                next_dialogue_legacy=next_legacy,
+            )
+            decision = rank_candidates(dialogue_candidates, signals)
+            line.speaker = decision.chosen_name
+            line.is_suggestion = decision.is_suggestion
+            line.suggestions = [entry.name for entry in decision.ranked]
+            line.attribution = _build_line_attribution(signals, decision)
+            if decision.is_suggestion:
+                uncertain_lines += 1
+            elif paragraph_index >= 0 and line.speaker:
+                resolved_dialogue_by_paragraph[paragraph_index] = line.speaker
+
+        dialogue_indices = [
+            idx for idx, value in enumerate(base_lines)
+            if value.line_type == "dialogue"
+        ]
+
+        for idx_pos, line_idx in enumerate(dialogue_indices):
+            line = base_lines[line_idx]
+            if not line.is_suggestion or not line.suggestions or len(line.suggestions) < 2:
+                continue
+
+            current_paragraph = line_paragraph_index.get(line_idx, -1)
+            previous_speaker = None
+            next_speaker = None
+
+            for prev_pos in range(idx_pos - 1, -1, -1):
+                prev_idx = dialogue_indices[prev_pos]
+                if line_paragraph_index.get(prev_idx, -1) != current_paragraph:
+                    break
+                prev_line = base_lines[prev_idx]
+                if prev_line.line_type == "dialogue" and not prev_line.is_suggestion:
+                    previous_speaker = str(prev_line.speaker or "").strip()
+                    break
+
+            for next_pos in range(idx_pos + 1, len(dialogue_indices)):
+                next_idx = dialogue_indices[next_pos]
+                if line_paragraph_index.get(next_idx, -1) != current_paragraph:
+                    break
+                next_line = base_lines[next_idx]
+                if next_line.line_type == "dialogue" and not next_line.is_suggestion:
+                    next_speaker = str(next_line.speaker or "").strip()
+                    break
+
+            if not previous_speaker or not next_speaker:
+                continue
+            if _normalize_text(previous_speaker) != _normalize_text(next_speaker):
+                continue
+
+            for candidate in line.suggestions:
+                if _normalize_text(candidate) == _normalize_text(previous_speaker):
+                    reordered = _unique_suggestions(candidate, *line.suggestions)
+                    line.speaker = reordered[0]
+                    line.suggestions = reordered
+                    _apply_attribution_override(
+                        line,
+                        reordered[0],
+                        "same_paragraph_context_consistency",
+                    )
+                    break
+
+        names = sorted(
+            {
+                line.speaker
+                for line in base_lines
+                if _normalize_text(line.speaker) not in effective_blocklist
             }
-        finally:
-            if quotes_path and os.path.exists(quotes_path):
-                try:
-                    os.unlink(quotes_path)
-                except OSError:
-                    pass
-            if entities_path and os.path.exists(entities_path):
-                try:
-                    os.unlink(entities_path)
-                except OSError:
-                    pass
+        )
+        return base_lines, names, {
+            "backend": "legacy",
+            "fallback_reason": "booknlp_disabled_on_legacy_extraction_branch",
+            "uncertain_lines": uncertain_lines,
+        }

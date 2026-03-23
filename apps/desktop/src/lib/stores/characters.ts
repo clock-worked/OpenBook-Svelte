@@ -4,6 +4,7 @@ import { currentScript, bookRoot, currentChapter } from '$lib/stores/bookState';
 import { readCentralCharacters, readCharacters, getCharactersPath } from '$lib/services/fs';
 import { defaultColors } from '$lib/theme/colors';
 import { bookCharacters } from '$lib/stores/bookCharacters';
+import { normalizeCharacterGender } from '$lib/services/characterGender';
 
 export const characters = writable<CharactersJson>({ formatVersion: '2.0', characters: [] });
 
@@ -32,6 +33,7 @@ function buildDerivedCharacters(names: string[]): CharactersJson {
       const chapterChar = _chapterExtrasByName.get(name);
       const base: CharacterConfig = {
         name,
+        gender: normalizeCharacterGender(globalChar?.gender ?? chapterChar?.gender ?? 'Unknown'),
         color: globalChar?.color ?? chapterChar?.color ?? null,
         voice: globalChar?.voice ?? chapterChar?.voice ?? null,
         provider: globalChar?.provider ?? chapterChar?.provider ?? null,

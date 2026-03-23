@@ -13,7 +13,8 @@
   import ChapterCharacterBookList from './ChapterCharacterBookList.svelte';
   import ChapterCharacterDetails from './ChapterCharacterDetails.svelte';
   import Dropdown from '$lib/components/common/Dropdown.svelte';
-  import { setBookCharacterColor, renameBookCharacter, removeBookCharacter, bookCharacters, detachBookCharacterAlias, forceRefreshBookCharacters, mergeBookCharacters, setBookCharacterPrimaryName } from '$lib/stores/bookCharacters';
+  import { setBookCharacterColor, setBookCharacterGender, renameBookCharacter, removeBookCharacter, bookCharacters, detachBookCharacterAlias, forceRefreshBookCharacters, mergeBookCharacters, setBookCharacterPrimaryName } from '$lib/stores/bookCharacters';
+  import { normalizeCharacterGender } from '$lib/services/characterGender';
 
   const DISPLAY_ALPHA = 1.0; // Use solid colors for visibility
 
@@ -57,6 +58,30 @@
     }
     existingIds.add(id);
     return id;
+  }
+
+  function createBookCharacterRecord(name: string, overrides: Partial<Character> = {}): Character {
+    return {
+      id: typeof overrides.id === 'string' ? overrides.id : '',
+      name,
+      gender: normalizeCharacterGender(overrides.gender),
+      aliases: Array.isArray(overrides.aliases) ? overrides.aliases : [],
+      color: null,
+      notes: '',
+      stats: {
+        totalLines: 0,
+        chapterCount: 0,
+      },
+      voice: null,
+      provider: null,
+      voiceId: null,
+      voiceMeta: null,
+      manifestStats: null,
+      count: 0,
+      firstAppearance: null,
+      chapterCount: 0,
+      ...overrides,
+    } as Character;
   }
 
   $: {
@@ -232,9 +257,11 @@
     if (!data) return;
     const list = data.characters ?? [];
     if (list.some(c => c.name === name)) return;
+    const existingIds = new Set(list.map((character: any) => character?.id).filter((id): id is string => !!id));
+    const id = buildUniqueCharacterId(name, existingIds);
     const next: CharactersJson = {
       formatVersion: data.formatVersion || '2.0',
-      characters: [...list, { name, color: null, voice: null } as Character]
+      characters: [...list, createBookCharacterRecord(name, { id })]
     };
     await writeCentralCharacters(root, next);
     await forceRefreshBookCharacters();
@@ -570,7 +597,7 @@
     // Add to book-level characters.json
     const updated: CharactersJson = { 
       formatVersion: bookChars.formatVersion, 
-      characters: [...bookChars.characters, { id, name, color: null, voice: null } as Character] 
+      characters: [...bookChars.characters, createBookCharacterRecord(name, { id })] 
     };
     await persistCentralCharacters(root, updated);
     bookCharacters.set(updated);
@@ -706,7 +733,7 @@
       // Add to book-level characters.json (single source of truth)
       const updated: CharactersJson = { 
         formatVersion: bookChars.formatVersion, 
-        characters: [...bookChars.characters, { id, name, color: newCharacterColor ?? null, voice: null } as Character] 
+        characters: [...bookChars.characters, createBookCharacterRecord(name, { id, color: newCharacterColor ?? null })] 
       };
       await persistCentralCharacters(root, updated);
       bookCharacters.set(updated);
@@ -955,8 +982,10 @@
   {#if selectedBookCharacter}
     <ChapterCharacterDetails
       selectedName={selectedBookCharacter.name}
+      gender={normalizeCharacterGender(selectedBookCharacter.gender)}
       aliasItems={selectedAliasItems}
       color={selectedBookColor}
+      onSetGender={(gender) => setBookCharacterGender(selectedBookCharacter.name, gender)}
       onDetach={(aliasName) => detachBookCharacterAlias(selectedBookCharacter.name, aliasName)}
       onSetPrimary={(aliasName) => setPrimaryBookCharacterName(aliasName)}
     />

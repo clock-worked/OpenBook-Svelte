@@ -16,7 +16,7 @@ from pathlib import Path
 from typing import TextIO
 
 
-CHAPTER_FOLDER_PATTERN = re.compile(r"^(?P<number>\d+)-")
+CHAPTER_FOLDER_PATTERN = re.compile(r"^(?P<number>\d+)\s*-")
 
 
 @dataclass
@@ -116,6 +116,11 @@ def parse_args() -> argparse.Namespace:
         help="Per-chapter output folder name created inside each chapter dir.",
     )
     parser.add_argument(
+        "--full-audio-suffix",
+        default="-stephen-fry-full.wav",
+        help="Suffix appended to chapter dir name for the full chapter WAV.",
+    )
+    parser.add_argument(
         "--runner-script",
         type=Path,
         default=default_runner,
@@ -148,6 +153,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--line-chunk-min-chars", type=int, default=800)
     parser.add_argument("--line-chunk-join-ms", type=int, default=0)
     parser.add_argument("--no-line-chunk-generate", action="store_true")
+    parser.add_argument("--skip-generate", action="store_true")
     parser.add_argument("--character-filter", default=None)
 
     parser.add_argument(
@@ -349,6 +355,7 @@ def build_chapter_command(
     *,
     args: argparse.Namespace,
     chapter_dir: Path,
+    manifest_path: Path,
     output_dir: Path,
     full_audio_path: Path,
 ) -> list[str]:
@@ -359,6 +366,8 @@ def build_chapter_command(
         str(chapter_dir),
         "--sample-path",
         str(args.sample_path),
+        "--manifest",
+        str(manifest_path),
         "--output-dir",
         str(output_dir),
         "--full-audio",
@@ -381,10 +390,62 @@ def build_chapter_command(
         command.extend(["--batch-size", str(args.batch_size)])
     if args.no_line_chunk_generate:
         command.append("--no-line-chunk-generate")
+    if args.skip_generate:
+        command.append("--skip-generate")
     if args.character_filter:
         command.extend(["--character-filter", str(args.character_filter)])
 
     return command
+
+
+def build_manifest_from_dialogue(chapter_dir: Path) -> Path:
+    dialogue_path = chapter_dir / "dialogue.json"
+    if not dialogue_path.exists():
+        raise FileNotFoundError(f"Dialogue file not found: {dialogue_path}")
+
+    manifest_path = chapter_dir / "audio_lines" / "manifest.json"
+    if manifest_path.exists():
+        return manifest_path
+
+    payload = json.loads(dialogue_path.read_text(encoding="utf-8"))
+    raw_lines = payload.get("lines")
+    if not isinstance(raw_lines, list):
+        raise ValueError(f"Dialogue file missing lines[]: {dialogue_path}")
+
+    manifest_lines: list[dict[str, object]] = []
+    for entry in raw_lines:
+        if not isinstance(entry, dict):
+            continue
+        line_id = entry.get("id")
+        text = str(entry.get("text", "")).strip()
+        if not isinstance(line_id, int) or not text:
+            continue
+
+        character_id = str(entry.get("characterId", "unknown")).strip() or "unknown"
+        output_name = f"{line_id:04d}_{character_id}.wav"
+        manifest_lines.append(
+            {
+                "id": line_id,
+                "characterId": character_id,
+                "text": text,
+                "output": output_name,
+            }
+        )
+
+    if not manifest_lines:
+        raise ValueError(f"No usable dialogue lines found: {dialogue_path}")
+
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
+    manifest_payload = {
+        "dialogue": str(dialogue_path),
+        "output_dir": str(manifest_path.parent),
+        "lines": manifest_lines,
+    }
+    manifest_path.write_text(
+        json.dumps(manifest_payload, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    return manifest_path
 
 
 def _open_log(log_path: Path | None) -> TextIO | None:
@@ -438,7 +499,7 @@ def main() -> None:
 
     write_summary_header(summary_tsv)
 
-    workspace_root = Path(__file__).resolve().parents[1]
+    workspace_root = Path(__file__).resolve().parents[3]
     cudnn_bin = workspace_root / ".venv" / "Lib" / "site-packages" / "nvidia" / "cudnn" / "bin"
 
     env = os.environ.copy()
@@ -464,8 +525,87 @@ def main() -> None:
         for index, chapter_dir in enumerate(chapters, start=1):
             chapter_name = chapter_dir.name
             output_dir = chapter_dir / str(args.output_dir_name)
-            full_audio_path = output_dir / f"{chapter_name}-stephen-fry-full.wav"
+            full_audio_path = output_dir / f"{chapter_name}{args.full_audio_suffix}"
             report_path = output_dir / "split_validation_report.json"
+            dialogue_path = chapter_dir / "dialogue.json"
+
+            if not dialogue_path.exists():
+                skipped_result = ChapterResult(
+                    chapter=chapter_name,
+                    status=0,
+                    runtime_sec=0.0,
+                    flagged_count=None,
+                    flagged_line_ids=None,
+                    report_path=str(report_path) if report_path.exists() else None,
+                    output_dir=str(output_dir),
+                )
+                append_summary_row(summary_tsv, skipped_result)
+                results.append(skipped_result)
+                if log_handle is not None:
+                    log_handle.write(
+                        f"Skipping {chapter_name} because dialogue.json is missing: {dialogue_path}\n"
+                    )
+                    log_handle.flush()
+                current_chunk_line = (
+                    "Chunk   [############################] "
+                    f"skipped {chapter_name} (missing dialogue.json)"
+                )
+                progress_renderer.update(
+                    build_overall_progress_line(
+                        completed=len(results),
+                        total=total_chapters,
+                        run_started_at=run_started_at,
+                        average_chapter_sec=(
+                            sum(completed_durations) / len(completed_durations)
+                            if completed_durations
+                            else None
+                        ),
+                        current_chapter=None,
+                        current_chapter_elapsed_sec=None,
+                    ),
+                    current_chunk_line,
+                )
+                continue
+
+            if args.skip_generate and not full_audio_path.exists():
+                skipped_result = ChapterResult(
+                    chapter=chapter_name,
+                    status=0,
+                    runtime_sec=0.0,
+                    flagged_count=None,
+                    flagged_line_ids=None,
+                    report_path=str(report_path) if report_path.exists() else None,
+                    output_dir=str(output_dir),
+                )
+                append_summary_row(summary_tsv, skipped_result)
+                results.append(skipped_result)
+                if log_handle is not None:
+                    log_handle.write(
+                        f"Skipping {chapter_name} because full audio is missing: {full_audio_path}\n"
+                    )
+                    log_handle.flush()
+                current_chunk_line = (
+                    "Chunk   [############################] "
+                    f"skipped {chapter_name} (missing full audio)"
+                )
+                progress_renderer.update(
+                    build_overall_progress_line(
+                        completed=len(results),
+                        total=total_chapters,
+                        run_started_at=run_started_at,
+                        average_chapter_sec=(
+                            sum(completed_durations) / len(completed_durations)
+                            if completed_durations
+                            else None
+                        ),
+                        current_chapter=None,
+                        current_chapter_elapsed_sec=None,
+                    ),
+                    current_chunk_line,
+                )
+                continue
+
+            manifest_path = build_manifest_from_dialogue(chapter_dir)
 
             if args.skip_chapters_with_report and report_path.exists():
                 skipped_ids = load_flagged_line_ids(report_path)
@@ -531,6 +671,7 @@ def main() -> None:
             command = build_chapter_command(
                 args=args,
                 chapter_dir=chapter_dir,
+                manifest_path=manifest_path,
                 output_dir=output_dir,
                 full_audio_path=full_audio_path,
             )

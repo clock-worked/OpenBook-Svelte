@@ -8,6 +8,7 @@
   import { readTextFile, readDialogueForChapter, readScript, readCentralCharacters, writeCentralCharacters, getRootDirInfo, writeDialogue, writeScript, readJsonRelative } from '$lib/services/fs';
   import { readManifest } from '$lib/services/audio';
   import { API_ENDPOINTS, apiFetch } from '$lib/services/apiClient';
+  import { mapRawBookCharacters } from '$lib/services/bookCharacterRepository';
   import { characters, buildIdToNameMap } from '$lib/stores/characters';
   import { addBookCharacterAlias, bookCharacters } from '$lib/stores/bookCharacters';
   import ParagraphRow from '$lib/components/chapter/ParagraphRow.svelte';
@@ -103,7 +104,7 @@
           body: JSON.stringify(payload),
         }),
       onCharactersUpdated: (central) => {
-        bookCharacters.set(central as any);
+        bookCharacters.set(mapRawBookCharacters(central as any));
       },
       resetCharacterNameToIdCache: () => {
         characterNameToIdMap = null;

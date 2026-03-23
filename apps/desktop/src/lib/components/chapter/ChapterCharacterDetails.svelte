@@ -1,11 +1,16 @@
 <script lang="ts">
+  import type { Gender } from '$lib/types';
   import { Star } from 'lucide-svelte';
 
   export let selectedName: string;
+  export let gender: Gender = 'Unknown';
   export let aliasItems: Array<{ name: string; isPrimary: boolean; count: number }> = [];
   export let color: string = '#ccc';
   export let onDetach: (aliasName: string) => void;
   export let onSetPrimary: (aliasName: string) => void;
+  export let onSetGender: (gender: Gender) => void;
+
+  const genderOptions: Gender[] = ['Male', 'Female', 'Unknown'];
 </script>
 
 <style>
@@ -20,6 +25,41 @@
     font-size: 13px;
     color: #6b7280;
     margin-bottom: 6px;
+  }
+
+  .gender-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .gender-btn {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: #fff;
+    color: #374151;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 120ms ease, background-color 120ms ease, color 120ms ease;
+  }
+
+  .gender-btn.active {
+    color: #111827;
+    border-color: transparent;
+  }
+
+  .gender-btn.male.active {
+    background: rgba(59, 130, 246, 0.18);
+  }
+
+  .gender-btn.female.active {
+    background: rgba(236, 72, 153, 0.18);
+  }
+
+  .gender-btn.unknown.active {
+    background: rgba(107, 114, 128, 0.16);
   }
 
   .alias-list {
@@ -86,6 +126,23 @@
 </style>
 
 <div class="details-panel">
+  <div class="details-title">Gender</div>
+  <div class="gender-row">
+    {#each genderOptions as option}
+      <button
+        class="gender-btn"
+        class:active={gender === option}
+        class:male={option === 'Male'}
+        class:female={option === 'Female'}
+        class:unknown={option === 'Unknown'}
+        type="button"
+        on:click={() => onSetGender(option)}
+      >
+        {option}
+      </button>
+    {/each}
+  </div>
+
   <div class="details-title">Alias Cluster</div>
   <ul class="alias-list">
     {#each aliasItems as alias, index (index)}

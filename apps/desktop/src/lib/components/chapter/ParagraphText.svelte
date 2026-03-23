@@ -2,7 +2,7 @@
   import { createEventDispatcher, onDestroy, onMount } from 'svelte';
   import { colorForCharacter, hexToRgba, characters } from '$lib/stores/characters';
   import { conflictCursor } from '$lib/stores/selection';
-  import type { ParagraphRun } from '$lib/types';
+  import type { LineAttributionDecisionTrace, ParagraphRun } from '$lib/types';
   import type { ToolMode } from '$lib/stores/selection';
   import { currentChapter, currentScript } from '$lib/stores/bookState';
   import { audioState, seek } from '$lib/stores/audio';
@@ -135,6 +135,10 @@
   const MAX_HIGHLIGHT_DURATION_MS = 1100;
   const MIN_HIGHLIGHT_DURATION_MS = 180;
   const HIGHLIGHT_MS_PER_CHARACTER = 3;
+  const TRACE_TOOLTIP_DELAY_MS = 1800;
+  const TRACE_TOOLTIP_MOVE_THRESHOLD_PX = 8;
+  const TRACE_TOOLTIP_WIDTH_PX = 360;
+  const TRACE_TOOLTIP_HEIGHT_PX = 320;
 
   const dispatch = createEventDispatcher();
 
@@ -147,6 +151,24 @@
     hasGeneratedAudio: boolean;
     hasPrefixMarker: boolean;
     displayText: string;
+  };
+
+  type TraceTooltipEntry = {
+    label: string;
+    value: string;
+  };
+
+  type TraceTooltipData = {
+    selectedCandidate: string | null;
+    resolutionStatus: string | null;
+    confidence: string | null;
+    parserBackend: string | null;
+    contextGender: string | null;
+    contextGenderCue: string | null;
+    genderConflict: boolean;
+    selectedReasons: string[];
+    overrideReason: string | null;
+    signalEntries: TraceTooltipEntry[];
   };
 
   let revealedLineCount = Number.MAX_SAFE_INTEGER;
@@ -163,6 +185,13 @@
   let totalDisplayCharacters = 0;
   let totalRevealLines = 0;
   let totalHighlightCharacters = 0;
+  let traceTooltip: TraceTooltipData | null = null;
+  let pendingTraceTooltip: TraceTooltipData | null = null;
+  let traceTooltipTimer: number | null = null;
+  let traceHoverLineId: number | null = null;
+  let traceHoverOrigin: { x: number; y: number } | null = null;
+  let traceTooltipX = 12;
+  let traceTooltipY = 12;
 
   function splitTextIntoApproxLines(text: string, maxChars: number): string[] {
     if (!text) return [];
@@ -314,11 +343,13 @@
   onDestroy(() => {
     stopTypingAnimation();
     resetHighlightState();
+    hideTraceTooltip();
   });
 
   onMount(() => {
     const refreshLayout = () => {
       layoutVersion += 1;
+      hideTraceTooltip();
     };
 
     window.addEventListener('scroll', refreshLayout, { passive: true });
@@ -414,6 +445,183 @@
     const scr = get(currentScript);
     if (!scr) return null;
     return scr.lines.find((line) => line.id === lineId) || null;
+  }
+
+  function clearTraceTooltipTimer() {
+    if (traceTooltipTimer != null) {
+      clearTimeout(traceTooltipTimer);
+      traceTooltipTimer = null;
+    }
+  }
+
+  function hideTraceTooltip() {
+    clearTraceTooltipTimer();
+    traceTooltip = null;
+    pendingTraceTooltip = null;
+    traceHoverLineId = null;
+    traceHoverOrigin = null;
+  }
+
+  function formatTraceLabel(value: string | null | undefined): string {
+    if (!value) return '';
+    return value
+      .replace(/[_-]+/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .replace(/\b\w/g, (character) => character.toUpperCase());
+  }
+
+  function trimTraceValue(value: string, maxLength = 140): string {
+    if (value.length <= maxLength) return value;
+    return `${value.slice(0, maxLength - 1).trimEnd()}...`;
+  }
+
+  function formatTraceValue(value: unknown): string {
+    if (value == null) return 'None';
+    if (typeof value === 'boolean') return value ? 'Yes' : 'No';
+    if (typeof value === 'number') {
+      if (!Number.isFinite(value)) return 'Unknown';
+      const text = Math.abs(value) >= 10 ? value.toFixed(1) : value.toFixed(2);
+      return text.replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1').replace(/\.$/, '');
+    }
+    if (typeof value === 'string') return trimTraceValue(value);
+    if (Array.isArray(value)) {
+      return trimTraceValue(value.map((item) => formatTraceValue(item)).join(', '));
+    }
+
+    try {
+      return trimTraceValue(JSON.stringify(value));
+    } catch {
+      return trimTraceValue(String(value));
+    }
+  }
+
+  function formatTraceConfidence(value: unknown): string | null {
+    const numeric = Number(value);
+    if (!Number.isFinite(numeric)) return null;
+    const clamped = Math.max(0, Math.min(1, numeric));
+    return `${Math.round(clamped * 100)}%`;
+  }
+
+  function toTraceSignalEntries(signals: Record<string, unknown> | null | undefined): TraceTooltipEntry[] {
+    return Object.entries(signals ?? {})
+      .filter(([, value]) => {
+        if (value == null) return false;
+        if (typeof value === 'string') return value.trim().length > 0;
+        if (Array.isArray(value)) return value.length > 0;
+        return true;
+      })
+      .map(([label, value]) => ({
+        label: formatTraceLabel(label),
+        value: formatTraceValue(value),
+      }));
+  }
+
+  function positionTraceTooltip(clientX: number, clientY: number) {
+    const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : TRACE_TOOLTIP_WIDTH_PX + 24;
+    const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : TRACE_TOOLTIP_HEIGHT_PX + 24;
+    traceTooltipX = Math.max(12, Math.min(clientX + 18, viewportWidth - TRACE_TOOLTIP_WIDTH_PX - 12));
+    traceTooltipY = Math.max(12, Math.min(clientY + 18, viewportHeight - TRACE_TOOLTIP_HEIGHT_PX - 12));
+  }
+
+  function buildTraceTooltip(lineId: number): TraceTooltipData | null {
+    const line = getLineData(lineId) as { attribution?: any } | null;
+    const attribution = line?.attribution;
+    const decisionTrace = attribution?.decisionTrace as LineAttributionDecisionTrace | null | undefined;
+    if (!decisionTrace) return null;
+
+    const selectedReasons = Array.isArray(decisionTrace.selectedReasons)
+      ? decisionTrace.selectedReasons.filter((reason): reason is string => typeof reason === 'string' && reason.trim().length > 0)
+      : [];
+
+    const selectedCandidate =
+      typeof decisionTrace.selectedCandidate === 'string' && decisionTrace.selectedCandidate.trim().length > 0
+        ? decisionTrace.selectedCandidate
+        : (typeof attribution?.candidates?.[0]?.name === 'string' ? attribution.candidates[0].name : null);
+
+    return {
+      selectedCandidate,
+      resolutionStatus:
+        typeof attribution?.resolutionStatus === 'string' && attribution.resolutionStatus.trim().length > 0
+          ? formatTraceLabel(attribution.resolutionStatus)
+          : null,
+      confidence: formatTraceConfidence(attribution?.confidence),
+      parserBackend:
+        typeof attribution?.parserBackend === 'string' && attribution.parserBackend.trim().length > 0
+          ? attribution.parserBackend
+          : null,
+      contextGender:
+        typeof attribution?.contextGender === 'string' && attribution.contextGender.trim().length > 0
+          ? formatTraceLabel(attribution.contextGender)
+          : null,
+      contextGenderCue:
+        typeof attribution?.contextGenderCue === 'string' && attribution.contextGenderCue.trim().length > 0
+          ? attribution.contextGenderCue
+          : null,
+      genderConflict: Boolean(attribution?.genderConflict),
+      selectedReasons,
+      overrideReason:
+        typeof decisionTrace.overrideReason === 'string' && decisionTrace.overrideReason.trim().length > 0
+          ? decisionTrace.overrideReason
+          : null,
+      signalEntries: toTraceSignalEntries(decisionTrace.signals),
+    };
+  }
+
+  function queueTraceTooltip(run: ParagraphRun, event: MouseEvent) {
+    if (toolMode !== 'review' || run.lineId == null) return;
+
+    const payload = buildTraceTooltip(run.lineId);
+    if (!payload) return;
+
+    clearTraceTooltipTimer();
+    pendingTraceTooltip = payload;
+    traceTooltip = null;
+    traceHoverLineId = run.lineId;
+    traceHoverOrigin = { x: event.clientX, y: event.clientY };
+    positionTraceTooltip(event.clientX, event.clientY);
+
+    traceTooltipTimer = window.setTimeout(() => {
+      traceTooltipTimer = null;
+      if (traceHoverLineId !== run.lineId || !pendingTraceTooltip) return;
+      traceTooltip = pendingTraceTooltip;
+    }, TRACE_TOOLTIP_DELAY_MS);
+  }
+
+  function handleRunMouseEnter(run: ParagraphRun, event: MouseEvent) {
+    if (run.characterId && run.characterId.toLowerCase() !== 'narrator') {
+      setHovered(run.characterId);
+    }
+    hideTraceTooltip();
+    queueTraceTooltip(run, event);
+  }
+
+  function handleRunMouseMove(run: ParagraphRun, event: MouseEvent) {
+    if (toolMode !== 'review' || run.lineId == null || traceHoverLineId !== run.lineId || !traceHoverOrigin) {
+      return;
+    }
+
+    positionTraceTooltip(event.clientX, event.clientY);
+    const distance = Math.hypot(event.clientX - traceHoverOrigin.x, event.clientY - traceHoverOrigin.y);
+    if (distance > TRACE_TOOLTIP_MOVE_THRESHOLD_PX) {
+      queueTraceTooltip(run, event);
+    }
+  }
+
+  function handleRunMouseLeave() {
+    setHovered(null);
+    hideTraceTooltip();
+  }
+
+  function handleRunFocus(run: ParagraphRun) {
+    if (run.characterId && run.characterId.toLowerCase() !== 'narrator') {
+      setHovered(run.characterId);
+    }
+  }
+
+  function handleRunBlur() {
+    setHovered(null);
+    hideTraceTooltip();
   }
 
   function confidenceBadgeForRun(run: ParagraphRun): { label: string; low: boolean; unknown: boolean; confirmed: boolean } | null {
@@ -607,13 +815,15 @@
           style={`--bg:${bgForRun(run, hoveredCharacter)};`}
           role="button"
           tabindex="0"
-          on:mouseenter={() => { if (run.characterId?.toLowerCase() !== 'narrator') setHovered(run.characterId); }}
-          on:mouseleave={() => setHovered(null)}
-          on:focus={() => { if (run.characterId?.toLowerCase() !== 'narrator') setHovered(run.characterId); }}
-          on:blur={() => setHovered(null)}
+          on:mouseenter={(event) => handleRunMouseEnter(run, event)}
+          on:mousemove={(event) => handleRunMouseMove(run, event)}
+          on:mouseleave={handleRunMouseLeave}
+          on:focus={() => handleRunFocus(run)}
+          on:blur={handleRunBlur}
           data-lineid={run.lineId}
           on:click={(e) => { 
             if (run.lineId == null) return;
+            hideTraceTooltip();
             if (toolMode === 'review') {
               dispatch('lineMenu', { ev: e, lineIds: [run.lineId] });
             } else if (toolMode === 'join-split') {
@@ -637,6 +847,7 @@
           }}
           on:contextmenu={(e) => {
             if (run.lineId == null) return;
+            hideTraceTooltip();
             if (toolMode === 'audio') {
               dispatch('audioContextMenu', { lineId: run.lineId, characterName: run.characterId, ev: e });
             }
@@ -644,6 +855,7 @@
           on:keydown={(e) => { 
             if ((e.key === 'Enter' || e.key === ' ') && run.lineId != null) { 
               e.preventDefault(); 
+              hideTraceTooltip();
               if (toolMode === 'review') {
                 dispatch('lineMenu', { ev: e, lineIds: [run.lineId] });
               } else if (toolMode === 'join-split') {
@@ -709,6 +921,79 @@
       {/if}
     {/each}
   {/key}
+
+  {#if traceTooltip}
+    <div
+      class="decision-trace-tooltip"
+      role="tooltip"
+      style={`left:${traceTooltipX}px; top:${traceTooltipY}px;`}
+    >
+      <div class="trace-tooltip-title">Attribution Trace</div>
+      <div class="trace-meta-grid">
+        {#if traceTooltip.selectedCandidate}
+          <div class="trace-label">Selected</div>
+          <div class="trace-value">{traceTooltip.selectedCandidate}</div>
+        {/if}
+        {#if traceTooltip.resolutionStatus}
+          <div class="trace-label">Status</div>
+          <div class="trace-value">{traceTooltip.resolutionStatus}</div>
+        {/if}
+        {#if traceTooltip.confidence}
+          <div class="trace-label">Confidence</div>
+          <div class="trace-value">{traceTooltip.confidence}</div>
+        {/if}
+        {#if traceTooltip.parserBackend}
+          <div class="trace-label">Backend</div>
+          <div class="trace-value">{traceTooltip.parserBackend}</div>
+        {/if}
+        {#if traceTooltip.contextGender}
+          <div class="trace-label">Context Gender</div>
+          <div class="trace-value">{traceTooltip.contextGender}</div>
+        {/if}
+        {#if traceTooltip.contextGenderCue}
+          <div class="trace-label">Gender Cue</div>
+          <div class="trace-value">{traceTooltip.contextGenderCue}</div>
+        {/if}
+        {#if traceTooltip.genderConflict}
+          <div class="trace-label">Gender Conflict</div>
+          <div class="trace-value">Yes</div>
+        {/if}
+        {#if traceTooltip.overrideReason}
+          <div class="trace-label">Override</div>
+          <div class="trace-value">{formatTraceLabel(traceTooltip.overrideReason)}</div>
+        {/if}
+      </div>
+
+      {#if traceTooltip.selectedReasons.length > 0}
+        <div class="trace-section">
+          <div class="trace-section-title">Reasons</div>
+          <div class="trace-chip-list">
+            {#each traceTooltip.selectedReasons as reason}
+              <span class="trace-chip">{formatTraceLabel(reason)}</span>
+            {/each}
+          </div>
+        </div>
+      {/if}
+
+      {#if traceTooltip.signalEntries.length > 0}
+        <div class="trace-section">
+          <div class="trace-section-title">Signals</div>
+          <div class="trace-signal-list">
+            {#each traceTooltip.signalEntries as signal}
+              <div class="trace-signal-row">
+                <span class="trace-signal-key">{signal.label}</span>
+                <span class="trace-signal-value">{signal.value}</span>
+              </div>
+            {/each}
+          </div>
+        </div>
+      {:else if traceTooltip.selectedReasons.length === 0}
+        <div class="trace-section">
+          <div class="trace-empty">No additional decision signals recorded.</div>
+        </div>
+      {/if}
+    </div>
+  {/if}
   </div>
 
 <style>
@@ -888,6 +1173,105 @@
     transition: left 0.08s linear, top 0.05s linear;
     z-index: 10;
     /* box-shadow: 0 0 4px rgba(0, 0, 0, 0.3); */
+  }
+
+  .decision-trace-tooltip {
+    position: fixed;
+    z-index: 40;
+    width: min(360px, calc(100vw - 24px));
+    max-height: min(320px, calc(100vh - 24px));
+    overflow: auto;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.26);
+    background: rgba(15, 23, 42, 0.96);
+    color: #e2e8f0;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.28);
+    backdrop-filter: blur(8px);
+    pointer-events: none;
+  }
+
+  .trace-tooltip-title,
+  .trace-section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #93c5fd;
+  }
+
+  .trace-tooltip-title {
+    margin-bottom: 10px;
+  }
+
+  .trace-meta-grid {
+    display: grid;
+    grid-template-columns: minmax(92px, auto) minmax(0, 1fr);
+    gap: 6px 10px;
+  }
+
+  .trace-label,
+  .trace-signal-key {
+    font-size: 11px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .trace-value,
+  .trace-signal-value,
+  .trace-empty {
+    font-size: 12px;
+    color: #f8fafc;
+    word-break: break-word;
+  }
+
+  .trace-section {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(148, 163, 184, 0.18);
+  }
+
+  .trace-section-title {
+    margin-bottom: 8px;
+  }
+
+  .trace-chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .trace-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(96, 165, 250, 0.22);
+    background: rgba(59, 130, 246, 0.16);
+    color: #dbeafe;
+    font-size: 11px;
+  }
+
+  .trace-signal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .trace-signal-row {
+    display: grid;
+    grid-template-columns: minmax(118px, 132px) minmax(0, 1fr);
+    gap: 8px;
+    align-items: start;
+  }
+
+  .trace-signal-value {
+    color: #e2e8f0;
+  }
+
+  .trace-empty {
+    color: #cbd5e1;
   }
 </style>
 

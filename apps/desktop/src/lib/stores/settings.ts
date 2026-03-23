@@ -39,8 +39,8 @@ export const audiobookSettings = writable<AudiobookSettings>({
 });
 
 export const parserHints = writable<ParserHints>({
-  protagonistName: 'Jake',
-  protagonistNames: ['Jake'],
+  protagonistName: '',
+  protagonistNames: [],
   povMode: 'first_person',
   learnVerbs: false,
   heuristics: {

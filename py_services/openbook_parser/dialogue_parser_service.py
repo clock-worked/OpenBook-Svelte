@@ -42,11 +42,73 @@ DEFAULT_PARSER_OPTIONS = {
     },
 }
 NARRATOR_PERSONA = "Narrator"
-DEFAULT_BLOCKED_SPEAKERS = {"he", "she", "as"}
+DEFAULT_BLOCKED_SPEAKERS = {
+    "he", "she", "as", "it", "that", "they", "them", "the",
+    "this", "these", "those",
+}
+EXTRA_ATTRIBUTION_VERBS = {
+    "cursed",
+    "gravelled",
+    "keened",
+    "pointed out",
+}
 
 
 def _normalize_speaker_token(value):
     return str(value or "").strip().lower()
+
+
+def _is_blocked_speaker_token(value):
+    return _normalize_speaker_token(value) in DEFAULT_BLOCKED_SPEAKERS
+
+
+def build_paragraph_ranges(raw_text):
+    """Return non-empty paragraph ranges as absolute character offsets."""
+    text = str(raw_text or "")
+    if not text:
+        return []
+
+    ranges = []
+    text_length = len(text)
+    index = 0
+
+    while index < text_length:
+        line_start = index
+        line_end = line_start
+        while line_end < text_length and text[line_end] not in ("\n", "\r"):
+            line_end += 1
+
+        line_text = text[line_start:line_end]
+        next_line_start = line_end
+        if next_line_start < text_length:
+            if (
+                text[next_line_start] == "\r"
+                and next_line_start + 1 < text_length
+                and text[next_line_start + 1] == "\n"
+            ):
+                next_line_start += 2
+            else:
+                next_line_start += 1
+
+        if line_text.strip():
+            ranges.append((line_start, line_end))
+
+        index = next_line_start
+
+    return ranges
+
+
+def find_paragraph_index_for_offset(paragraph_ranges, offset):
+    """Locate the paragraph containing an absolute character offset."""
+    if not isinstance(offset, int):
+        return -1
+
+    for index, paragraph_range in enumerate(paragraph_ranges):
+        start, end = paragraph_range
+        if start <= offset < end:
+            return index
+
+    return -1
 
 
 class CharacterManager:
@@ -122,11 +184,13 @@ class DialogueLine:
         suggestions=None,
         span_start=None,
         span_end=None,
+        attribution=None,
     ):
         self.speaker = speaker
         self.line_type = line_type
         self.is_suggestion = is_suggestion
         self.suggestions = suggestions or []
+        self.attribution = attribution
         # Absolute character offsets into the original raw text (start inclusive, end exclusive)
         self.span_start = span_start
         self.span_end = span_end
@@ -186,6 +250,7 @@ class DialogueLine:
             'suggestions': self.suggestions,
             'span_start': self.span_start,
             'span_end': self.span_end,
+            'attribution': self.attribution,
         }
 
     @staticmethod
@@ -201,6 +266,7 @@ class DialogueLine:
                 suggestions=data.get('suggestions', []),
                 span_start=data.get('span_start'),
                 span_end=data.get('span_end'),
+                attribution=data.get('attribution'),
             )
         else:
             line = DialogueLine(
@@ -211,6 +277,7 @@ class DialogueLine:
                 suggestions=data.get('suggestions', []),
                 span_start=data.get('span_start'),
                 span_end=data.get('span_end'),
+                attribution=data.get('attribution'),
             )
             line.segments = data.get('segments', [])
         return line
@@ -241,6 +308,12 @@ class HybridDialogueParser:
         self.direct_speech_verbs = [v.lower() for v in (direct_speech_verbs or []) if v]
         self.reaction_verbs = [v.lower() for v in (reaction_verbs or []) if v]
         self.direct_speech_verbs_regex = self._verbs_to_regex(self.direct_speech_verbs)
+        attribution_verbs = sorted(
+            set(self.direct_speech_verbs + self.reaction_verbs + list(EXTRA_ATTRIBUTION_VERBS)),
+            key=len,
+            reverse=True,
+        )
+        self.attribution_verbs_regex = self._verbs_to_regex(attribution_verbs)
         self.all_verbs_regex = self._verbs_to_regex(self.direct_speech_verbs + self.reaction_verbs)
         self.subjects_regex_str = self.char_manager.get_all_subjects_regex()
         self.blocked_speakers = set(DEFAULT_BLOCKED_SPEAKERS)
@@ -265,8 +338,40 @@ class HybridDialogueParser:
             self.subjects_regex_str = self.char_manager.get_all_subjects_regex()
         return name
 
+    def _sanitize_speaker_suggestions(self, speaker):
+        value = str(speaker or "").strip()
+        if not value:
+            return None
+        if not (value.startswith('[') and value.endswith(']')):
+            return value
+
+        seen = set()
+        cleaned = []
+        for raw_name in value.strip('[]').split('|'):
+            candidate = str(raw_name or '').strip()
+            key = _normalize_speaker_token(candidate)
+            if not candidate or not key or key in self.blocked_speakers or key in seen:
+                continue
+            seen.add(key)
+            cleaned.append(candidate)
+
+        if not cleaned:
+            return None
+        if len(cleaned) == 1:
+            return cleaned[0]
+        return f"[{'|'.join(cleaned)}]"
+
     def _heuristic_enabled(self, name):
         return bool(self.heuristics.get(name, True))
+
+    def _chunks_share_paragraph(self, chunks, left_index, right_index):
+        if left_index < 0 or right_index < 0:
+            return False
+        if left_index >= len(chunks) or right_index >= len(chunks):
+            return False
+        left_paragraph = chunks[left_index].get("paragraph_index", -1)
+        right_paragraph = chunks[right_index].get("paragraph_index", -1)
+        return left_paragraph >= 0 and left_paragraph == right_paragraph
 
     def _is_first_person_text(self, text):
         return re.search(r"\b(I|I'm|I’ve|I'd|me|my|mine)\b", text, re.I)
@@ -289,12 +394,14 @@ class HybridDialogueParser:
         current_pos = 0
         # Split on any quoted span using straight or curly quotes
         raw_chunks = re.split(r'(["“”].*?["“”])', raw_text)
+        paragraph_ranges = build_paragraph_ranges(raw_text)
         for chunk_text in raw_chunks:
             if not chunk_text.strip():
                 current_pos += len(chunk_text)
                 continue
             chunk_type = "dialogue" if chunk_text.startswith(('"', '“', '”')) else "narration"
             start_index = raw_text.find(chunk_text, current_pos)
+            paragraph_index = find_paragraph_index_for_offset(paragraph_ranges, start_index)
             # Keep both the original text (including quotes/spaces) and the trimmed
             # text used downstream
             chunks.append({
@@ -302,7 +409,8 @@ class HybridDialogueParser:
                 "orig_text": chunk_text,
                 "text": chunk_text.strip('"“” '),
                 "speaker": "Unassigned",
-                "start_index": start_index
+                "start_index": start_index,
+                "paragraph_index": paragraph_index,
             })
             current_pos = start_index + len(chunk_text)
 
@@ -416,6 +524,19 @@ class HybridDialogueParser:
                             prev = self._pass_4_contiguous_dialogue(i, chunks)
                             final_speaker = prev or final_speaker
 
+                final_speaker = self._sanitize_speaker_suggestions(final_speaker) or final_speaker
+                if (
+                    isinstance(final_speaker, str)
+                    and _normalize_speaker_token(final_speaker) in self.blocked_speakers
+                ):
+                    final_speaker = "Unknown"
+                if self.pov_mode == "first_person" and self._heuristic_enabled(
+                    "first_person_override"
+                ):
+                    if self._is_first_person_text(chunk['text']) and self.primary_protagonist:
+                        if final_speaker in [self.narrator_persona, "Unknown", None]:
+                            final_speaker = self.primary_protagonist
+
                 chunk["speaker"] = final_speaker
                 if final_speaker and not str(final_speaker).startswith('['):
                     self._update_context(final_speaker)
@@ -424,12 +545,20 @@ class HybridDialogueParser:
 
     # Helper methods
     def _get_forward_tag(self, index, chunks):
-        if (index + 1) < len(chunks) and chunks[index + 1]["type"] == "narration":
+        if (
+            (index + 1) < len(chunks)
+            and chunks[index + 1]["type"] == "narration"
+            and self._chunks_share_paragraph(chunks, index, index + 1)
+        ):
             return chunks[index + 1]
         return None
     
     def _get_backward_tag(self, index, chunks):
-        if index > 0 and chunks[index - 1]["type"] == "narration":
+        if (
+            index > 0
+            and chunks[index - 1]["type"] == "narration"
+            and self._chunks_share_paragraph(chunks, index, index - 1)
+        ):
             return chunks[index - 1]
         return None
 
@@ -478,7 +607,7 @@ class HybridDialogueParser:
             tag_text = forward_tag['text'].lstrip(', ')
             match = re.match(
                 fr'\b(he|she|they)\b\s+'
-                fr'({self.direct_speech_verbs_regex})\b',
+                fr'({self.attribution_verbs_regex})\b',
                 tag_text,
                 re.I,
             )
@@ -498,7 +627,7 @@ class HybridDialogueParser:
         if not backward_tag:
             return None
         tag_text = backward_tag['text']
-        pronoun_verb_regex = fr'\b(he|she|they)\b\s*({self.direct_speech_verbs_regex})\b'
+        pronoun_verb_regex = fr'\b(he|she|they)\b\s*({self.attribution_verbs_regex})\b'
         matches = list(re.finditer(pronoun_verb_regex, tag_text, re.I))
         if matches:
             last_match = matches[-1]
@@ -514,7 +643,7 @@ class HybridDialogueParser:
             tag_text = forward_tag['text'].lstrip(', ')
             match = re.search(
                 fr'^\s*({self.subjects_regex_str})\s*'
-                fr'({self.direct_speech_verbs_regex})',
+                fr'({self.attribution_verbs_regex})',
                 tag_text,
                 re.I,
             )
@@ -522,7 +651,7 @@ class HybridDialogueParser:
                 return self.char_manager.resolve_alias(match.group(1))
             fallback = re.search(
                 fr'^\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s+'
-                fr'({self.direct_speech_verbs_regex})\b',
+                fr'({self.attribution_verbs_regex})\b',
                 tag_text,
             )
             if fallback:
@@ -535,7 +664,7 @@ class HybridDialogueParser:
             tag_text = backward_tag['text'].strip()
             match = re.search(
                 fr'({self.subjects_regex_str})\s+'
-                fr'({self.direct_speech_verbs_regex})\s*\.?\s*$',
+                fr'({self.attribution_verbs_regex})\s*\.?\s*$',
                 tag_text,
                 re.I,
             )
@@ -543,7 +672,7 @@ class HybridDialogueParser:
                 return self.char_manager.resolve_alias(match.group(1))
             fallback = re.search(
                 fr'([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s+'
-                fr'({self.direct_speech_verbs_regex})\s*\.?\s*$',
+                fr'({self.attribution_verbs_regex})\s*\.?\s*$',
                 tag_text,
             )
             if fallback:
@@ -551,7 +680,11 @@ class HybridDialogueParser:
         return None
 
     def _pass_4_contiguous_dialogue(self, index, chunks):
-        if index > 0 and chunks[index - 1]["type"] == "dialogue":
+        if (
+            index > 0
+            and chunks[index - 1]["type"] == "dialogue"
+            and self._chunks_share_paragraph(chunks, index, index - 1)
+        ):
             previous_speaker = chunks[index - 1]["speaker"]
             if (
                 previous_speaker
@@ -568,6 +701,8 @@ class HybridDialogueParser:
             index > 1
             and chunks[index - 1]["type"] == "narration"
             and chunks[index - 2]["type"] == "dialogue"
+            and self._chunks_share_paragraph(chunks, index, index - 1)
+            and self._chunks_share_paragraph(chunks, index, index - 2)
         ):
             prev_speaker = chunks[index - 2]["speaker"]
             if not prev_speaker or prev_speaker in ["Unassigned", "Unknown"]:
@@ -576,7 +711,7 @@ class HybridDialogueParser:
             # explicit subject mention
             if re.search(
                 fr'\b{re.escape(prev_speaker)}\b\s+'
-                fr'({self.direct_speech_verbs_regex})\b',
+                fr'({self.attribution_verbs_regex})\b',
                 tag_text,
                 re.I,
             ):
@@ -586,7 +721,7 @@ class HybridDialogueParser:
                 if canonical == prev_speaker:
                     if re.search(
                         fr'\b{re.escape(alias)}\b\s+'
-                        fr'({self.direct_speech_verbs_regex})\b',
+                        fr'({self.attribution_verbs_regex})\b',
                         tag_text,
                         re.I,
                     ):
@@ -599,6 +734,8 @@ class HybridDialogueParser:
             index > 1
             and chunks[index - 1]["type"] == "narration"
             and chunks[index - 2]["type"] == "dialogue"
+            and self._chunks_share_paragraph(chunks, index, index - 1)
+            and self._chunks_share_paragraph(chunks, index, index - 2)
         ):
             prev_speaker = chunks[index - 2]["speaker"]
             if not prev_speaker or prev_speaker in ["Unassigned", "Unknown"]:
@@ -609,7 +746,7 @@ class HybridDialogueParser:
                 # If narration explicitly attributes speech to someone else, do not carry over
                 conflict = re.search(
                     fr'\b({self.subjects_regex_str})\b\s+'
-                    fr'({self.direct_speech_verbs_regex})\b',
+                    fr'({self.attribution_verbs_regex})\b',
                     tag_text,
                     re.I,
                 )
@@ -795,14 +932,15 @@ class DialogueParserService:
                     [
                         m
                         for m in mentions_in_cluster
-                        if m.lower() not in ["i", "he", "she", "we", "they"]
+                        if not _is_blocked_speaker_token(m)
+                        and m.lower() not in ["i", "we"]
                     ],
                     key=len,
                     reverse=True,
                 )
                 if sorted_mentions:
                     canonical_name = self.char_manager.resolve_alias(sorted_mentions[0])
-            if canonical_name:
+            if canonical_name and not _is_blocked_speaker_token(canonical_name):
                 for mention_start, _ in cluster:
                     lookup_map[mention_start] = canonical_name
         return lookup_map

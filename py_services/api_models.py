@@ -36,8 +36,40 @@ class Metadata(BaseModel):
 
 
 class Candidate(BaseModel):
-    characterId: str
+    characterId: Optional[str]
     confidence: float
+
+
+class AttributionCandidate(BaseModel):
+    characterId: Optional[str] = None
+    name: str
+    confidence: float
+    reasons: Optional[List[str]] = None
+
+
+class AttributionDecisionTrace(BaseModel):
+    selectedCandidate: Optional[str] = None
+    selectedReasons: Optional[List[str]] = None
+    overrideReason: Optional[str] = None
+    signals: Optional[Dict[str, Any]] = None
+
+
+class Attribution(BaseModel):
+    confidence: float
+    topCandidateConfidence: float
+    marginToSecond: float
+    misattributionRisk: float
+    resolutionStatus: Optional[str] = None
+    thresholdUsed: float
+    sourceAlias: Optional[str] = None
+    sourceCandidates: Optional[List[str]] = None
+    sourceDescriptors: Optional[List[str]] = None
+    contextGender: Optional[str] = None
+    contextGenderCue: Optional[str] = None
+    genderConflict: Optional[bool] = None
+    parserBackend: Optional[str] = None
+    decisionTrace: Optional[AttributionDecisionTrace] = None
+    candidates: List[AttributionCandidate] = []
 
 
 class DialogueLine(BaseModel):
@@ -49,6 +81,7 @@ class DialogueLine(BaseModel):
     candidates: List[Candidate]
     isConflict: bool
     isReturning: bool = False
+    attribution: Optional[Attribution] = None
 
 
 class Stats(BaseModel):

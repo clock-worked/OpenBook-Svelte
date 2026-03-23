@@ -28,7 +28,7 @@ from py_services.chapter_audio_test.generation import (
 from py_services.vibevoice_local_service import VibeVoiceLocalService
 
 
-CHAPTER_FOLDER_PATTERN = re.compile(r"^(?P<number>\d+)-")
+CHAPTER_FOLDER_PATTERN = re.compile(r"^(?P<number>\d+)\s*-")
 
 
 def parse_args() -> argparse.Namespace:

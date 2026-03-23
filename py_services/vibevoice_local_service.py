@@ -3,6 +3,7 @@ VibeVoice local inference wrapper for generating audio from text with a voice sa
 """
 
 import os
+import re
 import sys
 import types
 from pathlib import Path
@@ -11,6 +12,16 @@ from typing import Optional, Tuple, Any
 DEFAULT_DATA_DIR = Path(__file__).parent / "openbook_parser" / "data"
 DEFAULT_VIBEVOICE_MODEL_PATH = str(DEFAULT_DATA_DIR / "VibeVoice-Large-Q8")
 DEFAULT_VIBEVOICE_REPO_PATH = str(DEFAULT_DATA_DIR / "VibeVoice-ComfyUI")
+
+BRACKETED_UNKNOWN_RE = re.compile(r"[\[(]\s*\?{3}\s*[\])]", re.IGNORECASE)
+QUOTE_ENDS_WITH_COMMA_RE = re.compile(r",(?=(?:['\"])(?:\s|$))")
+LEVEL_ABBREVIATION_RE = re.compile(r"\blvl\.?\b", re.IGNORECASE)
+PLUS_VALUE_RE = re.compile(r"(?<!\w)\+(\d[\d,]*(?:\.\d+)?)")
+COLON_BEFORE_BRACKET_RE = re.compile(r":\s*(?=[\[(])")
+SPACED_DASH_RE = re.compile(r"\s[-–—]\s")
+BRACKET_PAREN_RE = re.compile(r"[\[\]()]")
+PLUS_SEPARATOR_RE = re.compile(r",\s*(?=plus\b)", re.IGNORECASE)
+ELLIPSIS_GAP_RE = re.compile(r"(?:\s*\.\.\.\s*)+")
 
 
 def ensure_transformers_flash_attention_compat() -> None:
@@ -37,6 +48,8 @@ def ensure_transformers_flash_attention_compat() -> None:
 
 
 def normalize_text(text: str) -> str:
+    """Apply TTS-only cleanup without modifying the source chapter text."""
+
     replacements = {
         "\u2018": "'",
         "\u2019": "'",
@@ -48,6 +61,17 @@ def normalize_text(text: str) -> str:
     }
     for src, dst in replacements.items():
         text = text.replace(src, dst)
+
+    text = BRACKETED_UNKNOWN_RE.sub(" unknown ", text)
+    text = LEVEL_ABBREVIATION_RE.sub("level", text)
+    text = PLUS_VALUE_RE.sub(r"plus \1", text)
+    text = QUOTE_ENDS_WITH_COMMA_RE.sub(".", text)
+    text = COLON_BEFORE_BRACKET_RE.sub(" ... ", text)
+    text = BRACKET_PAREN_RE.sub(" ... ", text)
+    text = SPACED_DASH_RE.sub(" ... ", text)
+    text = PLUS_SEPARATOR_RE.sub(" ... ", text)
+    text = ELLIPSIS_GAP_RE.sub(" ... ", text)
+    text = re.sub(r"\s+([,;:!?])", r"\1", text)
     text = " ".join(text.split())
     return text.strip()
 

@@ -625,7 +625,12 @@ export async function readDialogueForChapter(chapterTitle: string): Promise<Dial
       dialogueParsed &&
       typeof dialogueParsed === 'object' &&
       'formatVersion' in dialogueParsed &&
-      (dialogueParsed.formatVersion === '2.0' || dialogueParsed.formatVersion === '3.0' || dialogueParsed.formatVersion === '3.1')
+      (
+        dialogueParsed.formatVersion === '2.0'
+        || dialogueParsed.formatVersion === '3.0'
+        || dialogueParsed.formatVersion === '3.1'
+        || dialogueParsed.formatVersion === '3.2'
+      )
     ) {
       return dialogueParsed as DialogueJson;
     }
