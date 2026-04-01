@@ -30,6 +30,7 @@ export const API_ENDPOINTS = {
     updateCharacterStats: '/api/update-character-stats',
     scanVoiceManifests: '/api/scan-voice-manifests',
     listVoiceSamples: '/api/list-voice-samples',
+    saveVoiceSampleMetadata: '/api/save-voice-sample-metadata',
     voiceSamplePreview: (filename: string, samplesRoot: string) =>
         `/api/voice-sample?filename=${encodeURIComponent(filename)}&samples_root=${encodeURIComponent(samplesRoot)}`,
     readFileAbsolute: '/api/read_file_absolute',

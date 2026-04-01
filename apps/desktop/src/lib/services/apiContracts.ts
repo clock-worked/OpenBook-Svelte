@@ -26,8 +26,25 @@ export interface ListVoiceSamplesRequest {
   samples_root: string;
 }
 
+export interface VoiceSampleEntry {
+  sample_file: string;
+  display_name: string;
+  tags: string[];
+}
+
 export interface ListVoiceSamplesResponse {
-  samples?: string[];
+  samples?: VoiceSampleEntry[];
+}
+
+export interface SaveVoiceSampleMetadataRequest {
+  samples_root: string;
+  sample_file: string;
+  display_name: string;
+  tags: string[];
+}
+
+export interface SaveVoiceSampleMetadataResponse {
+  sample?: VoiceSampleEntry;
 }
 
 export interface BackendChapterEntry {
@@ -108,6 +125,8 @@ export interface GenerateAudioCharacterRequest {
   provider: string;
   chapter_title: string;
   source_file: string;
+  use_filler_for_short_batch?: boolean;
+  filler_text?: string | null;
   voice_sample_root: string | null;
   audio_root: string | null;
 }

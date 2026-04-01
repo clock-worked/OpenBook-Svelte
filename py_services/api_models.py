@@ -110,6 +110,19 @@ class ListVoiceSamplesRequest(BaseModel):
     samples_root: str
 
 
+class VoiceSampleEntry(BaseModel):
+    sample_file: str
+    display_name: str
+    tags: List[str] = []
+
+
+class SaveVoiceSampleMetadataRequest(BaseModel):
+    samples_root: str
+    sample_file: str
+    display_name: str
+    tags: List[str] = []
+
+
 class ReadFileAbsoluteRequest(BaseModel):
     file_path: str
 

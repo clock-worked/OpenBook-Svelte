@@ -3,6 +3,11 @@ import type { Voice, VoicesJson, VoiceAssignment } from '$lib/types';
 import { bookRoot, audioRoot } from '$lib/stores/bookState';
 import { discoverVoicesFromManifests, scanVoiceManifests } from '$lib/services/voices';
 import {
+  createVoiceFromSample,
+  listVoiceSamples,
+  saveVoiceSampleMetadata,
+} from '$lib/services/vibevoice';
+import {
   createAssignmentsFromManifests,
   deduplicateVoicesAndAssignments,
   mergeDiscoveredVoices,
@@ -26,13 +31,23 @@ export async function loadVoices(): Promise<void> {
     console.log('[voices] Loading voices from:', root);
     const data = await readVoices(root);
     if (data) {
-      // Ensure v2.0 format
+      const deduped = deduplicateVoicesAndAssignments(data.voices || [], data.assignments || []);
+
+      // Ensure v2.0 format and normalize duplicate voice ids before first render.
       voices.set({
         formatVersion: '2.0',
-        voices: data.voices || [],
-        assignments: data.assignments || []
+        voices: deduped.voices,
+        assignments: deduped.assignments
       });
-      console.log(`[voices] Loaded ${data.voices?.length || 0} voices, ${data.assignments?.length || 0} assignments`);
+
+      if (deduped.removed > 0 || deduped.updated > 0) {
+        console.warn(
+          `[voices] Removed ${deduped.removed} duplicate voices and updated ${deduped.updated} assignments while loading voices.json`,
+        );
+        await saveVoicesData();
+      }
+
+      console.log(`[voices] Loaded ${deduped.voices.length} voices, ${deduped.assignments.length} assignments`);
     } else {
       console.log('[voices] No voices.json found, starting with empty state');
       voices.set({ formatVersion: '2.0', voices: [], assignments: [] });
@@ -156,6 +171,86 @@ export async function deduplicateVoices(): Promise<{ removed: number; updated: n
 
   console.log(`[voices] Deduplication complete: removed ${deduped.removed} duplicate voices`);
   return { removed: deduped.removed, updated: deduped.updated };
+}
+
+export async function syncVoicesFromSamples(samplesRoot: string): Promise<{ imported: number; removed: number }> {
+  if (!samplesRoot) return { imported: 0, removed: 0 };
+
+  const sampleEntries = await listVoiceSamples(samplesRoot);
+  if (sampleEntries.length === 0) {
+    console.warn('[voices] No compatible voice samples found; leaving existing sample voices unchanged');
+    return { imported: 0, removed: 0 };
+  }
+
+  const sampleByKey = new Map(sampleEntries.map((sample) => [`vibevoice_local:${sample.sample_file}`, sample]));
+  const current = get(voices);
+
+  const nextVoices: Voice[] = [];
+  const handledKeys = new Set<string>();
+  const removedVoiceIds = new Set<string>();
+
+  for (const voice of current.voices) {
+    const key = `${voice.provider}:${voice.providerVoiceId}`;
+    const sample = sampleByKey.get(key);
+    if (sample) {
+      nextVoices.push(createVoiceFromSample(samplesRoot, sample, voice));
+      handledKeys.add(key);
+      continue;
+    }
+
+    const isImportedSampleVoice = voice.provider === 'vibevoice_local' && voice.metadata.discoveredFrom === 'sample';
+    if (isImportedSampleVoice) {
+      removedVoiceIds.add(voice.id);
+      continue;
+    }
+
+    nextVoices.push(voice);
+  }
+
+  for (const sample of sampleEntries) {
+    const key = `vibevoice_local:${sample.sample_file}`;
+    if (handledKeys.has(key)) continue;
+    nextVoices.push(createVoiceFromSample(samplesRoot, sample));
+  }
+
+  const nextAssignments = current.assignments.filter((assignment) => !removedVoiceIds.has(assignment.voiceId));
+  const deduped = deduplicateVoicesAndAssignments(nextVoices, nextAssignments);
+
+  voices.set({
+    formatVersion: '2.0',
+    voices: deduped.voices,
+    assignments: deduped.assignments,
+  });
+
+  await saveVoicesData();
+  return { imported: sampleEntries.length, removed: removedVoiceIds.size };
+}
+
+export async function saveVoiceSampleMetadataForVoice(
+  voiceId: string,
+  samplesRoot: string,
+  displayName: string,
+  tags: string[],
+): Promise<void> {
+  const current = get(voices);
+  const voice = current.voices.find((entry) => entry.id === voiceId);
+  if (!voice) return;
+
+  const sample = await saveVoiceSampleMetadata(
+    samplesRoot,
+    voice.providerVoiceId,
+    displayName,
+    tags,
+  );
+
+  voices.set({
+    ...current,
+    voices: current.voices.map((entry) =>
+      entry.id === voiceId ? createVoiceFromSample(samplesRoot, sample, entry) : entry,
+    ),
+  });
+
+  await saveVoicesData();
 }
 
 /**

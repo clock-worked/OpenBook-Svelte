@@ -1,7 +1,8 @@
 import json
 import os
+from contextlib import suppress
 from pathlib import Path
-from typing import Callable, Optional
+from typing import Any, Callable, Optional
 
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
@@ -13,9 +14,97 @@ from api_models import (
     ListVoiceSamplesRequest,
     ReconcileAudioManifestRequest,
     ReadFileAbsoluteRequest,
+    SaveVoiceSampleMetadataRequest,
     ScanManifestsRequest,
 )
 from audio_generation_service import AudioGenerationService
+
+VOICE_SAMPLE_METADATA_FILENAME = "openbook_voice_samples.json"
+VOICE_SAMPLE_ALLOWED_EXTS = {".wav", ".mp3", ".flac", ".ogg"}
+
+
+def _normalize_voice_tags(tags: list[str] | None) -> list[str]:
+    normalized: list[str] = []
+    for tag in tags or []:
+        cleaned = str(tag).strip().lower()
+        if not cleaned or cleaned in normalized:
+            continue
+        normalized.append(cleaned)
+    return normalized
+
+
+def _normalize_display_name(display_name: str | None, sample_file: str) -> str:
+    cleaned = str(display_name or "").strip()
+    if cleaned:
+        return cleaned
+    return Path(sample_file).stem or sample_file
+
+
+def _metadata_catalog_path(samples_root: str) -> Path:
+    return Path(samples_root) / VOICE_SAMPLE_METADATA_FILENAME
+
+
+def _read_voice_sample_catalog(samples_root: str) -> dict[str, dict[str, Any]]:
+    catalog_path = _metadata_catalog_path(samples_root)
+    if not catalog_path.exists():
+        return {}
+
+    with open(catalog_path, "r", encoding="utf-8") as handle:
+        payload = json.load(handle)
+
+    raw_samples = payload.get("samples") if isinstance(payload, dict) else None
+    if not isinstance(raw_samples, dict):
+        return {}
+
+    normalized: dict[str, dict[str, Any]] = {}
+    for sample_file, sample_metadata in raw_samples.items():
+        if not isinstance(sample_file, str) or not isinstance(sample_metadata, dict):
+            continue
+        normalized[sample_file] = {
+            "display_name": _normalize_display_name(sample_metadata.get("display_name"), sample_file),
+            "tags": _normalize_voice_tags(sample_metadata.get("tags") if isinstance(sample_metadata.get("tags"), list) else []),
+        }
+    return normalized
+
+
+def _write_voice_sample_catalog(samples_root: str, catalog: dict[str, dict[str, Any]]) -> None:
+    catalog_path = _metadata_catalog_path(samples_root)
+    payload = {
+        "formatVersion": "1.0",
+        "samples": dict(sorted(catalog.items(), key=lambda item: item[0].lower())),
+    }
+    with open(catalog_path, "w", encoding="utf-8") as handle:
+        json.dump(payload, handle, indent=2, ensure_ascii=True)
+        handle.write("\n")
+
+
+def _resolve_voice_sample_path(samples_root: str, sample_file: str, allowed_exts: set[str]) -> Path:
+    root = Path(samples_root)
+    if not root.exists():
+        raise HTTPException(status_code=404, detail=f"Samples root not found: {root}")
+    if not root.is_dir():
+        raise HTTPException(status_code=400, detail=f"Samples root is not a directory: {root}")
+
+    requested_name = Path(sample_file).name
+    if requested_name != sample_file:
+        raise HTTPException(status_code=400, detail="Invalid sample filename")
+
+    suffix = Path(requested_name).suffix.lower()
+    if suffix not in allowed_exts:
+        raise HTTPException(status_code=400, detail="Unsupported sample format")
+
+    root_resolved = root.resolve()
+    sample_path = (root_resolved / requested_name).resolve()
+
+    try:
+        sample_path.relative_to(root_resolved)
+    except ValueError as exc:
+        raise HTTPException(status_code=403, detail="Access denied") from exc
+
+    if not sample_path.exists() or not sample_path.is_file():
+        raise HTTPException(status_code=404, detail=f"Sample not found: {requested_name}")
+
+    return sample_path
 
 
 def create_audio_router(
@@ -75,8 +164,19 @@ def create_audio_router(
             if not root.is_dir():
                 raise HTTPException(status_code=400, detail=f"Samples root is not a directory: {root}")
 
-            allowed_exts = {".wav", ".mp3", ".flac", ".ogg"}
-            samples = sorted([path.name for path in root.iterdir() if path.is_file() and path.suffix.lower() in allowed_exts])
+            catalog = _read_voice_sample_catalog(request.samples_root)
+            samples = []
+            for path in sorted(root.iterdir(), key=lambda entry: entry.name.lower()):
+                if not path.is_file() or path.suffix.lower() not in VOICE_SAMPLE_ALLOWED_EXTS:
+                    continue
+                metadata = catalog.get(path.name, {})
+                samples.append(
+                    {
+                        "sample_file": path.name,
+                        "display_name": _normalize_display_name(metadata.get("display_name"), path.name),
+                        "tags": _normalize_voice_tags(metadata.get("tags", [])),
+                    }
+                )
             return {"samples": samples}
         except HTTPException as http_exc:
             raise http_exc
@@ -84,34 +184,41 @@ def create_audio_router(
             print(f"Error listing voice samples: {exc}")
             raise HTTPException(status_code=500, detail=str(exc)) from exc
 
+    @router.post("/api/save-voice-sample-metadata")
+    async def save_voice_sample_metadata(request: SaveVoiceSampleMetadataRequest):
+        try:
+            sample_path = _resolve_voice_sample_path(
+                request.samples_root,
+                request.sample_file,
+                VOICE_SAMPLE_ALLOWED_EXTS,
+            )
+            catalog = _read_voice_sample_catalog(request.samples_root)
+            normalized_tags = _normalize_voice_tags(request.tags)
+            display_name = _normalize_display_name(request.display_name, request.sample_file)
+            catalog[sample_path.name] = {
+                "display_name": display_name,
+                "tags": normalized_tags,
+            }
+            _write_voice_sample_catalog(request.samples_root, catalog)
+            return {
+                "sample": {
+                    "sample_file": sample_path.name,
+                    "display_name": display_name,
+                    "tags": normalized_tags,
+                }
+            }
+        except HTTPException as http_exc:
+            raise http_exc
+        except Exception as exc:
+            print(f"Error saving metadata for voice sample '{request.sample_file}': {exc}")
+            raise HTTPException(status_code=500, detail=str(exc)) from exc
+
     @router.get("/api/voice-sample")
     async def serve_voice_sample(filename: str, samples_root: str):
         try:
-            root = Path(samples_root)
-            if not root.exists():
-                raise HTTPException(status_code=404, detail=f"Samples root not found: {root}")
-            if not root.is_dir():
-                raise HTTPException(status_code=400, detail=f"Samples root is not a directory: {root}")
-
-            requested_name = Path(filename).name
-            if requested_name != filename:
-                raise HTTPException(status_code=400, detail="Invalid sample filename")
-
-            allowed_exts = {".wav", ".mp3", ".flac", ".ogg"}
-            suffix = Path(requested_name).suffix.lower()
-            if suffix not in allowed_exts:
-                raise HTTPException(status_code=400, detail="Unsupported sample format")
-
-            root_resolved = root.resolve()
-            sample_path = (root_resolved / requested_name).resolve()
-
-            try:
-                sample_path.relative_to(root_resolved)
-            except ValueError as exc:
-                raise HTTPException(status_code=403, detail="Access denied") from exc
-
-            if not sample_path.exists() or not sample_path.is_file():
-                raise HTTPException(status_code=404, detail=f"Sample not found: {requested_name}")
+            sample_path = _resolve_voice_sample_path(samples_root, filename, VOICE_SAMPLE_ALLOWED_EXTS)
+            requested_name = sample_path.name
+            suffix = sample_path.suffix.lower()
 
             if suffix == ".mp3":
                 media_type = "audio/mpeg"
@@ -309,14 +416,11 @@ def create_audio_router(
 
             manifests = []
             for manifest_path in manifest_files:
-                try:
+                with suppress(OSError, json.JSONDecodeError):
                     with open(manifest_path, "r", encoding="utf-8") as handle:
                         manifest_data = json.load(handle)
                         if manifest_data.get("formatVersion") == "2.0":
                             manifests.append(manifest_data)
-                except Exception as exc:
-                    print(f"Error reading manifest {manifest_path}: {exc}")
-                    continue
 
             print(f"Successfully loaded {len(manifests)} v2.0 manifests")
             return {

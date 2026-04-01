@@ -45,6 +45,7 @@ export interface Voice {
   previewUrl: string | null;
   notes: string;  // User notes about the voice/speaker
   metadata: {
+    // Legacy metadata fields retained for compatibility with older voices.json files.
     gender?: 'M' | 'F' | 'U';  // Male, Female, Unknown
     ageRange?: string;  // "young-adult", "adult", etc.
     accent?: string;  // "neutral", "en-US", etc.
@@ -53,7 +54,7 @@ export interface Voice {
     // Audio generation stats
     totalClips?: number;  // Total clips generated with this voice
     usedByCharacters?: string[];  // Character IDs using this voice
-    discoveredFrom?: 'manifest' | 'manual';  // How was this voice added
+    discoveredFrom?: 'manifest' | 'manual' | 'sample';  // How was this voice added
   };
 }
 

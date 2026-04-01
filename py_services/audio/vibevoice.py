@@ -139,6 +139,8 @@ class VibeVoiceCharacterRequest(BaseModel):
     provider: str = "vibevoice_local"
     chapter_title: str
     source_file: str
+    use_filler_for_short_batch: bool = False
+    filler_text: Optional[str] = None
     voice_sample_root: Optional[str] = None
     audio_root: Optional[str] = None
 
@@ -199,6 +201,40 @@ def _normalize_character_lines(
         )
 
     return normalized
+
+
+def _build_character_generation_text(
+    *,
+    lines: list[dict[str, Any]],
+    min_chunk_chars: int,
+    use_filler_for_short_batch: bool,
+    filler_text: Optional[str],
+) -> dict[str, Any]:
+    line_texts = [
+        str(line.get("text") or "").strip()
+        for line in lines
+        if str(line.get("text") or "").strip()
+    ]
+    input_characters = len(" ".join(line_texts))
+
+    normalized_filler = normalize_chapter_text(str(filler_text or ""))
+    filler_segments: list[str] = []
+    filler_characters = 0
+
+    if use_filler_for_short_batch and normalized_filler and input_characters < min_chunk_chars:
+        while input_characters + filler_characters < min_chunk_chars:
+            filler_segments.append(normalized_filler)
+            filler_characters = len(" ".join(filler_segments))
+
+    effective_lines = filler_segments + line_texts if filler_segments else line_texts
+
+    return {
+        "chapterText": "\n".join(effective_lines),
+        "inputCharacters": input_characters,
+        "fillerCharacters": filler_characters,
+        "usedFiller": filler_characters > 0,
+        "fillerAvailable": bool(normalized_filler),
+    }
 
 
 def _transcribe_with_whisperx_alignment(
@@ -514,7 +550,14 @@ def _run_character_chunk_pipeline(
             },
         }
 
-    chapter_text = "\n".join(str(line["text"]) for line in lines)
+    generation_text = _build_character_generation_text(
+        lines=lines,
+        min_chunk_chars=DEFAULT_MIN_CHUNK_CHARS,
+        use_filler_for_short_batch=bool(request.use_filler_for_short_batch),
+        filler_text=request.filler_text,
+    )
+
+    chapter_text = str(generation_text["chapterText"])
     chunk_plan = build_line_chunk_generation_plan(
         chapter_text=chapter_text,
         min_chunk_chars=DEFAULT_MIN_CHUNK_CHARS,
@@ -793,6 +836,23 @@ def _run_character_chunk_pipeline(
         )
 
     warnings_out: list[str] = []
+    if generation_text["inputCharacters"] < DEFAULT_MIN_CHUNK_CHARS:
+        if generation_text["usedFiller"]:
+            warnings_out.append(
+                "Prepended filler text to raise a short batch from "
+                f"{generation_text['inputCharacters']} to at least "
+                f"{DEFAULT_MIN_CHUNK_CHARS} characters."
+            )
+        else:
+            warnings_out.append(
+                "Batch text is below the recommended "
+                f"{DEFAULT_MIN_CHUNK_CHARS}-character target "
+                f"({generation_text['inputCharacters']} characters). "
+                "Consider enabling filler/pretext."
+            )
+    elif bool(request.use_filler_for_short_batch) and not generation_text["fillerAvailable"]:
+        warnings_out.append("Filler/pretext was enabled, but no filler text was provided.")
+
     if final_validation_summary["flaggedLineCount"] > 0:
         warnings_out.append(
             "Split validation still flagged "
@@ -810,7 +870,12 @@ def _run_character_chunk_pipeline(
         "summary": {
             "lineCount": len(split_lines),
             "audioDurationSec": round(audio_duration_sec, 4),
-            "generation": generation_report,
+            "generation": {
+                **generation_report,
+                "inputCharacters": int(generation_text["inputCharacters"]),
+                "fillerCharacters": int(generation_text["fillerCharacters"]),
+                "usedFiller": bool(generation_text["usedFiller"]),
+            },
             "transcription": transcription_engine,
             "alignment": alignment_report,
             "boundaryRefinement": boundary_refinement_report,

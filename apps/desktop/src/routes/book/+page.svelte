@@ -32,6 +32,7 @@
     saveVoicesData, 
     discoverVoices, 
     loadVoices,
+    syncVoicesFromSamples,
     assignVoiceToCharacter,
     unassignVoiceFromCharacter,
     getCharacterAssignment,
@@ -214,6 +215,12 @@
     try {
       console.log('[book route] Auto-loading voices...');
       await loadVoices();
+
+      const samplesRoot = get(voiceSamplesRoot);
+      if (samplesRoot) {
+        console.log('[book route] Auto-syncing sample-backed voices...');
+        await syncVoicesFromSamples(samplesRoot);
+      }
       
       console.log('[book route] Auto-discovering voices from manifests...');
       const discoveredCount = await discoverVoices();
@@ -550,6 +557,8 @@
         return;
       }
       voiceSamplesRoot.set(absolutePath);
+      await syncVoicesFromSamples(absolutePath);
+      await syncAssignmentsFromVoicesJson();
     } catch (err) {
       if (err instanceof Error && err.message.includes('not supported')) {
         alert('Folder picker is not supported in this browser. Enter the path manually.');
@@ -560,6 +569,25 @@
       }
       console.error('Failed to select samples folder:', err);
     }
+  }
+
+  async function handleVoiceSamplesPathChange(path: string | null) {
+    voiceSamplesRoot.set(path);
+    if (path) {
+      try {
+        const result = await syncVoicesFromSamples(path);
+        if (result.imported === 0) {
+          console.warn('[book route] No compatible voice samples found in selected folder');
+        }
+      } finally {
+        await syncAssignmentsFromVoicesJson();
+      }
+    }
+    await saveSettings();
+  }
+
+  async function handleVoiceSamplesRootPersist() {
+    await saveSettings();
   }
 </script>
 
@@ -912,6 +940,10 @@
             voices={$voices.voices}
             assignments={$voices.assignments}
             characters={$bookCharacters.characters}
+            voiceSamplesPath={$voiceSamplesRoot || ''}
+            on:samplesrootchange={(event) => {
+              void handleVoiceSamplesPathChange(event.detail || null);
+            }}
             on:update={handleVoicesUpdate}
             on:deduplicate={handleDeduplicateVoices}
           />
@@ -930,8 +962,7 @@
       }}
       voiceSamplesPath={$voiceSamplesRoot || ''}
       onVoiceSamplesPathChange={(path) => {
-        voiceSamplesRoot.set(path || null);
-        void saveSettings();
+        void handleVoiceSamplesPathChange(path || null);
       }}
       onPickVoiceSamplesFolder={async () => {
         await handlePickVoiceSamplesFolder();

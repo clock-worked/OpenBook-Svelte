@@ -47,6 +47,11 @@ export interface AudioClip {
   provider: string;
 }
 
+export interface GenerateAudioCharacterOptions {
+  useFillerForShortBatch?: boolean;
+  fillerText?: string | null;
+}
+
 const manifestCache = new Map<string, AudioManifest | null>();
 const manifestRequestCache = new Map<string, Promise<AudioManifest | null>>();
 let absoluteReadApiAvailable: boolean | null = null;
@@ -409,7 +414,8 @@ export async function generateAudioForCharacter(
   chapterTitle: string,
   sourceFile: string,
   onProgress?: (current: number, total: number) => void,
-  shouldCancel?: () => boolean
+  shouldCancel?: () => boolean,
+  options: GenerateAudioCharacterOptions = {}
 ): Promise<{ success: boolean; generatedCount: number; errors: string[]; canceled: boolean }> {
   if (shouldCancel?.()) {
     return {
@@ -466,6 +472,10 @@ export async function generateAudioForCharacter(
       provider,
       chapter_title: chapterTitle,
       source_file: sourceFile,
+      use_filler_for_short_batch: Boolean(options.useFillerForShortBatch),
+      filler_text: Boolean(options.useFillerForShortBatch)
+        ? (String(options.fillerText ?? '').trim() || null)
+        : null,
       voice_sample_root: samplesRoot || null,
       audio_root: resolvedAudioRoot || null,
     };

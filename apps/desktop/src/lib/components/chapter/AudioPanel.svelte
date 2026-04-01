@@ -13,7 +13,8 @@
     deleteAudioLineForCharacter,
     reconcileAudioManifestForCharacter,
   } from '$lib/services/audio';
-  import { Headphones, Loader, Scissors, FileText, BookOpen } from 'lucide-svelte';
+  import type { GenerateAudioCharacterOptions } from '$lib/services/audio';
+  import { Headphones, Loader, Scissors, FileText, BookOpen, X } from 'lucide-svelte';
   import type { DialogueLine, Character } from '$lib/types';
   import { audioGenerateLineId } from '$lib/stores/selection';
   import { audioUpdateTrigger, triggerAudioUpdate } from '$lib/stores/audioUpdates';
@@ -33,6 +34,15 @@
   } from '$lib/stores/audioQueue';
 
   const DISPLAY_ALPHA = 1.0;
+  const CHARACTER_BATCH_TARGET = 800;
+  const DEFAULT_ADVANCED_FILLER_TEXT = 'The following lines are all spoken by the same character. Keep the same voice, pacing, and emotional continuity across the batch.';
+
+  type VoiceInfo = {
+    voiceId: string;
+    provider: string;
+    displayName: string;
+    characterId: string;
+  };
 
   let generatingCharacter: string | null = null;
   let generationProgress = { current: 0, total: 0 };
@@ -54,15 +64,71 @@
     lines: QueuedDialogueLine[];
     cumulativeCharacterCounts: number[];
     totalCharacters: number;
-    voiceInfo: { voiceId: string; provider: string; displayName: string; characterId: string };
+    voiceInfo: VoiceInfo;
     chapterTitle: string;
     sourceFile: string;
+    generationOptions?: GenerateAudioCharacterOptions;
+  };
+
+  type AdvancedGenerationMode = 'character' | 'chapter';
+
+  type AdvancedBookChapterBatch = {
+    chapterTitle: string;
+    sourceFile: string;
+    characterId: string;
+    characterName: string;
+    voiceInfo: VoiceInfo;
+    lines: QueuedDialogueLine[];
+    totalCharacters: number;
+  };
+
+  type AdvancedBookCharacterBatch = {
+    characterId: string;
+    characterName: string;
+    voiceInfo: VoiceInfo;
+    lines: QueuedDialogueLine[];
+    totalCharacters: number;
+    chapterCount: number;
+    chapterBatchCount: number;
+    underTargetChapterBatchCount: number;
+  };
+
+  type AdvancedChapterOverview = {
+    chapterTitle: string;
+    missingVoiceTotal: number;
+  };
+
+  type AdvancedBookPreview = {
+    totalChapterCount: number;
+    parsedChapterCount: number;
+    skippedUnparsedCount: number;
+    totalMissingLines: number;
+    missingVoiceLineCount: number;
+    missingVoiceCharacterCount: number;
+    characters: AdvancedBookCharacterBatch[];
+    chapterBatches: AdvancedBookChapterBatch[];
+    chapterOverview: AdvancedChapterOverview[];
   };
 
   const queuedJobs = new Map<string, QueuedJobPayload>();
+  let showAdvancedOverlay = false;
+  let loadingAdvancedPreview = false;
+  let advancedSubmitting = false;
+  let advancedPreviewError: string | null = null;
+  let advancedPreview: AdvancedBookPreview | null = null;
+  let advancedGenerationMode: AdvancedGenerationMode = 'character';
+  let advancedUseFillerForShortBatch = false;
+  let advancedFillerText = DEFAULT_ADVANCED_FILLER_TEXT;
+  let selectedAdvancedCharacterIds = new Set<string>();
+  let advancedPreviewRequestId = 0;
+  let advancedSelectAllInput: HTMLInputElement | null = null;
 
   function countLineCharacters(line: DialogueLine): number {
     return Math.max(1, String((line as any)?.text ?? '').length);
+  }
+
+  function sumLineCharacters(lines: DialogueLine[]): number {
+    return lines.reduce((sum, line) => sum + countLineCharacters(line), 0);
   }
 
   function buildCumulativeCharacterCounts(lines: DialogueLine[]): { cumulative: number[]; total: number } {
@@ -81,6 +147,58 @@
   let characterIdToName = new Map<string, string>();
   let characterNameToId = new Map<string, string>();
   let characterIdToData = new Map<string, Character>();
+
+  function resolveCharacterIdFromLine(line: any): string | null {
+    if ('characterId' in line && line.characterId) {
+      return String(line.characterId);
+    }
+
+    if ('chosenSpeaker' in line && line.chosenSpeaker) {
+      return characterNameToId.get(String(line.chosenSpeaker).toLowerCase()) || null;
+    }
+
+    return null;
+  }
+
+  function getChapterSourceFile(chapter: { title: string; path?: string }): string {
+    return chapter.path || `${chapter.title}/chapter.txt`;
+  }
+
+  function buildQueuedLinesWithContext(
+    lines: DialogueLine[],
+    chapterTitle: string,
+    sourceFile: string,
+  ): QueuedDialogueLine[] {
+    return lines.map((line) => ({
+      ...(line as any),
+      __queueChapterTitle: chapterTitle,
+      __queueSourceFile: sourceFile,
+    }));
+  }
+
+  function resolveQueuedLineChapterTitle(line: QueuedDialogueLine | undefined, fallbackChapterTitle: string): string {
+    if (typeof (line as any)?.chapterTitle === 'string' && String((line as any).chapterTitle).trim()) {
+      return String((line as any).chapterTitle).trim();
+    }
+
+    if (typeof line?.__queueChapterTitle === 'string' && String(line.__queueChapterTitle).trim()) {
+      return String(line.__queueChapterTitle).trim();
+    }
+
+    return fallbackChapterTitle;
+  }
+
+  function resolveQueuedLineSourceFile(line: QueuedDialogueLine | undefined, fallbackSourceFile: string): string {
+    if (typeof (line as any)?.sourceFile === 'string' && String((line as any).sourceFile).trim()) {
+      return String((line as any).sourceFile).trim();
+    }
+
+    if (typeof line?.__queueSourceFile === 'string' && String(line.__queueSourceFile).trim()) {
+      return String(line.__queueSourceFile).trim();
+    }
+
+    return fallbackSourceFile;
+  }
   
   // Load character data from characters.json (ID-first approach)
   $: if ($currentChapter && $bookRoot) {
@@ -119,16 +237,7 @@
     if (!scr) return counts;
     
     for (const line of scr.lines) {
-      // Handle both v2.0 format (characterId) and v1.0 format (chosenSpeaker)
-      let characterId: string | null = null;
-      
-      if ('characterId' in line && line.characterId) {
-        characterId = String(line.characterId);
-      } else if ('chosenSpeaker' in line && line.chosenSpeaker) {
-        // Legacy: convert name to ID using centralized helper
-        characterId = characterNameToId.get(String(line.chosenSpeaker).toLowerCase()) || null;
-      }
-      
+      const characterId = resolveCharacterIdFromLine(line);
       if (characterId) {
         counts.set(characterId, (counts.get(characterId) || 0) + 1);
       }
@@ -156,6 +265,25 @@
     });
     return list;
   })();
+
+  $: advancedCharacters = advancedPreview?.characters ?? [];
+  $: selectedAdvancedCharacters = advancedCharacters.filter((item) => selectedAdvancedCharacterIds.has(item.characterId));
+  $: selectedAdvancedChapterBatches = (advancedPreview?.chapterBatches ?? []).filter((item) => selectedAdvancedCharacterIds.has(item.characterId));
+  $: selectedAdvancedLineCount = selectedAdvancedChapterBatches.reduce((sum, item) => sum + item.lines.length, 0);
+  $: selectedAdvancedCharacterBatchCount = selectedAdvancedCharacters.length;
+  $: selectedAdvancedChapterBatchCount = selectedAdvancedChapterBatches.length;
+  $: selectedAdvancedParsedChapterCount = new Set(selectedAdvancedChapterBatches.map((item) => item.chapterTitle)).size;
+  $: selectedAdvancedUnderTargetCharacters = selectedAdvancedCharacters.filter((item) => item.totalCharacters < CHARACTER_BATCH_TARGET);
+  $: selectedAdvancedUnderTargetChapterBatchCount = selectedAdvancedChapterBatches.filter((item) => item.totalCharacters < CHARACTER_BATCH_TARGET).length;
+  $: selectedAdvancedCharactersNeedingFillerCount = advancedGenerationMode === 'character'
+    ? selectedAdvancedUnderTargetCharacters.length
+    : selectedAdvancedCharacters.filter((item) => item.underTargetChapterBatchCount > 0).length;
+  $: selectedAdvancedReadyCharacterCount = Math.max(0, selectedAdvancedCharacterBatchCount - selectedAdvancedCharactersNeedingFillerCount);
+  $: advancedAllCharactersSelected = advancedCharacters.length > 0 && selectedAdvancedCharacterIds.size === advancedCharacters.length;
+  $: advancedSomeCharactersSelected = selectedAdvancedCharacterIds.size > 0 && !advancedAllCharactersSelected;
+  $: if (advancedSelectAllInput) {
+    advancedSelectAllInput.indeterminate = advancedSomeCharactersSelected;
+  }
 
   async function handleGenerateWholeChapter() {
     const withLines = sortedCharactersById;
@@ -221,13 +349,7 @@
 
       const linesByCharacterId = new Map<string, DialogueLine[]>();
       for (const line of script.lines as any[]) {
-        let characterId: string | null = null;
-
-        if ('characterId' in line && line.characterId) {
-          characterId = String(line.characterId);
-        } else if ('chosenSpeaker' in line && line.chosenSpeaker) {
-          characterId = characterNameToId.get(String(line.chosenSpeaker).toLowerCase()) || null;
-        }
+        const characterId = resolveCharacterIdFromLine(line);
 
         if (!characterId) continue;
 
@@ -263,12 +385,8 @@
         const linesToGenerate = checks.filter(check => !check.exists).map(check => check.line);
         if (linesToGenerate.length === 0) continue;
 
-        const sourceFile = chapter.path || `${chapter.title}/chapter.txt`;
-        const linesWithContext: QueuedDialogueLine[] = linesToGenerate.map((line) => ({
-          ...(line as any),
-          __queueChapterTitle: chapter.title,
-          __queueSourceFile: sourceFile,
-        }));
+        const sourceFile = getChapterSourceFile(chapter);
+        const linesWithContext = buildQueuedLinesWithContext(linesToGenerate, chapter.title, sourceFile);
 
         let payload = jobsByCharacterId.get(characterId);
         if (!payload) {
@@ -356,6 +474,373 @@
     );
   }
 
+  async function buildAdvancedBookPreview(): Promise<AdvancedBookPreview> {
+    if (characterIdToData.size === 0 && get(bookRoot)) {
+      await loadCharacterData();
+    }
+
+    const allChapters = get(chapters);
+    const parsedChapters = allChapters.filter((chapter) => chapter.parsed);
+
+    type CharacterAccumulator = {
+      characterId: string;
+      characterName: string;
+      voiceInfo: VoiceInfo;
+      lines: QueuedDialogueLine[];
+      totalCharacters: number;
+      chapterBatchCount: number;
+      underTargetChapterBatchCount: number;
+      chapters: Set<string>;
+    };
+
+    const charactersById = new Map<string, CharacterAccumulator>();
+    const chapterBatches: AdvancedBookChapterBatch[] = [];
+    const chapterOverview = new Map<string, AdvancedChapterOverview>();
+    const missingVoiceCharacterIds = new Set<string>();
+    let totalMissingLines = 0;
+    let missingVoiceLineCount = 0;
+
+    for (const chapter of parsedChapters) {
+      const script = await readDialogueForChapter(chapter.title);
+      if (!script?.lines?.length) continue;
+
+      const linesByCharacterId = new Map<string, DialogueLine[]>();
+      for (const line of script.lines as any[]) {
+        const characterId = resolveCharacterIdFromLine(line);
+        if (!characterId) continue;
+
+        const existingLines = linesByCharacterId.get(characterId) || [];
+        existingLines.push(line as DialogueLine);
+        linesByCharacterId.set(characterId, existingLines);
+      }
+
+      const sourceFile = getChapterSourceFile(chapter);
+      let chapterMissingVoiceTotal = 0;
+
+      for (const [characterId, characterLines] of linesByCharacterId.entries()) {
+        if (characterLines.length === 0) continue;
+
+        const characterName = characterIdToName.get(characterId) || characterId;
+        const checks = await Promise.all(
+          characterLines.map(async (line) => ({
+            line,
+            exists: await checkAudioExistsForLine(chapter.title, characterName, line.id),
+          }))
+        );
+
+        const linesToGenerate = checks.filter((check) => !check.exists).map((check) => check.line);
+        if (linesToGenerate.length === 0) continue;
+
+        const voiceInfo = getVoiceForCharacter(characterId);
+        if (!voiceInfo) {
+          missingVoiceCharacterIds.add(characterId);
+          chapterMissingVoiceTotal += linesToGenerate.length;
+          missingVoiceLineCount += linesToGenerate.length;
+          continue;
+        }
+
+        const linesWithContext = buildQueuedLinesWithContext(linesToGenerate, chapter.title, sourceFile);
+        const totalCharacters = sumLineCharacters(linesWithContext);
+
+        chapterBatches.push({
+          chapterTitle: chapter.title,
+          sourceFile,
+          characterId,
+          characterName,
+          voiceInfo,
+          lines: linesWithContext,
+          totalCharacters,
+        });
+
+        totalMissingLines += linesWithContext.length;
+
+        let candidate = charactersById.get(characterId);
+        if (!candidate) {
+          candidate = {
+            characterId,
+            characterName,
+            voiceInfo,
+            lines: [],
+            totalCharacters: 0,
+            chapterBatchCount: 0,
+            underTargetChapterBatchCount: 0,
+            chapters: new Set<string>(),
+          };
+          charactersById.set(characterId, candidate);
+        }
+
+        candidate.lines.push(...linesWithContext);
+        candidate.totalCharacters += totalCharacters;
+        candidate.chapterBatchCount += 1;
+        if (totalCharacters < CHARACTER_BATCH_TARGET) {
+          candidate.underTargetChapterBatchCount += 1;
+        }
+        candidate.chapters.add(chapter.title);
+      }
+
+      if (chapterMissingVoiceTotal > 0) {
+        chapterOverview.set(chapter.title, {
+          chapterTitle: chapter.title,
+          missingVoiceTotal: chapterMissingVoiceTotal,
+        });
+      }
+    }
+
+    const characters = Array.from(charactersById.values())
+      .map((candidate) => ({
+        characterId: candidate.characterId,
+        characterName: candidate.characterName,
+        voiceInfo: candidate.voiceInfo,
+        lines: candidate.lines,
+        totalCharacters: candidate.totalCharacters,
+        chapterCount: candidate.chapters.size,
+        chapterBatchCount: candidate.chapterBatchCount,
+        underTargetChapterBatchCount: candidate.underTargetChapterBatchCount,
+      }))
+      .sort((left, right) => {
+        if (right.totalCharacters !== left.totalCharacters) {
+          return right.totalCharacters - left.totalCharacters;
+        }
+        if (right.lines.length !== left.lines.length) {
+          return right.lines.length - left.lines.length;
+        }
+        return left.characterName.localeCompare(right.characterName, undefined, { sensitivity: 'base' });
+      });
+
+    chapterBatches.sort((left, right) => {
+      const chapterCompare = left.chapterTitle.localeCompare(right.chapterTitle, undefined, { sensitivity: 'base' });
+      if (chapterCompare !== 0) return chapterCompare;
+      return left.characterName.localeCompare(right.characterName, undefined, { sensitivity: 'base' });
+    });
+
+    return {
+      totalChapterCount: allChapters.length,
+      parsedChapterCount: parsedChapters.length,
+      skippedUnparsedCount: Math.max(0, allChapters.length - parsedChapters.length),
+      totalMissingLines,
+      missingVoiceLineCount,
+      missingVoiceCharacterCount: missingVoiceCharacterIds.size,
+      characters,
+      chapterBatches,
+      chapterOverview: Array.from(chapterOverview.values()).sort((left, right) =>
+        left.chapterTitle.localeCompare(right.chapterTitle, undefined, { sensitivity: 'base' })
+      ),
+    };
+  }
+
+  async function handleOpenAdvancedOverlay() {
+    const requestId = ++advancedPreviewRequestId;
+
+    showAdvancedOverlay = true;
+    loadingAdvancedPreview = true;
+    advancedSubmitting = false;
+    advancedPreviewError = null;
+    advancedPreview = null;
+    selectedAdvancedCharacterIds = new Set<string>();
+    advancedGenerationMode = 'character';
+    advancedUseFillerForShortBatch = false;
+    advancedFillerText = DEFAULT_ADVANCED_FILLER_TEXT;
+
+    try {
+      const preview = await buildAdvancedBookPreview();
+      if (requestId !== advancedPreviewRequestId) return;
+
+      advancedPreview = preview;
+      selectedAdvancedCharacterIds = new Set(preview.characters.map((item) => item.characterId));
+    } catch (error) {
+      if (requestId !== advancedPreviewRequestId) return;
+
+      advancedPreviewError = error instanceof Error
+        ? error.message
+        : 'Failed to build the advanced audio preview.';
+    } finally {
+      if (requestId === advancedPreviewRequestId) {
+        loadingAdvancedPreview = false;
+      }
+    }
+  }
+
+  function handleCloseAdvancedOverlay() {
+    if (advancedSubmitting) return;
+
+    advancedPreviewRequestId += 1;
+    showAdvancedOverlay = false;
+    loadingAdvancedPreview = false;
+    advancedPreviewError = null;
+  }
+
+  function toggleAdvancedCharacterSelection(characterId: string) {
+    const next = new Set(selectedAdvancedCharacterIds);
+    if (next.has(characterId)) {
+      next.delete(characterId);
+    } else {
+      next.add(characterId);
+    }
+    selectedAdvancedCharacterIds = next;
+  }
+
+  function selectAllAdvancedCharacters() {
+    selectedAdvancedCharacterIds = new Set(advancedCharacters.map((item) => item.characterId));
+  }
+
+  function clearAdvancedCharacterSelection() {
+    selectedAdvancedCharacterIds = new Set<string>();
+  }
+
+  function handleToggleAllAdvancedCharacters(checked: boolean) {
+    if (checked) {
+      selectAllAdvancedCharacters();
+      return;
+    }
+
+    clearAdvancedCharacterSelection();
+  }
+
+  async function handleQueueAdvancedGeneration() {
+    if (!advancedPreview || advancedSubmitting) return;
+
+    if (selectedAdvancedCharacterIds.size === 0) {
+      alert('Select at least one character to generate.');
+      return;
+    }
+
+    const trimmedFillerText = advancedFillerText.trim();
+    if (advancedUseFillerForShortBatch && !trimmedFillerText) {
+      alert('Enter filler/pretext text or disable the filler option.');
+      return;
+    }
+
+    const generationOptions: GenerateAudioCharacterOptions = {
+      useFillerForShortBatch: advancedUseFillerForShortBatch,
+      fillerText: advancedUseFillerForShortBatch ? trimmedFillerText : null,
+    };
+
+    advancedSubmitting = true;
+
+    try {
+      const selectedIds = new Set(selectedAdvancedCharacterIds);
+      const queueRunTimestamp = Date.now();
+      const chapterProcessableTotals = new Map<string, number>();
+      const chapterMissingVoiceTotals = new Map(
+        advancedPreview.chapterOverview.map((entry) => [entry.chapterTitle, entry.missingVoiceTotal])
+      );
+
+      let jobsQueued = 0;
+      let linesQueued = 0;
+      let jobCounter = 0;
+
+      if (advancedGenerationMode === 'character') {
+        for (const batch of selectedAdvancedCharacters) {
+          if (!selectedIds.has(batch.characterId) || batch.lines.length === 0) continue;
+
+          const firstLine = batch.lines[0];
+          const chapterTitle = resolveQueuedLineChapterTitle(firstLine, batch.characterName);
+          const sourceFile = resolveQueuedLineSourceFile(firstLine, `${chapterTitle}/chapter.txt`);
+          const { cumulative, total } = buildCumulativeCharacterCounts(batch.lines);
+          const jobId = `advanced-character-${batch.characterId}-${queueRunTimestamp}-${jobCounter++}`;
+
+          queuedJobs.set(jobId, {
+            characterId: batch.characterId,
+            characterName: batch.characterName,
+            lines: batch.lines,
+            cumulativeCharacterCounts: cumulative,
+            totalCharacters: total,
+            voiceInfo: batch.voiceInfo,
+            chapterTitle,
+            sourceFile,
+            generationOptions,
+          });
+
+          enqueueAudioJob({
+            id: jobId,
+            characterId: batch.characterId,
+            characterName: batch.characterName,
+            chapterTitle,
+            generationMode: 'missing',
+            total: batch.lines.length,
+            totalCharacters: total,
+          });
+
+          for (const line of batch.lines) {
+            const lineChapterTitle = resolveQueuedLineChapterTitle(line, chapterTitle);
+            chapterProcessableTotals.set(lineChapterTitle, (chapterProcessableTotals.get(lineChapterTitle) || 0) + 1);
+          }
+
+          jobsQueued += 1;
+          linesQueued += batch.lines.length;
+        }
+      } else {
+        for (const batch of selectedAdvancedChapterBatches) {
+          if (!selectedIds.has(batch.characterId) || batch.lines.length === 0) continue;
+
+          const { cumulative, total } = buildCumulativeCharacterCounts(batch.lines);
+          const jobId = `advanced-chapter-${batch.chapterTitle}-${batch.characterId}-${queueRunTimestamp}-${jobCounter++}`;
+
+          queuedJobs.set(jobId, {
+            characterId: batch.characterId,
+            characterName: batch.characterName,
+            lines: batch.lines,
+            cumulativeCharacterCounts: cumulative,
+            totalCharacters: total,
+            voiceInfo: batch.voiceInfo,
+            chapterTitle: batch.chapterTitle,
+            sourceFile: batch.sourceFile,
+            generationOptions,
+          });
+
+          enqueueAudioJob({
+            id: jobId,
+            characterId: batch.characterId,
+            characterName: batch.characterName,
+            chapterTitle: batch.chapterTitle,
+            generationMode: 'missing',
+            total: batch.lines.length,
+            totalCharacters: total,
+          });
+
+          chapterProcessableTotals.set(batch.chapterTitle, (chapterProcessableTotals.get(batch.chapterTitle) || 0) + batch.lines.length);
+          jobsQueued += 1;
+          linesQueued += batch.lines.length;
+        }
+      }
+
+      if (jobsQueued === 0 || linesQueued === 0) {
+        alert('No missing audio lines found for the selected characters.');
+        return;
+      }
+
+      const chapterTitles = new Set<string>([
+        ...chapterProcessableTotals.keys(),
+        ...chapterMissingVoiceTotals.keys(),
+      ]);
+
+      for (const chapterTitle of chapterTitles) {
+        const processableTotal = chapterProcessableTotals.get(chapterTitle) || 0;
+        const missingVoiceTotal = chapterMissingVoiceTotals.get(chapterTitle) || 0;
+        if (processableTotal > 0 || missingVoiceTotal > 0) {
+          setQueueChapterOverview(chapterTitle, processableTotal, missingVoiceTotal);
+        }
+      }
+
+      if (!queueProcessing) {
+        void processQueue();
+      }
+
+      showAdvancedOverlay = false;
+
+      const batchLabel = advancedGenerationMode === 'character' ? 'character batch' : 'chapter batch';
+      const fillerNote = advancedUseFillerForShortBatch ? ' Short batches will use the configured filler/pretext.' : '';
+      alert(
+        `Queued ${linesQueued} missing line${linesQueued === 1 ? '' : 's'} ` +
+        `across ${jobsQueued} ${batchLabel}${jobsQueued === 1 ? '' : 'es'} ` +
+        `from ${selectedAdvancedParsedChapterCount} parsed chapter${selectedAdvancedParsedChapterCount === 1 ? '' : 's'}.` +
+        fillerNote
+      );
+    } finally {
+      advancedSubmitting = false;
+    }
+  }
+
   async function handlePruneStaleAudio() {
     const ch = get(currentChapter);
     const scr = get(currentScript);
@@ -413,7 +898,7 @@
   }
 
   // Get voice assignment for a character by ID
-  function getVoiceForCharacter(characterId: string): { voiceId: string; provider: string; displayName: string; characterId: string } | null {
+  function getVoiceForCharacter(characterId: string): VoiceInfo | null {
     const assignment = $voices.assignments.find(a => a.characterId === characterId);
     if (!assignment) return null;
     
@@ -455,7 +940,7 @@
         characterName,
         voiceInfo,
         ch.title,
-        ch.path || '',
+        getChapterSourceFile(ch),
       );
       return;
     }
@@ -498,7 +983,7 @@
     line: DialogueLine,
     characterId: string,
     characterName: string,
-    voiceInfo: { voiceId: string; provider: string; displayName: string; characterId: string },
+    voiceInfo: VoiceInfo,
     chapterTitle: string,
     sourceFile: string,
   ): Promise<boolean> {
@@ -682,7 +1167,7 @@
       totalCharacters: total,
       voiceInfo,
       chapterTitle: ch.title,
-      sourceFile: ch.path || '',
+      sourceFile: getChapterSourceFile(ch),
     });
 
     enqueueAudioJob({
@@ -755,7 +1240,8 @@
           const processedCharacters = boundedCurrent > 0 ? payload.cumulativeCharacterCounts[boundedCurrent - 1] : 0;
           updateJobProgress(next.id, current, total, processedCharacters, payload.totalCharacters);
         },
-        () => isJobCanceled(next.id)
+        () => isJobCanceled(next.id),
+        payload.generationOptions
       );
 
       if (result.canceled) {
@@ -857,6 +1343,15 @@
 
   .header-icon-btn.book-btn {
     color: #7c3aed;
+  }
+
+  .header-icon-btn.advanced-btn {
+    width: auto;
+    padding: 0 10px;
+    color: #0f766e;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
   }
 
   .panel-divider {
@@ -1026,6 +1521,518 @@
     background: #dc2626;
   }
 
+  .advanced-modal-content {
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    width: min(760px, calc(100vw - 32px));
+    max-height: calc(100vh - 48px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .advanced-modal-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 24px 24px 18px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .advanced-modal-subtitle {
+    margin: 6px 0 0 0;
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.5;
+  }
+
+  .advanced-close-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #4b5563;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .advanced-modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 24px 24px;
+    overflow-y: auto;
+  }
+
+  .advanced-loading,
+  .advanced-empty,
+  .advanced-error-card {
+    padding: 24px;
+    color: #4b5563;
+    line-height: 1.6;
+  }
+
+  .advanced-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+  }
+
+  .advanced-summary-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 12px;
+    background: #f9fafb;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .advanced-summary-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
+
+  .advanced-summary-card strong {
+    font-size: 20px;
+    color: #111827;
+  }
+
+  .advanced-summary-note {
+    font-size: 12px;
+    color: #6b7280;
+  }
+
+  .advanced-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .advanced-section h4 {
+    margin: 0;
+    font-size: 14px;
+    color: #111827;
+  }
+
+  .advanced-section-note,
+  .advanced-helper {
+    margin: 0;
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 1.5;
+  }
+
+  .advanced-mode-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+
+  .advanced-mode-card {
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    cursor: pointer;
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+
+  .advanced-mode-card.active {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.18);
+    background: #eff6ff;
+  }
+
+  .advanced-mode-card input {
+    margin-top: 3px;
+  }
+
+  .advanced-mode-title {
+    display: block;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 4px;
+  }
+
+  .advanced-mode-description {
+    display: block;
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 1.5;
+  }
+
+  .advanced-checkbox-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    cursor: pointer;
+    color: #111827;
+  }
+
+  .advanced-checkbox-row input {
+    margin-top: 3px;
+  }
+
+  .advanced-textarea {
+    min-height: 96px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    padding: 10px 12px;
+    resize: vertical;
+    font: inherit;
+    color: #111827;
+    background: #fff;
+  }
+
+  .advanced-textarea:disabled {
+    background: #f3f4f6;
+    color: #9ca3af;
+  }
+
+  .advanced-warning,
+  .advanced-info {
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .advanced-warning {
+    border: 1px solid #f59e0b;
+    background: #fef3c7;
+    color: #92400e;
+  }
+
+  .advanced-info {
+    border: 1px solid #67e8f9;
+    background: #ecfeff;
+    color: #155e75;
+  }
+
+  .advanced-selection-toolbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .advanced-selection-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .advanced-selection-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .advanced-master-checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #111827;
+    cursor: pointer;
+  }
+
+  .advanced-master-checkbox input,
+  .advanced-character-row input {
+    width: 16px;
+    height: 16px;
+    accent-color: #2563eb;
+  }
+
+  .advanced-badge-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .advanced-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 9px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .advanced-status-badge.ready {
+    background: #dcfce7;
+    color: #166534;
+  }
+
+  .advanced-status-badge.warning {
+    background: #fef3c7;
+    color: #92400e;
+  }
+
+  .advanced-selection-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .advanced-link-btn {
+    border: none;
+    background: transparent;
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .advanced-link-btn:disabled {
+    color: #9ca3af;
+    cursor: not-allowed;
+  }
+
+  .advanced-character-list {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    min-height: 220px;
+    max-height: 320px;
+    overflow-y: auto;
+    background: #fff;
+  }
+
+  .advanced-character-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .advanced-character-section-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+
+  .advanced-character-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  .advanced-character-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .advanced-character-preview-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: #eef2ff;
+    color: #3730a3;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .advanced-character-preview-pill.more {
+    background: #f3f4f6;
+    color: #4b5563;
+  }
+
+  .advanced-character-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    border-top: 1px solid #f3f4f6;
+    cursor: pointer;
+    background: #fff;
+  }
+
+  .advanced-character-row:first-child {
+    border-top: none;
+  }
+
+  .advanced-character-row.selected {
+    background: #f8fafc;
+  }
+
+  .advanced-character-row input {
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  .advanced-character-main {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .advanced-character-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .advanced-character-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .advanced-character-trailing {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .advanced-inline-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .advanced-inline-badge.ready {
+    background: #dcfce7;
+    color: #166534;
+  }
+
+  .advanced-inline-badge.warning {
+    background: #fef3c7;
+    color: #92400e;
+  }
+
+  .advanced-character-name {
+    font-weight: 600;
+    color: #111827;
+  }
+
+  .advanced-character-voice {
+    font-size: 12px;
+    color: #6b7280;
+  }
+
+  .advanced-character-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 12px;
+    color: #4b5563;
+  }
+
+  .advanced-stat-pill {
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #f3f4f6;
+  }
+
+  .advanced-character-warning {
+    margin: 0;
+    font-size: 12px;
+    color: #b45309;
+  }
+
+  .advanced-character-warning.ready {
+    color: #0f766e;
+  }
+
+  .advanced-actions-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 8px;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .advanced-secondary-btn,
+  .advanced-primary-btn {
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .advanced-secondary-btn {
+    border: 1px solid #d1d5db;
+    background: #fff;
+    color: #111827;
+  }
+
+  .advanced-primary-btn {
+    border: none;
+    background: #2563eb;
+    color: #fff;
+  }
+
+  .advanced-secondary-btn:hover:not(:disabled),
+  .advanced-close-btn:hover:not(:disabled) {
+    background: #f3f4f6;
+  }
+
+  .advanced-primary-btn:hover:not(:disabled) {
+    background: #1d4ed8;
+  }
+
+  .advanced-secondary-btn:disabled,
+  .advanced-primary-btn:disabled,
+  .advanced-close-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 720px) {
+    .advanced-modal-content {
+      width: calc(100vw - 20px);
+      max-height: calc(100vh - 20px);
+    }
+
+    .advanced-modal-header,
+    .advanced-modal-body {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .advanced-selection-toolbar,
+    .advanced-actions-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .advanced-selection-actions,
+    .advanced-actions-row {
+      justify-content: flex-start;
+    }
+  }
+
   @keyframes spin {
     to { transform: rotate(360deg); }
   }
@@ -1069,6 +2076,15 @@
         aria-label="Queue book missing audio"
       >
         <BookOpen size={14} />
+      </button>
+      <button
+        class="header-icon-btn advanced-btn"
+        on:click={handleOpenAdvancedOverlay}
+        disabled={$chapters.length === 0 || pruningStale || queueProcessing}
+        title="Open advanced batch generation"
+        aria-label="Open advanced batch generation"
+      >
+        <span>ADV</span>
       </button>
     </div>
   </div>
@@ -1150,6 +2166,254 @@
           Overwrite
         </button>
       </div>
+    </div>
+  </div>
+{/if}
+
+{#if showAdvancedOverlay}
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
+  <div class="modal-backdrop" on:click={handleCloseAdvancedOverlay}>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <div class="advanced-modal-content" on:click|stopPropagation>
+      <div class="advanced-modal-header">
+        <div>
+          <h3 class="modal-title">Advanced Batch Generation</h3>
+          <p class="advanced-modal-subtitle">
+            Choose how to queue missing audio across parsed chapters only. Chapters without dialogue data are ignored.
+          </p>
+        </div>
+        <button
+          class="advanced-close-btn"
+          on:click={handleCloseAdvancedOverlay}
+          disabled={advancedSubmitting}
+          aria-label="Close advanced batch generation"
+        >
+          <X size={16} />
+        </button>
+      </div>
+
+      {#if loadingAdvancedPreview}
+        <div class="advanced-loading">Scanning parsed chapters and checking which missing lines are still eligible for generation...</div>
+      {:else if advancedPreviewError}
+        <div class="advanced-error-card">
+          <p>{advancedPreviewError}</p>
+          <div class="advanced-actions-row">
+            <button class="advanced-secondary-btn" on:click={handleCloseAdvancedOverlay}>Close</button>
+            <button class="advanced-primary-btn" on:click={handleOpenAdvancedOverlay}>Retry Scan</button>
+          </div>
+        </div>
+      {:else if advancedPreview}
+        <div class="advanced-modal-body">
+          <div class="advanced-summary-grid">
+            <div class="advanced-summary-card">
+              <span class="advanced-summary-label">Parsed Chapters</span>
+              <strong>{advancedPreview.parsedChapterCount}/{advancedPreview.totalChapterCount}</strong>
+              <span class="advanced-summary-note">{advancedPreview.skippedUnparsedCount} ignored</span>
+            </div>
+            <div class="advanced-summary-card">
+              <span class="advanced-summary-label">Eligible Characters</span>
+              <strong>{advancedPreview.characters.length}</strong>
+              <span class="advanced-summary-note">Voiced characters with missing lines</span>
+            </div>
+            <div class="advanced-summary-card">
+              <span class="advanced-summary-label">Missing Lines</span>
+              <strong>{advancedPreview.totalMissingLines}</strong>
+              <span class="advanced-summary-note">Across all parsed chapters</span>
+            </div>
+            <div class="advanced-summary-card">
+              <span class="advanced-summary-label">Skipped For Voice</span>
+              <strong>{advancedPreview.missingVoiceLineCount}</strong>
+              <span class="advanced-summary-note">{advancedPreview.missingVoiceCharacterCount} character(s) missing a voice</span>
+            </div>
+          </div>
+
+          {#if advancedPreview.characters.length === 0}
+            <p class="advanced-empty">No voiced characters with missing audio were found across the parsed chapters.</p>
+          {:else}
+            <div class="advanced-section">
+              <h4>Batch Mode</h4>
+              <p class="advanced-section-note">Choose whether the queue should stay chapter-scoped or combine missing lines across chapters for each selected character.</p>
+              <div class="advanced-mode-grid">
+                <label class="advanced-mode-card" class:active={advancedGenerationMode === 'character'}>
+                  <input type="radio" bind:group={advancedGenerationMode} value="character" />
+                  <span>
+                    <span class="advanced-mode-title">Generate By Character</span>
+                    <span class="advanced-mode-description">Combine each selected character's missing lines across parsed chapters into a single batch before splitting them back out.</span>
+                  </span>
+                </label>
+                <label class="advanced-mode-card" class:active={advancedGenerationMode === 'chapter'}>
+                  <input type="radio" bind:group={advancedGenerationMode} value="chapter" />
+                  <span>
+                    <span class="advanced-mode-title">Generate By Chapter</span>
+                    <span class="advanced-mode-description">Keep chapter boundaries intact by queueing a separate batch for each selected character inside each parsed chapter.</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="advanced-section">
+              <h4>Short-Batch Filler</h4>
+              <label class="advanced-checkbox-row">
+                <input type="checkbox" bind:checked={advancedUseFillerForShortBatch} />
+                <span>Pad short batches with filler/pretext before the real dialogue lines.</span>
+              </label>
+              <p class="advanced-helper">When enabled, the filler text is repeated before the actual lines until the batch clears the {CHARACTER_BATCH_TARGET}-character target.</p>
+              <textarea
+                class="advanced-textarea"
+                bind:value={advancedFillerText}
+                disabled={!advancedUseFillerForShortBatch}
+                rows="4"
+                placeholder="Enter reusable filler/pretext text for short batches"
+              ></textarea>
+            </div>
+
+            {#if advancedGenerationMode === 'character' && selectedAdvancedUnderTargetCharacters.length > 0 && !advancedUseFillerForShortBatch}
+              <div class="advanced-warning">
+                {selectedAdvancedUnderTargetCharacters.length} selected character batch{selectedAdvancedUnderTargetCharacters.length === 1 ? '' : 'es'} fall below {CHARACTER_BATCH_TARGET} characters. Enable filler/pretext if you want to pad them before generation.
+              </div>
+            {:else if advancedGenerationMode === 'chapter' && selectedAdvancedUnderTargetChapterBatchCount > 0 && !advancedUseFillerForShortBatch}
+              <div class="advanced-warning">
+                {selectedAdvancedUnderTargetChapterBatchCount} selected chapter batch{selectedAdvancedUnderTargetChapterBatchCount === 1 ? '' : 'es'} fall below {CHARACTER_BATCH_TARGET} characters. Enable filler/pretext if you want to pad them.
+              </div>
+            {:else if advancedUseFillerForShortBatch}
+              <div class="advanced-info">Short batches will be padded with the configured filler/pretext before the real dialogue lines are generated.</div>
+            {/if}
+
+            <div class="advanced-selection-toolbar">
+              <div class="advanced-selection-meta">
+                <label class="advanced-master-checkbox">
+                  <input
+                    bind:this={advancedSelectAllInput}
+                    type="checkbox"
+                    checked={advancedAllCharactersSelected}
+                    on:change={(event) => handleToggleAllAdvancedCharacters((event.currentTarget as HTMLInputElement).checked)}
+                  />
+                  <span>All characters</span>
+                </label>
+                <div class="advanced-selection-summary">
+                  <strong>{selectedAdvancedCharacterBatchCount} character{selectedAdvancedCharacterBatchCount === 1 ? '' : 's'} selected</strong>
+                  <span class="advanced-section-note">
+                    {selectedAdvancedLineCount} missing line{selectedAdvancedLineCount === 1 ? '' : 's'} across {selectedAdvancedParsedChapterCount} parsed chapter{selectedAdvancedParsedChapterCount === 1 ? '' : 's'}.
+                    {#if advancedGenerationMode === 'chapter'}
+                      {' '}{selectedAdvancedChapterBatchCount} chapter batch{selectedAdvancedChapterBatchCount === 1 ? '' : 'es'} will be queued.
+                    {/if}
+                  </span>
+                </div>
+                <div class="advanced-badge-row">
+                  <span class="advanced-status-badge ready">
+                    {selectedAdvancedReadyCharacterCount} ready as-is
+                  </span>
+                  {#if selectedAdvancedCharactersNeedingFillerCount > 0}
+                    <span class="advanced-status-badge warning">
+                      {selectedAdvancedCharactersNeedingFillerCount} {advancedUseFillerForShortBatch ? 'will be padded' : 'below 800'}
+                    </span>
+                  {/if}
+                </div>
+              </div>
+              <div class="advanced-selection-actions">
+                <button class="advanced-link-btn" on:click={selectAllAdvancedCharacters} disabled={advancedCharacters.length === 0}>Select All</button>
+                <button class="advanced-link-btn" on:click={clearAdvancedCharacterSelection} disabled={selectedAdvancedCharacterIds.size === 0}>Clear</button>
+              </div>
+            </div>
+
+            <div class="advanced-character-section">
+              <div class="advanced-character-section-header">
+                <span class="advanced-character-section-title">Characters To Generate</span>
+                <span class="advanced-section-note">{advancedCharacters.length} available</span>
+              </div>
+
+              {#if selectedAdvancedCharacters.length > 0}
+                <div class="advanced-character-preview">
+                  {#each selectedAdvancedCharacters.slice(0, 8) as item (item.characterId)}
+                    <span class="advanced-character-preview-pill">{item.characterName}</span>
+                  {/each}
+                  {#if selectedAdvancedCharacters.length > 8}
+                    <span class="advanced-character-preview-pill more">+{selectedAdvancedCharacters.length - 8} more</span>
+                  {/if}
+                </div>
+              {/if}
+
+              <div class="advanced-character-list">
+                {#each advancedCharacters as item (item.characterId)}
+                  {@const isSelected = selectedAdvancedCharacterIds.has(item.characterId)}
+                  {@const isUnderTarget = item.totalCharacters < CHARACTER_BATCH_TARGET}
+                  <label class="advanced-character-row" class:selected={isSelected}>
+                    <input
+                      type="checkbox"
+                      checked={isSelected}
+                      on:change={() => toggleAdvancedCharacterSelection(item.characterId)}
+                    />
+                    <div class="advanced-character-main">
+                      <div class="advanced-character-header">
+                        <div class="advanced-character-title-group">
+                          <span class="advanced-character-name">{item.characterName}</span>
+                          <span class="advanced-character-voice">{item.voiceInfo.displayName}</span>
+                        </div>
+                        <div class="advanced-character-trailing">
+                          {#if advancedGenerationMode === 'character'}
+                            <span class="advanced-inline-badge" class:warning={isUnderTarget} class:ready={!isUnderTarget}>
+                              {#if isUnderTarget}
+                                {advancedUseFillerForShortBatch ? 'Will pad' : 'Needs filler'}
+                              {:else}
+                                Ready
+                              {/if}
+                            </span>
+                          {:else}
+                            <span class="advanced-inline-badge" class:warning={item.underTargetChapterBatchCount > 0} class:ready={item.underTargetChapterBatchCount === 0}>
+                              {#if item.underTargetChapterBatchCount > 0}
+                                {item.underTargetChapterBatchCount} short batch{item.underTargetChapterBatchCount === 1 ? '' : 'es'}
+                              {:else}
+                                Ready
+                              {/if}
+                            </span>
+                          {/if}
+                        </div>
+                      </div>
+                      <div class="advanced-character-stats">
+                        <span class="advanced-stat-pill">{item.lines.length} lines</span>
+                        <span class="advanced-stat-pill">{item.totalCharacters} chars</span>
+                        <span class="advanced-stat-pill">{item.chapterCount} chapters</span>
+                        <span class="advanced-stat-pill">{item.chapterBatchCount} chapter batch{item.chapterBatchCount === 1 ? '' : 'es'}</span>
+                      </div>
+
+                      {#if advancedGenerationMode === 'character' && isUnderTarget}
+                        <p class="advanced-character-warning" class:ready={advancedUseFillerForShortBatch}>
+                          {#if advancedUseFillerForShortBatch}
+                            Below {CHARACTER_BATCH_TARGET} characters. Filler/pretext will pad this batch.
+                          {:else}
+                            Below {CHARACTER_BATCH_TARGET} characters. Consider enabling filler/pretext.
+                          {/if}
+                        </p>
+                      {:else if advancedGenerationMode === 'chapter' && item.underTargetChapterBatchCount > 0}
+                        <p class="advanced-character-warning" class:ready={advancedUseFillerForShortBatch}>
+                          {item.underTargetChapterBatchCount} chapter batch{item.underTargetChapterBatchCount === 1 ? '' : 'es'} below {CHARACTER_BATCH_TARGET} characters{advancedUseFillerForShortBatch ? '; filler/pretext will pad them.' : '.'}
+                        </p>
+                      {/if}
+                    </div>
+                  </label>
+                {/each}
+              </div>
+            </div>
+
+            <div class="advanced-actions-row">
+              <button class="advanced-secondary-btn" on:click={handleCloseAdvancedOverlay} disabled={advancedSubmitting}>Cancel</button>
+              <button
+                class="advanced-primary-btn"
+                on:click={handleQueueAdvancedGeneration}
+                disabled={advancedSubmitting || selectedAdvancedCharacterIds.size === 0}
+              >
+                {#if advancedSubmitting}
+                  Queueing...
+                {:else}
+                  Queue Missing Audio
+                {/if}
+              </button>
+            </div>
+          {/if}
+        </div>
+      {/if}
     </div>
   </div>
 {/if}

@@ -1,797 +1,604 @@
 <script lang="ts">
   import { createEventDispatcher, onDestroy } from 'svelte';
-  import { get } from 'svelte/store';
-  import type { Voice, TtsProvider, Character } from '$lib/types';
+  import { FolderOpen, Play, RefreshCw, Save, X } from 'lucide-svelte';
+  import type { Character, Voice } from '$lib/types';
   import SpeakerCard from './SpeakerCard.svelte';
-  import { Plus, X, Play, RefreshCw } from 'lucide-svelte';
   import { getCharacterNamesByIds } from '$lib/stores/characters';
-  import { voiceSamplesRoot } from '$lib/stores/bookState';
-  import { getVoiceSamplePreviewUrl, listVoiceSamples } from '$lib/services/vibevoice';
+  import { pickDirectoryAbsolutePath } from '$lib/services/directoryPicker';
+  import { normalizeVoiceTags } from '$lib/services/vibevoice';
+  import { saveVoiceSampleMetadataForVoice } from '$lib/stores/speakers';
 
   export let voices: Voice[] = [];
   export let assignments: Array<{ characterId: string; voiceId: string }> = [];
   export let characters: Character[] = [];
-
-  let voiceRows: Array<{ voice: Voice; uiKey: string }> = [];
+  export let voiceSamplesPath: string = '';
 
   const dispatch = createEventDispatcher<{
-    update: Voice[];
-    deduplicate: void;
+    samplesrootchange: string | null;
   }>();
 
-  let showModal = false;
-  let editingId: string | null = null;
-  let formData: Partial<Voice> = {
-    displayName: '',
-    provider: 'vibevoice_local',
-    providerVoiceId: '',
-    notes: '',
-    previewUrl: null,
-    metadata: {
-      gender: 'U',
-      imageUrl: null,
-    },
-  };
-
-  const PROVIDER_OPTIONS: Array<{ value: TtsProvider; label: string }> = [
-    { value: 'vibevoice_local', label: 'VibeVoice (Local)' },
-  ];
-  const AGE_OPTIONS = [
-    { value: 'child', label: 'Child' },
-    { value: 'adult', label: 'Adult' },
-    { value: 'old', label: 'Old' },
-  ];
-  const ACCENT_OPTIONS = [
-    { value: 'american', label: 'American' },
-    { value: 'british', label: 'British' },
-    { value: 'japanese', label: 'Japanese' },
-    { value: 'french', label: 'French' },
-    { value: 'southern', label: 'Southern' },
-    { value: 'middle_east', label: 'Middle East' },
-    { value: 'other', label: 'Other' },
-  ];
-  const STYLE_OPTIONS = [
-    { value: 'normal', label: 'Normal' },
-    { value: 'monotone', label: 'Monotone' },
-    { value: 'deep', label: 'Deep' },
-    { value: 'slow', label: 'Slow' },
-    { value: 'gruffly', label: 'Gruffly' },
-    { value: 'other', label: 'Other' },
-  ];
-  let voiceSamples: string[] = [];
-  let voiceSamplesError: string | null = null;
-  let isLoadingSamples = false;
-  let lastSamplesRoot: string | null = null;
   let previewAudio: HTMLAudioElement | null = null;
+  let isSyncing = false;
+  let syncError: string | null = null;
 
-  function getStyleFromTags(tags?: string[]): string {
-    const styleTag = tags?.find((tag) => tag.startsWith('style:'));
-    if (!styleTag) return 'normal';
-    return styleTag.slice('style:'.length) || 'normal';
-  }
+  let showTagModal = false;
+  let editingVoice: Voice | null = null;
+  let editingDisplayName = '';
+  let editingTags: string[] = [];
+  let pendingTag = '';
+  let isSavingTags = false;
+  let tagError: string | null = null;
 
-  function setStyleTag(tags: string[] | undefined, style: string): string[] {
-    const sanitized = (tags || []).filter((tag) => !tag.startsWith('style:'));
-    sanitized.push(`style:${style}`);
-    return sanitized;
-  }
+  $: visibleVoices = (() => {
+    const uniqueVoices: Voice[] = [];
+    const seenIds = new Set<string>();
+
+    for (const voice of voices) {
+      if (seenIds.has(voice.id)) {
+        console.warn('[SpeakerManager] Skipping duplicate voice id during render:', voice.id);
+        continue;
+      }
+
+      seenIds.add(voice.id);
+      uniqueVoices.push(voice);
+    }
+
+    return uniqueVoices;
+  })();
 
   onDestroy(() => {
     previewAudio?.pause();
     previewAudio = null;
   });
 
-  async function loadVoiceSamples(force: boolean = false) {
-    const root = get(voiceSamplesRoot);
-    if (!root) {
-      voiceSamples = [];
-      voiceSamplesError = 'Select a samples folder to list files.';
-      return;
-    }
-
-    if (!force && root === lastSamplesRoot && voiceSamples.length > 0) return;
-
-    isLoadingSamples = true;
-    voiceSamplesError = null;
-    try {
-      voiceSamples = await listVoiceSamples(root);
-      lastSamplesRoot = root;
-      if (voiceSamples.length === 0) {
-        voiceSamplesError = 'No sample files found in the selected folder.';
-      }
-    } catch (err) {
-      voiceSamplesError = err instanceof Error ? err.message : 'Failed to load samples.';
-      voiceSamples = [];
-    } finally {
-      isLoadingSamples = false;
-    }
-  }
-
-  $: if (showModal && formData.provider === 'vibevoice_local') {
-    void loadVoiceSamples();
-  }
-
-  async function refreshVoiceSamples() {
-    lastSamplesRoot = null;
-    await loadVoiceSamples(true);
-  }
-
-  $: voiceRows = voices.map((voice, index) => ({
-    voice,
-    uiKey: `${voice.id}::${index}`,
-  }));
-
-  function openCreateModal() {
-    editingId = null;
-    formData = {
-      displayName: '',
-      provider: 'vibevoice_local',
-      providerVoiceId: '',
-      notes: '',
-      previewUrl: null,
-      metadata: {
-        gender: 'U',
-        ageRange: 'adult',
-        accent: 'american',
-        tags: ['style:normal'],
-        imageUrl: null,
-      },
-    };
-    showModal = true;
-  }
-  
-  function handleDeduplicate() {
-    dispatch('deduplicate');
-  }
-
-  function openEditModal(event: CustomEvent<Voice>) {
-    const v = event.detail;
-    editingId = v.id;
-    formData = {
-      ...v,
-      provider: 'vibevoice_local',
-      metadata: {
-        ...v.metadata,
-        ageRange: v.metadata?.ageRange || 'adult',
-        accent: v.metadata?.accent || 'american',
-        tags: setStyleTag(v.metadata?.tags, getStyleFromTags(v.metadata?.tags)),
-      }
-    };
-    
-    showModal = true;
-  }
-  
-  // Get the names of characters using a specific voice
   function getCharacterNames(voiceId: string): string[] {
     const characterIds = assignments
-      .filter(a => a.voiceId === voiceId)
-      .map(a => a.characterId);
-    
+      .filter((assignment) => assignment.voiceId === voiceId)
+      .map((assignment) => assignment.characterId);
+
     return getCharacterNamesByIds(characterIds, characters);
   }
 
-  function closeModal() {
-    showModal = false;
-    editingId = null;
+  function resolvePreviewUrl(voice: Voice): string | null {
+    return typeof voice.previewUrl === 'string' && voice.previewUrl.trim().length > 0
+      ? voice.previewUrl
+      : null;
   }
 
-  function resolvePreviewUrl(voice: Voice): string | null {
-    const explicitPreview = typeof voice.previewUrl === 'string' ? voice.previewUrl.trim() : '';
-    if (explicitPreview.length > 0) return explicitPreview;
-
-    if (voice.provider !== 'vibevoice_local' || !voice.providerVoiceId?.trim()) {
-      return null;
+  async function playPreview(voice: Voice) {
+    const previewUrl = resolvePreviewUrl(voice);
+    if (!previewUrl) {
+      alert('No preview is available for this sample.');
+      return;
     }
 
-    const root = get(voiceSamplesRoot);
-    if (!root) return null;
-    return getVoiceSamplePreviewUrl(root, voice.providerVoiceId.trim());
-  }
-
-  async function playPreview(url: string) {
     previewAudio?.pause();
-    previewAudio = new Audio(url);
+    previewAudio = new Audio(previewUrl);
     await previewAudio.play();
   }
 
-  function generateId(): string {
-    const provider = formData.provider || 'vibevoice_local';
-    const voiceId = formData.providerVoiceId || 'unknown';
-    return `${provider}-${voiceId}`;
+  async function handlePreview(event: CustomEvent<string>) {
+    const voice = voices.find((entry) => entry.id === event.detail);
+    if (!voice) return;
+
+    playPreview(voice).catch((err) => console.error('Preview error:', err));
   }
 
-  function handleSubmit() {
-    if (!formData.displayName?.trim()) {
-      alert('Voice name is required');
+  function openTagModal(event: CustomEvent<Voice>) {
+    editingVoice = event.detail;
+    editingDisplayName = event.detail.displayName;
+    editingTags = [...(event.detail.metadata.tags || [])];
+    pendingTag = '';
+    tagError = null;
+    showTagModal = true;
+  }
+
+  function closeTagModal() {
+    showTagModal = false;
+    editingVoice = null;
+    editingDisplayName = '';
+    editingTags = [];
+    pendingTag = '';
+    tagError = null;
+  }
+
+  function addPendingTag() {
+    if (!pendingTag.trim()) return;
+    editingTags = normalizeVoiceTags([...editingTags, pendingTag]);
+    pendingTag = '';
+  }
+
+  function removeTag(tag: string) {
+    editingTags = editingTags.filter((entry) => entry !== tag);
+  }
+
+  function handlePendingTagKeydown(event: KeyboardEvent) {
+    if (event.key !== 'Enter') return;
+    event.preventDefault();
+    addPendingTag();
+  }
+
+  async function saveTags() {
+    if (!editingVoice) return;
+
+    const samplesRoot = voiceSamplesPath.trim();
+    if (!samplesRoot) {
+      tagError = 'Select a voice samples folder before editing tags.';
       return;
     }
 
-    if (!formData.providerVoiceId?.trim()) {
-      alert('Provider Voice ID is required');
-      return;
-    }
-
-    const metadata = formData.metadata || {};
-    const normalizedStyle = getStyleFromTags(metadata.tags);
-    const normalizedTags = setStyleTag(metadata.tags, normalizedStyle);
-
-    const selectedSamplesRoot = get(voiceSamplesRoot);
-    const selectedProviderVoiceId = formData.providerVoiceId?.trim() || '';
-    const autoPreviewUrl =
-      formData.provider === 'vibevoice_local' && selectedProviderVoiceId && selectedSamplesRoot
-        ? getVoiceSamplePreviewUrl(selectedSamplesRoot, selectedProviderVoiceId)
-        : null;
-
-    if (editingId) {
-      // Update existing voice
-      voices = voices.map(v => 
-        v.id === editingId 
-          ? {
-              ...formData,
-              id: editingId,
-              providerVoiceId: selectedProviderVoiceId,
-              previewUrl: autoPreviewUrl || formData.previewUrl || null,
-              metadata: {
-                ...metadata,
-                ageRange: metadata.ageRange || 'adult',
-                accent: metadata.accent || 'american',
-                tags: normalizedTags,
-              },
-            } as Voice
-          : v
-      );
-    } else {
-      // Create new voice
-      const newVoice: Voice = {
-        id: generateId(),
-        displayName: formData.displayName!,
-        provider: formData.provider || 'vibevoice_local',
-        providerVoiceId: selectedProviderVoiceId,
-        notes: formData.notes || '',
-        previewUrl: autoPreviewUrl || formData.previewUrl || null,
-        metadata: {
-          gender: metadata.gender || 'U',
-          ageRange: metadata.ageRange || 'adult',
-          accent: metadata.accent || 'american',
-          tags: normalizedTags,
-          imageUrl: metadata.imageUrl || null,
-        },
-      };
-      voices = [...voices, newVoice];
-    }
-
-    dispatch('update', voices);
-    closeModal();
-  }
-
-  function handleDelete(event: CustomEvent<string>) {
-    const id = event.detail;
-    if (confirm('Are you sure you want to delete this voice?')) {
-      voices = voices.filter(v => v.id !== id);
-      dispatch('update', voices);
-    }
-  }
-
-  function handlePreview(event: CustomEvent<string>) {
-    const id = event.detail;
-    const voice = voices.find(v => v.id === id);
-    if (voice) {
-      const previewUrl = resolvePreviewUrl(voice);
-      if (!previewUrl) {
-        alert('No preview available for this voice');
+    isSavingTags = true;
+    tagError = null;
+    try {
+      const normalizedName = editingDisplayName.trim();
+      if (!normalizedName) {
+        tagError = 'Name is required.';
+        isSavingTags = false;
         return;
       }
 
-      playPreview(previewUrl).catch(err => console.error('Preview error:', err));
+      await saveVoiceSampleMetadataForVoice(
+        editingVoice.id,
+        samplesRoot,
+        normalizedName,
+        editingTags,
+      );
+      closeTagModal();
+    } catch (err) {
+      tagError = err instanceof Error ? err.message : 'Failed to save tags.';
+    } finally {
+      isSavingTags = false;
     }
   }
 
-  function handleModalPreview() {
-    if (formData.provider !== 'vibevoice_local' || !formData.providerVoiceId?.trim()) {
+  async function refreshImportedVoices() {
+    const samplesRoot = voiceSamplesPath.trim();
+    if (!samplesRoot) {
+      syncError = 'Choose a samples folder to import voices.';
       return;
     }
 
-    const root = get(voiceSamplesRoot);
-    if (!root) {
-      alert('Select a samples folder to enable preview.');
-      return;
-    }
-
-    const previewUrl = getVoiceSamplePreviewUrl(root, formData.providerVoiceId.trim());
-    playPreview(previewUrl).catch(err => console.error('Preview error:', err));
+    dispatch('samplesrootchange', samplesRoot);
   }
 
+  async function chooseSamplesFolder() {
+    try {
+      const absolutePath = await pickDirectoryAbsolutePath('read');
+      if (!absolutePath) return;
+
+      dispatch('samplesrootchange', absolutePath);
+    } catch (err) {
+      if (err instanceof Error && err.message.includes('not supported')) {
+        alert('Folder picker is not supported in this browser. Set the samples path in settings.');
+        return;
+      }
+      if (err instanceof Error && err.name === 'AbortError') {
+        return;
+      }
+      syncError = err instanceof Error ? err.message : 'Failed to select the samples folder.';
+    }
+  }
 </script>
 
 <div class="speaker-manager">
   <div class="manager-header">
-    <h2 class="section-title">Voices</h2>
+    <div>
+      <h2 class="section-title">Sample Voices</h2>
+      <p class="section-copy">Each supported audio sample in the selected folder becomes a voice. Names and tags are stored in a JSON catalog inside that folder.</p>
+    </div>
+
     <div class="header-actions">
-      <button class="dedupe-btn" on:click={handleDeduplicate} title="Remove duplicate voices with the same provider voice ID">
-        <RefreshCw size={18} />
-        <span>Deduplicate</span>
+      <button class="header-btn" on:click={chooseSamplesFolder}>
+        <FolderOpen size={16} />
+        <span>Choose Folder</span>
       </button>
-      <button class="add-speaker-btn" on:click={openCreateModal}>
-        <Plus size={18} />
-        <span>Add Voice</span>
+      <button class="header-btn" on:click={refreshImportedVoices} disabled={isSyncing}>
+        <span class:is-spinning={isSyncing} class="icon-wrap">
+          <RefreshCw size={16} />
+        </span>
+        <span>{isSyncing ? 'Loading...' : 'Refresh'}</span>
       </button>
     </div>
   </div>
 
+  <div class="samples-root">
+    <span class="samples-root-label">Folder</span>
+    <span class="samples-root-value">{voiceSamplesPath || 'No samples folder selected.'}</span>
+  </div>
+
+  {#if syncError}
+    <p class="sync-error">{syncError}</p>
+  {/if}
+
   <div class="speakers-grid">
-    {#each voiceRows as row (row.uiKey)}
+    {#each visibleVoices as voice (voice.id)}
       <SpeakerCard
-        voice={row.voice}
-        characters={getCharacterNames(row.voice.id)}
-        on:edit={openEditModal}
-        on:delete={handleDelete}
+        {voice}
+        characters={getCharacterNames(voice.id)}
+        on:edit={openTagModal}
         on:preview={handlePreview}
       />
     {/each}
 
-    {#if voices.length === 0}
+    {#if visibleVoices.length === 0}
       <div class="empty-state">
-        <p>No voices yet. Voices are automatically discovered from audio manifests. Click "Add Voice" to create one manually.</p>
+        <p>Choose a folder with voice samples to load them here.</p>
       </div>
     {/if}
   </div>
 </div>
 
-{#if showModal}
+{#if showTagModal && editingVoice}
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <!-- svelte-ignore a11y-no-static-element-interactions -->
-  <div class="modal-backdrop" on:click={closeModal}>
+  <div class="modal-backdrop" on:click={closeTagModal}>
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <div class="modal-content" on:click|stopPropagation>
       <div class="modal-header">
-        <h3>{editingId ? 'Edit Voice' : 'Create Voice'}</h3>
-        <button class="close-btn" on:click={closeModal}>
-          <X size={20} />
+        <div>
+          <h3>{editingVoice.displayName}</h3>
+          <p>Edit the saved name and tags for this sample. Data is stored in the folder catalog JSON.</p>
+        </div>
+        <button class="close-btn" on:click={closeTagModal}>
+          <X size={18} />
         </button>
       </div>
 
-      <form class="modal-form" on:submit|preventDefault={handleSubmit}>
-        <div class="form-group">
-          <label for="display-name">Display Name *</label>
+      <div class="modal-body">
+        <div class="modal-row">
+          <span class="modal-label">Sample file</span>
+          <p class="modal-file">{editingVoice.providerVoiceId}</p>
+        </div>
+
+        <div class="modal-row">
+          <label class="modal-label" for="voice-display-name">Name</label>
           <input
-            id="display-name"
+            id="voice-display-name"
+            class="modal-input"
             type="text"
-            bind:value={formData.displayName}
-            placeholder="e.g., Black Knight Voice, Narrator"
-            required
+            bind:value={editingDisplayName}
+            placeholder="Display name"
           />
         </div>
 
-        <div class="form-group">
-          <label for="provider">Provider *</label>
-          <div class="provider-with-preview">
-            <select id="provider" bind:value={formData.provider}>
-              {#each PROVIDER_OPTIONS as option}
-                <option value={option.value}>{option.label}</option>
-              {/each}
-            </select>
-            <button type="button" class="preview-btn-inline" on:click={handleModalPreview} title="Play preview sample" disabled={!formData.providerVoiceId?.trim()}>
-              <Play size={14} />
-              <span>Preview</span>
-            </button>
-          </div>
-        </div>
-
-        {#if formData.provider === 'vibevoice_local'}
-          <div class="form-group">
-            <label for="vibevoice-sample">Voice Sample *</label>
-            {#if voiceSamplesError}
-              <span class="help-text">{voiceSamplesError}</span>
-            {:else if $voiceSamplesRoot}
-              <span class="help-text">Using samples from: {$voiceSamplesRoot}</span>
-            {/if}
+        <div class="modal-row">
+          <span class="modal-label">Tags</span>
+          <div class="tag-entry-row">
+            <input
+              class="modal-input"
+              type="text"
+              bind:value={pendingTag}
+              placeholder="Add a tag and press Enter"
+              on:keydown={handlePendingTagKeydown}
+            />
+            <button class="secondary-btn" on:click={addPendingTag} type="button">Add tag</button>
           </div>
 
-          <div class="form-group">
-            <div class="voice-select-with-preview">
-              <select id="vibevoice-sample" bind:value={formData.providerVoiceId} required>
-              <option value="">-- Select sample --</option>
-              {#each voiceSamples as sample}
-                <option value={sample}>{sample}</option>
+          {#if editingTags.length > 0}
+            <div class="tag-chip-list">
+              {#each editingTags as tag (tag)}
+                <button class="tag-chip" type="button" on:click={() => removeTag(tag)} title="Remove {tag}">
+                  <span>{tag}</span>
+                  <X size={12} />
+                </button>
               {/each}
-              </select>
-              <button type="button" class="preview-btn-inline" on:click={refreshVoiceSamples}>
-                {isLoadingSamples ? 'Loading...' : 'Refresh'}
-              </button>
             </div>
-            {#if isLoadingSamples}
-              <span class="help-text">Loading samples...</span>
-            {:else if voiceSamples.length === 0 && $voiceSamplesRoot}
-              <span class="help-text">No audio samples found in this folder.</span>
-            {/if}
-            <span class="help-text">Uses the selected file as the VibeVoice sample.</span>
-          </div>
+          {:else}
+            <p class="modal-help">No tags saved yet.</p>
+          {/if}
+        </div>
+
+        {#if tagError}
+          <p class="sync-error">{tagError}</p>
         {/if}
+      </div>
 
-        <div class="form-group">
-          <label for="gender">Gender</label>
-          <div class="gender-selector">
-            <label class="gender-option">
-              <input type="radio" bind:group={formData.metadata.gender} value="M" />
-              <span class="gender-circle male">M</span>
-            </label>
-            <label class="gender-option">
-              <input type="radio" bind:group={formData.metadata.gender} value="F" />
-              <span class="gender-circle female">F</span>
-            </label>
-            <label class="gender-option">
-              <input type="radio" bind:group={formData.metadata.gender} value="U" />
-              <span class="gender-circle unknown">U</span>
-            </label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="age-range">Age</label>
-          <select id="age-range" bind:value={formData.metadata.ageRange}>
-            {#each AGE_OPTIONS as option}
-              <option value={option.value}>{option.label}</option>
-            {/each}
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="accent">Accent</label>
-          <select id="accent" bind:value={formData.metadata.accent}>
-            {#each ACCENT_OPTIONS as option}
-              <option value={option.value}>{option.label}</option>
-            {/each}
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="style">Style</label>
-          <select
-            id="style"
-            value={getStyleFromTags(formData.metadata.tags)}
-            on:change={(e) => {
-              const target = e.currentTarget as HTMLSelectElement;
-              formData.metadata.tags = setStyleTag(formData.metadata.tags, target.value);
-            }}
-          >
-            {#each STYLE_OPTIONS as option}
-              <option value={option.value}>{option.label}</option>
-            {/each}
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="notes">Notes</label>
-          <textarea
-            id="notes"
-            bind:value={formData.notes}
-            placeholder="Add any notes about this voice..."
-            rows="3"
-          ></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="image-url">Image URL (optional)</label>
-          <input
-            id="image-url"
-            type="text"
-            bind:value={formData.metadata.imageUrl}
-            placeholder="https://..."
-          />
-          <span class="help-text">URL to character image (for future use)</span>
-        </div>
-
-        <div class="modal-actions">
-          <button type="button" class="cancel-btn" on:click={closeModal}>
-            Cancel
-          </button>
-          <button type="submit" class="submit-btn">
-            {editingId ? 'Update' : 'Create'} Voice
-          </button>
-        </div>
-      </form>
+      <div class="modal-actions">
+        <button class="secondary-btn" on:click={() => playPreview(editingVoice!)}>
+          <Play size={14} />
+          <span>Preview</span>
+        </button>
+        <button class="secondary-btn" on:click={closeTagModal}>Cancel</button>
+        <button class="primary-btn" on:click={saveTags} disabled={isSavingTags}>
+          <Save size={14} />
+          <span>{isSavingTags ? 'Saving...' : 'Save tags'}</span>
+        </button>
+      </div>
     </div>
   </div>
 {/if}
 
 <style>
   .speaker-manager {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     padding: 12px;
   }
 
   .manager-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
+    gap: 16px;
+    align-items: flex-start;
   }
 
   .section-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #1f2937;
     margin: 0;
+    font-size: 19px;
+    color: #152033;
+  }
+
+  .section-copy {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: #637082;
+    max-width: 520px;
   }
 
   .header-actions {
     display: flex;
     gap: 8px;
+    flex-wrap: wrap;
   }
 
-  .dedupe-btn,
-  .add-speaker-btn {
-    display: flex;
+  .header-btn,
+  .primary-btn,
+  .secondary-btn,
+  .close-btn {
+    display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 8px;
-    font-size: 13px;
+    justify-content: center;
+    gap: 6px;
+    border-radius: 9px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    color: white;
+    transition: background 0.16s ease, border-color 0.16s ease;
   }
 
-  .add-speaker-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  .header-btn,
+  .secondary-btn {
+    padding: 9px 12px;
+    border: 1px solid #d7dee7;
+    background: #f4f7fb;
+    color: #203551;
   }
 
-  .dedupe-btn {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  .header-btn:hover:not(:disabled),
+  .secondary-btn:hover:not(:disabled),
+  .close-btn:hover {
+    background: #e8eef6;
+    border-color: #c2cfdf;
   }
 
-  .dedupe-btn:hover,
-  .add-speaker-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  .primary-btn {
+    padding: 9px 12px;
+    border: 1px solid #1c5fd1;
+    background: #1f6feb;
+    color: #ffffff;
+  }
+
+  .primary-btn:hover:not(:disabled) {
+    background: #165dc9;
+  }
+
+  .header-btn:disabled,
+  .primary-btn:disabled,
+  .secondary-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .samples-root {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 12px;
+    background: #f8fafc;
+    border: 1px solid #d7dee7;
+    border-radius: 10px;
+  }
+
+  .samples-root-label,
+  .modal-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6a7688;
+  }
+
+  .samples-root-value {
+    font-size: 13px;
+    color: #203551;
+    word-break: break-all;
+  }
+
+  .sync-error {
+    margin: 0;
+    color: #b42318;
+    font-size: 12px;
   }
 
   .speakers-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
   }
 
   .empty-state {
     grid-column: 1 / -1;
+    padding: 40px 16px;
+    border: 1px dashed #c5d0de;
+    border-radius: 12px;
     text-align: center;
-    padding: 60px 20px;
-    color: #6b7280;
-    font-size: 16px;
+    color: #637082;
+    background: #fbfcfe;
   }
 
-  /* Modal Styles */
   .modal-backdrop {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
+    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
     padding: 20px;
+    background: rgba(10, 18, 28, 0.55);
+    z-index: 1000;
   }
 
   .modal-content {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    max-width: 500px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
+    width: min(560px, 100%);
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 24px 60px rgba(10, 18, 28, 0.24);
+    border: 1px solid #d7dee7;
+  }
+
+  .modal-header,
+  .modal-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 16px 18px;
   }
 
   .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 24px;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e2e8f0;
   }
 
   .modal-header h3 {
-    font-size: 20px;
-    font-weight: 700;
-    color: #1f2937;
     margin: 0;
+    font-size: 16px;
+    color: #152033;
+  }
+
+  .modal-header p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: #6a7688;
   }
 
   .close-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #6b7280;
-    padding: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: color 0.2s ease;
+    width: 32px;
+    height: 32px;
+    border: 1px solid #d7dee7;
+    background: #f4f7fb;
+    color: #203551;
   }
 
-  .close-btn:hover {
-    color: #1f2937;
-  }
-
-  .modal-form {
-    padding: 24px;
+  .modal-body {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 14px;
+    padding: 18px;
   }
 
-  .form-group {
+  .modal-file,
+  .modal-help {
+    margin: 0;
+    font-size: 12px;
+    color: #6a7688;
+  }
+
+  .modal-input {
+    width: 100%;
+    padding: 9px 11px;
+    border: 1px solid #d7dee7;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #152033;
+    font: inherit;
+    box-sizing: border-box;
+  }
+
+  .modal-input:focus {
+    outline: none;
+    border-color: #5d8fd8;
+    box-shadow: 0 0 0 3px rgba(93, 143, 216, 0.16);
+  }
+
+  .modal-row {
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
 
-  .form-group label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #374151;
+  .tag-entry-row {
+    display: flex;
+    gap: 8px;
   }
 
-  .form-group input[type="text"],
-  .form-group select,
-  .form-group textarea {
-    padding: 10px 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 14px;
-    color: #111827;
-    transition: border-color 0.15s ease;
+  .tag-entry-row .modal-input {
+    flex: 1;
   }
 
-  .form-group input[type="text"]:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  .tag-chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
-  .form-group textarea {
-    resize: vertical;
-    font-family: inherit;
-  }
-
-  .help-text {
+  .tag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 9px;
+    border: 1px solid #d7dee7;
+    border-radius: 999px;
+    background: #edf3f9;
+    color: #203551;
     font-size: 12px;
-    color: #6b7280;
-    font-style: italic;
-  }
-
-  .gender-selector {
-    display: flex;
-    gap: 16px;
-  }
-
-  .gender-option {
     cursor: pointer;
-    display: flex;
-    align-items: center;
   }
 
-  .gender-option input[type="radio"] {
-    display: none;
-  }
-
-  .gender-circle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    font-size: 18px;
-    font-weight: 700;
-    color: white;
-    border: 3px solid transparent;
-    transition: all 0.2s ease;
-  }
-
-  .gender-circle.male {
-    background: #3b82f6;
-  }
-
-  .gender-circle.female {
-    background: #ec4899;
-  }
-
-  .gender-circle.unknown {
-    background: #8b5cf6;
-  }
-
-  .gender-option input[type="radio"]:checked + .gender-circle {
-    border-color: #1f2937;
-    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+  .tag-chip:hover {
+    background: #e2ebf6;
   }
 
   .modal-actions {
-    display: flex;
-    gap: 12px;
-    padding-top: 12px;
-    border-top: 1px solid #e5e7eb;
-    margin-top: 8px;
+    justify-content: flex-end;
+    border-top: 1px solid #e2e8f0;
   }
 
-  .cancel-btn,
-  .submit-btn {
-    flex: 1;
-    padding: 10px 16px;
-    border: none;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  .is-spinning {
+    animation: spin 0.9s linear infinite;
   }
 
-  .cancel-btn {
-    background: #f3f4f6;
-    color: #1f2937;
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
   }
 
-  .cancel-btn:hover {
-    background: #e5e7eb;
-  }
+  @media (max-width: 840px) {
+    .manager-header {
+      flex-direction: column;
+      align-items: stretch;
+    }
 
-  .submit-btn {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-  }
+    .header-actions {
+      width: 100%;
+    }
 
-  .submit-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
+    .header-btn {
+      flex: 1;
+    }
 
-  /* Voice Selector in Modal */
-  .voice-select-with-preview,
-  .provider-with-preview {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-
-  .voice-select-with-preview select,
-  .provider-with-preview select {
-    flex: 1;
-  }
-
-  .preview-btn-inline {
-    padding: 10px 16px;
-    border: none;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 600;
-    background: #3b82f6;
-    color: white;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-  }
-
-  .preview-btn-inline:disabled {
-    opacity: 0.45;
-    cursor: not-allowed;
-    transform: none;
-  }
-
-  .preview-btn-inline:hover {
-    background: #2563eb;
-    transform: translateY(-1px);
-  }
-
-  .preview-btn-inline:active {
-    transform: translateY(0);
+    .tag-entry-row {
+      flex-direction: column;
+    }
   }
 </style>
-
