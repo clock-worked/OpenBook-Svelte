@@ -1,0 +1,350 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "771a57de7a7f8842125fde7c828d091a65bd06c3f376ea55616b3732c4e678d7",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\771a57de7a7f8842125fde7c828d091a65bd06c3f376ea55616b3732c4e678d7.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "confidence": 1.0,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "succubus",
+            "characterName": "Succubus",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "succubus"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "irin",
+            "characterName": "Irin",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "irin"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "characterName": "Sylphie",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "sylphie"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "irin",
+            "name": "Irin",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "name": "Sylphie",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "succubus",
+            "name": "Succubus",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "duskleaf",
+            "name": "Duskleaf",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "meira",
+            "name": "meira",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Sylphie protested, but Jake refused to engage in that kind of topic with her. Was she technically an around sixty-year-old hawk now? Yes. Did that make Jake comfortable answering her when she asked if Jake was",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "Ree!",
+          "lastSentence": "Ree!",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Ree!",
+          "speakerNameMatch": null,
+          "speakerSurface": "answering her when she"
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Sylphie",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.85,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.19199999999999995,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Succubus",
+            "sourceCandidates": [
+              "Succubus",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.808
+          },
+          "candidates": [
+            {
+              "characterId": "succubus",
+              "confidence": 0.808,
+              "name": "Succubus",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.448,
+              "name": "Jake",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "succubus",
+          "currentCharacterName": "Succubus",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 64,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "Ree!"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "succubus",
+              "characterName": "Succubus",
+              "isReturning": false,
+              "lineId": 64,
+              "text": "Ree!"
+            },
+            {
+              "characterId": "succubus",
+              "characterName": "Succubus",
+              "isReturning": true,
+              "lineId": 66,
+              "text": "going to mate with the demon later?"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Sylphie protested, but Jake refused to engage in that kind of topic with her. Was she technically an around sixty-year-old hawk now? Yes. Did that make Jake comfortable answering her when she asked if Jake was",
+              "cueVerb": "asked",
+              "cueVerbType": "speech",
+              "firstSentence": "Ree!",
+              "lastSentence": "Ree!",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Ree!",
+              "speakerNameMatch": null,
+              "speakerSurface": "answering her when she"
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Sylphie protested, but Jake refused to engage in that kind of topic with her. Was she technically an around sixty-year-old hawk now? Yes. Did that make Jake comfortable answering her when she asked if Jake was",
+              "cueVerb": "asked",
+              "cueVerbType": "speech",
+              "firstSentence": "going to mate with the demon later?",
+              "lastSentence": "going to mate with the demon later?",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "going to mate with the demon later?",
+              "speakerNameMatch": null,
+              "speakerSurface": "answering her when she"
+            }
+          ],
+          "currentParagraphText": "“Ree!” Sylphie protested, but Jake refused to engage in that kind of topic with her. Was she technically an around sixty-year-old hawk now? Yes. Did that make Jake comfortable answering her when she asked if Jake was “going to mate with the demon later?”",
+          "dialogueLineCount": 2,
+          "paragraphIndex": 28
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "irin",
+            "characterName": "Irin",
+            "lineId": 56,
+            "paragraphIndex": 24,
+            "relativeIndex": -4,
+            "text": "I hope Lord Thayne will also give me the opportunity for a tasty snack when convenient."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 57,
+            "paragraphIndex": 25,
+            "relativeIndex": -3,
+            "text": "I think we can organize something at a more opportune time,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 60,
+            "paragraphIndex": 27,
+            "relativeIndex": -2,
+            "text": "Ree?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 62,
+            "paragraphIndex": 27,
+            "relativeIndex": -1,
+            "text": "... you’re still way too young in my mind to be asking those kinds of questions,"
+          },
+          {
+            "characterId": "succubus",
+            "characterName": "Succubus",
+            "lineId": 66,
+            "paragraphIndex": 28,
+            "relativeIndex": 1,
+            "text": "going to mate with the demon later?"
+          },
+          {
+            "characterId": "sylphie",
+            "characterName": "Sylphie",
+            "lineId": 68,
+            "paragraphIndex": 30,
+            "relativeIndex": 2,
+            "text": "Forget all that,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 64, \"text\": \"Ree!\", \"currentCharacterId\": \"succubus\", \"currentCharacterName\": \"Succubus\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Succubus\", \"sourceCandidates\": [\"Succubus\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.808, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19199999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.85, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Sylphie\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"succubus\", \"name\": \"Succubus\", \"confidence\": 0.808, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.448, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 28, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Ree!” Sylphie protested, but Jake refused to engage in that kind of topic with her. Was she technically an around sixty-year-old hawk now? Yes. Did that make Jake comfortable answering her when she asked if Jake was “going to mate with the demon later?”\", \"currentParagraphDialogue\": [{\"lineId\": 64, \"text\": \"Ree!\", \"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"isReturning\": false}, {\"lineId\": 66, \"text\": \"going to mate with the demon later?\", \"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Ree!\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Sylphie protested, but Jake refused to engage in that kind of topic with her. Was she technically an around sixty-year-old hawk now? Yes. Did that make Jake comfortable answering her when she asked if Jake was\", \"speakerSurface\": \"answering her when she\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Ree!\", \"lastSentence\": \"Ree!\"}, {\"quoteIndex\": 1, \"quoteText\": \"going to mate with the demon later?\", \"cuePosition\": \"before\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Sylphie protested, but Jake refused to engage in that kind of topic with her. Was she technically an around sixty-year-old hawk now? Yes. Did that make Jake comfortable answering her when she asked if Jake was\", \"speakerSurface\": \"answering her when she\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"going to mate with the demon later?\", \"lastSentence\": \"going to mate with the demon later?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Ree!\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Sylphie protested, but Jake refused to engage in that kind of topic with her. Was she technically an around sixty-year-old hawk now? Yes. Did that make Jake comfortable answering her when she asked if Jake was\", \"speakerSurface\": \"answering her when she\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Ree!\", \"lastSentence\": \"Ree!\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"aliases\": [], \"roleLabels\": [\"succubus\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"irin\", \"characterName\": \"Irin\", \"aliases\": [], \"roleLabels\": [\"irin\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [\"sylphie\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 56, \"paragraphIndex\": 24, \"characterId\": \"irin\", \"characterName\": \"Irin\", \"text\": \"I hope Lord Thayne will also give me the opportunity for a tasty snack when convenient.\"}, {\"relativeIndex\": -3, \"lineId\": 57, \"paragraphIndex\": 25, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I think we can organize something at a more opportune time,\"}, {\"relativeIndex\": -2, \"lineId\": 60, \"paragraphIndex\": 27, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Ree?\"}, {\"relativeIndex\": -1, \"lineId\": 62, \"paragraphIndex\": 27, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"... you’re still way too young in my mind to be asking those kinds of questions,\"}, {\"relativeIndex\": 1, \"lineId\": 66, \"paragraphIndex\": 28, \"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"text\": \"going to mate with the demon later?\"}, {\"relativeIndex\": 2, \"lineId\": 68, \"paragraphIndex\": 30, \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"text\": \"Forget all that,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"succubus\", \"name\": \"Succubus\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"duskleaf\", \"name\": \"Duskleaf\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"meira\", \"name\": \"meira\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"sylphie\",\n  \"characterName\": \"Sylphie\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0024 - Chapter 1081 - Importance of Status",
+  "currentCharacterId": "succubus",
+  "currentCharacterName": "Succubus",
+  "currentParagraphText": "“Ree!” Sylphie protested, but Jake refused to engage in that kind of topic with her. Was she technically an around sixty-year-old hawk now? Yes. Did that make Jake comfortable answering her when she asked if Jake was “going to mate with the demon later?”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 1.0,
+    "currentCharacterId": "succubus",
+    "currentCharacterName": "Succubus",
+    "currentParagraphText": "“Ree!” Sylphie protested, but Jake refused to engage in that kind of topic with her. Was she technically an around sixty-year-old hawk now? Yes. Did that make Jake comfortable answering her when she asked if Jake was “going to mate with the demon later?”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 64,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "Nope, definitely not.",
+    "paragraphIndex": 28,
+    "previousParagraphText": "“Ree?” the bird asked Jake while tilting her head the second the succubus was gone. “... you’re still way too young in my mind to be asking those kinds of questions,” Jake coughed.",
+    "reasonCodes": [
+      "explicit_narration_cue"
+    ],
+    "suggestedCharacterId": "sylphie",
+    "suggestedCharacterName": "Sylphie",
+    "toolTrace": []
+  },
+  "lineId": 64,
+  "nextParagraphText": "Nope, definitely not.",
+  "paragraphIndex": 28,
+  "previousParagraphText": "“Ree?” the bird asked Jake while tilting her head the second the succubus was gone. “... you’re still way too young in my mind to be asking those kinds of questions,” Jake coughed."
+}

@@ -1,0 +1,302 @@
+{
+  "cacheKey": "05f30e8c200168c3fced044a823ecdcbab5685c41c5edf49b5583ce763e97e8c",
+  "createdAt": "2026-04-01T20:09:06.464870+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "nature attendant",
+    "characterName": "Nature Attendant",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "primordial"
+        ],
+        "characterId": "yggdrasil",
+        "characterName": "Yggdrasil",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "yggdrasil",
+          "primordial"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "primordial"
+        ],
+        "characterId": "yggdrasil",
+        "name": "Yggdrasil",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Attendant"
+        ],
+        "characterId": "nimera",
+        "name": "Nimera",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "nature attendant",
+        "name": "Nature Attendant",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Nature’s Attendant jumped into the conversation as he entirely changed the topic.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Will you allow me to be straightforward with you for a moment?",
+      "lastSentence": "Will you allow me to be straightforward with you for a moment?",
+      "mentionedEntities": [],
+      "quoteIndex": 1,
+      "quoteText": "Will you allow me to be straightforward with you for a moment?",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": true,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Yggdrasil",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.704,
+        "misattributionRisk": 0.15,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Yggdrasil"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.98,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.276,
+          "name": "Yggdrasil",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [
+        "Ell'Hakan"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 14,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Will you allow me to be straightforward with you for a moment?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 12,
+          "text": "You know, it’s quite rare we have guests within here,"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 14,
+          "text": "Will you allow me to be straightforward with you for a moment?"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "You know, it’s quite rare we have guests within here,",
+          "lastSentence": "You know, it’s quite rare we have guests within here,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "You know, it’s quite rare we have guests within here,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Nature’s Attendant jumped into the conversation as he entirely changed the topic.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Will you allow me to be straightforward with you for a moment?",
+          "lastSentence": "Will you allow me to be straightforward with you for a moment?",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "Will you allow me to be straightforward with you for a moment?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“You know, it’s quite rare we have guests within here,” Nature’s Attendant jumped into the conversation as he entirely changed the topic. “Will you allow me to be straightforward with you for a moment?”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 9
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 7,
+        "paragraphIndex": 5,
+        "relativeIndex": -4,
+        "text": "And should one pass the boundary through force, they shall not find themselves in the multiverse outside but the void between universes."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 8,
+        "paragraphIndex": 6,
+        "relativeIndex": -3,
+        "text": "Does that mean this space technically exists within the void?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 10,
+        "paragraphIndex": 7,
+        "relativeIndex": -2,
+        "text": "In some sense, all of existence lies within the void,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 12,
+        "paragraphIndex": 9,
+        "relativeIndex": -1,
+        "text": "You know, it’s quite rare we have guests within here,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 16,
+        "paragraphIndex": 11,
+        "relativeIndex": 1,
+        "text": "Thank you,"
+      },
+      {
+        "characterId": "yggdrasil",
+        "characterName": "Yggdrasil",
+        "lineId": 18,
+        "paragraphIndex": 11,
+        "relativeIndex": 2,
+        "text": "Seeing as this world is also Yggdrasil’s Divine Realm, visiting gods want to avoid it at all cost. As you no doubt know, a god is far more powerful within their own realm, and Yggdrasil is no different. Even other Primordials would find themselves threatened within here, and while they could perhaps escape, it wouldn’t be without paying a large price. Hence, they prefer to meet on neutral ground or would only ever send a weak avatar."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 14, \"text\": \"Will you allow me to be straightforward with you for a moment?\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Ell'Hakan\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Yggdrasil\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.704, \"misattributionRisk\": 0.15, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Yggdrasil\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.98, \"reasons\": null}, {\"characterId\": null, \"name\": \"Yggdrasil\", \"confidence\": 0.276, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 9, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“You know, it’s quite rare we have guests within here,” Nature’s Attendant jumped into the conversation as he entirely changed the topic. “Will you allow me to be straightforward with you for a moment?”\", \"currentParagraphDialogue\": [{\"lineId\": 12, \"text\": \"You know, it’s quite rare we have guests within here,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 14, \"text\": \"Will you allow me to be straightforward with you for a moment?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You know, it’s quite rare we have guests within here,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You know, it’s quite rare we have guests within here,\", \"lastSentence\": \"You know, it’s quite rare we have guests within here,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Will you allow me to be straightforward with you for a moment?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Nature’s Attendant jumped into the conversation as he entirely changed the topic.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Will you allow me to be straightforward with you for a moment?\", \"lastSentence\": \"Will you allow me to be straightforward with you for a moment?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"Will you allow me to be straightforward with you for a moment?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Nature’s Attendant jumped into the conversation as he entirely changed the topic.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Will you allow me to be straightforward with you for a moment?\", \"lastSentence\": \"Will you allow me to be straightforward with you for a moment?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"yggdrasil\", \"characterName\": \"Yggdrasil\", \"aliases\": [\"primordial\"], \"roleLabels\": [\"yggdrasil\", \"primordial\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 7, \"paragraphIndex\": 5, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"And should one pass the boundary through force, they shall not find themselves in the multiverse outside but the void between universes.\"}, {\"relativeIndex\": -3, \"lineId\": 8, \"paragraphIndex\": 6, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Does that mean this space technically exists within the void?\"}, {\"relativeIndex\": -2, \"lineId\": 10, \"paragraphIndex\": 7, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"In some sense, all of existence lies within the void,\"}, {\"relativeIndex\": -1, \"lineId\": 12, \"paragraphIndex\": 9, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"You know, it’s quite rare we have guests within here,\"}, {\"relativeIndex\": 1, \"lineId\": 16, \"paragraphIndex\": 11, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Thank you,\"}, {\"relativeIndex\": 2, \"lineId\": 18, \"paragraphIndex\": 11, \"characterId\": \"yggdrasil\", \"characterName\": \"Yggdrasil\", \"text\": \"Seeing as this world is also Yggdrasil’s Divine Realm, visiting gods want to avoid it at all cost. As you no doubt know, a god is far more powerful within their own realm, and Yggdrasil is no different. Even other Primordials would find themselves threatened within here, and while they could perhaps escape, it wouldn’t be without paying a large price. Hence, they prefer to meet on neutral ground or would only ever send a weak avatar.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"yggdrasil\", \"name\": \"Yggdrasil\", \"aliases\": [\"primordial\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"nimera\", \"name\": \"Nimera\", \"aliases\": [\"Attendant\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"nature attendant\", \"name\": \"Nature Attendant\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"nature attendant\",\n  \"characterName\": \"Nature Attendant\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

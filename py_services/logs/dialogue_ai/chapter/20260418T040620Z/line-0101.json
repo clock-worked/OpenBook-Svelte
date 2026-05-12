@@ -1,0 +1,423 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "6eed827c4e4a035722d80a9ec78848bc64f7868d9acda21a06c8d1b6efd581ed",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\6eed827c4e4a035722d80a9ec78848bc64f7868d9acda21a06c8d1b6efd581ed.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "confidence": 0.9,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "dialogue_pattern",
+          "parser_suggestion",
+          "recent_address"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "characterName": "Minaga",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "minaga",
+              "unique lifeform",
+              "the unique lifeform",
+              "the unique lifeform 2",
+              "unique lifeform 2"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Chimera",
+              "Monster"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "forest-king-2"
+            ],
+            "characterId": "forest-king-2",
+            "name": "forest-king",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "name": "The Sword Saint",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "name": "Minaga",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "dina",
+            "name": "Dina",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "name": "Sylphie",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "having",
+            "name": "Having",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Ree?",
+          "lastSentence": "Ree?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Ree?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": true,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Sylphie",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.85,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.18,
+            "misattributionRisk": 0.5064,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Sylphie",
+            "sourceCandidates": [
+              "Sylphie",
+              "Minaga"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.628
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.628,
+              "name": "Sylphie",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.448,
+              "name": "Minaga",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 101,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Ree?"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 101,
+              "text": "Ree?"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Ree?",
+              "lastSentence": "Ree?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Ree?",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Ree?”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 102,
+              "text": "Yeah, there should be snacks."
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Yeah, there should be snacks.",
+              "lastSentence": "Yeah, there should be snacks.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Yeah, there should be snacks.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "nextParagraphText": "“Yeah, there should be snacks.”",
+          "paragraphIndex": 61,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "minaga",
+              "characterName": "Minaga",
+              "isReturning": false,
+              "lineId": 98,
+              "text": "Yeah, I’m good, thanks,"
+            },
+            {
+              "characterId": "minaga",
+              "characterName": "Minaga",
+              "isReturning": true,
+              "lineId": 100,
+              "text": "I’ve come to fetch you for a reunion party."
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Minaga responded, unbothered despite spinning roughly eighteen thousand degrees every second.",
+              "cueVerb": "responded",
+              "cueVerbType": "speech",
+              "firstSentence": "Yeah, I’m good, thanks,",
+              "lastSentence": "Yeah, I’m good, thanks,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Yeah, I’m good, thanks,",
+              "speakerNameMatch": "Minaga",
+              "speakerSurface": "Minaga"
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Minaga responded, unbothered despite spinning roughly eighteen thousand degrees every second.",
+              "cueVerb": "responded",
+              "cueVerbType": "speech",
+              "firstSentence": "I’ve come to fetch you for a reunion party.",
+              "lastSentence": "I’ve come to fetch you for a reunion party.",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "I’ve come to fetch you for a reunion party.",
+              "speakerNameMatch": "Minaga",
+              "speakerSurface": "Minaga"
+            }
+          ],
+          "previousParagraphText": "“Yeah, I’m good, thanks,” Minaga responded, unbothered despite spinning roughly eighteen thousand degrees every second. “I’ve come to fetch you for a reunion party.”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 94,
+            "paragraphIndex": 58,
+            "relativeIndex": -4,
+            "text": "Hey Sylphie,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 96,
+            "paragraphIndex": 59,
+            "relativeIndex": -3,
+            "text": "Ree!"
+          },
+          {
+            "characterId": "minaga",
+            "characterName": "Minaga",
+            "lineId": 98,
+            "paragraphIndex": 60,
+            "relativeIndex": -2,
+            "text": "Yeah, I’m good, thanks,"
+          },
+          {
+            "characterId": "minaga",
+            "characterName": "Minaga",
+            "lineId": 100,
+            "paragraphIndex": 60,
+            "relativeIndex": -1,
+            "text": "I’ve come to fetch you for a reunion party."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 102,
+            "paragraphIndex": 62,
+            "relativeIndex": 1,
+            "text": "Yeah, there should be snacks."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 103,
+            "paragraphIndex": 63,
+            "relativeIndex": 2,
+            "text": "Ree, ree?"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 101, \"text\": \"Ree?\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Sylphie\", \"sourceCandidates\": [\"Sylphie\", \"Minaga\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.628, \"marginToSecond\": 0.18, \"misattributionRisk\": 0.5064, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.85, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Sylphie\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Sylphie\", \"confidence\": 0.628, \"reasons\": null}, {\"characterId\": null, \"name\": \"Minaga\", \"confidence\": 0.448, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 61, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Ree?”\", \"currentParagraphDialogue\": [{\"lineId\": 101, \"text\": \"Ree?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“Yeah, I’m good, thanks,” Minaga responded, unbothered despite spinning roughly eighteen thousand degrees every second. “I’ve come to fetch you for a reunion party.”\", \"previousParagraphDialogue\": [{\"lineId\": 98, \"text\": \"Yeah, I’m good, thanks,\", \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"isReturning\": false}, {\"lineId\": 100, \"text\": \"I’ve come to fetch you for a reunion party.\", \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"isReturning\": true}], \"nextParagraphText\": \"“Yeah, there should be snacks.”\", \"nextParagraphDialogue\": [{\"lineId\": 102, \"text\": \"Yeah, there should be snacks.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Ree?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Ree?\", \"lastSentence\": \"Ree?\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Yeah, I’m good, thanks,\", \"cuePosition\": \"after\", \"cueVerb\": \"responded\", \"cueVerbType\": \"speech\", \"cueText\": \"Minaga responded, unbothered despite spinning roughly eighteen thousand degrees every second.\", \"speakerSurface\": \"Minaga\", \"speakerNameMatch\": \"Minaga\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yeah, I’m good, thanks,\", \"lastSentence\": \"Yeah, I’m good, thanks,\"}, {\"quoteIndex\": 1, \"quoteText\": \"I’ve come to fetch you for a reunion party.\", \"cuePosition\": \"before\", \"cueVerb\": \"responded\", \"cueVerbType\": \"speech\", \"cueText\": \"Minaga responded, unbothered despite spinning roughly eighteen thousand degrees every second.\", \"speakerSurface\": \"Minaga\", \"speakerNameMatch\": \"Minaga\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’ve come to fetch you for a reunion party.\", \"lastSentence\": \"I’ve come to fetch you for a reunion party.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Yeah, there should be snacks.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yeah, there should be snacks.\", \"lastSentence\": \"Yeah, there should be snacks.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Ree?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Ree?\", \"lastSentence\": \"Ree?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [\"minaga\", \"unique lifeform\", \"the unique lifeform\", \"the unique lifeform 2\", \"unique lifeform 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 94, \"paragraphIndex\": 58, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Hey Sylphie,\"}, {\"relativeIndex\": -3, \"lineId\": 96, \"paragraphIndex\": 59, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Ree!\"}, {\"relativeIndex\": -2, \"lineId\": 98, \"paragraphIndex\": 60, \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"text\": \"Yeah, I’m good, thanks,\"}, {\"relativeIndex\": -1, \"lineId\": 100, \"paragraphIndex\": 60, \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"text\": \"I’ve come to fetch you for a reunion party.\"}, {\"relativeIndex\": 1, \"lineId\": 102, \"paragraphIndex\": 62, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Yeah, there should be snacks.\"}, {\"relativeIndex\": 2, \"lineId\": 103, \"paragraphIndex\": 63, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Ree, ree?\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"forest-king-2\", \"name\": \"forest-king\", \"aliases\": [\"forest-king-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dina\", \"name\": \"Dina\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"having\", \"name\": \"Having\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"sylphie\",\n  \"characterName\": \"Sylphie\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"dialogue_pattern\",\n    \"parser_suggestion\",\n    \"recent_address\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0095 - Chapter 1152 - Nevermore Party Party Invites/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“Ree?”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.9,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“Ree?”",
+    "disposition": "review",
+    "error": null,
+    "lineId": 101,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Yeah, there should be snacks.”",
+    "paragraphIndex": 61,
+    "previousParagraphText": "“Yeah, I’m good, thanks,” Minaga responded, unbothered despite spinning roughly eighteen thousand degrees every second. “I’ve come to fetch you for a reunion party.”",
+    "reasonCodes": [
+      "dialogue_pattern",
+      "parser_suggestion",
+      "recent_address"
+    ],
+    "suggestedCharacterId": "sylphie",
+    "suggestedCharacterName": "Sylphie",
+    "toolTrace": []
+  },
+  "lineId": 101,
+  "nextParagraphText": "“Yeah, there should be snacks.”",
+  "paragraphIndex": 61,
+  "previousParagraphText": "“Yeah, I’m good, thanks,” Minaga responded, unbothered despite spinning roughly eighteen thousand degrees every second. “I’ve come to fetch you for a reunion party.”"
+}

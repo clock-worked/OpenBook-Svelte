@@ -1,0 +1,431 @@
+{
+  "alignment": {
+    "confidence": 1.0,
+    "isSpanFallback": false,
+    "method": "quote_unit",
+    "paragraphIndex": 66,
+    "spanDistance": 0.0,
+    "spanParagraphIndex": 66
+  },
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "026d8846e42b9d6a4e8ba0bc9c91e76fdc28525c898e98a32ae269e1788e55eb",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\026d8846e42b9d6a4e8ba0bc9c91e76fdc28525c898e98a32ae269e1788e55eb.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "minaga",
+        "characterName": "Minaga",
+        "confidence": 0.9,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "alias_resolution"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "casper",
+            "characterName": "Casper",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "casper"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God",
+              "Unknown Human (Male)"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist",
+              "lord thayne",
+              "thayne",
+              "void god",
+              "unknown human male"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God",
+              "Unknown Human (Male)"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "casper",
+            "name": "Casper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "name": "Minaga",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Details,",
+          "lastSentence": "Details,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Details,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "alignment": {
+            "confidence": 1.0,
+            "isSpanFallback": false,
+            "method": "quote_unit",
+            "paragraphIndex": 66,
+            "spanDistance": 0.0,
+            "spanParagraphIndex": 66
+          },
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.7,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.33479999999999993,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Casper",
+            "sourceCandidates": [
+              "Casper",
+              "Jake"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.796
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.796,
+              "name": "Casper",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.436,
+              "name": "Jake",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 127,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "Details,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 127,
+              "text": "Details,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Details,",
+              "lastSentence": "Details,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Details,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Details,” a voice suddenly came from behind Jake as the Unique Lifeform had teleported over with his projection.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 129,
+              "text": "I thought we were talking about the new dungeon?"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake said, raising an eyebrow.",
+              "cueVerb": "said",
+              "cueVerbType": "speech",
+              "firstSentence": "I thought we were talking about the new dungeon?",
+              "lastSentence": "I thought we were talking about the new dungeon?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "I thought we were talking about the new dungeon?",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "nextParagraphText": "“I thought we were talking about the new dungeon?” Jake said, raising an eyebrow.",
+          "paragraphIndex": 66,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 125,
+              "text": "Oh, I see… wait, what?"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Oh, I see… wait, what?",
+              "lastSentence": "Oh, I see… wait, what?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Oh, I see… wait, what?",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "previousParagraphText": "“Oh, I see… wait, what?” Casper had to do a double-take as he stared at Jake."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "casper",
+            "characterName": "Casper",
+            "lineId": 121,
+            "paragraphIndex": 63,
+            "relativeIndex": -4,
+            "text": "But, hey, if you’re into that kind of thing, I’m sure the Risen have plenty of men and women who would be more than happy to lick you wherever you ask them to."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 122,
+            "paragraphIndex": 64,
+            "relativeIndex": -3,
+            "text": "No thanks,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 124,
+            "paragraphIndex": 64,
+            "relativeIndex": -2,
+            "text": "Besides, I’ve got a girlfriend now."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 125,
+            "paragraphIndex": 65,
+            "relativeIndex": -1,
+            "text": "Oh, I see… wait, what?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 129,
+            "paragraphIndex": 67,
+            "relativeIndex": 1,
+            "text": "I thought we were talking about the new dungeon?"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 131,
+            "paragraphIndex": 68,
+            "relativeIndex": 2,
+            "text": "Yeah, yeah, that can wait,"
+          }
+        ],
+        "sceneEntities": [],
+        "sceneRoster": {
+          "paragraphWindow": 6,
+          "presentCharacterIds": [
+            "jake",
+            "casper",
+            "unknown"
+          ],
+          "presentCharacters": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake"
+            },
+            {
+              "characterId": "casper",
+              "characterName": "Casper"
+            },
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown"
+            }
+          ]
+        }
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 127, \"text\": \"Details,\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Casper\", \"sourceCandidates\": [\"Casper\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.33479999999999993, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Casper\", \"confidence\": 0.796, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.436, \"reasons\": null}], \"isReturning\": false, \"alignment\": {\"paragraphIndex\": 66, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 66, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 66, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Details,” a voice suddenly came from behind Jake as the Unique Lifeform had teleported over with his projection.\", \"currentParagraphDialogue\": [{\"lineId\": 127, \"text\": \"Details,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"previousParagraphText\": \"“Oh, I see… wait, what?” Casper had to do a double-take as he stared at Jake.\", \"previousParagraphDialogue\": [{\"lineId\": 125, \"text\": \"Oh, I see… wait, what?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"nextParagraphText\": \"“I thought we were talking about the new dungeon?” Jake said, raising an eyebrow.\", \"nextParagraphDialogue\": [{\"lineId\": 129, \"text\": \"I thought we were talking about the new dungeon?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Details,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Details,\", \"lastSentence\": \"Details,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Oh, I see… wait, what?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Oh, I see… wait, what?\", \"lastSentence\": \"Oh, I see… wait, what?\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I thought we were talking about the new dungeon?\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake said, raising an eyebrow.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I thought we were talking about the new dungeon?\", \"lastSentence\": \"I thought we were talking about the new dungeon?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Details,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Details,\", \"lastSentence\": \"Details,\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"jake\", \"casper\", \"unknown\"], \"presentCharacters\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\"}, {\"characterId\": \"casper\", \"characterName\": \"Casper\"}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"casper\", \"characterName\": \"Casper\", \"aliases\": [], \"roleLabels\": [\"casper\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\", \"void god\", \"unknown human male\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 121, \"paragraphIndex\": 63, \"characterId\": \"casper\", \"characterName\": \"Casper\", \"text\": \"But, hey, if you’re into that kind of thing, I’m sure the Risen have plenty of men and women who would be more than happy to lick you wherever you ask them to.\"}, {\"relativeIndex\": -3, \"lineId\": 122, \"paragraphIndex\": 64, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"No thanks,\"}, {\"relativeIndex\": -2, \"lineId\": 124, \"paragraphIndex\": 64, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Besides, I’ve got a girlfriend now.\"}, {\"relativeIndex\": -1, \"lineId\": 125, \"paragraphIndex\": 65, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Oh, I see… wait, what?\"}, {\"relativeIndex\": 1, \"lineId\": 129, \"paragraphIndex\": 67, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I thought we were talking about the new dungeon?\"}, {\"relativeIndex\": 2, \"lineId\": 131, \"paragraphIndex\": 68, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Yeah, yeah, that can wait,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"casper\", \"name\": \"Casper\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"minaga\",\n  \"characterName\": \"Minaga\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"alias_resolution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0186 - Chapter 1243 - Too Easily Distracted/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“Details,” a voice suddenly came from behind Jake as the Unique Lifeform had teleported over with his projection.",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.9,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“Details,” a voice suddenly came from behind Jake as the Unique Lifeform had teleported over with his projection.",
+    "disposition": "review",
+    "error": null,
+    "lineId": 127,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“I thought we were talking about the new dungeon?” Jake said, raising an eyebrow.",
+    "paragraphIndex": 66,
+    "previousParagraphText": "“Oh, I see… wait, what?” Casper had to do a double-take as he stared at Jake.",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "alias_resolution"
+    ],
+    "suggestedCharacterId": "minaga",
+    "suggestedCharacterName": "Minaga",
+    "toolTrace": []
+  },
+  "lineId": 127,
+  "nextParagraphText": "“I thought we were talking about the new dungeon?” Jake said, raising an eyebrow.",
+  "paragraphIndex": 66,
+  "previousParagraphText": "“Oh, I see… wait, what?” Casper had to do a double-take as he stared at Jake.",
+  "sceneRoster": {
+    "paragraphWindow": 6,
+    "presentCharacterIds": [
+      "jake",
+      "casper",
+      "unknown"
+    ],
+    "presentCharacters": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake"
+      },
+      {
+        "characterId": "casper",
+        "characterName": "Casper"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown"
+      }
+    ]
+  }
+}

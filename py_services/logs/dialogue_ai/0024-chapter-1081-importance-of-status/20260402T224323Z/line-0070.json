@@ -1,0 +1,356 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "7875e6b168dbc73a8d8ef2153f1ee4a1ed7c2e3f5c8b701397ab7319a4f30803",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\7875e6b168dbc73a8d8ef2153f1ee4a1ed7c2e3f5c8b701397ab7319a4f30803.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.99,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "parser_error"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "characterName": "Sylphie",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "sylphie"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "succubus",
+            "characterName": "Succubus",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "succubus"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "irin",
+            "name": "Irin",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "name": "Sylphie",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "succubus",
+            "name": "Succubus",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "duskleaf",
+            "name": "Duskleaf",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "meira",
+            "name": "meira",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake desperately tried to change the subject.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Let’s go check out the big tower over there.",
+          "lastSentence": "Duskleaf is sure to carry around a lot of tasty stuff.",
+          "mentionedEntities": [
+            "Duskleaf",
+            "meira",
+            "Duskleaf",
+            "meira"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "Let’s go check out the big tower over there. You remember Meira, right? Maybe she’s in there, and who knows, Duskleaf could also be around. Duskleaf is sure to carry around a lot of tasty stuff.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": true,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [
+                "Duskleaf",
+                "meira"
+              ],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Sylphie",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.524,
+            "misattributionRisk": 0.020000000000000018,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Sylphie",
+            "sourceCandidates": [
+              "Sylphie",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.98
+          },
+          "candidates": [
+            {
+              "characterId": "sylphie",
+              "confidence": 0.98,
+              "name": "Sylphie",
+              "reasons": [
+                "parser_match",
+                "legacy_match",
+                "same_paragraph_continuation"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.456,
+              "name": "Jake",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "sylphie",
+          "currentCharacterName": "Sylphie",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 70,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Let’s go check out the big tower over there. You remember Meira, right? Maybe she’s in there, and who knows, Duskleaf could also be around. Duskleaf is sure to carry around a lot of tasty stuff."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 1,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "sylphie",
+              "characterName": "Sylphie",
+              "isReturning": false,
+              "lineId": 68,
+              "text": "Forget all that,"
+            },
+            {
+              "characterId": "sylphie",
+              "characterName": "Sylphie",
+              "isReturning": true,
+              "lineId": 70,
+              "text": "Let’s go check out the big tower over there. You remember Meira, right? Maybe she’s in there, and who knows, Duskleaf could also be around. Duskleaf is sure to carry around a lot of tasty stuff."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Forget all that,",
+              "lastSentence": "Forget all that,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Forget all that,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Jake desperately tried to change the subject.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Let’s go check out the big tower over there.",
+              "lastSentence": "Duskleaf is sure to carry around a lot of tasty stuff.",
+              "mentionedEntities": [
+                "Duskleaf",
+                "meira",
+                "Duskleaf",
+                "meira"
+              ],
+              "quoteIndex": 1,
+              "quoteText": "Let’s go check out the big tower over there. You remember Meira, right? Maybe she’s in there, and who knows, Duskleaf could also be around. Duskleaf is sure to carry around a lot of tasty stuff.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Forget all that,” Jake desperately tried to change the subject. “Let’s go check out the big tower over there. You remember Meira, right? Maybe she’s in there, and who knows, Duskleaf could also be around. Duskleaf is sure to carry around a lot of tasty stuff.”",
+          "dialogueLineCount": 2,
+          "paragraphIndex": 30
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 62,
+            "paragraphIndex": 27,
+            "relativeIndex": -4,
+            "text": "... you’re still way too young in my mind to be asking those kinds of questions,"
+          },
+          {
+            "characterId": "succubus",
+            "characterName": "Succubus",
+            "lineId": 64,
+            "paragraphIndex": 28,
+            "relativeIndex": -3,
+            "text": "Ree!"
+          },
+          {
+            "characterId": "succubus",
+            "characterName": "Succubus",
+            "lineId": 66,
+            "paragraphIndex": 28,
+            "relativeIndex": -2,
+            "text": "going to mate with the demon later?"
+          },
+          {
+            "characterId": "sylphie",
+            "characterName": "Sylphie",
+            "lineId": 68,
+            "paragraphIndex": 30,
+            "relativeIndex": -1,
+            "text": "Forget all that,"
+          },
+          {
+            "characterId": "sylphie",
+            "characterName": "Sylphie",
+            "lineId": 71,
+            "paragraphIndex": 31,
+            "relativeIndex": 1,
+            "text": "Ree!"
+          },
+          {
+            "characterId": "sylphie",
+            "characterName": "Sylphie",
+            "lineId": 78,
+            "paragraphIndex": 37,
+            "relativeIndex": 2,
+            "text": "Ree?"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 70, \"text\": \"Let’s go check out the big tower over there. You remember Meira, right? Maybe she’s in there, and who knows, Duskleaf could also be around. Duskleaf is sure to carry around a lot of tasty stuff.\", \"currentCharacterId\": \"sylphie\", \"currentCharacterName\": \"Sylphie\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Sylphie\", \"sourceCandidates\": [\"Sylphie\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.524, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Duskleaf\", \"meira\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Sylphie\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"same_paragraph_continuation\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 30, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Forget all that,” Jake desperately tried to change the subject. “Let’s go check out the big tower over there. You remember Meira, right? Maybe she’s in there, and who knows, Duskleaf could also be around. Duskleaf is sure to carry around a lot of tasty stuff.”\", \"currentParagraphDialogue\": [{\"lineId\": 68, \"text\": \"Forget all that,\", \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"isReturning\": false}, {\"lineId\": 70, \"text\": \"Let’s go check out the big tower over there. You remember Meira, right? Maybe she’s in there, and who knows, Duskleaf could also be around. Duskleaf is sure to carry around a lot of tasty stuff.\", \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Forget all that,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Forget all that,\", \"lastSentence\": \"Forget all that,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Let’s go check out the big tower over there. You remember Meira, right? Maybe she’s in there, and who knows, Duskleaf could also be around. Duskleaf is sure to carry around a lot of tasty stuff.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake desperately tried to change the subject.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Duskleaf\", \"meira\", \"Duskleaf\", \"meira\"], \"addressedEntity\": null, \"firstSentence\": \"Let’s go check out the big tower over there.\", \"lastSentence\": \"Duskleaf is sure to carry around a lot of tasty stuff.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"Let’s go check out the big tower over there. You remember Meira, right? Maybe she’s in there, and who knows, Duskleaf could also be around. Duskleaf is sure to carry around a lot of tasty stuff.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake desperately tried to change the subject.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Duskleaf\", \"meira\", \"Duskleaf\", \"meira\"], \"addressedEntity\": null, \"firstSentence\": \"Let’s go check out the big tower over there.\", \"lastSentence\": \"Duskleaf is sure to carry around a lot of tasty stuff.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [\"sylphie\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"aliases\": [], \"roleLabels\": [\"succubus\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 62, \"paragraphIndex\": 27, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"... you’re still way too young in my mind to be asking those kinds of questions,\"}, {\"relativeIndex\": -3, \"lineId\": 64, \"paragraphIndex\": 28, \"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"text\": \"Ree!\"}, {\"relativeIndex\": -2, \"lineId\": 66, \"paragraphIndex\": 28, \"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"text\": \"going to mate with the demon later?\"}, {\"relativeIndex\": -1, \"lineId\": 68, \"paragraphIndex\": 30, \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"text\": \"Forget all that,\"}, {\"relativeIndex\": 1, \"lineId\": 71, \"paragraphIndex\": 31, \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"text\": \"Ree!\"}, {\"relativeIndex\": 2, \"lineId\": 78, \"paragraphIndex\": 37, \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"text\": \"Ree?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"succubus\", \"name\": \"Succubus\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"duskleaf\", \"name\": \"Duskleaf\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"meira\", \"name\": \"meira\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"parser_error\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0024 - Chapter 1081 - Importance of Status",
+  "currentCharacterId": "sylphie",
+  "currentCharacterName": "Sylphie",
+  "currentParagraphText": "“Forget all that,” Jake desperately tried to change the subject. “Let’s go check out the big tower over there. You remember Meira, right? Maybe she’s in there, and who knows, Duskleaf could also be around. Duskleaf is sure to carry around a lot of tasty stuff.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.99,
+    "currentCharacterId": "sylphie",
+    "currentCharacterName": "Sylphie",
+    "currentParagraphText": "“Forget all that,” Jake desperately tried to change the subject. “Let’s go check out the big tower over there. You remember Meira, right? Maybe she’s in there, and who knows, Duskleaf could also be around. Duskleaf is sure to carry around a lot of tasty stuff.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 70,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Ree!” Sylphie screeched happily while flapping her wings before taking to the air and motioning Jake to follow.",
+    "paragraphIndex": 30,
+    "previousParagraphText": "Nope, definitely not.",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "parser_error"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 70,
+  "nextParagraphText": "“Ree!” Sylphie screeched happily while flapping her wings before taking to the air and motioning Jake to follow.",
+  "paragraphIndex": 30,
+  "previousParagraphText": "Nope, definitely not."
+}

@@ -1,0 +1,349 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "8050f1fa9c627c006a3fc9ed1bf62e1ff0eaaca715115ae82e09e30476ac5dbe",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\8050f1fa9c627c006a3fc9ed1bf62e1ff0eaaca715115ae82e09e30476ac5dbe.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "confidence": 1.0,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "dialogue_flow_continuity"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "artemis"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "You were doing more than that...",
+          "lastSentence": "Powerful,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "You were doing more than that... I felt something odd. A presence, almost. Ancient. Powerful,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.32919999999999994,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Artemis",
+            "sourceCandidates": [
+              "Artemis",
+              "Jake"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.804
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.804,
+              "name": "Artemis",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.444,
+              "name": "Jake",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 36,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "You were doing more than that... I felt something odd. A presence, almost. Ancient. Powerful,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 36,
+              "text": "You were doing more than that... I felt something odd. A presence, almost. Ancient. Powerful,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "You were doing more than that...",
+              "lastSentence": "Powerful,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "You were doing more than that... I felt something odd. A presence, almost. Ancient. Powerful,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“You were doing more than that... I felt something odd. A presence, almost. Ancient. Powerful,” Artemis wondered out loud.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 38,
+              "text": "I was reading within my Soulspace,"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake explained, not seeing any reason not to answer honestly as he knew he couldn’t actually explain what he was doing even if he wanted to.",
+              "cueVerb": "explained",
+              "cueVerbType": "speech",
+              "firstSentence": "I was reading within my Soulspace,",
+              "lastSentence": "I was reading within my Soulspace,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "I was reading within my Soulspace,",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "nextParagraphText": "“I was reading within my Soulspace,” Jake explained, not seeing any reason not to answer honestly as he knew he couldn’t actually explain what he was doing even if he wanted to.",
+          "paragraphIndex": 28,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 34,
+              "text": "Meditating,"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake answered casually as he acclimated to the world outside of his Soulspace. He’d spent over a week in constant meditation, and he did feel a bit out of it and needed a moment to fully return to the real world.",
+              "cueVerb": "answered",
+              "cueVerbType": "speech",
+              "firstSentence": "Meditating,",
+              "lastSentence": "Meditating,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Meditating,",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "previousParagraphText": "“Meditating,” Jake answered casually as he acclimated to the world outside of his Soulspace. He’d spent over a week in constant meditation, and he did feel a bit out of it and needed a moment to fully return to the real world."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 19,
+            "paragraphIndex": 16,
+            "relativeIndex": -4,
+            "text": "Corrupted, huh,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 25,
+            "paragraphIndex": 20,
+            "relativeIndex": -3,
+            "text": "perfect."
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 32,
+            "paragraphIndex": 26,
+            "relativeIndex": -2,
+            "text": "What were you doing?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 34,
+            "paragraphIndex": 27,
+            "relativeIndex": -1,
+            "text": "Meditating,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 38,
+            "paragraphIndex": 29,
+            "relativeIndex": 1,
+            "text": "I was reading within my Soulspace,"
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 40,
+            "paragraphIndex": 30,
+            "relativeIndex": 2,
+            "text": "Reading you say... what exactly could you have been reading that would produce that kind of effect? I didn’t get the notion it was something related to the Legacy of the Malefic One, but something else,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 36, \"text\": \"You were doing more than that... I felt something odd. A presence, almost. Ancient. Powerful,\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Artemis\", \"sourceCandidates\": [\"Artemis\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.32919999999999994, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.804, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.444, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 28, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“You were doing more than that... I felt something odd. A presence, almost. Ancient. Powerful,” Artemis wondered out loud.\", \"currentParagraphDialogue\": [{\"lineId\": 36, \"text\": \"You were doing more than that... I felt something odd. A presence, almost. Ancient. Powerful,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"previousParagraphText\": \"“Meditating,” Jake answered casually as he acclimated to the world outside of his Soulspace. He’d spent over a week in constant meditation, and he did feel a bit out of it and needed a moment to fully return to the real world.\", \"previousParagraphDialogue\": [{\"lineId\": 34, \"text\": \"Meditating,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"nextParagraphText\": \"“I was reading within my Soulspace,” Jake explained, not seeing any reason not to answer honestly as he knew he couldn’t actually explain what he was doing even if he wanted to.\", \"nextParagraphDialogue\": [{\"lineId\": 38, \"text\": \"I was reading within my Soulspace,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You were doing more than that... I felt something odd. A presence, almost. Ancient. Powerful,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You were doing more than that...\", \"lastSentence\": \"Powerful,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Meditating,\", \"cuePosition\": \"after\", \"cueVerb\": \"answered\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake answered casually as he acclimated to the world outside of his Soulspace. He’d spent over a week in constant meditation, and he did feel a bit out of it and needed a moment to fully return to the real world.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Meditating,\", \"lastSentence\": \"Meditating,\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I was reading within my Soulspace,\", \"cuePosition\": \"after\", \"cueVerb\": \"explained\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake explained, not seeing any reason not to answer honestly as he knew he couldn’t actually explain what he was doing even if he wanted to.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I was reading within my Soulspace,\", \"lastSentence\": \"I was reading within my Soulspace,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"You were doing more than that... I felt something odd. A presence, almost. Ancient. Powerful,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You were doing more than that...\", \"lastSentence\": \"Powerful,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [], \"roleLabels\": [\"artemis\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 19, \"paragraphIndex\": 16, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Corrupted, huh,\"}, {\"relativeIndex\": -3, \"lineId\": 25, \"paragraphIndex\": 20, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"perfect.\"}, {\"relativeIndex\": -2, \"lineId\": 32, \"paragraphIndex\": 26, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"What were you doing?\"}, {\"relativeIndex\": -1, \"lineId\": 34, \"paragraphIndex\": 27, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Meditating,\"}, {\"relativeIndex\": 1, \"lineId\": 38, \"paragraphIndex\": 29, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I was reading within my Soulspace,\"}, {\"relativeIndex\": 2, \"lineId\": 40, \"paragraphIndex\": 30, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Reading you say... what exactly could you have been reading that would produce that kind of effect? I didn’t get the notion it was something related to the Legacy of the Malefic One, but something else,\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"artemis\",\n  \"characterName\": \"Artemis\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_flow_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0043 - Chapter 1100 - First Archery Lesson/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“You were doing more than that... I felt something odd. A presence, almost. Ancient. Powerful,” Artemis wondered out loud.",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 1.0,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“You were doing more than that... I felt something odd. A presence, almost. Ancient. Powerful,” Artemis wondered out loud.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 36,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“I was reading within my Soulspace,” Jake explained, not seeing any reason not to answer honestly as he knew he couldn’t actually explain what he was doing even if he wanted to.",
+    "paragraphIndex": 28,
+    "previousParagraphText": "“Meditating,” Jake answered casually as he acclimated to the world outside of his Soulspace. He’d spent over a week in constant meditation, and he did feel a bit out of it and needed a moment to fully return to the real world.",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_flow_continuity"
+    ],
+    "suggestedCharacterId": "artemis",
+    "suggestedCharacterName": "Artemis",
+    "toolTrace": []
+  },
+  "lineId": 36,
+  "nextParagraphText": "“I was reading within my Soulspace,” Jake explained, not seeing any reason not to answer honestly as he knew he couldn’t actually explain what he was doing even if he wanted to.",
+  "paragraphIndex": 28,
+  "previousParagraphText": "“Meditating,” Jake answered casually as he acclimated to the world outside of his Soulspace. He’d spent over a week in constant meditation, and he did feel a bit out of it and needed a moment to fully return to the real world."
+}

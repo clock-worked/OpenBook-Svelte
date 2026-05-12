@@ -1,0 +1,148 @@
+{
+  "cacheKey": "693e001c0bbdba348e818d3b51a618085f738950e7ff83bc25ab9f8bd36f93d4",
+  "createdAt": "2026-04-01T04:33:31.697918+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": {
+      "alias": "King Iludar",
+      "characterId": "iludar",
+      "characterName": "Iludar"
+    },
+    "characterId": "iludar",
+    "characterName": "Iludar",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_attribution",
+      "narrative_attribution"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [],
+        "characterId": "if_jake",
+        "name": "If Jake"
+      },
+      {
+        "aliases": [
+          "lodestar-matron",
+          "lodestar-matron-2"
+        ],
+        "characterId": "lodestar-matron",
+        "name": "Lodestar Matron"
+      },
+      {
+        "aliases": [],
+        "characterId": "pulse",
+        "name": "pulse"
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "name": "Iludar"
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda"
+      },
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "name": "Blood"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.040000000000000036,
+        "misattributionRisk": 0.09599999999999997,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Iludar",
+        "sourceCandidates": [
+          "Iludar",
+          "King Iludar"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.904
+      },
+      "candidates": [
+        {
+          "characterId": "iludar",
+          "confidence": 0.904,
+          "name": "Iludar",
+          "reasons": [
+            "post_quote_attribution",
+            "speech_verb"
+          ]
+        },
+        {
+          "characterId": "king_iludar",
+          "confidence": 0.864,
+          "name": "King Iludar",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "iludar",
+      "currentCharacterName": "Iludar",
+      "id": 72,
+      "isReturning": false,
+      "text": "I hope you like the place chosen to be your grave,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "iludar",
+          "characterName": "Iludar",
+          "isReturning": false,
+          "lineId": 72,
+          "text": "I hope you like the place chosen to be your grave,"
+        }
+      ],
+      "currentParagraphText": "“I hope you like the place chosen to be your grave,” King Iludar said with confidence, Miranda staring back at him with an expression he couldn’t quite read. Not that he had any intentions of really delving into her emotions.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphText": "Without any further warning, not wanting to give her or anyone the chance to properly muster a response, he attacked. A staff appeared in his hand as a torrent of bright yellow flames exploded directly toward Miranda, who was currently having her magic suppressed.",
+      "paragraphIndex": 52,
+      "previousParagraphDialogue": [],
+      "previousParagraphText": "With negotiations having fully broken down, Jake saw no reason to hold back anymore as he prepared to make it absolutely clear why they shouldn’t have been such fucking idiots but just done the smart thing and surrendered when they had the chance."
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 72, \"text\": \"I hope you like the place chosen to be your grave,\", \"currentCharacterId\": \"iludar\", \"currentCharacterName\": \"Iludar\", \"currentCharacterAliases\": [], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Iludar\", \"sourceCandidates\": [\"Iludar\", \"King Iludar\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.904, \"marginToSecond\": 0.040000000000000036, \"misattributionRisk\": 0.09599999999999997, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"iludar\", \"name\": \"Iludar\", \"confidence\": 0.904, \"reasons\": [\"post_quote_attribution\", \"speech_verb\"]}, {\"characterId\": \"king_iludar\", \"name\": \"King Iludar\", \"confidence\": 0.864, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 52, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I hope you like the place chosen to be your grave,” King Iludar said with confidence, Miranda staring back at him with an expression he couldn’t quite read. Not that he had any intentions of really delving into her emotions.\", \"currentParagraphDialogue\": [{\"lineId\": 72, \"text\": \"I hope you like the place chosen to be your grave,\", \"characterId\": \"iludar\", \"characterName\": \"Iludar\", \"isReturning\": false}], \"previousParagraphText\": \"With negotiations having fully broken down, Jake saw no reason to hold back anymore as he prepared to make it absolutely clear why they shouldn’t have been such fucking idiots but just done the smart thing and surrendered when they had the chance.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Without any further warning, not wanting to give her or anyone the chance to properly muster a response, he attacked. A staff appeared in his hand as a torrent of bright yellow flames exploded directly toward Miranda, who was currently having her magic suppressed.\", \"nextParagraphDialogue\": []}, \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"if_jake\", \"name\": \"If Jake\", \"aliases\": []}, {\"characterId\": \"lodestar-matron\", \"name\": \"Lodestar Matron\", \"aliases\": [\"lodestar-matron\", \"lodestar-matron-2\"]}, {\"characterId\": \"pulse\", \"name\": \"pulse\", \"aliases\": []}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": []}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": []}, {\"characterId\": \"blood\", \"name\": \"Blood\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"iludar\",\n  \"characterName\": \"Iludar\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_attribution\",\n    \"narrative_attribution\"\n  ],\n  \"aliasToAdd\": {\n    \"characterId\": \"iludar\",\n    \"characterName\": \"Iludar\",\n    \"alias\": \"King Iludar\"\n  },\n  \"newCharacterProposal\": null\n}"
+}

@@ -1,0 +1,156 @@
+{
+  "cacheKey": "d1e23d02d990bd750b51e8d7289e870ae9e5f9597772967a6ae88e214c5a4729",
+  "createdAt": "2026-04-01T04:46:26.287050+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "direct_attribution"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen"
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [],
+        "characterId": "the-unique-lifeform",
+        "name": "The Unique Lifeform"
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob"
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "name": "Augur"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jacob",
+        "sourceCandidates": [
+          "Jacob",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "jacob",
+          "confidence": 0.816,
+          "name": "Jacob",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "jacob",
+      "currentCharacterName": "Jacob",
+      "id": 63,
+      "isReturning": true,
+      "text": "I had no idea the Holy Mother was also in on the scheming."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": true,
+          "lineId": 63,
+          "text": "I had no idea the Holy Mother was also in on the scheming."
+        }
+      ],
+      "currentParagraphText": "Jake frowned as he considered for a moment. “I had no idea the Holy Mother was also in on the scheming.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 64,
+          "text": "While I don’t know for sure, I don’t think she was,"
+        },
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": true,
+          "lineId": 66,
+          "text": "She just actively chose not to hurt the Viper’s chances but inadvertently helped him instead, as if even the largest faction in the multiverse saw it as a real possibility that Yip of Yore could kill the Malefic Viper, it would certainly give the god more confidence. Plus, and this is just my personal interpretation, I also think she viewed this as a chance to see how certain members of the Holy Church would act if given more power than usual. If I’m right, and that is still a big if, I could see her consider yanking back their leashes a bit. While the internal factions in the Holy Church are all legitimately powerful, they are still all below the Holy Mother, for without her, there would be no Holy Church."
+        }
+      ],
+      "nextParagraphText": "“While I don’t know for sure, I don’t think she was,” Jacob shook his head. “She just actively chose not to hurt the Viper’s chances but inadvertently helped him instead, as if even the largest faction in the multiverse saw it as a real possibility that Yip of Yore could kill the Malefic Viper, it would certainly give the god more confidence. Plus, and this is just my personal interpretation, I also think she viewed this as a chance to see how certain members of the Holy Church would act if given more power than usual. If I’m right, and that is still a big if, I could see her consider yanking back their leashes a bit. While the internal factions in the Holy Church are all legitimately powerful, they are still all below the Holy Mother, for without her, there would be no Holy Church.”",
+      "paragraphIndex": 31,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 59,
+          "text": "I guess I should clarify... the Holy Mother never thought you would lose. She saw our Tutorial and, from what I heard, a few of your Nevermore exploits. More than that, she knows the Malefic Viper,"
+        },
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": true,
+          "lineId": 61,
+          "text": "If the Holy Church had operated with the assumption that you and the Malefic Viper would obviously defeat Yip of Yore and Ell’Hakan, it could have given away the schemes of your Patron. That’s why the Holy Mother allowed the internal faction to run wild despite her knowing how much of a waste it is. Besides, on the off-chance Ell’Hakan did somehow win, she would already have hedged her bet."
+        }
+      ],
+      "previousParagraphText": "“I guess I should clarify... the Holy Mother never thought you would lose. She saw our Tutorial and, from what I heard, a few of your Nevermore exploits. More than that, she knows the Malefic Viper,” Jacob explained. “If the Holy Church had operated with the assumption that you and the Malefic Viper would obviously defeat Yip of Yore and Ell’Hakan, it could have given away the schemes of your Patron. That’s why the Holy Mother allowed the internal faction to run wild despite her knowing how much of a waste it is. Besides, on the off-chance Ell’Hakan did somehow win, she would already have hedged her bet.”"
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 63, \"text\": \"I had no idea the Holy Mother was also in on the scheming.\", \"currentCharacterId\": \"jacob\", \"currentCharacterName\": \"Jacob\", \"currentCharacterAliases\": [], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jacob\", \"sourceCandidates\": [\"Jacob\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 31, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Jake frowned as he considered for a moment. “I had no idea the Holy Mother was also in on the scheming.”\", \"currentParagraphDialogue\": [{\"lineId\": 63, \"text\": \"I had no idea the Holy Mother was also in on the scheming.\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": true}], \"previousParagraphText\": \"“I guess I should clarify... the Holy Mother never thought you would lose. She saw our Tutorial and, from what I heard, a few of your Nevermore exploits. More than that, she knows the Malefic Viper,” Jacob explained. “If the Holy Church had operated with the assumption that you and the Malefic Viper would obviously defeat Yip of Yore and Ell’Hakan, it could have given away the schemes of your Patron. That’s why the Holy Mother allowed the internal faction to run wild despite her knowing how much of a waste it is. Besides, on the off-chance Ell’Hakan did somehow win, she would already have hedged her bet.”\", \"previousParagraphDialogue\": [{\"lineId\": 59, \"text\": \"I guess I should clarify... the Holy Mother never thought you would lose. She saw our Tutorial and, from what I heard, a few of your Nevermore exploits. More than that, she knows the Malefic Viper,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}, {\"lineId\": 61, \"text\": \"If the Holy Church had operated with the assumption that you and the Malefic Viper would obviously defeat Yip of Yore and Ell’Hakan, it could have given away the schemes of your Patron. That’s why the Holy Mother allowed the internal faction to run wild despite her knowing how much of a waste it is. Besides, on the off-chance Ell’Hakan did somehow win, she would already have hedged her bet.\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": true}], \"nextParagraphText\": \"“While I don’t know for sure, I don’t think she was,” Jacob shook his head. “She just actively chose not to hurt the Viper’s chances but inadvertently helped him instead, as if even the largest faction in the multiverse saw it as a real possibility that Yip of Yore could kill the Malefic Viper, it would certainly give the god more confidence. Plus, and this is just my personal interpretation, I also think she viewed this as a chance to see how certain members of the Holy Church would act if given more power than usual. If I’m right, and that is still a big if, I could see her consider yanking back their leashes a bit. While the internal factions in the Holy Church are all legitimately powerful, they are still all below the Holy Mother, for without her, there would be no Holy Church.”\", \"nextParagraphDialogue\": [{\"lineId\": 64, \"text\": \"While I don’t know for sure, I don’t think she was,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}, {\"lineId\": 66, \"text\": \"She just actively chose not to hurt the Viper’s chances but inadvertently helped him instead, as if even the largest faction in the multiverse saw it as a real possibility that Yip of Yore could kill the Malefic Viper, it would certainly give the god more confidence. Plus, and this is just my personal interpretation, I also think she viewed this as a chance to see how certain members of the Holy Church would act if given more power than usual. If I’m right, and that is still a big if, I could see her consider yanking back their leashes a bit. While the internal factions in the Holy Church are all legitimately powerful, they are still all below the Holy Mother, for without her, there would be no Holy Church.\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": true}]}, \"chapterCharacters\": [{\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": []}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"the-unique-lifeform\", \"name\": \"The Unique Lifeform\", \"aliases\": []}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": []}, {\"characterId\": \"augur\", \"name\": \"Augur\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"direct_attribution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

@@ -1,0 +1,379 @@
+{
+  "cacheKey": "97db852c5bd4fd952074532c3b046428181ed2adb4a98c74625d48c16406717f",
+  "createdAt": "2026-04-04T02:44:18.982373+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "keerla",
+    "characterName": "Keerla",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "pronoun_resolution"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "solana",
+        "characterName": "Solana",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "solana"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "simivitas",
+        "characterName": "Simivitas",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "simivitas"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "chieftain",
+        "characterName": "Chieftain",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "chieftain"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "keerla",
+        "characterName": "Keerla",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "keerla"
+        ],
+        "wasRecentSpeaker": false
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "keerla",
+        "name": "Keerla",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "solana",
+        "name": "Solana",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "simivitas",
+        "name": "Simivitas",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "chieftain",
+        "name": "Chieftain",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "leader",
+        "name": "Leader",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "before",
+      "cueText": "A bit of sweat ran down Keerla’s back as she asked something she knew she wouldn’t like the answer to:",
+      "cueVerb": "asked",
+      "cueVerbType": "speech",
+      "firstSentence": "What does the Chieftain want?",
+      "lastSentence": "What does the Chieftain want?",
+      "mentionedEntities": [
+        "Chieftain",
+        "Chieftain",
+        "The Chieftain"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "What does the Chieftain want?",
+      "speakerNameMatch": null,
+      "speakerSurface": "an down Keerla’s back"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": "female",
+          "contextGenderCue": "she asked",
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "Chieftain",
+            "The Chieftain"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": true,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Simivitas",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": "Keerla",
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.019999999999999907,
+        "misattributionRisk": 0.5068,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Simivitas",
+        "sourceCandidates": [
+          "Simivitas",
+          "Keerla"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.696
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.696,
+          "name": "Simivitas",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.676,
+          "name": "Keerla",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 57,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "What does the Chieftain want?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 57,
+          "text": "What does the Chieftain want?"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "A bit of sweat ran down Keerla’s back as she asked something she knew she wouldn’t like the answer to:",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "What does the Chieftain want?",
+          "lastSentence": "What does the Chieftain want?",
+          "mentionedEntities": [
+            "Chieftain",
+            "Chieftain",
+            "The Chieftain"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "What does the Chieftain want?",
+          "speakerNameMatch": null,
+          "speakerSurface": "an down Keerla’s back"
+        }
+      ],
+      "currentParagraphText": "A bit of sweat ran down Keerla’s back as she asked something she knew she wouldn’t like the answer to: “What does the Chieftain want?”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 58,
+          "text": "Your skulls!"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the Chieftain yelled, having enjoyed taunting them.",
+          "cueVerb": "yelled",
+          "cueVerbType": "speech",
+          "firstSentence": "Your skulls!",
+          "lastSentence": "Your skulls!",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Your skulls!",
+          "speakerNameMatch": "Chieftain",
+          "speakerSurface": "Chieftain"
+        }
+      ],
+      "nextParagraphText": "“Your skulls!” the Chieftain yelled, having enjoyed taunting them.",
+      "paragraphIndex": 45,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 54,
+          "text": "Trade? I don’t think you would be willing to trade what I want,"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "he smiled, flashing his sharp teeth.",
+          "cueVerb": "smiled",
+          "cueVerbType": "reaction",
+          "firstSentence": "Trade?",
+          "lastSentence": "I don’t think you would be willing to trade what I want,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Trade? I don’t think you would be willing to trade what I want,",
+          "speakerNameMatch": null,
+          "speakerSurface": "he"
+        }
+      ],
+      "previousParagraphText": "“Trade? I don’t think you would be willing to trade what I want,” he smiled, flashing his sharp teeth."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 44,
+        "paragraphIndex": 36,
+        "relativeIndex": -4,
+        "text": "We’ll escape,"
+      },
+      {
+        "characterId": "solana",
+        "characterName": "Solana",
+        "lineId": 50,
+        "paragraphIndex": 42,
+        "relativeIndex": -3,
+        "text": "You dare block my path?"
+      },
+      {
+        "characterId": "simivitas",
+        "characterName": "Simivitas",
+        "lineId": 53,
+        "paragraphIndex": 43,
+        "relativeIndex": -2,
+        "text": "We wish to propose a trade if the Chieftain is interested. The lives of the kits for-"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 54,
+        "paragraphIndex": 44,
+        "relativeIndex": -1,
+        "text": "Trade? I don’t think you would be willing to trade what I want,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 58,
+        "paragraphIndex": 46,
+        "relativeIndex": 1,
+        "text": "Your skulls!"
+      },
+      {
+        "characterId": "chieftain",
+        "characterName": "Chieftain",
+        "lineId": 66,
+        "paragraphIndex": 53,
+        "relativeIndex": 2,
+        "text": "Are you insane!? Run! Get out of here while you still can!"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "keerla",
+            "characterName": "Keerla",
+            "evidence": [
+              "token_overlap:keerla"
+            ],
+            "score": 0.5375
+          }
+        ],
+        "surface": "an down keerla s back"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 57, \"text\": \"What does the Chieftain want?\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Simivitas\", \"sourceCandidates\": [\"Simivitas\", \"Keerla\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.696, \"marginToSecond\": 0.019999999999999907, \"misattributionRisk\": 0.5068, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Chieftain\", \"The Chieftain\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": \"Keerla\", \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Simivitas\", \"contextGender\": \"female\", \"contextGenderCue\": \"she asked\"}}, \"candidates\": [{\"characterId\": null, \"name\": \"Simivitas\", \"confidence\": 0.696, \"reasons\": null}, {\"characterId\": null, \"name\": \"Keerla\", \"confidence\": 0.676, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 45, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"A bit of sweat ran down Keerla’s back as she asked something she knew she wouldn’t like the answer to: “What does the Chieftain want?”\", \"currentParagraphDialogue\": [{\"lineId\": 57, \"text\": \"What does the Chieftain want?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“Trade? I don’t think you would be willing to trade what I want,” he smiled, flashing his sharp teeth.\", \"previousParagraphDialogue\": [{\"lineId\": 54, \"text\": \"Trade? I don’t think you would be willing to trade what I want,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"nextParagraphText\": \"“Your skulls!” the Chieftain yelled, having enjoyed taunting them.\", \"nextParagraphDialogue\": [{\"lineId\": 58, \"text\": \"Your skulls!\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"What does the Chieftain want?\", \"cuePosition\": \"before\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"A bit of sweat ran down Keerla’s back as she asked something she knew she wouldn’t like the answer to:\", \"speakerSurface\": \"an down Keerla’s back\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"Chieftain\", \"Chieftain\", \"The Chieftain\"], \"addressedEntity\": null, \"firstSentence\": \"What does the Chieftain want?\", \"lastSentence\": \"What does the Chieftain want?\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Trade? I don’t think you would be willing to trade what I want,\", \"cuePosition\": \"after\", \"cueVerb\": \"smiled\", \"cueVerbType\": \"reaction\", \"cueText\": \"he smiled, flashing his sharp teeth.\", \"speakerSurface\": \"he\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Trade?\", \"lastSentence\": \"I don’t think you would be willing to trade what I want,\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Your skulls!\", \"cuePosition\": \"after\", \"cueVerb\": \"yelled\", \"cueVerbType\": \"speech\", \"cueText\": \"the Chieftain yelled, having enjoyed taunting them.\", \"speakerSurface\": \"Chieftain\", \"speakerNameMatch\": \"Chieftain\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Your skulls!\", \"lastSentence\": \"Your skulls!\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"What does the Chieftain want?\", \"cuePosition\": \"before\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"A bit of sweat ran down Keerla’s back as she asked something she knew she wouldn’t like the answer to:\", \"speakerSurface\": \"an down Keerla’s back\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"Chieftain\", \"Chieftain\", \"The Chieftain\"], \"addressedEntity\": null, \"firstSentence\": \"What does the Chieftain want?\", \"lastSentence\": \"What does the Chieftain want?\"}, \"sceneEntities\": [{\"surface\": \"an down keerla s back\", \"matches\": [{\"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"score\": 0.5375, \"evidence\": [\"token_overlap:keerla\"]}]}], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"solana\", \"characterName\": \"Solana\", \"aliases\": [], \"roleLabels\": [\"solana\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"simivitas\", \"characterName\": \"Simivitas\", \"aliases\": [], \"roleLabels\": [\"simivitas\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"chieftain\", \"characterName\": \"Chieftain\", \"aliases\": [], \"roleLabels\": [\"chieftain\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"aliases\": [], \"roleLabels\": [\"keerla\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 44, \"paragraphIndex\": 36, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"We’ll escape,\"}, {\"relativeIndex\": -3, \"lineId\": 50, \"paragraphIndex\": 42, \"characterId\": \"solana\", \"characterName\": \"Solana\", \"text\": \"You dare block my path?\"}, {\"relativeIndex\": -2, \"lineId\": 53, \"paragraphIndex\": 43, \"characterId\": \"simivitas\", \"characterName\": \"Simivitas\", \"text\": \"We wish to propose a trade if the Chieftain is interested. The lives of the kits for-\"}, {\"relativeIndex\": -1, \"lineId\": 54, \"paragraphIndex\": 44, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Trade? I don’t think you would be willing to trade what I want,\"}, {\"relativeIndex\": 1, \"lineId\": 58, \"paragraphIndex\": 46, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Your skulls!\"}, {\"relativeIndex\": 2, \"lineId\": 66, \"paragraphIndex\": 53, \"characterId\": \"chieftain\", \"characterName\": \"Chieftain\", \"text\": \"Are you insane!? Run! Get out of here while you still can!\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"keerla\", \"name\": \"Keerla\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"solana\", \"name\": \"Solana\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"simivitas\", \"name\": \"Simivitas\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"chieftain\", \"name\": \"Chieftain\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"leader\", \"name\": \"Leader\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"keerla\",\n  \"characterName\": \"Keerla\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"pronoun_resolution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

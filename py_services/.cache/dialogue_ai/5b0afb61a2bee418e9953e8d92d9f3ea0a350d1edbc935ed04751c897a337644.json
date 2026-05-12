@@ -1,0 +1,357 @@
+{
+  "cacheKey": "5b0afb61a2bee418e9953e8d92d9f3ea0a350d1edbc935ed04751c897a337644",
+  "createdAt": "2026-04-02T22:30:33.278796+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "characterName": "Carmen",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "carmen"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Unique Lifeform",
+          "The Unique Lifeform",
+          "the-unique-lifeform",
+          "the-unique-lifeform-2"
+        ],
+        "characterId": "minaga",
+        "name": "Minaga",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Jake was silent for a moment before sighing.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "See, this is why I shouldn’t be the one making laws.",
+      "lastSentence": "See, this is why I shouldn’t be the one making laws.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "See, this is why I shouldn’t be the one making laws.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Carmen",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Carmen",
+        "sourceCandidates": [
+          "Carmen",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "carmen",
+          "confidence": 0.816,
+          "name": "Carmen",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "carmen",
+      "currentCharacterName": "Carmen",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 27,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "See, this is why I shouldn’t be the one making laws."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "carmen",
+          "characterName": "Carmen",
+          "isReturning": true,
+          "lineId": 27,
+          "text": "See, this is why I shouldn’t be the one making laws."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake was silent for a moment before sighing.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "See, this is why I shouldn’t be the one making laws.",
+          "lastSentence": "See, this is why I shouldn’t be the one making laws.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "See, this is why I shouldn’t be the one making laws.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Jake was silent for a moment before sighing. “See, this is why I shouldn’t be the one making laws.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "carmen",
+          "characterName": "Carmen",
+          "isReturning": false,
+          "lineId": 28,
+          "text": "Amen to that,"
+        },
+        {
+          "characterId": "carmen",
+          "characterName": "Carmen",
+          "isReturning": true,
+          "lineId": 30,
+          "text": "Anyway, as I said, I’ll be off. I do plan on returning again in not that long, but with how everything is, I honestly don’t have a timeline."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Carmen chuckled.",
+          "cueVerb": "chuckled",
+          "cueVerbType": "speech",
+          "firstSentence": "Amen to that,",
+          "lastSentence": "Amen to that,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Amen to that,",
+          "speakerNameMatch": "Carmen",
+          "speakerSurface": "Carmen"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Carmen chuckled.",
+          "cueVerb": "chuckled",
+          "cueVerbType": "speech",
+          "firstSentence": "Anyway, as I said, I’ll be off.",
+          "lastSentence": "I do plan on returning again in not that long, but with how everything is, I honestly don’t have a timeline.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "Anyway, as I said, I’ll be off. I do plan on returning again in not that long, but with how everything is, I honestly don’t have a timeline.",
+          "speakerNameMatch": "Carmen",
+          "speakerSurface": "Carmen"
+        }
+      ],
+      "nextParagraphText": "“Amen to that,” Carmen chuckled. “Anyway, as I said, I’ll be off. I do plan on returning again in not that long, but with how everything is, I honestly don’t have a timeline.”",
+      "paragraphIndex": 17,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "carmen",
+          "characterName": "Carmen",
+          "isReturning": false,
+          "lineId": 23,
+          "text": "Those weren’t real years,"
+        },
+        {
+          "characterId": "carmen",
+          "characterName": "Carmen",
+          "isReturning": true,
+          "lineId": 25,
+          "text": "If they were, it would mean you’re older than your parents now, and if you think about that just a little, wouldn’t that be fucking weird? Way easier to just not count those years and keep yourself sane."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Those weren’t real years,",
+          "lastSentence": "Those weren’t real years,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Those weren’t real years,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Carmen waved him off.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "If they were, it would mean you’re older than your parents now, and if you think about that just a little, wouldn’t that be fucking weird?",
+          "lastSentence": "Way easier to just not count those years and keep yourself sane.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "If they were, it would mean you’re older than your parents now, and if you think about that just a little, wouldn’t that be fucking weird? Way easier to just not count those years and keep yourself sane.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "previousParagraphText": "“Those weren’t real years,” Carmen waved him off. “If they were, it would mean you’re older than your parents now, and if you think about that just a little, wouldn’t that be fucking weird? Way easier to just not count those years and keep yourself sane.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 19,
+        "paragraphIndex": 14,
+        "relativeIndex": -4,
+        "text": "Wait, don’t you have a minimum age? Little Sylphie is still a minor. How can she be considered responsible?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 21,
+        "paragraphIndex": 15,
+        "relativeIndex": -3,
+        "text": "We were in Nevermore for fifty years,"
+      },
+      {
+        "characterId": "carmen",
+        "characterName": "Carmen",
+        "lineId": 23,
+        "paragraphIndex": 16,
+        "relativeIndex": -2,
+        "text": "Those weren’t real years,"
+      },
+      {
+        "characterId": "carmen",
+        "characterName": "Carmen",
+        "lineId": 25,
+        "paragraphIndex": 16,
+        "relativeIndex": -1,
+        "text": "If they were, it would mean you’re older than your parents now, and if you think about that just a little, wouldn’t that be fucking weird? Way easier to just not count those years and keep yourself sane."
+      },
+      {
+        "characterId": "carmen",
+        "characterName": "Carmen",
+        "lineId": 28,
+        "paragraphIndex": 18,
+        "relativeIndex": 1,
+        "text": "Amen to that,"
+      },
+      {
+        "characterId": "carmen",
+        "characterName": "Carmen",
+        "lineId": 30,
+        "paragraphIndex": 18,
+        "relativeIndex": 2,
+        "text": "Anyway, as I said, I’ll be off. I do plan on returning again in not that long, but with how everything is, I honestly don’t have a timeline."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 27, \"text\": \"See, this is why I shouldn’t be the one making laws.\", \"currentCharacterId\": \"carmen\", \"currentCharacterName\": \"Carmen\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Carmen\", \"sourceCandidates\": [\"Carmen\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Carmen\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"carmen\", \"name\": \"Carmen\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 17, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Jake was silent for a moment before sighing. “See, this is why I shouldn’t be the one making laws.”\", \"currentParagraphDialogue\": [{\"lineId\": 27, \"text\": \"See, this is why I shouldn’t be the one making laws.\", \"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"isReturning\": true}], \"previousParagraphText\": \"“Those weren’t real years,” Carmen waved him off. “If they were, it would mean you’re older than your parents now, and if you think about that just a little, wouldn’t that be fucking weird? Way easier to just not count those years and keep yourself sane.”\", \"previousParagraphDialogue\": [{\"lineId\": 23, \"text\": \"Those weren’t real years,\", \"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"isReturning\": false}, {\"lineId\": 25, \"text\": \"If they were, it would mean you’re older than your parents now, and if you think about that just a little, wouldn’t that be fucking weird? Way easier to just not count those years and keep yourself sane.\", \"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"isReturning\": true}], \"nextParagraphText\": \"“Amen to that,” Carmen chuckled. “Anyway, as I said, I’ll be off. I do plan on returning again in not that long, but with how everything is, I honestly don’t have a timeline.”\", \"nextParagraphDialogue\": [{\"lineId\": 28, \"text\": \"Amen to that,\", \"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"isReturning\": false}, {\"lineId\": 30, \"text\": \"Anyway, as I said, I’ll be off. I do plan on returning again in not that long, but with how everything is, I honestly don’t have a timeline.\", \"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"See, this is why I shouldn’t be the one making laws.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake was silent for a moment before sighing.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"See, this is why I shouldn’t be the one making laws.\", \"lastSentence\": \"See, this is why I shouldn’t be the one making laws.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Those weren’t real years,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Those weren’t real years,\", \"lastSentence\": \"Those weren’t real years,\"}, {\"quoteIndex\": 1, \"quoteText\": \"If they were, it would mean you’re older than your parents now, and if you think about that just a little, wouldn’t that be fucking weird? Way easier to just not count those years and keep yourself sane.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Carmen waved him off.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"If they were, it would mean you’re older than your parents now, and if you think about that just a little, wouldn’t that be fucking weird?\", \"lastSentence\": \"Way easier to just not count those years and keep yourself sane.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Amen to that,\", \"cuePosition\": \"after\", \"cueVerb\": \"chuckled\", \"cueVerbType\": \"speech\", \"cueText\": \"Carmen chuckled.\", \"speakerSurface\": \"Carmen\", \"speakerNameMatch\": \"Carmen\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Amen to that,\", \"lastSentence\": \"Amen to that,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Anyway, as I said, I’ll be off. I do plan on returning again in not that long, but with how everything is, I honestly don’t have a timeline.\", \"cuePosition\": \"before\", \"cueVerb\": \"chuckled\", \"cueVerbType\": \"speech\", \"cueText\": \"Carmen chuckled.\", \"speakerSurface\": \"Carmen\", \"speakerNameMatch\": \"Carmen\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Anyway, as I said, I’ll be off.\", \"lastSentence\": \"I do plan on returning again in not that long, but with how everything is, I honestly don’t have a timeline.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"See, this is why I shouldn’t be the one making laws.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake was silent for a moment before sighing.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"See, this is why I shouldn’t be the one making laws.\", \"lastSentence\": \"See, this is why I shouldn’t be the one making laws.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"aliases\": [], \"roleLabels\": [\"carmen\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 19, \"paragraphIndex\": 14, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Wait, don’t you have a minimum age? Little Sylphie is still a minor. How can she be considered responsible?\"}, {\"relativeIndex\": -3, \"lineId\": 21, \"paragraphIndex\": 15, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"We were in Nevermore for fifty years,\"}, {\"relativeIndex\": -2, \"lineId\": 23, \"paragraphIndex\": 16, \"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"text\": \"Those weren’t real years,\"}, {\"relativeIndex\": -1, \"lineId\": 25, \"paragraphIndex\": 16, \"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"text\": \"If they were, it would mean you’re older than your parents now, and if you think about that just a little, wouldn’t that be fucking weird? Way easier to just not count those years and keep yourself sane.\"}, {\"relativeIndex\": 1, \"lineId\": 28, \"paragraphIndex\": 18, \"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"text\": \"Amen to that,\"}, {\"relativeIndex\": 2, \"lineId\": 30, \"paragraphIndex\": 18, \"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"text\": \"Anyway, as I said, I’ll be off. I do plan on returning again in not that long, but with how everything is, I honestly don’t have a timeline.\"}], \"chapterCharacters\": [{\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

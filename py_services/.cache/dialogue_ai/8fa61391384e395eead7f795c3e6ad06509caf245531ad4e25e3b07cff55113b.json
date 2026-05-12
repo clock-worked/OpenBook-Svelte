@@ -1,0 +1,291 @@
+{
+  "cacheKey": "8fa61391384e395eead7f795c3e6ad06509caf245531ad4e25e3b07cff55113b",
+  "createdAt": "2026-04-02T22:32:06.763132+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "caleb",
+    "characterName": "Caleb",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "arnold",
+        "characterName": "Arnold",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "arnold"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "caleb"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "caleb",
+        "name": "Caleb",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "arnold",
+        "name": "Arnold",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Caleb countered as he went closer and pulled Jake into a hug, seemingly tired of their usual bantering.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Good to see you again.",
+      "lastSentence": "Good to see you again.",
+      "mentionedEntities": [],
+      "quoteIndex": 1,
+      "quoteText": "Good to see you again.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.040000000000000036,
+        "misattributionRisk": 0.14400000000000002,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Arnold",
+        "sourceCandidates": [
+          "Arnold",
+          "Caleb",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.856
+      },
+      "candidates": [
+        {
+          "characterId": "arnold",
+          "confidence": 0.856,
+          "name": "Arnold",
+          "reasons": [
+            "same_paragraph_continuation"
+          ]
+        },
+        {
+          "characterId": "caleb",
+          "confidence": 0.816,
+          "name": "Caleb",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "arnold",
+      "currentCharacterName": "Arnold",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 23,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Good to see you again."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "arnold",
+          "characterName": "Arnold",
+          "isReturning": false,
+          "lineId": 21,
+          "text": "Some would say once is one time too many,"
+        },
+        {
+          "characterId": "arnold",
+          "characterName": "Arnold",
+          "isReturning": true,
+          "lineId": 23,
+          "text": "Good to see you again."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Some would say once is one time too many,",
+          "lastSentence": "Some would say once is one time too many,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Some would say once is one time too many,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Caleb countered as he went closer and pulled Jake into a hug, seemingly tired of their usual bantering.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Good to see you again.",
+          "lastSentence": "Good to see you again.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "Good to see you again.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Some would say once is one time too many,” Caleb countered as he went closer and pulled Jake into a hug, seemingly tired of their usual bantering. “Good to see you again.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 13
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "lineId": 16,
+        "paragraphIndex": 11,
+        "relativeIndex": -4,
+        "text": "I’ve been doing my job, yes, thank you for noticing,"
+      },
+      {
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "lineId": 18,
+        "paragraphIndex": 11,
+        "relativeIndex": -3,
+        "text": "The Court has branches in many places, and we even have a few planets where we are the dominant force. It’s only proper that I at least pay them a visit and introduce myself, considering they’ll be working under me for the foreseeable future. Meanwhile, last I heard, you’ve been stuck at home playing with alchemy that occasionally causes skybeams to break your ceiling."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 19,
+        "paragraphIndex": 12,
+        "relativeIndex": -2,
+        "text": "Hey, that’s not fair. It happened once,"
+      },
+      {
+        "characterId": "arnold",
+        "characterName": "Arnold",
+        "lineId": 21,
+        "paragraphIndex": 13,
+        "relativeIndex": -1,
+        "text": "Some would say once is one time too many,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 24,
+        "paragraphIndex": 14,
+        "relativeIndex": 1,
+        "text": "Thanks, you too. It sounds like things have been going well on your end,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 26,
+        "paragraphIndex": 14,
+        "relativeIndex": 2,
+        "text": "And, to properly defend myself, I would argue I’ve also been doing my job. At least, I reckon Ell’Hakan would agree I did."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 23, \"text\": \"Good to see you again.\", \"currentCharacterId\": \"arnold\", \"currentCharacterName\": \"Arnold\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Arnold\", \"sourceCandidates\": [\"Arnold\", \"Caleb\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.856, \"marginToSecond\": 0.040000000000000036, \"misattributionRisk\": 0.14400000000000002, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"arnold\", \"name\": \"Arnold\", \"confidence\": 0.856, \"reasons\": [\"same_paragraph_continuation\"]}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 13, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Some would say once is one time too many,” Caleb countered as he went closer and pulled Jake into a hug, seemingly tired of their usual bantering. “Good to see you again.”\", \"currentParagraphDialogue\": [{\"lineId\": 21, \"text\": \"Some would say once is one time too many,\", \"characterId\": \"arnold\", \"characterName\": \"Arnold\", \"isReturning\": false}, {\"lineId\": 23, \"text\": \"Good to see you again.\", \"characterId\": \"arnold\", \"characterName\": \"Arnold\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Some would say once is one time too many,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Some would say once is one time too many,\", \"lastSentence\": \"Some would say once is one time too many,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Good to see you again.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Caleb countered as he went closer and pulled Jake into a hug, seemingly tired of their usual bantering.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Good to see you again.\", \"lastSentence\": \"Good to see you again.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"Good to see you again.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Caleb countered as he went closer and pulled Jake into a hug, seemingly tired of their usual bantering.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Good to see you again.\", \"lastSentence\": \"Good to see you again.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"arnold\", \"characterName\": \"Arnold\", \"aliases\": [], \"roleLabels\": [\"arnold\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"aliases\": [], \"roleLabels\": [\"caleb\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 16, \"paragraphIndex\": 11, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"I’ve been doing my job, yes, thank you for noticing,\"}, {\"relativeIndex\": -3, \"lineId\": 18, \"paragraphIndex\": 11, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"The Court has branches in many places, and we even have a few planets where we are the dominant force. It’s only proper that I at least pay them a visit and introduce myself, considering they’ll be working under me for the foreseeable future. Meanwhile, last I heard, you’ve been stuck at home playing with alchemy that occasionally causes skybeams to break your ceiling.\"}, {\"relativeIndex\": -2, \"lineId\": 19, \"paragraphIndex\": 12, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Hey, that’s not fair. It happened once,\"}, {\"relativeIndex\": -1, \"lineId\": 21, \"paragraphIndex\": 13, \"characterId\": \"arnold\", \"characterName\": \"Arnold\", \"text\": \"Some would say once is one time too many,\"}, {\"relativeIndex\": 1, \"lineId\": 24, \"paragraphIndex\": 14, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Thanks, you too. It sounds like things have been going well on your end,\"}, {\"relativeIndex\": 2, \"lineId\": 26, \"paragraphIndex\": 14, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"And, to properly defend myself, I would argue I’ve also been doing my job. At least, I reckon Ell’Hakan would agree I did.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"arnold\", \"name\": \"Arnold\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"caleb\",\n  \"characterName\": \"Caleb\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

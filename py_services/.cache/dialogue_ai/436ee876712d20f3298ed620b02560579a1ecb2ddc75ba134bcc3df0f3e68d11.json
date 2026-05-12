@@ -1,0 +1,283 @@
+{
+  "cacheKey": "436ee876712d20f3298ed620b02560579a1ecb2ddc75ba134bcc3df0f3e68d11",
+  "createdAt": "2026-04-02T22:32:19.814226+00:00",
+  "decision": {
+    "action": "needs_review",
+    "aliasToAdd": null,
+    "characterId": null,
+    "characterName": null,
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "not_dialogue",
+      "part_of_narration"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "arnold",
+        "characterName": "Arnold",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "arnold"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "caleb"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "caleb",
+        "name": "Caleb",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "arnold",
+        "name": "Arnold",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Finally... Jake had done and would continue to do a lot of things he really didn’t want to talk to his parents about. He had killed countless people, been involved in wars, and even blown up an entire planet. On a morality scale, Jake definitely didn’t think he tipped toward the",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "good",
+      "lastSentence": "good",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "good",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Arnold",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.7,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.20399999999999996,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Arnold",
+        "sourceCandidates": [
+          "Arnold",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.796
+      },
+      "candidates": [
+        {
+          "characterId": "arnold",
+          "confidence": 0.796,
+          "name": "Arnold",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.436,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "arnold",
+      "currentCharacterName": "Arnold",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 70,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "good"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "arnold",
+          "characterName": "Arnold",
+          "isReturning": false,
+          "lineId": 70,
+          "text": "good"
+        },
+        {
+          "characterId": "arnold",
+          "characterName": "Arnold",
+          "isReturning": false,
+          "lineId": 72,
+          "text": "good"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Finally... Jake had done and would continue to do a lot of things he really didn’t want to talk to his parents about. He had killed countless people, been involved in wars, and even blown up an entire planet. On a morality scale, Jake definitely didn’t think he tipped toward the",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "good",
+          "lastSentence": "good",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "good",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "side... though he wasn’t entirely certain he wanted to be considered",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "good",
+          "lastSentence": "good",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "good",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Finally... Jake had done and would continue to do a lot of things he really didn’t want to talk to his parents about. He had killed countless people, been involved in wars, and even blown up an entire planet. On a morality scale, Jake definitely didn’t think he tipped toward the “good” side... though he wasn’t entirely certain he wanted to be considered “good” according to the standards of the multiverse where the Holy Church was often viewed as a beacon of moral goodness.",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 33
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "lineId": 60,
+        "paragraphIndex": 27,
+        "relativeIndex": -4,
+        "text": "Which makes me automatically assume you are here for some bigger purpose. Or just to try and steal some of our more unique alchemical ingredients."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 61,
+        "paragraphIndex": 28,
+        "relativeIndex": -3,
+        "text": "Is it that hard to believe I’m just here to see family?"
+      },
+      {
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "lineId": 63,
+        "paragraphIndex": 29,
+        "relativeIndex": -2,
+        "text": "Would you be mad if I said yes?"
+      },
+      {
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "lineId": 65,
+        "paragraphIndex": 29,
+        "relativeIndex": -1,
+        "text": "Mom’s gonna be happy. She’s worried a lot."
+      },
+      {
+        "characterId": "arnold",
+        "characterName": "Arnold",
+        "lineId": 72,
+        "paragraphIndex": 33,
+        "relativeIndex": 1,
+        "text": "good"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 75,
+        "paragraphIndex": 35,
+        "relativeIndex": 2,
+        "text": "Can you lead the way to their... I wanna say manor from how mom described it?"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 70, \"text\": \"good\", \"currentCharacterId\": \"arnold\", \"currentCharacterName\": \"Arnold\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Arnold\", \"sourceCandidates\": [\"Arnold\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.20399999999999996, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Arnold\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"arnold\", \"name\": \"Arnold\", \"confidence\": 0.796, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.436, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 33, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"Finally... Jake had done and would continue to do a lot of things he really didn’t want to talk to his parents about. He had killed countless people, been involved in wars, and even blown up an entire planet. On a morality scale, Jake definitely didn’t think he tipped toward the “good” side... though he wasn’t entirely certain he wanted to be considered “good” according to the standards of the multiverse where the Holy Church was often viewed as a beacon of moral goodness.\", \"currentParagraphDialogue\": [{\"lineId\": 70, \"text\": \"good\", \"characterId\": \"arnold\", \"characterName\": \"Arnold\", \"isReturning\": false}, {\"lineId\": 72, \"text\": \"good\", \"characterId\": \"arnold\", \"characterName\": \"Arnold\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"good\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Finally... Jake had done and would continue to do a lot of things he really didn’t want to talk to his parents about. He had killed countless people, been involved in wars, and even blown up an entire planet. On a morality scale, Jake definitely didn’t think he tipped toward the\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"good\", \"lastSentence\": \"good\"}, {\"quoteIndex\": 1, \"quoteText\": \"good\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"side... though he wasn’t entirely certain he wanted to be considered\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"good\", \"lastSentence\": \"good\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"good\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Finally... Jake had done and would continue to do a lot of things he really didn’t want to talk to his parents about. He had killed countless people, been involved in wars, and even blown up an entire planet. On a morality scale, Jake definitely didn’t think he tipped toward the\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"good\", \"lastSentence\": \"good\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"arnold\", \"characterName\": \"Arnold\", \"aliases\": [], \"roleLabels\": [\"arnold\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"aliases\": [], \"roleLabels\": [\"caleb\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 60, \"paragraphIndex\": 27, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"Which makes me automatically assume you are here for some bigger purpose. Or just to try and steal some of our more unique alchemical ingredients.\"}, {\"relativeIndex\": -3, \"lineId\": 61, \"paragraphIndex\": 28, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Is it that hard to believe I’m just here to see family?\"}, {\"relativeIndex\": -2, \"lineId\": 63, \"paragraphIndex\": 29, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"Would you be mad if I said yes?\"}, {\"relativeIndex\": -1, \"lineId\": 65, \"paragraphIndex\": 29, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"Mom’s gonna be happy. She’s worried a lot.\"}, {\"relativeIndex\": 1, \"lineId\": 72, \"paragraphIndex\": 33, \"characterId\": \"arnold\", \"characterName\": \"Arnold\", \"text\": \"good\"}, {\"relativeIndex\": 2, \"lineId\": 75, \"paragraphIndex\": 35, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Can you lead the way to their... I wanna say manor from how mom described it?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"arnold\", \"name\": \"Arnold\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"needs_review\",\n  \"characterId\": null,\n  \"characterName\": null,\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"not_dialogue\",\n    \"part_of_narration\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

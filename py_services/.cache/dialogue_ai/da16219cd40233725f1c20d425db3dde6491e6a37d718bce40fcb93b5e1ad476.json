@@ -1,0 +1,259 @@
+{
+  "cacheKey": "da16219cd40233725f1c20d425db3dde6491e6a37d718bce40fcb93b5e1ad476",
+  "createdAt": "2026-04-04T03:05:42.346082+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "the-chieftain",
+    "characterName": "The Chieftain",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "previous_paragraph_narration_cue",
+      "next_paragraph_action_cue",
+      "aggressive_tone_matches_antagonist"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-chieftain",
+          "the-chieftain-2"
+        ],
+        "characterId": "the-chieftain",
+        "name": "The Chieftain",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Now fall before the might of the Ancestors!",
+      "lastSentence": "Now fall before the might of the Ancestors!",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Now fall before the might of the Ancestors!",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Solana",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "The Chieftain"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "the-chieftain-2",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 46,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Now fall before the might of the Ancestors!"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 46,
+          "text": "Now fall before the might of the Ancestors!"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Now fall before the might of the Ancestors!",
+          "lastSentence": "Now fall before the might of the Ancestors!",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Now fall before the might of the Ancestors!",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Now fall before the might of the Ancestors!”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Raising his blade toward Jake, it began gathering power as an ominous wind swept through the area right before a beam of condensed light erupted from the sword, flying straight toward Jake, who watched the incoming attack with calm eyes.",
+      "paragraphIndex": 31,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "With those words, his power grew to a whole new level as his aura spiked further. His eyes began to glow a ghostly light as what Jake guessed to be spirit energy empowered the Chieftain."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 38,
+        "paragraphIndex": 25,
+        "relativeIndex": -4,
+        "text": "You just sped up your own death needlessly. I was beginning to enjoy myself, but it appears I’ll have to end things sooner than I would have preferred."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 40,
+        "paragraphIndex": 27,
+        "relativeIndex": -3,
+        "text": "Spirits of Old, Protect Me,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 42,
+        "paragraphIndex": 28,
+        "relativeIndex": -2,
+        "text": "Spirits of Old, Strengthen Mine Arms,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 44,
+        "paragraphIndex": 29,
+        "relativeIndex": -1,
+        "text": "Spirits of Old, Guide Me."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 51,
+        "paragraphIndex": 35,
+        "relativeIndex": 1,
+        "text": "keep in contact"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 58,
+        "paragraphIndex": 41,
+        "relativeIndex": 2,
+        "text": "I expected more after that dramatic performance. Turns out it was all theatrics."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 46, \"text\": \"Now fall before the might of the Ancestors!\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"The Chieftain\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Solana\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"the-chieftain-2\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 31, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Now fall before the might of the Ancestors!”\", \"currentParagraphDialogue\": [{\"lineId\": 46, \"text\": \"Now fall before the might of the Ancestors!\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"With those words, his power grew to a whole new level as his aura spiked further. His eyes began to glow a ghostly light as what Jake guessed to be spirit energy empowered the Chieftain.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Raising his blade toward Jake, it began gathering power as an ominous wind swept through the area right before a beam of condensed light erupted from the sword, flying straight toward Jake, who watched the incoming attack with calm eyes.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Now fall before the might of the Ancestors!\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Now fall before the might of the Ancestors!\", \"lastSentence\": \"Now fall before the might of the Ancestors!\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Now fall before the might of the Ancestors!\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Now fall before the might of the Ancestors!\", \"lastSentence\": \"Now fall before the might of the Ancestors!\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 38, \"paragraphIndex\": 25, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"You just sped up your own death needlessly. I was beginning to enjoy myself, but it appears I’ll have to end things sooner than I would have preferred.\"}, {\"relativeIndex\": -3, \"lineId\": 40, \"paragraphIndex\": 27, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Spirits of Old, Protect Me,\"}, {\"relativeIndex\": -2, \"lineId\": 42, \"paragraphIndex\": 28, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Spirits of Old, Strengthen Mine Arms,\"}, {\"relativeIndex\": -1, \"lineId\": 44, \"paragraphIndex\": 29, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Spirits of Old, Guide Me.\"}, {\"relativeIndex\": 1, \"lineId\": 51, \"paragraphIndex\": 35, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"keep in contact\"}, {\"relativeIndex\": 2, \"lineId\": 58, \"paragraphIndex\": 41, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I expected more after that dramatic performance. Turns out it was all theatrics.\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-chieftain\", \"name\": \"The Chieftain\", \"aliases\": [\"the-chieftain\", \"the-chieftain-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"the-chieftain\",\n  \"characterName\": \"The Chieftain\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"previous_paragraph_narration_cue\",\n    \"next_paragraph_action_cue\",\n    \"aggressive_tone_matches_antagonist\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

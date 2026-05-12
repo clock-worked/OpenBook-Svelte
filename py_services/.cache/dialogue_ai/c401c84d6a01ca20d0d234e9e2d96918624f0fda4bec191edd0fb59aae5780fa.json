@@ -1,0 +1,324 @@
+{
+  "cacheKey": "c401c84d6a01ca20d0d234e9e2d96918624f0fda4bec191edd0fb59aae5780fa",
+  "createdAt": "2026-04-02T22:49:14.583951+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "fairleigh",
+    "characterName": "Fairleigh",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "vampire",
+        "characterName": "Vampire",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "vampire"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "fairleigh",
+        "characterName": "Fairleigh",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "fairleigh"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "characterName": "blood",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "blood"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "characterName": "The Sword Saint",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "the sword saint",
+          "sword saint",
+          "the sword saint 2",
+          "sword saint 2",
+          "miyamoto"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "name": "blood",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "vampire",
+        "name": "Vampire",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "fairleigh",
+        "name": "Fairleigh",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "iskar",
+        "name": "Iskar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "True Ancestor",
+          "Vampire Godess",
+          "vampire-godess"
+        ],
+        "characterId": "katherine",
+        "name": "Katherine",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "before",
+      "cueText": "About a minute passed as Fairleigh prayed before he finally opened his eyes and spoke.",
+      "cueVerb": "spoke",
+      "cueVerbType": "speech",
+      "firstSentence": "The True Ancestor is coming.",
+      "lastSentence": "The True Ancestor is coming.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "The True Ancestor is coming.",
+      "speakerNameMatch": null,
+      "speakerSurface": "opened his eyes and"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Fairleigh",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Vampire",
+        "sourceCandidates": [
+          "Vampire",
+          "Fairleigh"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "vampire",
+          "confidence": 0.816,
+          "name": "Vampire",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "fairleigh",
+          "confidence": 0.456,
+          "name": "Fairleigh",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "vampire",
+      "currentCharacterName": "Vampire",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 20,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "The True Ancestor is coming."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "vampire",
+          "characterName": "Vampire",
+          "isReturning": true,
+          "lineId": 20,
+          "text": "The True Ancestor is coming."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "About a minute passed as Fairleigh prayed before he finally opened his eyes and spoke.",
+          "cueVerb": "spoke",
+          "cueVerbType": "speech",
+          "firstSentence": "The True Ancestor is coming.",
+          "lastSentence": "The True Ancestor is coming.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "The True Ancestor is coming.",
+          "speakerNameMatch": null,
+          "speakerSurface": "opened his eyes and"
+        }
+      ],
+      "currentParagraphText": "About a minute passed as Fairleigh prayed before he finally opened his eyes and spoke. “The True Ancestor is coming.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "fairleigh",
+          "characterName": "Fairleigh",
+          "isReturning": true,
+          "lineId": 22,
+          "text": "Is there anything I should know beforehand?"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "The Sword Saint nodded in acknowledgment.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "Is there anything I should know beforehand?",
+          "lastSentence": "Is there anything I should know beforehand?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Is there anything I should know beforehand?",
+          "speakerNameMatch": "The Sword Saint",
+          "speakerSurface": "The Sword Saint"
+        }
+      ],
+      "nextParagraphText": "The Sword Saint nodded in acknowledgment. “Is there anything I should know beforehand?”",
+      "paragraphIndex": 15,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "On a side note, he did find it a bit humorous to see a vampire praying, considering their mythology on Earth before the system. Of course, now he knew that they didn’t fear things like crosses or garlic. Sunlight weakening them was still kind of a thing, considering that vampires were all weak to the light affinity. As for stakes through the heart... well, a good stab through the heart tended to be an effective way to deal damage to most anything."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "blood",
+        "characterName": "blood",
+        "lineId": 6,
+        "paragraphIndex": 4,
+        "relativeIndex": -3,
+        "text": "Very well. If you believe it best to involve gods in this matter, I shall leave it up to your judgment."
+      },
+      {
+        "characterId": "the-sword-saint",
+        "characterName": "The Sword Saint",
+        "lineId": 8,
+        "paragraphIndex": 5,
+        "relativeIndex": -2,
+        "text": "Would it be acceptable if I reach out to the True Ancestor of the Nalkar Lineage? If you wish for another True Ancestor, I can try to make that happen, but-"
+      },
+      {
+        "characterId": "the-sword-saint",
+        "characterName": "The Sword Saint",
+        "lineId": 9,
+        "paragraphIndex": 6,
+        "relativeIndex": -1,
+        "text": "As I said, I leave it up to your judgment,"
+      },
+      {
+        "characterId": "fairleigh",
+        "characterName": "Fairleigh",
+        "lineId": 22,
+        "paragraphIndex": 16,
+        "relativeIndex": 1,
+        "text": "Is there anything I should know beforehand?"
+      },
+      {
+        "characterId": "fairleigh",
+        "characterName": "Fairleigh",
+        "lineId": 23,
+        "paragraphIndex": 17,
+        "relativeIndex": 2,
+        "text": "Act as you are... as a C-grade, it may be difficult for you to be in the presence of a god of her caliber, but I hope you can retain your bearings. As someone blessed by her, I’m less affected by the True Ancestor’s aura, but even I find it difficult to be in her presence for too long at a time,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 20, \"text\": \"The True Ancestor is coming.\", \"currentCharacterId\": \"vampire\", \"currentCharacterName\": \"Vampire\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Vampire\", \"sourceCandidates\": [\"Vampire\", \"Fairleigh\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Fairleigh\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"vampire\", \"name\": \"Vampire\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"fairleigh\", \"name\": \"Fairleigh\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 15, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"About a minute passed as Fairleigh prayed before he finally opened his eyes and spoke. “The True Ancestor is coming.”\", \"currentParagraphDialogue\": [{\"lineId\": 20, \"text\": \"The True Ancestor is coming.\", \"characterId\": \"vampire\", \"characterName\": \"Vampire\", \"isReturning\": true}], \"previousParagraphText\": \"On a side note, he did find it a bit humorous to see a vampire praying, considering their mythology on Earth before the system. Of course, now he knew that they didn’t fear things like crosses or garlic. Sunlight weakening them was still kind of a thing, considering that vampires were all weak to the light affinity. As for stakes through the heart... well, a good stab through the heart tended to be an effective way to deal damage to most anything.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"The Sword Saint nodded in acknowledgment. “Is there anything I should know beforehand?”\", \"nextParagraphDialogue\": [{\"lineId\": 22, \"text\": \"Is there anything I should know beforehand?\", \"characterId\": \"fairleigh\", \"characterName\": \"Fairleigh\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"The True Ancestor is coming.\", \"cuePosition\": \"before\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"About a minute passed as Fairleigh prayed before he finally opened his eyes and spoke.\", \"speakerSurface\": \"opened his eyes and\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"The True Ancestor is coming.\", \"lastSentence\": \"The True Ancestor is coming.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Is there anything I should know beforehand?\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"The Sword Saint nodded in acknowledgment.\", \"speakerSurface\": \"The Sword Saint\", \"speakerNameMatch\": \"The Sword Saint\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Is there anything I should know beforehand?\", \"lastSentence\": \"Is there anything I should know beforehand?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"The True Ancestor is coming.\", \"cuePosition\": \"before\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"About a minute passed as Fairleigh prayed before he finally opened his eyes and spoke.\", \"speakerSurface\": \"opened his eyes and\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"The True Ancestor is coming.\", \"lastSentence\": \"The True Ancestor is coming.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"vampire\", \"characterName\": \"Vampire\", \"aliases\": [], \"roleLabels\": [\"vampire\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"fairleigh\", \"characterName\": \"Fairleigh\", \"aliases\": [], \"roleLabels\": [\"fairleigh\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"blood\", \"characterName\": \"blood\", \"aliases\": [], \"roleLabels\": [\"blood\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [\"the sword saint\", \"sword saint\", \"the sword saint 2\", \"sword saint 2\", \"miyamoto\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -3, \"lineId\": 6, \"paragraphIndex\": 4, \"characterId\": \"blood\", \"characterName\": \"blood\", \"text\": \"Very well. If you believe it best to involve gods in this matter, I shall leave it up to your judgment.\"}, {\"relativeIndex\": -2, \"lineId\": 8, \"paragraphIndex\": 5, \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Would it be acceptable if I reach out to the True Ancestor of the Nalkar Lineage? If you wish for another True Ancestor, I can try to make that happen, but-\"}, {\"relativeIndex\": -1, \"lineId\": 9, \"paragraphIndex\": 6, \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"text\": \"As I said, I leave it up to your judgment,\"}, {\"relativeIndex\": 1, \"lineId\": 22, \"paragraphIndex\": 16, \"characterId\": \"fairleigh\", \"characterName\": \"Fairleigh\", \"text\": \"Is there anything I should know beforehand?\"}, {\"relativeIndex\": 2, \"lineId\": 23, \"paragraphIndex\": 17, \"characterId\": \"fairleigh\", \"characterName\": \"Fairleigh\", \"text\": \"Act as you are... as a C-grade, it may be difficult for you to be in the presence of a god of her caliber, but I hope you can retain your bearings. As someone blessed by her, I’m less affected by the True Ancestor’s aura, but even I find it difficult to be in her presence for too long at a time,\"}], \"chapterCharacters\": [{\"characterId\": \"blood\", \"name\": \"blood\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vampire\", \"name\": \"Vampire\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"fairleigh\", \"name\": \"Fairleigh\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iskar\", \"name\": \"Iskar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"katherine\", \"name\": \"Katherine\", \"aliases\": [\"True Ancestor\", \"Vampire Godess\", \"vampire-godess\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"fairleigh\",\n  \"characterName\": \"Fairleigh\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

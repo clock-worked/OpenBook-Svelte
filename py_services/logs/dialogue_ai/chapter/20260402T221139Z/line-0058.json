@@ -1,0 +1,393 @@
+{
+  "calls": [
+    {
+      "cacheHit": true,
+      "cacheKey": "62bde42db4d6ca75701fd9aba84bf3c5375c80dc87d4adc4853d4cf8232ef51b",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\62bde42db4d6ca75701fd9aba84bf3c5375c80dc87d4adc4853d4cf8232ef51b.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "dialogue_context_continuity",
+          "parser_strong_candidate"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": true
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "artemis"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "beastkin",
+            "name": "Beastkin",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Artemis didn’t say anything to Jake’s comment as she just nodded.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "Now go.",
+          "lastSentence": "I’ll also use it to contact you if anything happens.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Now go. Chances are I’ll still be around when you return, and in any case, you can use the token I just gave you to contact me at any time. You know, if you need extraction or help in any way... or just want a chat. I’ll also use it to contact you if anything happens.",
+          "speakerNameMatch": null,
+          "speakerSurface": "Jake’s comment as she just"
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Artemis",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.3208000000000001,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Artemis",
+            "sourceCandidates": [
+              "Artemis",
+              "Jake"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.816,
+              "name": "Artemis",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.456,
+              "name": "Jake",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 58,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Now go. Chances are I’ll still be around when you return, and in any case, you can use the token I just gave you to contact me at any time. You know, if you need extraction or help in any way... or just want a chat. I’ll also use it to contact you if anything happens."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 58,
+              "text": "Now go. Chances are I’ll still be around when you return, and in any case, you can use the token I just gave you to contact me at any time. You know, if you need extraction or help in any way... or just want a chat. I’ll also use it to contact you if anything happens."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Artemis didn’t say anything to Jake’s comment as she just nodded.",
+              "cueVerb": "nodded",
+              "cueVerbType": "speech",
+              "firstSentence": "Now go.",
+              "lastSentence": "I’ll also use it to contact you if anything happens.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Now go. Chances are I’ll still be around when you return, and in any case, you can use the token I just gave you to contact me at any time. You know, if you need extraction or help in any way... or just want a chat. I’ll also use it to contact you if anything happens.",
+              "speakerNameMatch": null,
+              "speakerSurface": "Jake’s comment as she just"
+            }
+          ],
+          "currentParagraphText": "Artemis didn’t say anything to Jake’s comment as she just nodded. “Now go. Chances are I’ll still be around when you return, and in any case, you can use the token I just gave you to contact me at any time. You know, if you need extraction or help in any way... or just want a chat. I’ll also use it to contact you if anything happens.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 59,
+              "text": "I may just take you up on that casual chatting offer,"
+            },
+            {
+              "characterId": "artemis",
+              "characterName": "Artemis",
+              "isReturning": true,
+              "lineId": 61,
+              "text": "In that case, I’m off. Going to be good to get in a few more levels."
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "I may just take you up on that casual chatting offer,",
+              "lastSentence": "I may just take you up on that casual chatting offer,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "I may just take you up on that casual chatting offer,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Jake smirked as he stood up and stretched.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "In that case, I’m off.",
+              "lastSentence": "Going to be good to get in a few more levels.",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "In that case, I’m off. Going to be good to get in a few more levels.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "nextParagraphText": "“I may just take you up on that casual chatting offer,” Jake smirked as he stood up and stretched. “In that case, I’m off. Going to be good to get in a few more levels.”",
+          "paragraphIndex": 38,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 55,
+              "text": "I hope she doesn’t,"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake said, as he didn’t even like the thought of that.",
+              "cueVerb": "said",
+              "cueVerbType": "speech",
+              "firstSentence": "I hope she doesn’t,",
+              "lastSentence": "I hope she doesn’t,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "I hope she doesn’t,",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "previousParagraphText": "“I hope she doesn’t,” Jake said, as he didn’t even like the thought of that."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 49,
+            "paragraphIndex": 34,
+            "relativeIndex": -4,
+            "text": "There won’t be anyone,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 51,
+            "paragraphIndex": 35,
+            "relativeIndex": -3,
+            "text": "Good,"
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 53,
+            "paragraphIndex": 36,
+            "relativeIndex": -2,
+            "text": "But I can’t say if Yggdrasil will step in if you do die somehow,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 55,
+            "paragraphIndex": 37,
+            "relativeIndex": -1,
+            "text": "I hope she doesn’t,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 59,
+            "paragraphIndex": 39,
+            "relativeIndex": 1,
+            "text": "I may just take you up on that casual chatting offer,"
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 61,
+            "paragraphIndex": 39,
+            "relativeIndex": 2,
+            "text": "In that case, I’m off. Going to be good to get in a few more levels."
+          }
+        ],
+        "sceneEntities": [
+          {
+            "matches": [
+              {
+                "characterId": "jake",
+                "characterName": "Jake",
+                "evidence": [
+                  "token_overlap:jake"
+                ],
+                "score": 0.5083
+              }
+            ],
+            "surface": "jake s comment as she just"
+          }
+        ]
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 58, \"text\": \"Now go. Chances are I’ll still be around when you return, and in any case, you can use the token I just gave you to contact me at any time. You know, if you need extraction or help in any way... or just want a chat. I’ll also use it to contact you if anything happens.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Artemis\", \"sourceCandidates\": [\"Artemis\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Artemis\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 38, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Artemis didn’t say anything to Jake’s comment as she just nodded. “Now go. Chances are I’ll still be around when you return, and in any case, you can use the token I just gave you to contact me at any time. You know, if you need extraction or help in any way... or just want a chat. I’ll also use it to contact you if anything happens.”\", \"currentParagraphDialogue\": [{\"lineId\": 58, \"text\": \"Now go. Chances are I’ll still be around when you return, and in any case, you can use the token I just gave you to contact me at any time. You know, if you need extraction or help in any way... or just want a chat. I’ll also use it to contact you if anything happens.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“I hope she doesn’t,” Jake said, as he didn’t even like the thought of that.\", \"previousParagraphDialogue\": [{\"lineId\": 55, \"text\": \"I hope she doesn’t,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"nextParagraphText\": \"“I may just take you up on that casual chatting offer,” Jake smirked as he stood up and stretched. “In that case, I’m off. Going to be good to get in a few more levels.”\", \"nextParagraphDialogue\": [{\"lineId\": 59, \"text\": \"I may just take you up on that casual chatting offer,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 61, \"text\": \"In that case, I’m off. Going to be good to get in a few more levels.\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Now go. Chances are I’ll still be around when you return, and in any case, you can use the token I just gave you to contact me at any time. You know, if you need extraction or help in any way... or just want a chat. I’ll also use it to contact you if anything happens.\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Artemis didn’t say anything to Jake’s comment as she just nodded.\", \"speakerSurface\": \"Jake’s comment as she just\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Now go.\", \"lastSentence\": \"I’ll also use it to contact you if anything happens.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I hope she doesn’t,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake said, as he didn’t even like the thought of that.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I hope she doesn’t,\", \"lastSentence\": \"I hope she doesn’t,\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I may just take you up on that casual chatting offer,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I may just take you up on that casual chatting offer,\", \"lastSentence\": \"I may just take you up on that casual chatting offer,\"}, {\"quoteIndex\": 1, \"quoteText\": \"In that case, I’m off. Going to be good to get in a few more levels.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake smirked as he stood up and stretched.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"In that case, I’m off.\", \"lastSentence\": \"Going to be good to get in a few more levels.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Now go. Chances are I’ll still be around when you return, and in any case, you can use the token I just gave you to contact me at any time. You know, if you need extraction or help in any way... or just want a chat. I’ll also use it to contact you if anything happens.\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Artemis didn’t say anything to Jake’s comment as she just nodded.\", \"speakerSurface\": \"Jake’s comment as she just\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Now go.\", \"lastSentence\": \"I’ll also use it to contact you if anything happens.\"}, \"sceneEntities\": [{\"surface\": \"jake s comment as she just\", \"matches\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"score\": 0.5083, \"evidence\": [\"token_overlap:jake\"]}]}], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [], \"roleLabels\": [\"artemis\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 49, \"paragraphIndex\": 34, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"There won’t be anyone,\"}, {\"relativeIndex\": -3, \"lineId\": 51, \"paragraphIndex\": 35, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Good,\"}, {\"relativeIndex\": -2, \"lineId\": 53, \"paragraphIndex\": 36, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"But I can’t say if Yggdrasil will step in if you do die somehow,\"}, {\"relativeIndex\": -1, \"lineId\": 55, \"paragraphIndex\": 37, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I hope she doesn’t,\"}, {\"relativeIndex\": 1, \"lineId\": 59, \"paragraphIndex\": 39, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I may just take you up on that casual chatting offer,\"}, {\"relativeIndex\": 2, \"lineId\": 61, \"paragraphIndex\": 39, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"In that case, I’m off. Going to be good to get in a few more levels.\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"beastkin\", \"name\": \"Beastkin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"artemis\",\n  \"characterName\": \"Artemis\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_context_continuity\",\n    \"parser_strong_candidate\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0046 - Chapter 1103 - An Intrinsic Relationship/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "Artemis didn’t say anything to Jake’s comment as she just nodded. “Now go. Chances are I’ll still be around when you return, and in any case, you can use the token I just gave you to contact me at any time. You know, if you need extraction or help in any way... or just want a chat. I’ll also use it to contact you if anything happens.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "Artemis didn’t say anything to Jake’s comment as she just nodded. “Now go. Chances are I’ll still be around when you return, and in any case, you can use the token I just gave you to contact me at any time. You know, if you need extraction or help in any way... or just want a chat. I’ll also use it to contact you if anything happens.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 58,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“I may just take you up on that casual chatting offer,” Jake smirked as he stood up and stretched. “In that case, I’m off. Going to be good to get in a few more levels.”",
+    "paragraphIndex": 38,
+    "previousParagraphText": "“I hope she doesn’t,” Jake said, as he didn’t even like the thought of that.",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_context_continuity",
+      "parser_strong_candidate"
+    ],
+    "suggestedCharacterId": "artemis",
+    "suggestedCharacterName": "Artemis",
+    "toolTrace": []
+  },
+  "lineId": 58,
+  "nextParagraphText": "“I may just take you up on that casual chatting offer,” Jake smirked as he stood up and stretched. “In that case, I’m off. Going to be good to get in a few more levels.”",
+  "paragraphIndex": 38,
+  "previousParagraphText": "“I hope she doesn’t,” Jake said, as he didn’t even like the thought of that."
+}

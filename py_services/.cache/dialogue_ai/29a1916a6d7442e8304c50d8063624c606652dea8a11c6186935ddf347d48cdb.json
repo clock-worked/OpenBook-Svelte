@@ -1,0 +1,136 @@
+{
+  "cacheKey": "29a1916a6d7442e8304c50d8063624c606652dea8a11c6186935ddf347d48cdb",
+  "createdAt": "2026-04-01T04:27:54.209910+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "miranda",
+    "characterName": "Miranda",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_attribution",
+      "same_speaker_continuation"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda"
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth"
+      },
+      {
+        "aliases": [],
+        "characterId": "lillian",
+        "name": "Lillian"
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [
+          "lodestar-matron",
+          "lodestar-matron-2"
+        ],
+        "characterId": "lodestar-matron",
+        "name": "Lodestar Matron"
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.98,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Miranda",
+        "sourceCandidates": [
+          "Miranda"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "miranda",
+          "confidence": 0.98,
+          "name": "Miranda",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "same_paragraph_continuation",
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "miranda",
+      "currentCharacterName": "Miranda",
+      "id": 4,
+      "isReturning": true,
+      "text": "While I wouldn’t classify this area as well-explored, I find it difficult to believe our scouts would have missed a hidden dungeon."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "miranda",
+          "characterName": "Miranda",
+          "isReturning": false,
+          "lineId": 2,
+          "text": "Are you sure your report is accurate?"
+        },
+        {
+          "characterId": "miranda",
+          "characterName": "Miranda",
+          "isReturning": true,
+          "lineId": 4,
+          "text": "While I wouldn’t classify this area as well-explored, I find it difficult to believe our scouts would have missed a hidden dungeon."
+        }
+      ],
+      "currentParagraphText": "“Are you sure your report is accurate?” Miranda asked as she flew alongside Kindroth and Lillian with their escort in tow. “While I wouldn’t classify this area as well-explored, I find it difficult to believe our scouts would have missed a hidden dungeon.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 1
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 4, \"text\": \"While I wouldn’t classify this area as well-explored, I find it difficult to believe our scouts would have missed a hidden dungeon.\", \"currentCharacterId\": \"miranda\", \"currentCharacterName\": \"Miranda\", \"currentCharacterAliases\": [], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Miranda\", \"sourceCandidates\": [\"Miranda\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.98, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"miranda\", \"name\": \"Miranda\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"same_paragraph_continuation\", \"speech_verb\"]}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 1, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Are you sure your report is accurate?” Miranda asked as she flew alongside Kindroth and Lillian with their escort in tow. “While I wouldn’t classify this area as well-explored, I find it difficult to believe our scouts would have missed a hidden dungeon.”\", \"currentParagraphDialogue\": [{\"lineId\": 2, \"text\": \"Are you sure your report is accurate?\", \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"isReturning\": false}, {\"lineId\": 4, \"text\": \"While I wouldn’t classify this area as well-explored, I find it difficult to believe our scouts would have missed a hidden dungeon.\", \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"isReturning\": true}]}, \"chapterCharacters\": [{\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": []}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": []}, {\"characterId\": \"lillian\", \"name\": \"Lillian\", \"aliases\": []}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"lodestar-matron\", \"name\": \"Lodestar Matron\", \"aliases\": [\"lodestar-matron\", \"lodestar-matron-2\"]}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"]}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"miranda\",\n  \"characterName\": \"Miranda\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_attribution\",\n    \"same_speaker_continuation\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

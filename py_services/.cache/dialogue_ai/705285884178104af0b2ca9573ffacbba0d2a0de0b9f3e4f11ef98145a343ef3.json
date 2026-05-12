@@ -1,0 +1,325 @@
+{
+  "cacheKey": "705285884178104af0b2ca9573ffacbba0d2a0de0b9f3e4f11ef98145a343ef3",
+  "createdAt": "2026-04-01T21:20:34.697860+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "william",
+    "characterName": "William",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "supports_previous_speaker_argument"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "King Iludar"
+        ],
+        "characterId": "iludar",
+        "characterName": "Iludar",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "iludar",
+          "king iludar"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "kindroth"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "miranda"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "william",
+        "characterName": "William",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "william"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "william",
+        "name": "William",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "vesperia",
+        "name": "Vesperia",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sandy",
+        "name": "Sandy",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "King Iludar"
+        ],
+        "characterId": "iludar",
+        "name": "Iludar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "William gave Kindroth an assist as the young metal mage looked at Miranda.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "He definitely just made up that excuse on the spot.",
+      "lastSentence": "He definitely just made up that excuse on the spot.",
+      "mentionedEntities": [],
+      "quoteIndex": 1,
+      "quoteText": "He definitely just made up that excuse on the spot.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Miranda",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.040000000000000036,
+        "misattributionRisk": 0.14400000000000002,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Iludar",
+        "sourceCandidates": [
+          "Iludar",
+          "Kindroth",
+          "Miranda"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.856
+      },
+      "candidates": [
+        {
+          "characterId": "iludar",
+          "confidence": 0.856,
+          "name": "Iludar",
+          "reasons": [
+            "same_paragraph_continuation"
+          ]
+        },
+        {
+          "characterId": "kindroth",
+          "confidence": 0.816,
+          "name": "Kindroth",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "miranda",
+          "confidence": 0.456,
+          "name": "Miranda",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "King Iludar"
+      ],
+      "currentCharacterId": "iludar",
+      "currentCharacterName": "Iludar",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 58,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "He definitely just made up that excuse on the spot."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "iludar",
+          "characterName": "Iludar",
+          "isReturning": false,
+          "lineId": 56,
+          "text": "Deceitful again,"
+        },
+        {
+          "characterId": "iludar",
+          "characterName": "Iludar",
+          "isReturning": true,
+          "lineId": 58,
+          "text": "He definitely just made up that excuse on the spot."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Deceitful again,",
+          "lastSentence": "Deceitful again,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Deceitful again,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "William gave Kindroth an assist as the young metal mage looked at Miranda.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "He definitely just made up that excuse on the spot.",
+          "lastSentence": "He definitely just made up that excuse on the spot.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "He definitely just made up that excuse on the spot.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Deceitful again,” William gave Kindroth an assist as the young metal mage looked at Miranda. “He definitely just made up that excuse on the spot.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 45
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "william",
+        "characterName": "William",
+        "lineId": 51,
+        "paragraphIndex": 42,
+        "relativeIndex": -4,
+        "text": "What do you mea-"
+      },
+      {
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "lineId": 53,
+        "paragraphIndex": 43,
+        "relativeIndex": -3,
+        "text": "A minute ago, I barely managed to interrupt you from activating an escape token, and from the looks of it, that token definitely wasn’t of the mass-escape variety. You were trying to run on your own like the coward you are, leaving everyone else to die,"
+      },
+      {
+        "characterId": "iludar",
+        "characterName": "Iludar",
+        "lineId": 55,
+        "paragraphIndex": 44,
+        "relativeIndex": -2,
+        "text": "I believed that should I leave the battlefield on my own, it would increase the chances of you sparing my-"
+      },
+      {
+        "characterId": "iludar",
+        "characterName": "Iludar",
+        "lineId": 56,
+        "paragraphIndex": 45,
+        "relativeIndex": -1,
+        "text": "Deceitful again,"
+      },
+      {
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "lineId": 60,
+        "paragraphIndex": 48,
+        "relativeIndex": 1,
+        "text": "You all misunderstand... what I wanted was to-"
+      },
+      {
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "lineId": 61,
+        "paragraphIndex": 48,
+        "relativeIndex": 2,
+        "text": "To make Miranda think that maybe you weren’t all that bad, which would make her consider sparing your life. Because, hey, what feels worse than killing someone who’s already given up and begging for you to kill him to make up for his sins? That just makes your execution feel weird,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 58, \"text\": \"He definitely just made up that excuse on the spot.\", \"currentCharacterId\": \"iludar\", \"currentCharacterName\": \"Iludar\", \"currentCharacterAliases\": [\"King Iludar\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Iludar\", \"sourceCandidates\": [\"Iludar\", \"Kindroth\", \"Miranda\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.856, \"marginToSecond\": 0.040000000000000036, \"misattributionRisk\": 0.14400000000000002, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Miranda\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"iludar\", \"name\": \"Iludar\", \"confidence\": 0.856, \"reasons\": [\"same_paragraph_continuation\"]}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 45, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Deceitful again,” William gave Kindroth an assist as the young metal mage looked at Miranda. “He definitely just made up that excuse on the spot.”\", \"currentParagraphDialogue\": [{\"lineId\": 56, \"text\": \"Deceitful again,\", \"characterId\": \"iludar\", \"characterName\": \"Iludar\", \"isReturning\": false}, {\"lineId\": 58, \"text\": \"He definitely just made up that excuse on the spot.\", \"characterId\": \"iludar\", \"characterName\": \"Iludar\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Deceitful again,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Deceitful again,\", \"lastSentence\": \"Deceitful again,\"}, {\"quoteIndex\": 1, \"quoteText\": \"He definitely just made up that excuse on the spot.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"William gave Kindroth an assist as the young metal mage looked at Miranda.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"He definitely just made up that excuse on the spot.\", \"lastSentence\": \"He definitely just made up that excuse on the spot.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"He definitely just made up that excuse on the spot.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"William gave Kindroth an assist as the young metal mage looked at Miranda.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"He definitely just made up that excuse on the spot.\", \"lastSentence\": \"He definitely just made up that excuse on the spot.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"iludar\", \"characterName\": \"Iludar\", \"aliases\": [\"King Iludar\"], \"roleLabels\": [\"iludar\", \"king iludar\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [\"kindroth\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"aliases\": [], \"roleLabels\": [\"miranda\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"william\", \"characterName\": \"William\", \"aliases\": [], \"roleLabels\": [\"william\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 51, \"paragraphIndex\": 42, \"characterId\": \"william\", \"characterName\": \"William\", \"text\": \"What do you mea-\"}, {\"relativeIndex\": -3, \"lineId\": 53, \"paragraphIndex\": 43, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"A minute ago, I barely managed to interrupt you from activating an escape token, and from the looks of it, that token definitely wasn’t of the mass-escape variety. You were trying to run on your own like the coward you are, leaving everyone else to die,\"}, {\"relativeIndex\": -2, \"lineId\": 55, \"paragraphIndex\": 44, \"characterId\": \"iludar\", \"characterName\": \"Iludar\", \"text\": \"I believed that should I leave the battlefield on my own, it would increase the chances of you sparing my-\"}, {\"relativeIndex\": -1, \"lineId\": 56, \"paragraphIndex\": 45, \"characterId\": \"iludar\", \"characterName\": \"Iludar\", \"text\": \"Deceitful again,\"}, {\"relativeIndex\": 1, \"lineId\": 60, \"paragraphIndex\": 48, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"You all misunderstand... what I wanted was to-\"}, {\"relativeIndex\": 2, \"lineId\": 61, \"paragraphIndex\": 48, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"To make Miranda think that maybe you weren’t all that bad, which would make her consider sparing your life. Because, hey, what feels worse than killing someone who’s already given up and begging for you to kill him to make up for his sins? That just makes your execution feel weird,\"}], \"chapterCharacters\": [{\"characterId\": \"william\", \"name\": \"William\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vesperia\", \"name\": \"Vesperia\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sandy\", \"name\": \"Sandy\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": [\"King Iludar\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"william\",\n  \"characterName\": \"William\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"supports_previous_speaker_argument\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

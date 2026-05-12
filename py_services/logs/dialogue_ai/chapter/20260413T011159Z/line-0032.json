@@ -1,0 +1,344 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "21b29aa4b483214786b3a7d766bcef28436e5cd5a0252c31984a2c5ead16156f",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\21b29aa4b483214786b3a7d766bcef28436e5cd5a0252c31984a2c5ead16156f.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.99,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "dialogue_continuity"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Sovereign",
+              "The Sovereign"
+            ],
+            "characterId": "rainbowfeather sovereign",
+            "name": "Rainbowfeather Sovereign",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake raised an eyebrow at that answer as he was beginning to get an inkling of the Sovereign being up to something.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Almost sounds like you’re encouraging me to fight this Chimera.",
+          "lastSentence": "Almost sounds like you’re encouraging me to fight this Chimera.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Almost sounds like you’re encouraging me to fight this Chimera.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.3208000000000001,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "Rainbowfeather Sovereign"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.816,
+              "name": "Jake",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.456,
+              "name": "Rainbowfeather Sovereign",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 32,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Almost sounds like you’re encouraging me to fight this Chimera."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 32,
+              "text": "Almost sounds like you’re encouraging me to fight this Chimera."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Jake raised an eyebrow at that answer as he was beginning to get an inkling of the Sovereign being up to something.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Almost sounds like you’re encouraging me to fight this Chimera.",
+              "lastSentence": "Almost sounds like you’re encouraging me to fight this Chimera.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Almost sounds like you’re encouraging me to fight this Chimera.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "Jake raised an eyebrow at that answer as he was beginning to get an inkling of the Sovereign being up to something. “Almost sounds like you’re encouraging me to fight this Chimera.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 33,
+              "text": "Assuming the Forest Fae uses it as a shield, will you?"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Assuming the Forest Fae uses it as a shield, will you?",
+              "lastSentence": "Assuming the Forest Fae uses it as a shield, will you?",
+              "mentionedEntities": [
+                "Forest Fae"
+              ],
+              "quoteIndex": 0,
+              "quoteText": "Assuming the Forest Fae uses it as a shield, will you?",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "nextParagraphText": "“Assuming the Forest Fae uses it as a shield, will you?”",
+          "paragraphIndex": 17,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 30,
+              "text": "I envision a battle between you and me would end in a far more miserable loss."
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "The Sovereign took a moment before looking at Jake.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "I envision a battle between you and me would end in a far more miserable loss.",
+              "lastSentence": "I envision a battle between you and me would end in a far more miserable loss.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "I envision a battle between you and me would end in a far more miserable loss.",
+              "speakerNameMatch": null,
+              "speakerSurface": "The Sovereign took a moment before"
+            }
+          ],
+          "previousParagraphText": "The Sovereign took a moment before looking at Jake. “I envision a battle between you and me would end in a far more miserable loss.”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "rainbowfeather_sovereign",
+            "characterName": "Rainbowfeather Sovereign",
+            "lineId": 24,
+            "paragraphIndex": 14,
+            "relativeIndex": -4,
+            "text": "Yes, I have,"
+          },
+          {
+            "characterId": "rainbowfeather_sovereign",
+            "characterName": "Rainbowfeather Sovereign",
+            "lineId": 26,
+            "paragraphIndex": 14,
+            "relativeIndex": -3,
+            "text": "About two decades ago, we had a clash. You might not know this, but occasionally, treasures spawn from beneath the lake and float to the surface, always sparking a conflict when that happens. Back then, I battled the Chimera and lost."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 27,
+            "paragraphIndex": 15,
+            "relativeIndex": -2,
+            "text": "How badly did you lose?"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 30,
+            "paragraphIndex": 16,
+            "relativeIndex": -1,
+            "text": "I envision a battle between you and me would end in a far more miserable loss."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 33,
+            "paragraphIndex": 18,
+            "relativeIndex": 1,
+            "text": "Assuming the Forest Fae uses it as a shield, will you?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 34,
+            "paragraphIndex": 19,
+            "relativeIndex": 2,
+            "text": "If she does, the two are gonna be fighting together. Perhaps I can defeat one of them, but both at once might be a tall order,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 32, \"text\": \"Almost sounds like you’re encouraging me to fight this Chimera.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Rainbowfeather Sovereign\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Rainbowfeather Sovereign\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 17, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Jake raised an eyebrow at that answer as he was beginning to get an inkling of the Sovereign being up to something. “Almost sounds like you’re encouraging me to fight this Chimera.”\", \"currentParagraphDialogue\": [{\"lineId\": 32, \"text\": \"Almost sounds like you’re encouraging me to fight this Chimera.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"The Sovereign took a moment before looking at Jake. “I envision a battle between you and me would end in a far more miserable loss.”\", \"previousParagraphDialogue\": [{\"lineId\": 30, \"text\": \"I envision a battle between you and me would end in a far more miserable loss.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"nextParagraphText\": \"“Assuming the Forest Fae uses it as a shield, will you?”\", \"nextParagraphDialogue\": [{\"lineId\": 33, \"text\": \"Assuming the Forest Fae uses it as a shield, will you?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Almost sounds like you’re encouraging me to fight this Chimera.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake raised an eyebrow at that answer as he was beginning to get an inkling of the Sovereign being up to something.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Almost sounds like you’re encouraging me to fight this Chimera.\", \"lastSentence\": \"Almost sounds like you’re encouraging me to fight this Chimera.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I envision a battle between you and me would end in a far more miserable loss.\", \"cuePosition\": \"before\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"The Sovereign took a moment before looking at Jake.\", \"speakerSurface\": \"The Sovereign took a moment before\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I envision a battle between you and me would end in a far more miserable loss.\", \"lastSentence\": \"I envision a battle between you and me would end in a far more miserable loss.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Assuming the Forest Fae uses it as a shield, will you?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Forest Fae\"], \"addressedEntity\": null, \"firstSentence\": \"Assuming the Forest Fae uses it as a shield, will you?\", \"lastSentence\": \"Assuming the Forest Fae uses it as a shield, will you?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Almost sounds like you’re encouraging me to fight this Chimera.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake raised an eyebrow at that answer as he was beginning to get an inkling of the Sovereign being up to something.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Almost sounds like you’re encouraging me to fight this Chimera.\", \"lastSentence\": \"Almost sounds like you’re encouraging me to fight this Chimera.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 24, \"paragraphIndex\": 14, \"characterId\": \"rainbowfeather_sovereign\", \"characterName\": \"Rainbowfeather Sovereign\", \"text\": \"Yes, I have,\"}, {\"relativeIndex\": -3, \"lineId\": 26, \"paragraphIndex\": 14, \"characterId\": \"rainbowfeather_sovereign\", \"characterName\": \"Rainbowfeather Sovereign\", \"text\": \"About two decades ago, we had a clash. You might not know this, but occasionally, treasures spawn from beneath the lake and float to the surface, always sparking a conflict when that happens. Back then, I battled the Chimera and lost.\"}, {\"relativeIndex\": -2, \"lineId\": 27, \"paragraphIndex\": 15, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"How badly did you lose?\"}, {\"relativeIndex\": -1, \"lineId\": 30, \"paragraphIndex\": 16, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I envision a battle between you and me would end in a far more miserable loss.\"}, {\"relativeIndex\": 1, \"lineId\": 33, \"paragraphIndex\": 18, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Assuming the Forest Fae uses it as a shield, will you?\"}, {\"relativeIndex\": 2, \"lineId\": 34, \"paragraphIndex\": 19, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"If she does, the two are gonna be fighting together. Perhaps I can defeat one of them, but both at once might be a tall order,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"rainbowfeather sovereign\", \"name\": \"Rainbowfeather Sovereign\", \"aliases\": [\"Sovereign\", \"The Sovereign\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0072 - Chapter 1129 - More Complicated Than First Assumed/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "Jake raised an eyebrow at that answer as he was beginning to get an inkling of the Sovereign being up to something. “Almost sounds like you’re encouraging me to fight this Chimera.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.99,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "Jake raised an eyebrow at that answer as he was beginning to get an inkling of the Sovereign being up to something. “Almost sounds like you’re encouraging me to fight this Chimera.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 32,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Assuming the Forest Fae uses it as a shield, will you?”",
+    "paragraphIndex": 17,
+    "previousParagraphText": "The Sovereign took a moment before looking at Jake. “I envision a battle between you and me would end in a far more miserable loss.”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_continuity"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 32,
+  "nextParagraphText": "“Assuming the Forest Fae uses it as a shield, will you?”",
+  "paragraphIndex": 17,
+  "previousParagraphText": "The Sovereign took a moment before looking at Jake. “I envision a battle between you and me would end in a far more miserable loss.”"
+}

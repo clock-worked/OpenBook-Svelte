@@ -611,29 +611,106 @@ class AudioGenerationService:
         chapter_title: str,
         character_name: str,
     ) -> Dict[str, Any]:
-        """Remove manifest clips whose referenced audio files are missing."""
+        """Reconcile a character manifest against files on disk.
+
+        If the manifest is missing but audio files exist, bootstrap a minimal
+        manifest from those files so the UI can reflect generated audio.
+        """
         character_dir = self.audio_root / chapter_title / "audio_lines" / character_name
         manifest_path = character_dir / "manifest.json"
 
-        if not manifest_path.exists() or not manifest_path.is_file():
+        def _bootstrap_manifest_from_files() -> Dict[str, Any]:
+            audio_files = [
+                path for path in character_dir.iterdir()
+                if path.is_file() and path.suffix.lower() in {".wav", ".mp3"}
+            ]
+
+            by_line_id: Dict[int, str] = {}
+            for audio_file in sorted(audio_files, key=lambda p: p.name.lower()):
+                stem = audio_file.stem
+                line_prefix = stem.split("-", 1)[0]
+                if not line_prefix.isdigit():
+                    continue
+                line_id = int(line_prefix)
+                # Prefer wav when both wav/mp3 exist for same line id.
+                existing_name = by_line_id.get(line_id)
+                if existing_name is None:
+                    by_line_id[line_id] = audio_file.name
+                elif existing_name.lower().endswith(".mp3") and audio_file.suffix.lower() == ".wav":
+                    by_line_id[line_id] = audio_file.name
+
+            if not by_line_id:
+                return {
+                    "updated": False,
+                    "removed_count": 0,
+                    "clip_count": 0,
+                    "manifest": None,
+                }
+
+            generated_at = datetime.utcnow().isoformat() + "Z"
+            clips = [
+                {
+                    "id": line_id,
+                    "characterId": character_name.lower().replace(" ", "_"),
+                    "characterName": character_name,
+                    "text": "",
+                    "audioFile": file_name,
+                    "chapter": chapter_title,
+                    "sourceFile": chapter_title,
+                    "voiceId": "",
+                    "provider": "vibevoice_local",
+                    "emotion": None,
+                    "metadata": {
+                        "generatedAt": generated_at,
+                        "duration": 0.0,
+                    },
+                }
+                for line_id, file_name in sorted(by_line_id.items(), key=lambda item: item[0])
+            ]
+
+            manifest = {
+                "formatVersion": "2.0",
+                "characterId": character_name.lower().replace(" ", "_"),
+                "characterName": character_name,
+                "metadata": {
+                    "totalClips": len(clips),
+                    "chapters": [chapter_title],
+                    "sources": {chapter_title: len(clips)},
+                    "voiceIds": {},
+                    "primaryVoiceId": None,
+                    "lastUpdated": generated_at,
+                },
+                "clips": clips,
+            }
+
+            character_dir.mkdir(parents=True, exist_ok=True)
+            with open(manifest_path, 'w', encoding='utf-8') as handle:
+                json.dump(manifest, handle, indent=2, ensure_ascii=False)
+
+            return {
+                "updated": True,
+                "removed_count": 0,
+                "clip_count": len(clips),
+                "manifest": manifest,
+            }
+
+        if not character_dir.exists() or not character_dir.is_dir():
             return {
                 "updated": False,
                 "removed_count": 0,
                 "clip_count": 0,
                 "manifest": None,
             }
+
+        if not manifest_path.exists() or not manifest_path.is_file():
+            return _bootstrap_manifest_from_files()
 
         try:
             with open(manifest_path, 'r', encoding='utf-8') as handle:
                 manifest = json.load(handle)
         except Exception as exc:
             print(f"Error reading manifest for reconciliation: {manifest_path} - {exc}")
-            return {
-                "updated": False,
-                "removed_count": 0,
-                "clip_count": 0,
-                "manifest": None,
-            }
+            return _bootstrap_manifest_from_files()
 
         clips = manifest.get("clips")
         if not isinstance(clips, list):

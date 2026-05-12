@@ -72,10 +72,10 @@
 
   .context-menu {
     position: fixed;
-    background: white;
-    border: 1px solid #dadce0;
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
     border-radius: 8px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--app-shadow-md);
     padding: 4px;
     z-index: 1000;
     min-width: 200px;
@@ -100,8 +100,8 @@
     width: 100%;
     padding: 10px 12px;
     border: none;
-    background: white;
-    color: #202124;
+    background: var(--app-surface);
+    color: var(--app-text);
     text-align: left;
     cursor: pointer;
     font-size: 14px;
@@ -111,11 +111,11 @@
   }
 
   .menu-item:hover {
-    background: #f8f9fa;
+    background: var(--app-surface-hover);
   }
 
   .menu-item:active {
-    background: #e8eaed;
+    background: var(--app-surface-active);
   }
 
   .label {

@@ -1,0 +1,201 @@
+{
+  "cacheKey": "431b2c02678e75588d5a5b2679a8e2667d70e5de5c0edfdce7029e1c4ffb6af9",
+  "createdAt": "2026-04-02T22:31:15.892250+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "narrator",
+    "characterName": "Narrator",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "quoted_word_in_narration",
+      "not_direct_dialogue"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "miranda"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "narrator",
+        "characterName": "Narrator",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "narrator"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": null,
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Miranda",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.7,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.20399999999999996,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Miranda",
+        "sourceCandidates": [
+          "Miranda",
+          "Narrator"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.796
+      },
+      "candidates": [
+        {
+          "characterId": "miranda",
+          "confidence": 0.796,
+          "name": "Miranda",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "narrator",
+          "confidence": 0.436,
+          "name": "Narrator",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "miranda",
+      "currentCharacterName": "Miranda",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 11,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "courting"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "miranda",
+          "characterName": "Miranda",
+          "isReturning": false,
+          "lineId": 11,
+          "text": "courting"
+        }
+      ],
+      "currentParagraphQuoteStructure": [],
+      "currentParagraphText": "Reading the reports, there were so many examples of commonly accepted norms elsewhere she just couldn’t wrap her head around. Not in that she couldn’t understand the laws or norms themselves, but how the hell they could lead to a productive society. Like, on a planet of primarily beastfolk with a very tribalistic society, the way of ”courting” a mate was to beat them in a fight… and needless to say, the average Earthling didn’t consider getting jumped from behind and getting beaten up a romantic proposal.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Then again, thinking back, Earth also had a lot of messed up laws just a few hundred years ago… actually, they still had a lot of messed up laws. Laws and norms that other planets simply couldn’t make any sense of either.",
+      "paragraphIndex": 9,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Is violence allowed? What constitutes violence? Who does the law apply to? Sometimes, more importantly, who doesn’t it apply to? Are there any exceptions?"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "lineId": 16,
+        "paragraphIndex": 13,
+        "relativeIndex": 1,
+        "text": "basic"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 33,
+        "paragraphIndex": 27,
+        "relativeIndex": 2,
+        "text": "city,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 11, \"text\": \"courting\", \"currentCharacterId\": \"miranda\", \"currentCharacterName\": \"Miranda\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Miranda\", \"sourceCandidates\": [\"Miranda\", \"Narrator\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.20399999999999996, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Miranda\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"miranda\", \"name\": \"Miranda\", \"confidence\": 0.796, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"narrator\", \"name\": \"Narrator\", \"confidence\": 0.436, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 9, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Reading the reports, there were so many examples of commonly accepted norms elsewhere she just couldn’t wrap her head around. Not in that she couldn’t understand the laws or norms themselves, but how the hell they could lead to a productive society. Like, on a planet of primarily beastfolk with a very tribalistic society, the way of ”courting” a mate was to beat them in a fight… and needless to say, the average Earthling didn’t consider getting jumped from behind and getting beaten up a romantic proposal.\", \"currentParagraphDialogue\": [{\"lineId\": 11, \"text\": \"courting\", \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"isReturning\": false}], \"previousParagraphText\": \"Is violence allowed? What constitutes violence? Who does the law apply to? Sometimes, more importantly, who doesn’t it apply to? Are there any exceptions?\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Then again, thinking back, Earth also had a lot of messed up laws just a few hundred years ago… actually, they still had a lot of messed up laws. Laws and norms that other planets simply couldn’t make any sense of either.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": null, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"aliases\": [], \"roleLabels\": [\"miranda\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"narrator\", \"characterName\": \"Narrator\", \"aliases\": [], \"roleLabels\": [\"narrator\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": 1, \"lineId\": 16, \"paragraphIndex\": 13, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"basic\"}, {\"relativeIndex\": 2, \"lineId\": 33, \"paragraphIndex\": 27, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"city,\"}], \"chapterCharacters\": [{\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"narrator\",\n  \"characterName\": \"Narrator\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"quoted_word_in_narration\",\n    \"not_direct_dialogue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

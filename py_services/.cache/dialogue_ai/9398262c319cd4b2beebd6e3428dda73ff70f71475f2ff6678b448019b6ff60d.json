@@ -1,0 +1,297 @@
+{
+  "cacheKey": "9398262c319cd4b2beebd6e3428dda73ff70f71475f2ff6678b448019b6ff60d",
+  "createdAt": "2026-04-01T20:11:50.624495+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "yggdrasil",
+    "characterName": "Yggdrasil",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "scene_entity_match",
+      "paragraph_dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Attendant"
+        ],
+        "characterId": "nimera",
+        "characterName": "Nimera",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "nimera",
+          "attendant"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "primordial"
+        ],
+        "characterId": "yggdrasil",
+        "characterName": "Yggdrasil",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "yggdrasil",
+          "primordial"
+        ],
+        "wasRecentSpeaker": false
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "primordial"
+        ],
+        "characterId": "yggdrasil",
+        "name": "Yggdrasil",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Attendant"
+        ],
+        "characterId": "nimera",
+        "name": "Nimera",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "nature attendant",
+        "name": "Nature Attendant",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": null,
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.804,
+        "misattributionRisk": 0.19599999999999995,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Attendant",
+        "sourceCandidates": [
+          "Attendant"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.804,
+          "name": "Nimera",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [
+        "Attendant"
+      ],
+      "currentCharacterId": "nimera",
+      "currentCharacterName": "Nimera",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 148,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "We’re talking about a Unique Lifeform. Their bodies and souls are incredibly complex, and-"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 146,
+          "text": "That’s not an easy matter,"
+        },
+        {
+          "characterId": "nimera",
+          "characterName": "Nimera",
+          "isReturning": true,
+          "lineId": 148,
+          "text": "We’re talking about a Unique Lifeform. Their bodies and souls are incredibly complex, and-"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Nature’s Attendant sighed. “We’re talking about a Unique Lifeform. Their bodies and souls are incredibly complex, and-“",
+          "cueVerb": "sighed",
+          "cueVerbType": "speech",
+          "firstSentence": "That’s not an easy matter,",
+          "lastSentence": "That’s not an easy matter,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "That’s not an easy matter,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Nature’s Attendant"
+        }
+      ],
+      "currentParagraphText": "“That’s not an easy matter,” Nature’s Attendant sighed. “We’re talking about a Unique Lifeform. Their bodies and souls are incredibly complex, and-“",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 84
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 140,
+        "paragraphIndex": 79,
+        "relativeIndex": -4,
+        "text": "This is an item I got after the death of the False God who originally slew the Fallen King."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 143,
+        "paragraphIndex": 82,
+        "relativeIndex": -3,
+        "text": "You wish for us to heal this Unique Lifeform?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 144,
+        "paragraphIndex": 83,
+        "relativeIndex": -2,
+        "text": "If possible, yes,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 146,
+        "paragraphIndex": 84,
+        "relativeIndex": -1,
+        "text": "That’s not an easy matter,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 149,
+        "paragraphIndex": 85,
+        "relativeIndex": 1,
+        "text": "We accept,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 151,
+        "paragraphIndex": 87,
+        "relativeIndex": 2,
+        "text": "But do consider what else you would want in addition. Usually, it’s true that rebuilding the body and soul of a Unique Lifeform is as difficult, if not more so, than a revival, but this Fallen King has already laid the groundwork. That fragment is a blueprint of his body, and within your mask, his Truesoul lingers."
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "yggdrasil",
+            "characterName": "Yggdrasil",
+            "evidence": [
+              "ai_scene_memory"
+            ],
+            "score": 0.99
+          }
+        ],
+        "surface": "nature s attendant"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 148, \"text\": \"We’re talking about a Unique Lifeform. Their bodies and souls are incredibly complex, and-\", \"currentCharacterId\": \"nimera\", \"currentCharacterName\": \"Nimera\", \"currentCharacterAliases\": [\"Attendant\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Attendant\", \"sourceCandidates\": [\"Attendant\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.804, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Nimera\", \"confidence\": 0.804, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 84, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“That’s not an easy matter,” Nature’s Attendant sighed. “We’re talking about a Unique Lifeform. Their bodies and souls are incredibly complex, and-“\", \"currentParagraphDialogue\": [{\"lineId\": 146, \"text\": \"That’s not an easy matter,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 148, \"text\": \"We’re talking about a Unique Lifeform. Their bodies and souls are incredibly complex, and-\", \"characterId\": \"nimera\", \"characterName\": \"Nimera\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"That’s not an easy matter,\", \"cuePosition\": \"after\", \"cueVerb\": \"sighed\", \"cueVerbType\": \"speech\", \"cueText\": \"Nature’s Attendant sighed. “We’re talking about a Unique Lifeform. Their bodies and souls are incredibly complex, and-“\", \"speakerSurface\": \"Nature’s Attendant\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"That’s not an easy matter,\", \"lastSentence\": \"That’s not an easy matter,\"}]}, \"currentQuoteUnit\": null, \"sceneEntities\": [{\"surface\": \"nature s attendant\", \"matches\": [{\"characterId\": \"yggdrasil\", \"characterName\": \"Yggdrasil\", \"score\": 0.99, \"evidence\": [\"ai_scene_memory\"]}]}], \"candidateCards\": [{\"characterId\": \"nimera\", \"characterName\": \"Nimera\", \"aliases\": [\"Attendant\"], \"roleLabels\": [\"nimera\", \"attendant\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"yggdrasil\", \"characterName\": \"Yggdrasil\", \"aliases\": [\"primordial\"], \"roleLabels\": [\"yggdrasil\", \"primordial\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 140, \"paragraphIndex\": 79, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"This is an item I got after the death of the False God who originally slew the Fallen King.\"}, {\"relativeIndex\": -3, \"lineId\": 143, \"paragraphIndex\": 82, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"You wish for us to heal this Unique Lifeform?\"}, {\"relativeIndex\": -2, \"lineId\": 144, \"paragraphIndex\": 83, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"If possible, yes,\"}, {\"relativeIndex\": -1, \"lineId\": 146, \"paragraphIndex\": 84, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"That’s not an easy matter,\"}, {\"relativeIndex\": 1, \"lineId\": 149, \"paragraphIndex\": 85, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"We accept,\"}, {\"relativeIndex\": 2, \"lineId\": 151, \"paragraphIndex\": 87, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"But do consider what else you would want in addition. Usually, it’s true that rebuilding the body and soul of a Unique Lifeform is as difficult, if not more so, than a revival, but this Fallen King has already laid the groundwork. That fragment is a blueprint of his body, and within your mask, his Truesoul lingers.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"yggdrasil\", \"name\": \"Yggdrasil\", \"aliases\": [\"primordial\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"nimera\", \"name\": \"Nimera\", \"aliases\": [\"Attendant\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"nature attendant\", \"name\": \"Nature Attendant\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"yggdrasil\",\n  \"characterName\": \"Yggdrasil\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"scene_entity_match\",\n    \"paragraph_dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

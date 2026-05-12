@@ -1,0 +1,318 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "107efee53fa4d8bb5bf076dc3e7d551f35e7fc1cfa4ee2b95aeda0db1acb50ba",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\107efee53fa4d8bb5bf076dc3e7d551f35e7fc1cfa4ee2b95aeda0db1acb50ba.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "propose_new_character",
+        "aliasToAdd": null,
+        "characterId": null,
+        "characterName": null,
+        "confidence": 0.95,
+        "newCharacterProposal": {
+          "alias": null,
+          "name": "Red Mantis",
+          "notes": "Speaker identified by role/description 'the red mantis' in narration."
+        },
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "new_character_identified"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "having",
+            "name": "Having",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "warlord",
+            "name": "Warlord",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the red mantis asked, knowing that if it was so, she would have to go herself should her forces have any chance. One needed a B-grade to fight another B-grade, after all.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "Has the Warlord decided to deal with all invaders personally?",
+          "lastSentence": "Has the Warlord decided to deal with all invaders personally?",
+          "mentionedEntities": [
+            "Warlord",
+            "Warlord"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Has the Warlord decided to deal with all invaders personally?",
+          "speakerNameMatch": null,
+          "speakerSurface": "the red mantis"
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [
+                "Warlord"
+              ],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": true,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Unknown",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.916,
+            "misattributionRisk": 0.15,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Unknown",
+            "sourceCandidates": [
+              "Unknown"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.916
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.916,
+              "name": "Unknown",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 5,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "Has the Warlord decided to deal with all invaders personally?"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 5,
+              "text": "Has the Warlord decided to deal with all invaders personally?"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the red mantis asked, knowing that if it was so, she would have to go herself should her forces have any chance. One needed a B-grade to fight another B-grade, after all.",
+              "cueVerb": "asked",
+              "cueVerbType": "speech",
+              "firstSentence": "Has the Warlord decided to deal with all invaders personally?",
+              "lastSentence": "Has the Warlord decided to deal with all invaders personally?",
+              "mentionedEntities": [
+                "Warlord",
+                "Warlord"
+              ],
+              "quoteIndex": 0,
+              "quoteText": "Has the Warlord decided to deal with all invaders personally?",
+              "speakerNameMatch": null,
+              "speakerSurface": "the red mantis"
+            }
+          ],
+          "currentParagraphText": "“Has the Warlord decided to deal with all invaders personally?” the red mantis asked, knowing that if it was so, she would have to go herself should her forces have any chance. One needed a B-grade to fight another B-grade, after all.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 7,
+              "text": "No... no, there’s something else there. Something has been systematically dismantling the Simivita forces, and from what my scouts and I gathered, it’s an individual. A powerful entity has invaded them,"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the scout reported.",
+              "cueVerb": "reported",
+              "cueVerbType": "speech",
+              "firstSentence": "No...",
+              "lastSentence": "A powerful entity has invaded them,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "No... no, there’s something else there. Something has been systematically dismantling the Simivita forces, and from what my scouts and I gathered, it’s an individual. A powerful entity has invaded them,",
+              "speakerNameMatch": null,
+              "speakerSurface": "the scout"
+            }
+          ],
+          "nextParagraphText": "“No... no, there’s something else there. Something has been systematically dismantling the Simivita forces, and from what my scouts and I gathered, it’s an individual. A powerful entity has invaded them,” the scout reported.",
+          "paragraphIndex": 3,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 4,
+              "text": "Mistress, I have returned from the Simivita island... and I believe we should stay clear of it for now."
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "The red mantis regarded a deep orange one kneeling at the front as the male spoke.",
+              "cueVerb": "spoke",
+              "cueVerbType": "speech",
+              "firstSentence": "Mistress, I have returned from the Simivita island...",
+              "lastSentence": "and I believe we should stay clear of it for now.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Mistress, I have returned from the Simivita island... and I believe we should stay clear of it for now.",
+              "speakerNameMatch": null,
+              "speakerSurface": "the front"
+            }
+          ],
+          "previousParagraphText": "The red mantis regarded a deep orange one kneeling at the front as the male spoke. “Mistress, I have returned from the Simivita island... and I believe we should stay clear of it for now.”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 4,
+            "paragraphIndex": 2,
+            "relativeIndex": -1,
+            "text": "Mistress, I have returned from the Simivita island... and I believe we should stay clear of it for now."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 7,
+            "paragraphIndex": 4,
+            "relativeIndex": 1,
+            "text": "No... no, there’s something else there. Something has been systematically dismantling the Simivita forces, and from what my scouts and I gathered, it’s an individual. A powerful entity has invaded them,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 9,
+            "paragraphIndex": 5,
+            "relativeIndex": 2,
+            "text": "One of the enlightened hunters?"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 5, \"text\": \"Has the Warlord decided to deal with all invaders personally?\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Unknown\", \"sourceCandidates\": [\"Unknown\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.916, \"marginToSecond\": 0.916, \"misattributionRisk\": 0.15, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Warlord\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Unknown\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Unknown\", \"confidence\": 0.916, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 3, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Has the Warlord decided to deal with all invaders personally?” the red mantis asked, knowing that if it was so, she would have to go herself should her forces have any chance. One needed a B-grade to fight another B-grade, after all.\", \"currentParagraphDialogue\": [{\"lineId\": 5, \"text\": \"Has the Warlord decided to deal with all invaders personally?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"previousParagraphText\": \"The red mantis regarded a deep orange one kneeling at the front as the male spoke. “Mistress, I have returned from the Simivita island... and I believe we should stay clear of it for now.”\", \"previousParagraphDialogue\": [{\"lineId\": 4, \"text\": \"Mistress, I have returned from the Simivita island... and I believe we should stay clear of it for now.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"nextParagraphText\": \"“No... no, there’s something else there. Something has been systematically dismantling the Simivita forces, and from what my scouts and I gathered, it’s an individual. A powerful entity has invaded them,” the scout reported.\", \"nextParagraphDialogue\": [{\"lineId\": 7, \"text\": \"No... no, there’s something else there. Something has been systematically dismantling the Simivita forces, and from what my scouts and I gathered, it’s an individual. A powerful entity has invaded them,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Has the Warlord decided to deal with all invaders personally?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"the red mantis asked, knowing that if it was so, she would have to go herself should her forces have any chance. One needed a B-grade to fight another B-grade, after all.\", \"speakerSurface\": \"the red mantis\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"Warlord\", \"Warlord\"], \"addressedEntity\": null, \"firstSentence\": \"Has the Warlord decided to deal with all invaders personally?\", \"lastSentence\": \"Has the Warlord decided to deal with all invaders personally?\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Mistress, I have returned from the Simivita island... and I believe we should stay clear of it for now.\", \"cuePosition\": \"before\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"The red mantis regarded a deep orange one kneeling at the front as the male spoke.\", \"speakerSurface\": \"the front\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Mistress, I have returned from the Simivita island...\", \"lastSentence\": \"and I believe we should stay clear of it for now.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"No... no, there’s something else there. Something has been systematically dismantling the Simivita forces, and from what my scouts and I gathered, it’s an individual. A powerful entity has invaded them,\", \"cuePosition\": \"after\", \"cueVerb\": \"reported\", \"cueVerbType\": \"speech\", \"cueText\": \"the scout reported.\", \"speakerSurface\": \"the scout\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"No...\", \"lastSentence\": \"A powerful entity has invaded them,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Has the Warlord decided to deal with all invaders personally?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"the red mantis asked, knowing that if it was so, she would have to go herself should her forces have any chance. One needed a B-grade to fight another B-grade, after all.\", \"speakerSurface\": \"the red mantis\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"Warlord\", \"Warlord\"], \"addressedEntity\": null, \"firstSentence\": \"Has the Warlord decided to deal with all invaders personally?\", \"lastSentence\": \"Has the Warlord decided to deal with all invaders personally?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -1, \"lineId\": 4, \"paragraphIndex\": 2, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Mistress, I have returned from the Simivita island... and I believe we should stay clear of it for now.\"}, {\"relativeIndex\": 1, \"lineId\": 7, \"paragraphIndex\": 4, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"No... no, there’s something else there. Something has been systematically dismantling the Simivita forces, and from what my scouts and I gathered, it’s an individual. A powerful entity has invaded them,\"}, {\"relativeIndex\": 2, \"lineId\": 9, \"paragraphIndex\": 5, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"One of the enlightened hunters?\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"having\", \"name\": \"Having\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"warlord\", \"name\": \"Warlord\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"propose_new_character\",\n  \"characterId\": null,\n  \"characterName\": null,\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"new_character_identified\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": {\n    \"name\": \"Red Mantis\",\n    \"alias\": null,\n    \"notes\": \"Speaker identified by role/description 'the red mantis' in narration.\"\n  }\n}"
+    }
+  ],
+  "chapterPath": "0058 - Chapter 1115 - Simivita Warlord/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“Has the Warlord decided to deal with all invaders personally?” the red mantis asked, knowing that if it was so, she would have to go herself should her forces have any chance. One needed a B-grade to fight another B-grade, after all.",
+  "finalResult": {
+    "action": "propose_new_character",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“Has the Warlord decided to deal with all invaders personally?” the red mantis asked, knowing that if it was so, she would have to go herself should her forces have any chance. One needed a B-grade to fight another B-grade, after all.",
+    "disposition": "new_character_approval",
+    "error": null,
+    "lineId": 5,
+    "logPath": null,
+    "newCharacterProposal": {
+      "alias": null,
+      "name": "Red Mantis",
+      "notes": "Speaker identified by role/description 'the red mantis' in narration."
+    },
+    "nextParagraphText": "“No... no, there’s something else there. Something has been systematically dismantling the Simivita forces, and from what my scouts and I gathered, it’s an individual. A powerful entity has invaded them,” the scout reported.",
+    "paragraphIndex": 3,
+    "previousParagraphText": "The red mantis regarded a deep orange one kneeling at the front as the male spoke. “Mistress, I have returned from the Simivita island... and I believe we should stay clear of it for now.”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "new_character_identified"
+    ],
+    "suggestedCharacterId": "unknown",
+    "suggestedCharacterName": "Unknown",
+    "toolTrace": []
+  },
+  "lineId": 5,
+  "nextParagraphText": "“No... no, there’s something else there. Something has been systematically dismantling the Simivita forces, and from what my scouts and I gathered, it’s an individual. A powerful entity has invaded them,” the scout reported.",
+  "paragraphIndex": 3,
+  "previousParagraphText": "The red mantis regarded a deep orange one kneeling at the front as the male spoke. “Mistress, I have returned from the Simivita island... and I believe we should stay clear of it for now.”"
+}

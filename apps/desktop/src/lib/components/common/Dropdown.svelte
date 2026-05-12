@@ -136,26 +136,26 @@
     align-items: center;
     gap: 6px;
     padding: 6px 10px;
-    border: 1px solid #dadce0;
-    background: #ffffff;
+    border: 1px solid var(--app-border);
+    background: var(--app-surface-raised);
     border-radius: 8px;
     cursor: pointer;
-    color: #3c4043;
+    color: var(--app-text);
     transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .dd-button:hover:not(:disabled) { background:#f8f9fa; border-color:#c6c6c6; }
-  .dd-button:active:not(:disabled) { background:#f1f3f4; box-shadow: inset 0 1px 2px rgba(0,0,0,0.06); }
+  .dd-button:hover:not(:disabled) { background:var(--app-surface-hover); border-color:var(--app-border-strong); }
+  .dd-button:active:not(:disabled) { background:var(--app-surface-active); box-shadow: inset 0 1px 2px rgba(0,0,0,0.06); }
   .dd-button:disabled { opacity:0.6; cursor:not-allowed; }
 
   .dd-backdrop { position:fixed; inset:0; background:transparent; z-index: 15; }
   .dd-panel {
     position: absolute;
     top: 36px;
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
     border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    box-shadow: var(--app-shadow-md);
     padding: 6px;
     z-index: 20;
   }
@@ -164,9 +164,9 @@
     position: absolute;
     top: -6px;
     width: 10px; height: 10px;
-    background: #ffffff;
-    border-left: 1px solid #e0e0e0;
-    border-top: 1px solid #e0e0e0;
+    background: var(--app-surface);
+    border-left: 1px solid var(--app-border);
+    border-top: 1px solid var(--app-border);
     transform: rotate(45deg);
     box-shadow: -2px -2px 2px rgba(0,0,0,0.02);
     right: 16px;
@@ -178,9 +178,9 @@
   .dd-item {
     display:flex; align-items:center; gap:10px; width:100%;
     border:none; background:transparent; text-align:left;
-    padding:8px 10px; border-radius:8px; cursor:pointer; color:#202124;
+    padding:8px 10px; border-radius:8px; cursor:pointer; color:var(--app-text);
   }
-  .dd-item:hover { background:#f5f7f8; }
+  .dd-item:hover { background:var(--app-surface-hover); }
   .dd-check-spacer { display:inline-block; width:14px; height:14px; }
 
   .dd-wrap.anchored {

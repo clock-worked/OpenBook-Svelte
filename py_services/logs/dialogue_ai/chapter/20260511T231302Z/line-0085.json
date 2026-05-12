@@ -1,0 +1,419 @@
+{
+  "alignment": {
+    "confidence": 1.0,
+    "isSpanFallback": false,
+    "method": "quote_unit",
+    "paragraphIndex": 48,
+    "spanDistance": 0.0,
+    "spanParagraphIndex": 48
+  },
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "c9da98d0576fd3ed92ab5ba98aec9fdfc0e1f5fb72616b18163034363c7186c8",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\c9da98d0576fd3ed92ab5ba98aec9fdfc0e1f5fb72616b18163034363c7186c8.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "minaga",
+        "characterName": "Minaga",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "dialogue_continuity",
+          "parser_alignment"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God",
+              "Unknown Human (Male)"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist",
+              "lord thayne",
+              "thayne",
+              "void god",
+              "unknown human male"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "characterName": "Minaga",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "minaga",
+              "unique lifeform",
+              "the unique lifeform",
+              "the unique lifeform 2",
+              "unique lifeform 2"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God",
+              "Unknown Human (Male)"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "casper",
+            "name": "Casper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "name": "Minaga",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Yes, you.",
+          "lastSentence": "Yes, you.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Yes, you.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "alignment": {
+            "confidence": 1.0,
+            "isSpanFallback": false,
+            "method": "quote_unit",
+            "paragraphIndex": 48,
+            "spanDistance": 0.0,
+            "spanParagraphIndex": 48
+          },
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.85,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.3263999999999999,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Minaga",
+            "sourceCandidates": [
+              "Minaga",
+              "Jake"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.808
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.808,
+              "name": "Minaga",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.448,
+              "name": "Jake",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 85,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Yes, you."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 85,
+              "text": "Yes, you."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Yes, you.",
+              "lastSentence": "Yes, you.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Yes, you.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Yes, you.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 86,
+              "text": "Will this fifth dungeon be the final one?"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake asked. He didn’t believe that even if the Unique Lifeform added one more, he would do it now, but it would be good to know if he had something to look forward to in B-grade.",
+              "cueVerb": "asked",
+              "cueVerbType": "speech",
+              "firstSentence": "Will this fifth dungeon be the final one?",
+              "lastSentence": "Will this fifth dungeon be the final one?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Will this fifth dungeon be the final one?",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "nextParagraphText": "“Will this fifth dungeon be the final one?” Jake asked. He didn’t believe that even if the Unique Lifeform added one more, he would do it now, but it would be good to know if he had something to look forward to in B-grade.",
+          "paragraphIndex": 48,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "Deciding to play along, Jake raised his hand, making the Unique Lifeform grin as he pointed toward Jake."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 77,
+            "paragraphIndex": 42,
+            "relativeIndex": -4,
+            "text": "Now, this is where I will need to add a bit of story context. There is an entire theme of figuring out who built the Grand Labyrinth and stuff like that, and this fifth dungeon allows you to explore that aspect, because one will discover that upon activating the magic circle and entering the fifth dungeon, one will travel to the past during a time when the Grand Labyrinth is still being constructed."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 78,
+            "paragraphIndex": 43,
+            "relativeIndex": -3,
+            "text": "So, reused assets,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 80,
+            "paragraphIndex": 44,
+            "relativeIndex": -2,
+            "text": "There will naturally be no reused assets, and this fifth dungeon will span the entire Grand Labyrinth and even the land beyond it. What’s more, one will discover that in the past, this land was filled with far more energy than before, and the civilization that built the Grand Labyrinth was far stronger than what now inhabits it… because this will be a dungeon where only B-grades appear."
+          },
+          {
+            "characterId": "minaga",
+            "characterName": "Minaga",
+            "lineId": 82,
+            "paragraphIndex": 46,
+            "relativeIndex": -1,
+            "text": "This is the dungeon we plan on having you enter and test today. It’s technically completed, though it will certainly feel lacking due to the necessary story context for your actions not being there, and some of the dialogue may also feel out of place as it assumes you’ve done the prior dungeons,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 86,
+            "paragraphIndex": 49,
+            "relativeIndex": 1,
+            "text": "Will this fifth dungeon be the final one?"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 88,
+            "paragraphIndex": 50,
+            "relativeIndex": 2,
+            "text": "No spoilers,"
+          }
+        ],
+        "sceneEntities": [],
+        "sceneRoster": {
+          "paragraphWindow": 6,
+          "presentCharacterIds": [
+            "unknown",
+            "jake",
+            "minaga"
+          ],
+          "presentCharacters": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake"
+            },
+            {
+              "characterId": "minaga",
+              "characterName": "Minaga"
+            }
+          ]
+        }
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 85, \"text\": \"Yes, you.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Minaga\", \"sourceCandidates\": [\"Minaga\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.808, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.3263999999999999, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.85, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Minaga\", \"confidence\": 0.808, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.448, \"reasons\": null}], \"isReturning\": true, \"alignment\": {\"paragraphIndex\": 48, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 48, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 48, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Yes, you.”\", \"currentParagraphDialogue\": [{\"lineId\": 85, \"text\": \"Yes, you.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"Deciding to play along, Jake raised his hand, making the Unique Lifeform grin as he pointed toward Jake.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“Will this fifth dungeon be the final one?” Jake asked. He didn’t believe that even if the Unique Lifeform added one more, he would do it now, but it would be good to know if he had something to look forward to in B-grade.\", \"nextParagraphDialogue\": [{\"lineId\": 86, \"text\": \"Will this fifth dungeon be the final one?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Yes, you.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yes, you.\", \"lastSentence\": \"Yes, you.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Will this fifth dungeon be the final one?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake asked. He didn’t believe that even if the Unique Lifeform added one more, he would do it now, but it would be good to know if he had something to look forward to in B-grade.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Will this fifth dungeon be the final one?\", \"lastSentence\": \"Will this fifth dungeon be the final one?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Yes, you.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yes, you.\", \"lastSentence\": \"Yes, you.\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"unknown\", \"jake\", \"minaga\"], \"presentCharacters\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}, {\"characterId\": \"jake\", \"characterName\": \"Jake\"}, {\"characterId\": \"minaga\", \"characterName\": \"Minaga\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\", \"void god\", \"unknown human male\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [\"minaga\", \"unique lifeform\", \"the unique lifeform\", \"the unique lifeform 2\", \"unique lifeform 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 77, \"paragraphIndex\": 42, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Now, this is where I will need to add a bit of story context. There is an entire theme of figuring out who built the Grand Labyrinth and stuff like that, and this fifth dungeon allows you to explore that aspect, because one will discover that upon activating the magic circle and entering the fifth dungeon, one will travel to the past during a time when the Grand Labyrinth is still being constructed.\"}, {\"relativeIndex\": -3, \"lineId\": 78, \"paragraphIndex\": 43, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"So, reused assets,\"}, {\"relativeIndex\": -2, \"lineId\": 80, \"paragraphIndex\": 44, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"There will naturally be no reused assets, and this fifth dungeon will span the entire Grand Labyrinth and even the land beyond it. What’s more, one will discover that in the past, this land was filled with far more energy than before, and the civilization that built the Grand Labyrinth was far stronger than what now inhabits it… because this will be a dungeon where only B-grades appear.\"}, {\"relativeIndex\": -1, \"lineId\": 82, \"paragraphIndex\": 46, \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"text\": \"This is the dungeon we plan on having you enter and test today. It’s technically completed, though it will certainly feel lacking due to the necessary story context for your actions not being there, and some of the dialogue may also feel out of place as it assumes you’ve done the prior dungeons,\"}, {\"relativeIndex\": 1, \"lineId\": 86, \"paragraphIndex\": 49, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Will this fifth dungeon be the final one?\"}, {\"relativeIndex\": 2, \"lineId\": 88, \"paragraphIndex\": 50, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"No spoilers,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"casper\", \"name\": \"Casper\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"minaga\",\n  \"characterName\": \"Minaga\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_continuity\",\n    \"parser_alignment\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0186 - Chapter 1243 - Too Easily Distracted/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“Yes, you.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“Yes, you.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 85,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Will this fifth dungeon be the final one?” Jake asked. He didn’t believe that even if the Unique Lifeform added one more, he would do it now, but it would be good to know if he had something to look forward to in B-grade.",
+    "paragraphIndex": 48,
+    "previousParagraphText": "Deciding to play along, Jake raised his hand, making the Unique Lifeform grin as he pointed toward Jake.",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_continuity",
+      "parser_alignment"
+    ],
+    "suggestedCharacterId": "minaga",
+    "suggestedCharacterName": "Minaga",
+    "toolTrace": []
+  },
+  "lineId": 85,
+  "nextParagraphText": "“Will this fifth dungeon be the final one?” Jake asked. He didn’t believe that even if the Unique Lifeform added one more, he would do it now, but it would be good to know if he had something to look forward to in B-grade.",
+  "paragraphIndex": 48,
+  "previousParagraphText": "Deciding to play along, Jake raised his hand, making the Unique Lifeform grin as he pointed toward Jake.",
+  "sceneRoster": {
+    "paragraphWindow": 6,
+    "presentCharacterIds": [
+      "unknown",
+      "jake",
+      "minaga"
+    ],
+    "presentCharacters": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake"
+      },
+      {
+        "characterId": "minaga",
+        "characterName": "Minaga"
+      }
+    ]
+  }
+}

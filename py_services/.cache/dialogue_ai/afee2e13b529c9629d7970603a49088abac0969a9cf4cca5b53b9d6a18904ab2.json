@@ -1,0 +1,232 @@
+{
+  "cacheKey": "afee2e13b529c9629d7970603a49088abac0969a9cf4cca5b53b9d6a18904ab2",
+  "createdAt": "2026-04-18T22:03:15.691364+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.9,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "next_paragraph_cue",
+      "parser_confidence"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy",
+          "Vilas"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "See ya!",
+      "lastSentence": "See ya!",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "See ya!",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": null,
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.85,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.3263999999999999,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "The Malefic Viper"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.808
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.808,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.448,
+          "name": "The Malefic Viper",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 133,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "See ya!"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 133,
+          "text": "See ya!"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "See ya!",
+          "lastSentence": "See ya!",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "See ya!",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“See ya!”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Before Jake could say anything more, the telepathic link was cut off.",
+      "paragraphIndex": 121,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Villy said, as if his statement made perfect sense."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "the_malefic_viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 126,
+        "paragraphIndex": 115,
+        "relativeIndex": -4,
+        "text": "No rush, no rush,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 128,
+        "paragraphIndex": 116,
+        "relativeIndex": -3,
+        "text": "You enjoy yourself now. I’ll get back to more important matters."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 129,
+        "paragraphIndex": 117,
+        "relativeIndex": -2,
+        "text": "Didn’t you already tell me the primary function of that clone is to stalk me?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 131,
+        "paragraphIndex": 119,
+        "relativeIndex": -1,
+        "text": "Exactly, and when you’re talking to me, you’re not doing anything fun for me to observe,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 133, \"text\": \"See ya!\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"The Malefic Viper\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.808, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.3263999999999999, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.85, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": null, \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.808, \"reasons\": null}, {\"characterId\": null, \"name\": \"The Malefic Viper\", \"confidence\": 0.448, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 121, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“See ya!”\", \"currentParagraphDialogue\": [{\"lineId\": 133, \"text\": \"See ya!\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"Villy said, as if his statement made perfect sense.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Before Jake could say anything more, the telepathic link was cut off.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"See ya!\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"See ya!\", \"lastSentence\": \"See ya!\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"See ya!\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"See ya!\", \"lastSentence\": \"See ya!\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 126, \"paragraphIndex\": 115, \"characterId\": \"the_malefic_viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"No rush, no rush,\"}, {\"relativeIndex\": -3, \"lineId\": 128, \"paragraphIndex\": 116, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"You enjoy yourself now. I’ll get back to more important matters.\"}, {\"relativeIndex\": -2, \"lineId\": 129, \"paragraphIndex\": 117, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Didn’t you already tell me the primary function of that clone is to stalk me?\"}, {\"relativeIndex\": -1, \"lineId\": 131, \"paragraphIndex\": 119, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Exactly, and when you’re talking to me, you’re not doing anything fun for me to observe,\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\", \"Vilas\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"next_paragraph_cue\",\n    \"parser_confidence\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

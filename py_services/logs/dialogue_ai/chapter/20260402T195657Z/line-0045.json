@@ -1,0 +1,361 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "cea32715d32fe697f9adcec310aff09180ea486b5a0b8b00775f93cec2156bbe",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\cea32715d32fe697f9adcec310aff09180ea486b5a0b8b00775f93cec2156bbe.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "confidence": 1.0,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": true
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "artemis"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Artemis shook her head. Jake wasn’t entirely sure he agreed as if he felt as if the First Sage could have taught even the dumbest kid in every class to ace every test.",
+          "cueVerb": "agreed",
+          "cueVerbType": "speech",
+          "firstSentence": "I reckon that doesn’t hurt, but no.",
+          "lastSentence": "Even the greatest teacher needs a competent pupil, or both are just wasting their time,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I reckon that doesn’t hurt, but no. Even the greatest teacher needs a competent pupil, or both are just wasting their time,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Jake wasn’t entirely sure he"
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": true,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36,
+            "misattributionRisk": 0.2872,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Artemis",
+            "sourceCandidates": [
+              "Artemis",
+              "Jake"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.864
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.864,
+              "name": "Artemis",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.504,
+              "name": "Jake",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "artemis",
+          "currentCharacterName": "Artemis",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 45,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "I reckon that doesn’t hurt, but no. Even the greatest teacher needs a competent pupil, or both are just wasting their time,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "artemis",
+              "characterName": "Artemis",
+              "isReturning": false,
+              "lineId": 45,
+              "text": "I reckon that doesn’t hurt, but no. Even the greatest teacher needs a competent pupil, or both are just wasting their time,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Artemis shook her head. Jake wasn’t entirely sure he agreed as if he felt as if the First Sage could have taught even the dumbest kid in every class to ace every test.",
+              "cueVerb": "agreed",
+              "cueVerbType": "speech",
+              "firstSentence": "I reckon that doesn’t hurt, but no.",
+              "lastSentence": "Even the greatest teacher needs a competent pupil, or both are just wasting their time,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "I reckon that doesn’t hurt, but no. Even the greatest teacher needs a competent pupil, or both are just wasting their time,",
+              "speakerNameMatch": null,
+              "speakerSurface": "Jake wasn’t entirely sure he"
+            }
+          ],
+          "currentParagraphText": "“I reckon that doesn’t hurt, but no. Even the greatest teacher needs a competent pupil, or both are just wasting their time,” Artemis shook her head. Jake wasn’t entirely sure he agreed as if he felt as if the First Sage could have taught even the dumbest kid in every class to ace every test.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 47,
+              "text": "What is it, then?"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake asked with some curiosity.",
+              "cueVerb": "asked",
+              "cueVerbType": "speech",
+              "firstSentence": "What is it, then?",
+              "lastSentence": "What is it, then?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "What is it, then?",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "nextParagraphText": "“What is it, then?” Jake asked with some curiosity.",
+          "paragraphIndex": 33,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 43,
+              "text": "Is that thing hanging out with gods on a daily basis and getting personal lessons?"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake asked semi-jokingly.",
+              "cueVerb": "asked",
+              "cueVerbType": "speech",
+              "firstSentence": "Is that thing hanging out with gods on a daily basis and getting personal lessons?",
+              "lastSentence": "Is that thing hanging out with gods on a daily basis and getting personal lessons?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Is that thing hanging out with gods on a daily basis and getting personal lessons?",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "previousParagraphText": "“Is that thing hanging out with gods on a daily basis and getting personal lessons?” Jake asked semi-jokingly."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 37,
+            "paragraphIndex": 28,
+            "relativeIndex": -4,
+            "text": "More specifically... well, I guess you didn’t tell the arrows when to start moving again with a mental command. That would likely have drained too much energy. So my guess is that you infused each with a packet of Willpower that effectively put each arrow on a timer, and you perfectly executed the shots so everything lined up."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 38,
+            "paragraphIndex": 29,
+            "relativeIndex": -3,
+            "text": "You detected the concept of time infused into each arrow?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 42,
+            "paragraphIndex": 31,
+            "relativeIndex": -2,
+            "text": "You know, besides the traits I mentioned earlier, there is one thing that tends to bring people ahead of the curve when it comes to understanding concepts. However, as this method doesn’t help those naturally talented in the area in a meaningful way, it isn’t often discussed as a trait."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 43,
+            "paragraphIndex": 32,
+            "relativeIndex": -1,
+            "text": "Is that thing hanging out with gods on a daily basis and getting personal lessons?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 47,
+            "paragraphIndex": 34,
+            "relativeIndex": 1,
+            "text": "What is it, then?"
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 49,
+            "paragraphIndex": 35,
+            "relativeIndex": 2,
+            "text": "The Void Mechanic. Arnold, I believe, is his name. I looked into the people close to you, which wasn’t hard as this man is quite famous for a variety of reasons, especially among some of my friends in the Altmar Empire who are very keen to have him visit one day,"
+          }
+        ],
+        "sceneEntities": [
+          {
+            "matches": [
+              {
+                "characterId": "jake",
+                "characterName": "Jake",
+                "evidence": [
+                  "token_overlap:jake"
+                ],
+                "score": 0.5083
+              }
+            ],
+            "surface": "jake wasn t entirely sure he"
+          }
+        ]
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 45, \"text\": \"I reckon that doesn’t hurt, but no. Even the greatest teacher needs a competent pupil, or both are just wasting their time,\", \"currentCharacterId\": \"artemis\", \"currentCharacterName\": \"Artemis\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Artemis\", \"sourceCandidates\": [\"Artemis\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.864, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.2872, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.864, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.504, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 33, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I reckon that doesn’t hurt, but no. Even the greatest teacher needs a competent pupil, or both are just wasting their time,” Artemis shook her head. Jake wasn’t entirely sure he agreed as if he felt as if the First Sage could have taught even the dumbest kid in every class to ace every test.\", \"currentParagraphDialogue\": [{\"lineId\": 45, \"text\": \"I reckon that doesn’t hurt, but no. Even the greatest teacher needs a competent pupil, or both are just wasting their time,\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": false}], \"previousParagraphText\": \"“Is that thing hanging out with gods on a daily basis and getting personal lessons?” Jake asked semi-jokingly.\", \"previousParagraphDialogue\": [{\"lineId\": 43, \"text\": \"Is that thing hanging out with gods on a daily basis and getting personal lessons?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"nextParagraphText\": \"“What is it, then?” Jake asked with some curiosity.\", \"nextParagraphDialogue\": [{\"lineId\": 47, \"text\": \"What is it, then?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I reckon that doesn’t hurt, but no. Even the greatest teacher needs a competent pupil, or both are just wasting their time,\", \"cuePosition\": \"after\", \"cueVerb\": \"agreed\", \"cueVerbType\": \"speech\", \"cueText\": \"Artemis shook her head. Jake wasn’t entirely sure he agreed as if he felt as if the First Sage could have taught even the dumbest kid in every class to ace every test.\", \"speakerSurface\": \"Jake wasn’t entirely sure he\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I reckon that doesn’t hurt, but no.\", \"lastSentence\": \"Even the greatest teacher needs a competent pupil, or both are just wasting their time,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Is that thing hanging out with gods on a daily basis and getting personal lessons?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake asked semi-jokingly.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Is that thing hanging out with gods on a daily basis and getting personal lessons?\", \"lastSentence\": \"Is that thing hanging out with gods on a daily basis and getting personal lessons?\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"What is it, then?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake asked with some curiosity.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"What is it, then?\", \"lastSentence\": \"What is it, then?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I reckon that doesn’t hurt, but no. Even the greatest teacher needs a competent pupil, or both are just wasting their time,\", \"cuePosition\": \"after\", \"cueVerb\": \"agreed\", \"cueVerbType\": \"speech\", \"cueText\": \"Artemis shook her head. Jake wasn’t entirely sure he agreed as if he felt as if the First Sage could have taught even the dumbest kid in every class to ace every test.\", \"speakerSurface\": \"Jake wasn’t entirely sure he\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I reckon that doesn’t hurt, but no.\", \"lastSentence\": \"Even the greatest teacher needs a competent pupil, or both are just wasting their time,\"}, \"sceneEntities\": [{\"surface\": \"jake wasn t entirely sure he\", \"matches\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"score\": 0.5083, \"evidence\": [\"token_overlap:jake\"]}]}], \"candidateCards\": [{\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [], \"roleLabels\": [\"artemis\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 37, \"paragraphIndex\": 28, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"More specifically... well, I guess you didn’t tell the arrows when to start moving again with a mental command. That would likely have drained too much energy. So my guess is that you infused each with a packet of Willpower that effectively put each arrow on a timer, and you perfectly executed the shots so everything lined up.\"}, {\"relativeIndex\": -3, \"lineId\": 38, \"paragraphIndex\": 29, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"You detected the concept of time infused into each arrow?\"}, {\"relativeIndex\": -2, \"lineId\": 42, \"paragraphIndex\": 31, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You know, besides the traits I mentioned earlier, there is one thing that tends to bring people ahead of the curve when it comes to understanding concepts. However, as this method doesn’t help those naturally talented in the area in a meaningful way, it isn’t often discussed as a trait.\"}, {\"relativeIndex\": -1, \"lineId\": 43, \"paragraphIndex\": 32, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Is that thing hanging out with gods on a daily basis and getting personal lessons?\"}, {\"relativeIndex\": 1, \"lineId\": 47, \"paragraphIndex\": 34, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"What is it, then?\"}, {\"relativeIndex\": 2, \"lineId\": 49, \"paragraphIndex\": 35, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"The Void Mechanic. Arnold, I believe, is his name. I looked into the people close to you, which wasn’t hard as this man is quite famous for a variety of reasons, especially among some of my friends in the Altmar Empire who are very keen to have him visit one day,\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"artemis\",\n  \"characterName\": \"Artemis\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0045 - Chapter 1102 - Perception Best Stat/chapter.txt",
+  "currentCharacterId": "artemis",
+  "currentCharacterName": "Artemis",
+  "currentParagraphText": "“I reckon that doesn’t hurt, but no. Even the greatest teacher needs a competent pupil, or both are just wasting their time,” Artemis shook her head. Jake wasn’t entirely sure he agreed as if he felt as if the First Sage could have taught even the dumbest kid in every class to ace every test.",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 1.0,
+    "currentCharacterId": "artemis",
+    "currentCharacterName": "Artemis",
+    "currentParagraphText": "“I reckon that doesn’t hurt, but no. Even the greatest teacher needs a competent pupil, or both are just wasting their time,” Artemis shook her head. Jake wasn’t entirely sure he agreed as if he felt as if the First Sage could have taught even the dumbest kid in every class to ace every test.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 45,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“What is it, then?” Jake asked with some curiosity.",
+    "paragraphIndex": 33,
+    "previousParagraphText": "“Is that thing hanging out with gods on a daily basis and getting personal lessons?” Jake asked semi-jokingly.",
+    "reasonCodes": [
+      "explicit_narration_cue"
+    ],
+    "suggestedCharacterId": "artemis",
+    "suggestedCharacterName": "Artemis",
+    "toolTrace": []
+  },
+  "lineId": 45,
+  "nextParagraphText": "“What is it, then?” Jake asked with some curiosity.",
+  "paragraphIndex": 33,
+  "previousParagraphText": "“Is that thing hanging out with gods on a daily basis and getting personal lessons?” Jake asked semi-jokingly."
+}

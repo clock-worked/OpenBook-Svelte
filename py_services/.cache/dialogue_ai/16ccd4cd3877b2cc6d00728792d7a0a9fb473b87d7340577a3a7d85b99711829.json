@@ -1,0 +1,166 @@
+{
+  "cacheKey": "16ccd4cd3877b2cc6d00728792d7a0a9fb473b87d7340577a3a7d85b99711829",
+  "createdAt": "2026-04-01T04:39:02.502464+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "miranda",
+    "characterName": "Miranda",
+    "confidence": 1,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "direct_attribution"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "name": "Blood"
+      },
+      {
+        "aliases": [],
+        "characterId": "vesperia",
+        "name": "Vesperia"
+      },
+      {
+        "aliases": [],
+        "characterId": "sandy",
+        "name": "Sandy"
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda"
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "name": "Iludar"
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth"
+      },
+      {
+        "aliases": [],
+        "characterId": "william",
+        "name": "William"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.98,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Miranda",
+        "sourceCandidates": [
+          "Miranda"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "miranda",
+          "confidence": 0.98,
+          "name": "Miranda",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "post_quote_attribution",
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "miranda",
+      "currentCharacterName": "Miranda",
+      "id": 89,
+      "isReturning": true,
+      "text": "And I assume you’re in the part that wants it gone?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "miranda",
+          "characterName": "Miranda",
+          "isReturning": true,
+          "lineId": 89,
+          "text": "And I assume you’re in the part that wants it gone?"
+        }
+      ],
+      "currentParagraphText": "“And I assume you’re in the part that wants it gone?” Miranda spoke up for the first time in a while.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": false,
+          "lineId": 91,
+          "text": "Exactly. So is the Augur,"
+        },
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": true,
+          "lineId": 93,
+          "text": "I do apologize for not explaining things fully yet, but as I said, things are pretty damn complicated."
+        }
+      ],
+      "nextParagraphText": "“Exactly. So is the Augur,” Kindroth answered. “I do apologize for not explaining things fully yet, but as I said, things are pretty damn complicated.”",
+      "paragraphIndex": 60,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "iludar",
+          "characterName": "Iludar",
+          "isReturning": false,
+          "lineId": 85,
+          "text": "A high-ranking member of it."
+        },
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": false,
+          "lineId": 86,
+          "text": "Yeah, it hasn’t really felt that way during this entire thing,"
+        },
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": true,
+          "lineId": 88,
+          "text": "The internal politics of the Holy Church are a fucking mess, and I’m glad not to officially be a part of it. Just know that some parts expected Ell’Hakan to die and would prefer for his Bloodline to die with him, and another part really wants that Bloodline."
+        }
+      ],
+      "previousParagraphText": "“Yeah, it hasn’t really felt that way during this entire thing,” Kindroth sighed. “The internal politics of the Holy Church are a fucking mess, and I’m glad not to officially be a part of it. Just know that some parts expected Ell’Hakan to die and would prefer for his Bloodline to die with him, and another part really wants that Bloodline.”"
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 89, \"text\": \"And I assume you’re in the part that wants it gone?\", \"currentCharacterId\": \"miranda\", \"currentCharacterName\": \"Miranda\", \"currentCharacterAliases\": [], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Miranda\", \"sourceCandidates\": [\"Miranda\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.98, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"miranda\", \"name\": \"Miranda\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"post_quote_attribution\", \"speech_verb\"]}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 60, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“And I assume you’re in the part that wants it gone?” Miranda spoke up for the first time in a while.\", \"currentParagraphDialogue\": [{\"lineId\": 89, \"text\": \"And I assume you’re in the part that wants it gone?\", \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"isReturning\": true}], \"previousParagraphText\": \"“Yeah, it hasn’t really felt that way during this entire thing,” Kindroth sighed. “The internal politics of the Holy Church are a fucking mess, and I’m glad not to officially be a part of it. Just know that some parts expected Ell’Hakan to die and would prefer for his Bloodline to die with him, and another part really wants that Bloodline.”\", \"previousParagraphDialogue\": [{\"lineId\": 85, \"text\": \"A high-ranking member of it.\", \"characterId\": \"iludar\", \"characterName\": \"Iludar\", \"isReturning\": false}, {\"lineId\": 86, \"text\": \"Yeah, it hasn’t really felt that way during this entire thing,\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": false}, {\"lineId\": 88, \"text\": \"The internal politics of the Holy Church are a fucking mess, and I’m glad not to officially be a part of it. Just know that some parts expected Ell’Hakan to die and would prefer for his Bloodline to die with him, and another part really wants that Bloodline.\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": true}], \"nextParagraphText\": \"“Exactly. So is the Augur,” Kindroth answered. “I do apologize for not explaining things fully yet, but as I said, things are pretty damn complicated.”\", \"nextParagraphDialogue\": [{\"lineId\": 91, \"text\": \"Exactly. So is the Augur,\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": false}, {\"lineId\": 93, \"text\": \"I do apologize for not explaining things fully yet, but as I said, things are pretty damn complicated.\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": true}]}, \"chapterCharacters\": [{\"characterId\": \"blood\", \"name\": \"Blood\", \"aliases\": []}, {\"characterId\": \"vesperia\", \"name\": \"Vesperia\", \"aliases\": []}, {\"characterId\": \"sandy\", \"name\": \"Sandy\", \"aliases\": []}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": []}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": []}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": []}, {\"characterId\": \"william\", \"name\": \"William\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"miranda\",\n  \"characterName\": \"Miranda\",\n  \"confidence\": 1,\n  \"reasonCodes\": [\n    \"direct_attribution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

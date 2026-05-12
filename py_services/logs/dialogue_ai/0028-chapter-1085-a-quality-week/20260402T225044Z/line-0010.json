@@ -1,0 +1,368 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "d7a4e59765dc8c79e7dac9c826d2cb123ad23eaa9c79fdb897547f82d122f23a",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\d7a4e59765dc8c79e7dac9c826d2cb123ad23eaa9c79fdb897547f82d122f23a.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "katherine",
+        "characterName": "Katherine",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "previous_paragraph_cue",
+          "next_paragraph_cue",
+          "dialogue_flow",
+          "content_analysis"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "characterName": "The Sword Saint",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "the sword saint",
+              "sword saint",
+              "the sword saint 2",
+              "sword saint 2",
+              "miyamoto"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "True Ancestor",
+              "Vampire Godess",
+              "vampire-godess"
+            ],
+            "characterId": "katherine",
+            "characterName": "Katherine",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "katherine",
+              "true ancestor",
+              "vampire godess"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "name": "The Sword Saint",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "True Ancestor",
+              "Vampire Godess",
+              "vampire-godess"
+            ],
+            "characterId": "katherine",
+            "name": "Katherine",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "iskar",
+            "name": "Iskar",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "irin",
+            "name": "Irin",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "succubus",
+            "name": "Succubus",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Meanwhile, should you become a vampire, you could shed that profession and pursue the sword far more single-mindedly.",
+          "lastSentence": "I see very few downsides to embracing vampirism at your current stage.",
+          "mentionedEntities": [
+            "Vampire",
+            "blood"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Meanwhile, should you become a vampire, you could shed that profession and pursue the sword far more single-mindedly. What’s more, considering who you are and that you own the Blood Legacy, I’m confident you will evolve into a powerful variant. The affinities of water and time that you cultivate currently are also easily transferable, as time is a common affinity controlled by vampires already, and with your powerful water affinity, you can combine it with blood and create something even greater. Overall, I believe you would become a lot more powerful as a vampire with your endurance in combat, especially shooting through the roof with your resources combined. I see very few downsides to embracing vampirism at your current stage.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [
+                "Vampire",
+                "blood"
+              ],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "The Sword Saint",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.18400000000000005,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "The Sword Saint",
+            "sourceCandidates": [
+              "The Sword Saint",
+              "Katherine"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": "the-sword-saint",
+              "confidence": 0.816,
+              "name": "The Sword Saint",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "katherine",
+              "confidence": 0.456,
+              "name": "Katherine",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [
+            "the-sword-saint",
+            "the-sword-saint-2",
+            "Miyamoto"
+          ],
+          "currentCharacterId": "the-sword-saint",
+          "currentCharacterName": "The Sword Saint",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 10,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Meanwhile, should you become a vampire, you could shed that profession and pursue the sword far more single-mindedly. What’s more, considering who you are and that you own the Blood Legacy, I’m confident you will evolve into a powerful variant. The affinities of water and time that you cultivate currently are also easily transferable, as time is a common affinity controlled by vampires already, and with your powerful water affinity, you can combine it with blood and create something even greater. Overall, I believe you would become a lot more powerful as a vampire with your endurance in combat, especially shooting through the roof with your resources combined. I see very few downsides to embracing vampirism at your current stage."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "the-sword-saint",
+              "characterName": "The Sword Saint",
+              "isReturning": true,
+              "lineId": 10,
+              "text": "Meanwhile, should you become a vampire, you could shed that profession and pursue the sword far more single-mindedly. What’s more, considering who you are and that you own the Blood Legacy, I’m confident you will evolve into a powerful variant. The affinities of water and time that you cultivate currently are also easily transferable, as time is a common affinity controlled by vampires already, and with your powerful water affinity, you can combine it with blood and create something even greater. Overall, I believe you would become a lot more powerful as a vampire with your endurance in combat, especially shooting through the roof with your resources combined. I see very few downsides to embracing vampirism at your current stage."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Meanwhile, should you become a vampire, you could shed that profession and pursue the sword far more single-mindedly.",
+              "lastSentence": "I see very few downsides to embracing vampirism at your current stage.",
+              "mentionedEntities": [
+                "Vampire",
+                "blood"
+              ],
+              "quoteIndex": 0,
+              "quoteText": "Meanwhile, should you become a vampire, you could shed that profession and pursue the sword far more single-mindedly. What’s more, considering who you are and that you own the Blood Legacy, I’m confident you will evolve into a powerful variant. The affinities of water and time that you cultivate currently are also easily transferable, as time is a common affinity controlled by vampires already, and with your powerful water affinity, you can combine it with blood and create something even greater. Overall, I believe you would become a lot more powerful as a vampire with your endurance in combat, especially shooting through the roof with your resources combined. I see very few downsides to embracing vampirism at your current stage.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Meanwhile, should you become a vampire, you could shed that profession and pursue the sword far more single-mindedly. What’s more, considering who you are and that you own the Blood Legacy, I’m confident you will evolve into a powerful variant. The affinities of water and time that you cultivate currently are also easily transferable, as time is a common affinity controlled by vampires already, and with your powerful water affinity, you can combine it with blood and create something even greater. Overall, I believe you would become a lot more powerful as a vampire with your endurance in combat, especially shooting through the roof with your resources combined. I see very few downsides to embracing vampirism at your current stage.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "the-sword-saint",
+              "characterName": "The Sword Saint",
+              "isReturning": false,
+              "lineId": 11,
+              "text": "What would those downsides be?"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the Sword Saint asked.",
+              "cueVerb": "asked",
+              "cueVerbType": "speech",
+              "firstSentence": "What would those downsides be?",
+              "lastSentence": "What would those downsides be?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "What would those downsides be?",
+              "speakerNameMatch": "The Sword Saint",
+              "speakerSurface": "Sword Saint"
+            }
+          ],
+          "nextParagraphText": "“What would those downsides be?” the Sword Saint asked.",
+          "paragraphIndex": 6,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "The Sword Saint remained quiet as the True Ancestor continued. He knew he wouldn’t hear anything he hadn’t already considered himself, but out of politeness, he at least allowed her to try."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "the-sword-saint",
+            "characterName": "The Sword Saint",
+            "lineId": 4,
+            "paragraphIndex": 3,
+            "relativeIndex": -3,
+            "text": "Vampirism... isn’t part of my Path,"
+          },
+          {
+            "characterId": "katherine",
+            "characterName": "Katherine",
+            "lineId": 6,
+            "paragraphIndex": 4,
+            "relativeIndex": -2,
+            "text": "Perhaps not right now, but one’s Path is nothing if not adaptable,"
+          },
+          {
+            "characterId": "katherine",
+            "characterName": "Katherine",
+            "lineId": 8,
+            "paragraphIndex": 4,
+            "relativeIndex": -1,
+            "text": "I did a bit of research on you, and from my understanding, you are a man who pursues the sword with great fervor, yet you also have a profession. Painting. While I understand you might find such a pastime relaxing or perhaps even soothing for the soul, it doesn’t quite seem to fit with your Path from my perspective."
+          },
+          {
+            "characterId": "the-sword-saint",
+            "characterName": "The Sword Saint",
+            "lineId": 11,
+            "paragraphIndex": 7,
+            "relativeIndex": 1,
+            "text": "What would those downsides be?"
+          },
+          {
+            "characterId": "the-sword-saint",
+            "characterName": "The Sword Saint",
+            "lineId": 14,
+            "paragraphIndex": 8,
+            "relativeIndex": 2,
+            "text": "Vampires are, as you know, not a popular race in the multiverse. That will naturally create some challenges. I will also admit that your Path will be more locked than before. You will need to cultivate some parts unique to your vampire race, but those will more likely than not happen in concert with sharpening your blade against powerful foes. Admittedly, I also do not know how your current Patron will react, seeing as I cannot recall the Primordial of Time ever blessing vampires before. Then again, he rarely blesses anyone. Lastly, as a vampire, you will need to feed, but I’m certain you would be able to have that sorted working with skilled alchemists."
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 10, \"text\": \"Meanwhile, should you become a vampire, you could shed that profession and pursue the sword far more single-mindedly. What’s more, considering who you are and that you own the Blood Legacy, I’m confident you will evolve into a powerful variant. The affinities of water and time that you cultivate currently are also easily transferable, as time is a common affinity controlled by vampires already, and with your powerful water affinity, you can combine it with blood and create something even greater. Overall, I believe you would become a lot more powerful as a vampire with your endurance in combat, especially shooting through the roof with your resources combined. I see very few downsides to embracing vampirism at your current stage.\", \"currentCharacterId\": \"the-sword-saint\", \"currentCharacterName\": \"The Sword Saint\", \"currentCharacterAliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"The Sword Saint\", \"sourceCandidates\": [\"The Sword Saint\", \"Katherine\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Vampire\", \"blood\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Sword Saint\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"katherine\", \"name\": \"Katherine\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 6, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Meanwhile, should you become a vampire, you could shed that profession and pursue the sword far more single-mindedly. What’s more, considering who you are and that you own the Blood Legacy, I’m confident you will evolve into a powerful variant. The affinities of water and time that you cultivate currently are also easily transferable, as time is a common affinity controlled by vampires already, and with your powerful water affinity, you can combine it with blood and create something even greater. Overall, I believe you would become a lot more powerful as a vampire with your endurance in combat, especially shooting through the roof with your resources combined. I see very few downsides to embracing vampirism at your current stage.”\", \"currentParagraphDialogue\": [{\"lineId\": 10, \"text\": \"Meanwhile, should you become a vampire, you could shed that profession and pursue the sword far more single-mindedly. What’s more, considering who you are and that you own the Blood Legacy, I’m confident you will evolve into a powerful variant. The affinities of water and time that you cultivate currently are also easily transferable, as time is a common affinity controlled by vampires already, and with your powerful water affinity, you can combine it with blood and create something even greater. Overall, I believe you would become a lot more powerful as a vampire with your endurance in combat, especially shooting through the roof with your resources combined. I see very few downsides to embracing vampirism at your current stage.\", \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"isReturning\": true}], \"previousParagraphText\": \"The Sword Saint remained quiet as the True Ancestor continued. He knew he wouldn’t hear anything he hadn’t already considered himself, but out of politeness, he at least allowed her to try.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“What would those downsides be?” the Sword Saint asked.\", \"nextParagraphDialogue\": [{\"lineId\": 11, \"text\": \"What would those downsides be?\", \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Meanwhile, should you become a vampire, you could shed that profession and pursue the sword far more single-mindedly. What’s more, considering who you are and that you own the Blood Legacy, I’m confident you will evolve into a powerful variant. The affinities of water and time that you cultivate currently are also easily transferable, as time is a common affinity controlled by vampires already, and with your powerful water affinity, you can combine it with blood and create something even greater. Overall, I believe you would become a lot more powerful as a vampire with your endurance in combat, especially shooting through the roof with your resources combined. I see very few downsides to embracing vampirism at your current stage.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Vampire\", \"blood\"], \"addressedEntity\": null, \"firstSentence\": \"Meanwhile, should you become a vampire, you could shed that profession and pursue the sword far more single-mindedly.\", \"lastSentence\": \"I see very few downsides to embracing vampirism at your current stage.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"What would those downsides be?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"the Sword Saint asked.\", \"speakerSurface\": \"Sword Saint\", \"speakerNameMatch\": \"The Sword Saint\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"What would those downsides be?\", \"lastSentence\": \"What would those downsides be?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Meanwhile, should you become a vampire, you could shed that profession and pursue the sword far more single-mindedly. What’s more, considering who you are and that you own the Blood Legacy, I’m confident you will evolve into a powerful variant. The affinities of water and time that you cultivate currently are also easily transferable, as time is a common affinity controlled by vampires already, and with your powerful water affinity, you can combine it with blood and create something even greater. Overall, I believe you would become a lot more powerful as a vampire with your endurance in combat, especially shooting through the roof with your resources combined. I see very few downsides to embracing vampirism at your current stage.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Vampire\", \"blood\"], \"addressedEntity\": null, \"firstSentence\": \"Meanwhile, should you become a vampire, you could shed that profession and pursue the sword far more single-mindedly.\", \"lastSentence\": \"I see very few downsides to embracing vampirism at your current stage.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [\"the sword saint\", \"sword saint\", \"the sword saint 2\", \"sword saint 2\", \"miyamoto\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"katherine\", \"characterName\": \"Katherine\", \"aliases\": [\"True Ancestor\", \"Vampire Godess\", \"vampire-godess\"], \"roleLabels\": [\"katherine\", \"true ancestor\", \"vampire godess\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -3, \"lineId\": 4, \"paragraphIndex\": 3, \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Vampirism... isn’t part of my Path,\"}, {\"relativeIndex\": -2, \"lineId\": 6, \"paragraphIndex\": 4, \"characterId\": \"katherine\", \"characterName\": \"Katherine\", \"text\": \"Perhaps not right now, but one’s Path is nothing if not adaptable,\"}, {\"relativeIndex\": -1, \"lineId\": 8, \"paragraphIndex\": 4, \"characterId\": \"katherine\", \"characterName\": \"Katherine\", \"text\": \"I did a bit of research on you, and from my understanding, you are a man who pursues the sword with great fervor, yet you also have a profession. Painting. While I understand you might find such a pastime relaxing or perhaps even soothing for the soul, it doesn’t quite seem to fit with your Path from my perspective.\"}, {\"relativeIndex\": 1, \"lineId\": 11, \"paragraphIndex\": 7, \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"text\": \"What would those downsides be?\"}, {\"relativeIndex\": 2, \"lineId\": 14, \"paragraphIndex\": 8, \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Vampires are, as you know, not a popular race in the multiverse. That will naturally create some challenges. I will also admit that your Path will be more locked than before. You will need to cultivate some parts unique to your vampire race, but those will more likely than not happen in concert with sharpening your blade against powerful foes. Admittedly, I also do not know how your current Patron will react, seeing as I cannot recall the Primordial of Time ever blessing vampires before. Then again, he rarely blesses anyone. Lastly, as a vampire, you will need to feed, but I’m certain you would be able to have that sorted working with skilled alchemists.\"}], \"chapterCharacters\": [{\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"katherine\", \"name\": \"Katherine\", \"aliases\": [\"True Ancestor\", \"Vampire Godess\", \"vampire-godess\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iskar\", \"name\": \"Iskar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"succubus\", \"name\": \"Succubus\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"katherine\",\n  \"characterName\": \"Katherine\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"previous_paragraph_cue\",\n    \"next_paragraph_cue\",\n    \"dialogue_flow\",\n    \"content_analysis\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0028 - Chapter 1085 - A Quality Week",
+  "currentCharacterId": "the-sword-saint",
+  "currentCharacterName": "The Sword Saint",
+  "currentParagraphText": "“Meanwhile, should you become a vampire, you could shed that profession and pursue the sword far more single-mindedly. What’s more, considering who you are and that you own the Blood Legacy, I’m confident you will evolve into a powerful variant. The affinities of water and time that you cultivate currently are also easily transferable, as time is a common affinity controlled by vampires already, and with your powerful water affinity, you can combine it with blood and create something even greater. Overall, I believe you would become a lot more powerful as a vampire with your endurance in combat, especially shooting through the roof with your resources combined. I see very few downsides to embracing vampirism at your current stage.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "the-sword-saint",
+    "currentCharacterName": "The Sword Saint",
+    "currentParagraphText": "“Meanwhile, should you become a vampire, you could shed that profession and pursue the sword far more single-mindedly. What’s more, considering who you are and that you own the Blood Legacy, I’m confident you will evolve into a powerful variant. The affinities of water and time that you cultivate currently are also easily transferable, as time is a common affinity controlled by vampires already, and with your powerful water affinity, you can combine it with blood and create something even greater. Overall, I believe you would become a lot more powerful as a vampire with your endurance in combat, especially shooting through the roof with your resources combined. I see very few downsides to embracing vampirism at your current stage.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 10,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“What would those downsides be?” the Sword Saint asked.",
+    "paragraphIndex": 6,
+    "previousParagraphText": "The Sword Saint remained quiet as the True Ancestor continued. He knew he wouldn’t hear anything he hadn’t already considered himself, but out of politeness, he at least allowed her to try.",
+    "reasonCodes": [
+      "previous_paragraph_cue",
+      "next_paragraph_cue",
+      "dialogue_flow",
+      "content_analysis"
+    ],
+    "suggestedCharacterId": "katherine",
+    "suggestedCharacterName": "Katherine",
+    "toolTrace": []
+  },
+  "lineId": 10,
+  "nextParagraphText": "“What would those downsides be?” the Sword Saint asked.",
+  "paragraphIndex": 6,
+  "previousParagraphText": "The Sword Saint remained quiet as the True Ancestor continued. He knew he wouldn’t hear anything he hadn’t already considered himself, but out of politeness, he at least allowed her to try."
+}

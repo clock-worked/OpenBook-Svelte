@@ -1,0 +1,364 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "e6362984cec9b510d4cec23b224cb4b428e3439fc6714d6b8bdf65d460cd8fd4",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\e6362984cec9b510d4cec23b224cb4b428e3439fc6714d6b8bdf65d460cd8fd4.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "irin",
+        "characterName": "Irin",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "contextual_role_match"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "maria",
+            "characterName": "Maria",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "maria"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "vesperia",
+            "characterName": "Vesperia",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "vesperia"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "carmen",
+            "name": "Carmen",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "name": "The Sword Saint",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "name": "Sylphie",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "stormild",
+            "name": "stormild",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "vesperia",
+            "name": "Vesperia",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "maria",
+            "name": "Maria",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "succubus",
+            "name": "Succubus",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "irin",
+            "name": "Irin",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the familiar demon spoke as Jake looked over and saw Irin walk in.",
+          "cueVerb": "spoke",
+          "cueVerbType": "speech",
+          "firstSentence": "I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,",
+          "lastSentence": "I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,",
+          "mentionedEntities": [
+            "The Malefic Viper",
+            "yip"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the familiar demon"
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [
+                "The Malefic Viper",
+                "yip"
+              ],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": true,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36,
+            "misattributionRisk": 0.136,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Maria",
+            "sourceCandidates": [
+              "Maria",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.864
+          },
+          "candidates": [
+            {
+              "characterId": "maria",
+              "confidence": 0.864,
+              "name": "Maria",
+              "reasons": [
+                "parser_match",
+                "legacy_match",
+                "speech_verb"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.504,
+              "name": "Jake",
+              "reasons": [
+                "speech_verb"
+              ]
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "maria",
+          "currentCharacterName": "Maria",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 65,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "maria",
+              "characterName": "Maria",
+              "isReturning": false,
+              "lineId": 65,
+              "text": "I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the familiar demon spoke as Jake looked over and saw Irin walk in.",
+              "cueVerb": "spoke",
+              "cueVerbType": "speech",
+              "firstSentence": "I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,",
+              "lastSentence": "I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,",
+              "mentionedEntities": [
+                "The Malefic Viper",
+                "yip"
+              ],
+              "quoteIndex": 0,
+              "quoteText": "I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,",
+              "speakerNameMatch": null,
+              "speakerSurface": "the familiar demon"
+            }
+          ],
+          "currentParagraphText": "“I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,” the familiar demon spoke as Jake looked over and saw Irin walk in.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "The succubus looked much the same as usual, with the only difference being her more conservative outfit. She usually wore quite revealing clothing, while now she looked more like a professional office clerk. He also gave her a quick Identify for good measure and saw she had made great progress.",
+          "paragraphIndex": 39,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "After having given everyone time to get their bearings, a recognizable voice echoed throughout the chamber as the door opened."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 51,
+            "paragraphIndex": 29,
+            "relativeIndex": -4,
+            "text": "Ree,"
+          },
+          {
+            "characterId": "vesperia",
+            "characterName": "Vesperia",
+            "lineId": 53,
+            "paragraphIndex": 30,
+            "relativeIndex": -3,
+            "text": "Excuse me, Sire, would it be possible to expedite our return?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 56,
+            "paragraphIndex": 32,
+            "relativeIndex": -2,
+            "text": "Oh, of course, let’s get going,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 58,
+            "paragraphIndex": 33,
+            "relativeIndex": -1,
+            "text": "Do hang on, everyone. The process is still a bit crude, and getting pulled through the void doesn’t tend to be the most pleasant of experiences. Especially for any first-timers,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 70,
+            "paragraphIndex": 43,
+            "relativeIndex": 1,
+            "text": "Thank you,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 72,
+            "paragraphIndex": 43,
+            "relativeIndex": 2,
+            "text": "I assume everything’s been taken care of here while I was gone?"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 65, \"text\": \"I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,\", \"currentCharacterId\": \"maria\", \"currentCharacterName\": \"Maria\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Maria\", \"sourceCandidates\": [\"Maria\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.864, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.136, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"The Malefic Viper\", \"yip\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"maria\", \"name\": \"Maria\", \"confidence\": 0.864, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.504, \"reasons\": [\"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 39, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,” the familiar demon spoke as Jake looked over and saw Irin walk in.\", \"currentParagraphDialogue\": [{\"lineId\": 65, \"text\": \"I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,\", \"characterId\": \"maria\", \"characterName\": \"Maria\", \"isReturning\": false}], \"previousParagraphText\": \"After having given everyone time to get their bearings, a recognizable voice echoed throughout the chamber as the door opened.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"The succubus looked much the same as usual, with the only difference being her more conservative outfit. She usually wore quite revealing clothing, while now she looked more like a professional office clerk. He also gave her a quick Identify for good measure and saw she had made great progress.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,\", \"cuePosition\": \"after\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"the familiar demon spoke as Jake looked over and saw Irin walk in.\", \"speakerSurface\": \"the familiar demon\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"The Malefic Viper\", \"yip\"], \"addressedEntity\": null, \"firstSentence\": \"I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,\", \"lastSentence\": \"I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,\", \"cuePosition\": \"after\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"the familiar demon spoke as Jake looked over and saw Irin walk in.\", \"speakerSurface\": \"the familiar demon\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"The Malefic Viper\", \"yip\"], \"addressedEntity\": null, \"firstSentence\": \"I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,\", \"lastSentence\": \"I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"maria\", \"characterName\": \"Maria\", \"aliases\": [], \"roleLabels\": [\"maria\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"vesperia\", \"characterName\": \"Vesperia\", \"aliases\": [], \"roleLabels\": [\"vesperia\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 51, \"paragraphIndex\": 29, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Ree,\"}, {\"relativeIndex\": -3, \"lineId\": 53, \"paragraphIndex\": 30, \"characterId\": \"vesperia\", \"characterName\": \"Vesperia\", \"text\": \"Excuse me, Sire, would it be possible to expedite our return?\"}, {\"relativeIndex\": -2, \"lineId\": 56, \"paragraphIndex\": 32, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Oh, of course, let’s get going,\"}, {\"relativeIndex\": -1, \"lineId\": 58, \"paragraphIndex\": 33, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Do hang on, everyone. The process is still a bit crude, and getting pulled through the void doesn’t tend to be the most pleasant of experiences. Especially for any first-timers,\"}, {\"relativeIndex\": 1, \"lineId\": 70, \"paragraphIndex\": 43, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Thank you,\"}, {\"relativeIndex\": 2, \"lineId\": 72, \"paragraphIndex\": 43, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I assume everything’s been taken care of here while I was gone?\"}], \"chapterCharacters\": [{\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"stormild\", \"name\": \"stormild\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vesperia\", \"name\": \"Vesperia\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"maria\", \"name\": \"Maria\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"succubus\", \"name\": \"Succubus\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"irin\",\n  \"characterName\": \"Irin\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"contextual_role_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0023 - Chapter 1080 - Out Of This Universe",
+  "currentCharacterId": "maria",
+  "currentCharacterName": "Maria",
+  "currentParagraphText": "“I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,” the familiar demon spoke as Jake looked over and saw Irin walk in.",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "maria",
+    "currentCharacterName": "Maria",
+    "currentParagraphText": "“I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,” the familiar demon spoke as Jake looked over and saw Irin walk in.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 65,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "The succubus looked much the same as usual, with the only difference being her more conservative outfit. She usually wore quite revealing clothing, while now she looked more like a professional office clerk. He also gave her a quick Identify for good measure and saw she had made great progress.",
+    "paragraphIndex": 39,
+    "previousParagraphText": "After having given everyone time to get their bearings, a recognizable voice echoed throughout the chamber as the door opened.",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "contextual_role_match"
+    ],
+    "suggestedCharacterId": "irin",
+    "suggestedCharacterName": "Irin",
+    "toolTrace": []
+  },
+  "lineId": 65,
+  "nextParagraphText": "The succubus looked much the same as usual, with the only difference being her more conservative outfit. She usually wore quite revealing clothing, while now she looked more like a professional office clerk. He also gave her a quick Identify for good measure and saw she had made great progress.",
+  "paragraphIndex": 39,
+  "previousParagraphText": "After having given everyone time to get their bearings, a recognizable voice echoed throughout the chamber as the door opened."
+}

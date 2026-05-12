@@ -1,0 +1,351 @@
+{
+  "cacheKey": "b2689cb89acc5c934500069329dde91827e993427805298ce48ea3ee6897f334",
+  "createdAt": "2026-04-02T22:36:28.620214+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "caleb",
+    "characterName": "Caleb",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_flow_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "caleb"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "maja",
+        "characterName": "Maja",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "maja"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "maja",
+        "name": "Maja",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "caleb",
+        "name": "Caleb",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "before",
+      "cueText": "Caleb got quiet as he also stared out at the city before sighing.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "A lot more than you have, I reckon...",
+      "lastSentence": "and I know where you’re going with this.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "A lot more than you have, I reckon... and I know where you’re going with this.",
+      "speakerNameMatch": null,
+      "speakerSurface": "Caleb got quiet"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Caleb"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.816,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "caleb",
+          "confidence": 0.456,
+          "name": "Caleb",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Protagonist"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 48,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "A lot more than you have, I reckon... and I know where you’re going with this."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 48,
+          "text": "A lot more than you have, I reckon... and I know where you’re going with this."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Caleb got quiet as he also stared out at the city before sighing.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "A lot more than you have, I reckon...",
+          "lastSentence": "and I know where you’re going with this.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "A lot more than you have, I reckon... and I know where you’re going with this.",
+          "speakerNameMatch": null,
+          "speakerSurface": "Caleb got quiet"
+        }
+      ],
+      "currentParagraphText": "Caleb got quiet as he also stared out at the city before sighing. “A lot more than you have, I reckon... and I know where you’re going with this.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 49,
+          "text": "Have you talked to them about it?"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake questioned with a frown.",
+          "cueVerb": "questioned",
+          "cueVerbType": "speech",
+          "firstSentence": "Have you talked to them about it?",
+          "lastSentence": "Have you talked to them about it?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Have you talked to them about it?",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "nextParagraphText": "“Have you talked to them about it?” Jake questioned with a frown.",
+      "paragraphIndex": 41,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 44,
+          "text": "Have you ever thought about the future?"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 46,
+          "text": "And I’m not just talking about ten or even a hundred years. I’m talking about the future a thousand or maybe even ten thousand years from now."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake asked as he looked at his brother.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "Have you ever thought about the future?",
+          "lastSentence": "Have you ever thought about the future?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Have you ever thought about the future?",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jake asked as he looked at his brother.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "And I’m not just talking about ten or even a hundred years.",
+          "lastSentence": "I’m talking about the future a thousand or maybe even ten thousand years from now.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "And I’m not just talking about ten or even a hundred years. I’m talking about the future a thousand or maybe even ten thousand years from now.",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "previousParagraphText": "“Have you ever thought about the future?” Jake asked as he looked at his brother. “ And I’m not just talking about ten or even a hundred years. I’m talking about the future a thousand or maybe even ten thousand years from now.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "maja",
+        "characterName": "Maja",
+        "lineId": 18,
+        "paragraphIndex": 15,
+        "relativeIndex": -4,
+        "text": "What child wants their mom working at the school? Caleb and I both agreed it’s better to give him at least one space where no one from his family is constantly hovering. One place where he can just be a kid. I will admit it’s a bit nerve-wracking, but we can’t go full helicopter parents, now, can we?"
+      },
+      {
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "lineId": 42,
+        "paragraphIndex": 39,
+        "relativeIndex": -3,
+        "text": "What did you want to talk about?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 44,
+        "paragraphIndex": 40,
+        "relativeIndex": -2,
+        "text": "Have you ever thought about the future?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 46,
+        "paragraphIndex": 40,
+        "relativeIndex": -1,
+        "text": "And I’m not just talking about ten or even a hundred years. I’m talking about the future a thousand or maybe even ten thousand years from now."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 49,
+        "paragraphIndex": 42,
+        "relativeIndex": 1,
+        "text": "Have you talked to them about it?"
+      },
+      {
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "lineId": 51,
+        "paragraphIndex": 43,
+        "relativeIndex": 2,
+        "text": "Yeah, I have,"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "caleb",
+            "characterName": "Caleb",
+            "evidence": [
+              "token_overlap:caleb"
+            ],
+            "score": 0.5667
+          }
+        ],
+        "surface": "caleb got quiet"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 48, \"text\": \"A lot more than you have, I reckon... and I know where you’re going with this.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Caleb\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 41, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Caleb got quiet as he also stared out at the city before sighing. “A lot more than you have, I reckon... and I know where you’re going with this.”\", \"currentParagraphDialogue\": [{\"lineId\": 48, \"text\": \"A lot more than you have, I reckon... and I know where you’re going with this.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"“Have you ever thought about the future?” Jake asked as he looked at his brother. “ And I’m not just talking about ten or even a hundred years. I’m talking about the future a thousand or maybe even ten thousand years from now.”\", \"previousParagraphDialogue\": [{\"lineId\": 44, \"text\": \"Have you ever thought about the future?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 46, \"text\": \"And I’m not just talking about ten or even a hundred years. I’m talking about the future a thousand or maybe even ten thousand years from now.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"nextParagraphText\": \"“Have you talked to them about it?” Jake questioned with a frown.\", \"nextParagraphDialogue\": [{\"lineId\": 49, \"text\": \"Have you talked to them about it?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"A lot more than you have, I reckon... and I know where you’re going with this.\", \"cuePosition\": \"before\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Caleb got quiet as he also stared out at the city before sighing.\", \"speakerSurface\": \"Caleb got quiet\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"A lot more than you have, I reckon...\", \"lastSentence\": \"and I know where you’re going with this.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Have you ever thought about the future?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake asked as he looked at his brother.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Have you ever thought about the future?\", \"lastSentence\": \"Have you ever thought about the future?\"}, {\"quoteIndex\": 1, \"quoteText\": \"And I’m not just talking about ten or even a hundred years. I’m talking about the future a thousand or maybe even ten thousand years from now.\", \"cuePosition\": \"before\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake asked as he looked at his brother.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"And I’m not just talking about ten or even a hundred years.\", \"lastSentence\": \"I’m talking about the future a thousand or maybe even ten thousand years from now.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Have you talked to them about it?\", \"cuePosition\": \"after\", \"cueVerb\": \"questioned\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake questioned with a frown.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Have you talked to them about it?\", \"lastSentence\": \"Have you talked to them about it?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"A lot more than you have, I reckon... and I know where you’re going with this.\", \"cuePosition\": \"before\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Caleb got quiet as he also stared out at the city before sighing.\", \"speakerSurface\": \"Caleb got quiet\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"A lot more than you have, I reckon...\", \"lastSentence\": \"and I know where you’re going with this.\"}, \"sceneEntities\": [{\"surface\": \"caleb got quiet\", \"matches\": [{\"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"score\": 0.5667, \"evidence\": [\"token_overlap:caleb\"]}]}], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"aliases\": [], \"roleLabels\": [\"caleb\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"maja\", \"characterName\": \"Maja\", \"aliases\": [], \"roleLabels\": [\"maja\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 18, \"paragraphIndex\": 15, \"characterId\": \"maja\", \"characterName\": \"Maja\", \"text\": \"What child wants their mom working at the school? Caleb and I both agreed it’s better to give him at least one space where no one from his family is constantly hovering. One place where he can just be a kid. I will admit it’s a bit nerve-wracking, but we can’t go full helicopter parents, now, can we?\"}, {\"relativeIndex\": -3, \"lineId\": 42, \"paragraphIndex\": 39, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"What did you want to talk about?\"}, {\"relativeIndex\": -2, \"lineId\": 44, \"paragraphIndex\": 40, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Have you ever thought about the future?\"}, {\"relativeIndex\": -1, \"lineId\": 46, \"paragraphIndex\": 40, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"And I’m not just talking about ten or even a hundred years. I’m talking about the future a thousand or maybe even ten thousand years from now.\"}, {\"relativeIndex\": 1, \"lineId\": 49, \"paragraphIndex\": 42, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Have you talked to them about it?\"}, {\"relativeIndex\": 2, \"lineId\": 51, \"paragraphIndex\": 43, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"Yeah, I have,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"maja\", \"name\": \"Maja\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"caleb\",\n  \"characterName\": \"Caleb\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_flow_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

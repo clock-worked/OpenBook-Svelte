@@ -1,0 +1,392 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "f033986cda2e3e155bfc62f161b236c62dad1a2fb289422f930fcd021c9d7629",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\f033986cda2e3e155bfc62f161b236c62dad1a2fb289422f930fcd021c9d7629.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.99,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "viper",
+              "the malefic viper",
+              "malefic viper",
+              "villy"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "name": "The Sword Saint",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "vampire",
+            "name": "Vampire",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I got it from the first part,",
+          "lastSentence": "I got it from the first part,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I got it from the first part,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "The Malefic Viper",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.19599999999999995,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "The Malefic Viper"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.804
+          },
+          "candidates": [
+            {
+              "characterId": "jake",
+              "confidence": 0.804,
+              "name": "Jake",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "viper",
+              "confidence": 0.444,
+              "name": "The Malefic Viper",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [
+            "Protagonist"
+          ],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 56,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "I got it from the first part,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 56,
+              "text": "I got it from the first part,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "I got it from the first part,",
+              "lastSentence": "I got it from the first part,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "I got it from the first part,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“I got it from the first part,” Jake interrupted the Viper.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "viper",
+              "characterName": "The Malefic Viper",
+              "isReturning": false,
+              "lineId": 58,
+              "text": "Hey, don’t blame me; you’re notoriously dense,"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Villy grinned, having way more fun than he should have.",
+              "cueVerb": "grinned",
+              "cueVerbType": "reaction",
+              "firstSentence": "Hey, don’t blame me; you’re notoriously dense,",
+              "lastSentence": "Hey, don’t blame me; you’re notoriously dense,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Hey, don’t blame me; you’re notoriously dense,",
+              "speakerNameMatch": null,
+              "speakerSurface": "Villy"
+            }
+          ],
+          "nextParagraphText": "“Hey, don’t blame me; you’re notoriously dense,” Villy grinned, having way more fun than he should have.",
+          "paragraphIndex": 22,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 53,
+              "text": "Come on, you really need me to outright tell you?"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 55,
+              "text": "Little hint... it’s more from you than me; it’s not for Dina but the other female member of the Pantheon of Life you spent a lot of time with during your Nevermore visit, and I believe she wields a bow, while-"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Come on, you really need me to outright tell you?",
+              "lastSentence": "Come on, you really need me to outright tell you?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Come on, you really need me to outright tell you?",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Villy was fully back to teasing him.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Little hint...",
+              "lastSentence": "it’s more from you than me; it’s not for Dina but the other female member of the Pantheon of Life you spent a lot of time with during your Nevermore visit, and I believe she wields a bow, while-",
+              "mentionedEntities": [
+                "Dina"
+              ],
+              "quoteIndex": 1,
+              "quoteText": "Little hint... it’s more from you than me; it’s not for Dina but the other female member of the Pantheon of Life you spent a lot of time with during your Nevermore visit, and I believe she wields a bow, while-",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "previousParagraphText": "“Come on, you really need me to outright tell you?” Villy was fully back to teasing him. “Little hint... it’s more from you than me; it’s not for Dina but the other female member of the Pantheon of Life you spent a lot of time with during your Nevermore visit, and I believe she wields a bow, while-”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 50,
+            "paragraphIndex": 19,
+            "relativeIndex": -4,
+            "text": "Also, they are all enchanted to only be usable by their recipients. On that note, one of them is for Nature’s Attendant, and one is for Yggdrasil."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 51,
+            "paragraphIndex": 20,
+            "relativeIndex": -3,
+            "text": "How about that last one?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 53,
+            "paragraphIndex": 21,
+            "relativeIndex": -2,
+            "text": "Come on, you really need me to outright tell you?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 55,
+            "paragraphIndex": 21,
+            "relativeIndex": -1,
+            "text": "Little hint... it’s more from you than me; it’s not for Dina but the other female member of the Pantheon of Life you spent a lot of time with during your Nevermore visit, and I believe she wields a bow, while-"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 58,
+            "paragraphIndex": 23,
+            "relativeIndex": 1,
+            "text": "Hey, don’t blame me; you’re notoriously dense,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 63,
+            "paragraphIndex": 27,
+            "relativeIndex": 2,
+            "text": "Is the old man still at the vampire place?"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 56, \"text\": \"I got it from the first part,\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"The Malefic Viper\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Malefic Viper\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 22, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I got it from the first part,” Jake interrupted the Viper.\", \"currentParagraphDialogue\": [{\"lineId\": 56, \"text\": \"I got it from the first part,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"previousParagraphText\": \"“Come on, you really need me to outright tell you?” Villy was fully back to teasing him. “Little hint... it’s more from you than me; it’s not for Dina but the other female member of the Pantheon of Life you spent a lot of time with during your Nevermore visit, and I believe she wields a bow, while-”\", \"previousParagraphDialogue\": [{\"lineId\": 53, \"text\": \"Come on, you really need me to outright tell you?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 55, \"text\": \"Little hint... it’s more from you than me; it’s not for Dina but the other female member of the Pantheon of Life you spent a lot of time with during your Nevermore visit, and I believe she wields a bow, while-\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"nextParagraphText\": \"“Hey, don’t blame me; you’re notoriously dense,” Villy grinned, having way more fun than he should have.\", \"nextParagraphDialogue\": [{\"lineId\": 58, \"text\": \"Hey, don’t blame me; you’re notoriously dense,\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I got it from the first part,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I got it from the first part,\", \"lastSentence\": \"I got it from the first part,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Come on, you really need me to outright tell you?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Come on, you really need me to outright tell you?\", \"lastSentence\": \"Come on, you really need me to outright tell you?\"}, {\"quoteIndex\": 1, \"quoteText\": \"Little hint... it’s more from you than me; it’s not for Dina but the other female member of the Pantheon of Life you spent a lot of time with during your Nevermore visit, and I believe she wields a bow, while-\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Villy was fully back to teasing him.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Dina\"], \"addressedEntity\": null, \"firstSentence\": \"Little hint...\", \"lastSentence\": \"it’s more from you than me; it’s not for Dina but the other female member of the Pantheon of Life you spent a lot of time with during your Nevermore visit, and I believe she wields a bow, while-\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Hey, don’t blame me; you’re notoriously dense,\", \"cuePosition\": \"after\", \"cueVerb\": \"grinned\", \"cueVerbType\": \"reaction\", \"cueText\": \"Villy grinned, having way more fun than he should have.\", \"speakerSurface\": \"Villy\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Hey, don’t blame me; you’re notoriously dense,\", \"lastSentence\": \"Hey, don’t blame me; you’re notoriously dense,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I got it from the first part,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I got it from the first part,\", \"lastSentence\": \"I got it from the first part,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 50, \"paragraphIndex\": 19, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Also, they are all enchanted to only be usable by their recipients. On that note, one of them is for Nature’s Attendant, and one is for Yggdrasil.\"}, {\"relativeIndex\": -3, \"lineId\": 51, \"paragraphIndex\": 20, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"How about that last one?\"}, {\"relativeIndex\": -2, \"lineId\": 53, \"paragraphIndex\": 21, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Come on, you really need me to outright tell you?\"}, {\"relativeIndex\": -1, \"lineId\": 55, \"paragraphIndex\": 21, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Little hint... it’s more from you than me; it’s not for Dina but the other female member of the Pantheon of Life you spent a lot of time with during your Nevermore visit, and I believe she wields a bow, while-\"}, {\"relativeIndex\": 1, \"lineId\": 58, \"paragraphIndex\": 23, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Hey, don’t blame me; you’re notoriously dense,\"}, {\"relativeIndex\": 2, \"lineId\": 63, \"paragraphIndex\": 27, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Is the old man still at the vampire place?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vampire\", \"name\": \"Vampire\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0029 - Chapter 1086 - Old Man Vibes",
+  "currentCharacterId": "jake",
+  "currentCharacterName": "Jake",
+  "currentParagraphText": "“I got it from the first part,” Jake interrupted the Viper.",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.99,
+    "currentCharacterId": "jake",
+    "currentCharacterName": "Jake",
+    "currentParagraphText": "“I got it from the first part,” Jake interrupted the Viper.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 56,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Hey, don’t blame me; you’re notoriously dense,” Villy grinned, having way more fun than he should have.",
+    "paragraphIndex": 22,
+    "previousParagraphText": "“Come on, you really need me to outright tell you?” Villy was fully back to teasing him. “Little hint... it’s more from you than me; it’s not for Dina but the other female member of the Pantheon of Life you spent a lot of time with during your Nevermore visit, and I believe she wields a bow, while-”",
+    "reasonCodes": [
+      "explicit_narration_cue"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 56,
+  "nextParagraphText": "“Hey, don’t blame me; you’re notoriously dense,” Villy grinned, having way more fun than he should have.",
+  "paragraphIndex": 22,
+  "previousParagraphText": "“Come on, you really need me to outright tell you?” Villy was fully back to teasing him. “Little hint... it’s more from you than me; it’s not for Dina but the other female member of the Pantheon of Life you spent a lot of time with during your Nevermore visit, and I believe she wields a bow, while-”"
+}

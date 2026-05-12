@@ -1,0 +1,292 @@
+{
+  "cacheKey": "e589b80b9d5f3b4fec12961ce0a4d0aeffee96e79d50e289c6f9d1b86c291918",
+  "createdAt": "2026-04-19T04:03:28.483635+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "minaga",
+    "characterName": "Minaga",
+    "confidence": 0.9,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "contextual_arrival_speaker",
+      "role_to_character_resolution"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "characterName": "blood",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "blood"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Unique Lifeform",
+          "The Unique Lifeform",
+          "the-unique-lifeform",
+          "the-unique-lifeform-2"
+        ],
+        "characterId": "minaga",
+        "name": "Minaga",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "name": "blood",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "chosen",
+        "name": "Chosen",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Hi.",
+      "lastSentence": "Hi.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Hi.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Creature",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.85,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.3263999999999999,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "The Sword Saint",
+        "sourceCandidates": [
+          "The Sword Saint",
+          "Creature"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.808
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.808,
+          "name": "The Sword Saint",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.448,
+          "name": "Creature",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 121,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Hi."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 121,
+          "text": "Hi."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Hi.",
+          "lastSentence": "Hi.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Hi.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Hi.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "The Chosen was taken aback and looked ready to leap into action as he realized who had come. Without any hesitation, and ignoring his still-healing wound, he kneeled down.",
+      "paragraphIndex": 75,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Appearing out of thin air, a familiar blue creature suddenly just stood there, exuding the aura of an S-grade."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "blood",
+        "characterName": "blood",
+        "lineId": 108,
+        "paragraphIndex": 65,
+        "relativeIndex": -4,
+        "text": "It’s not often I get to fight swordsmen superior to myself, especially not one who’s lower level than myself."
+      },
+      {
+        "characterId": "the_sword_saint",
+        "characterName": "The Sword Saint",
+        "lineId": 109,
+        "paragraphIndex": 66,
+        "relativeIndex": -3,
+        "text": "You’re being too generous,"
+      },
+      {
+        "characterId": "the_sword_saint",
+        "characterName": "The Sword Saint",
+        "lineId": 111,
+        "paragraphIndex": 66,
+        "relativeIndex": -2,
+        "text": "Our Paths of swordsmanship clearly differ, and even I can acknowledge that a dual-wielding style is inherently more difficult to master compared to only using one weapon."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 112,
+        "paragraphIndex": 67,
+        "relativeIndex": -1,
+        "text": "Don’t sell yourself short. All Paths are endless, and even if one may be harder to reach initial mastery with, that doesn’t make it harder when climbing toward the top. I would be a fool if I dared blame my own Path for my shortcomings,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 123,
+        "paragraphIndex": 77,
+        "relativeIndex": 1,
+        "text": "I greet the All-God Legion."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 125,
+        "paragraphIndex": 78,
+        "relativeIndex": 2,
+        "text": "Thanks, pal, but I’m not here for you."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 121, \"text\": \"Hi.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"The Sword Saint\", \"sourceCandidates\": [\"The Sword Saint\", \"Creature\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.808, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.3263999999999999, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.85, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Creature\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"The Sword Saint\", \"confidence\": 0.808, \"reasons\": null}, {\"characterId\": null, \"name\": \"Creature\", \"confidence\": 0.448, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 75, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Hi.”\", \"currentParagraphDialogue\": [{\"lineId\": 121, \"text\": \"Hi.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"Appearing out of thin air, a familiar blue creature suddenly just stood there, exuding the aura of an S-grade.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"The Chosen was taken aback and looked ready to leap into action as he realized who had come. Without any hesitation, and ignoring his still-healing wound, he kneeled down.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Hi.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Hi.\", \"lastSentence\": \"Hi.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Hi.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Hi.\", \"lastSentence\": \"Hi.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"blood\", \"characterName\": \"blood\", \"aliases\": [], \"roleLabels\": [\"blood\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 108, \"paragraphIndex\": 65, \"characterId\": \"blood\", \"characterName\": \"blood\", \"text\": \"It’s not often I get to fight swordsmen superior to myself, especially not one who’s lower level than myself.\"}, {\"relativeIndex\": -3, \"lineId\": 109, \"paragraphIndex\": 66, \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"text\": \"You’re being too generous,\"}, {\"relativeIndex\": -2, \"lineId\": 111, \"paragraphIndex\": 66, \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Our Paths of swordsmanship clearly differ, and even I can acknowledge that a dual-wielding style is inherently more difficult to master compared to only using one weapon.\"}, {\"relativeIndex\": -1, \"lineId\": 112, \"paragraphIndex\": 67, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Don’t sell yourself short. All Paths are endless, and even if one may be harder to reach initial mastery with, that doesn’t make it harder when climbing toward the top. I would be a fool if I dared blame my own Path for my shortcomings,\"}, {\"relativeIndex\": 1, \"lineId\": 123, \"paragraphIndex\": 77, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I greet the All-God Legion.\"}, {\"relativeIndex\": 2, \"lineId\": 125, \"paragraphIndex\": 78, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Thanks, pal, but I’m not here for you.\"}], \"chapterCharacters\": [{\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"blood\", \"name\": \"blood\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"chosen\", \"name\": \"Chosen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"minaga\",\n  \"characterName\": \"Minaga\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"contextual_arrival_speaker\",\n    \"role_to_character_resolution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

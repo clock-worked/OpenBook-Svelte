@@ -24,6 +24,9 @@ export const API_BASE_URL = (configuredApiBaseUrl && configuredApiBaseUrl.length
 
 export const API_ENDPOINTS = {
     parse: '/api/parse',
+    dialogueAiAssist: '/api/dialogue-ai-assist',
+    dialogueAiAssistStatus: (requestId: string) =>
+        `/api/dialogue-ai-assist-status/${encodeURIComponent(requestId)}`,
     setBookRoot: '/api/set-book-root',
     setAudioRoot: '/api/set-audio-root',
     listChapters: '/api/list-chapters',

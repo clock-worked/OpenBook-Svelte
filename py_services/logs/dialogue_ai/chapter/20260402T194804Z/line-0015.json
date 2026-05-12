@@ -1,0 +1,320 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "892c5f680b6e513dd76a93be3684b96eee8292f55ecda9e2887d63af2116936b",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\892c5f680b6e513dd76a93be3684b96eee8292f55ecda9e2887d63af2116936b.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.99,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "continues_paragraph_dialogue"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "artemis"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake waved off the notion.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say.",
+          "lastSentence": "Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": true,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Artemis",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.524,
+            "misattributionRisk": 0.1568,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "Artemis"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.98
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.98,
+              "name": "Jake",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.456,
+              "name": "Artemis",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [
+            "Protagonist"
+          ],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 15,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 1,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 13,
+              "text": "Don’t worry, if he does get mad, I’ll handle it,"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 15,
+              "text": "Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Don’t worry, if he does get mad, I’ll handle it,",
+              "lastSentence": "Don’t worry, if he does get mad, I’ll handle it,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Don’t worry, if he does get mad, I’ll handle it,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Jake waved off the notion.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say.",
+              "lastSentence": "Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say.",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Don’t worry, if he does get mad, I’ll handle it,” Jake waved off the notion. “Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say.”",
+          "dialogueLineCount": 2,
+          "paragraphIndex": 8
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 8,
+            "paragraphIndex": 5,
+            "relativeIndex": -4,
+            "text": "So fast that it really didn’t make any sense. It was as if it exploded into motion the second you let go of the string. I saw the string move, and the arrow didn’t even have time to get fully propelled by it."
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 10,
+            "paragraphIndex": 7,
+            "relativeIndex": -3,
+            "text": "I considered for a while what I could even teach you,"
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 12,
+            "paragraphIndex": 7,
+            "relativeIndex": -2,
+            "text": "I know you would benefit greatly simply from dueling, but I still wanted to help you more directly at least once. I may be overstepping with what the Malefic Viper finds acceptable, but I choose to accept the consequences if that’s the case."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 13,
+            "paragraphIndex": 8,
+            "relativeIndex": -1,
+            "text": "Don’t worry, if he does get mad, I’ll handle it,"
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 16,
+            "paragraphIndex": 9,
+            "relativeIndex": 1,
+            "text": "Alright. What I’m about to talk about next all comes down to you believing things to be facts despite that not necessarily being the case,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 18,
+            "paragraphIndex": 10,
+            "relativeIndex": 2,
+            "text": "What do you mean?"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 15, \"text\": \"Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Artemis\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.524, \"misattributionRisk\": 0.1568, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Artemis\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.98, \"reasons\": null}, {\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 8, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Don’t worry, if he does get mad, I’ll handle it,” Jake waved off the notion. “Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say.”\", \"currentParagraphDialogue\": [{\"lineId\": 13, \"text\": \"Don’t worry, if he does get mad, I’ll handle it,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 15, \"text\": \"Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Don’t worry, if he does get mad, I’ll handle it,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Don’t worry, if he does get mad, I’ll handle it,\", \"lastSentence\": \"Don’t worry, if he does get mad, I’ll handle it,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake waved off the notion.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say.\", \"lastSentence\": \"Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake waved off the notion.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say.\", \"lastSentence\": \"Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [], \"roleLabels\": [\"artemis\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 8, \"paragraphIndex\": 5, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"So fast that it really didn’t make any sense. It was as if it exploded into motion the second you let go of the string. I saw the string move, and the arrow didn’t even have time to get fully propelled by it.\"}, {\"relativeIndex\": -3, \"lineId\": 10, \"paragraphIndex\": 7, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"I considered for a while what I could even teach you,\"}, {\"relativeIndex\": -2, \"lineId\": 12, \"paragraphIndex\": 7, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"I know you would benefit greatly simply from dueling, but I still wanted to help you more directly at least once. I may be overstepping with what the Malefic Viper finds acceptable, but I choose to accept the consequences if that’s the case.\"}, {\"relativeIndex\": -1, \"lineId\": 13, \"paragraphIndex\": 8, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Don’t worry, if he does get mad, I’ll handle it,\"}, {\"relativeIndex\": 1, \"lineId\": 16, \"paragraphIndex\": 9, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Alright. What I’m about to talk about next all comes down to you believing things to be facts despite that not necessarily being the case,\"}, {\"relativeIndex\": 2, \"lineId\": 18, \"paragraphIndex\": 10, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"What do you mean?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"continues_paragraph_dialogue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0044 - Chapter 1101 - Conceptualizing Concepts/chapter.txt",
+  "currentCharacterId": "jake",
+  "currentCharacterName": "Jake",
+  "currentParagraphText": "“Don’t worry, if he does get mad, I’ll handle it,” Jake waved off the notion. “Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say.”",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.99,
+    "currentCharacterId": "jake",
+    "currentCharacterName": "Jake",
+    "currentParagraphText": "“Don’t worry, if he does get mad, I’ll handle it,” Jake waved off the notion. “Besides, I’m kind of dense and stubborn, so I doubt I’ll suddenly be corrupted by what you say.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 15,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Alright. What I’m about to talk about next all comes down to you believing things to be facts despite that not necessarily being the case,” Artemis said.",
+    "paragraphIndex": 8,
+    "previousParagraphText": "“I considered for a while what I could even teach you,” Artemis said. “I know you would benefit greatly simply from dueling, but I still wanted to help you more directly at least once. I may be overstepping with what the Malefic Viper finds acceptable, but I choose to accept the consequences if that’s the case.”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "continues_paragraph_dialogue"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 15,
+  "nextParagraphText": "“Alright. What I’m about to talk about next all comes down to you believing things to be facts despite that not necessarily being the case,” Artemis said.",
+  "paragraphIndex": 8,
+  "previousParagraphText": "“I considered for a while what I could even teach you,” Artemis said. “I know you would benefit greatly simply from dueling, but I still wanted to help you more directly at least once. I may be overstepping with what the Malefic Viper finds acceptable, but I choose to accept the consequences if that’s the case.”"
+}

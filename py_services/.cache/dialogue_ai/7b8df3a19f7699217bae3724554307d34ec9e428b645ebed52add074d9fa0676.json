@@ -1,0 +1,385 @@
+{
+  "cacheKey": "7b8df3a19f7699217bae3724554307d34ec9e428b645ebed52add074d9fa0676",
+  "createdAt": "2026-04-13T02:14:56.210503+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "natures-attendant",
+    "characterName": "Nature's Attendant",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration",
+      "role_resolution",
+      "dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "chimera",
+          "monster"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "false god",
+        "characterName": "False God",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "false god"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "beastkin-god",
+        "characterName": "Beastkin God",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "beastkin god"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [
+          "unknown-god",
+          "unknown-god-2"
+        ],
+        "characterId": "unknown-god",
+        "characterName": "Unknown God",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown god",
+          "unknown god 2"
+        ],
+        "wasRecentSpeaker": false
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Attendant",
+          "natures-attendant",
+          "natures-attendant-2",
+          "Nature Attendant"
+        ],
+        "characterId": "natures-attendant",
+        "name": "Nature's Attendant",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "before",
+      "cueText": "A few seconds passed before the god smiled.",
+      "cueVerb": "smiled",
+      "cueVerbType": "reaction",
+      "firstSentence": "I understand why you want to keep it.",
+      "lastSentence": "It’s a potent effect and not something easily replicated.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "I understand why you want to keep it. It’s a potent effect and not something easily replicated.",
+      "speakerNameMatch": null,
+      "speakerSurface": "A few seconds passed before the god"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Nature's Attendant",
+        "sourceCandidates": [
+          "Nature's Attendant",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Nature's Attendant",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 90,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "I understand why you want to keep it. It’s a potent effect and not something easily replicated."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 90,
+          "text": "I understand why you want to keep it. It’s a potent effect and not something easily replicated."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "A few seconds passed before the god smiled.",
+          "cueVerb": "smiled",
+          "cueVerbType": "reaction",
+          "firstSentence": "I understand why you want to keep it.",
+          "lastSentence": "It’s a potent effect and not something easily replicated.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I understand why you want to keep it. It’s a potent effect and not something easily replicated.",
+          "speakerNameMatch": null,
+          "speakerSurface": "A few seconds passed before the god"
+        }
+      ],
+      "currentParagraphText": "A few seconds passed before the god smiled. “I understand why you want to keep it. It’s a potent effect and not something easily replicated.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 91,
+          "text": "Yeah, it definitely served me well,"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake confirmed, looking at this old bow with nostalgic eyes. It had been with him in its current version all throughout Nevermore, which was already respectable, considering it was an item that couldn’t upgrade by itself like Eternal Hunger. Especially when one considered the stress Jake’s arcane affinity constantly put the poor bow under.",
+          "cueVerb": "confirmed",
+          "cueVerbType": "speech",
+          "firstSentence": "Yeah, it definitely served me well,",
+          "lastSentence": "Yeah, it definitely served me well,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Yeah, it definitely served me well,",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "nextParagraphText": "“Yeah, it definitely served me well,” Jake confirmed, looking at this old bow with nostalgic eyes. It had been with him in its current version all throughout Nevermore, which was already respectable, considering it was an item that couldn’t upgrade by itself like Eternal Hunger. Especially when one considered the stress Jake’s arcane affinity constantly put the poor bow under.",
+      "paragraphIndex": 62,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 87,
+          "text": "May I?"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Nature’s Attendant asked as he walked over, making Jake nod as the old man took the bow in his hands. Jake felt him try to inspect it with his energy, and he naturally allowed the god to do so.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "May I?",
+          "lastSentence": "May I?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "May I?",
+          "speakerNameMatch": null,
+          "speakerSurface": "Nature’s Attendant"
+        }
+      ],
+      "previousParagraphText": "“May I?” Nature’s Attendant asked as he walked over, making Jake nod as the old man took the bow in his hands. Jake felt him try to inspect it with his energy, and he naturally allowed the god to do so."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 80,
+        "paragraphIndex": 57,
+        "relativeIndex": -4,
+        "text": "From what I understood, you want it based on the Records of another bow you also possess?"
+      },
+      {
+        "characterId": "nature's_attendant",
+        "characterName": "Nature'S Attendant",
+        "lineId": 82,
+        "paragraphIndex": 57,
+        "relativeIndex": -3,
+        "text": "Could you show me this bow?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 83,
+        "paragraphIndex": 58,
+        "relativeIndex": -2,
+        "text": "Of course,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 87,
+        "paragraphIndex": 61,
+        "relativeIndex": -1,
+        "text": "May I?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 91,
+        "paragraphIndex": 63,
+        "relativeIndex": 1,
+        "text": "Yeah, it definitely served me well,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 93,
+        "paragraphIndex": 64,
+        "relativeIndex": 2,
+        "text": "Tonken, do you believe it feasible?"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "false god",
+            "characterName": "False God",
+            "evidence": [
+              "token_overlap:god"
+            ],
+            "score": 0.52
+          },
+          {
+            "characterId": "beastkin-god",
+            "characterName": "Beastkin God",
+            "evidence": [
+              "token_overlap:god"
+            ],
+            "score": 0.52
+          },
+          {
+            "characterId": "unknown-god",
+            "characterName": "Unknown God",
+            "evidence": [
+              "token_overlap:god",
+              "generic_placeholder_penalty"
+            ],
+            "score": 0.364
+          }
+        ],
+        "surface": "a few seconds passed before the god"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 90, \"text\": \"I understand why you want to keep it. It’s a potent effect and not something easily replicated.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Nature's Attendant\", \"sourceCandidates\": [\"Nature's Attendant\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Nature's Attendant\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 62, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"A few seconds passed before the god smiled. “I understand why you want to keep it. It’s a potent effect and not something easily replicated.”\", \"currentParagraphDialogue\": [{\"lineId\": 90, \"text\": \"I understand why you want to keep it. It’s a potent effect and not something easily replicated.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“May I?” Nature’s Attendant asked as he walked over, making Jake nod as the old man took the bow in his hands. Jake felt him try to inspect it with his energy, and he naturally allowed the god to do so.\", \"previousParagraphDialogue\": [{\"lineId\": 87, \"text\": \"May I?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"nextParagraphText\": \"“Yeah, it definitely served me well,” Jake confirmed, looking at this old bow with nostalgic eyes. It had been with him in its current version all throughout Nevermore, which was already respectable, considering it was an item that couldn’t upgrade by itself like Eternal Hunger. Especially when one considered the stress Jake’s arcane affinity constantly put the poor bow under.\", \"nextParagraphDialogue\": [{\"lineId\": 91, \"text\": \"Yeah, it definitely served me well,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I understand why you want to keep it. It’s a potent effect and not something easily replicated.\", \"cuePosition\": \"before\", \"cueVerb\": \"smiled\", \"cueVerbType\": \"reaction\", \"cueText\": \"A few seconds passed before the god smiled.\", \"speakerSurface\": \"A few seconds passed before the god\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I understand why you want to keep it.\", \"lastSentence\": \"It’s a potent effect and not something easily replicated.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"May I?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Nature’s Attendant asked as he walked over, making Jake nod as the old man took the bow in his hands. Jake felt him try to inspect it with his energy, and he naturally allowed the god to do so.\", \"speakerSurface\": \"Nature’s Attendant\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"May I?\", \"lastSentence\": \"May I?\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Yeah, it definitely served me well,\", \"cuePosition\": \"after\", \"cueVerb\": \"confirmed\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake confirmed, looking at this old bow with nostalgic eyes. It had been with him in its current version all throughout Nevermore, which was already respectable, considering it was an item that couldn’t upgrade by itself like Eternal Hunger. Especially when one considered the stress Jake’s arcane affinity constantly put the poor bow under.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yeah, it definitely served me well,\", \"lastSentence\": \"Yeah, it definitely served me well,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I understand why you want to keep it. It’s a potent effect and not something easily replicated.\", \"cuePosition\": \"before\", \"cueVerb\": \"smiled\", \"cueVerbType\": \"reaction\", \"cueText\": \"A few seconds passed before the god smiled.\", \"speakerSurface\": \"A few seconds passed before the god\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I understand why you want to keep it.\", \"lastSentence\": \"It’s a potent effect and not something easily replicated.\"}, \"sceneEntities\": [{\"surface\": \"a few seconds passed before the god\", \"matches\": [{\"characterId\": \"false god\", \"characterName\": \"False God\", \"score\": 0.52, \"evidence\": [\"token_overlap:god\"]}, {\"characterId\": \"beastkin-god\", \"characterName\": \"Beastkin God\", \"score\": 0.52, \"evidence\": [\"token_overlap:god\"]}, {\"characterId\": \"unknown-god\", \"characterName\": \"Unknown God\", \"score\": 0.364, \"evidence\": [\"token_overlap:god\", \"generic_placeholder_penalty\"]}]}], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [\"jake\", \"protagonist\", \"chimera\", \"monster\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"false god\", \"characterName\": \"False God\", \"aliases\": [], \"roleLabels\": [\"false god\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"beastkin-god\", \"characterName\": \"Beastkin God\", \"aliases\": [], \"roleLabels\": [\"beastkin god\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"unknown-god\", \"characterName\": \"Unknown God\", \"aliases\": [\"unknown-god\", \"unknown-god-2\"], \"roleLabels\": [\"unknown god\", \"unknown god 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 80, \"paragraphIndex\": 57, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"From what I understood, you want it based on the Records of another bow you also possess?\"}, {\"relativeIndex\": -3, \"lineId\": 82, \"paragraphIndex\": 57, \"characterId\": \"nature's_attendant\", \"characterName\": \"Nature'S Attendant\", \"text\": \"Could you show me this bow?\"}, {\"relativeIndex\": -2, \"lineId\": 83, \"paragraphIndex\": 58, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Of course,\"}, {\"relativeIndex\": -1, \"lineId\": 87, \"paragraphIndex\": 61, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"May I?\"}, {\"relativeIndex\": 1, \"lineId\": 91, \"paragraphIndex\": 63, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Yeah, it definitely served me well,\"}, {\"relativeIndex\": 2, \"lineId\": 93, \"paragraphIndex\": 64, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Tonken, do you believe it feasible?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"natures-attendant\", \"name\": \"Nature's Attendant\", \"aliases\": [\"Attendant\", \"natures-attendant\", \"natures-attendant-2\", \"Nature Attendant\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"natures-attendant\",\n  \"characterName\": \"Nature's Attendant\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration\",\n    \"role_resolution\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

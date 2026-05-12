@@ -1,0 +1,328 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "90e34b1e7c2d1d84f2398a0ddb8b13c8ec9de8c8bd25a95274bb2c8d965c0611",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\90e34b1e7c2d1d84f2398a0ddb8b13c8ec9de8c8bd25a95274bb2c8d965c0611.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "needs_review",
+        "aliasToAdd": null,
+        "characterId": null,
+        "characterName": null,
+        "confidence": 0.1,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "not_dialogue",
+          "quoted_text_from_narration",
+          "no_explicit_speaker_cue"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "characterName": "Minaga",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "minaga",
+              "unique lifeform",
+              "the unique lifeform",
+              "the unique lifeform 2",
+              "unique lifeform 2"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "carmen",
+            "characterName": "Carmen",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "carmen"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "characterName": "Sylphie",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "sylphie"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "carmen",
+            "name": "Carmen",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "name": "Sylphie",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "name": "Minaga",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one.",
+          "lastSentence": "Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": null,
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.18400000000000005,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Minaga",
+            "sourceCandidates": [
+              "Minaga",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": "minaga",
+              "confidence": 0.816,
+              "name": "Minaga",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.456,
+              "name": "Jake",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [
+            "Unique Lifeform",
+            "The Unique Lifeform",
+            "the-unique-lifeform",
+            "the-unique-lifeform-2"
+          ],
+          "currentCharacterId": "minaga",
+          "currentCharacterName": "Minaga",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 57,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "minaga",
+              "characterName": "Minaga",
+              "isReturning": true,
+              "lineId": 57,
+              "text": "Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one.",
+              "lastSentence": "Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "This could only be interpreted as the extracted Soulflame getting a good boost along the way when extracted. Seeing as his Arcane affinity liked to consume all other Soulflames, he felt even more confident he only needed a pinnacle-tier one.",
+          "paragraphIndex": 40,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "He still wasn’t confident he would ever create a Supreme Soulflame, but hopefully, he could at least get a pinnacle one. He had theorized a while ago that the Cradle couldn’t even make Supreme Soulflames by default. Instead, one could only be born when extracted. This theory mainly hinged on the part of the description of the Cradle that read:"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 33,
+            "paragraphIndex": 19,
+            "relativeIndex": -4,
+            "text": "I will contact you if I get up to something interesting you may want to take part in. Probably off-planet exploration or something like that."
+          },
+          {
+            "characterId": "carmen",
+            "characterName": "Carmen",
+            "lineId": 34,
+            "paragraphIndex": 20,
+            "relativeIndex": -3,
+            "text": "You better give me a call,"
+          },
+          {
+            "characterId": "sylphie",
+            "characterName": "Sylphie",
+            "lineId": 36,
+            "paragraphIndex": 21,
+            "relativeIndex": -2,
+            "text": "Ree?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 38,
+            "paragraphIndex": 22,
+            "relativeIndex": -1,
+            "text": "You’ve had enough already,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 57, \"text\": \"Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one.\", \"currentCharacterId\": \"minaga\", \"currentCharacterName\": \"Minaga\", \"currentCharacterAliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Minaga\", \"sourceCandidates\": [\"Minaga\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": null, \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"minaga\", \"name\": \"Minaga\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 40, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one.”\", \"currentParagraphDialogue\": [{\"lineId\": 57, \"text\": \"Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one.\", \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"isReturning\": true}], \"previousParagraphText\": \"He still wasn’t confident he would ever create a Supreme Soulflame, but hopefully, he could at least get a pinnacle one. He had theorized a while ago that the Cradle couldn’t even make Supreme Soulflames by default. Instead, one could only be born when extracted. This theory mainly hinged on the part of the description of the Cradle that read:\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"This could only be interpreted as the extracted Soulflame getting a good boost along the way when extracted. Seeing as his Arcane affinity liked to consume all other Soulflames, he felt even more confident he only needed a pinnacle-tier one.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one.\", \"lastSentence\": \"Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one.\", \"lastSentence\": \"Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [\"minaga\", \"unique lifeform\", \"the unique lifeform\", \"the unique lifeform 2\", \"unique lifeform 2\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"aliases\": [], \"roleLabels\": [\"carmen\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [\"sylphie\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 33, \"paragraphIndex\": 19, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I will contact you if I get up to something interesting you may want to take part in. Probably off-planet exploration or something like that.\"}, {\"relativeIndex\": -3, \"lineId\": 34, \"paragraphIndex\": 20, \"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"text\": \"You better give me a call,\"}, {\"relativeIndex\": -2, \"lineId\": 36, \"paragraphIndex\": 21, \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"text\": \"Ree?\"}, {\"relativeIndex\": -1, \"lineId\": 38, \"paragraphIndex\": 22, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You’ve had enough already,\"}], \"chapterCharacters\": [{\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"needs_review\",\n  \"characterId\": null,\n  \"characterName\": null,\n  \"confidence\": 0.1,\n  \"reasonCodes\": [\n    \"not_dialogue\",\n    \"quoted_text_from_narration\",\n    \"no_explicit_speaker_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0012 - Chapter 1069 - Ambitious Plans",
+  "currentCharacterId": "minaga",
+  "currentCharacterName": "Minaga",
+  "currentParagraphText": "“Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one.”",
+  "finalResult": {
+    "action": "needs_review",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.1,
+    "currentCharacterId": "minaga",
+    "currentCharacterName": "Minaga",
+    "currentParagraphText": "“Only a single Soulflame can truly be born from the Cradle, the item getting destroyed upon extraction as all others become fuel for the chosen one.”",
+    "disposition": "review",
+    "error": null,
+    "lineId": 57,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "This could only be interpreted as the extracted Soulflame getting a good boost along the way when extracted. Seeing as his Arcane affinity liked to consume all other Soulflames, he felt even more confident he only needed a pinnacle-tier one.",
+    "paragraphIndex": 40,
+    "previousParagraphText": "He still wasn’t confident he would ever create a Supreme Soulflame, but hopefully, he could at least get a pinnacle one. He had theorized a while ago that the Cradle couldn’t even make Supreme Soulflames by default. Instead, one could only be born when extracted. This theory mainly hinged on the part of the description of the Cradle that read:",
+    "reasonCodes": [
+      "not_dialogue",
+      "quoted_text_from_narration",
+      "no_explicit_speaker_cue"
+    ],
+    "suggestedCharacterId": "minaga",
+    "suggestedCharacterName": "Minaga",
+    "toolTrace": []
+  },
+  "lineId": 57,
+  "nextParagraphText": "This could only be interpreted as the extracted Soulflame getting a good boost along the way when extracted. Seeing as his Arcane affinity liked to consume all other Soulflames, he felt even more confident he only needed a pinnacle-tier one.",
+  "paragraphIndex": 40,
+  "previousParagraphText": "He still wasn’t confident he would ever create a Supreme Soulflame, but hopefully, he could at least get a pinnacle one. He had theorized a while ago that the Cradle couldn’t even make Supreme Soulflames by default. Instead, one could only be born when extracted. This theory mainly hinged on the part of the description of the Cradle that read:"
+}

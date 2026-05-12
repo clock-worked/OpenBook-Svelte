@@ -1,0 +1,321 @@
+{
+  "cacheKey": "1cb922385716eb0ef7df263b7e55e00146d859628d8312fe47609ef27e5bba02",
+  "createdAt": "2026-04-19T03:51:07.369774+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "the_seeker",
+    "characterName": "The Seeker",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "dialogue_continuity",
+      "internal_evidence_speaker_role",
+      "parser_high_confidence"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Unique Lifeform",
+          "The Unique Lifeform",
+          "the-unique-lifeform",
+          "the-unique-lifeform-2"
+        ],
+        "characterId": "minaga",
+        "name": "Minaga",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "The Warpsnatcher",
+          "Jasper",
+          "the-warpsnatcher",
+          "the-warpsnatcher-2"
+        ],
+        "characterId": "warpsnatcher",
+        "name": "Warpsnatcher",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "vampire",
+        "name": "Vampire",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "the seeker",
+        "name": "The Seeker",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "While you may get a skill offered that allows you to offer treasures to me in religious rituals, you are not required or requested to choose one.",
+      "lastSentence": "However, if you obtain something unique that catches my eye, it may be one of the situations where I request to get the item, at which point fair compensation will be discussed.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "While you may get a skill offered that allows you to offer treasures to me in religious rituals, you are not required or requested to choose one. Anything you acquire belongs to you and you alone unless you choose to relinquish it. However, if you obtain something unique that catches my eye, it may be one of the situations where I request to get the item, at which point fair compensation will be discussed.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "The Seeker",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.2788,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "The Seeker",
+        "sourceCandidates": [
+          "The Seeker",
+          "Warpsnatcher"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.876
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.876,
+          "name": "The Seeker",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.516,
+          "name": "Warpsnatcher",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "the_seeker",
+      "currentCharacterName": "The Seeker",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 59,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "While you may get a skill offered that allows you to offer treasures to me in religious rituals, you are not required or requested to choose one. Anything you acquire belongs to you and you alone unless you choose to relinquish it. However, if you obtain something unique that catches my eye, it may be one of the situations where I request to get the item, at which point fair compensation will be discussed."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "the_seeker",
+          "characterName": "The Seeker",
+          "isReturning": true,
+          "lineId": 59,
+          "text": "While you may get a skill offered that allows you to offer treasures to me in religious rituals, you are not required or requested to choose one. Anything you acquire belongs to you and you alone unless you choose to relinquish it. However, if you obtain something unique that catches my eye, it may be one of the situations where I request to get the item, at which point fair compensation will be discussed."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "While you may get a skill offered that allows you to offer treasures to me in religious rituals, you are not required or requested to choose one.",
+          "lastSentence": "However, if you obtain something unique that catches my eye, it may be one of the situations where I request to get the item, at which point fair compensation will be discussed.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "While you may get a skill offered that allows you to offer treasures to me in religious rituals, you are not required or requested to choose one. Anything you acquire belongs to you and you alone unless you choose to relinquish it. However, if you obtain something unique that catches my eye, it may be one of the situations where I request to get the item, at which point fair compensation will be discussed.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“While you may get a skill offered that allows you to offer treasures to me in religious rituals, you are not required or requested to choose one. Anything you acquire belongs to you and you alone unless you choose to relinquish it. However, if you obtain something unique that catches my eye, it may be one of the situations where I request to get the item, at which point fair compensation will be discussed.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 60,
+          "text": "Leave here?"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jasper also asked.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "Leave here?",
+          "lastSentence": "Leave here?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Leave here?",
+          "speakerNameMatch": null,
+          "speakerSurface": "Jasper also"
+        }
+      ],
+      "nextParagraphText": "“Leave here?” Jasper also asked.",
+      "paragraphIndex": 31,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 58,
+          "text": "Share loot?"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jasper continued nodding as a thought struck him.",
+          "cueVerb": "continued",
+          "cueVerbType": "speech",
+          "firstSentence": "Share loot?",
+          "lastSentence": "Share loot?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Share loot?",
+          "speakerNameMatch": null,
+          "speakerSurface": "Jasper"
+        }
+      ],
+      "previousParagraphText": "Jasper continued nodding as a thought struck him. “Share loot?”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 53,
+        "paragraphIndex": 28,
+        "relativeIndex": -4,
+        "text": "Okay!"
+      },
+      {
+        "characterId": "the_seeker",
+        "characterName": "The Seeker",
+        "lineId": 54,
+        "paragraphIndex": 29,
+        "relativeIndex": -3,
+        "text": "So we’re in agreement?"
+      },
+      {
+        "characterId": "the_seeker",
+        "characterName": "The Seeker",
+        "lineId": 56,
+        "paragraphIndex": 29,
+        "relativeIndex": -2,
+        "text": "I’ll provide you with a Divine Blessing, and you continue on your Path with increased momentum. If you need tips and tricks, you’ll be able to reach out to me. Additionally, there may be situations where I ask you to do something. If either party is in disagreement about assisting the other, we can discuss it and potentially have a third party mediate. Other terms of Blessings also apply, but be aware I do not expect you to be overly faithful or anything. Never been a part of my Path to care about that."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 58,
+        "paragraphIndex": 30,
+        "relativeIndex": -1,
+        "text": "Share loot?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 60,
+        "paragraphIndex": 32,
+        "relativeIndex": 1,
+        "text": "Leave here?"
+      },
+      {
+        "characterId": "the_seeker",
+        "characterName": "The Seeker",
+        "lineId": 62,
+        "paragraphIndex": 33,
+        "relativeIndex": 2,
+        "text": "You’re free to follow your Path no matter where it takes you, but if you so desire, I do know a few places that could serve as suitable testing grounds for you to truly realize your potential. From my initial analysis of the trial cube, while you certainly did well, your abilities are still in their infancy,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 59, \"text\": \"While you may get a skill offered that allows you to offer treasures to me in religious rituals, you are not required or requested to choose one. Anything you acquire belongs to you and you alone unless you choose to relinquish it. However, if you obtain something unique that catches my eye, it may be one of the situations where I request to get the item, at which point fair compensation will be discussed.\", \"currentCharacterId\": \"the_seeker\", \"currentCharacterName\": \"The Seeker\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"The Seeker\", \"sourceCandidates\": [\"The Seeker\", \"Warpsnatcher\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.876, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.2788, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Seeker\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"The Seeker\", \"confidence\": 0.876, \"reasons\": null}, {\"characterId\": null, \"name\": \"Warpsnatcher\", \"confidence\": 0.516, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 31, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“While you may get a skill offered that allows you to offer treasures to me in religious rituals, you are not required or requested to choose one. Anything you acquire belongs to you and you alone unless you choose to relinquish it. However, if you obtain something unique that catches my eye, it may be one of the situations where I request to get the item, at which point fair compensation will be discussed.”\", \"currentParagraphDialogue\": [{\"lineId\": 59, \"text\": \"While you may get a skill offered that allows you to offer treasures to me in religious rituals, you are not required or requested to choose one. Anything you acquire belongs to you and you alone unless you choose to relinquish it. However, if you obtain something unique that catches my eye, it may be one of the situations where I request to get the item, at which point fair compensation will be discussed.\", \"characterId\": \"the_seeker\", \"characterName\": \"The Seeker\", \"isReturning\": true}], \"previousParagraphText\": \"Jasper continued nodding as a thought struck him. “Share loot?”\", \"previousParagraphDialogue\": [{\"lineId\": 58, \"text\": \"Share loot?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"nextParagraphText\": \"“Leave here?” Jasper also asked.\", \"nextParagraphDialogue\": [{\"lineId\": 60, \"text\": \"Leave here?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"While you may get a skill offered that allows you to offer treasures to me in religious rituals, you are not required or requested to choose one. Anything you acquire belongs to you and you alone unless you choose to relinquish it. However, if you obtain something unique that catches my eye, it may be one of the situations where I request to get the item, at which point fair compensation will be discussed.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"While you may get a skill offered that allows you to offer treasures to me in religious rituals, you are not required or requested to choose one.\", \"lastSentence\": \"However, if you obtain something unique that catches my eye, it may be one of the situations where I request to get the item, at which point fair compensation will be discussed.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Share loot?\", \"cuePosition\": \"before\", \"cueVerb\": \"continued\", \"cueVerbType\": \"speech\", \"cueText\": \"Jasper continued nodding as a thought struck him.\", \"speakerSurface\": \"Jasper\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Share loot?\", \"lastSentence\": \"Share loot?\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Leave here?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Jasper also asked.\", \"speakerSurface\": \"Jasper also\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Leave here?\", \"lastSentence\": \"Leave here?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"While you may get a skill offered that allows you to offer treasures to me in religious rituals, you are not required or requested to choose one. Anything you acquire belongs to you and you alone unless you choose to relinquish it. However, if you obtain something unique that catches my eye, it may be one of the situations where I request to get the item, at which point fair compensation will be discussed.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"While you may get a skill offered that allows you to offer treasures to me in religious rituals, you are not required or requested to choose one.\", \"lastSentence\": \"However, if you obtain something unique that catches my eye, it may be one of the situations where I request to get the item, at which point fair compensation will be discussed.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 53, \"paragraphIndex\": 28, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Okay!\"}, {\"relativeIndex\": -3, \"lineId\": 54, \"paragraphIndex\": 29, \"characterId\": \"the_seeker\", \"characterName\": \"The Seeker\", \"text\": \"So we’re in agreement?\"}, {\"relativeIndex\": -2, \"lineId\": 56, \"paragraphIndex\": 29, \"characterId\": \"the_seeker\", \"characterName\": \"The Seeker\", \"text\": \"I’ll provide you with a Divine Blessing, and you continue on your Path with increased momentum. If you need tips and tricks, you’ll be able to reach out to me. Additionally, there may be situations where I ask you to do something. If either party is in disagreement about assisting the other, we can discuss it and potentially have a third party mediate. Other terms of Blessings also apply, but be aware I do not expect you to be overly faithful or anything. Never been a part of my Path to care about that.\"}, {\"relativeIndex\": -1, \"lineId\": 58, \"paragraphIndex\": 30, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Share loot?\"}, {\"relativeIndex\": 1, \"lineId\": 60, \"paragraphIndex\": 32, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Leave here?\"}, {\"relativeIndex\": 2, \"lineId\": 62, \"paragraphIndex\": 33, \"characterId\": \"the_seeker\", \"characterName\": \"The Seeker\", \"text\": \"You’re free to follow your Path no matter where it takes you, but if you so desire, I do know a few places that could serve as suitable testing grounds for you to truly realize your potential. From my initial analysis of the trial cube, while you certainly did well, your abilities are still in their infancy,\"}], \"chapterCharacters\": [{\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"warpsnatcher\", \"name\": \"Warpsnatcher\", \"aliases\": [\"The Warpsnatcher\", \"Jasper\", \"the-warpsnatcher\", \"the-warpsnatcher-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vampire\", \"name\": \"Vampire\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the seeker\", \"name\": \"The Seeker\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"the_seeker\",\n  \"characterName\": \"The Seeker\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"dialogue_continuity\",\n    \"internal_evidence_speaker_role\",\n    \"parser_high_confidence\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

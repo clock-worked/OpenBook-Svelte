@@ -1,0 +1,365 @@
+{
+  "calls": [
+    {
+      "cacheHit": true,
+      "cacheKey": "c350fcbef2a17520766bdbf3a635001b8c82b77d8bafc6e5d46b0bd2c98cbf9b",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\c350fcbef2a17520766bdbf3a635001b8c82b77d8bafc6e5d46b0bd2c98cbf9b.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "dialogue_continuity",
+          "content_matches_speaker_expertise",
+          "parser_high_confidence"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Augur",
+              "The Augur"
+            ],
+            "characterId": "jacob",
+            "characterName": "Jacob",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jacob",
+              "augur",
+              "the augur"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Augur",
+              "The Augur"
+            ],
+            "characterId": "jacob",
+            "name": "Jacob",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "name": "Minaga",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "carmen",
+            "name": "Carmen",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Yes and no.",
+          "lastSentence": "Or, well, needed it.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Yes and no. I think the word want is incorrect here, as the Desolate Child of Loss operates nearly entirely on instinct. Most False Gods are born with some prerogative from birth. Either they are made to protect the local tribe or even the planet, or perhaps created to kill a certain enemy. But the Desolate Child of Loss has none of that. This is why I was genuine when I said I wanted to guide him if possible. He needs it more than anyone. Or, well, needed it.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": true,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36,
+            "misattributionRisk": 0.124,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jacob",
+            "sourceCandidates": [
+              "Jacob",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.876
+          },
+          "candidates": [
+            {
+              "characterId": "jacob",
+              "confidence": 0.876,
+              "name": "Jacob",
+              "reasons": [
+                "parser_match",
+                "legacy_match",
+                "speech_verb"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.516,
+              "name": "Jake",
+              "reasons": [
+                "speech_verb"
+              ]
+            }
+          ],
+          "currentCharacterAliases": [
+            "Augur",
+            "The Augur"
+          ],
+          "currentCharacterId": "jacob",
+          "currentCharacterName": "Jacob",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 51,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Yes and no. I think the word want is incorrect here, as the Desolate Child of Loss operates nearly entirely on instinct. Most False Gods are born with some prerogative from birth. Either they are made to protect the local tribe or even the planet, or perhaps created to kill a certain enemy. But the Desolate Child of Loss has none of that. This is why I was genuine when I said I wanted to guide him if possible. He needs it more than anyone. Or, well, needed it."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "jacob",
+              "characterName": "Jacob",
+              "isReturning": true,
+              "lineId": 51,
+              "text": "Yes and no. I think the word want is incorrect here, as the Desolate Child of Loss operates nearly entirely on instinct. Most False Gods are born with some prerogative from birth. Either they are made to protect the local tribe or even the planet, or perhaps created to kill a certain enemy. But the Desolate Child of Loss has none of that. This is why I was genuine when I said I wanted to guide him if possible. He needs it more than anyone. Or, well, needed it."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Yes and no.",
+              "lastSentence": "Or, well, needed it.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Yes and no. I think the word want is incorrect here, as the Desolate Child of Loss operates nearly entirely on instinct. Most False Gods are born with some prerogative from birth. Either they are made to protect the local tribe or even the planet, or perhaps created to kill a certain enemy. But the Desolate Child of Loss has none of that. This is why I was genuine when I said I wanted to guide him if possible. He needs it more than anyone. Or, well, needed it.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Yes and no. I think the word want is incorrect here, as the Desolate Child of Loss operates nearly entirely on instinct. Most False Gods are born with some prerogative from birth. Either they are made to protect the local tribe or even the planet, or perhaps created to kill a certain enemy. But the Desolate Child of Loss has none of that. This is why I was genuine when I said I wanted to guide him if possible. He needs it more than anyone. Or, well, needed it.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 52,
+              "text": "Your actions still don’t really make any sense, at least not to me,"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake said.",
+              "cueVerb": "said",
+              "cueVerbType": "speech",
+              "firstSentence": "Your actions still don’t really make any sense, at least not to me,",
+              "lastSentence": "Your actions still don’t really make any sense, at least not to me,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Your actions still don’t really make any sense, at least not to me,",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "nextParagraphText": "“Your actions still don’t really make any sense, at least not to me,” Jake said.",
+          "paragraphIndex": 26,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 49,
+              "text": "You’re saying that the Desolate Child of Loss wanted to kill Ell’Hakan but now wants to kill me?"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake asked.",
+              "cueVerb": "asked",
+              "cueVerbType": "speech",
+              "firstSentence": "You’re saying that the Desolate Child of Loss wanted to kill Ell’Hakan but now wants to kill me?",
+              "lastSentence": "You’re saying that the Desolate Child of Loss wanted to kill Ell’Hakan but now wants to kill me?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "You’re saying that the Desolate Child of Loss wanted to kill Ell’Hakan but now wants to kill me?",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "previousParagraphText": "“You’re saying that the Desolate Child of Loss wanted to kill Ell’Hakan but now wants to kill me?” Jake asked."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 44,
+            "paragraphIndex": 22,
+            "relativeIndex": -4,
+            "text": "Explain,"
+          },
+          {
+            "characterId": "jacob",
+            "characterName": "Jacob",
+            "lineId": 46,
+            "paragraphIndex": 23,
+            "relativeIndex": -3,
+            "text": "Let me first give you a bit of a backstory on the Desolate Child of Loss. As I suspect you already found out, it was born from a freak accident ritual performed by people entirely brainwashed by Ell’Hakan. People who genuinely believed he was a god. When they were struggling, facing the onslaught of the Prima Guardian they had foolishly released, they performed this ritual to try and summon Ell’Hakan and make him descend to their planet. As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,"
+          },
+          {
+            "characterId": "jacob",
+            "characterName": "Jacob",
+            "lineId": 48,
+            "paragraphIndex": 24,
+            "relativeIndex": -2,
+            "text": "What they summoned was their idea of what Ell’Hakan was supposed to be. However, their idea and reality didn’t match up at all, and what appeared was an incomplete husk. Everything they knew about Ell’Hakan had been a lie, so when the False God was born, the Records it was born with were a complete mess. The main problem was that they didn’t have a unified vision of what Ell’Hakan was, as his mass indoctrination made them all simply see him as their ideal kind of god, something that differs from person to person. In the end, nothing fit together, yet Records were born. All that power and faith gathered but crumbled instantly... only for desolation to take its place. All that remains of their original intent is that the Desolate Child of Loss believes it’s the Celestial Child. The child has exact copies of some of Ell’Hakan’s Records, which is also why he felt like you had killed his other self. That you killed Ell’Hakan, who the Desolate Child of Loss views as a fake he was born to reclaim Records from. Now whatever Records of Ell’Hakan remain were absorbed by you."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 49,
+            "paragraphIndex": 25,
+            "relativeIndex": -1,
+            "text": "You’re saying that the Desolate Child of Loss wanted to kill Ell’Hakan but now wants to kill me?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 52,
+            "paragraphIndex": 27,
+            "relativeIndex": 1,
+            "text": "Your actions still don’t really make any sense, at least not to me,"
+          },
+          {
+            "characterId": "jacob",
+            "characterName": "Jacob",
+            "lineId": 54,
+            "paragraphIndex": 28,
+            "relativeIndex": 2,
+            "text": "Tell me, how am I supposed to interpret this? Because from my point of view, I can’t see it as anything other than you knowingly helping a mortal enemy of mine. Even if the Holy Church ordered you to, you did it, so you have to take responsibility."
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 51, \"text\": \"Yes and no. I think the word want is incorrect here, as the Desolate Child of Loss operates nearly entirely on instinct. Most False Gods are born with some prerogative from birth. Either they are made to protect the local tribe or even the planet, or perhaps created to kill a certain enemy. But the Desolate Child of Loss has none of that. This is why I was genuine when I said I wanted to guide him if possible. He needs it more than anyone. Or, well, needed it.\", \"currentCharacterId\": \"jacob\", \"currentCharacterName\": \"Jacob\", \"currentCharacterAliases\": [\"Augur\", \"The Augur\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jacob\", \"sourceCandidates\": [\"Jacob\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.876, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.124, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.876, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.516, \"reasons\": [\"speech_verb\"]}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 26, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Yes and no. I think the word want is incorrect here, as the Desolate Child of Loss operates nearly entirely on instinct. Most False Gods are born with some prerogative from birth. Either they are made to protect the local tribe or even the planet, or perhaps created to kill a certain enemy. But the Desolate Child of Loss has none of that. This is why I was genuine when I said I wanted to guide him if possible. He needs it more than anyone. Or, well, needed it.”\", \"currentParagraphDialogue\": [{\"lineId\": 51, \"text\": \"Yes and no. I think the word want is incorrect here, as the Desolate Child of Loss operates nearly entirely on instinct. Most False Gods are born with some prerogative from birth. Either they are made to protect the local tribe or even the planet, or perhaps created to kill a certain enemy. But the Desolate Child of Loss has none of that. This is why I was genuine when I said I wanted to guide him if possible. He needs it more than anyone. Or, well, needed it.\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": true}], \"previousParagraphText\": \"“You’re saying that the Desolate Child of Loss wanted to kill Ell’Hakan but now wants to kill me?” Jake asked.\", \"previousParagraphDialogue\": [{\"lineId\": 49, \"text\": \"You’re saying that the Desolate Child of Loss wanted to kill Ell’Hakan but now wants to kill me?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"nextParagraphText\": \"“Your actions still don’t really make any sense, at least not to me,” Jake said.\", \"nextParagraphDialogue\": [{\"lineId\": 52, \"text\": \"Your actions still don’t really make any sense, at least not to me,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Yes and no. I think the word want is incorrect here, as the Desolate Child of Loss operates nearly entirely on instinct. Most False Gods are born with some prerogative from birth. Either they are made to protect the local tribe or even the planet, or perhaps created to kill a certain enemy. But the Desolate Child of Loss has none of that. This is why I was genuine when I said I wanted to guide him if possible. He needs it more than anyone. Or, well, needed it.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yes and no.\", \"lastSentence\": \"Or, well, needed it.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You’re saying that the Desolate Child of Loss wanted to kill Ell’Hakan but now wants to kill me?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake asked.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You’re saying that the Desolate Child of Loss wanted to kill Ell’Hakan but now wants to kill me?\", \"lastSentence\": \"You’re saying that the Desolate Child of Loss wanted to kill Ell’Hakan but now wants to kill me?\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Your actions still don’t really make any sense, at least not to me,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake said.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Your actions still don’t really make any sense, at least not to me,\", \"lastSentence\": \"Your actions still don’t really make any sense, at least not to me,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Yes and no. I think the word want is incorrect here, as the Desolate Child of Loss operates nearly entirely on instinct. Most False Gods are born with some prerogative from birth. Either they are made to protect the local tribe or even the planet, or perhaps created to kill a certain enemy. But the Desolate Child of Loss has none of that. This is why I was genuine when I said I wanted to guide him if possible. He needs it more than anyone. Or, well, needed it.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yes and no.\", \"lastSentence\": \"Or, well, needed it.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [\"jacob\", \"augur\", \"the augur\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [], \"roleLabels\": [\"jake\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 44, \"paragraphIndex\": 22, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Explain,\"}, {\"relativeIndex\": -3, \"lineId\": 46, \"paragraphIndex\": 23, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"Let me first give you a bit of a backstory on the Desolate Child of Loss. As I suspect you already found out, it was born from a freak accident ritual performed by people entirely brainwashed by Ell’Hakan. People who genuinely believed he was a god. When they were struggling, facing the onslaught of the Prima Guardian they had foolishly released, they performed this ritual to try and summon Ell’Hakan and make him descend to their planet. As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,\"}, {\"relativeIndex\": -2, \"lineId\": 48, \"paragraphIndex\": 24, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"What they summoned was their idea of what Ell’Hakan was supposed to be. However, their idea and reality didn’t match up at all, and what appeared was an incomplete husk. Everything they knew about Ell’Hakan had been a lie, so when the False God was born, the Records it was born with were a complete mess. The main problem was that they didn’t have a unified vision of what Ell’Hakan was, as his mass indoctrination made them all simply see him as their ideal kind of god, something that differs from person to person. In the end, nothing fit together, yet Records were born. All that power and faith gathered but crumbled instantly... only for desolation to take its place. All that remains of their original intent is that the Desolate Child of Loss believes it’s the Celestial Child. The child has exact copies of some of Ell’Hakan’s Records, which is also why he felt like you had killed his other self. That you killed Ell’Hakan, who the Desolate Child of Loss views as a fake he was born to reclaim Records from. Now whatever Records of Ell’Hakan remain were absorbed by you.\"}, {\"relativeIndex\": -1, \"lineId\": 49, \"paragraphIndex\": 25, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You’re saying that the Desolate Child of Loss wanted to kill Ell’Hakan but now wants to kill me?\"}, {\"relativeIndex\": 1, \"lineId\": 52, \"paragraphIndex\": 27, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Your actions still don’t really make any sense, at least not to me,\"}, {\"relativeIndex\": 2, \"lineId\": 54, \"paragraphIndex\": 28, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"Tell me, how am I supposed to interpret this? Because from my point of view, I can’t see it as anything other than you knowingly helping a mortal enemy of mine. Even if the Holy Church ordered you to, you did it, so you have to take responsibility.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jacob\",\n  \"characterName\": \"Jacob\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"dialogue_continuity\",\n    \"content_matches_speaker_expertise\",\n    \"parser_high_confidence\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0009 - Chapter 1066 - An Unfortunate Child",
+  "currentCharacterId": "jacob",
+  "currentCharacterName": "Jacob",
+  "currentParagraphText": "“Yes and no. I think the word want is incorrect here, as the Desolate Child of Loss operates nearly entirely on instinct. Most False Gods are born with some prerogative from birth. Either they are made to protect the local tribe or even the planet, or perhaps created to kill a certain enemy. But the Desolate Child of Loss has none of that. This is why I was genuine when I said I wanted to guide him if possible. He needs it more than anyone. Or, well, needed it.”",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "jacob",
+    "currentCharacterName": "Jacob",
+    "currentParagraphText": "“Yes and no. I think the word want is incorrect here, as the Desolate Child of Loss operates nearly entirely on instinct. Most False Gods are born with some prerogative from birth. Either they are made to protect the local tribe or even the planet, or perhaps created to kill a certain enemy. But the Desolate Child of Loss has none of that. This is why I was genuine when I said I wanted to guide him if possible. He needs it more than anyone. Or, well, needed it.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 51,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Your actions still don’t really make any sense, at least not to me,” Jake said.",
+    "paragraphIndex": 26,
+    "previousParagraphText": "“You’re saying that the Desolate Child of Loss wanted to kill Ell’Hakan but now wants to kill me?” Jake asked.",
+    "reasonCodes": [
+      "dialogue_continuity",
+      "content_matches_speaker_expertise",
+      "parser_high_confidence"
+    ],
+    "suggestedCharacterId": "jacob",
+    "suggestedCharacterName": "Jacob",
+    "toolTrace": []
+  },
+  "lineId": 51,
+  "nextParagraphText": "“Your actions still don’t really make any sense, at least not to me,” Jake said.",
+  "paragraphIndex": 26,
+  "previousParagraphText": "“You’re saying that the Desolate Child of Loss wanted to kill Ell’Hakan but now wants to kill me?” Jake asked."
+}

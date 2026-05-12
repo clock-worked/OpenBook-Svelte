@@ -1,0 +1,362 @@
+{
+  "cacheKey": "6d57f41cd6994d87283cb93f1403ea3c640d1b6b1cec2bc57b5b23320e0f6dc1",
+  "createdAt": "2026-05-11T22:29:37.281886+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "eversmile",
+    "characterName": "Eversmile",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "dialogue_continuity",
+      "response_to_previous_speaker",
+      "addressed_by_next_speaker"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "eversmile",
+        "characterName": "Eversmile",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "eversmile"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Viper",
+          "Villy",
+          "Vilas",
+          "Vilastromoz",
+          "The Viper"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "eversmile",
+        "name": "Eversmile",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "I see no need to be anything but an observer for now.",
+      "lastSentence": "Besides, it’s not him I’m most curious about right now.",
+      "mentionedEntities": [
+        "chosen"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "I see no need to be anything but an observer for now. Your Chosen is fully capable of piquing my interest all on his own. Besides, it’s not him I’m most curious about right now.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "alignment": {
+        "confidence": 1.0,
+        "isSpanFallback": false,
+        "method": "quote_unit",
+        "paragraphIndex": 69,
+        "spanDistance": 0.0,
+        "spanParagraphIndex": 69
+      },
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "chosen"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "The Malefic Viper",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "The Malefic Viper",
+        "sourceCandidates": [
+          "The Malefic Viper",
+          "Primordial"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "The Malefic Viper",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Primordial",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 150,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "I see no need to be anything but an observer for now. Your Chosen is fully capable of piquing my interest all on his own. Besides, it’s not him I’m most curious about right now."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 150,
+          "text": "I see no need to be anything but an observer for now. Your Chosen is fully capable of piquing my interest all on his own. Besides, it’s not him I’m most curious about right now."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I see no need to be anything but an observer for now.",
+          "lastSentence": "Besides, it’s not him I’m most curious about right now.",
+          "mentionedEntities": [
+            "chosen"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "I see no need to be anything but an observer for now. Your Chosen is fully capable of piquing my interest all on his own. Besides, it’s not him I’m most curious about right now.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“I see no need to be anything but an observer for now. Your Chosen is fully capable of piquing my interest all on his own. Besides, it’s not him I’m most curious about right now.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "the_malefic_viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": false,
+          "lineId": 151,
+          "text": "Another poor sod caught your attention?"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the Viper asked a very leading question that he also highly suspected the answer to.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "Another poor sod caught your attention?",
+          "lastSentence": "Another poor sod caught your attention?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Another poor sod caught your attention?",
+          "speakerNameMatch": null,
+          "speakerSurface": "Viper"
+        }
+      ],
+      "nextParagraphText": "“Another poor sod caught your attention?” the Viper asked a very leading question that he also highly suspected the answer to.",
+      "paragraphIndex": 69,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 149,
+          "text": "My previous words still stand. Don’t fuck with Jake just to sate your own curiosity."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "The Viper turned a bit more serious as he looked at the other Primordial.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "My previous words still stand.",
+          "lastSentence": "Don’t fuck with Jake just to sate your own curiosity.",
+          "mentionedEntities": [
+            "Jake",
+            "Jake"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "My previous words still stand. Don’t fuck with Jake just to sate your own curiosity.",
+          "speakerNameMatch": null,
+          "speakerSurface": "The Viper"
+        }
+      ],
+      "previousParagraphText": "The Viper turned a bit more serious as he looked at the other Primordial. “My previous words still stand. Don’t fuck with Jake just to sate your own curiosity.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "the_malefic_viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 144,
+        "paragraphIndex": 66,
+        "relativeIndex": -4,
+        "text": "Man, you’re really just bored sometimes, aren’t you?"
+      },
+      {
+        "characterId": "eversmile",
+        "characterName": "Eversmile",
+        "lineId": 145,
+        "paragraphIndex": 67,
+        "relativeIndex": -3,
+        "text": "Oh no, quite the opposite,"
+      },
+      {
+        "characterId": "eversmile",
+        "characterName": "Eversmile",
+        "lineId": 147,
+        "paragraphIndex": 67,
+        "relativeIndex": -2,
+        "text": "I find this entire situation extremely interesting. With so many unpredictable developments and so much I don’t know… how can I not be intrigued?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 149,
+        "paragraphIndex": 68,
+        "relativeIndex": -1,
+        "text": "My previous words still stand. Don’t fuck with Jake just to sate your own curiosity."
+      },
+      {
+        "characterId": "the_malefic_viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 151,
+        "paragraphIndex": 70,
+        "relativeIndex": 1,
+        "text": "Another poor sod caught your attention?"
+      },
+      {
+        "characterId": "eversmile",
+        "characterName": "Eversmile",
+        "lineId": 153,
+        "paragraphIndex": 71,
+        "relativeIndex": 2,
+        "text": "I wouldn’t say you’re poor,"
+      }
+    ],
+    "sceneEntities": [],
+    "sceneRoster": {
+      "paragraphWindow": 6,
+      "presentCharacterIds": [
+        "eversmile",
+        "the_malefic_viper",
+        "unknown"
+      ],
+      "presentCharacters": [
+        {
+          "characterId": "eversmile",
+          "characterName": "Eversmile"
+        },
+        {
+          "characterId": "the_malefic_viper",
+          "characterName": "The Malefic Viper"
+        },
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown"
+        }
+      ]
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 150, \"text\": \"I see no need to be anything but an observer for now. Your Chosen is fully capable of piquing my interest all on his own. Besides, it’s not him I’m most curious about right now.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"The Malefic Viper\", \"sourceCandidates\": [\"The Malefic Viper\", \"Primordial\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"chosen\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Malefic Viper\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"The Malefic Viper\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Primordial\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true, \"alignment\": {\"paragraphIndex\": 69, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 69, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 69, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I see no need to be anything but an observer for now. Your Chosen is fully capable of piquing my interest all on his own. Besides, it’s not him I’m most curious about right now.”\", \"currentParagraphDialogue\": [{\"lineId\": 150, \"text\": \"I see no need to be anything but an observer for now. Your Chosen is fully capable of piquing my interest all on his own. Besides, it’s not him I’m most curious about right now.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"The Viper turned a bit more serious as he looked at the other Primordial. “My previous words still stand. Don’t fuck with Jake just to sate your own curiosity.”\", \"previousParagraphDialogue\": [{\"lineId\": 149, \"text\": \"My previous words still stand. Don’t fuck with Jake just to sate your own curiosity.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"nextParagraphText\": \"“Another poor sod caught your attention?” the Viper asked a very leading question that he also highly suspected the answer to.\", \"nextParagraphDialogue\": [{\"lineId\": 151, \"text\": \"Another poor sod caught your attention?\", \"characterId\": \"the_malefic_viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I see no need to be anything but an observer for now. Your Chosen is fully capable of piquing my interest all on his own. Besides, it’s not him I’m most curious about right now.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"chosen\"], \"addressedEntity\": null, \"firstSentence\": \"I see no need to be anything but an observer for now.\", \"lastSentence\": \"Besides, it’s not him I’m most curious about right now.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"My previous words still stand. Don’t fuck with Jake just to sate your own curiosity.\", \"cuePosition\": \"before\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"The Viper turned a bit more serious as he looked at the other Primordial.\", \"speakerSurface\": \"The Viper\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"Jake\", \"Jake\"], \"addressedEntity\": null, \"firstSentence\": \"My previous words still stand.\", \"lastSentence\": \"Don’t fuck with Jake just to sate your own curiosity.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Another poor sod caught your attention?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"the Viper asked a very leading question that he also highly suspected the answer to.\", \"speakerSurface\": \"Viper\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Another poor sod caught your attention?\", \"lastSentence\": \"Another poor sod caught your attention?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I see no need to be anything but an observer for now. Your Chosen is fully capable of piquing my interest all on his own. Besides, it’s not him I’m most curious about right now.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"chosen\"], \"addressedEntity\": null, \"firstSentence\": \"I see no need to be anything but an observer for now.\", \"lastSentence\": \"Besides, it’s not him I’m most curious about right now.\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"eversmile\", \"the_malefic_viper\", \"unknown\"], \"presentCharacters\": [{\"characterId\": \"eversmile\", \"characterName\": \"Eversmile\"}, {\"characterId\": \"the_malefic_viper\", \"characterName\": \"The Malefic Viper\"}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"eversmile\", \"characterName\": \"Eversmile\", \"aliases\": [], \"roleLabels\": [\"eversmile\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 144, \"paragraphIndex\": 66, \"characterId\": \"the_malefic_viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Man, you’re really just bored sometimes, aren’t you?\"}, {\"relativeIndex\": -3, \"lineId\": 145, \"paragraphIndex\": 67, \"characterId\": \"eversmile\", \"characterName\": \"Eversmile\", \"text\": \"Oh no, quite the opposite,\"}, {\"relativeIndex\": -2, \"lineId\": 147, \"paragraphIndex\": 67, \"characterId\": \"eversmile\", \"characterName\": \"Eversmile\", \"text\": \"I find this entire situation extremely interesting. With so many unpredictable developments and so much I don’t know… how can I not be intrigued?\"}, {\"relativeIndex\": -1, \"lineId\": 149, \"paragraphIndex\": 68, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"My previous words still stand. Don’t fuck with Jake just to sate your own curiosity.\"}, {\"relativeIndex\": 1, \"lineId\": 151, \"paragraphIndex\": 70, \"characterId\": \"the_malefic_viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Another poor sod caught your attention?\"}, {\"relativeIndex\": 2, \"lineId\": 153, \"paragraphIndex\": 71, \"characterId\": \"eversmile\", \"characterName\": \"Eversmile\", \"text\": \"I wouldn’t say you’re poor,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"Viper\", \"Villy\", \"Vilas\", \"Vilastromoz\", \"The Viper\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"eversmile\", \"name\": \"Eversmile\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"eversmile\",\n  \"characterName\": \"Eversmile\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"dialogue_continuity\",\n    \"response_to_previous_speaker\",\n    \"addressed_by_next_speaker\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

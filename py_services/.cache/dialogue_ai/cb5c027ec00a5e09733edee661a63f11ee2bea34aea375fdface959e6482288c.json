@@ -1,0 +1,351 @@
+{
+  "cacheKey": "cb5c027ec00a5e09733edee661a63f11ee2bea34aea375fdface959e6482288c",
+  "createdAt": "2026-04-02T22:35:36.436167+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.9,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "narrative_context",
+      "dialogue_flow",
+      "addressee_cue"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "caleb"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "mom",
+        "characterName": "Mom",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "mom"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "dad",
+        "characterName": "Dad",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "dad"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "caleb",
+        "name": "Caleb",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "maja",
+        "name": "Maja",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "adam",
+        "name": "Adam",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "mom",
+        "name": "Mom",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "dad",
+        "name": "Dad",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Jake couldn’t help but smile as he saw these pictures, and a flood of emotions washed over him.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "I’m glad they found them.",
+      "lastSentence": "I’m glad they found them.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "I’m glad they found them.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Caleb",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Caleb",
+        "sourceCandidates": [
+          "Caleb",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "caleb",
+          "confidence": 0.816,
+          "name": "Caleb",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "caleb",
+      "currentCharacterName": "Caleb",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 65,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "I’m glad they found them."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "caleb",
+          "characterName": "Caleb",
+          "isReturning": false,
+          "lineId": 65,
+          "text": "I’m glad they found them."
+        },
+        {
+          "characterId": "dad",
+          "characterName": "Dad",
+          "isReturning": false,
+          "lineId": 66,
+          "text": "Me too,"
+        },
+        {
+          "characterId": "dad",
+          "characterName": "Dad",
+          "isReturning": true,
+          "lineId": 68,
+          "text": "How have you been recently? I heard a lot of things happened with that other World Leader who also attacked the planet those years ago."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "his dad said as he walked over and stood beside Jake.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Me too,",
+          "lastSentence": "Me too,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Me too,",
+          "speakerNameMatch": "Dad",
+          "speakerSurface": "his dad"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "his dad said as he walked over and stood beside Jake.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "How have you been recently?",
+          "lastSentence": "I heard a lot of things happened with that other World Leader who also attacked the planet those years ago.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "How have you been recently? I heard a lot of things happened with that other World Leader who also attacked the planet those years ago.",
+          "speakerNameMatch": "Dad",
+          "speakerSurface": "his dad"
+        }
+      ],
+      "currentParagraphText": "“Me too,” his dad said as he walked over and stood beside Jake. “How have you been recently? I heard a lot of things happened with that other World Leader who also attacked the planet those years ago.”",
+      "dialogueLineCount": 3,
+      "paragraphIndex": 43
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "mom",
+        "characterName": "Mom",
+        "lineId": 53,
+        "paragraphIndex": 35,
+        "relativeIndex": -4,
+        "text": "It’s fine,"
+      },
+      {
+        "characterId": "mom",
+        "characterName": "Mom",
+        "lineId": 55,
+        "paragraphIndex": 35,
+        "relativeIndex": -3,
+        "text": "Your father and I both know that you’re busy. We’re both adults; we can take care of ourselves."
+      },
+      {
+        "characterId": "mom",
+        "characterName": "Mom",
+        "lineId": 56,
+        "paragraphIndex": 36,
+        "relativeIndex": -2,
+        "text": "Still,"
+      },
+      {
+        "characterId": "dad",
+        "characterName": "Dad",
+        "lineId": 61,
+        "paragraphIndex": 40,
+        "relativeIndex": -1,
+        "text": "Caleb had some people scour an area that resembled where we used to live, and they found those as well as a few other small things,"
+      },
+      {
+        "characterId": "dad",
+        "characterName": "Dad",
+        "lineId": 66,
+        "paragraphIndex": 43,
+        "relativeIndex": 1,
+        "text": "Me too,"
+      },
+      {
+        "characterId": "dad",
+        "characterName": "Dad",
+        "lineId": 68,
+        "paragraphIndex": 43,
+        "relativeIndex": 2,
+        "text": "How have you been recently? I heard a lot of things happened with that other World Leader who also attacked the planet those years ago."
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "dad",
+            "characterName": "Dad",
+            "evidence": [
+              "exact_label_match",
+              "stripped_label_match",
+              "token_overlap:dad"
+            ],
+            "score": 0.98
+          }
+        ],
+        "surface": "dad"
+      },
+      {
+        "matches": [
+          {
+            "characterId": "dad",
+            "characterName": "Dad",
+            "evidence": [
+              "token_overlap:dad"
+            ],
+            "score": 0.625
+          }
+        ],
+        "surface": "his dad"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 65, \"text\": \"I’m glad they found them.\", \"currentCharacterId\": \"caleb\", \"currentCharacterName\": \"Caleb\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Caleb\", \"sourceCandidates\": [\"Caleb\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Caleb\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"caleb\", \"name\": \"Caleb\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 43, \"currentLinePosition\": 0, \"dialogueLineCount\": 3, \"currentParagraphText\": \"“Me too,” his dad said as he walked over and stood beside Jake. “How have you been recently? I heard a lot of things happened with that other World Leader who also attacked the planet those years ago.”\", \"currentParagraphDialogue\": [{\"lineId\": 65, \"text\": \"I’m glad they found them.\", \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"isReturning\": false}, {\"lineId\": 66, \"text\": \"Me too,\", \"characterId\": \"dad\", \"characterName\": \"Dad\", \"isReturning\": false}, {\"lineId\": 68, \"text\": \"How have you been recently? I heard a lot of things happened with that other World Leader who also attacked the planet those years ago.\", \"characterId\": \"dad\", \"characterName\": \"Dad\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Me too,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"his dad said as he walked over and stood beside Jake.\", \"speakerSurface\": \"his dad\", \"speakerNameMatch\": \"Dad\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Me too,\", \"lastSentence\": \"Me too,\"}, {\"quoteIndex\": 1, \"quoteText\": \"How have you been recently? I heard a lot of things happened with that other World Leader who also attacked the planet those years ago.\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"his dad said as he walked over and stood beside Jake.\", \"speakerSurface\": \"his dad\", \"speakerNameMatch\": \"Dad\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"How have you been recently?\", \"lastSentence\": \"I heard a lot of things happened with that other World Leader who also attacked the planet those years ago.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I’m glad they found them.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake couldn’t help but smile as he saw these pictures, and a flood of emotions washed over him.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’m glad they found them.\", \"lastSentence\": \"I’m glad they found them.\"}, \"sceneEntities\": [{\"surface\": \"dad\", \"matches\": [{\"characterId\": \"dad\", \"characterName\": \"Dad\", \"score\": 0.98, \"evidence\": [\"exact_label_match\", \"stripped_label_match\", \"token_overlap:dad\"]}]}, {\"surface\": \"his dad\", \"matches\": [{\"characterId\": \"dad\", \"characterName\": \"Dad\", \"score\": 0.625, \"evidence\": [\"token_overlap:dad\"]}]}], \"candidateCards\": [{\"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"aliases\": [], \"roleLabels\": [\"caleb\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"mom\", \"characterName\": \"Mom\", \"aliases\": [], \"roleLabels\": [\"mom\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"dad\", \"characterName\": \"Dad\", \"aliases\": [], \"roleLabels\": [\"dad\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 53, \"paragraphIndex\": 35, \"characterId\": \"mom\", \"characterName\": \"Mom\", \"text\": \"It’s fine,\"}, {\"relativeIndex\": -3, \"lineId\": 55, \"paragraphIndex\": 35, \"characterId\": \"mom\", \"characterName\": \"Mom\", \"text\": \"Your father and I both know that you’re busy. We’re both adults; we can take care of ourselves.\"}, {\"relativeIndex\": -2, \"lineId\": 56, \"paragraphIndex\": 36, \"characterId\": \"mom\", \"characterName\": \"Mom\", \"text\": \"Still,\"}, {\"relativeIndex\": -1, \"lineId\": 61, \"paragraphIndex\": 40, \"characterId\": \"dad\", \"characterName\": \"Dad\", \"text\": \"Caleb had some people scour an area that resembled where we used to live, and they found those as well as a few other small things,\"}, {\"relativeIndex\": 1, \"lineId\": 66, \"paragraphIndex\": 43, \"characterId\": \"dad\", \"characterName\": \"Dad\", \"text\": \"Me too,\"}, {\"relativeIndex\": 2, \"lineId\": 68, \"paragraphIndex\": 43, \"characterId\": \"dad\", \"characterName\": \"Dad\", \"text\": \"How have you been recently? I heard a lot of things happened with that other World Leader who also attacked the planet those years ago.\"}], \"chapterCharacters\": [{\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"maja\", \"name\": \"Maja\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"adam\", \"name\": \"Adam\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"mom\", \"name\": \"Mom\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dad\", \"name\": \"Dad\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"narrative_context\",\n    \"dialogue_flow\",\n    \"addressee_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

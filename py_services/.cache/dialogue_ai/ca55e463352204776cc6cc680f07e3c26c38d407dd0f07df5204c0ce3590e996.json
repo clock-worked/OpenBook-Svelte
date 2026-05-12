@@ -1,0 +1,321 @@
+{
+  "cacheKey": "ca55e463352204776cc6cc680f07e3c26c38d407dd0f07df5204c0ce3590e996",
+  "createdAt": "2026-04-02T22:39:37.461415+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "viper",
+    "characterName": "The Malefic Viper",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "alias_match"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "viper",
+          "the malefic viper",
+          "malefic viper",
+          "villy"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "dad",
+        "name": "Dad",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "caleb",
+        "name": "Caleb",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "mom",
+        "name": "Mom",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "maja",
+        "name": "Maja",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "adam",
+        "name": "Adam",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "And yet you shall dictate the direction of your galaxy,",
+      "lastSentence": "And yet you shall dictate the direction of your galaxy,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "And yet you shall dictate the direction of your galaxy,",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.19599999999999995,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "The Malefic Viper",
+        "sourceCandidates": [
+          "The Malefic Viper",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": "viper",
+          "confidence": 0.804,
+          "name": "The Malefic Viper",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.444,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "viper",
+        "Villy"
+      ],
+      "currentCharacterId": "viper",
+      "currentCharacterName": "The Malefic Viper",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 76,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "And yet you shall dictate the direction of your galaxy,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": false,
+          "lineId": 76,
+          "text": "And yet you shall dictate the direction of your galaxy,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [],
+      "currentParagraphText": "Villy said in a matter-of-fact voice.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 78,
+          "text": "But, hey, your mere desire to not be a dictator will bleed through and more likely than not make your rule far less authoritarian than others. Just remember to keep the people important to your little faction loyal; that’s the most important part. You aren’t living in a democracy, and while having the support of the general populace is all well and good, it’s just a tiny bonus at most."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "But, hey, your mere desire to not be a dictator will bleed through and more likely than not make your rule far less authoritarian than others.",
+          "lastSentence": "You aren’t living in a democracy, and while having the support of the general populace is all well and good, it’s just a tiny bonus at most.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "But, hey, your mere desire to not be a dictator will bleed through and more likely than not make your rule far less authoritarian than others. Just remember to keep the people important to your little faction loyal; that’s the most important part. You aren’t living in a democracy, and while having the support of the general populace is all well and good, it’s just a tiny bonus at most.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "nextParagraphText": "“But, hey, your mere desire to not be a dictator will bleed through and more likely than not make your rule far less authoritarian than others. Just remember to keep the people important to your little faction loyal; that’s the most important part. You aren’t living in a democracy, and while having the support of the general populace is all well and good, it’s just a tiny bonus at most.”",
+      "paragraphIndex": 56,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "And yet you shall dictate the direction of your galaxy,",
+          "lastSentence": "And yet you shall dictate the direction of your galaxy,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "And yet you shall dictate the direction of your galaxy,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "previousParagraphText": "“And yet you shall dictate the direction of your galaxy,”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 69,
+        "paragraphIndex": 49,
+        "relativeIndex": -4,
+        "text": "However, I will say that at least knowing about what’s going on is a good idea. You also need to set a direction, both for her sake and your own. For you, because if you can’t even tell your faction what to do, what the hell’s the point of it? And for her sake, so she can use you as a shield. As the one enacting policies, she will get a lot of flack if she also made them, but if all she’s doing is carrying out your will, she can use that as a defense whenever she does anything unpopular. People are way less likely to dare bring up complaints to you."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 71,
+        "paragraphIndex": 51,
+        "relativeIndex": -3,
+        "text": "Earth is ruled by a council, though. The plan is to do the same with the entire galaxy. They are the ones who decide stuff, not me."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 72,
+        "paragraphIndex": 52,
+        "relativeIndex": -2,
+        "text": "They decide the small stuff. You’re still the one who sets the direction. Why do you think slavery has been outlawed in the entire galaxy? That the laws governing every civilization are slowly morphing to become more similar to Earth’s before the integration? Even if you don’t tell those beneath you what direction to move in, they’ll still try to do things they believe you’d want them to,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 74,
+        "paragraphIndex": 53,
+        "relativeIndex": -1,
+        "text": "I can’t really argue against that... but the entire point of this council is that I’m not some dictator telling everyone what to do,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 78,
+        "paragraphIndex": 57,
+        "relativeIndex": 1,
+        "text": "But, hey, your mere desire to not be a dictator will bleed through and more likely than not make your rule far less authoritarian than others. Just remember to keep the people important to your little faction loyal; that’s the most important part. You aren’t living in a democracy, and while having the support of the general populace is all well and good, it’s just a tiny bonus at most."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 79,
+        "paragraphIndex": 58,
+        "relativeIndex": 2,
+        "text": "I’m beginning to reconsider if taking advice for running a functional society from an evil snake god with an Order that isn’t exactly known for being a nice place is wise,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 76, \"text\": \"And yet you shall dictate the direction of your galaxy,\", \"currentCharacterId\": \"viper\", \"currentCharacterName\": \"The Malefic Viper\", \"currentCharacterAliases\": [\"viper\", \"Villy\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"The Malefic Viper\", \"sourceCandidates\": [\"The Malefic Viper\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 56, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Villy said in a matter-of-fact voice.\", \"currentParagraphDialogue\": [{\"lineId\": 76, \"text\": \"And yet you shall dictate the direction of your galaxy,\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": false}], \"previousParagraphText\": \"“And yet you shall dictate the direction of your galaxy,”\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“But, hey, your mere desire to not be a dictator will bleed through and more likely than not make your rule far less authoritarian than others. Just remember to keep the people important to your little faction loyal; that’s the most important part. You aren’t living in a democracy, and while having the support of the general populace is all well and good, it’s just a tiny bonus at most.”\", \"nextParagraphDialogue\": [{\"lineId\": 78, \"text\": \"But, hey, your mere desire to not be a dictator will bleed through and more likely than not make your rule far less authoritarian than others. Just remember to keep the people important to your little faction loyal; that’s the most important part. You aren’t living in a democracy, and while having the support of the general populace is all well and good, it’s just a tiny bonus at most.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"And yet you shall dictate the direction of your galaxy,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"And yet you shall dictate the direction of your galaxy,\", \"lastSentence\": \"And yet you shall dictate the direction of your galaxy,\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"But, hey, your mere desire to not be a dictator will bleed through and more likely than not make your rule far less authoritarian than others. Just remember to keep the people important to your little faction loyal; that’s the most important part. You aren’t living in a democracy, and while having the support of the general populace is all well and good, it’s just a tiny bonus at most.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"But, hey, your mere desire to not be a dictator will bleed through and more likely than not make your rule far less authoritarian than others.\", \"lastSentence\": \"You aren’t living in a democracy, and while having the support of the general populace is all well and good, it’s just a tiny bonus at most.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"And yet you shall dictate the direction of your galaxy,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"And yet you shall dictate the direction of your galaxy,\", \"lastSentence\": \"And yet you shall dictate the direction of your galaxy,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 69, \"paragraphIndex\": 49, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"However, I will say that at least knowing about what’s going on is a good idea. You also need to set a direction, both for her sake and your own. For you, because if you can’t even tell your faction what to do, what the hell’s the point of it? And for her sake, so she can use you as a shield. As the one enacting policies, she will get a lot of flack if she also made them, but if all she’s doing is carrying out your will, she can use that as a defense whenever she does anything unpopular. People are way less likely to dare bring up complaints to you.\"}, {\"relativeIndex\": -3, \"lineId\": 71, \"paragraphIndex\": 51, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Earth is ruled by a council, though. The plan is to do the same with the entire galaxy. They are the ones who decide stuff, not me.\"}, {\"relativeIndex\": -2, \"lineId\": 72, \"paragraphIndex\": 52, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"They decide the small stuff. You’re still the one who sets the direction. Why do you think slavery has been outlawed in the entire galaxy? That the laws governing every civilization are slowly morphing to become more similar to Earth’s before the integration? Even if you don’t tell those beneath you what direction to move in, they’ll still try to do things they believe you’d want them to,\"}, {\"relativeIndex\": -1, \"lineId\": 74, \"paragraphIndex\": 53, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I can’t really argue against that... but the entire point of this council is that I’m not some dictator telling everyone what to do,\"}, {\"relativeIndex\": 1, \"lineId\": 78, \"paragraphIndex\": 57, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"But, hey, your mere desire to not be a dictator will bleed through and more likely than not make your rule far less authoritarian than others. Just remember to keep the people important to your little faction loyal; that’s the most important part. You aren’t living in a democracy, and while having the support of the general populace is all well and good, it’s just a tiny bonus at most.\"}, {\"relativeIndex\": 2, \"lineId\": 79, \"paragraphIndex\": 58, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I’m beginning to reconsider if taking advice for running a functional society from an evil snake god with an Order that isn’t exactly known for being a nice place is wise,\"}], \"chapterCharacters\": [{\"characterId\": \"dad\", \"name\": \"Dad\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"mom\", \"name\": \"Mom\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"maja\", \"name\": \"Maja\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"adam\", \"name\": \"Adam\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"viper\",\n  \"characterName\": \"The Malefic Viper\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"alias_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

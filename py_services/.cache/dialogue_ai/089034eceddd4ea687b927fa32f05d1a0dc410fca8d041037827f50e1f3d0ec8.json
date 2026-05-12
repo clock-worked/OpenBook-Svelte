@@ -1,0 +1,134 @@
+{
+  "cacheKey": "089034eceddd4ea687b927fa32f05d1a0dc410fca8d041037827f50e1f3d0ec8",
+  "createdAt": "2026-04-01T04:28:16.647855+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "miranda",
+    "characterName": "Miranda",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "direct_attribution"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda"
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth"
+      },
+      {
+        "aliases": [],
+        "characterId": "lillian",
+        "name": "Lillian"
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [
+          "lodestar-matron",
+          "lodestar-matron-2"
+        ],
+        "characterId": "lodestar-matron",
+        "name": "Lodestar Matron"
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.98,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Miranda",
+        "sourceCandidates": [
+          "Miranda"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "miranda",
+          "confidence": 0.98,
+          "name": "Miranda",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "post_quote_attribution"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "miranda",
+      "currentCharacterName": "Miranda",
+      "id": 14,
+      "isReturning": false,
+      "text": "Hm,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "miranda",
+          "characterName": "Miranda",
+          "isReturning": false,
+          "lineId": 14,
+          "text": "Hm,"
+        },
+        {
+          "characterId": "miranda",
+          "characterName": "Miranda",
+          "isReturning": true,
+          "lineId": 16,
+          "text": "Were there signs of others having entered it before?"
+        }
+      ],
+      "currentParagraphText": "“Hm,” Miranda said, in thought for a moment. “Were there signs of others having entered it before?”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 5
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 14, \"text\": \"Hm,\", \"currentCharacterId\": \"miranda\", \"currentCharacterName\": \"Miranda\", \"currentCharacterAliases\": [], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Miranda\", \"sourceCandidates\": [\"Miranda\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.98, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"miranda\", \"name\": \"Miranda\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"post_quote_attribution\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 5, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Hm,” Miranda said, in thought for a moment. “Were there signs of others having entered it before?”\", \"currentParagraphDialogue\": [{\"lineId\": 14, \"text\": \"Hm,\", \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"isReturning\": false}, {\"lineId\": 16, \"text\": \"Were there signs of others having entered it before?\", \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"isReturning\": true}]}, \"chapterCharacters\": [{\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": []}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": []}, {\"characterId\": \"lillian\", \"name\": \"Lillian\", \"aliases\": []}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"lodestar-matron\", \"name\": \"Lodestar Matron\", \"aliases\": [\"lodestar-matron\", \"lodestar-matron-2\"]}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"]}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"miranda\",\n  \"characterName\": \"Miranda\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"direct_attribution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

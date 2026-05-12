@@ -1,0 +1,145 @@
+{
+  "cacheKey": "9a91836d6de85ec0fbccea0d7851e631bf733998a9a8d9638475fa2957675058",
+  "createdAt": "2026-04-01T04:25:31.468401+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_attribution_in_text"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob"
+      },
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "name": "Bertram"
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper"
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.19599999999999995,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jacob",
+        "sourceCandidates": [
+          "Jacob",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": "jacob",
+          "confidence": 0.804,
+          "name": "Jacob",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.444,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "jacob",
+      "currentCharacterName": "Jacob",
+      "id": 29,
+      "isReturning": false,
+      "text": "I already had intentions toward the Truesoul, but you stopped what was meant to happen,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 29,
+          "text": "I already had intentions toward the Truesoul, but you stopped what was meant to happen,"
+        }
+      ],
+      "currentParagraphText": "“I already had intentions toward the Truesoul, but you stopped what was meant to happen,” Jake simply said, crossing his arms while glaring at the Augur.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": true,
+          "lineId": 31,
+          "text": "And what might those intentions be?"
+        }
+      ],
+      "nextParagraphText": "“And what might those intentions be?”",
+      "paragraphIndex": 16,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 27,
+          "text": "losing"
+        }
+      ],
+      "previousParagraphText": "Truesouls were usually the domain of the system only, after all, and every member of the Holy Church knew that. Thus, they also knew that Jake “losing” the Truesoul of Ell’Hakan wasn’t really a thing, as it was never something he could have taken in the first place. Something the head priest had also alluded to before. However, even if Jake couldn’t take the Truesoul, it didn’t mean he didn’t have something he wanted to do with it."
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 29, \"text\": \"I already had intentions toward the Truesoul, but you stopped what was meant to happen,\", \"currentCharacterId\": \"jacob\", \"currentCharacterName\": \"Jacob\", \"currentCharacterAliases\": [], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jacob\", \"sourceCandidates\": [\"Jacob\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 16, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I already had intentions toward the Truesoul, but you stopped what was meant to happen,” Jake simply said, crossing his arms while glaring at the Augur.\", \"currentParagraphDialogue\": [{\"lineId\": 29, \"text\": \"I already had intentions toward the Truesoul, but you stopped what was meant to happen,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}], \"previousParagraphText\": \"Truesouls were usually the domain of the system only, after all, and every member of the Holy Church knew that. Thus, they also knew that Jake “losing” the Truesoul of Ell’Hakan wasn’t really a thing, as it was never something he could have taken in the first place. Something the head priest had also alluded to before. However, even if Jake couldn’t take the Truesoul, it didn’t mean he didn’t have something he wanted to do with it.\", \"previousParagraphDialogue\": [{\"lineId\": 27, \"text\": \"losing\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}], \"nextParagraphText\": \"“And what might those intentions be?”\", \"nextParagraphDialogue\": [{\"lineId\": 31, \"text\": \"And what might those intentions be?\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": true}]}, \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": []}, {\"characterId\": \"bertram\", \"name\": \"Bertram\", \"aliases\": []}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"]}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_attribution_in_text\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

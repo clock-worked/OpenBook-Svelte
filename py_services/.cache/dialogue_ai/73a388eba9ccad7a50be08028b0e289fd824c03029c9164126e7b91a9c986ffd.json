@@ -1,0 +1,289 @@
+{
+  "cacheKey": "73a388eba9ccad7a50be08028b0e289fd824c03029c9164126e7b91a9c986ffd",
+  "createdAt": "2026-04-02T22:51:28.915252+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "narrative_cue_before_quote",
+      "next_paragraph_confirms_speaker",
+      "next_dialogue_is_response"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "irin",
+        "characterName": "Irin",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "irin"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "True Ancestor",
+          "Vampire Godess",
+          "vampire-godess"
+        ],
+        "characterId": "katherine",
+        "name": "Katherine",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "iskar",
+        "name": "Iskar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "irin",
+        "name": "Irin",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "succubus",
+        "name": "Succubus",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Back at the residence, Jake was just reminded of something as they appeared from the gate in the entryway.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Say, did you find out about Scarlett, by the way?",
+      "lastSentence": "Say, did you find out about Scarlett, by the way?",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Say, did you find out about Scarlett, by the way?",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": true,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Irin",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.18,
+        "misattributionRisk": 0.364,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Irin",
+        "sourceCandidates": [
+          "Irin",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.636
+      },
+      "candidates": [
+        {
+          "characterId": "irin",
+          "confidence": 0.636,
+          "name": "Irin",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "question_next_speaker_penalty"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "irin",
+      "currentCharacterName": "Irin",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 74,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Say, did you find out about Scarlett, by the way?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "irin",
+          "characterName": "Irin",
+          "isReturning": true,
+          "lineId": 74,
+          "text": "Say, did you find out about Scarlett, by the way?"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Back at the residence, Jake was just reminded of something as they appeared from the gate in the entryway.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Say, did you find out about Scarlett, by the way?",
+          "lastSentence": "Say, did you find out about Scarlett, by the way?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Say, did you find out about Scarlett, by the way?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Back at the residence, Jake was just reminded of something as they appeared from the gate in the entryway. “Say, did you find out about Scarlett, by the way?”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Seeing as he was at the Order, Jake had wanted to meet up with the albino snake to see how she was doing, but it turned out she wasn’t around. He had considered asking Villy if he knew where she was, but had just asked Irin instead. She was a bit weird in the sense that she really liked it when Jake asked her to do things for him, so he sometimes asked her for favors for no good reason. In this case, asking about Scarlett was fully within the boundaries of her job description, making it not weird at all while also clearly making her happy.",
+      "paragraphIndex": 43,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "After spending another few hours shopping, Jake and Irin headed back to Jake’s residence. Jake had stocked up on a lot of alchemical reagents, and he had more coming in the form of large bulk orders he’d placed directly with one of the higher-ups of the Order, gladly abusing his status as the Chosen of the entire organization. All of this is to say, Jake should have plenty to tide him over for a long time."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 55,
+        "paragraphIndex": 30,
+        "relativeIndex": -4,
+        "text": "Nah, I’m good,"
+      },
+      {
+        "characterId": "irin",
+        "characterName": "Irin",
+        "lineId": 57,
+        "paragraphIndex": 30,
+        "relativeIndex": -3,
+        "text": "You just go ahead and do your thing... a bit quicker this time if possible."
+      },
+      {
+        "characterId": "irin",
+        "characterName": "Irin",
+        "lineId": 58,
+        "paragraphIndex": 31,
+        "relativeIndex": -2,
+        "text": "Alright, alright,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 68,
+        "paragraphIndex": 39,
+        "relativeIndex": -1,
+        "text": "casual"
+      },
+      {
+        "characterId": "irin",
+        "characterName": "Irin",
+        "lineId": 76,
+        "paragraphIndex": 45,
+        "relativeIndex": 1,
+        "text": "Let me just check,"
+      },
+      {
+        "characterId": "irin",
+        "characterName": "Irin",
+        "lineId": 78,
+        "paragraphIndex": 45,
+        "relativeIndex": 2,
+        "text": "Ah, yes, it says here she’s currently away on a dungeon expedition with a group consisting of members from different Dragonflights. Should have guessed that one."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 74, \"text\": \"Say, did you find out about Scarlett, by the way?\", \"currentCharacterId\": \"irin\", \"currentCharacterName\": \"Irin\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Irin\", \"sourceCandidates\": [\"Irin\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.636, \"marginToSecond\": 0.18, \"misattributionRisk\": 0.364, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Irin\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"irin\", \"name\": \"Irin\", \"confidence\": 0.636, \"reasons\": [\"parser_match\", \"legacy_match\", \"question_next_speaker_penalty\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 43, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Back at the residence, Jake was just reminded of something as they appeared from the gate in the entryway. “Say, did you find out about Scarlett, by the way?”\", \"currentParagraphDialogue\": [{\"lineId\": 74, \"text\": \"Say, did you find out about Scarlett, by the way?\", \"characterId\": \"irin\", \"characterName\": \"Irin\", \"isReturning\": true}], \"previousParagraphText\": \"After spending another few hours shopping, Jake and Irin headed back to Jake’s residence. Jake had stocked up on a lot of alchemical reagents, and he had more coming in the form of large bulk orders he’d placed directly with one of the higher-ups of the Order, gladly abusing his status as the Chosen of the entire organization. All of this is to say, Jake should have plenty to tide him over for a long time.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Seeing as he was at the Order, Jake had wanted to meet up with the albino snake to see how she was doing, but it turned out she wasn’t around. He had considered asking Villy if he knew where she was, but had just asked Irin instead. She was a bit weird in the sense that she really liked it when Jake asked her to do things for him, so he sometimes asked her for favors for no good reason. In this case, asking about Scarlett was fully within the boundaries of her job description, making it not weird at all while also clearly making her happy.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Say, did you find out about Scarlett, by the way?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Back at the residence, Jake was just reminded of something as they appeared from the gate in the entryway.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Say, did you find out about Scarlett, by the way?\", \"lastSentence\": \"Say, did you find out about Scarlett, by the way?\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Say, did you find out about Scarlett, by the way?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Back at the residence, Jake was just reminded of something as they appeared from the gate in the entryway.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Say, did you find out about Scarlett, by the way?\", \"lastSentence\": \"Say, did you find out about Scarlett, by the way?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"irin\", \"characterName\": \"Irin\", \"aliases\": [], \"roleLabels\": [\"irin\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 55, \"paragraphIndex\": 30, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Nah, I’m good,\"}, {\"relativeIndex\": -3, \"lineId\": 57, \"paragraphIndex\": 30, \"characterId\": \"irin\", \"characterName\": \"Irin\", \"text\": \"You just go ahead and do your thing... a bit quicker this time if possible.\"}, {\"relativeIndex\": -2, \"lineId\": 58, \"paragraphIndex\": 31, \"characterId\": \"irin\", \"characterName\": \"Irin\", \"text\": \"Alright, alright,\"}, {\"relativeIndex\": -1, \"lineId\": 68, \"paragraphIndex\": 39, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"casual\"}, {\"relativeIndex\": 1, \"lineId\": 76, \"paragraphIndex\": 45, \"characterId\": \"irin\", \"characterName\": \"Irin\", \"text\": \"Let me just check,\"}, {\"relativeIndex\": 2, \"lineId\": 78, \"paragraphIndex\": 45, \"characterId\": \"irin\", \"characterName\": \"Irin\", \"text\": \"Ah, yes, it says here she’s currently away on a dungeon expedition with a group consisting of members from different Dragonflights. Should have guessed that one.\"}], \"chapterCharacters\": [{\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"katherine\", \"name\": \"Katherine\", \"aliases\": [\"True Ancestor\", \"Vampire Godess\", \"vampire-godess\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iskar\", \"name\": \"Iskar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"succubus\", \"name\": \"Succubus\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"narrative_cue_before_quote\",\n    \"next_paragraph_confirms_speaker\",\n    \"next_dialogue_is_response\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

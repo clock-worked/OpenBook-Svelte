@@ -1,0 +1,329 @@
+{
+  "cacheKey": "0b6f714567f1f95ef278b63d268e5a732c2a507ab1258127b61c7627c351232b",
+  "createdAt": "2026-04-02T22:50:39.644126+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "fairleigh",
+    "characterName": "Fairleigh",
+    "confidence": 0.9,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "dialogue_continuity",
+      "parser_confidence",
+      "self_mention_unlikely"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "fairleigh",
+        "characterName": "Fairleigh",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "fairleigh"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "characterName": "The Sword Saint",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "the sword saint",
+          "sword saint",
+          "the sword saint 2",
+          "sword saint 2",
+          "miyamoto"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "characterName": "blood",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "blood"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "name": "blood",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "vampire",
+        "name": "Vampire",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "fairleigh",
+        "name": "Fairleigh",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "iskar",
+        "name": "Iskar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "True Ancestor",
+          "Vampire Godess",
+          "vampire-godess"
+        ],
+        "characterId": "katherine",
+        "name": "Katherine",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "I agree it best to keep it with the Sword Saint,",
+      "lastSentence": "I agree it best to keep it with the Sword Saint,",
+      "mentionedEntities": [
+        "The Sword Saint",
+        "The Sword Saint"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "I agree it best to keep it with the Sword Saint,",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "The Sword Saint"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "The Sword Saint",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.51,
+        "misattributionRisk": 0.19599999999999995,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Fairleigh",
+        "sourceCandidates": [
+          "Fairleigh",
+          "The Sword Saint"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": "fairleigh",
+          "confidence": 0.804,
+          "name": "Fairleigh",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "the-sword-saint",
+          "confidence": 0.294,
+          "name": "The Sword Saint",
+          "reasons": [
+            "self_name_mention_penalty"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "fairleigh",
+      "currentCharacterName": "Fairleigh",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 98,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "I agree it best to keep it with the Sword Saint,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "fairleigh",
+          "characterName": "Fairleigh",
+          "isReturning": true,
+          "lineId": 98,
+          "text": "I agree it best to keep it with the Sword Saint,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [],
+      "currentParagraphText": "Iskar also agreed, slightly surprising Miyamoto.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "the-sword-saint",
+          "characterName": "The Sword Saint",
+          "isReturning": true,
+          "lineId": 101,
+          "text": "That said, I do have one concern... you carry Sanguine’s Blood Legacy, is the Patriarch of a clan which now has many vampires within it, and I sense no hostility toward our kind. Which begs the question: why are you not one of us?"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Katherine nodded.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "That said, I do have one concern...",
+          "lastSentence": "Which begs the question: why are you not one of us?",
+          "mentionedEntities": [
+            "blood",
+            "blood"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "That said, I do have one concern... you carry Sanguine’s Blood Legacy, is the Patriarch of a clan which now has many vampires within it, and I sense no hostility toward our kind. Which begs the question: why are you not one of us?",
+          "speakerNameMatch": "Katherine",
+          "speakerSurface": "Katherine"
+        }
+      ],
+      "nextParagraphText": "Katherine nodded. “That said, I do have one concern... you carry Sanguine’s Blood Legacy, is the Patriarch of a clan which now has many vampires within it, and I sense no hostility toward our kind. Which begs the question: why are you not one of us?”",
+      "paragraphIndex": 65,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I agree it best to keep it with the Sword Saint,",
+          "lastSentence": "I agree it best to keep it with the Sword Saint,",
+          "mentionedEntities": [
+            "The Sword Saint",
+            "The Sword Saint"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "I agree it best to keep it with the Sword Saint,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "previousParagraphText": "“I agree it best to keep it with the Sword Saint,”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "blood",
+        "characterName": "blood",
+        "lineId": 92,
+        "paragraphIndex": 61,
+        "relativeIndex": -4,
+        "text": "Have a delegation ready for when the new universe begins to open up. I will also discuss with the other True Ancestors to make sure the ones going can place a teleportation circle, allowing those of your clan to visit us here at the Order, too."
+      },
+      {
+        "characterId": "the-sword-saint",
+        "characterName": "The Sword Saint",
+        "lineId": 93,
+        "paragraphIndex": 63,
+        "relativeIndex": -3,
+        "text": "Thank you,"
+      },
+      {
+        "characterId": "fairleigh",
+        "characterName": "Fairleigh",
+        "lineId": 95,
+        "paragraphIndex": 63,
+        "relativeIndex": -2,
+        "text": "As for the Blood Legacy, while it’s an invaluable artifact, I believe you have it for a reason,"
+      },
+      {
+        "characterId": "fairleigh",
+        "characterName": "Fairleigh",
+        "lineId": 97,
+        "paragraphIndex": 63,
+        "relativeIndex": -1,
+        "text": "If we kept it here, while we could use it to create more vampires, it’s likely for the best to allow it to influence the new universe. Bring some truly new blood into the fold."
+      },
+      {
+        "characterId": "the-sword-saint",
+        "characterName": "The Sword Saint",
+        "lineId": 101,
+        "paragraphIndex": 66,
+        "relativeIndex": 1,
+        "text": "That said, I do have one concern... you carry Sanguine’s Blood Legacy, is the Patriarch of a clan which now has many vampires within it, and I sense no hostility toward our kind. Which begs the question: why are you not one of us?"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 98, \"text\": \"I agree it best to keep it with the Sword Saint,\", \"currentCharacterId\": \"fairleigh\", \"currentCharacterName\": \"Fairleigh\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Fairleigh\", \"sourceCandidates\": [\"Fairleigh\", \"The Sword Saint\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.51, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"The Sword Saint\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Sword Saint\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"fairleigh\", \"name\": \"Fairleigh\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"confidence\": 0.294, \"reasons\": [\"self_name_mention_penalty\"]}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 65, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Iskar also agreed, slightly surprising Miyamoto.\", \"currentParagraphDialogue\": [{\"lineId\": 98, \"text\": \"I agree it best to keep it with the Sword Saint,\", \"characterId\": \"fairleigh\", \"characterName\": \"Fairleigh\", \"isReturning\": true}], \"previousParagraphText\": \"“I agree it best to keep it with the Sword Saint,”\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Katherine nodded. “That said, I do have one concern... you carry Sanguine’s Blood Legacy, is the Patriarch of a clan which now has many vampires within it, and I sense no hostility toward our kind. Which begs the question: why are you not one of us?”\", \"nextParagraphDialogue\": [{\"lineId\": 101, \"text\": \"That said, I do have one concern... you carry Sanguine’s Blood Legacy, is the Patriarch of a clan which now has many vampires within it, and I sense no hostility toward our kind. Which begs the question: why are you not one of us?\", \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I agree it best to keep it with the Sword Saint,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"The Sword Saint\", \"The Sword Saint\"], \"addressedEntity\": null, \"firstSentence\": \"I agree it best to keep it with the Sword Saint,\", \"lastSentence\": \"I agree it best to keep it with the Sword Saint,\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"That said, I do have one concern... you carry Sanguine’s Blood Legacy, is the Patriarch of a clan which now has many vampires within it, and I sense no hostility toward our kind. Which begs the question: why are you not one of us?\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Katherine nodded.\", \"speakerSurface\": \"Katherine\", \"speakerNameMatch\": \"Katherine\", \"mentionedEntities\": [\"blood\", \"blood\"], \"addressedEntity\": null, \"firstSentence\": \"That said, I do have one concern...\", \"lastSentence\": \"Which begs the question: why are you not one of us?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I agree it best to keep it with the Sword Saint,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"The Sword Saint\", \"The Sword Saint\"], \"addressedEntity\": null, \"firstSentence\": \"I agree it best to keep it with the Sword Saint,\", \"lastSentence\": \"I agree it best to keep it with the Sword Saint,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"fairleigh\", \"characterName\": \"Fairleigh\", \"aliases\": [], \"roleLabels\": [\"fairleigh\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [\"the sword saint\", \"sword saint\", \"the sword saint 2\", \"sword saint 2\", \"miyamoto\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"blood\", \"characterName\": \"blood\", \"aliases\": [], \"roleLabels\": [\"blood\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 92, \"paragraphIndex\": 61, \"characterId\": \"blood\", \"characterName\": \"blood\", \"text\": \"Have a delegation ready for when the new universe begins to open up. I will also discuss with the other True Ancestors to make sure the ones going can place a teleportation circle, allowing those of your clan to visit us here at the Order, too.\"}, {\"relativeIndex\": -3, \"lineId\": 93, \"paragraphIndex\": 63, \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Thank you,\"}, {\"relativeIndex\": -2, \"lineId\": 95, \"paragraphIndex\": 63, \"characterId\": \"fairleigh\", \"characterName\": \"Fairleigh\", \"text\": \"As for the Blood Legacy, while it’s an invaluable artifact, I believe you have it for a reason,\"}, {\"relativeIndex\": -1, \"lineId\": 97, \"paragraphIndex\": 63, \"characterId\": \"fairleigh\", \"characterName\": \"Fairleigh\", \"text\": \"If we kept it here, while we could use it to create more vampires, it’s likely for the best to allow it to influence the new universe. Bring some truly new blood into the fold.\"}, {\"relativeIndex\": 1, \"lineId\": 101, \"paragraphIndex\": 66, \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"text\": \"That said, I do have one concern... you carry Sanguine’s Blood Legacy, is the Patriarch of a clan which now has many vampires within it, and I sense no hostility toward our kind. Which begs the question: why are you not one of us?\"}], \"chapterCharacters\": [{\"characterId\": \"blood\", \"name\": \"blood\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vampire\", \"name\": \"Vampire\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"fairleigh\", \"name\": \"Fairleigh\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iskar\", \"name\": \"Iskar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"katherine\", \"name\": \"Katherine\", \"aliases\": [\"True Ancestor\", \"Vampire Godess\", \"vampire-godess\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"fairleigh\",\n  \"characterName\": \"Fairleigh\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"dialogue_continuity\",\n    \"parser_confidence\",\n    \"self_mention_unlikely\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

@@ -1,0 +1,352 @@
+{
+  "cacheKey": "585f31abe1b4d2b1a1455b46aa49b07de3ea4dcbb6fc9eeeb5815b0b197f9b2f",
+  "createdAt": "2026-04-02T15:44:05.756385+00:00",
+  "decision": {
+    "action": "needs_review",
+    "aliasToAdd": null,
+    "characterId": null,
+    "characterName": null,
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "not_dialogue",
+      "narrative_explanation",
+      "no_speech_cue"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "characterName": "Bertram",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "bertram"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "holy-priest",
+          "holy-priest-2",
+          "head priest",
+          "the head priest"
+        ],
+        "characterId": "holy-priest",
+        "characterName": "Holy Priest",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "holy priest",
+          "priest",
+          "holy priest 2",
+          "priest 2",
+          "head priest",
+          "the head priest",
+          "the priest"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Augur",
+          "The Augur"
+        ],
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jacob",
+          "augur",
+          "the augur"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "kindroth"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "holy-priest",
+          "holy-priest-2",
+          "head priest",
+          "the head priest"
+        ],
+        "characterId": "holy-priest",
+        "name": "Holy Priest",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Augur",
+          "The Augur"
+        ],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "name": "Bertram",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Plus, Jake already had some insight into the Holy Church and thus instantly knew what",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Fourteenth of the Holy Light",
+      "lastSentence": "Fourteenth of the Holy Light",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Fourteenth of the Holy Light",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Kindroth",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.19599999999999995,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Bertram",
+        "sourceCandidates": [
+          "Bertram",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": "bertram",
+          "confidence": 0.804,
+          "name": "Bertram",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.444,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "bertram",
+      "currentCharacterName": "Bertram",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 69,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Fourteenth of the Holy Light"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "bertram",
+          "characterName": "Bertram",
+          "isReturning": false,
+          "lineId": 69,
+          "text": "Fourteenth of the Holy Light"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Plus, Jake already had some insight into the Holy Church and thus instantly knew what",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Fourteenth of the Holy Light",
+          "lastSentence": "Fourteenth of the Holy Light",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Fourteenth of the Holy Light",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Plus, Jake already had some insight into the Holy Church and thus instantly knew what “Fourteenth of the Holy Light” meant. He also knew who the Lodestar Matron was. Her being Fourteenth of the Holy Light meant she was the fourteenth god to ever ascend in the Holy Church, meaning she was old. Really old.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "She was a god not focused on combat, but one who lived up to her name of being a guiding star for everyone her light fell upon. She was a bit like an Augur in that respect. The Lodestar Matron also held a very high position in her faction as she was one of the top people in charge of one the most important parts of the Holy Church:",
+      "paragraphIndex": 42,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 66,
+          "text": "You are speaking to the Lodestar Matron, the Fourteenth of the Holy Light,"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "she spoke, the name Matron pretty much confirming she was a woman.",
+          "cueVerb": "spoke",
+          "cueVerbType": "speech",
+          "firstSentence": "You are speaking to the Lodestar Matron, the Fourteenth of the Holy Light,",
+          "lastSentence": "You are speaking to the Lodestar Matron, the Fourteenth of the Holy Light,",
+          "mentionedEntities": [
+            "Lodestar Matron"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "You are speaking to the Lodestar Matron, the Fourteenth of the Holy Light,",
+          "speakerNameMatch": null,
+          "speakerSurface": "she"
+        }
+      ],
+      "previousParagraphText": "“You are speaking to the Lodestar Matron, the Fourteenth of the Holy Light,” she spoke, the name Matron pretty much confirming she was a woman."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "holy-priest",
+        "characterName": "Holy Priest",
+        "lineId": 54,
+        "paragraphIndex": 32,
+        "relativeIndex": -4,
+        "text": "Allow me the honors,"
+      },
+      {
+        "characterId": "bertram",
+        "characterName": "Bertram",
+        "lineId": 62,
+        "paragraphIndex": 39,
+        "relativeIndex": -3,
+        "text": "Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 64,
+        "paragraphIndex": 40,
+        "relativeIndex": -2,
+        "text": "I can’t say I know much about you considering I don’t know who I’m conversing with,"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 66,
+        "paragraphIndex": 41,
+        "relativeIndex": -1,
+        "text": "You are speaking to the Lodestar Matron, the Fourteenth of the Holy Light,"
+      },
+      {
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "lineId": 78,
+        "paragraphIndex": 50,
+        "relativeIndex": 1,
+        "text": "What’s the progress on the formation?"
+      },
+      {
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "lineId": 80,
+        "paragraphIndex": 51,
+        "relativeIndex": 2,
+        "text": "It’ll be done within ten minutes,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 69, \"text\": \"Fourteenth of the Holy Light\", \"currentCharacterId\": \"bertram\", \"currentCharacterName\": \"Bertram\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Bertram\", \"sourceCandidates\": [\"Bertram\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Kindroth\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"bertram\", \"name\": \"Bertram\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 42, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Plus, Jake already had some insight into the Holy Church and thus instantly knew what “Fourteenth of the Holy Light” meant. He also knew who the Lodestar Matron was. Her being Fourteenth of the Holy Light meant she was the fourteenth god to ever ascend in the Holy Church, meaning she was old. Really old.\", \"currentParagraphDialogue\": [{\"lineId\": 69, \"text\": \"Fourteenth of the Holy Light\", \"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"isReturning\": false}], \"previousParagraphText\": \"“You are speaking to the Lodestar Matron, the Fourteenth of the Holy Light,” she spoke, the name Matron pretty much confirming she was a woman.\", \"previousParagraphDialogue\": [{\"lineId\": 66, \"text\": \"You are speaking to the Lodestar Matron, the Fourteenth of the Holy Light,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}], \"nextParagraphText\": \"She was a god not focused on combat, but one who lived up to her name of being a guiding star for everyone her light fell upon. She was a bit like an Augur in that respect. The Lodestar Matron also held a very high position in her faction as she was one of the top people in charge of one the most important parts of the Holy Church:\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Fourteenth of the Holy Light\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Plus, Jake already had some insight into the Holy Church and thus instantly knew what\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Fourteenth of the Holy Light\", \"lastSentence\": \"Fourteenth of the Holy Light\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You are speaking to the Lodestar Matron, the Fourteenth of the Holy Light,\", \"cuePosition\": \"after\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"she spoke, the name Matron pretty much confirming she was a woman.\", \"speakerSurface\": \"she\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"Lodestar Matron\"], \"addressedEntity\": null, \"firstSentence\": \"You are speaking to the Lodestar Matron, the Fourteenth of the Holy Light,\", \"lastSentence\": \"You are speaking to the Lodestar Matron, the Fourteenth of the Holy Light,\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Fourteenth of the Holy Light\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Plus, Jake already had some insight into the Holy Church and thus instantly knew what\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Fourteenth of the Holy Light\", \"lastSentence\": \"Fourteenth of the Holy Light\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"aliases\": [], \"roleLabels\": [\"bertram\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"aliases\": [\"holy-priest\", \"holy-priest-2\", \"head priest\", \"the head priest\"], \"roleLabels\": [\"holy priest\", \"priest\", \"holy priest 2\", \"priest 2\", \"head priest\", \"the head priest\", \"the priest\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [\"jacob\", \"augur\", \"the augur\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [\"kindroth\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 54, \"paragraphIndex\": 32, \"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"text\": \"Allow me the honors,\"}, {\"relativeIndex\": -3, \"lineId\": 62, \"paragraphIndex\": 39, \"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"text\": \"Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,\"}, {\"relativeIndex\": -2, \"lineId\": 64, \"paragraphIndex\": 40, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I can’t say I know much about you considering I don’t know who I’m conversing with,\"}, {\"relativeIndex\": -1, \"lineId\": 66, \"paragraphIndex\": 41, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"You are speaking to the Lodestar Matron, the Fourteenth of the Holy Light,\"}, {\"relativeIndex\": 1, \"lineId\": 78, \"paragraphIndex\": 50, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"What’s the progress on the formation?\"}, {\"relativeIndex\": 2, \"lineId\": 80, \"paragraphIndex\": 51, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"It’ll be done within ten minutes,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"holy-priest\", \"name\": \"Holy Priest\", \"aliases\": [\"holy-priest\", \"holy-priest-2\", \"head priest\", \"the head priest\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"bertram\", \"name\": \"Bertram\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"needs_review\",\n  \"characterId\": null,\n  \"characterName\": null,\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"not_dialogue\",\n    \"narrative_explanation\",\n    \"no_speech_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

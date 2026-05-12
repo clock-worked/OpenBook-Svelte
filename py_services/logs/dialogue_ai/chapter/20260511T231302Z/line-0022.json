@@ -1,0 +1,443 @@
+{
+  "alignment": {
+    "confidence": 1.0,
+    "isSpanFallback": false,
+    "method": "quote_unit",
+    "paragraphIndex": 13,
+    "spanDistance": 0.0,
+    "spanParagraphIndex": 13
+  },
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "a32d812a6821add09473c277faf66881e2dfeeae7cae3b0f244cdbccecf9493e",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\a32d812a6821add09473c277faf66881e2dfeeae7cae3b0f244cdbccecf9493e.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "speaker_surface_match"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": true
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God",
+              "Unknown Human (Male)"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist",
+              "lord thayne",
+              "thayne",
+              "void god",
+              "unknown human male"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "characterName": "Minaga",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "minaga",
+              "unique lifeform",
+              "the unique lifeform",
+              "the unique lifeform 2",
+              "unique lifeform 2"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "casper",
+            "characterName": "Casper",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "casper"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God",
+              "Unknown Human (Male)"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "casper",
+            "name": "Casper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "name": "Minaga",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake also got involved, shaking his head.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Yeah, that was actually pretty insensitive of you,",
+          "lastSentence": "Yeah, that was actually pretty insensitive of you,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Yeah, that was actually pretty insensitive of you,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Jake also got"
+        },
+        "line": {
+          "alignment": {
+            "confidence": 1.0,
+            "isSpanFallback": false,
+            "method": "quote_unit",
+            "paragraphIndex": 13,
+            "spanDistance": 0.0,
+            "spanParagraphIndex": 13
+          },
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Minaga",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.32919999999999994,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Minaga",
+            "sourceCandidates": [
+              "Minaga",
+              "Casper"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.804
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.804,
+              "name": "Minaga",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.444,
+              "name": "Casper",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 22,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "Yeah, that was actually pretty insensitive of you,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 22,
+              "text": "Yeah, that was actually pretty insensitive of you,"
+            },
+            {
+              "characterId": "minaga",
+              "characterName": "Minaga",
+              "isReturning": true,
+              "lineId": 24,
+              "text": "Is this the kind of operation you’re running, huh? Workplace bullying is no joke, and I’m inclined to order an immediate investigation into the clearly toxic culture you’ve created."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake also got involved, shaking his head.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Yeah, that was actually pretty insensitive of you,",
+              "lastSentence": "Yeah, that was actually pretty insensitive of you,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Yeah, that was actually pretty insensitive of you,",
+              "speakerNameMatch": null,
+              "speakerSurface": "Jake also got"
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Jake also got involved, shaking his head.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Is this the kind of operation you’re running, huh?",
+              "lastSentence": "Workplace bullying is no joke, and I’m inclined to order an immediate investigation into the clearly toxic culture you’ve created.",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "Is this the kind of operation you’re running, huh? Workplace bullying is no joke, and I’m inclined to order an immediate investigation into the clearly toxic culture you’ve created.",
+              "speakerNameMatch": null,
+              "speakerSurface": "Jake also got"
+            }
+          ],
+          "currentParagraphText": "“Yeah, that was actually pretty insensitive of you,” Jake also got involved, shaking his head. “Is this the kind of operation you’re running, huh? Workplace bullying is no joke, and I’m inclined to order an immediate investigation into the clearly toxic culture you’ve created.”",
+          "dialogueLineCount": 2,
+          "paragraphIndex": 13
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 16,
+            "paragraphIndex": 11,
+            "relativeIndex": -4,
+            "text": "Do you need to say it in the most deadpan and monotonous tone imaginable?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 18,
+            "paragraphIndex": 11,
+            "relativeIndex": -3,
+            "text": "Put some life into the performance! Some energy!"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 19,
+            "paragraphIndex": 12,
+            "relativeIndex": -2,
+            "text": "I can’t,"
+          },
+          {
+            "characterId": "minaga",
+            "characterName": "Minaga",
+            "lineId": 21,
+            "paragraphIndex": 12,
+            "relativeIndex": -1,
+            "text": "I’m dead. I don’t have any life energy."
+          },
+          {
+            "characterId": "minaga",
+            "characterName": "Minaga",
+            "lineId": 24,
+            "paragraphIndex": 13,
+            "relativeIndex": 1,
+            "text": "Is this the kind of operation you’re running, huh? Workplace bullying is no joke, and I’m inclined to order an immediate investigation into the clearly toxic culture you’ve created."
+          },
+          {
+            "characterId": "casper",
+            "characterName": "Casper",
+            "lineId": 25,
+            "paragraphIndex": 14,
+            "relativeIndex": 2,
+            "text": "You definitely should,"
+          }
+        ],
+        "sceneEntities": [
+          {
+            "matches": [
+              {
+                "characterId": "jake",
+                "characterName": "Jake",
+                "evidence": [
+                  "token_overlap:jake"
+                ],
+                "score": 0.5667
+              }
+            ],
+            "surface": "jake also got"
+          }
+        ],
+        "sceneRoster": {
+          "paragraphWindow": 6,
+          "presentCharacterIds": [
+            "casper",
+            "jake",
+            "unknown",
+            "minaga"
+          ],
+          "presentCharacters": [
+            {
+              "characterId": "casper",
+              "characterName": "Casper"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake"
+            },
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown"
+            },
+            {
+              "characterId": "minaga",
+              "characterName": "Minaga"
+            }
+          ]
+        }
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 22, \"text\": \"Yeah, that was actually pretty insensitive of you,\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Minaga\", \"sourceCandidates\": [\"Minaga\", \"Casper\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.32919999999999994, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Minaga\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Minaga\", \"confidence\": 0.804, \"reasons\": null}, {\"characterId\": null, \"name\": \"Casper\", \"confidence\": 0.444, \"reasons\": null}], \"isReturning\": false, \"alignment\": {\"paragraphIndex\": 13, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 13, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 13, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Yeah, that was actually pretty insensitive of you,” Jake also got involved, shaking his head. “Is this the kind of operation you’re running, huh? Workplace bullying is no joke, and I’m inclined to order an immediate investigation into the clearly toxic culture you’ve created.”\", \"currentParagraphDialogue\": [{\"lineId\": 22, \"text\": \"Yeah, that was actually pretty insensitive of you,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 24, \"text\": \"Is this the kind of operation you’re running, huh? Workplace bullying is no joke, and I’m inclined to order an immediate investigation into the clearly toxic culture you’ve created.\", \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Yeah, that was actually pretty insensitive of you,\", \"cuePosition\": \"after\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake also got involved, shaking his head.\", \"speakerSurface\": \"Jake also got\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yeah, that was actually pretty insensitive of you,\", \"lastSentence\": \"Yeah, that was actually pretty insensitive of you,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Is this the kind of operation you’re running, huh? Workplace bullying is no joke, and I’m inclined to order an immediate investigation into the clearly toxic culture you’ve created.\", \"cuePosition\": \"before\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake also got involved, shaking his head.\", \"speakerSurface\": \"Jake also got\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Is this the kind of operation you’re running, huh?\", \"lastSentence\": \"Workplace bullying is no joke, and I’m inclined to order an immediate investigation into the clearly toxic culture you’ve created.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Yeah, that was actually pretty insensitive of you,\", \"cuePosition\": \"after\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake also got involved, shaking his head.\", \"speakerSurface\": \"Jake also got\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yeah, that was actually pretty insensitive of you,\", \"lastSentence\": \"Yeah, that was actually pretty insensitive of you,\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"casper\", \"jake\", \"unknown\", \"minaga\"], \"presentCharacters\": [{\"characterId\": \"casper\", \"characterName\": \"Casper\"}, {\"characterId\": \"jake\", \"characterName\": \"Jake\"}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}, {\"characterId\": \"minaga\", \"characterName\": \"Minaga\"}]}, \"sceneEntities\": [{\"surface\": \"jake also got\", \"matches\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"score\": 0.5667, \"evidence\": [\"token_overlap:jake\"]}]}], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\", \"void god\", \"unknown human male\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [\"minaga\", \"unique lifeform\", \"the unique lifeform\", \"the unique lifeform 2\", \"unique lifeform 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"casper\", \"characterName\": \"Casper\", \"aliases\": [], \"roleLabels\": [\"casper\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 16, \"paragraphIndex\": 11, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Do you need to say it in the most deadpan and monotonous tone imaginable?\"}, {\"relativeIndex\": -3, \"lineId\": 18, \"paragraphIndex\": 11, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Put some life into the performance! Some energy!\"}, {\"relativeIndex\": -2, \"lineId\": 19, \"paragraphIndex\": 12, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I can’t,\"}, {\"relativeIndex\": -1, \"lineId\": 21, \"paragraphIndex\": 12, \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"text\": \"I’m dead. I don’t have any life energy.\"}, {\"relativeIndex\": 1, \"lineId\": 24, \"paragraphIndex\": 13, \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"text\": \"Is this the kind of operation you’re running, huh? Workplace bullying is no joke, and I’m inclined to order an immediate investigation into the clearly toxic culture you’ve created.\"}, {\"relativeIndex\": 2, \"lineId\": 25, \"paragraphIndex\": 14, \"characterId\": \"casper\", \"characterName\": \"Casper\", \"text\": \"You definitely should,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"casper\", \"name\": \"Casper\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"speaker_surface_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0186 - Chapter 1243 - Too Easily Distracted/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“Yeah, that was actually pretty insensitive of you,” Jake also got involved, shaking his head. “Is this the kind of operation you’re running, huh? Workplace bullying is no joke, and I’m inclined to order an immediate investigation into the clearly toxic culture you’ve created.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“Yeah, that was actually pretty insensitive of you,” Jake also got involved, shaking his head. “Is this the kind of operation you’re running, huh? Workplace bullying is no joke, and I’m inclined to order an immediate investigation into the clearly toxic culture you’ve created.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 22,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“You definitely should,” Casper nodded. “Did you know he also banned unions? I’m pretty sure that’s illegal.”",
+    "paragraphIndex": 13,
+    "previousParagraphText": "“I can’t,” Casper defended himself. “I’m dead. I don’t have any life energy.”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "speaker_surface_match"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 22,
+  "nextParagraphText": "“You definitely should,” Casper nodded. “Did you know he also banned unions? I’m pretty sure that’s illegal.”",
+  "paragraphIndex": 13,
+  "previousParagraphText": "“I can’t,” Casper defended himself. “I’m dead. I don’t have any life energy.”",
+  "sceneRoster": {
+    "paragraphWindow": 6,
+    "presentCharacterIds": [
+      "casper",
+      "jake",
+      "unknown",
+      "minaga"
+    ],
+    "presentCharacters": [
+      {
+        "characterId": "casper",
+        "characterName": "Casper"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown"
+      },
+      {
+        "characterId": "minaga",
+        "characterName": "Minaga"
+      }
+    ]
+  }
+}

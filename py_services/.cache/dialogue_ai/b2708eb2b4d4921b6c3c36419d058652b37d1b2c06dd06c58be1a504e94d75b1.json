@@ -1,0 +1,352 @@
+{
+  "cacheKey": "b2708eb2b4d4921b6c3c36419d058652b37d1b2c06dd06c58be1a504e94d75b1",
+  "createdAt": "2026-04-02T22:32:38.103052+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "caleb",
+    "characterName": "Caleb",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "dialogue_continuity",
+      "responds_to_previous_speaker",
+      "sets_up_next_speaker_response"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "caleb"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "caleb",
+        "name": "Caleb",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "arnold",
+        "name": "Arnold",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Hey, it’s not all bad.",
+      "lastSentence": "Maja and Adam also sometimes spend a few days there when I’m really stuck at work, so I can at least pop in occasionally.",
+      "mentionedEntities": [
+        "Adam",
+        "Maja"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "Hey, it’s not all bad. In case you’re wondering, the penthouse on top of that huge tower is my home away from home. Maja and Adam also sometimes spend a few days there when I’m really stuck at work, so I can at least pop in occasionally.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "Adam",
+            "Maja"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Caleb",
+        "sourceCandidates": [
+          "Caleb",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "caleb",
+          "confidence": 0.816,
+          "name": "Caleb",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "caleb",
+      "currentCharacterName": "Caleb",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 97,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Hey, it’s not all bad. In case you’re wondering, the penthouse on top of that huge tower is my home away from home. Maja and Adam also sometimes spend a few days there when I’m really stuck at work, so I can at least pop in occasionally."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "caleb",
+          "characterName": "Caleb",
+          "isReturning": true,
+          "lineId": 97,
+          "text": "Hey, it’s not all bad. In case you’re wondering, the penthouse on top of that huge tower is my home away from home. Maja and Adam also sometimes spend a few days there when I’m really stuck at work, so I can at least pop in occasionally."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Hey, it’s not all bad.",
+          "lastSentence": "Maja and Adam also sometimes spend a few days there when I’m really stuck at work, so I can at least pop in occasionally.",
+          "mentionedEntities": [
+            "Adam",
+            "Maja"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Hey, it’s not all bad. In case you’re wondering, the penthouse on top of that huge tower is my home away from home. Maja and Adam also sometimes spend a few days there when I’m really stuck at work, so I can at least pop in occasionally.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Hey, it’s not all bad. In case you’re wondering, the penthouse on top of that huge tower is my home away from home. Maja and Adam also sometimes spend a few days there when I’m really stuck at work, so I can at least pop in occasionally.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 98,
+          "text": "Sounds nice, I guess,"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake nodded, though he definitely wouldn’t trade a nice home for having to do paperwork.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "Sounds nice, I guess,",
+          "lastSentence": "Sounds nice, I guess,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Sounds nice, I guess,",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jake nodded, though he definitely wouldn’t trade a nice home for having to do paperwork.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "Say, how are Adam and Maja?",
+          "lastSentence": "Say, how are Adam and Maja?",
+          "mentionedEntities": [
+            "Adam",
+            "Maja"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "Say, how are Adam and Maja?",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "nextParagraphText": "“Sounds nice, I guess,” Jake nodded, though he definitely wouldn’t trade a nice home for having to do paperwork. “Say, how are Adam and Maja?”",
+      "paragraphIndex": 45,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 94,
+          "text": "Not gonna lie, that doesn’t sound like a good gig,"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 96,
+          "text": "A lot of work, and all you get out of it is responsibility. Bah."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake confessed.",
+          "cueVerb": "confessed",
+          "cueVerbType": "speech",
+          "firstSentence": "Not gonna lie, that doesn’t sound like a good gig,",
+          "lastSentence": "Not gonna lie, that doesn’t sound like a good gig,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Not gonna lie, that doesn’t sound like a good gig,",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jake confessed.",
+          "cueVerb": "confessed",
+          "cueVerbType": "speech",
+          "firstSentence": "A lot of work, and all you get out of it is responsibility.",
+          "lastSentence": "Bah.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "A lot of work, and all you get out of it is responsibility. Bah.",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "previousParagraphText": "“Not gonna lie, that doesn’t sound like a good gig,” Jake confessed. “A lot of work, and all you get out of it is responsibility. Bah.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "lineId": 91,
+        "paragraphIndex": 43,
+        "relativeIndex": -4,
+        "text": "If it’s any consolation, we will be working closely with the authorities. At least some of the time. I’ve come to learn that a lot of the work done by the Court of Shadows relies on walking a tightrope between illegality and remaining too useful to get rid of,"
+      },
+      {
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "lineId": 93,
+        "paragraphIndex": 43,
+        "relativeIndex": -3,
+        "text": "That’s why Judges are appointed. We are the ultimate authority in day-to-day matters, our job being to ensure what kind of jobs are taken and that the balance is maintained. If we fail, we also happen to be brilliant fall guys as the Court can point to us as having acted independently or been overly incompetent."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 94,
+        "paragraphIndex": 44,
+        "relativeIndex": -2,
+        "text": "Not gonna lie, that doesn’t sound like a good gig,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 96,
+        "paragraphIndex": 44,
+        "relativeIndex": -1,
+        "text": "A lot of work, and all you get out of it is responsibility. Bah."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 98,
+        "paragraphIndex": 46,
+        "relativeIndex": 1,
+        "text": "Sounds nice, I guess,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 100,
+        "paragraphIndex": 47,
+        "relativeIndex": 2,
+        "text": "Say, how are Adam and Maja?"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 97, \"text\": \"Hey, it’s not all bad. In case you’re wondering, the penthouse on top of that huge tower is my home away from home. Maja and Adam also sometimes spend a few days there when I’m really stuck at work, so I can at least pop in occasionally.\", \"currentCharacterId\": \"caleb\", \"currentCharacterName\": \"Caleb\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Caleb\", \"sourceCandidates\": [\"Caleb\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Adam\", \"Maja\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"caleb\", \"name\": \"Caleb\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 45, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Hey, it’s not all bad. In case you’re wondering, the penthouse on top of that huge tower is my home away from home. Maja and Adam also sometimes spend a few days there when I’m really stuck at work, so I can at least pop in occasionally.”\", \"currentParagraphDialogue\": [{\"lineId\": 97, \"text\": \"Hey, it’s not all bad. In case you’re wondering, the penthouse on top of that huge tower is my home away from home. Maja and Adam also sometimes spend a few days there when I’m really stuck at work, so I can at least pop in occasionally.\", \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"isReturning\": true}], \"previousParagraphText\": \"“Not gonna lie, that doesn’t sound like a good gig,” Jake confessed. “A lot of work, and all you get out of it is responsibility. Bah.”\", \"previousParagraphDialogue\": [{\"lineId\": 94, \"text\": \"Not gonna lie, that doesn’t sound like a good gig,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 96, \"text\": \"A lot of work, and all you get out of it is responsibility. Bah.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"nextParagraphText\": \"“Sounds nice, I guess,” Jake nodded, though he definitely wouldn’t trade a nice home for having to do paperwork. “Say, how are Adam and Maja?”\", \"nextParagraphDialogue\": [{\"lineId\": 98, \"text\": \"Sounds nice, I guess,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Hey, it’s not all bad. In case you’re wondering, the penthouse on top of that huge tower is my home away from home. Maja and Adam also sometimes spend a few days there when I’m really stuck at work, so I can at least pop in occasionally.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Adam\", \"Maja\"], \"addressedEntity\": null, \"firstSentence\": \"Hey, it’s not all bad.\", \"lastSentence\": \"Maja and Adam also sometimes spend a few days there when I’m really stuck at work, so I can at least pop in occasionally.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Not gonna lie, that doesn’t sound like a good gig,\", \"cuePosition\": \"after\", \"cueVerb\": \"confessed\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake confessed.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Not gonna lie, that doesn’t sound like a good gig,\", \"lastSentence\": \"Not gonna lie, that doesn’t sound like a good gig,\"}, {\"quoteIndex\": 1, \"quoteText\": \"A lot of work, and all you get out of it is responsibility. Bah.\", \"cuePosition\": \"before\", \"cueVerb\": \"confessed\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake confessed.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"A lot of work, and all you get out of it is responsibility.\", \"lastSentence\": \"Bah.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Sounds nice, I guess,\", \"cuePosition\": \"after\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake nodded, though he definitely wouldn’t trade a nice home for having to do paperwork.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Sounds nice, I guess,\", \"lastSentence\": \"Sounds nice, I guess,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Say, how are Adam and Maja?\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake nodded, though he definitely wouldn’t trade a nice home for having to do paperwork.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [\"Adam\", \"Maja\"], \"addressedEntity\": null, \"firstSentence\": \"Say, how are Adam and Maja?\", \"lastSentence\": \"Say, how are Adam and Maja?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Hey, it’s not all bad. In case you’re wondering, the penthouse on top of that huge tower is my home away from home. Maja and Adam also sometimes spend a few days there when I’m really stuck at work, so I can at least pop in occasionally.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Adam\", \"Maja\"], \"addressedEntity\": null, \"firstSentence\": \"Hey, it’s not all bad.\", \"lastSentence\": \"Maja and Adam also sometimes spend a few days there when I’m really stuck at work, so I can at least pop in occasionally.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"aliases\": [], \"roleLabels\": [\"caleb\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 91, \"paragraphIndex\": 43, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"If it’s any consolation, we will be working closely with the authorities. At least some of the time. I’ve come to learn that a lot of the work done by the Court of Shadows relies on walking a tightrope between illegality and remaining too useful to get rid of,\"}, {\"relativeIndex\": -3, \"lineId\": 93, \"paragraphIndex\": 43, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"That’s why Judges are appointed. We are the ultimate authority in day-to-day matters, our job being to ensure what kind of jobs are taken and that the balance is maintained. If we fail, we also happen to be brilliant fall guys as the Court can point to us as having acted independently or been overly incompetent.\"}, {\"relativeIndex\": -2, \"lineId\": 94, \"paragraphIndex\": 44, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Not gonna lie, that doesn’t sound like a good gig,\"}, {\"relativeIndex\": -1, \"lineId\": 96, \"paragraphIndex\": 44, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"A lot of work, and all you get out of it is responsibility. Bah.\"}, {\"relativeIndex\": 1, \"lineId\": 98, \"paragraphIndex\": 46, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Sounds nice, I guess,\"}, {\"relativeIndex\": 2, \"lineId\": 100, \"paragraphIndex\": 47, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Say, how are Adam and Maja?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"arnold\", \"name\": \"Arnold\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"caleb\",\n  \"characterName\": \"Caleb\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"dialogue_continuity\",\n    \"responds_to_previous_speaker\",\n    \"sets_up_next_speaker_response\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

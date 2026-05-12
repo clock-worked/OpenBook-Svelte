@@ -1,0 +1,310 @@
+{
+  "cacheKey": "b0c43a1679ef55075ceaa20af105a77f4124b95b181085ef19c7a94823ad559f",
+  "createdAt": "2026-04-01T20:09:49.664343+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "narrative_cue_before_quote",
+      "male_pronoun_match",
+      "dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Attendant"
+        ],
+        "characterId": "nimera",
+        "characterName": "Nimera",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "nimera",
+          "attendant"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "primordial"
+        ],
+        "characterId": "yggdrasil",
+        "name": "Yggdrasil",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Attendant"
+        ],
+        "characterId": "nimera",
+        "name": "Nimera",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "nature attendant",
+        "name": "Nature Attendant",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "He did wonder, though.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "This may seem rude...",
+      "lastSentence": "I’ve had a hard time figuring out what you two are trying to discover.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "This may seem rude... but why all the questions regarding my Bloodline? About me? I’ve had a hard time figuring out what you two are trying to discover.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Attendant",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Attendant",
+        "sourceCandidates": [
+          "Attendant",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Nimera",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 53,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "This may seem rude... but why all the questions regarding my Bloodline? About me? I’ve had a hard time figuring out what you two are trying to discover."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 53,
+          "text": "This may seem rude... but why all the questions regarding my Bloodline? About me? I’ve had a hard time figuring out what you two are trying to discover."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "He did wonder, though.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "This may seem rude...",
+          "lastSentence": "I’ve had a hard time figuring out what you two are trying to discover.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "This may seem rude... but why all the questions regarding my Bloodline? About me? I’ve had a hard time figuring out what you two are trying to discover.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "He did wonder, though. “This may seem rude... but why all the questions regarding my Bloodline? About me? I’ve had a hard time figuring out what you two are trying to discover.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Perhaps he was being a bit too blunt just asking them outright, but Jake had never been good at subtlety outside of using his stealth skills.",
+      "paragraphIndex": 27,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 50,
+          "text": "Not exactly surprising,"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Not exactly surprising,",
+          "lastSentence": "Not exactly surprising,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Not exactly surprising,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "previousParagraphText": "“Not exactly surprising,” Jake shook his head. Dina and the Sword Saint had gotten along a lot better than Jake and Dina, and as for Sylphie, well, everyone liked Sylphie. Well, except for those she went full murder-bird on, but that was more often than not their own fault. Shouldn’t have owned something tasty Sylphie wanted to snack on."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 45,
+        "paragraphIndex": 24,
+        "relativeIndex": -4,
+        "text": "So, full transparency, I’m pretty sure the Sword Saint is responsible for that far more so than me,"
+      },
+      {
+        "characterId": "nimera",
+        "characterName": "Nimera",
+        "lineId": 47,
+        "paragraphIndex": 25,
+        "relativeIndex": -3,
+        "text": "Oh, I’m fully aware, and he shall also be rewarded,"
+      },
+      {
+        "characterId": "nimera",
+        "characterName": "Nimera",
+        "lineId": 49,
+        "paragraphIndex": 25,
+        "relativeIndex": -2,
+        "text": "But you are still the reason why she went with him. Even if Dina has admittedly spoken a lot more about both him and Sylphie than you."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 50,
+        "paragraphIndex": 26,
+        "relativeIndex": -1,
+        "text": "Not exactly surprising,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 55,
+        "paragraphIndex": 29,
+        "relativeIndex": 1,
+        "text": "What makes you think we are aiming to discover anything?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 57,
+        "paragraphIndex": 31,
+        "relativeIndex": 2,
+        "text": "See, there it is again,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 53, \"text\": \"This may seem rude... but why all the questions regarding my Bloodline? About me? I’ve had a hard time figuring out what you two are trying to discover.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Attendant\", \"sourceCandidates\": [\"Attendant\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Attendant\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Nimera\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 27, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"He did wonder, though. “This may seem rude... but why all the questions regarding my Bloodline? About me? I’ve had a hard time figuring out what you two are trying to discover.”\", \"currentParagraphDialogue\": [{\"lineId\": 53, \"text\": \"This may seem rude... but why all the questions regarding my Bloodline? About me? I’ve had a hard time figuring out what you two are trying to discover.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“Not exactly surprising,” Jake shook his head. Dina and the Sword Saint had gotten along a lot better than Jake and Dina, and as for Sylphie, well, everyone liked Sylphie. Well, except for those she went full murder-bird on, but that was more often than not their own fault. Shouldn’t have owned something tasty Sylphie wanted to snack on.\", \"previousParagraphDialogue\": [{\"lineId\": 50, \"text\": \"Not exactly surprising,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"nextParagraphText\": \"Perhaps he was being a bit too blunt just asking them outright, but Jake had never been good at subtlety outside of using his stealth skills.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"This may seem rude... but why all the questions regarding my Bloodline? About me? I’ve had a hard time figuring out what you two are trying to discover.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"He did wonder, though.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"This may seem rude...\", \"lastSentence\": \"I’ve had a hard time figuring out what you two are trying to discover.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Not exactly surprising,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Not exactly surprising,\", \"lastSentence\": \"Not exactly surprising,\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"This may seem rude... but why all the questions regarding my Bloodline? About me? I’ve had a hard time figuring out what you two are trying to discover.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"He did wonder, though.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"This may seem rude...\", \"lastSentence\": \"I’ve had a hard time figuring out what you two are trying to discover.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"nimera\", \"characterName\": \"Nimera\", \"aliases\": [\"Attendant\"], \"roleLabels\": [\"nimera\", \"attendant\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 45, \"paragraphIndex\": 24, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"So, full transparency, I’m pretty sure the Sword Saint is responsible for that far more so than me,\"}, {\"relativeIndex\": -3, \"lineId\": 47, \"paragraphIndex\": 25, \"characterId\": \"nimera\", \"characterName\": \"Nimera\", \"text\": \"Oh, I’m fully aware, and he shall also be rewarded,\"}, {\"relativeIndex\": -2, \"lineId\": 49, \"paragraphIndex\": 25, \"characterId\": \"nimera\", \"characterName\": \"Nimera\", \"text\": \"But you are still the reason why she went with him. Even if Dina has admittedly spoken a lot more about both him and Sylphie than you.\"}, {\"relativeIndex\": -1, \"lineId\": 50, \"paragraphIndex\": 26, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Not exactly surprising,\"}, {\"relativeIndex\": 1, \"lineId\": 55, \"paragraphIndex\": 29, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"What makes you think we are aiming to discover anything?\"}, {\"relativeIndex\": 2, \"lineId\": 57, \"paragraphIndex\": 31, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"See, there it is again,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"yggdrasil\", \"name\": \"Yggdrasil\", \"aliases\": [\"primordial\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"nimera\", \"name\": \"Nimera\", \"aliases\": [\"Attendant\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"nature attendant\", \"name\": \"Nature Attendant\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"narrative_cue_before_quote\",\n    \"male_pronoun_match\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

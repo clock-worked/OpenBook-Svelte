@@ -1,0 +1,290 @@
+{
+  "cacheKey": "76704283d9b6de6c27e431404a934cc2c32a6a9bc7a0c769c71962c3c64c6e15",
+  "createdAt": "2026-04-01T22:09:33.870088+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": {
+      "alias": "the young man",
+      "characterId": "unknown",
+      "characterName": "Unknown"
+    },
+    "characterId": "unknown",
+    "characterName": "Unknown",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "role_descriptor_match_unknown"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "dina",
+        "characterName": "Dina",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "dina"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "sylphie"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "dina",
+        "name": "Dina",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "the young man answered, seemingly relieved they’d just gotten there.",
+      "cueVerb": "answered",
+      "cueVerbType": "speech",
+      "firstSentence": "This is the sixth,",
+      "lastSentence": "This is the sixth,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "This is the sixth,",
+      "speakerNameMatch": null,
+      "speakerSurface": "the young man"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Sylphie",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.32919999999999994,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Sylphie",
+        "sourceCandidates": [
+          "Sylphie",
+          "Dina"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.804,
+          "name": "Sylphie",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.444,
+          "name": "Dina",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 58,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "This is the sixth,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 58,
+          "text": "This is the sixth,"
+        },
+        {
+          "characterId": "sylphie",
+          "characterName": "Sylphie",
+          "isReturning": true,
+          "lineId": 60,
+          "text": "They’re definitely the strongest party, but... that Sylphian Hawk isn’t something people like us can ever hope to defeat."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the young man answered, seemingly relieved they’d just gotten there.",
+          "cueVerb": "answered",
+          "cueVerbType": "speech",
+          "firstSentence": "This is the sixth,",
+          "lastSentence": "This is the sixth,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "This is the sixth,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the young man"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "the young man answered, seemingly relieved they’d just gotten there.",
+          "cueVerb": "answered",
+          "cueVerbType": "speech",
+          "firstSentence": "They’re definitely the strongest party, but...",
+          "lastSentence": "that Sylphian Hawk isn’t something people like us can ever hope to defeat.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "They’re definitely the strongest party, but... that Sylphian Hawk isn’t something people like us can ever hope to defeat.",
+          "speakerNameMatch": null,
+          "speakerSurface": "the young man"
+        }
+      ],
+      "currentParagraphText": "“This is the sixth,” the young man answered, seemingly relieved they’d just gotten there. “They’re definitely the strongest party, but... that Sylphian Hawk isn’t something people like us can ever hope to defeat.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 34
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "dina",
+        "characterName": "Dina",
+        "lineId": 51,
+        "paragraphIndex": 31,
+        "relativeIndex": -4,
+        "text": "Mistress, Lord Sword Saint,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 53,
+        "paragraphIndex": 31,
+        "relativeIndex": -3,
+        "text": "How long have you been watching?"
+      },
+      {
+        "characterId": "dina",
+        "characterName": "Dina",
+        "lineId": 55,
+        "paragraphIndex": 33,
+        "relativeIndex": -2,
+        "text": "We just arrived,"
+      },
+      {
+        "characterId": "dina",
+        "characterName": "Dina",
+        "lineId": 57,
+        "paragraphIndex": 33,
+        "relativeIndex": -1,
+        "text": "How many groups have faced her so far?"
+      },
+      {
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "lineId": 60,
+        "paragraphIndex": 34,
+        "relativeIndex": 1,
+        "text": "They’re definitely the strongest party, but... that Sylphian Hawk isn’t something people like us can ever hope to defeat."
+      },
+      {
+        "characterId": "the_sword_saint",
+        "characterName": "The Sword Saint",
+        "lineId": 61,
+        "paragraphIndex": 35,
+        "relativeIndex": 2,
+        "text": "She’s only something you can’t defeat as you are now,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 58, \"text\": \"This is the sixth,\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Sylphie\", \"sourceCandidates\": [\"Sylphie\", \"Dina\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.32919999999999994, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Sylphie\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Sylphie\", \"confidence\": 0.804, \"reasons\": null}, {\"characterId\": null, \"name\": \"Dina\", \"confidence\": 0.444, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 34, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“This is the sixth,” the young man answered, seemingly relieved they’d just gotten there. “They’re definitely the strongest party, but... that Sylphian Hawk isn’t something people like us can ever hope to defeat.”\", \"currentParagraphDialogue\": [{\"lineId\": 58, \"text\": \"This is the sixth,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 60, \"text\": \"They’re definitely the strongest party, but... that Sylphian Hawk isn’t something people like us can ever hope to defeat.\", \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"This is the sixth,\", \"cuePosition\": \"after\", \"cueVerb\": \"answered\", \"cueVerbType\": \"speech\", \"cueText\": \"the young man answered, seemingly relieved they’d just gotten there.\", \"speakerSurface\": \"the young man\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"This is the sixth,\", \"lastSentence\": \"This is the sixth,\"}, {\"quoteIndex\": 1, \"quoteText\": \"They’re definitely the strongest party, but... that Sylphian Hawk isn’t something people like us can ever hope to defeat.\", \"cuePosition\": \"before\", \"cueVerb\": \"answered\", \"cueVerbType\": \"speech\", \"cueText\": \"the young man answered, seemingly relieved they’d just gotten there.\", \"speakerSurface\": \"the young man\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"They’re definitely the strongest party, but...\", \"lastSentence\": \"that Sylphian Hawk isn’t something people like us can ever hope to defeat.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"This is the sixth,\", \"cuePosition\": \"after\", \"cueVerb\": \"answered\", \"cueVerbType\": \"speech\", \"cueText\": \"the young man answered, seemingly relieved they’d just gotten there.\", \"speakerSurface\": \"the young man\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"This is the sixth,\", \"lastSentence\": \"This is the sixth,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"dina\", \"characterName\": \"Dina\", \"aliases\": [], \"roleLabels\": [\"dina\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [\"sylphie\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 51, \"paragraphIndex\": 31, \"characterId\": \"dina\", \"characterName\": \"Dina\", \"text\": \"Mistress, Lord Sword Saint,\"}, {\"relativeIndex\": -3, \"lineId\": 53, \"paragraphIndex\": 31, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"How long have you been watching?\"}, {\"relativeIndex\": -2, \"lineId\": 55, \"paragraphIndex\": 33, \"characterId\": \"dina\", \"characterName\": \"Dina\", \"text\": \"We just arrived,\"}, {\"relativeIndex\": -1, \"lineId\": 57, \"paragraphIndex\": 33, \"characterId\": \"dina\", \"characterName\": \"Dina\", \"text\": \"How many groups have faced her so far?\"}, {\"relativeIndex\": 1, \"lineId\": 60, \"paragraphIndex\": 34, \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"text\": \"They’re definitely the strongest party, but... that Sylphian Hawk isn’t something people like us can ever hope to defeat.\"}, {\"relativeIndex\": 2, \"lineId\": 61, \"paragraphIndex\": 35, \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"text\": \"She’s only something you can’t defeat as you are now,\"}], \"chapterCharacters\": [{\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dina\", \"name\": \"Dina\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"unknown\",\n  \"characterName\": \"Unknown\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"role_descriptor_match_unknown\"\n  ],\n  \"aliasToAdd\": {\n    \"characterId\": \"unknown\",\n    \"characterName\": \"Unknown\",\n    \"alias\": \"the young man\"\n  },\n  \"newCharacterProposal\": null\n}"
+}

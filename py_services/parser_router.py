@@ -1,3 +1,4 @@
+import asyncio
 import os
 import tempfile
 from pathlib import Path
@@ -5,8 +6,9 @@ from typing import Callable, List
 
 from fastapi import APIRouter, HTTPException
 
-from api_models import CorefTestRequest, ParseRequest, SaveRequest
+from api_models import CorefTestRequest, DialogueAiAssistRequest, ParseRequest, SaveRequest
 from chapter_service import get_chapter_stats, list_chapters as list_chapters_service
+from dialogue_ai_service import DialogueAiAssistService
 from openbook_parser.booknlp_parser_service import BookNLPParserService
 from openbook_parser.dialogue_parser_service import DialogueParserService, script_to_dict_list
 from update_character_stats import update_character_stats
@@ -17,6 +19,7 @@ FORCED_BLOCKED_SPEAKERS = ["he", "she", "as"]
 
 def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
     router = APIRouter(tags=["parser"])
+    dialogue_ai_service = DialogueAiAssistService(get_book_root=get_book_root)
 
     @router.get("/api/list-chapters")
     async def list_chapters():
@@ -165,6 +168,25 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
     @router.post("/api/coref-health")
     async def coref_health(request: CorefTestRequest):
         parser_service = DialogueParserService()
-        return parser_service.coref_health(sample_text=request.text)
+        coref_health_fn = getattr(parser_service, "coref_health", None)
+        if not callable(coref_health_fn):
+            raise HTTPException(status_code=501, detail="Coreference health check is unavailable.")
+        return coref_health_fn(sample_text=request.text)
+
+    @router.post("/api/dialogue-ai-assist")
+    async def dialogue_ai_assist(request: DialogueAiAssistRequest):
+        try:
+            dialogue_ai_service.prepare_status(request)
+            response = await asyncio.to_thread(dialogue_ai_service.run, request)
+            return response.model_dump()
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @router.get("/api/dialogue-ai-assist-status/{request_id}")
+    async def dialogue_ai_assist_status(request_id: str):
+        status = dialogue_ai_service.get_status(request_id)
+        if status is None:
+            raise HTTPException(status_code=404, detail="Dialogue AI assist request not found.")
+        return status.model_dump()
 
     return router

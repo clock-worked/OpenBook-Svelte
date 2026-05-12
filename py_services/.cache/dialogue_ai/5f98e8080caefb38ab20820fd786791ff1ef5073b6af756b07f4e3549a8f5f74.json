@@ -1,0 +1,313 @@
+{
+  "cacheKey": "5f98e8080caefb38ab20820fd786791ff1ef5073b6af756b07f4e3549a8f5f74",
+  "createdAt": "2026-04-02T22:40:15.982828+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "viper",
+    "characterName": "The Malefic Viper",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "dialogue_flow",
+      "contextual_evidence",
+      "speaker_refers_to_self_as_avatar_user"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "viper",
+          "the malefic viper",
+          "malefic viper",
+          "villy"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "dad",
+        "name": "Dad",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "caleb",
+        "name": "Caleb",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "mom",
+        "name": "Mom",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "maja",
+        "name": "Maja",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "adam",
+        "name": "Adam",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk.",
+      "lastSentence": "If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "The Malefic Viper"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.816,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "viper",
+          "confidence": 0.456,
+          "name": "The Malefic Viper",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Protagonist"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 100,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 100,
+          "text": "If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk.",
+          "lastSentence": "If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Do you never go anywhere with your true body?",
+          "lastSentence": "Do you never go anywhere with your true body?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Do you never go anywhere with your true body?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "nextParagraphText": "“Do you never go anywhere with your true body?”",
+      "paragraphIndex": 78,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Villy shared."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 93,
+        "paragraphIndex": 71,
+        "relativeIndex": -4,
+        "text": "Wait, I’m a bit confused... Yalsten wasn’t at all considered a World Wonder, right? If so, why does this mushroom cave get called one while Yalsten didn’,t if they’re both just separate spaces?"
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 95,
+        "paragraphIndex": 73,
+        "relativeIndex": -3,
+        "text": "In many ways, World Wonders are just extremely useful objects or locations found within the different universes, but what truly makes them World Wonders is the system’s direct involvement. The Mycotic Depths has different caves one can use to enter, bringing you to different areas within, and while it’s all one space inside, they’re still separated. Do you remember that barrier in your Tutorial that cut off the inner section with more powerful monsters? This is a bit like that. Natural barriers result in certain sections being restricted to those below certain power levels. No matter how much I wanted to, I would never be able to enter the section for S-grades, much less C-grades like you. All regulated by the system."
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 96,
+        "paragraphIndex": 74,
+        "relativeIndex": -2,
+        "text": "I see... but it seems like the world isn’t entirely cut off, seeing as you can talk to me,"
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 98,
+        "paragraphIndex": 76,
+        "relativeIndex": -1,
+        "text": "Communication to the outside world is somewhat restricted inside, but the version of me you’re talking to isn’t one inside right now. You’re talking to my real body that’s in my realm, busy digesting Yip of Yore. The one in the World Wonder is one of my special avatars,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 101,
+        "paragraphIndex": 81,
+        "relativeIndex": 1,
+        "text": "Do you never go anywhere with your true body?"
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 103,
+        "paragraphIndex": 81,
+        "relativeIndex": 2,
+        "text": "Few gods do, especially not those at my level. It isn’t due to cowardice, though. I’m working on things I need the power of my true body to handle. Meanwhile, exploring a World Wonder with an avatar is as efficient as if I’d gone with my real body, as it’s more than powerful enough,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 100, \"text\": \"If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"The Malefic Viper\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 78, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk.”\", \"currentParagraphDialogue\": [{\"lineId\": 100, \"text\": \"If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"Villy shared.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“Do you never go anywhere with your true body?”\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk.\", \"lastSentence\": \"If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Do you never go anywhere with your true body?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Do you never go anywhere with your true body?\", \"lastSentence\": \"Do you never go anywhere with your true body?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk.\", \"lastSentence\": \"If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 93, \"paragraphIndex\": 71, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Wait, I’m a bit confused... Yalsten wasn’t at all considered a World Wonder, right? If so, why does this mushroom cave get called one while Yalsten didn’,t if they’re both just separate spaces?\"}, {\"relativeIndex\": -3, \"lineId\": 95, \"paragraphIndex\": 73, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"In many ways, World Wonders are just extremely useful objects or locations found within the different universes, but what truly makes them World Wonders is the system’s direct involvement. The Mycotic Depths has different caves one can use to enter, bringing you to different areas within, and while it’s all one space inside, they’re still separated. Do you remember that barrier in your Tutorial that cut off the inner section with more powerful monsters? This is a bit like that. Natural barriers result in certain sections being restricted to those below certain power levels. No matter how much I wanted to, I would never be able to enter the section for S-grades, much less C-grades like you. All regulated by the system.\"}, {\"relativeIndex\": -2, \"lineId\": 96, \"paragraphIndex\": 74, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"I see... but it seems like the world isn’t entirely cut off, seeing as you can talk to me,\"}, {\"relativeIndex\": -1, \"lineId\": 98, \"paragraphIndex\": 76, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Communication to the outside world is somewhat restricted inside, but the version of me you’re talking to isn’t one inside right now. You’re talking to my real body that’s in my realm, busy digesting Yip of Yore. The one in the World Wonder is one of my special avatars,\"}, {\"relativeIndex\": 1, \"lineId\": 101, \"paragraphIndex\": 81, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Do you never go anywhere with your true body?\"}, {\"relativeIndex\": 2, \"lineId\": 103, \"paragraphIndex\": 81, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Few gods do, especially not those at my level. It isn’t due to cowardice, though. I’m working on things I need the power of my true body to handle. Meanwhile, exploring a World Wonder with an avatar is as efficient as if I’d gone with my real body, as it’s more than powerful enough,\"}], \"chapterCharacters\": [{\"characterId\": \"dad\", \"name\": \"Dad\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"mom\", \"name\": \"Mom\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"maja\", \"name\": \"Maja\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"adam\", \"name\": \"Adam\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"viper\",\n  \"characterName\": \"The Malefic Viper\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"dialogue_flow\",\n    \"contextual_evidence\",\n    \"speaker_refers_to_self_as_avatar_user\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

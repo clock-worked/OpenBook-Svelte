@@ -1,0 +1,376 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "eb56db19f736a56153fee0f31e8535d85d27fa8fbe4ecd30462035c231c47a17",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\eb56db19f736a56153fee0f31e8535d85d27fa8fbe4ecd30462035c231c47a17.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 1.0,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "characterName": "The Sword Saint",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "the sword saint",
+              "sword saint",
+              "the sword saint 2",
+              "sword saint 2",
+              "miyamoto"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "viper",
+              "the malefic viper",
+              "malefic viper",
+              "villy"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "vampire",
+            "characterName": "Vampire",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "vampire"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "name": "The Sword Saint",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "vampire",
+            "name": "Vampire",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Eh, no worries,",
+          "lastSentence": "Eh, no worries,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Eh, no worries,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Vampire",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.7,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.20399999999999996,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "The Sword Saint",
+            "sourceCandidates": [
+              "The Sword Saint",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.796
+          },
+          "candidates": [
+            {
+              "characterId": "the-sword-saint",
+              "confidence": 0.796,
+              "name": "The Sword Saint",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.436,
+              "name": "Jake",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [
+            "the-sword-saint",
+            "the-sword-saint-2",
+            "Miyamoto"
+          ],
+          "currentCharacterId": "the-sword-saint",
+          "currentCharacterName": "The Sword Saint",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 96,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "Eh, no worries,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "the-sword-saint",
+              "characterName": "The Sword Saint",
+              "isReturning": false,
+              "lineId": 96,
+              "text": "Eh, no worries,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Eh, no worries,",
+              "lastSentence": "Eh, no worries,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Eh, no worries,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Eh, no worries,” Jake scratched the back of his head as he tried not to be impolite by staring too much. He did faintly feel as if he recognized the woman, though, and when he scoured his memories, he suddenly remembered.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "Back in the Treasure Hunt, he’d swiped a few paintings of a more... risque nature. He recognized her from some of those paintings, which also made him realize she had to be a really old vampire god. Not that she looked old, at least not compared to the Sword Saint. She didn’t have that old-person vibe at all.",
+          "paragraphIndex": 45,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "the-sword-saint",
+              "characterName": "The Sword Saint",
+              "isReturning": true,
+              "lineId": 94,
+              "text": "I greet the Chosen of the Malefic One... and I apologize that I’m currently in an indisposed state,"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "she said, the only thing moving her mouth.",
+              "cueVerb": "said",
+              "cueVerbType": "speech",
+              "firstSentence": "I greet the Chosen of the Malefic One...",
+              "lastSentence": "and I apologize that I’m currently in an indisposed state,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "I greet the Chosen of the Malefic One... and I apologize that I’m currently in an indisposed state,",
+              "speakerNameMatch": null,
+              "speakerSurface": "she"
+            }
+          ],
+          "previousParagraphText": "“I greet the Chosen of the Malefic One... and I apologize that I’m currently in an indisposed state,” she said, the only thing moving her mouth."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 83,
+            "paragraphIndex": 37,
+            "relativeIndex": -4,
+            "text": "I got ya."
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 84,
+            "paragraphIndex": 37,
+            "relativeIndex": -3,
+            "text": "What do y-"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 92,
+            "paragraphIndex": 43,
+            "relativeIndex": -2,
+            "text": "Remain still."
+          },
+          {
+            "characterId": "the-sword-saint",
+            "characterName": "The Sword Saint",
+            "lineId": 94,
+            "paragraphIndex": 44,
+            "relativeIndex": -1,
+            "text": "I greet the Chosen of the Malefic One... and I apologize that I’m currently in an indisposed state,"
+          },
+          {
+            "characterId": "vampire",
+            "characterName": "Vampire",
+            "lineId": 99,
+            "paragraphIndex": 47,
+            "relativeIndex": 1,
+            "text": "Seeing as I did not notice who teleported you in here, I assume it was the Malefic One?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 101,
+            "paragraphIndex": 49,
+            "relativeIndex": 2,
+            "text": "It was indeed,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 96, \"text\": \"Eh, no worries,\", \"currentCharacterId\": \"the-sword-saint\", \"currentCharacterName\": \"The Sword Saint\", \"currentCharacterAliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"The Sword Saint\", \"sourceCandidates\": [\"The Sword Saint\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.20399999999999996, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Vampire\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"confidence\": 0.796, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.436, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 45, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Eh, no worries,” Jake scratched the back of his head as he tried not to be impolite by staring too much. He did faintly feel as if he recognized the woman, though, and when he scoured his memories, he suddenly remembered.\", \"currentParagraphDialogue\": [{\"lineId\": 96, \"text\": \"Eh, no worries,\", \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"isReturning\": false}], \"previousParagraphText\": \"“I greet the Chosen of the Malefic One... and I apologize that I’m currently in an indisposed state,” she said, the only thing moving her mouth.\", \"previousParagraphDialogue\": [{\"lineId\": 94, \"text\": \"I greet the Chosen of the Malefic One... and I apologize that I’m currently in an indisposed state,\", \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"isReturning\": true}], \"nextParagraphText\": \"Back in the Treasure Hunt, he’d swiped a few paintings of a more... risque nature. He recognized her from some of those paintings, which also made him realize she had to be a really old vampire god. Not that she looked old, at least not compared to the Sword Saint. She didn’t have that old-person vibe at all.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Eh, no worries,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Eh, no worries,\", \"lastSentence\": \"Eh, no worries,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I greet the Chosen of the Malefic One... and I apologize that I’m currently in an indisposed state,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"she said, the only thing moving her mouth.\", \"speakerSurface\": \"she\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I greet the Chosen of the Malefic One...\", \"lastSentence\": \"and I apologize that I’m currently in an indisposed state,\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Eh, no worries,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Eh, no worries,\", \"lastSentence\": \"Eh, no worries,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [\"the sword saint\", \"sword saint\", \"the sword saint 2\", \"sword saint 2\", \"miyamoto\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"vampire\", \"characterName\": \"Vampire\", \"aliases\": [], \"roleLabels\": [\"vampire\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 83, \"paragraphIndex\": 37, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"I got ya.\"}, {\"relativeIndex\": -3, \"lineId\": 84, \"paragraphIndex\": 37, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"What do y-\"}, {\"relativeIndex\": -2, \"lineId\": 92, \"paragraphIndex\": 43, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Remain still.\"}, {\"relativeIndex\": -1, \"lineId\": 94, \"paragraphIndex\": 44, \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"text\": \"I greet the Chosen of the Malefic One... and I apologize that I’m currently in an indisposed state,\"}, {\"relativeIndex\": 1, \"lineId\": 99, \"paragraphIndex\": 47, \"characterId\": \"vampire\", \"characterName\": \"Vampire\", \"text\": \"Seeing as I did not notice who teleported you in here, I assume it was the Malefic One?\"}, {\"relativeIndex\": 2, \"lineId\": 101, \"paragraphIndex\": 49, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"It was indeed,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vampire\", \"name\": \"Vampire\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0029 - Chapter 1086 - Old Man Vibes",
+  "currentCharacterId": "the-sword-saint",
+  "currentCharacterName": "The Sword Saint",
+  "currentParagraphText": "“Eh, no worries,” Jake scratched the back of his head as he tried not to be impolite by staring too much. He did faintly feel as if he recognized the woman, though, and when he scoured his memories, he suddenly remembered.",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 1.0,
+    "currentCharacterId": "the-sword-saint",
+    "currentCharacterName": "The Sword Saint",
+    "currentParagraphText": "“Eh, no worries,” Jake scratched the back of his head as he tried not to be impolite by staring too much. He did faintly feel as if he recognized the woman, though, and when he scoured his memories, he suddenly remembered.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 96,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "Back in the Treasure Hunt, he’d swiped a few paintings of a more... risque nature. He recognized her from some of those paintings, which also made him realize she had to be a really old vampire god. Not that she looked old, at least not compared to the Sword Saint. She didn’t have that old-person vibe at all.",
+    "paragraphIndex": 45,
+    "previousParagraphText": "“I greet the Chosen of the Malefic One... and I apologize that I’m currently in an indisposed state,” she said, the only thing moving her mouth.",
+    "reasonCodes": [
+      "explicit_narration_cue"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 96,
+  "nextParagraphText": "Back in the Treasure Hunt, he’d swiped a few paintings of a more... risque nature. He recognized her from some of those paintings, which also made him realize she had to be a really old vampire god. Not that she looked old, at least not compared to the Sword Saint. She didn’t have that old-person vibe at all.",
+  "paragraphIndex": 45,
+  "previousParagraphText": "“I greet the Chosen of the Malefic One... and I apologize that I’m currently in an indisposed state,” she said, the only thing moving her mouth."
+}

@@ -1,0 +1,369 @@
+{
+  "cacheKey": "c67fc03a7a52617bcf3aecba4005b6e4b917babf37be5259325bbee0017152b0",
+  "createdAt": "2026-04-02T22:52:17.334139+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_attribution_cue",
+      "parser_match",
+      "dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "viper",
+          "the malefic viper",
+          "malefic viper",
+          "villy"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "vampire",
+        "name": "Vampire",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "Jake perfectly countered.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "At which point they have the vibe of an old person,",
+      "lastSentence": "At which point they have the vibe of an old person,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "At which point they have the vibe of an old person,",
+      "speakerNameMatch": null,
+      "speakerSurface": "Jake perfectly"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "The Malefic Viper",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.19599999999999995,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "The Malefic Viper"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.804,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "viper",
+          "confidence": 0.444,
+          "name": "The Malefic Viper",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Protagonist"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 73,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "At which point they have the vibe of an old person,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 73,
+          "text": "At which point they have the vibe of an old person,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake perfectly countered.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "At which point they have the vibe of an old person,",
+          "lastSentence": "At which point they have the vibe of an old person,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "At which point they have the vibe of an old person,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Jake perfectly"
+        }
+      ],
+      "currentParagraphText": "“At which point they have the vibe of an old person,” Jake perfectly countered.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": false,
+          "lineId": 75,
+          "text": "You know what, I’m just gonna agree with you on that one,"
+        },
+        {
+          "characterId": "viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": true,
+          "lineId": 77,
+          "text": "Either way, you should go fetch him."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Villy smiled as he leaned forward.",
+          "cueVerb": "smiled",
+          "cueVerbType": "reaction",
+          "firstSentence": "You know what, I’m just gonna agree with you on that one,",
+          "lastSentence": "You know what, I’m just gonna agree with you on that one,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "You know what, I’m just gonna agree with you on that one,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Villy"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Villy smiled as he leaned forward.",
+          "cueVerb": "smiled",
+          "cueVerbType": "reaction",
+          "firstSentence": "Either way, you should go fetch him.",
+          "lastSentence": "Either way, you should go fetch him.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "Either way, you should go fetch him.",
+          "speakerNameMatch": null,
+          "speakerSurface": "Villy"
+        }
+      ],
+      "nextParagraphText": "“You know what, I’m just gonna agree with you on that one,” Villy smiled as he leaned forward. “Either way, you should go fetch him.”",
+      "paragraphIndex": 31,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": true,
+          "lineId": 71,
+          "text": "Or, in some instances, they are just really old for their grade and close to death,"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the Viper pointed out.",
+          "cueVerb": "pointed out",
+          "cueVerbType": "attribution",
+          "firstSentence": "Or, in some instances, they are just really old for their grade and close to death,",
+          "lastSentence": "Or, in some instances, they are just really old for their grade and close to death,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Or, in some instances, they are just really old for their grade and close to death,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Viper"
+        }
+      ],
+      "previousParagraphText": "“Or, in some instances, they are just really old for their grade and close to death,” the Viper pointed out."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 67,
+        "paragraphIndex": 28,
+        "relativeIndex": -4,
+        "text": "You know, I did consider asking you why you call him an old man, considering he’s still pretty damn young, but I somehow can’t disagree with your statement that he seems like an old man."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 68,
+        "paragraphIndex": 29,
+        "relativeIndex": -3,
+        "text": "Right?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 70,
+        "paragraphIndex": 29,
+        "relativeIndex": -2,
+        "text": "Being an old man is totally a mindset. The vibe someone gives off."
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 71,
+        "paragraphIndex": 30,
+        "relativeIndex": -1,
+        "text": "Or, in some instances, they are just really old for their grade and close to death,"
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 75,
+        "paragraphIndex": 32,
+        "relativeIndex": 1,
+        "text": "You know what, I’m just gonna agree with you on that one,"
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 77,
+        "paragraphIndex": 32,
+        "relativeIndex": 2,
+        "text": "Either way, you should go fetch him."
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "evidence": [
+              "token_overlap:jake"
+            ],
+            "score": 0.625
+          }
+        ],
+        "surface": "jake perfectly"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 73, \"text\": \"At which point they have the vibe of an old person,\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"The Malefic Viper\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Malefic Viper\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 31, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“At which point they have the vibe of an old person,” Jake perfectly countered.\", \"currentParagraphDialogue\": [{\"lineId\": 73, \"text\": \"At which point they have the vibe of an old person,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"“Or, in some instances, they are just really old for their grade and close to death,” the Viper pointed out.\", \"previousParagraphDialogue\": [{\"lineId\": 71, \"text\": \"Or, in some instances, they are just really old for their grade and close to death,\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": true}], \"nextParagraphText\": \"“You know what, I’m just gonna agree with you on that one,” Villy smiled as he leaned forward. “Either way, you should go fetch him.”\", \"nextParagraphDialogue\": [{\"lineId\": 75, \"text\": \"You know what, I’m just gonna agree with you on that one,\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": false}, {\"lineId\": 77, \"text\": \"Either way, you should go fetch him.\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"At which point they have the vibe of an old person,\", \"cuePosition\": \"after\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake perfectly countered.\", \"speakerSurface\": \"Jake perfectly\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"At which point they have the vibe of an old person,\", \"lastSentence\": \"At which point they have the vibe of an old person,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Or, in some instances, they are just really old for their grade and close to death,\", \"cuePosition\": \"after\", \"cueVerb\": \"pointed out\", \"cueVerbType\": \"attribution\", \"cueText\": \"the Viper pointed out.\", \"speakerSurface\": \"Viper\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Or, in some instances, they are just really old for their grade and close to death,\", \"lastSentence\": \"Or, in some instances, they are just really old for their grade and close to death,\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You know what, I’m just gonna agree with you on that one,\", \"cuePosition\": \"after\", \"cueVerb\": \"smiled\", \"cueVerbType\": \"reaction\", \"cueText\": \"Villy smiled as he leaned forward.\", \"speakerSurface\": \"Villy\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You know what, I’m just gonna agree with you on that one,\", \"lastSentence\": \"You know what, I’m just gonna agree with you on that one,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Either way, you should go fetch him.\", \"cuePosition\": \"before\", \"cueVerb\": \"smiled\", \"cueVerbType\": \"reaction\", \"cueText\": \"Villy smiled as he leaned forward.\", \"speakerSurface\": \"Villy\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Either way, you should go fetch him.\", \"lastSentence\": \"Either way, you should go fetch him.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"At which point they have the vibe of an old person,\", \"cuePosition\": \"after\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake perfectly countered.\", \"speakerSurface\": \"Jake perfectly\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"At which point they have the vibe of an old person,\", \"lastSentence\": \"At which point they have the vibe of an old person,\"}, \"sceneEntities\": [{\"surface\": \"jake perfectly\", \"matches\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"score\": 0.625, \"evidence\": [\"token_overlap:jake\"]}]}], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 67, \"paragraphIndex\": 28, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"You know, I did consider asking you why you call him an old man, considering he’s still pretty damn young, but I somehow can’t disagree with your statement that he seems like an old man.\"}, {\"relativeIndex\": -3, \"lineId\": 68, \"paragraphIndex\": 29, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Right?\"}, {\"relativeIndex\": -2, \"lineId\": 70, \"paragraphIndex\": 29, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Being an old man is totally a mindset. The vibe someone gives off.\"}, {\"relativeIndex\": -1, \"lineId\": 71, \"paragraphIndex\": 30, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Or, in some instances, they are just really old for their grade and close to death,\"}, {\"relativeIndex\": 1, \"lineId\": 75, \"paragraphIndex\": 32, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"You know what, I’m just gonna agree with you on that one,\"}, {\"relativeIndex\": 2, \"lineId\": 77, \"paragraphIndex\": 32, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Either way, you should go fetch him.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vampire\", \"name\": \"Vampire\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_attribution_cue\",\n    \"parser_match\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

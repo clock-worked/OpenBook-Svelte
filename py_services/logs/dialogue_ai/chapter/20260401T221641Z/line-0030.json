@@ -1,0 +1,377 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "cddea72d4f48e856425c551104e9a2160dc093f85292fbb70690cb4513f9022e",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\cddea72d4f48e856425c551104e9a2160dc093f85292fbb70690cb4513f9022e.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "dialogue_continuity",
+          "previous_speaker_jake",
+          "next_speaker_jake",
+          "parser_top_candidate"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "dina",
+            "characterName": "Dina",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "dina"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "name": "Sylphie",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "name": "The Sword Saint",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "dina",
+            "name": "Dina",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I’m also glad that the Malefic One finally had an opportunity to prove his prowess.",
+          "lastSentence": "According to the Mother Tree, ignorance was the main cause of his downfall, and if he had merely chosen to strengthen himself for a few eras, he would have one day stood alongside the Primordials.",
+          "mentionedEntities": [
+            "yip"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "I’m also glad that the Malefic One finally had an opportunity to prove his prowess. Many of the newer gods had put a lot of hope in Yip of Yore as a sign that the old guard was no longer the only ones worthy of standing at the apex, but that also gained him a lot of enemies. His power made him worthy of being considered a supreme genius, perhaps surpassing all before him, but it also made him arrogant to the point of foolishness. According to the Mother Tree, ignorance was the main cause of his downfall, and if he had merely chosen to strengthen himself for a few eras, he would have one day stood alongside the Primordials.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [
+                "yip"
+              ],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.3208000000000001,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "Sylphie"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.816,
+              "name": "Jake",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.456,
+              "name": "Sylphie",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 30,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "I’m also glad that the Malefic One finally had an opportunity to prove his prowess. Many of the newer gods had put a lot of hope in Yip of Yore as a sign that the old guard was no longer the only ones worthy of standing at the apex, but that also gained him a lot of enemies. His power made him worthy of being considered a supreme genius, perhaps surpassing all before him, but it also made him arrogant to the point of foolishness. According to the Mother Tree, ignorance was the main cause of his downfall, and if he had merely chosen to strengthen himself for a few eras, he would have one day stood alongside the Primordials."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 30,
+              "text": "I’m also glad that the Malefic One finally had an opportunity to prove his prowess. Many of the newer gods had put a lot of hope in Yip of Yore as a sign that the old guard was no longer the only ones worthy of standing at the apex, but that also gained him a lot of enemies. His power made him worthy of being considered a supreme genius, perhaps surpassing all before him, but it also made him arrogant to the point of foolishness. According to the Mother Tree, ignorance was the main cause of his downfall, and if he had merely chosen to strengthen himself for a few eras, he would have one day stood alongside the Primordials."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "I’m also glad that the Malefic One finally had an opportunity to prove his prowess.",
+              "lastSentence": "According to the Mother Tree, ignorance was the main cause of his downfall, and if he had merely chosen to strengthen himself for a few eras, he would have one day stood alongside the Primordials.",
+              "mentionedEntities": [
+                "yip"
+              ],
+              "quoteIndex": 0,
+              "quoteText": "I’m also glad that the Malefic One finally had an opportunity to prove his prowess. Many of the newer gods had put a lot of hope in Yip of Yore as a sign that the old guard was no longer the only ones worthy of standing at the apex, but that also gained him a lot of enemies. His power made him worthy of being considered a supreme genius, perhaps surpassing all before him, but it also made him arrogant to the point of foolishness. According to the Mother Tree, ignorance was the main cause of his downfall, and if he had merely chosen to strengthen himself for a few eras, he would have one day stood alongside the Primordials.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“I’m also glad that the Malefic One finally had an opportunity to prove his prowess. Many of the newer gods had put a lot of hope in Yip of Yore as a sign that the old guard was no longer the only ones worthy of standing at the apex, but that also gained him a lot of enemies. His power made him worthy of being considered a supreme genius, perhaps surpassing all before him, but it also made him arrogant to the point of foolishness. According to the Mother Tree, ignorance was the main cause of his downfall, and if he had merely chosen to strengthen himself for a few eras, he would have one day stood alongside the Primordials.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 31,
+              "text": "At least such great talent didn’t go to waste,"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake said with a chuckle, getting a confused look from Dina. That reminded him that others didn’t know the Malefic Viper had transformed Yip of Yore into a succulent meal of Records, making him quickly make up an excuse.",
+              "cueVerb": "said",
+              "cueVerbType": "speech",
+              "firstSentence": "At least such great talent didn’t go to waste,",
+              "lastSentence": "At least such great talent didn’t go to waste,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "At least such great talent didn’t go to waste,",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "nextParagraphText": "“At least such great talent didn’t go to waste,” Jake said with a chuckle, getting a confused look from Dina. That reminded him that others didn’t know the Malefic Viper had transformed Yip of Yore into a succulent meal of Records, making him quickly make up an excuse.",
+          "paragraphIndex": 20,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 28,
+              "text": "It sure was,"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake agreed with a nod, making Sylphie a little annoyed.",
+              "cueVerb": "agreed",
+              "cueVerbType": "speech",
+              "firstSentence": "It sure was,",
+              "lastSentence": "It sure was,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "It sure was,",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "previousParagraphText": "“It sure was,” Jake agreed with a nod, making Sylphie a little annoyed."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 24,
+            "paragraphIndex": 17,
+            "relativeIndex": -4,
+            "text": "It’s good to see you again, and from your aura, I can tell you haven’t been slacking off."
+          },
+          {
+            "characterId": "dina",
+            "characterName": "Dina",
+            "lineId": 25,
+            "paragraphIndex": 18,
+            "relativeIndex": -3,
+            "text": "Neither have you,"
+          },
+          {
+            "characterId": "dina",
+            "characterName": "Dina",
+            "lineId": 27,
+            "paragraphIndex": 18,
+            "relativeIndex": -2,
+            "text": "My achievements since we last met are insignificant compared to yours, and I want to congratulate you for finally slaying that Ell’Hakan guy. I know you really didn’t like him, and it must have been cathartic to finally remove his Bloodline from the multiverse."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 28,
+            "paragraphIndex": 19,
+            "relativeIndex": -1,
+            "text": "It sure was,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 31,
+            "paragraphIndex": 21,
+            "relativeIndex": 1,
+            "text": "At least such great talent didn’t go to waste,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 33,
+            "paragraphIndex": 22,
+            "relativeIndex": 2,
+            "text": "I mean that he will at least be remembered as someone who dared to face a Primordial, even if he died, and I also benefitted from the entire situation, so it isn’t all bad,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 30, \"text\": \"I’m also glad that the Malefic One finally had an opportunity to prove his prowess. Many of the newer gods had put a lot of hope in Yip of Yore as a sign that the old guard was no longer the only ones worthy of standing at the apex, but that also gained him a lot of enemies. His power made him worthy of being considered a supreme genius, perhaps surpassing all before him, but it also made him arrogant to the point of foolishness. According to the Mother Tree, ignorance was the main cause of his downfall, and if he had merely chosen to strengthen himself for a few eras, he would have one day stood alongside the Primordials.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Sylphie\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"yip\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Sylphie\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 20, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I’m also glad that the Malefic One finally had an opportunity to prove his prowess. Many of the newer gods had put a lot of hope in Yip of Yore as a sign that the old guard was no longer the only ones worthy of standing at the apex, but that also gained him a lot of enemies. His power made him worthy of being considered a supreme genius, perhaps surpassing all before him, but it also made him arrogant to the point of foolishness. According to the Mother Tree, ignorance was the main cause of his downfall, and if he had merely chosen to strengthen himself for a few eras, he would have one day stood alongside the Primordials.”\", \"currentParagraphDialogue\": [{\"lineId\": 30, \"text\": \"I’m also glad that the Malefic One finally had an opportunity to prove his prowess. Many of the newer gods had put a lot of hope in Yip of Yore as a sign that the old guard was no longer the only ones worthy of standing at the apex, but that also gained him a lot of enemies. His power made him worthy of being considered a supreme genius, perhaps surpassing all before him, but it also made him arrogant to the point of foolishness. According to the Mother Tree, ignorance was the main cause of his downfall, and if he had merely chosen to strengthen himself for a few eras, he would have one day stood alongside the Primordials.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“It sure was,” Jake agreed with a nod, making Sylphie a little annoyed.\", \"previousParagraphDialogue\": [{\"lineId\": 28, \"text\": \"It sure was,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"nextParagraphText\": \"“At least such great talent didn’t go to waste,” Jake said with a chuckle, getting a confused look from Dina. That reminded him that others didn’t know the Malefic Viper had transformed Yip of Yore into a succulent meal of Records, making him quickly make up an excuse.\", \"nextParagraphDialogue\": [{\"lineId\": 31, \"text\": \"At least such great talent didn’t go to waste,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I’m also glad that the Malefic One finally had an opportunity to prove his prowess. Many of the newer gods had put a lot of hope in Yip of Yore as a sign that the old guard was no longer the only ones worthy of standing at the apex, but that also gained him a lot of enemies. His power made him worthy of being considered a supreme genius, perhaps surpassing all before him, but it also made him arrogant to the point of foolishness. According to the Mother Tree, ignorance was the main cause of his downfall, and if he had merely chosen to strengthen himself for a few eras, he would have one day stood alongside the Primordials.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"yip\"], \"addressedEntity\": null, \"firstSentence\": \"I’m also glad that the Malefic One finally had an opportunity to prove his prowess.\", \"lastSentence\": \"According to the Mother Tree, ignorance was the main cause of his downfall, and if he had merely chosen to strengthen himself for a few eras, he would have one day stood alongside the Primordials.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"It sure was,\", \"cuePosition\": \"after\", \"cueVerb\": \"agreed\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake agreed with a nod, making Sylphie a little annoyed.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"It sure was,\", \"lastSentence\": \"It sure was,\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"At least such great talent didn’t go to waste,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake said with a chuckle, getting a confused look from Dina. That reminded him that others didn’t know the Malefic Viper had transformed Yip of Yore into a succulent meal of Records, making him quickly make up an excuse.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"At least such great talent didn’t go to waste,\", \"lastSentence\": \"At least such great talent didn’t go to waste,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I’m also glad that the Malefic One finally had an opportunity to prove his prowess. Many of the newer gods had put a lot of hope in Yip of Yore as a sign that the old guard was no longer the only ones worthy of standing at the apex, but that also gained him a lot of enemies. His power made him worthy of being considered a supreme genius, perhaps surpassing all before him, but it also made him arrogant to the point of foolishness. According to the Mother Tree, ignorance was the main cause of his downfall, and if he had merely chosen to strengthen himself for a few eras, he would have one day stood alongside the Primordials.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"yip\"], \"addressedEntity\": null, \"firstSentence\": \"I’m also glad that the Malefic One finally had an opportunity to prove his prowess.\", \"lastSentence\": \"According to the Mother Tree, ignorance was the main cause of his downfall, and if he had merely chosen to strengthen himself for a few eras, he would have one day stood alongside the Primordials.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"dina\", \"characterName\": \"Dina\", \"aliases\": [], \"roleLabels\": [\"dina\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 24, \"paragraphIndex\": 17, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"It’s good to see you again, and from your aura, I can tell you haven’t been slacking off.\"}, {\"relativeIndex\": -3, \"lineId\": 25, \"paragraphIndex\": 18, \"characterId\": \"dina\", \"characterName\": \"Dina\", \"text\": \"Neither have you,\"}, {\"relativeIndex\": -2, \"lineId\": 27, \"paragraphIndex\": 18, \"characterId\": \"dina\", \"characterName\": \"Dina\", \"text\": \"My achievements since we last met are insignificant compared to yours, and I want to congratulate you for finally slaying that Ell’Hakan guy. I know you really didn’t like him, and it must have been cathartic to finally remove his Bloodline from the multiverse.\"}, {\"relativeIndex\": -1, \"lineId\": 28, \"paragraphIndex\": 19, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"It sure was,\"}, {\"relativeIndex\": 1, \"lineId\": 31, \"paragraphIndex\": 21, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"At least such great talent didn’t go to waste,\"}, {\"relativeIndex\": 2, \"lineId\": 33, \"paragraphIndex\": 22, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I mean that he will at least be remembered as someone who dared to face a Primordial, even if he died, and I also benefitted from the entire situation, so it isn’t all bad,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dina\", \"name\": \"Dina\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"dialogue_continuity\",\n    \"previous_speaker_jake\",\n    \"next_speaker_jake\",\n    \"parser_top_candidate\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0041 - Chapter 1098 - Peak Fantasy/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“I’m also glad that the Malefic One finally had an opportunity to prove his prowess. Many of the newer gods had put a lot of hope in Yip of Yore as a sign that the old guard was no longer the only ones worthy of standing at the apex, but that also gained him a lot of enemies. His power made him worthy of being considered a supreme genius, perhaps surpassing all before him, but it also made him arrogant to the point of foolishness. According to the Mother Tree, ignorance was the main cause of his downfall, and if he had merely chosen to strengthen himself for a few eras, he would have one day stood alongside the Primordials.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“I’m also glad that the Malefic One finally had an opportunity to prove his prowess. Many of the newer gods had put a lot of hope in Yip of Yore as a sign that the old guard was no longer the only ones worthy of standing at the apex, but that also gained him a lot of enemies. His power made him worthy of being considered a supreme genius, perhaps surpassing all before him, but it also made him arrogant to the point of foolishness. According to the Mother Tree, ignorance was the main cause of his downfall, and if he had merely chosen to strengthen himself for a few eras, he would have one day stood alongside the Primordials.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 30,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“At least such great talent didn’t go to waste,” Jake said with a chuckle, getting a confused look from Dina. That reminded him that others didn’t know the Malefic Viper had transformed Yip of Yore into a succulent meal of Records, making him quickly make up an excuse.",
+    "paragraphIndex": 20,
+    "previousParagraphText": "“It sure was,” Jake agreed with a nod, making Sylphie a little annoyed.",
+    "reasonCodes": [
+      "dialogue_continuity",
+      "previous_speaker_jake",
+      "next_speaker_jake",
+      "parser_top_candidate"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 30,
+  "nextParagraphText": "“At least such great talent didn’t go to waste,” Jake said with a chuckle, getting a confused look from Dina. That reminded him that others didn’t know the Malefic Viper had transformed Yip of Yore into a succulent meal of Records, making him quickly make up an excuse.",
+  "paragraphIndex": 20,
+  "previousParagraphText": "“It sure was,” Jake agreed with a nod, making Sylphie a little annoyed."
+}

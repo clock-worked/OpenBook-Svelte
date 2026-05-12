@@ -1,0 +1,387 @@
+{
+  "alignment": {
+    "confidence": 1.0,
+    "isSpanFallback": false,
+    "method": "quote_unit",
+    "paragraphIndex": 14,
+    "spanDistance": 0.0,
+    "spanParagraphIndex": 14
+  },
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "b02a7842c0215d9a5c306b59367c175c183af71fa1f471912f4ef241774d8cbc",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\b02a7842c0215d9a5c306b59367c175c183af71fa1f471912f4ef241774d8cbc.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": true
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake",
+              "protagonist",
+              "lord thayne",
+              "thayne",
+              "void god"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "First Sage"
+            ],
+            "characterId": "the first sage",
+            "characterName": "The First Sage",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "the first sage",
+              "first sage"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "First Sage"
+            ],
+            "characterId": "the first sage",
+            "name": "The First Sage",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jake stared confused, clearly seeing the old man.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I’m pretty sure you… okay, this is weird.",
+          "lastSentence": "I’m pretty sure you… okay, this is weird.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I’m pretty sure you… okay, this is weird.",
+          "speakerNameMatch": null,
+          "speakerSurface": "Jake stared"
+        },
+        "line": {
+          "alignment": {
+            "confidence": 1.0,
+            "isSpanFallback": false,
+            "method": "quote_unit",
+            "paragraphIndex": 14,
+            "spanDistance": 0.0,
+            "spanParagraphIndex": 14
+          },
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "The First Sage",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.0,
+            "parserBackend": "legacy",
+            "resolutionStatus": "user_confirmed",
+            "sourceAlias": "The First Sage",
+            "sourceCandidates": [
+              "The First Sage",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": "the first sage",
+              "confidence": 0.816,
+              "name": "The First Sage",
+              "reasons": null
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.456,
+              "name": "Jake",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [
+            "Protagonist",
+            "Lord Thayne",
+            "Void God"
+          ],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 20,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "I’m pretty sure you… okay, this is weird."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 20,
+              "text": "I’m pretty sure you… okay, this is weird."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Jake stared confused, clearly seeing the old man.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "I’m pretty sure you… okay, this is weird.",
+              "lastSentence": "I’m pretty sure you… okay, this is weird.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "I’m pretty sure you… okay, this is weird.",
+              "speakerNameMatch": null,
+              "speakerSurface": "Jake stared"
+            }
+          ],
+          "currentParagraphText": "Jake stared confused, clearly seeing the old man. “I’m pretty sure you… okay, this is weird.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "As Jake studied the old man more closely, he realized that not only did he lack any kind of physicality, but he also didn’t seem to actually be sitting on the bench at all. He was like a ghost that could be seen and heard, but didn’t actually exist.",
+          "paragraphIndex": 14,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "the first sage",
+              "characterName": "The First Sage",
+              "isReturning": true,
+              "lineId": 18,
+              "text": "You forgot another option. That I’m not actually here. That no one else besides you is here."
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "You forgot another option.",
+              "lastSentence": "That no one else besides you is here.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "You forgot another option. That I’m not actually here. That no one else besides you is here.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "previousParagraphText": "“You forgot another option. That I’m not actually here. That no one else besides you is here.”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "the first sage",
+            "characterName": "The First Sage",
+            "lineId": 13,
+            "paragraphIndex": 10,
+            "relativeIndex": -4,
+            "text": "Tell me, Jake, why do you think I’m here?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 14,
+            "paragraphIndex": 11,
+            "relativeIndex": -3,
+            "text": "I don’t know, which is why I’m asking,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 16,
+            "paragraphIndex": 11,
+            "relativeIndex": -2,
+            "text": "But if I had to guess… the Records from the tome you gave me summoned you here. That, or you’re an image born from those Records. In either case, you’re really doing a bad job convincing me you’re not some aspect of the system, seeing where we are."
+          },
+          {
+            "characterId": "the first sage",
+            "characterName": "The First Sage",
+            "lineId": 18,
+            "paragraphIndex": 13,
+            "relativeIndex": -1,
+            "text": "You forgot another option. That I’m not actually here. That no one else besides you is here."
+          },
+          {
+            "characterId": "the first sage",
+            "characterName": "The First Sage",
+            "lineId": 22,
+            "paragraphIndex": 16,
+            "relativeIndex": 1,
+            "text": "Seems like you’ve realized by now,"
+          },
+          {
+            "characterId": "the first sage",
+            "characterName": "The First Sage",
+            "lineId": 24,
+            "paragraphIndex": 17,
+            "relativeIndex": 2,
+            "text": "Though you weren’t entirely wrong. I’m born of your own mind and the Records of the First Sage. An embodiment of the knowledge you gleaned from my tome. I’m just a little more aware of what I am than usual specters of Records tend to be."
+          }
+        ],
+        "sceneEntities": [
+          {
+            "matches": [
+              {
+                "characterId": "jake",
+                "characterName": "Jake",
+                "evidence": [
+                  "token_overlap:jake"
+                ],
+                "score": 0.625
+              }
+            ],
+            "surface": "jake stared"
+          }
+        ],
+        "sceneRoster": {
+          "paragraphWindow": 6,
+          "presentCharacterIds": [
+            "jake",
+            "the first sage"
+          ],
+          "presentCharacters": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake"
+            },
+            {
+              "characterId": "the first sage",
+              "characterName": "The First Sage"
+            }
+          ]
+        }
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 20, \"text\": \"I’m pretty sure you… okay, this is weird.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"user_confirmed\", \"sourceAlias\": \"The First Sage\", \"sourceCandidates\": [\"The First Sage\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.0, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The First Sage\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"the first sage\", \"name\": \"The First Sage\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true, \"alignment\": {\"paragraphIndex\": 14, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 14, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 14, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Jake stared confused, clearly seeing the old man. “I’m pretty sure you… okay, this is weird.”\", \"currentParagraphDialogue\": [{\"lineId\": 20, \"text\": \"I’m pretty sure you… okay, this is weird.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"“You forgot another option. That I’m not actually here. That no one else besides you is here.”\", \"previousParagraphDialogue\": [{\"lineId\": 18, \"text\": \"You forgot another option. That I’m not actually here. That no one else besides you is here.\", \"characterId\": \"the first sage\", \"characterName\": \"The First Sage\", \"isReturning\": true}], \"nextParagraphText\": \"As Jake studied the old man more closely, he realized that not only did he lack any kind of physicality, but he also didn’t seem to actually be sitting on the bench at all. He was like a ghost that could be seen and heard, but didn’t actually exist.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I’m pretty sure you… okay, this is weird.\", \"cuePosition\": \"before\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake stared confused, clearly seeing the old man.\", \"speakerSurface\": \"Jake stared\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’m pretty sure you… okay, this is weird.\", \"lastSentence\": \"I’m pretty sure you… okay, this is weird.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You forgot another option. That I’m not actually here. That no one else besides you is here.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You forgot another option.\", \"lastSentence\": \"That no one else besides you is here.\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I’m pretty sure you… okay, this is weird.\", \"cuePosition\": \"before\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake stared confused, clearly seeing the old man.\", \"speakerSurface\": \"Jake stared\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’m pretty sure you… okay, this is weird.\", \"lastSentence\": \"I’m pretty sure you… okay, this is weird.\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"jake\", \"the first sage\"], \"presentCharacters\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\"}, {\"characterId\": \"the first sage\", \"characterName\": \"The First Sage\"}]}, \"sceneEntities\": [{\"surface\": \"jake stared\", \"matches\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"score\": 0.625, \"evidence\": [\"token_overlap:jake\"]}]}], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\", \"void god\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"the first sage\", \"characterName\": \"The First Sage\", \"aliases\": [\"First Sage\"], \"roleLabels\": [\"the first sage\", \"first sage\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 13, \"paragraphIndex\": 10, \"characterId\": \"the first sage\", \"characterName\": \"The First Sage\", \"text\": \"Tell me, Jake, why do you think I’m here?\"}, {\"relativeIndex\": -3, \"lineId\": 14, \"paragraphIndex\": 11, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I don’t know, which is why I’m asking,\"}, {\"relativeIndex\": -2, \"lineId\": 16, \"paragraphIndex\": 11, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"But if I had to guess… the Records from the tome you gave me summoned you here. That, or you’re an image born from those Records. In either case, you’re really doing a bad job convincing me you’re not some aspect of the system, seeing where we are.\"}, {\"relativeIndex\": -1, \"lineId\": 18, \"paragraphIndex\": 13, \"characterId\": \"the first sage\", \"characterName\": \"The First Sage\", \"text\": \"You forgot another option. That I’m not actually here. That no one else besides you is here.\"}, {\"relativeIndex\": 1, \"lineId\": 22, \"paragraphIndex\": 16, \"characterId\": \"the first sage\", \"characterName\": \"The First Sage\", \"text\": \"Seems like you’ve realized by now,\"}, {\"relativeIndex\": 2, \"lineId\": 24, \"paragraphIndex\": 17, \"characterId\": \"the first sage\", \"characterName\": \"The First Sage\", \"text\": \"Though you weren’t entirely wrong. I’m born of your own mind and the Records of the First Sage. An embodiment of the knowledge you gleaned from my tome. I’m just a little more aware of what I am than usual specters of Records tend to be.\"}], \"chapterCharacters\": [{\"characterId\": \"the first sage\", \"name\": \"The First Sage\", \"aliases\": [\"First Sage\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0162 - Chapter 1219 - Gate\\dialogue.json",
+  "currentCharacterId": "jake",
+  "currentCharacterName": "Jake",
+  "currentParagraphText": "Jake stared confused, clearly seeing the old man. “I’m pretty sure you… okay, this is weird.”",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "jake",
+    "currentCharacterName": "Jake",
+    "currentParagraphText": "Jake stared confused, clearly seeing the old man. “I’m pretty sure you… okay, this is weird.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 20,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "As Jake studied the old man more closely, he realized that not only did he lack any kind of physicality, but he also didn’t seem to actually be sitting on the bench at all. He was like a ghost that could be seen and heard, but didn’t actually exist.",
+    "paragraphIndex": 14,
+    "previousParagraphText": "“You forgot another option. That I’m not actually here. That no one else besides you is here.”",
+    "reasonCodes": [
+      "explicit_narration_cue"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 20,
+  "nextParagraphText": "As Jake studied the old man more closely, he realized that not only did he lack any kind of physicality, but he also didn’t seem to actually be sitting on the bench at all. He was like a ghost that could be seen and heard, but didn’t actually exist.",
+  "paragraphIndex": 14,
+  "previousParagraphText": "“You forgot another option. That I’m not actually here. That no one else besides you is here.”",
+  "sceneRoster": {
+    "paragraphWindow": 6,
+    "presentCharacterIds": [
+      "jake",
+      "the first sage"
+    ],
+    "presentCharacters": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake"
+      },
+      {
+        "characterId": "the first sage",
+        "characterName": "The First Sage"
+      }
+    ]
+  }
+}

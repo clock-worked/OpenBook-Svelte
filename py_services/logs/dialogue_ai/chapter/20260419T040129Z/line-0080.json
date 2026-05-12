@@ -1,0 +1,434 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "bbbac21865689abcedeca92becc911642fb25962e2430941d33a924e814ad081",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\bbbac21865689abcedeca92becc911642fb25962e2430941d33a924e814ad081.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "unknown-elf-male",
+        "characterName": "Unknown Elf (Male)",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration",
+          "dialogue_flow"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": true
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist",
+              "lord thayne",
+              "thayne"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "unknown-elf-male",
+              "unknown-elf-male-2",
+              "unknown-elf"
+            ],
+            "characterId": "unknown-elf-male",
+            "characterName": "Unknown Elf (Male)",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "unknown elf male",
+              "unknown elf male 2",
+              "unknown elf"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [
+              "unknown-elf-female"
+            ],
+            "characterId": "unknown-elf-female",
+            "characterName": "Unknown Elf (Female)",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "unknown elf female"
+            ],
+            "wasRecentSpeaker": false
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "name": "Minaga",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Godqueen"
+            ],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "blood",
+            "name": "blood",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "name": "The Sword Saint",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "chosen",
+            "name": "Chosen",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Opposite him, the elf smiled as the wind energy around him turned green and full of life energy as his wound healed rapidly.",
+          "cueVerb": "smiled",
+          "cueVerbType": "reaction",
+          "firstSentence": "We’ve barely gotten started.",
+          "lastSentence": "We’ve barely gotten started.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "We’ve barely gotten started.",
+          "speakerNameMatch": null,
+          "speakerSurface": "the elf"
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Nature's Attendant",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.3208000000000001,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Having",
+            "sourceCandidates": [
+              "Having",
+              "Nature's Attendant"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.816,
+              "name": "Having",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.456,
+              "name": "Nature's Attendant",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 80,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "We’ve barely gotten started."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 80,
+              "text": "We’ve barely gotten started."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Opposite him, the elf smiled as the wind energy around him turned green and full of life energy as his wound healed rapidly.",
+              "cueVerb": "smiled",
+              "cueVerbType": "reaction",
+              "firstSentence": "We’ve barely gotten started.",
+              "lastSentence": "We’ve barely gotten started.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "We’ve barely gotten started.",
+              "speakerNameMatch": null,
+              "speakerSurface": "the elf"
+            }
+          ],
+          "currentParagraphText": "Opposite him, the elf smiled as the wind energy around him turned green and full of life energy as his wound healed rapidly. “We’ve barely gotten started.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 82,
+              "text": "Then allow me to be impolite."
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "The human, better known as the Sword Saint, also smiled as he took an offensive stance.",
+              "cueVerb": "smiled",
+              "cueVerbType": "reaction",
+              "firstSentence": "Then allow me to be impolite.",
+              "lastSentence": "Then allow me to be impolite.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Then allow me to be impolite.",
+              "speakerNameMatch": null,
+              "speakerSurface": "Sword Saint"
+            }
+          ],
+          "nextParagraphText": "The human, better known as the Sword Saint, also smiled as he took an offensive stance. “Then allow me to be impolite.”",
+          "paragraphIndex": 44,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 77,
+              "text": "Do you wish to continue?"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the human swordsman said in a respectful tone.",
+              "cueVerb": "said",
+              "cueVerbType": "speech",
+              "firstSentence": "Do you wish to continue?",
+              "lastSentence": "Do you wish to continue?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Do you wish to continue?",
+              "speakerNameMatch": null,
+              "speakerSurface": "the human swordsman"
+            }
+          ],
+          "previousParagraphText": "“Do you wish to continue?” the human swordsman said in a respectful tone."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 64,
+            "paragraphIndex": 32,
+            "relativeIndex": -4,
+            "text": "Just for cuddles,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 67,
+            "paragraphIndex": 34,
+            "relativeIndex": -3,
+            "text": "I’ll let you be the big spoon."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 68,
+            "paragraphIndex": 35,
+            "relativeIndex": -2,
+            "text": "Alright, deal,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 77,
+            "paragraphIndex": 43,
+            "relativeIndex": -1,
+            "text": "Do you wish to continue?"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 82,
+            "paragraphIndex": 45,
+            "relativeIndex": 1,
+            "text": "Then allow me to be impolite."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 83,
+            "paragraphIndex": 46,
+            "relativeIndex": 2,
+            "text": "What would be considered impolite is you acting overly respectfully,"
+          }
+        ],
+        "sceneEntities": [
+          {
+            "matches": [
+              {
+                "characterId": "unknown-elf-male",
+                "characterName": "Unknown Elf (Male)",
+                "evidence": [
+                  "token_overlap:elf",
+                  "generic_placeholder_penalty"
+                ],
+                "score": 0.56
+              },
+              {
+                "characterId": "unknown-elf-female",
+                "characterName": "Unknown Elf (Female)",
+                "evidence": [
+                  "token_overlap:elf",
+                  "generic_placeholder_penalty"
+                ],
+                "score": 0.56
+              }
+            ],
+            "surface": "the elf"
+          }
+        ]
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 80, \"text\": \"We’ve barely gotten started.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Having\", \"sourceCandidates\": [\"Having\", \"Nature's Attendant\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Nature's Attendant\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Having\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Nature's Attendant\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 44, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Opposite him, the elf smiled as the wind energy around him turned green and full of life energy as his wound healed rapidly. “We’ve barely gotten started.”\", \"currentParagraphDialogue\": [{\"lineId\": 80, \"text\": \"We’ve barely gotten started.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“Do you wish to continue?” the human swordsman said in a respectful tone.\", \"previousParagraphDialogue\": [{\"lineId\": 77, \"text\": \"Do you wish to continue?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"nextParagraphText\": \"The human, better known as the Sword Saint, also smiled as he took an offensive stance. “Then allow me to be impolite.”\", \"nextParagraphDialogue\": [{\"lineId\": 82, \"text\": \"Then allow me to be impolite.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"We’ve barely gotten started.\", \"cuePosition\": \"before\", \"cueVerb\": \"smiled\", \"cueVerbType\": \"reaction\", \"cueText\": \"Opposite him, the elf smiled as the wind energy around him turned green and full of life energy as his wound healed rapidly.\", \"speakerSurface\": \"the elf\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"We’ve barely gotten started.\", \"lastSentence\": \"We’ve barely gotten started.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Do you wish to continue?\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the human swordsman said in a respectful tone.\", \"speakerSurface\": \"the human swordsman\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Do you wish to continue?\", \"lastSentence\": \"Do you wish to continue?\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Then allow me to be impolite.\", \"cuePosition\": \"before\", \"cueVerb\": \"smiled\", \"cueVerbType\": \"reaction\", \"cueText\": \"The human, better known as the Sword Saint, also smiled as he took an offensive stance.\", \"speakerSurface\": \"Sword Saint\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Then allow me to be impolite.\", \"lastSentence\": \"Then allow me to be impolite.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"We’ve barely gotten started.\", \"cuePosition\": \"before\", \"cueVerb\": \"smiled\", \"cueVerbType\": \"reaction\", \"cueText\": \"Opposite him, the elf smiled as the wind energy around him turned green and full of life energy as his wound healed rapidly.\", \"speakerSurface\": \"the elf\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"We’ve barely gotten started.\", \"lastSentence\": \"We’ve barely gotten started.\"}, \"sceneEntities\": [{\"surface\": \"the elf\", \"matches\": [{\"characterId\": \"unknown-elf-male\", \"characterName\": \"Unknown Elf (Male)\", \"score\": 0.56, \"evidence\": [\"token_overlap:elf\", \"generic_placeholder_penalty\"]}, {\"characterId\": \"unknown-elf-female\", \"characterName\": \"Unknown Elf (Female)\", \"score\": 0.56, \"evidence\": [\"token_overlap:elf\", \"generic_placeholder_penalty\"]}]}], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown-elf-male\", \"characterName\": \"Unknown Elf (Male)\", \"aliases\": [\"unknown-elf-male\", \"unknown-elf-male-2\", \"unknown-elf\"], \"roleLabels\": [\"unknown elf male\", \"unknown elf male 2\", \"unknown elf\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"unknown-elf-female\", \"characterName\": \"Unknown Elf (Female)\", \"aliases\": [\"unknown-elf-female\"], \"roleLabels\": [\"unknown elf female\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 64, \"paragraphIndex\": 32, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Just for cuddles,\"}, {\"relativeIndex\": -3, \"lineId\": 67, \"paragraphIndex\": 34, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I’ll let you be the big spoon.\"}, {\"relativeIndex\": -2, \"lineId\": 68, \"paragraphIndex\": 35, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Alright, deal,\"}, {\"relativeIndex\": -1, \"lineId\": 77, \"paragraphIndex\": 43, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Do you wish to continue?\"}, {\"relativeIndex\": 1, \"lineId\": 82, \"paragraphIndex\": 45, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Then allow me to be impolite.\"}, {\"relativeIndex\": 2, \"lineId\": 83, \"paragraphIndex\": 46, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"What would be considered impolite is you acting overly respectfully,\"}], \"chapterCharacters\": [{\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"blood\", \"name\": \"blood\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"chosen\", \"name\": \"Chosen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"unknown-elf-male\",\n  \"characterName\": \"Unknown Elf (Male)\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration\",\n    \"dialogue_flow\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0135 - Chapter 1192 - Minaga the Messenger/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "Opposite him, the elf smiled as the wind energy around him turned green and full of life energy as his wound healed rapidly. “We’ve barely gotten started.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "Opposite him, the elf smiled as the wind energy around him turned green and full of life energy as his wound healed rapidly. “We’ve barely gotten started.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 80,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "The human, better known as the Sword Saint, also smiled as he took an offensive stance. “Then allow me to be impolite.”",
+    "paragraphIndex": 44,
+    "previousParagraphText": "“Do you wish to continue?” the human swordsman said in a respectful tone.",
+    "reasonCodes": [
+      "explicit_narration",
+      "dialogue_flow"
+    ],
+    "suggestedCharacterId": "unknown-elf-male",
+    "suggestedCharacterName": "Unknown Elf (Male)",
+    "toolTrace": []
+  },
+  "lineId": 80,
+  "nextParagraphText": "The human, better known as the Sword Saint, also smiled as he took an offensive stance. “Then allow me to be impolite.”",
+  "paragraphIndex": 44,
+  "previousParagraphText": "“Do you wish to continue?” the human swordsman said in a respectful tone."
+}

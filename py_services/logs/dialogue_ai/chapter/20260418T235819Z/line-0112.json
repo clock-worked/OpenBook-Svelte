@@ -1,0 +1,333 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "cd4983656a59825481c7b9ced74577421f2fd1fbeda82fb651e821eee5478486",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\cd4983656a59825481c7b9ced74577421f2fd1fbeda82fb651e821eee5478486.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.99,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "dialogue_continuity",
+          "parser_agreement"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "miranda",
+            "characterName": "Miranda",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "miranda"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist",
+              "lord thayne",
+              "thayne"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "miranda",
+            "name": "Miranda",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Godqueen"
+            ],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Didn’t you just say I caught a good one?",
+          "lastSentence": "Didn’t you just say I caught a good one?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Didn’t you just say I caught a good one?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": true,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.3208000000000001,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "Godqueen"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.816,
+              "name": "Jake",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.456,
+              "name": "Artemis",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 112,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "Didn’t you just say I caught a good one?"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 112,
+              "text": "Didn’t you just say I caught a good one?"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 114,
+              "text": "Speaking of, I do seem quite skilled at catching the good ones, eh?"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Didn’t you just say I caught a good one?",
+              "lastSentence": "Didn’t you just say I caught a good one?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Didn’t you just say I caught a good one?",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Jake shot back with a sly smile.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Speaking of, I do seem quite skilled at catching the good ones, eh?",
+              "lastSentence": "Speaking of, I do seem quite skilled at catching the good ones, eh?",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "Speaking of, I do seem quite skilled at catching the good ones, eh?",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Didn’t you just say I caught a good one?” Jake shot back with a sly smile. “Speaking of, I do seem quite skilled at catching the good ones, eh?”",
+          "dialogueLineCount": 2,
+          "paragraphIndex": 50
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "miranda",
+            "characterName": "Miranda",
+            "lineId": 105,
+            "paragraphIndex": 46,
+            "relativeIndex": -4,
+            "text": "However, nor do I see the need to be overly subservient if it doesn’t serve any practical purpose."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 107,
+            "paragraphIndex": 47,
+            "relativeIndex": -3,
+            "text": "You caught a good one there. Better be less of a terrible figurehead and make her defect to some other faction."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 108,
+            "paragraphIndex": 48,
+            "relativeIndex": -2,
+            "text": "Hey, I’m doing my best over here,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 110,
+            "paragraphIndex": 49,
+            "relativeIndex": -1,
+            "text": "By doing nothing?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 114,
+            "paragraphIndex": 50,
+            "relativeIndex": 1,
+            "text": "Speaking of, I do seem quite skilled at catching the good ones, eh?"
+          },
+          {
+            "characterId": "miranda",
+            "characterName": "Miranda",
+            "lineId": 116,
+            "paragraphIndex": 52,
+            "relativeIndex": 2,
+            "text": "Believe it or not, I find Jake’s current performance as a figurehead quite exemplary,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 112, \"text\": \"Didn’t you just say I caught a good one?\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Godqueen\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 50, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Didn’t you just say I caught a good one?” Jake shot back with a sly smile. “Speaking of, I do seem quite skilled at catching the good ones, eh?”\", \"currentParagraphDialogue\": [{\"lineId\": 112, \"text\": \"Didn’t you just say I caught a good one?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 114, \"text\": \"Speaking of, I do seem quite skilled at catching the good ones, eh?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Didn’t you just say I caught a good one?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Didn’t you just say I caught a good one?\", \"lastSentence\": \"Didn’t you just say I caught a good one?\"}, {\"quoteIndex\": 1, \"quoteText\": \"Speaking of, I do seem quite skilled at catching the good ones, eh?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake shot back with a sly smile.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Speaking of, I do seem quite skilled at catching the good ones, eh?\", \"lastSentence\": \"Speaking of, I do seem quite skilled at catching the good ones, eh?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Didn’t you just say I caught a good one?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Didn’t you just say I caught a good one?\", \"lastSentence\": \"Didn’t you just say I caught a good one?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"aliases\": [], \"roleLabels\": [\"miranda\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 105, \"paragraphIndex\": 46, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"However, nor do I see the need to be overly subservient if it doesn’t serve any practical purpose.\"}, {\"relativeIndex\": -3, \"lineId\": 107, \"paragraphIndex\": 47, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"You caught a good one there. Better be less of a terrible figurehead and make her defect to some other faction.\"}, {\"relativeIndex\": -2, \"lineId\": 108, \"paragraphIndex\": 48, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Hey, I’m doing my best over here,\"}, {\"relativeIndex\": -1, \"lineId\": 110, \"paragraphIndex\": 49, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"By doing nothing?\"}, {\"relativeIndex\": 1, \"lineId\": 114, \"paragraphIndex\": 50, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Speaking of, I do seem quite skilled at catching the good ones, eh?\"}, {\"relativeIndex\": 2, \"lineId\": 116, \"paragraphIndex\": 52, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"Believe it or not, I find Jake’s current performance as a figurehead quite exemplary,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_continuity\",\n    \"parser_agreement\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0127 - Chapter 1184 - Caught A Good One/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“Didn’t you just say I caught a good one?” Jake shot back with a sly smile. “Speaking of, I do seem quite skilled at catching the good ones, eh?”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.99,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“Didn’t you just say I caught a good one?” Jake shot back with a sly smile. “Speaking of, I do seem quite skilled at catching the good ones, eh?”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 112,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "Artemis just rolled her eyes as the witch spoke up.",
+    "paragraphIndex": 50,
+    "previousParagraphText": "“By doing nothing?” the Godqueen shot back.",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_continuity",
+      "parser_agreement"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 112,
+  "nextParagraphText": "Artemis just rolled her eyes as the witch spoke up.",
+  "paragraphIndex": 50,
+  "previousParagraphText": "“By doing nothing?” the Godqueen shot back."
+}

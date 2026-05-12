@@ -1,0 +1,330 @@
+{
+  "cacheKey": "63bc4f90d9d2716135ac2476d8e75ae52337dff5a991991f98179efb2afe8df8",
+  "createdAt": "2026-04-01T22:17:54.325344+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "the-sword-saint",
+    "characterName": "The Sword Saint",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "previous_paragraph_setup",
+      "role_resolution"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "sylphie"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "dina",
+        "name": "Dina",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "the old man asked.",
+      "cueVerb": "asked",
+      "cueVerbType": "speech",
+      "firstSentence": "Do you have any clue as to a timeline?",
+      "lastSentence": "Do you have any clue as to a timeline?",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Do you have any clue as to a timeline?",
+      "speakerNameMatch": null,
+      "speakerSurface": "the old man"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": true,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "The Sword Saint",
+        "sourceCandidates": [
+          "The Sword Saint",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "The Sword Saint",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 103,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Do you have any clue as to a timeline?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 103,
+          "text": "Do you have any clue as to a timeline?"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the old man asked.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "Do you have any clue as to a timeline?",
+          "lastSentence": "Do you have any clue as to a timeline?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Do you have any clue as to a timeline?",
+          "speakerNameMatch": null,
+          "speakerSurface": "the old man"
+        }
+      ],
+      "currentParagraphText": "“Do you have any clue as to a timeline?” the old man asked.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 105,
+          "text": "None. Yggdrasil said that she will contact me once she needs my presence,"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 107,
+          "text": "With gods, you never know how long something takes, and I’m just happy some progress is at least being made in that department."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake explained with a sigh.",
+          "cueVerb": "explained",
+          "cueVerbType": "speech",
+          "firstSentence": "None.",
+          "lastSentence": "Yggdrasil said that she will contact me once she needs my presence,",
+          "mentionedEntities": [
+            "Yggdrasil"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "None. Yggdrasil said that she will contact me once she needs my presence,",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jake explained with a sigh.",
+          "cueVerb": "explained",
+          "cueVerbType": "speech",
+          "firstSentence": "With gods, you never know how long something takes, and I’m just happy some progress is at least being made in that department.",
+          "lastSentence": "With gods, you never know how long something takes, and I’m just happy some progress is at least being made in that department.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "With gods, you never know how long something takes, and I’m just happy some progress is at least being made in that department.",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "nextParagraphText": "“None. Yggdrasil said that she will contact me once she needs my presence,” Jake explained with a sigh. “With gods, you never know how long something takes, and I’m just happy some progress is at least being made in that department.”",
+      "paragraphIndex": 55,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Dina smiled and nodded at his explanation with Sylphie also letting out a happy screech. The Sword Saint didn’t look that surprised at Jake’s revelation as he simply nodded in acknowledgment before asking:"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 96,
+        "paragraphIndex": 51,
+        "relativeIndex": -4,
+        "text": "When Carmen killed the Desolate Child of Loss, a fragment of the Fallen King appeared, and inside my mask, the Truesoul of the Fallen King still lingers, along with something else apparently. A copy of the Fallen King’s memories or something like that... not entirely sure."
+      },
+      {
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "lineId": 97,
+        "paragraphIndex": 52,
+        "relativeIndex": -3,
+        "text": "Ree, ree?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 99,
+        "paragraphIndex": 53,
+        "relativeIndex": -2,
+        "text": "The Fallen King knew what he was doing,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 101,
+        "paragraphIndex": 53,
+        "relativeIndex": -1,
+        "text": "You should all know that arrogant asshole wouldn’t make some noble sacrifice without at least leaving himself a hope for survival. Before he went off, he infused the mask with some unknown energy and even the fragment the Desolate Child had bound its existence to housed energies of the King. He laid all the groundwork for his eventual return, and with Yggdrasil and Nature’s Attendant on the case now... I have confidence this will eventually become a true reunion."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 105,
+        "paragraphIndex": 56,
+        "relativeIndex": 1,
+        "text": "None. Yggdrasil said that she will contact me once she needs my presence,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 107,
+        "paragraphIndex": 56,
+        "relativeIndex": 2,
+        "text": "With gods, you never know how long something takes, and I’m just happy some progress is at least being made in that department."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 103, \"text\": \"Do you have any clue as to a timeline?\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"The Sword Saint\", \"sourceCandidates\": [\"The Sword Saint\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"The Sword Saint\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 55, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Do you have any clue as to a timeline?” the old man asked.\", \"currentParagraphDialogue\": [{\"lineId\": 103, \"text\": \"Do you have any clue as to a timeline?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"previousParagraphText\": \"Dina smiled and nodded at his explanation with Sylphie also letting out a happy screech. The Sword Saint didn’t look that surprised at Jake’s revelation as he simply nodded in acknowledgment before asking:\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“None. Yggdrasil said that she will contact me once she needs my presence,” Jake explained with a sigh. “With gods, you never know how long something takes, and I’m just happy some progress is at least being made in that department.”\", \"nextParagraphDialogue\": [{\"lineId\": 105, \"text\": \"None. Yggdrasil said that she will contact me once she needs my presence,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 107, \"text\": \"With gods, you never know how long something takes, and I’m just happy some progress is at least being made in that department.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Do you have any clue as to a timeline?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"the old man asked.\", \"speakerSurface\": \"the old man\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Do you have any clue as to a timeline?\", \"lastSentence\": \"Do you have any clue as to a timeline?\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"None. Yggdrasil said that she will contact me once she needs my presence,\", \"cuePosition\": \"after\", \"cueVerb\": \"explained\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake explained with a sigh.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [\"Yggdrasil\"], \"addressedEntity\": null, \"firstSentence\": \"None.\", \"lastSentence\": \"Yggdrasil said that she will contact me once she needs my presence,\"}, {\"quoteIndex\": 1, \"quoteText\": \"With gods, you never know how long something takes, and I’m just happy some progress is at least being made in that department.\", \"cuePosition\": \"before\", \"cueVerb\": \"explained\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake explained with a sigh.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"With gods, you never know how long something takes, and I’m just happy some progress is at least being made in that department.\", \"lastSentence\": \"With gods, you never know how long something takes, and I’m just happy some progress is at least being made in that department.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Do you have any clue as to a timeline?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"the old man asked.\", \"speakerSurface\": \"the old man\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Do you have any clue as to a timeline?\", \"lastSentence\": \"Do you have any clue as to a timeline?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [\"sylphie\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 96, \"paragraphIndex\": 51, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"When Carmen killed the Desolate Child of Loss, a fragment of the Fallen King appeared, and inside my mask, the Truesoul of the Fallen King still lingers, along with something else apparently. A copy of the Fallen King’s memories or something like that... not entirely sure.\"}, {\"relativeIndex\": -3, \"lineId\": 97, \"paragraphIndex\": 52, \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"text\": \"Ree, ree?\"}, {\"relativeIndex\": -2, \"lineId\": 99, \"paragraphIndex\": 53, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"The Fallen King knew what he was doing,\"}, {\"relativeIndex\": -1, \"lineId\": 101, \"paragraphIndex\": 53, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You should all know that arrogant asshole wouldn’t make some noble sacrifice without at least leaving himself a hope for survival. Before he went off, he infused the mask with some unknown energy and even the fragment the Desolate Child had bound its existence to housed energies of the King. He laid all the groundwork for his eventual return, and with Yggdrasil and Nature’s Attendant on the case now... I have confidence this will eventually become a true reunion.\"}, {\"relativeIndex\": 1, \"lineId\": 105, \"paragraphIndex\": 56, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"None. Yggdrasil said that she will contact me once she needs my presence,\"}, {\"relativeIndex\": 2, \"lineId\": 107, \"paragraphIndex\": 56, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"With gods, you never know how long something takes, and I’m just happy some progress is at least being made in that department.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dina\", \"name\": \"Dina\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"the-sword-saint\",\n  \"characterName\": \"The Sword Saint\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"previous_paragraph_setup\",\n    \"role_resolution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

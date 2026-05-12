@@ -1,0 +1,280 @@
+{
+  "cacheKey": "4f66f8f315649605e203b0b14ce5dd12a8a0950636ffb900369c6ac7eb85befe",
+  "createdAt": "2026-04-01T19:10:42.599770+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "augur",
+    "characterName": "Augur",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration",
+      "same_paragraph_continuation"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "characterName": "Augur",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "augur"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "name": "Augur",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "the-unique-lifeform",
+        "name": "The Unique Lifeform",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": null,
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "The Unique Lifeform"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.040000000000000036,
+        "misattributionRisk": 0.09599999999999997,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Augur",
+        "sourceCandidates": [
+          "Augur",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.904
+      },
+      "candidates": [
+        {
+          "characterId": "augur",
+          "confidence": 0.904,
+          "name": "Augur",
+          "reasons": [
+            "same_paragraph_continuation",
+            "speech_verb"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.864,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "augur",
+      "currentCharacterName": "Augur",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 14,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "I was drawn to him when he barely survived the clash with the Unique Lifeform and-"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "augur",
+          "characterName": "Augur",
+          "isReturning": false,
+          "lineId": 12,
+          "text": "Yes... everything related to the Desolate Child of Loss is just tragic,"
+        },
+        {
+          "characterId": "augur",
+          "characterName": "Augur",
+          "isReturning": true,
+          "lineId": 14,
+          "text": "I was drawn to him when he barely survived the clash with the Unique Lifeform and-"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the Augur said with regret in his voice. “I was drawn to him when he barely survived the clash with the Unique Lifeform and-“",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Yes...",
+          "lastSentence": "everything related to the Desolate Child of Loss is just tragic,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Yes... everything related to the Desolate Child of Loss is just tragic,",
+          "speakerNameMatch": "Augur",
+          "speakerSurface": "Augur"
+        }
+      ],
+      "currentParagraphText": "“Yes... everything related to the Desolate Child of Loss is just tragic,” the Augur said with regret in his voice. “I was drawn to him when he barely survived the clash with the Unique Lifeform and-“",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 6
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 8,
+        "paragraphIndex": 4,
+        "relativeIndex": -4,
+        "text": "Nothing that happened here played out the way I would have preferred it to, and I can’t even say the outcome was unpredictable."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 9,
+        "paragraphIndex": 5,
+        "relativeIndex": -3,
+        "text": "I would say quite a few unpredictable things happened,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 11,
+        "paragraphIndex": 5,
+        "relativeIndex": -2,
+        "text": "Such as, oh, I don’t know, the sudden reappearance of a False God?"
+      },
+      {
+        "characterId": "augur",
+        "characterName": "Augur",
+        "lineId": 12,
+        "paragraphIndex": 6,
+        "relativeIndex": -1,
+        "text": "Yes... everything related to the Desolate Child of Loss is just tragic,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 15,
+        "paragraphIndex": 7,
+        "relativeIndex": 1,
+        "text": "Fallen King,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 17,
+        "paragraphIndex": 7,
+        "relativeIndex": 2,
+        "text": "Someone who died protecting the rest of us from that living calamity. A living calamity you apparently decided to scoop up and help by not only healing it but even making it stronger. So, let’s start there. Why the fuck was the Desolate Child of Loss in your possession?"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "augur",
+            "characterName": "Augur",
+            "evidence": [
+              "ai_scene_memory"
+            ],
+            "score": 0.99
+          }
+        ],
+        "surface": "augur"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 14, \"text\": \"I was drawn to him when he barely survived the clash with the Unique Lifeform and-\", \"currentCharacterId\": \"augur\", \"currentCharacterName\": \"Augur\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Augur\", \"sourceCandidates\": [\"Augur\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.904, \"marginToSecond\": 0.040000000000000036, \"misattributionRisk\": 0.09599999999999997, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"The Unique Lifeform\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"augur\", \"name\": \"Augur\", \"confidence\": 0.904, \"reasons\": [\"same_paragraph_continuation\", \"speech_verb\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.864, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 6, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Yes... everything related to the Desolate Child of Loss is just tragic,” the Augur said with regret in his voice. “I was drawn to him when he barely survived the clash with the Unique Lifeform and-“\", \"currentParagraphDialogue\": [{\"lineId\": 12, \"text\": \"Yes... everything related to the Desolate Child of Loss is just tragic,\", \"characterId\": \"augur\", \"characterName\": \"Augur\", \"isReturning\": false}, {\"lineId\": 14, \"text\": \"I was drawn to him when he barely survived the clash with the Unique Lifeform and-\", \"characterId\": \"augur\", \"characterName\": \"Augur\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Yes... everything related to the Desolate Child of Loss is just tragic,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the Augur said with regret in his voice. “I was drawn to him when he barely survived the clash with the Unique Lifeform and-“\", \"speakerSurface\": \"Augur\", \"speakerNameMatch\": \"Augur\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yes...\", \"lastSentence\": \"everything related to the Desolate Child of Loss is just tragic,\"}]}, \"currentQuoteUnit\": null, \"sceneEntities\": [{\"surface\": \"augur\", \"matches\": [{\"characterId\": \"augur\", \"characterName\": \"Augur\", \"score\": 0.99, \"evidence\": [\"ai_scene_memory\"]}]}], \"candidateCards\": [{\"characterId\": \"augur\", \"characterName\": \"Augur\", \"aliases\": [], \"roleLabels\": [\"augur\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 8, \"paragraphIndex\": 4, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Nothing that happened here played out the way I would have preferred it to, and I can’t even say the outcome was unpredictable.\"}, {\"relativeIndex\": -3, \"lineId\": 9, \"paragraphIndex\": 5, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I would say quite a few unpredictable things happened,\"}, {\"relativeIndex\": -2, \"lineId\": 11, \"paragraphIndex\": 5, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Such as, oh, I don’t know, the sudden reappearance of a False God?\"}, {\"relativeIndex\": -1, \"lineId\": 12, \"paragraphIndex\": 6, \"characterId\": \"augur\", \"characterName\": \"Augur\", \"text\": \"Yes... everything related to the Desolate Child of Loss is just tragic,\"}, {\"relativeIndex\": 1, \"lineId\": 15, \"paragraphIndex\": 7, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Fallen King,\"}, {\"relativeIndex\": 2, \"lineId\": 17, \"paragraphIndex\": 7, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Someone who died protecting the rest of us from that living calamity. A living calamity you apparently decided to scoop up and help by not only healing it but even making it stronger. So, let’s start there. Why the fuck was the Desolate Child of Loss in your possession?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"augur\", \"name\": \"Augur\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-unique-lifeform\", \"name\": \"The Unique Lifeform\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"augur\",\n  \"characterName\": \"Augur\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration\",\n    \"same_paragraph_continuation\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

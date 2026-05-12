@@ -128,7 +128,8 @@
     seek(progressRatio * $audioState.duration);
   }
 
-  const DISPLAY_ALPHA = 1.0; // Must match CharacterPanel
+  const RUN_HIGHLIGHT_ALPHA = 0.42;
+  const RUN_HIGHLIGHT_DIM_ALPHA = 0.16;
   const LINE_FADE_DURATION_MS = 300;
   const LINE_FADE_STAGGER_MS = 50;
   const APPROX_CHARS_PER_LINE = 72;
@@ -391,21 +392,21 @@
 
   function bgForRun(run: ParagraphRun, hovered: string | null): string {
     if (!run.characterId || run.characterId.toLowerCase() === 'narrator') return 'transparent';
+    const activeCharacter = run.characterId ?? 'Unknown';
+    const alpha = hovered && hovered !== activeCharacter ? RUN_HIGHLIGHT_DIM_ALPHA : RUN_HIGHLIGHT_ALPHA;
     // If this line is a conflict and has at least two candidates, render gradient between top two
     const scr = get(currentScript);
     if (scr && run.lineId != null) {
       const line = scr.lines.find(l => l.id === run.lineId);
       if (line && line.isConflict && Array.isArray(line.candidates) && line.candidates.length >= 2) {
-        const left = line.candidates[0]?.name ?? run.characterId;
-        const right = line.candidates[1]?.name ?? run.characterId;
-        const alpha = hovered && hovered !== (run.characterId ?? 'Unknown') ? DISPLAY_ALPHA * 0.27 : DISPLAY_ALPHA;
+        const left = line.candidates[0]?.name ?? activeCharacter;
+        const right = line.candidates[1]?.name ?? activeCharacter;
         const c1 = hexToRgba(colorForCharacter(left), alpha);
         const c2 = hexToRgba(colorForCharacter(right), alpha);
         return `linear-gradient(to right, ${c1}, ${c2})`;
       }
     }
-    // keep full opacity, ignore hover dimming for visibility
-    return hexToRgba(colorForCharacter(run.characterId), 1);
+    return hexToRgba(colorForCharacter(run.characterId), alpha);
   }
 
   function normalizeLineText(value: string): string {
@@ -1000,14 +1001,14 @@
   .paragraph { 
     flex:1; 
     padding:8px 10px 8px 14px; 
-    border-left:3px solid #e5e7eb; 
+    border-left:3px solid var(--app-border-subtle); 
     white-space:pre-wrap; 
     line-height:1.6; 
     margin:0;
     transition: border-color 0.2s ease;
   }
   .paragraph.paragraph-playing {
-    border-left-color: #000000;
+    border-left-color: var(--app-primary);
   }
   .run-character { 
     background: var(--bg, transparent);
@@ -1031,10 +1032,10 @@
   .paragraph > :first-child.run-character {
     padding-left: 0;
   }
-  .run-character:hover { box-shadow: inset 0 0 0 9999px rgba(0,0,0,0.08); }
+  .run-character:hover { box-shadow: inset 0 0 0 9999px var(--app-primary-soft); }
   .run-character.is-playing { 
     cursor: pointer;
-    box-shadow: inset 0 0 0 2px rgba(102, 197, 234, 0.4);
+    box-shadow: inset 0 0 0 2px rgba(168, 218, 220, 0.48);
   }
   .run-character.narrator-text {
     background: transparent;
@@ -1076,7 +1077,7 @@
   }
 
   .run-text-white {
-    background: #ffffff;
+    background: transparent;
   }
 
   .run-text-color {
@@ -1090,7 +1091,7 @@
     margin-right: 3px;
     line-height: 0;
     vertical-align: baseline;
-    color: #4f46e5;
+    color: var(--app-primary);
     opacity: 1;
   }
 
@@ -1103,9 +1104,9 @@
     margin-right: 4px;
     padding: 0 6px;
     border-radius: 999px;
-    border: 1px solid rgba(15, 23, 42, 0.12);
-    background: rgba(241, 245, 249, 0.96);
-    color: #334155;
+    border: 1px solid var(--app-border-subtle);
+    background: var(--app-surface-raised);
+    color: var(--app-text-muted);
     font-family: 'Courier New', monospace;
     font-size: 10px;
     font-weight: 700;
@@ -1124,8 +1125,8 @@
     line-height: 1;
     border-radius: 999px;
     padding: 0px 6px;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    color: #3f3933;
+    border: 1px solid var(--app-border-subtle);
+    color: var(--app-text);
     vertical-align: middle;
   }
 
@@ -1142,7 +1143,7 @@
     /* border-radius: 50%; */
     border-color: rgba(248, 250, 252, 0);
     background: 0;
-    color: rgb(41 27 12 / 62%);
+    color: var(--app-text-muted);
     /* box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.15); */
   }
 
@@ -1155,20 +1156,20 @@
   }
 
   .confidence-badge.low {
-    background: rgba(245, 158, 11, 0.2);
-    color: #92400e;
+    background: var(--app-warning-soft);
+    color: var(--app-warning);
   }
 
   .confidence-badge.unknown {
-    background: rgba(239, 68, 68, 0.18);
-    color: #991b1b;
+    background: var(--app-danger-soft);
+    color: var(--app-danger);
   }
   
   .audio-progress-line {
     position: fixed;
     width: 1px;
     height: 1.2em;
-    background: #000000;
+    background: var(--app-accent-cyan, var(--app-primary));
     pointer-events: none;
     transition: left 0.08s linear, top 0.05s linear;
     z-index: 10;

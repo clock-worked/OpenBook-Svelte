@@ -1,0 +1,394 @@
+{
+  "cacheKey": "7ab718620b90318e967b131e52386050860cc439e696a4fca010d261c6fe6893",
+  "createdAt": "2026-04-02T22:48:03.997290+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "the-sword-saint",
+    "characterName": "The Sword Saint",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "alias_match",
+      "dialogue_flow_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "succubus",
+        "characterName": "Succubus",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "succubus"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "characterName": "The Sword Saint",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "the sword saint",
+          "sword saint",
+          "the sword saint 2",
+          "sword saint 2",
+          "miyamoto"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "irin",
+        "name": "Irin",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "succubus",
+        "name": "Succubus",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "vampire",
+        "name": "Vampire",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "fairleigh",
+        "name": "Fairleigh",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "name": "blood",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "before",
+      "cueText": "Miyamoto considered for a while before deciding.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Would you be a dear and show me where I may get in touch with the vampires belonging to the Order of the Malefic Viper?",
+      "lastSentence": "I believe it’s high time we have a discussion.",
+      "mentionedEntities": [
+        "The Malefic Viper",
+        "The Malefic Viper"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "Would you be a dear and show me where I may get in touch with the vampires belonging to the Order of the Malefic Viper? I believe it’s high time we have a discussion.",
+      "speakerNameMatch": null,
+      "speakerSurface": "Miyamoto considered for a"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "The Malefic Viper"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Succubus",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Succubus",
+        "sourceCandidates": [
+          "Succubus",
+          "The Sword Saint"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "succubus",
+          "confidence": 0.816,
+          "name": "Succubus",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "the-sword-saint",
+          "confidence": 0.456,
+          "name": "The Sword Saint",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "succubus",
+      "currentCharacterName": "Succubus",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 82,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Would you be a dear and show me where I may get in touch with the vampires belonging to the Order of the Malefic Viper? I believe it’s high time we have a discussion."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "succubus",
+          "characterName": "Succubus",
+          "isReturning": true,
+          "lineId": 82,
+          "text": "Would you be a dear and show me where I may get in touch with the vampires belonging to the Order of the Malefic Viper? I believe it’s high time we have a discussion."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Miyamoto considered for a while before deciding.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Would you be a dear and show me where I may get in touch with the vampires belonging to the Order of the Malefic Viper?",
+          "lastSentence": "I believe it’s high time we have a discussion.",
+          "mentionedEntities": [
+            "The Malefic Viper",
+            "The Malefic Viper"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Would you be a dear and show me where I may get in touch with the vampires belonging to the Order of the Malefic Viper? I believe it’s high time we have a discussion.",
+          "speakerNameMatch": null,
+          "speakerSurface": "Miyamoto considered for a"
+        }
+      ],
+      "currentParagraphText": "Miyamoto considered for a while before deciding. “Would you be a dear and show me where I may get in touch with the vampires belonging to the Order of the Malefic Viper? I believe it’s high time we have a discussion.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "succubus",
+          "characterName": "Succubus",
+          "isReturning": false,
+          "lineId": 83,
+          "text": "Most certainly,"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the demon bowed, clearly trying to show off her assets while doing so. Sadly for her, the Sword Saint wasn’t interested in the slightest. Getting too close to a member of the Order of the Malefic Viper in such a fashion seemed unwise.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Most certainly,",
+          "lastSentence": "Most certainly,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Most certainly,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the demon"
+        }
+      ],
+      "nextParagraphText": "“Most certainly,” the demon bowed, clearly trying to show off her assets while doing so. Sadly for her, the Sword Saint wasn’t interested in the slightest. Getting too close to a member of the Order of the Malefic Viper in such a fashion seemed unwise.",
+      "paragraphIndex": 49,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "the-sword-saint",
+          "characterName": "The Sword Saint",
+          "isReturning": true,
+          "lineId": 79,
+          "text": "Where does My Lord wish to go next?"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the succubus who’d been assigned to him asked.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "Where does My Lord wish to go next?",
+          "lastSentence": "Where does My Lord wish to go next?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Where does My Lord wish to go next?",
+          "speakerNameMatch": null,
+          "speakerSurface": "the succubus who’d been assigned to him"
+        }
+      ],
+      "previousParagraphText": "“Where does My Lord wish to go next?” the succubus who’d been assigned to him asked."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 71,
+        "paragraphIndex": 43,
+        "relativeIndex": -4,
+        "text": "Yeah, he can be a bit much and likes messing around,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 73,
+        "paragraphIndex": 44,
+        "relativeIndex": -3,
+        "text": "That means there’s no reason to hold back, now, is there?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 75,
+        "paragraphIndex": 44,
+        "relativeIndex": -2,
+        "text": "You know... my biggest worry was what the Malefic One thought about me. A low-level succubus hired to work for the Order, daring to even try and get close to his Chosen... I halfway expected to get smote from existence one day if I went too far. However, knowing that he doesn’t outright disapprove..."
+      },
+      {
+        "characterId": "the-sword-saint",
+        "characterName": "The Sword Saint",
+        "lineId": 79,
+        "paragraphIndex": 48,
+        "relativeIndex": -1,
+        "text": "Where does My Lord wish to go next?"
+      },
+      {
+        "characterId": "succubus",
+        "characterName": "Succubus",
+        "lineId": 83,
+        "paragraphIndex": 50,
+        "relativeIndex": 1,
+        "text": "Most certainly,"
+      },
+      {
+        "characterId": "succubus",
+        "characterName": "Succubus",
+        "lineId": 87,
+        "paragraphIndex": 53,
+        "relativeIndex": 2,
+        "text": "Which of the vampire clans do you wish to get in contact with?"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "the-sword-saint",
+            "characterName": "The Sword Saint",
+            "evidence": [
+              "token_overlap:miyamoto"
+            ],
+            "score": 0.5667
+          }
+        ],
+        "surface": "miyamoto considered for a"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 82, \"text\": \"Would you be a dear and show me where I may get in touch with the vampires belonging to the Order of the Malefic Viper? I believe it’s high time we have a discussion.\", \"currentCharacterId\": \"succubus\", \"currentCharacterName\": \"Succubus\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Succubus\", \"sourceCandidates\": [\"Succubus\", \"The Sword Saint\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"The Malefic Viper\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Succubus\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"succubus\", \"name\": \"Succubus\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 49, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Miyamoto considered for a while before deciding. “Would you be a dear and show me where I may get in touch with the vampires belonging to the Order of the Malefic Viper? I believe it’s high time we have a discussion.”\", \"currentParagraphDialogue\": [{\"lineId\": 82, \"text\": \"Would you be a dear and show me where I may get in touch with the vampires belonging to the Order of the Malefic Viper? I believe it’s high time we have a discussion.\", \"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"isReturning\": true}], \"previousParagraphText\": \"“Where does My Lord wish to go next?” the succubus who’d been assigned to him asked.\", \"previousParagraphDialogue\": [{\"lineId\": 79, \"text\": \"Where does My Lord wish to go next?\", \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"isReturning\": true}], \"nextParagraphText\": \"“Most certainly,” the demon bowed, clearly trying to show off her assets while doing so. Sadly for her, the Sword Saint wasn’t interested in the slightest. Getting too close to a member of the Order of the Malefic Viper in such a fashion seemed unwise.\", \"nextParagraphDialogue\": [{\"lineId\": 83, \"text\": \"Most certainly,\", \"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Would you be a dear and show me where I may get in touch with the vampires belonging to the Order of the Malefic Viper? I believe it’s high time we have a discussion.\", \"cuePosition\": \"before\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Miyamoto considered for a while before deciding.\", \"speakerSurface\": \"Miyamoto considered for a\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"The Malefic Viper\", \"The Malefic Viper\"], \"addressedEntity\": null, \"firstSentence\": \"Would you be a dear and show me where I may get in touch with the vampires belonging to the Order of the Malefic Viper?\", \"lastSentence\": \"I believe it’s high time we have a discussion.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Where does My Lord wish to go next?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"the succubus who’d been assigned to him asked.\", \"speakerSurface\": \"the succubus who’d been assigned to him\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Where does My Lord wish to go next?\", \"lastSentence\": \"Where does My Lord wish to go next?\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Most certainly,\", \"cuePosition\": \"after\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"the demon bowed, clearly trying to show off her assets while doing so. Sadly for her, the Sword Saint wasn’t interested in the slightest. Getting too close to a member of the Order of the Malefic Viper in such a fashion seemed unwise.\", \"speakerSurface\": \"the demon\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Most certainly,\", \"lastSentence\": \"Most certainly,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Would you be a dear and show me where I may get in touch with the vampires belonging to the Order of the Malefic Viper? I believe it’s high time we have a discussion.\", \"cuePosition\": \"before\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Miyamoto considered for a while before deciding.\", \"speakerSurface\": \"Miyamoto considered for a\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"The Malefic Viper\", \"The Malefic Viper\"], \"addressedEntity\": null, \"firstSentence\": \"Would you be a dear and show me where I may get in touch with the vampires belonging to the Order of the Malefic Viper?\", \"lastSentence\": \"I believe it’s high time we have a discussion.\"}, \"sceneEntities\": [{\"surface\": \"miyamoto considered for a\", \"matches\": [{\"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"score\": 0.5667, \"evidence\": [\"token_overlap:miyamoto\"]}]}], \"candidateCards\": [{\"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"aliases\": [], \"roleLabels\": [\"succubus\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [\"the sword saint\", \"sword saint\", \"the sword saint 2\", \"sword saint 2\", \"miyamoto\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 71, \"paragraphIndex\": 43, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Yeah, he can be a bit much and likes messing around,\"}, {\"relativeIndex\": -3, \"lineId\": 73, \"paragraphIndex\": 44, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"That means there’s no reason to hold back, now, is there?\"}, {\"relativeIndex\": -2, \"lineId\": 75, \"paragraphIndex\": 44, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You know... my biggest worry was what the Malefic One thought about me. A low-level succubus hired to work for the Order, daring to even try and get close to his Chosen... I halfway expected to get smote from existence one day if I went too far. However, knowing that he doesn’t outright disapprove...\"}, {\"relativeIndex\": -1, \"lineId\": 79, \"paragraphIndex\": 48, \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Where does My Lord wish to go next?\"}, {\"relativeIndex\": 1, \"lineId\": 83, \"paragraphIndex\": 50, \"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"text\": \"Most certainly,\"}, {\"relativeIndex\": 2, \"lineId\": 87, \"paragraphIndex\": 53, \"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"text\": \"Which of the vampire clans do you wish to get in contact with?\"}], \"chapterCharacters\": [{\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"succubus\", \"name\": \"Succubus\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vampire\", \"name\": \"Vampire\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"fairleigh\", \"name\": \"Fairleigh\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"blood\", \"name\": \"blood\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"the-sword-saint\",\n  \"characterName\": \"The Sword Saint\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"alias_match\",\n    \"dialogue_flow_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

@@ -1,0 +1,272 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "21d2aa2fb2993f126071b54dd4a6b3b0db74f92ec9da0f77173ac01fdaf956e6",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\21d2aa2fb2993f126071b54dd4a6b3b0db74f92ec9da0f77173ac01fdaf956e6.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "hank",
+        "characterName": "Hank",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "narrative_cue_contradicts_parser",
+          "previous_speaker_silence"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": false,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "hank",
+            "characterName": "Hank",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "hank"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "hank",
+            "name": "Hank",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I’ll have some people look at ways to reinforce and strengthen the lab’s walls...",
+          "lastSentence": "maybe put in some shielding here and there.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I’ll have some people look at ways to reinforce and strengthen the lab’s walls... maybe put in some shielding here and there.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": null,
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.18400000000000005,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "Hank"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": "jake",
+              "confidence": 0.816,
+              "name": "Jake",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "hank",
+              "confidence": 0.456,
+              "name": "Hank",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [
+            "Protagonist"
+          ],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 73,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "I’ll have some people look at ways to reinforce and strengthen the lab’s walls... maybe put in some shielding here and there."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 73,
+              "text": "I’ll have some people look at ways to reinforce and strengthen the lab’s walls... maybe put in some shielding here and there."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "I’ll have some people look at ways to reinforce and strengthen the lab’s walls...",
+              "lastSentence": "maybe put in some shielding here and there.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "I’ll have some people look at ways to reinforce and strengthen the lab’s walls... maybe put in some shielding here and there.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“I’ll have some people look at ways to reinforce and strengthen the lab’s walls... maybe put in some shielding here and there.”",
+          "dialogueLineCount": 1,
+          "paragraphIndex": 61,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "Jake didn’t even answer, and after a few seconds, Hank just sighed."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "hank",
+            "characterName": "Hank",
+            "lineId": 66,
+            "paragraphIndex": 57,
+            "relativeIndex": -4,
+            "text": "This time, you got lucky, but what if the angle had been bad? You could have hit the city, and I hope I don’t need to tell you why that could have been bad."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 67,
+            "paragraphIndex": 58,
+            "relativeIndex": -3,
+            "text": "Yeah, I know,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 69,
+            "paragraphIndex": 58,
+            "relativeIndex": -2,
+            "text": "I think I’ll need to look into having some more defensive formations placed around the lab. Maybe we can even discuss strengthening the construction a bit?"
+          },
+          {
+            "characterId": "hank",
+            "characterName": "Hank",
+            "lineId": 70,
+            "paragraphIndex": 59,
+            "relativeIndex": -1,
+            "text": "Or, even better, you can stop doing reckless alchemy experiments,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 73, \"text\": \"I’ll have some people look at ways to reinforce and strengthen the lab’s walls... maybe put in some shielding here and there.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Hank\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": null, \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"hank\", \"name\": \"Hank\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 61, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I’ll have some people look at ways to reinforce and strengthen the lab’s walls... maybe put in some shielding here and there.”\", \"currentParagraphDialogue\": [{\"lineId\": 73, \"text\": \"I’ll have some people look at ways to reinforce and strengthen the lab’s walls... maybe put in some shielding here and there.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"Jake didn’t even answer, and after a few seconds, Hank just sighed.\", \"previousParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I’ll have some people look at ways to reinforce and strengthen the lab’s walls... maybe put in some shielding here and there.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’ll have some people look at ways to reinforce and strengthen the lab’s walls...\", \"lastSentence\": \"maybe put in some shielding here and there.\"}], \"previousParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I’ll have some people look at ways to reinforce and strengthen the lab’s walls... maybe put in some shielding here and there.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’ll have some people look at ways to reinforce and strengthen the lab’s walls...\", \"lastSentence\": \"maybe put in some shielding here and there.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"hank\", \"characterName\": \"Hank\", \"aliases\": [], \"roleLabels\": [\"hank\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 66, \"paragraphIndex\": 57, \"characterId\": \"hank\", \"characterName\": \"Hank\", \"text\": \"This time, you got lucky, but what if the angle had been bad? You could have hit the city, and I hope I don’t need to tell you why that could have been bad.\"}, {\"relativeIndex\": -3, \"lineId\": 67, \"paragraphIndex\": 58, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Yeah, I know,\"}, {\"relativeIndex\": -2, \"lineId\": 69, \"paragraphIndex\": 58, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I think I’ll need to look into having some more defensive formations placed around the lab. Maybe we can even discuss strengthening the construction a bit?\"}, {\"relativeIndex\": -1, \"lineId\": 70, \"paragraphIndex\": 59, \"characterId\": \"hank\", \"characterName\": \"Hank\", \"text\": \"Or, even better, you can stop doing reckless alchemy experiments,\"}], \"chapterCharacters\": [{\"characterId\": \"hank\", \"name\": \"Hank\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": false, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"hank\",\n  \"characterName\": \"Hank\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"narrative_cue_contradicts_parser\",\n    \"previous_speaker_silence\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0013 - Chapter 1070 - Across the 93rd Universe",
+  "currentCharacterId": "jake",
+  "currentCharacterName": "Jake",
+  "currentParagraphText": "“I’ll have some people look at ways to reinforce and strengthen the lab’s walls... maybe put in some shielding here and there.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "jake",
+    "currentCharacterName": "Jake",
+    "currentParagraphText": "“I’ll have some people look at ways to reinforce and strengthen the lab’s walls... maybe put in some shielding here and there.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 73,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": null,
+    "paragraphIndex": 61,
+    "previousParagraphText": "Jake didn’t even answer, and after a few seconds, Hank just sighed.",
+    "reasonCodes": [
+      "narrative_cue_contradicts_parser",
+      "previous_speaker_silence"
+    ],
+    "suggestedCharacterId": "hank",
+    "suggestedCharacterName": "Hank",
+    "toolTrace": []
+  },
+  "lineId": 73,
+  "nextParagraphText": null,
+  "paragraphIndex": 61,
+  "previousParagraphText": "Jake didn’t even answer, and after a few seconds, Hank just sighed."
+}

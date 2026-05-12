@@ -1,0 +1,202 @@
+:root {
+  color-scheme: light;
+
+  --app-bg: #f7f9fc;
+  --app-bg-muted: #eef2f7;
+  --app-surface: #ffffff;
+  --app-surface-raised: #ffffff;
+  --app-surface-subtle: #f8fafc;
+  --app-surface-hover: #f1f5f9;
+  --app-surface-active: #e8eef6;
+  --app-overlay: rgba(15, 23, 42, 0.42);
+
+  --app-text: #111827;
+  --app-text-muted: #5f6b7a;
+  --app-text-subtle: #7b8794;
+  --app-text-inverse: #ffffff;
+
+  --app-border: #d7dee7;
+  --app-border-subtle: #e6ebf2;
+  --app-border-strong: #b8c3d2;
+
+  --app-primary: #2563eb;
+  --app-primary-hover: #1d4ed8;
+  --app-primary-active: #1e40af;
+  --app-primary-soft: rgba(37, 99, 235, 0.1);
+  --app-primary-text: #1d4ed8;
+  --app-accent-cyan: #0f766e;
+  --app-accent-pink: #be185d;
+  --app-accent-lavender: #7c3aed;
+
+  --app-success: #15803d;
+  --app-success-soft: #f0fdf4;
+  --app-danger: #b42318;
+  --app-danger-soft: #fef2f2;
+  --app-warning: #b45309;
+  --app-warning-soft: #fffbeb;
+
+  --app-shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --app-shadow-md: 0 8px 24px rgba(15, 23, 42, 0.12);
+  --app-shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.2);
+  --app-focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.16);
+
+  --app-radius-sm: 6px;
+  --app-radius-md: 8px;
+  --app-radius-lg: 10px;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --app-bg: #2c2c2c;
+  --app-bg-muted: #272727;
+  --app-surface: #323232;
+  --app-surface-raised: #3a3a3a;
+  --app-surface-subtle: #303030;
+  --app-surface-hover: #444444;
+  --app-surface-active: #505050;
+  --app-overlay: rgba(0, 0, 0, 0.58);
+
+  --app-text: #e4e4e4;
+  --app-text-muted: #c8c8c8;
+  --app-text-subtle: #a8a8a8;
+  --app-text-inverse: #2c2c2c;
+
+  --app-border: #4d4d4d;
+  --app-border-subtle: #404040;
+  --app-border-strong: #686868;
+
+  --app-primary: #b39cd0;
+  --app-primary-hover: #c4addf;
+  --app-primary-active: #9b83bc;
+  --app-primary-soft: rgba(179, 156, 208, 0.22);
+  --app-primary-text: #a8dadc;
+  --app-accent-cyan: #a8dadc;
+  --app-accent-pink: #ffc1cc;
+  --app-accent-lavender: #b39cd0;
+
+  --app-success: #6ee7a0;
+  --app-success-soft: rgba(34, 197, 94, 0.16);
+  --app-danger: #ff8a80;
+  --app-danger-soft: rgba(248, 113, 113, 0.15);
+  --app-warning: #f6c76d;
+  --app-warning-soft: rgba(245, 158, 11, 0.14);
+
+  --app-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.28);
+  --app-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.34);
+  --app-shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.42);
+  --app-focus-ring: 0 0 0 3px rgba(179, 156, 208, 0.28);
+}
+
+html,
+body {
+  min-height: 100%;
+  background: var(--app-bg);
+  color: var(--app-text);
+}
+
+body {
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+button,
+input,
+select,
+textarea {
+  color: var(--app-text);
+}
+
+input,
+select,
+textarea {
+  background: var(--app-surface-raised);
+  border-color: var(--app-border);
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  box-shadow: var(--app-focus-ring);
+}
+
+a {
+  color: var(--app-primary-text);
+}
+
+::selection {
+  background: var(--app-primary-soft);
+}
+
+:root[data-theme='dark'] .toolbar,
+:root[data-theme='dark'] .toc-container,
+:root[data-theme='dark'] .character-panel,
+:root[data-theme='dark'] .chapter-character-panel,
+:root[data-theme='dark'] .audio-panel,
+:root[data-theme='dark'] .playback-bar,
+:root[data-theme='dark'] .queue-overlay,
+:root[data-theme='dark'] .settings-page,
+:root[data-theme='dark'] .book-page,
+:root[data-theme='dark'] .context-menu,
+:root[data-theme='dark'] .dd-panel,
+:root[data-theme='dark'] .modal,
+:root[data-theme='dark'] .prompt,
+:root[data-theme='dark'] .speaker-card,
+:root[data-theme='dark'] .manager-modal,
+:root[data-theme='dark'] .ai-assist-panel {
+  background: var(--app-surface) !important;
+  color: var(--app-text) !important;
+  border-color: var(--app-border) !important;
+}
+
+:root[data-theme='dark'] .dd-button,
+:root[data-theme='dark'] .menu-item,
+:root[data-theme='dark'] .tool-button,
+:root[data-theme='dark'] .icon-button,
+:root[data-theme='dark'] .secondary-button,
+:root[data-theme='dark'] .chapter-item,
+:root[data-theme='dark'] .voice-card,
+:root[data-theme='dark'] .list-item,
+:root[data-theme='dark'] .settings-section,
+:root[data-theme='dark'] .settings-group {
+  background: var(--app-surface-raised) !important;
+  color: var(--app-text) !important;
+  border-color: var(--app-border) !important;
+}
+
+:root[data-theme='dark'] .dd-button:hover,
+:root[data-theme='dark'] .menu-item:hover,
+:root[data-theme='dark'] .tool-button:hover,
+:root[data-theme='dark'] .icon-button:hover,
+:root[data-theme='dark'] .secondary-button:hover,
+:root[data-theme='dark'] .chapter-item:hover,
+:root[data-theme='dark'] .voice-card:hover,
+:root[data-theme='dark'] .list-item:hover {
+  background: var(--app-surface-hover) !important;
+}
+
+:root[data-theme='dark'] .dd-panel::before {
+  background: var(--app-surface) !important;
+  border-color: var(--app-border) !important;
+}
+
+:root[data-theme='dark'] .placeholder,
+:root[data-theme='dark'] .help-text,
+:root[data-theme='dark'] .subtle,
+:root[data-theme='dark'] .metadata,
+:root[data-theme='dark'] .empty-state,
+:root[data-theme='dark'] .chapter-meta,
+:root[data-theme='dark'] .section-description {
+  color: var(--app-text-muted) !important;
+}
+
+:root[data-theme='dark'] input,
+:root[data-theme='dark'] select,
+:root[data-theme='dark'] textarea {
+  background: var(--app-surface-raised) !important;
+  color: var(--app-text) !important;
+  border-color: var(--app-border) !important;
+}

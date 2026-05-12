@@ -1,0 +1,365 @@
+{
+  "cacheKey": "459cc75bcefbbf91ec1d133f0a05f89ba4bb749c28f3fb019864ea03936935e5",
+  "createdAt": "2026-04-01T18:35:19.826551+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_speaker_cue",
+      "dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "lodestar-matron",
+          "lodestar-matron-2"
+        ],
+        "characterId": "lodestar-matron",
+        "characterName": "Lodestar Matron",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "lodestar matron",
+          "lodestar matron 2"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "if_jake",
+        "characterName": "If Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "if jake"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "if_jake",
+        "name": "If Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "lodestar-matron",
+          "lodestar-matron-2"
+        ],
+        "characterId": "lodestar-matron",
+        "name": "Lodestar Matron",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "pulse",
+        "name": "pulse",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "name": "Iludar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "name": "Blood",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "Jake simply responded.",
+      "cueVerb": "responded",
+      "cueVerbType": "speech",
+      "firstSentence": "I don’t easily change my mind,",
+      "lastSentence": "I don’t easily change my mind,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "I don’t easily change my mind,",
+      "speakerNameMatch": null,
+      "speakerSurface": "Jake simply"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Lodestar Matron",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.19599999999999995,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Lodestar Matron"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.804,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "lodestar-matron",
+          "confidence": 0.444,
+          "name": "Lodestar Matron",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Ell'Hakan"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 13,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "I don’t easily change my mind,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 13,
+          "text": "I don’t easily change my mind,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake simply responded.",
+          "cueVerb": "responded",
+          "cueVerbType": "speech",
+          "firstSentence": "I don’t easily change my mind,",
+          "lastSentence": "I don’t easily change my mind,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I don’t easily change my mind,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Jake simply"
+        }
+      ],
+      "currentParagraphText": "“I don’t easily change my mind,” Jake simply responded.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "lodestar-matron",
+          "characterName": "Lodestar Matron",
+          "isReturning": true,
+          "lineId": 15,
+          "text": "Am I to assume this is also the opinion of your Patron?"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Am I to assume this is also the opinion of your Patron?",
+          "lastSentence": "Am I to assume this is also the opinion of your Patron?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Am I to assume this is also the opinion of your Patron?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "nextParagraphText": "“Am I to assume this is also the opinion of your Patron?”",
+      "paragraphIndex": 9,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "lodestar-matron",
+          "characterName": "Lodestar Matron",
+          "isReturning": false,
+          "lineId": 11,
+          "text": "Are you truly certain of your decision?"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the Lodestar Matron asked, disappointment in her voice.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "Are you truly certain of your decision?",
+          "lastSentence": "Are you truly certain of your decision?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Are you truly certain of your decision?",
+          "speakerNameMatch": "Lodestar Matron",
+          "speakerSurface": "the Lodestar Matron"
+        }
+      ],
+      "previousParagraphText": "“Are you truly certain of your decision?” the Lodestar Matron asked, disappointment in her voice."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 4,
+        "paragraphIndex": 2,
+        "relativeIndex": -3,
+        "text": "for good."
+      },
+      {
+        "characterId": "if_jake",
+        "characterName": "If Jake",
+        "lineId": 9,
+        "paragraphIndex": 6,
+        "relativeIndex": -2,
+        "text": "I see the sincerity behind your offer, but I can’t agree to any agreement that does not involve the return of Ell’Hakan’s Truesoul to the system where it belongs. His Bloodline should die with him, end of story."
+      },
+      {
+        "characterId": "lodestar-matron",
+        "characterName": "Lodestar Matron",
+        "lineId": 11,
+        "paragraphIndex": 8,
+        "relativeIndex": -1,
+        "text": "Are you truly certain of your decision?"
+      },
+      {
+        "characterId": "lodestar-matron",
+        "characterName": "Lodestar Matron",
+        "lineId": 15,
+        "paragraphIndex": 10,
+        "relativeIndex": 1,
+        "text": "Am I to assume this is also the opinion of your Patron?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 16,
+        "paragraphIndex": 11,
+        "relativeIndex": 2,
+        "text": "No idea, but I’m fairly confident he wouldn’t disagree with whatever choice I make today. Contrary to you guys, he respects when something is not his choice to make,"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "evidence": [
+              "token_overlap:jake"
+            ],
+            "score": 0.625
+          },
+          {
+            "characterId": "if_jake",
+            "characterName": "If Jake",
+            "evidence": [
+              "token_overlap:jake"
+            ],
+            "score": 0.625
+          }
+        ],
+        "surface": "jake simply"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 13, \"text\": \"I don’t easily change my mind,\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Ell'Hakan\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Lodestar Matron\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Lodestar Matron\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"lodestar-matron\", \"name\": \"Lodestar Matron\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 9, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I don’t easily change my mind,” Jake simply responded.\", \"currentParagraphDialogue\": [{\"lineId\": 13, \"text\": \"I don’t easily change my mind,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"previousParagraphText\": \"“Are you truly certain of your decision?” the Lodestar Matron asked, disappointment in her voice.\", \"previousParagraphDialogue\": [{\"lineId\": 11, \"text\": \"Are you truly certain of your decision?\", \"characterId\": \"lodestar-matron\", \"characterName\": \"Lodestar Matron\", \"isReturning\": false}], \"nextParagraphText\": \"“Am I to assume this is also the opinion of your Patron?”\", \"nextParagraphDialogue\": [{\"lineId\": 15, \"text\": \"Am I to assume this is also the opinion of your Patron?\", \"characterId\": \"lodestar-matron\", \"characterName\": \"Lodestar Matron\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I don’t easily change my mind,\", \"cuePosition\": \"after\", \"cueVerb\": \"responded\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake simply responded.\", \"speakerSurface\": \"Jake simply\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I don’t easily change my mind,\", \"lastSentence\": \"I don’t easily change my mind,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Are you truly certain of your decision?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"the Lodestar Matron asked, disappointment in her voice.\", \"speakerSurface\": \"the Lodestar Matron\", \"speakerNameMatch\": \"Lodestar Matron\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Are you truly certain of your decision?\", \"lastSentence\": \"Are you truly certain of your decision?\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Am I to assume this is also the opinion of your Patron?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Am I to assume this is also the opinion of your Patron?\", \"lastSentence\": \"Am I to assume this is also the opinion of your Patron?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I don’t easily change my mind,\", \"cuePosition\": \"after\", \"cueVerb\": \"responded\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake simply responded.\", \"speakerSurface\": \"Jake simply\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I don’t easily change my mind,\", \"lastSentence\": \"I don’t easily change my mind,\"}, \"sceneEntities\": [{\"surface\": \"jake simply\", \"matches\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"score\": 0.625, \"evidence\": [\"token_overlap:jake\"]}, {\"characterId\": \"if_jake\", \"characterName\": \"If Jake\", \"score\": 0.625, \"evidence\": [\"token_overlap:jake\"]}]}], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"lodestar-matron\", \"characterName\": \"Lodestar Matron\", \"aliases\": [\"lodestar-matron\", \"lodestar-matron-2\"], \"roleLabels\": [\"lodestar matron\", \"lodestar matron 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"if_jake\", \"characterName\": \"If Jake\", \"aliases\": [], \"roleLabels\": [\"if jake\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -3, \"lineId\": 4, \"paragraphIndex\": 2, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"for good.\"}, {\"relativeIndex\": -2, \"lineId\": 9, \"paragraphIndex\": 6, \"characterId\": \"if_jake\", \"characterName\": \"If Jake\", \"text\": \"I see the sincerity behind your offer, but I can’t agree to any agreement that does not involve the return of Ell’Hakan’s Truesoul to the system where it belongs. His Bloodline should die with him, end of story.\"}, {\"relativeIndex\": -1, \"lineId\": 11, \"paragraphIndex\": 8, \"characterId\": \"lodestar-matron\", \"characterName\": \"Lodestar Matron\", \"text\": \"Are you truly certain of your decision?\"}, {\"relativeIndex\": 1, \"lineId\": 15, \"paragraphIndex\": 10, \"characterId\": \"lodestar-matron\", \"characterName\": \"Lodestar Matron\", \"text\": \"Am I to assume this is also the opinion of your Patron?\"}, {\"relativeIndex\": 2, \"lineId\": 16, \"paragraphIndex\": 11, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"No idea, but I’m fairly confident he wouldn’t disagree with whatever choice I make today. Contrary to you guys, he respects when something is not his choice to make,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"if_jake\", \"name\": \"If Jake\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"lodestar-matron\", \"name\": \"Lodestar Matron\", \"aliases\": [\"lodestar-matron\", \"lodestar-matron-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"pulse\", \"name\": \"pulse\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"blood\", \"name\": \"Blood\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_speaker_cue\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

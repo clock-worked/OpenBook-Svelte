@@ -1,0 +1,327 @@
+{
+  "cacheKey": "e0aa0588612311774339cfe4cf6ce01839fdc2cfb86ef1caaad409b91356cead",
+  "createdAt": "2026-05-11T21:20:48.650207+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "beastkin",
+    "characterName": "Beastkin",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_continuity",
+      "parser_top_candidate"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Godqueen",
+          "Viper"
+        ],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "artemis",
+          "godqueen",
+          "viper"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "beastkin",
+        "characterName": "Beastkin",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "beastkin"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen",
+          "Viper"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "beastkin",
+        "name": "Beastkin",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "the woman said with a bright smile.",
+      "cueVerb": "said",
+      "cueVerbType": "speech",
+      "firstSentence": "Definitely,",
+      "lastSentence": "Definitely,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Definitely,",
+      "speakerNameMatch": null,
+      "speakerSurface": "the woman"
+    },
+    "line": {
+      "alignment": {
+        "confidence": 1.0,
+        "isSpanFallback": false,
+        "method": "quote_unit",
+        "paragraphIndex": 17,
+        "spanDistance": 0.0,
+        "spanParagraphIndex": 17
+      },
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Beastkin",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.7,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.2928,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Beastkin",
+        "sourceCandidates": [
+          "Beastkin",
+          "The Malefic Viper"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.856
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.856,
+          "name": "Beastkin",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.496,
+          "name": "Artemis",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 38,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Definitely,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 38,
+          "text": "Definitely,"
+        },
+        {
+          "characterId": "beastkin",
+          "characterName": "Beastkin",
+          "isReturning": true,
+          "lineId": 40,
+          "text": "Dad also said it’s okay, and seeing as he’s the one hosting it, you’re golden."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the woman said with a bright smile.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Definitely,",
+          "lastSentence": "Definitely,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Definitely,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the woman"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "the woman said with a bright smile.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Dad also said it’s okay, and seeing as he’s the one hosting it, you’re golden.",
+          "lastSentence": "Dad also said it’s okay, and seeing as he’s the one hosting it, you’re golden.",
+          "mentionedEntities": [
+            "Dad"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "Dad also said it’s okay, and seeing as he’s the one hosting it, you’re golden.",
+          "speakerNameMatch": null,
+          "speakerSurface": "the woman"
+        }
+      ],
+      "currentParagraphText": "“Definitely,” the woman said with a bright smile. “Dad also said it’s okay, and seeing as he’s the one hosting it, you’re golden.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 17
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 31,
+        "paragraphIndex": 14,
+        "relativeIndex": -4,
+        "text": "Hm... alright, that definitely explains why there are so many people coming these days and why the City Lord got stricter with the rules,"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 33,
+        "paragraphIndex": 14,
+        "relativeIndex": -3,
+        "text": "Anyway, not that it concerns me too much, not like I have anything to do with the auction."
+      },
+      {
+        "characterId": "beastkin",
+        "characterName": "Beastkin",
+        "lineId": 34,
+        "paragraphIndex": 15,
+        "relativeIndex": -2,
+        "text": "Actually... there will be a social gathering before the actual auction, and I was wondering if you’d be willing to accompany me?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 37,
+        "paragraphIndex": 16,
+        "relativeIndex": -1,
+        "text": "Would that be alright?"
+      },
+      {
+        "characterId": "beastkin",
+        "characterName": "Beastkin",
+        "lineId": 40,
+        "paragraphIndex": 17,
+        "relativeIndex": 1,
+        "text": "Dad also said it’s okay, and seeing as he’s the one hosting it, you’re golden."
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 41,
+        "paragraphIndex": 18,
+        "relativeIndex": 2,
+        "text": "In that case, wouldn’t it be rude of me to reject?"
+      }
+    ],
+    "sceneEntities": [],
+    "sceneRoster": {
+      "paragraphWindow": 6,
+      "presentCharacterIds": [
+        "unknown",
+        "beastkin",
+        "artemis"
+      ],
+      "presentCharacters": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown"
+        },
+        {
+          "characterId": "beastkin",
+          "characterName": "Beastkin"
+        },
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis"
+        }
+      ]
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 38, \"text\": \"Definitely,\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Beastkin\", \"sourceCandidates\": [\"Beastkin\", \"The Malefic Viper\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.856, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.2928, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Beastkin\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Beastkin\", \"confidence\": 0.856, \"reasons\": null}, {\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.496, \"reasons\": null}], \"isReturning\": false, \"alignment\": {\"paragraphIndex\": 17, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 17, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 17, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Definitely,” the woman said with a bright smile. “Dad also said it’s okay, and seeing as he’s the one hosting it, you’re golden.”\", \"currentParagraphDialogue\": [{\"lineId\": 38, \"text\": \"Definitely,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 40, \"text\": \"Dad also said it’s okay, and seeing as he’s the one hosting it, you’re golden.\", \"characterId\": \"beastkin\", \"characterName\": \"Beastkin\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Definitely,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the woman said with a bright smile.\", \"speakerSurface\": \"the woman\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Definitely,\", \"lastSentence\": \"Definitely,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Dad also said it’s okay, and seeing as he’s the one hosting it, you’re golden.\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the woman said with a bright smile.\", \"speakerSurface\": \"the woman\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"Dad\"], \"addressedEntity\": null, \"firstSentence\": \"Dad also said it’s okay, and seeing as he’s the one hosting it, you’re golden.\", \"lastSentence\": \"Dad also said it’s okay, and seeing as he’s the one hosting it, you’re golden.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Definitely,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the woman said with a bright smile.\", \"speakerSurface\": \"the woman\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Definitely,\", \"lastSentence\": \"Definitely,\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"unknown\", \"beastkin\", \"artemis\"], \"presentCharacters\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}, {\"characterId\": \"beastkin\", \"characterName\": \"Beastkin\"}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [\"Godqueen\", \"Viper\"], \"roleLabels\": [\"artemis\", \"godqueen\", \"viper\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"beastkin\", \"characterName\": \"Beastkin\", \"aliases\": [], \"roleLabels\": [\"beastkin\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 31, \"paragraphIndex\": 14, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Hm... alright, that definitely explains why there are so many people coming these days and why the City Lord got stricter with the rules,\"}, {\"relativeIndex\": -3, \"lineId\": 33, \"paragraphIndex\": 14, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Anyway, not that it concerns me too much, not like I have anything to do with the auction.\"}, {\"relativeIndex\": -2, \"lineId\": 34, \"paragraphIndex\": 15, \"characterId\": \"beastkin\", \"characterName\": \"Beastkin\", \"text\": \"Actually... there will be a social gathering before the actual auction, and I was wondering if you’d be willing to accompany me?\"}, {\"relativeIndex\": -1, \"lineId\": 37, \"paragraphIndex\": 16, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Would that be alright?\"}, {\"relativeIndex\": 1, \"lineId\": 40, \"paragraphIndex\": 17, \"characterId\": \"beastkin\", \"characterName\": \"Beastkin\", \"text\": \"Dad also said it’s okay, and seeing as he’s the one hosting it, you’re golden.\"}, {\"relativeIndex\": 2, \"lineId\": 41, \"paragraphIndex\": 18, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"In that case, wouldn’t it be rude of me to reject?\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\", \"Viper\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"beastkin\", \"name\": \"Beastkin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"beastkin\",\n  \"characterName\": \"Beastkin\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_continuity\",\n    \"parser_top_candidate\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

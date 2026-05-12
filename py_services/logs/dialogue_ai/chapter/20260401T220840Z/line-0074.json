@@ -1,0 +1,314 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "2acc9a9a6d627dc262ee68b245db75fd56a25652ffd3e5e597836f593fcccc92",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\2acc9a9a6d627dc262ee68b245db75fd56a25652ffd3e5e597836f593fcccc92.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "the_sword_saint",
+        "characterName": "The Sword Saint",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "dialogue_continuity",
+          "explicit_narration_cue_next_paragraph",
+          "addressee_identified"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "name": "The Sword Saint",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "dina",
+            "name": "Dina",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "name": "Sylphie",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "It’s pretty obvious this young man wants to get closer to you.",
+          "lastSentence": "Ah, such youthful spirit.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "It’s pretty obvious this young man wants to get closer to you. Hopes you notice him. Ah, such youthful spirit.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Dina",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.3208000000000001,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Dina",
+            "sourceCandidates": [
+              "Dina",
+              "The Sword Saint"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.816,
+              "name": "Dina",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.456,
+              "name": "The Sword Saint",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 74,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "It’s pretty obvious this young man wants to get closer to you. Hopes you notice him. Ah, such youthful spirit."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 74,
+              "text": "It’s pretty obvious this young man wants to get closer to you. Hopes you notice him. Ah, such youthful spirit."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "It’s pretty obvious this young man wants to get closer to you.",
+              "lastSentence": "Ah, such youthful spirit.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "It’s pretty obvious this young man wants to get closer to you. Hopes you notice him. Ah, such youthful spirit.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“It’s pretty obvious this young man wants to get closer to you. Hopes you notice him. Ah, such youthful spirit.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "His words left Dina momentarily stunned, much to Miyamoto’s delight. He found it fun to tease Dina, probably because she reminded him a bit of his own great-granddaughter, Reika. Both had been considered geniuses throughout their lives and nurtured in a sheltered environment. They had also both lacked maturity and growth in similar areas, and the Sword Saint was happy to have helped Dina during Nevermore to truly learn who she was.",
+          "paragraphIndex": 44,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "the_sword_saint",
+              "characterName": "The Sword Saint",
+              "isReturning": false,
+              "lineId": 72,
+              "text": "Oh no, he doesn’t care what I think about him. It’s you he doesn’t want to think less of him,"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the Sword Saint chuckled to himself.",
+              "cueVerb": "chuckled",
+              "cueVerbType": "speech",
+              "firstSentence": "Oh no, he doesn’t care what I think about him.",
+              "lastSentence": "It’s you he doesn’t want to think less of him,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Oh no, he doesn’t care what I think about him. It’s you he doesn’t want to think less of him,",
+              "speakerNameMatch": "The Sword Saint",
+              "speakerSurface": "Sword Saint"
+            }
+          ],
+          "previousParagraphText": "“Oh no, he doesn’t care what I think about him. It’s you he doesn’t want to think less of him,” the Sword Saint chuckled to himself."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 66,
+            "paragraphIndex": 37,
+            "relativeIndex": -4,
+            "text": "I’m pretty sure he’s older than you. At least by a little,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 68,
+            "paragraphIndex": 39,
+            "relativeIndex": -3,
+            "text": "Quite observant of you. Now, do you know why he was so embarrassed when he asked if we saw his fight?"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 70,
+            "paragraphIndex": 41,
+            "relativeIndex": -2,
+            "text": "I assume he and his party lost badly, and he doesn’t want us to think less of him for it,"
+          },
+          {
+            "characterId": "the_sword_saint",
+            "characterName": "The Sword Saint",
+            "lineId": 72,
+            "paragraphIndex": 43,
+            "relativeIndex": -1,
+            "text": "Oh no, he doesn’t care what I think about him. It’s you he doesn’t want to think less of him,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 79,
+            "paragraphIndex": 48,
+            "relativeIndex": 1,
+            "text": "homework"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 86,
+            "paragraphIndex": 54,
+            "relativeIndex": 2,
+            "text": "You shouldn’t tease me like that... and we both know I’m not... you know..."
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 74, \"text\": \"It’s pretty obvious this young man wants to get closer to you. Hopes you notice him. Ah, such youthful spirit.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Dina\", \"sourceCandidates\": [\"Dina\", \"The Sword Saint\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Dina\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Dina\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"The Sword Saint\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 44, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“It’s pretty obvious this young man wants to get closer to you. Hopes you notice him. Ah, such youthful spirit.”\", \"currentParagraphDialogue\": [{\"lineId\": 74, \"text\": \"It’s pretty obvious this young man wants to get closer to you. Hopes you notice him. Ah, such youthful spirit.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“Oh no, he doesn’t care what I think about him. It’s you he doesn’t want to think less of him,” the Sword Saint chuckled to himself.\", \"previousParagraphDialogue\": [{\"lineId\": 72, \"text\": \"Oh no, he doesn’t care what I think about him. It’s you he doesn’t want to think less of him,\", \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"isReturning\": false}], \"nextParagraphText\": \"His words left Dina momentarily stunned, much to Miyamoto’s delight. He found it fun to tease Dina, probably because she reminded him a bit of his own great-granddaughter, Reika. Both had been considered geniuses throughout their lives and nurtured in a sheltered environment. They had also both lacked maturity and growth in similar areas, and the Sword Saint was happy to have helped Dina during Nevermore to truly learn who she was.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"It’s pretty obvious this young man wants to get closer to you. Hopes you notice him. Ah, such youthful spirit.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"It’s pretty obvious this young man wants to get closer to you.\", \"lastSentence\": \"Ah, such youthful spirit.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Oh no, he doesn’t care what I think about him. It’s you he doesn’t want to think less of him,\", \"cuePosition\": \"after\", \"cueVerb\": \"chuckled\", \"cueVerbType\": \"speech\", \"cueText\": \"the Sword Saint chuckled to himself.\", \"speakerSurface\": \"Sword Saint\", \"speakerNameMatch\": \"The Sword Saint\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Oh no, he doesn’t care what I think about him.\", \"lastSentence\": \"It’s you he doesn’t want to think less of him,\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"It’s pretty obvious this young man wants to get closer to you. Hopes you notice him. Ah, such youthful spirit.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"It’s pretty obvious this young man wants to get closer to you.\", \"lastSentence\": \"Ah, such youthful spirit.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 66, \"paragraphIndex\": 37, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I’m pretty sure he’s older than you. At least by a little,\"}, {\"relativeIndex\": -3, \"lineId\": 68, \"paragraphIndex\": 39, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Quite observant of you. Now, do you know why he was so embarrassed when he asked if we saw his fight?\"}, {\"relativeIndex\": -2, \"lineId\": 70, \"paragraphIndex\": 41, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I assume he and his party lost badly, and he doesn’t want us to think less of him for it,\"}, {\"relativeIndex\": -1, \"lineId\": 72, \"paragraphIndex\": 43, \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Oh no, he doesn’t care what I think about him. It’s you he doesn’t want to think less of him,\"}, {\"relativeIndex\": 1, \"lineId\": 79, \"paragraphIndex\": 48, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"homework\"}, {\"relativeIndex\": 2, \"lineId\": 86, \"paragraphIndex\": 54, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"You shouldn’t tease me like that... and we both know I’m not... you know...\"}], \"chapterCharacters\": [{\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dina\", \"name\": \"Dina\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"the_sword_saint\",\n  \"characterName\": \"The Sword Saint\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"dialogue_continuity\",\n    \"explicit_narration_cue_next_paragraph\",\n    \"addressee_identified\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0040 - Chapter 1097 - Swords, Vines, & Birds/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“It’s pretty obvious this young man wants to get closer to you. Hopes you notice him. Ah, such youthful spirit.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“It’s pretty obvious this young man wants to get closer to you. Hopes you notice him. Ah, such youthful spirit.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 74,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "His words left Dina momentarily stunned, much to Miyamoto’s delight. He found it fun to tease Dina, probably because she reminded him a bit of his own great-granddaughter, Reika. Both had been considered geniuses throughout their lives and nurtured in a sheltered environment. They had also both lacked maturity and growth in similar areas, and the Sword Saint was happy to have helped Dina during Nevermore to truly learn who she was.",
+    "paragraphIndex": 44,
+    "previousParagraphText": "“Oh no, he doesn’t care what I think about him. It’s you he doesn’t want to think less of him,” the Sword Saint chuckled to himself.",
+    "reasonCodes": [
+      "dialogue_continuity",
+      "explicit_narration_cue_next_paragraph",
+      "addressee_identified"
+    ],
+    "suggestedCharacterId": "the-sword-saint",
+    "suggestedCharacterName": "The Sword Saint",
+    "toolTrace": []
+  },
+  "lineId": 74,
+  "nextParagraphText": "His words left Dina momentarily stunned, much to Miyamoto’s delight. He found it fun to tease Dina, probably because she reminded him a bit of his own great-granddaughter, Reika. Both had been considered geniuses throughout their lives and nurtured in a sheltered environment. They had also both lacked maturity and growth in similar areas, and the Sword Saint was happy to have helped Dina during Nevermore to truly learn who she was.",
+  "paragraphIndex": 44,
+  "previousParagraphText": "“Oh no, he doesn’t care what I think about him. It’s you he doesn’t want to think less of him,” the Sword Saint chuckled to himself."
+}

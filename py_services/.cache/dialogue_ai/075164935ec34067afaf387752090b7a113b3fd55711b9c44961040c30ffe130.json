@@ -1,0 +1,143 @@
+{
+  "cacheKey": "075164935ec34067afaf387752090b7a113b3fd55711b9c44961040c30ffe130",
+  "createdAt": "2026-04-01T04:26:22.212765+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_attribution"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob"
+      },
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "name": "Bertram"
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper"
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.14400000000000002,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "The Malefic Viper",
+        "sourceCandidates": [
+          "The Malefic Viper",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.856
+      },
+      "candidates": [
+        {
+          "characterId": "viper",
+          "confidence": 0.856,
+          "name": "The Malefic Viper",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "speech_verb"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.496,
+          "name": "Jake",
+          "reasons": [
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [
+        "viper",
+        "Villy"
+      ],
+      "currentCharacterId": "viper",
+      "currentCharacterName": "The Malefic Viper",
+      "id": 52,
+      "isReturning": false,
+      "text": "Very well,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": false,
+          "lineId": 52,
+          "text": "Very well,"
+        }
+      ],
+      "currentParagraphText": "“Very well,” Jake ended up nodding, and the slight look of disapproval on the head priest’s face only made Jake more assured there was some legitimacy to the offer. If not, the priest wouldn’t be so offended that Jake wasn’t elated at the mere offer of being in the presence of one of the Holy Church’s great gods.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": false,
+          "lineId": 54,
+          "text": "Allow me the honors,"
+        }
+      ],
+      "nextParagraphText": "“Allow me the honors,” the head priest said as he moved to the side of the town hall building. There, Jake saw the etchings on the domed ceiling that he embarrassingly hadn’t recognized earlier as a formation. In his defense, it didn’t really look like one, though. It looked more like an artistic mural with actual pictures and stuff, but upon closer inspection, there definitely was a bit of energy hidden within.",
+      "paragraphIndex": 31,
+      "previousParagraphDialogue": [],
+      "previousParagraphText": "The look on the face of the head priest also made Jake think this could be a legitimate offer, as he genuinely looked as if he’d just offered Jake the best damn present imaginable."
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 52, \"text\": \"Very well,\", \"currentCharacterId\": \"viper\", \"currentCharacterName\": \"The Malefic Viper\", \"currentCharacterAliases\": [\"viper\", \"Villy\"], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"The Malefic Viper\", \"sourceCandidates\": [\"The Malefic Viper\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.856, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.14400000000000002, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.856, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.496, \"reasons\": [\"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 31, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Very well,” Jake ended up nodding, and the slight look of disapproval on the head priest’s face only made Jake more assured there was some legitimacy to the offer. If not, the priest wouldn’t be so offended that Jake wasn’t elated at the mere offer of being in the presence of one of the Holy Church’s great gods.\", \"currentParagraphDialogue\": [{\"lineId\": 52, \"text\": \"Very well,\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": false}], \"previousParagraphText\": \"The look on the face of the head priest also made Jake think this could be a legitimate offer, as he genuinely looked as if he’d just offered Jake the best damn present imaginable.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“Allow me the honors,” the head priest said as he moved to the side of the town hall building. There, Jake saw the etchings on the domed ceiling that he embarrassingly hadn’t recognized earlier as a formation. In his defense, it didn’t really look like one, though. It looked more like an artistic mural with actual pictures and stuff, but upon closer inspection, there definitely was a bit of energy hidden within.\", \"nextParagraphDialogue\": [{\"lineId\": 54, \"text\": \"Allow me the honors,\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": false}]}, \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": []}, {\"characterId\": \"bertram\", \"name\": \"Bertram\", \"aliases\": []}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"]}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_attribution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

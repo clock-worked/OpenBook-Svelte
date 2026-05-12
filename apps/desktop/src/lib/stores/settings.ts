@@ -1,25 +1,41 @@
 import { writable } from 'svelte/store';
 import type { AudiobookSettings, ParserHints } from '$lib/types';
 
+export type AppTheme = 'light' | 'dark';
+
 function createStoredWritable<T>(key: string, defaultValue: T) {
   const { subscribe, set, update } = writable<T>(defaultValue);
 
   if (typeof window !== 'undefined') {
     const storedValue = localStorage.getItem(key);
     if (storedValue) {
-      set(JSON.parse(storedValue));
+      try {
+        set(JSON.parse(storedValue));
+      } catch {
+        localStorage.removeItem(key);
+      }
     }
   }
 
+  const setStored = (value: T) => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
+    set(value);
+  };
+
   return {
     subscribe,
-    set: (value: T) => {
-      if (typeof window !== 'undefined') {
-        localStorage.setItem(key, JSON.stringify(value));
-      }
-      set(value);
+    set: setStored,
+    update: (updater: (value: T) => T) => {
+      update((current) => {
+        const next = updater(current);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem(key, JSON.stringify(next));
+        }
+        return next;
+      });
     },
-    update,
   };
 }
 
@@ -64,5 +80,5 @@ export const parserHints = writable<ParserHints>({
 
 // Optional absolute path for backend operations when File System Access API cannot provide one.
 export const bookRootPathOverride = createStoredWritable<string | null>('bookRootPathOverride', null);
-
+export const appTheme = createStoredWritable<AppTheme>('appTheme', 'light');
 

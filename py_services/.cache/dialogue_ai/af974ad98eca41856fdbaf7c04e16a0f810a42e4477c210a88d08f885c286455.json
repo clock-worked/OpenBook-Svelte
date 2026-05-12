@@ -1,0 +1,299 @@
+{
+  "cacheKey": "af974ad98eca41856fdbaf7c04e16a0f810a42e4477c210a88d08f885c286455",
+  "createdAt": "2026-05-09T02:44:57.420861+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "unknown-god-female",
+    "characterName": "Unknown God (Female)",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "previous_paragraph_context",
+      "gender_consistency",
+      "dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "lord thayne",
+          "thayne"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Forest King",
+          "Fallen King",
+          "forest-king",
+          "forest-king-2"
+        ],
+        "characterId": "king",
+        "characterName": "King",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "king",
+          "forest king",
+          "fallen king",
+          "forest king 2"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Forest King",
+          "Fallen King",
+          "forest-king",
+          "forest-king-2"
+        ],
+        "characterId": "king",
+        "name": "King",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown-god-female",
+        "name": "Unknown God (Female)",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "chosen",
+        "name": "Chosen",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Attendant",
+          "natures-attendant",
+          "natures-attendant-2",
+          "Nature Attendant",
+          "Life"
+        ],
+        "characterId": "natures-attendant",
+        "name": "Nature's Attendant",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "I’m glad you finally saw sense.",
+      "lastSentence": "I’m glad you finally saw sense.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "I’m glad you finally saw sense.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Nature's Attendant",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.18400000000000005,
+        "misattributionRisk": 0.0,
+        "parserBackend": "legacy",
+        "resolutionStatus": "user_confirmed",
+        "sourceAlias": "Sylphie",
+        "sourceCandidates": [
+          "Sylphie",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 1.0
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 1.0,
+          "name": "Unknown God (Female)",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Sylphie",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown_god_(female)",
+      "currentCharacterName": "Unknown God (Female)",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 20,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "I’m glad you finally saw sense."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown_god_(female)",
+          "characterName": "Unknown God (Female)",
+          "isReturning": true,
+          "lineId": 20,
+          "text": "I’m glad you finally saw sense."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I’m glad you finally saw sense.",
+          "lastSentence": "I’m glad you finally saw sense.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I’m glad you finally saw sense.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“I’m glad you finally saw sense.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "She didn’t sound quite smug, but more like this was indeed the only possible outcome of this situation. He also took note of the fact that she indeed hadn’t tried to break through the barrier still covering the inside of the vessel despite having an opportunity to.",
+      "paragraphIndex": 16,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "An opening appeared, and before Jake could even register any movement, the god appeared right in front of Jake. He saw a smile on her face beneath her mask as she spoke."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 8,
+        "paragraphIndex": 7,
+        "relativeIndex": -3,
+        "text": "I have one gamble, but I have no idea if it will work, and it may end up just dooming us all here and now,"
+      },
+      {
+        "characterId": "king",
+        "characterName": "King",
+        "lineId": 10,
+        "paragraphIndex": 8,
+        "relativeIndex": -2,
+        "text": "Then at least this brief third chance at life would have ended at my own choice,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 14,
+        "paragraphIndex": 10,
+        "relativeIndex": -1,
+        "text": "I suspect this won’t end well for me no matter the scenario."
+      },
+      {
+        "characterId": "unknown_god_(female)",
+        "characterName": "Unknown God (Female)",
+        "lineId": 25,
+        "paragraphIndex": 21,
+        "relativeIndex": 1,
+        "text": "Just accept my hand, and I swear none will die this day."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 27,
+        "paragraphIndex": 23,
+        "relativeIndex": 2,
+        "text": "You said you wanted to speak with me... well, here I am,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 20, \"text\": \"I’m glad you finally saw sense.\", \"currentCharacterId\": \"unknown_god_(female)\", \"currentCharacterName\": \"Unknown God (Female)\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"user_confirmed\", \"sourceAlias\": \"Sylphie\", \"sourceCandidates\": [\"Sylphie\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 1.0, \"marginToSecond\": 0.18400000000000005, \"misattributionRisk\": 0.0, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Nature's Attendant\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Unknown God (Female)\", \"confidence\": 1.0, \"reasons\": null}, {\"characterId\": null, \"name\": \"Sylphie\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 16, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I’m glad you finally saw sense.”\", \"currentParagraphDialogue\": [{\"lineId\": 20, \"text\": \"I’m glad you finally saw sense.\", \"characterId\": \"unknown_god_(female)\", \"characterName\": \"Unknown God (Female)\", \"isReturning\": true}], \"previousParagraphText\": \"An opening appeared, and before Jake could even register any movement, the god appeared right in front of Jake. He saw a smile on her face beneath her mask as she spoke.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"She didn’t sound quite smug, but more like this was indeed the only possible outcome of this situation. He also took note of the fact that she indeed hadn’t tried to break through the barrier still covering the inside of the vessel despite having an opportunity to.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I’m glad you finally saw sense.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’m glad you finally saw sense.\", \"lastSentence\": \"I’m glad you finally saw sense.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I’m glad you finally saw sense.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’m glad you finally saw sense.\", \"lastSentence\": \"I’m glad you finally saw sense.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"king\", \"characterName\": \"King\", \"aliases\": [\"Forest King\", \"Fallen King\", \"forest-king\", \"forest-king-2\"], \"roleLabels\": [\"king\", \"forest king\", \"fallen king\", \"forest king 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -3, \"lineId\": 8, \"paragraphIndex\": 7, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I have one gamble, but I have no idea if it will work, and it may end up just dooming us all here and now,\"}, {\"relativeIndex\": -2, \"lineId\": 10, \"paragraphIndex\": 8, \"characterId\": \"king\", \"characterName\": \"King\", \"text\": \"Then at least this brief third chance at life would have ended at my own choice,\"}, {\"relativeIndex\": -1, \"lineId\": 14, \"paragraphIndex\": 10, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I suspect this won’t end well for me no matter the scenario.\"}, {\"relativeIndex\": 1, \"lineId\": 25, \"paragraphIndex\": 21, \"characterId\": \"unknown_god_(female)\", \"characterName\": \"Unknown God (Female)\", \"text\": \"Just accept my hand, and I swear none will die this day.\"}, {\"relativeIndex\": 2, \"lineId\": 27, \"paragraphIndex\": 23, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You said you wanted to speak with me... well, here I am,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"king\", \"name\": \"King\", \"aliases\": [\"Forest King\", \"Fallen King\", \"forest-king\", \"forest-king-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown-god-female\", \"name\": \"Unknown God (Female)\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"chosen\", \"name\": \"Chosen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"natures-attendant\", \"name\": \"Nature's Attendant\", \"aliases\": [\"Attendant\", \"natures-attendant\", \"natures-attendant-2\", \"Nature Attendant\", \"Life\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"unknown-god-female\",\n  \"characterName\": \"Unknown God (Female)\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"previous_paragraph_context\",\n    \"gender_consistency\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

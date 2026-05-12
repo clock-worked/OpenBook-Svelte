@@ -18,6 +18,7 @@ import {
   resolveCanonicalCharacterName,
 } from '$lib/services/characterDomain';
 import { normalizeCharacterGender } from '$lib/services/characterGender';
+import { unassignVoicesFromCharacters } from '$lib/stores/speakers';
 
 export const bookCharacters = writable<CharactersJson>({ formatVersion: '2.0', characters: [] });
 
@@ -194,11 +195,38 @@ export async function renameBookCharacter(oldName: string, newName: string): Pro
 }
 
 export async function removeBookCharacter(name: string): Promise<void> {
+  await removeBookCharacters([name]);
+}
+
+export async function removeBookCharacters(names: string[]): Promise<number> {
   const data = get(bookCharacters);
-  const canonicalName = resolveCanonicalCharacterName(data, name) ?? name;
-  const next: CharactersJson = { formatVersion: data.formatVersion, characters: data.characters.filter(c => c.name !== canonicalName) };
+  const canonicalNames = new Set(
+    names
+      .map((name) => resolveCanonicalCharacterName(data, name) ?? name)
+      .filter((name): name is string => typeof name === 'string' && name.length > 0),
+  );
+  if (canonicalNames.size === 0) return 0;
+
+  const removedCharacters = data.characters.filter((character) => canonicalNames.has(character.name));
+  if (removedCharacters.length === 0) return 0;
+
+  const removedCharacterIds = removedCharacters
+    .map((character) => character.id)
+    .filter((characterId): characterId is string => typeof characterId === 'string' && characterId.length > 0);
+
+  const next: CharactersJson = {
+    formatVersion: data.formatVersion,
+    characters: data.characters.filter((character) => !canonicalNames.has(character.name)),
+  };
+
   bookCharacters.set(next);
   await persistBookCharacters();
+
+  if (removedCharacterIds.length > 0) {
+    await unassignVoicesFromCharacters(removedCharacterIds);
+  }
+
+  return removedCharacters.length;
 }
 
 export async function mergeBookCharacters(sourceName: string, targetName: string): Promise<void> {

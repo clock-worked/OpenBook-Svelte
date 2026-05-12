@@ -1,0 +1,369 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "12278f4df452aabd415f4ea6a15c52a12ce30318227ed216c566eb2b55f58372",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\12278f4df452aabd415f4ea6a15c52a12ce30318227ed216c566eb2b55f58372.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "confidence": 0.99,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "dialogue_continuity",
+          "parser_match"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "viper",
+              "the malefic viper",
+              "malefic viper",
+              "villy"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "dad",
+            "name": "Dad",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "name": "Caleb",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "mom",
+            "name": "Mom",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "maja",
+            "name": "Maja",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "adam",
+            "name": "Adam",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "You interested in also paying a visit to the wonderful Mycotic Depths?",
+          "lastSentence": "Remember those from that little dungeon under your house?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "You interested in also paying a visit to the wonderful Mycotic Depths? Mushrooms as far as the eye can see, and there’s even an entire civilization of Deepdwellers there! Remember those from that little dungeon under your house?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": true,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "The Malefic Viper",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.18400000000000005,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "The Malefic Viper",
+            "sourceCandidates": [
+              "The Malefic Viper",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": "viper",
+              "confidence": 0.816,
+              "name": "The Malefic Viper",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.456,
+              "name": "Jake",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [
+            "viper",
+            "Villy"
+          ],
+          "currentCharacterId": "viper",
+          "currentCharacterName": "The Malefic Viper",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 107,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "You interested in also paying a visit to the wonderful Mycotic Depths? Mushrooms as far as the eye can see, and there’s even an entire civilization of Deepdwellers there! Remember those from that little dungeon under your house?"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "viper",
+              "characterName": "The Malefic Viper",
+              "isReturning": true,
+              "lineId": 107,
+              "text": "You interested in also paying a visit to the wonderful Mycotic Depths? Mushrooms as far as the eye can see, and there’s even an entire civilization of Deepdwellers there! Remember those from that little dungeon under your house?"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "You interested in also paying a visit to the wonderful Mycotic Depths?",
+              "lastSentence": "Remember those from that little dungeon under your house?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "You interested in also paying a visit to the wonderful Mycotic Depths? Mushrooms as far as the eye can see, and there’s even an entire civilization of Deepdwellers there! Remember those from that little dungeon under your house?",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“You interested in also paying a visit to the wonderful Mycotic Depths? Mushrooms as far as the eye can see, and there’s even an entire civilization of Deepdwellers there! Remember those from that little dungeon under your house?” the snake god attempted to whisper poison into his ear.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "viper",
+              "characterName": "The Malefic Viper",
+              "isReturning": true,
+              "lineId": 109,
+              "text": "Man, I would love to, but I’m just heading into a very important meeting. You know, to stay on top of political stuff, something you said is a good idea,"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Man, I would love to, but I’m just heading into a very important meeting.",
+              "lastSentence": "You know, to stay on top of political stuff, something you said is a good idea,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Man, I would love to, but I’m just heading into a very important meeting. You know, to stay on top of political stuff, something you said is a good idea,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "nextParagraphText": "“Man, I would love to, but I’m just heading into a very important meeting. You know, to stay on top of political stuff, something you said is a good idea,”",
+          "paragraphIndex": 84,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 105,
+              "text": "I see,"
+            }
+          ],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "Jake just answered. By now, he’d already gone through the teleportation circle and was back in Haven."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 100,
+            "paragraphIndex": 78,
+            "relativeIndex": -4,
+            "text": "If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 101,
+            "paragraphIndex": 81,
+            "relativeIndex": -3,
+            "text": "Do you never go anywhere with your true body?"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 103,
+            "paragraphIndex": 81,
+            "relativeIndex": -2,
+            "text": "Few gods do, especially not those at my level. It isn’t due to cowardice, though. I’m working on things I need the power of my true body to handle. Meanwhile, exploring a World Wonder with an avatar is as efficient as if I’d gone with my real body, as it’s more than powerful enough,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 105,
+            "paragraphIndex": 83,
+            "relativeIndex": -1,
+            "text": "I see,"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 109,
+            "paragraphIndex": 85,
+            "relativeIndex": 1,
+            "text": "Man, I would love to, but I’m just heading into a very important meeting. You know, to stay on top of political stuff, something you said is a good idea,"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 111,
+            "paragraphIndex": 87,
+            "relativeIndex": 2,
+            "text": "Fine, fine, I guess you wouldn’t have the time to afterward either. Not with your other upcoming trip and all,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 107, \"text\": \"You interested in also paying a visit to the wonderful Mycotic Depths? Mushrooms as far as the eye can see, and there’s even an entire civilization of Deepdwellers there! Remember those from that little dungeon under your house?\", \"currentCharacterId\": \"viper\", \"currentCharacterName\": \"The Malefic Viper\", \"currentCharacterAliases\": [\"viper\", \"Villy\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"The Malefic Viper\", \"sourceCandidates\": [\"The Malefic Viper\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"The Malefic Viper\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 84, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“You interested in also paying a visit to the wonderful Mycotic Depths? Mushrooms as far as the eye can see, and there’s even an entire civilization of Deepdwellers there! Remember those from that little dungeon under your house?” the snake god attempted to whisper poison into his ear.\", \"currentParagraphDialogue\": [{\"lineId\": 107, \"text\": \"You interested in also paying a visit to the wonderful Mycotic Depths? Mushrooms as far as the eye can see, and there’s even an entire civilization of Deepdwellers there! Remember those from that little dungeon under your house?\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": true}], \"previousParagraphText\": \"Jake just answered. By now, he’d already gone through the teleportation circle and was back in Haven.\", \"previousParagraphDialogue\": [{\"lineId\": 105, \"text\": \"I see,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"nextParagraphText\": \"“Man, I would love to, but I’m just heading into a very important meeting. You know, to stay on top of political stuff, something you said is a good idea,”\", \"nextParagraphDialogue\": [{\"lineId\": 109, \"text\": \"Man, I would love to, but I’m just heading into a very important meeting. You know, to stay on top of political stuff, something you said is a good idea,\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You interested in also paying a visit to the wonderful Mycotic Depths? Mushrooms as far as the eye can see, and there’s even an entire civilization of Deepdwellers there! Remember those from that little dungeon under your house?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You interested in also paying a visit to the wonderful Mycotic Depths?\", \"lastSentence\": \"Remember those from that little dungeon under your house?\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Man, I would love to, but I’m just heading into a very important meeting. You know, to stay on top of political stuff, something you said is a good idea,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Man, I would love to, but I’m just heading into a very important meeting.\", \"lastSentence\": \"You know, to stay on top of political stuff, something you said is a good idea,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"You interested in also paying a visit to the wonderful Mycotic Depths? Mushrooms as far as the eye can see, and there’s even an entire civilization of Deepdwellers there! Remember those from that little dungeon under your house?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You interested in also paying a visit to the wonderful Mycotic Depths?\", \"lastSentence\": \"Remember those from that little dungeon under your house?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 100, \"paragraphIndex\": 78, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"If that avatar does find something in there it’s too weak to handle, I may go with my true body, but otherwise, it would just be a waste and a needless risk.\"}, {\"relativeIndex\": -3, \"lineId\": 101, \"paragraphIndex\": 81, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Do you never go anywhere with your true body?\"}, {\"relativeIndex\": -2, \"lineId\": 103, \"paragraphIndex\": 81, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Few gods do, especially not those at my level. It isn’t due to cowardice, though. I’m working on things I need the power of my true body to handle. Meanwhile, exploring a World Wonder with an avatar is as efficient as if I’d gone with my real body, as it’s more than powerful enough,\"}, {\"relativeIndex\": -1, \"lineId\": 105, \"paragraphIndex\": 83, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I see,\"}, {\"relativeIndex\": 1, \"lineId\": 109, \"paragraphIndex\": 85, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Man, I would love to, but I’m just heading into a very important meeting. You know, to stay on top of political stuff, something you said is a good idea,\"}, {\"relativeIndex\": 2, \"lineId\": 111, \"paragraphIndex\": 87, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Fine, fine, I guess you wouldn’t have the time to afterward either. Not with your other upcoming trip and all,\"}], \"chapterCharacters\": [{\"characterId\": \"dad\", \"name\": \"Dad\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"mom\", \"name\": \"Mom\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"maja\", \"name\": \"Maja\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"adam\", \"name\": \"Adam\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"viper\",\n  \"characterName\": \"The Malefic Viper\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_continuity\",\n    \"parser_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0021 - Chapter 1078 - Time To Open Up",
+  "currentCharacterId": "viper",
+  "currentCharacterName": "The Malefic Viper",
+  "currentParagraphText": "“You interested in also paying a visit to the wonderful Mycotic Depths? Mushrooms as far as the eye can see, and there’s even an entire civilization of Deepdwellers there! Remember those from that little dungeon under your house?” the snake god attempted to whisper poison into his ear.",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.99,
+    "currentCharacterId": "viper",
+    "currentCharacterName": "The Malefic Viper",
+    "currentParagraphText": "“You interested in also paying a visit to the wonderful Mycotic Depths? Mushrooms as far as the eye can see, and there’s even an entire civilization of Deepdwellers there! Remember those from that little dungeon under your house?” the snake god attempted to whisper poison into his ear.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 107,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Man, I would love to, but I’m just heading into a very important meeting. You know, to stay on top of political stuff, something you said is a good idea,”",
+    "paragraphIndex": 84,
+    "previousParagraphText": "Jake just answered. By now, he’d already gone through the teleportation circle and was back in Haven.",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_continuity",
+      "parser_match"
+    ],
+    "suggestedCharacterId": "viper",
+    "suggestedCharacterName": "The Malefic Viper",
+    "toolTrace": []
+  },
+  "lineId": 107,
+  "nextParagraphText": "“Man, I would love to, but I’m just heading into a very important meeting. You know, to stay on top of political stuff, something you said is a good idea,”",
+  "paragraphIndex": 84,
+  "previousParagraphText": "Jake just answered. By now, he’d already gone through the teleportation circle and was back in Haven."
+}

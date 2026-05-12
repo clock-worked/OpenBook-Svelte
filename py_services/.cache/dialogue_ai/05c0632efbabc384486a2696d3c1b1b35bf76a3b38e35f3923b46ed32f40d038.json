@@ -1,0 +1,144 @@
+{
+  "cacheKey": "05c0632efbabc384486a2696d3c1b1b35bf76a3b38e35f3923b46ed32f40d038",
+  "createdAt": "2026-04-01T04:34:19.965326+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "viper",
+    "characterName": "The Malefic Viper",
+    "confidence": 0.98,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "dialogue_flow_continuity",
+      "response_context_match"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob"
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper"
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth"
+      },
+      {
+        "aliases": [],
+        "characterId": "primordial",
+        "name": "primordial"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.532,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "The Malefic Viper",
+        "sourceCandidates": [
+          "The Malefic Viper",
+          "Jacob"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "viper",
+          "confidence": 0.98,
+          "name": "The Malefic Viper",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "same_paragraph_continuation"
+          ]
+        },
+        {
+          "characterId": "jacob",
+          "confidence": 0.448,
+          "name": "Jacob",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "viper",
+        "Villy"
+      ],
+      "currentCharacterId": "viper",
+      "currentCharacterName": "The Malefic Viper",
+      "id": 24,
+      "isReturning": false,
+      "text": "Unleash it. Now."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": false,
+          "lineId": 24,
+          "text": "Unleash it. Now."
+        },
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 25,
+          "text": "Even if I did agree, unleashing him will cause untold destruction. All our fighters will also be caught in the crossfire even if it proves a success,"
+        },
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": true,
+          "lineId": 27,
+          "text": "Also, the honored Lodestar Matron ordered us to apprehend the Chosen, not kill him. We both know that he is not someone capable of merely apprehending anything. And, again, this assumes the Malefic One’s Chosen doesn’t merely slay him."
+        }
+      ],
+      "currentParagraphText": "“Even if I did agree, unleashing him will cause untold destruction. All our fighters will also be caught in the crossfire even if it proves a success,” Jacob continued, unbothered by the priest’s attitude. “Also, the honored Lodestar Matron ordered us to apprehend the Chosen, not kill him. We both know that he is not someone capable of merely apprehending anything. And, again, this assumes the Malefic One’s Chosen doesn’t merely slay him.”",
+      "dialogueLineCount": 3,
+      "paragraphIndex": 17
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 24, \"text\": \"Unleash it. Now.\", \"currentCharacterId\": \"viper\", \"currentCharacterName\": \"The Malefic Viper\", \"currentCharacterAliases\": [\"viper\", \"Villy\"], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"The Malefic Viper\", \"sourceCandidates\": [\"The Malefic Viper\", \"Jacob\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.532, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"same_paragraph_continuation\"]}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.448, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 17, \"currentLinePosition\": 0, \"dialogueLineCount\": 3, \"currentParagraphText\": \"“Even if I did agree, unleashing him will cause untold destruction. All our fighters will also be caught in the crossfire even if it proves a success,” Jacob continued, unbothered by the priest’s attitude. “Also, the honored Lodestar Matron ordered us to apprehend the Chosen, not kill him. We both know that he is not someone capable of merely apprehending anything. And, again, this assumes the Malefic One’s Chosen doesn’t merely slay him.”\", \"currentParagraphDialogue\": [{\"lineId\": 24, \"text\": \"Unleash it. Now.\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": false}, {\"lineId\": 25, \"text\": \"Even if I did agree, unleashing him will cause untold destruction. All our fighters will also be caught in the crossfire even if it proves a success,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}, {\"lineId\": 27, \"text\": \"Also, the honored Lodestar Matron ordered us to apprehend the Chosen, not kill him. We both know that he is not someone capable of merely apprehending anything. And, again, this assumes the Malefic One’s Chosen doesn’t merely slay him.\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": true}]}, \"chapterCharacters\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": []}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"]}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": []}, {\"characterId\": \"primordial\", \"name\": \"primordial\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"viper\",\n  \"characterName\": \"The Malefic Viper\",\n  \"confidence\": 0.98,\n  \"reasonCodes\": [\n    \"dialogue_flow_continuity\",\n    \"response_context_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

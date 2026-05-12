@@ -1,0 +1,316 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "d0613086859ba61682253c2a48436e3d7da5afdb006749e1d30fb7c3b7cd8986",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\d0613086859ba61682253c2a48436e3d7da5afdb006749e1d30fb7c3b7cd8986.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.9,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "narrative_context",
+          "character_reaction"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Chimera",
+              "Monster"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist",
+              "chimera",
+              "monster"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "artemis"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist",
+              "Chimera",
+              "Monster"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Attendant",
+              "natures-attendant",
+              "natures-attendant-2",
+              "Nature Attendant"
+            ],
+            "characterId": "natures-attendant",
+            "name": "Nature's Attendant",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": null,
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Yggdrasil",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.7,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.33479999999999993,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Yggdrasil",
+            "sourceCandidates": [
+              "Yggdrasil",
+              "Jake"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.796
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.796,
+              "name": "Yggdrasil",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.436,
+              "name": "Jake",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 23,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Is that-"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 23,
+              "text": "Is that-"
+            }
+          ],
+          "currentParagraphQuoteStructure": [],
+          "currentParagraphText": "“Is that- “",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 24,
+              "text": "Part of the vessel,"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Part of the vessel,",
+              "lastSentence": "Part of the vessel,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Part of the vessel,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "nextParagraphText": "“Part of the vessel,”",
+          "paragraphIndex": 16,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "With a wave of her hand, the tree in front of them had its crown open up, revealing a familiar-looking figure within. Jake’s eyes opened wide as he recognized the Fallen King’s body."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 12,
+            "paragraphIndex": 7,
+            "relativeIndex": -4,
+            "text": "Like, what’s the worst that can happen? I doubt she would call us there just to harm us, so no reason to be nervous about anything in that vein. So the only thing we really could be nervous about is what she’ll think of us once there. Seeing as I reckon she already knows you quite well, as long as you act normally, what can go wrong? Just don’t say anything weird or start spouting your most batshit conspiracy theories that you really shouldn’t ever mention to anyone, and things will be fine."
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 14,
+            "paragraphIndex": 8,
+            "relativeIndex": -3,
+            "text": "You of all people should know that sometimes emotions can be irrational. This is one of those times. Also, now you got me curious about which insane conspiracy theories you’re hiding."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 15,
+            "paragraphIndex": 9,
+            "relativeIndex": -2,
+            "text": "Ah, sorry, we don’t have time to go over all of them before we get there,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 21,
+            "paragraphIndex": 14,
+            "relativeIndex": -1,
+            "text": "You came faster than I’d expected. Good. We are ready to move on to the next phase of the rejuvenation of the Unique Lifeform."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 24,
+            "paragraphIndex": 17,
+            "relativeIndex": 1,
+            "text": "Part of the vessel,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 26,
+            "paragraphIndex": 19,
+            "relativeIndex": 2,
+            "text": "However, the true body remains the mask on your face. For now, at least."
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 23, \"text\": \"Is that-\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Yggdrasil\", \"sourceCandidates\": [\"Yggdrasil\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.33479999999999993, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Yggdrasil\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Yggdrasil\", \"confidence\": 0.796, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.436, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 16, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Is that- “\", \"currentParagraphDialogue\": [{\"lineId\": 23, \"text\": \"Is that-\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"With a wave of her hand, the tree in front of them had its crown open up, revealing a familiar-looking figure within. Jake’s eyes opened wide as he recognized the Fallen King’s body.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“Part of the vessel,”\", \"nextParagraphDialogue\": [{\"lineId\": 24, \"text\": \"Part of the vessel,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Part of the vessel,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Part of the vessel,\", \"lastSentence\": \"Part of the vessel,\"}]}, \"currentQuoteUnit\": null, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [\"jake\", \"protagonist\", \"chimera\", \"monster\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [], \"roleLabels\": [\"artemis\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 12, \"paragraphIndex\": 7, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Like, what’s the worst that can happen? I doubt she would call us there just to harm us, so no reason to be nervous about anything in that vein. So the only thing we really could be nervous about is what she’ll think of us once there. Seeing as I reckon she already knows you quite well, as long as you act normally, what can go wrong? Just don’t say anything weird or start spouting your most batshit conspiracy theories that you really shouldn’t ever mention to anyone, and things will be fine.\"}, {\"relativeIndex\": -3, \"lineId\": 14, \"paragraphIndex\": 8, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"You of all people should know that sometimes emotions can be irrational. This is one of those times. Also, now you got me curious about which insane conspiracy theories you’re hiding.\"}, {\"relativeIndex\": -2, \"lineId\": 15, \"paragraphIndex\": 9, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Ah, sorry, we don’t have time to go over all of them before we get there,\"}, {\"relativeIndex\": -1, \"lineId\": 21, \"paragraphIndex\": 14, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"You came faster than I’d expected. Good. We are ready to move on to the next phase of the rejuvenation of the Unique Lifeform.\"}, {\"relativeIndex\": 1, \"lineId\": 24, \"paragraphIndex\": 17, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Part of the vessel,\"}, {\"relativeIndex\": 2, \"lineId\": 26, \"paragraphIndex\": 19, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"However, the true body remains the mask on your face. For now, at least.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"natures-attendant\", \"name\": \"Nature's Attendant\", \"aliases\": [\"Attendant\", \"natures-attendant\", \"natures-attendant-2\", \"Nature Attendant\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"narrative_context\",\n    \"character_reaction\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0086 - Chapter 1143 - Mask & Bow/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“Is that- “",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.9,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“Is that- “",
+    "disposition": "review",
+    "error": null,
+    "lineId": 23,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Part of the vessel,”",
+    "paragraphIndex": 16,
+    "previousParagraphText": "With a wave of her hand, the tree in front of them had its crown open up, revealing a familiar-looking figure within. Jake’s eyes opened wide as he recognized the Fallen King’s body.",
+    "reasonCodes": [
+      "narrative_context",
+      "character_reaction"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 23,
+  "nextParagraphText": "“Part of the vessel,”",
+  "paragraphIndex": 16,
+  "previousParagraphText": "With a wave of her hand, the tree in front of them had its crown open up, revealing a familiar-looking figure within. Jake’s eyes opened wide as he recognized the Fallen King’s body."
+}

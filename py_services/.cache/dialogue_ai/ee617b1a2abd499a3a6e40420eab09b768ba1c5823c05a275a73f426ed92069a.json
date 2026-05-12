@@ -1,0 +1,351 @@
+{
+  "cacheKey": "ee617b1a2abd499a3a6e40420eab09b768ba1c5823c05a275a73f426ed92069a",
+  "createdAt": "2026-04-18T04:06:48.329312+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "minaga",
+    "characterName": "Minaga",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "alias_match",
+      "addressed_in_next_turn"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "chimera",
+          "monster"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "forest-king-2"
+        ],
+        "characterId": "forest-king-2",
+        "characterName": "forest-king",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "forest king 2",
+          "forest king"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "forest-king-2"
+        ],
+        "characterId": "forest-king-2",
+        "name": "forest-king",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Unique Lifeform",
+          "The Unique Lifeform",
+          "the-unique-lifeform",
+          "the-unique-lifeform-2"
+        ],
+        "characterId": "minaga",
+        "name": "Minaga",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "dina",
+        "name": "Dina",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "having",
+        "name": "Having",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "The blue four-eyed Unique Lifeform teleported in with a huge grin on his face, blanketing his S-grade aura all over the area.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Hey-yo!",
+      "lastSentence": "Wow, you two look like crap.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Hey-yo! Wow, you two look like crap.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "The Sword Saint",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "The Sword Saint",
+        "sourceCandidates": [
+          "The Sword Saint",
+          "Minaga"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "The Sword Saint",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Minaga",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 45,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Hey-yo! Wow, you two look like crap."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 45,
+          "text": "Hey-yo! Wow, you two look like crap."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "The blue four-eyed Unique Lifeform teleported in with a huge grin on his face, blanketing his S-grade aura all over the area.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Hey-yo!",
+          "lastSentence": "Wow, you two look like crap.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Hey-yo! Wow, you two look like crap.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "The blue four-eyed Unique Lifeform teleported in with a huge grin on his face, blanketing his S-grade aura all over the area. “Hey-yo! Wow, you two look like crap.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 47,
+          "text": "Ah, doing a bit of culling of the local pegasi population. Understandable. Those damn things reproduce like rabbits."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Looking behind them, he saw the carnage from their battle and the two dead pegasi.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Ah, doing a bit of culling of the local pegasi population.",
+          "lastSentence": "Those damn things reproduce like rabbits.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Ah, doing a bit of culling of the local pegasi population. Understandable. Those damn things reproduce like rabbits.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "nextParagraphText": "Looking behind them, he saw the carnage from their battle and the two dead pegasi. “Ah, doing a bit of culling of the local pegasi population. Understandable. Those damn things reproduce like rabbits.”",
+      "paragraphIndex": 31,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Right as they’d started to recover, a presence fell upon them. The Sword Saint was instantly at high alert until he recognized this aura... and a moment later, its owner appeared."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 20,
+        "paragraphIndex": 11,
+        "relativeIndex": -4,
+        "text": "So that means you give up guessing?"
+      },
+      {
+        "characterId": "forest-king-2",
+        "characterName": "forest-king",
+        "lineId": 22,
+        "paragraphIndex": 12,
+        "relativeIndex": -3,
+        "text": "... I’ll assume it’s the one about Forbidden Knowledge, as I’m unsure if you would even have been able to share that in the first place. The most obvious truth was about your encounter with the Court of Shadows, as such a thing was only a matter of time, and from what I know of Umbra and the story of the Sin weapon you wield, encountering her personally was also only to be expected,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 24,
+        "paragraphIndex": 13,
+        "relativeIndex": -2,
+        "text": "Well, you’re wrong,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 26,
+        "paragraphIndex": 13,
+        "relativeIndex": -1,
+        "text": "About the Forbidden Knowledge thing. Yeah, it definitely was only a question of time before a contract was put out on me. Anyhow, most of your deduction was pretty spot-on, but to fill in some details..."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 47,
+        "paragraphIndex": 32,
+        "relativeIndex": 1,
+        "text": "Ah, doing a bit of culling of the local pegasi population. Understandable. Those damn things reproduce like rabbits."
+      },
+      {
+        "characterId": "the_sword_saint",
+        "characterName": "The Sword Saint",
+        "lineId": 48,
+        "paragraphIndex": 33,
+        "relativeIndex": 2,
+        "text": "Good to see you too, Minaga,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 45, \"text\": \"Hey-yo! Wow, you two look like crap.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"The Sword Saint\", \"sourceCandidates\": [\"The Sword Saint\", \"Minaga\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Sword Saint\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"The Sword Saint\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Minaga\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 31, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"The blue four-eyed Unique Lifeform teleported in with a huge grin on his face, blanketing his S-grade aura all over the area. “Hey-yo! Wow, you two look like crap.”\", \"currentParagraphDialogue\": [{\"lineId\": 45, \"text\": \"Hey-yo! Wow, you two look like crap.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"Right as they’d started to recover, a presence fell upon them. The Sword Saint was instantly at high alert until he recognized this aura... and a moment later, its owner appeared.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Looking behind them, he saw the carnage from their battle and the two dead pegasi. “Ah, doing a bit of culling of the local pegasi population. Understandable. Those damn things reproduce like rabbits.”\", \"nextParagraphDialogue\": [{\"lineId\": 47, \"text\": \"Ah, doing a bit of culling of the local pegasi population. Understandable. Those damn things reproduce like rabbits.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Hey-yo! Wow, you two look like crap.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"The blue four-eyed Unique Lifeform teleported in with a huge grin on his face, blanketing his S-grade aura all over the area.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Hey-yo!\", \"lastSentence\": \"Wow, you two look like crap.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Ah, doing a bit of culling of the local pegasi population. Understandable. Those damn things reproduce like rabbits.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Looking behind them, he saw the carnage from their battle and the two dead pegasi.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Ah, doing a bit of culling of the local pegasi population.\", \"lastSentence\": \"Those damn things reproduce like rabbits.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Hey-yo! Wow, you two look like crap.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"The blue four-eyed Unique Lifeform teleported in with a huge grin on his face, blanketing his S-grade aura all over the area.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Hey-yo!\", \"lastSentence\": \"Wow, you two look like crap.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [\"jake\", \"protagonist\", \"chimera\", \"monster\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"forest-king-2\", \"characterName\": \"forest-king\", \"aliases\": [\"forest-king-2\"], \"roleLabels\": [\"forest king 2\", \"forest king\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 20, \"paragraphIndex\": 11, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"So that means you give up guessing?\"}, {\"relativeIndex\": -3, \"lineId\": 22, \"paragraphIndex\": 12, \"characterId\": \"forest-king-2\", \"characterName\": \"forest-king\", \"text\": \"... I’ll assume it’s the one about Forbidden Knowledge, as I’m unsure if you would even have been able to share that in the first place. The most obvious truth was about your encounter with the Court of Shadows, as such a thing was only a matter of time, and from what I know of Umbra and the story of the Sin weapon you wield, encountering her personally was also only to be expected,\"}, {\"relativeIndex\": -2, \"lineId\": 24, \"paragraphIndex\": 13, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Well, you’re wrong,\"}, {\"relativeIndex\": -1, \"lineId\": 26, \"paragraphIndex\": 13, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"About the Forbidden Knowledge thing. Yeah, it definitely was only a question of time before a contract was put out on me. Anyhow, most of your deduction was pretty spot-on, but to fill in some details...\"}, {\"relativeIndex\": 1, \"lineId\": 47, \"paragraphIndex\": 32, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Ah, doing a bit of culling of the local pegasi population. Understandable. Those damn things reproduce like rabbits.\"}, {\"relativeIndex\": 2, \"lineId\": 48, \"paragraphIndex\": 33, \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Good to see you too, Minaga,\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"forest-king-2\", \"name\": \"forest-king\", \"aliases\": [\"forest-king-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dina\", \"name\": \"Dina\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"having\", \"name\": \"Having\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"minaga\",\n  \"characterName\": \"Minaga\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"alias_match\",\n    \"addressed_in_next_turn\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

@@ -1,0 +1,290 @@
+{
+  "cacheKey": "fc7a5b2aecea507a64d2cff2d42d2ec6fd54b924c24fd3ce3bd03aee4fc2d653",
+  "createdAt": "2026-04-01T18:48:18.986649+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "jacob",
+    "characterName": "Jacob",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "same_paragraph_continuation"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jacob"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "the-unique-lifeform",
+        "name": "The Unique Lifeform",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "name": "Augur",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": null,
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.98,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jacob",
+        "sourceCandidates": [
+          "Jacob"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "jacob",
+          "confidence": 0.98,
+          "name": "Jacob",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "same_paragraph_continuation",
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "jacob",
+      "currentCharacterName": "Jacob",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 104,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "I will miss Earth, but I also know going there would only be cause for trouble."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 2,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 101,
+          "text": "I assume you’re also going?"
+        },
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 102,
+          "text": "Of course,"
+        },
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": true,
+          "lineId": 104,
+          "text": "I will miss Earth, but I also know going there would only be cause for trouble."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jacob nodded before letting out a sad sigh.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "Of course,",
+          "lastSentence": "Of course,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Of course,",
+          "speakerNameMatch": "Jacob",
+          "speakerSurface": "Jacob"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jacob nodded before letting out a sad sigh.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "I will miss Earth, but I also know going there would only be cause for trouble.",
+          "lastSentence": "I will miss Earth, but I also know going there would only be cause for trouble.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "I will miss Earth, but I also know going there would only be cause for trouble.",
+          "speakerNameMatch": "Jacob",
+          "speakerSurface": "Jacob"
+        }
+      ],
+      "currentParagraphText": "“Of course,” Jacob nodded before letting out a sad sigh. “I will miss Earth, but I also know going there would only be cause for trouble.”",
+      "dialogueLineCount": 3,
+      "paragraphIndex": 47
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 98,
+        "paragraphIndex": 45,
+        "relativeIndex": -4,
+        "text": "Some other factions do also retain a presence there, but the one officially ruling everything will be the Holy Church, of that there is no doubt."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 99,
+        "paragraphIndex": 46,
+        "relativeIndex": -3,
+        "text": "I guess I can’t get rid of you entirely quite yet, huh,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 101,
+        "paragraphIndex": 47,
+        "relativeIndex": -2,
+        "text": "I assume you’re also going?"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 102,
+        "paragraphIndex": 47,
+        "relativeIndex": -1,
+        "text": "Of course,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 105,
+        "paragraphIndex": 49,
+        "relativeIndex": 1,
+        "text": "You could always sneak in,"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 107,
+        "paragraphIndex": 49,
+        "relativeIndex": 2,
+        "text": "I have absolutely no stealth skills, am publicly known by many people, and entering without permission will no doubt only lead to even more problems,"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "jacob",
+            "characterName": "Jacob",
+            "evidence": [
+              "ai_scene_memory"
+            ],
+            "score": 0.99
+          }
+        ],
+        "surface": "jacob"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 104, \"text\": \"I will miss Earth, but I also know going there would only be cause for trouble.\", \"currentCharacterId\": \"jacob\", \"currentCharacterName\": \"Jacob\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jacob\", \"sourceCandidates\": [\"Jacob\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.98, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"same_paragraph_continuation\", \"speech_verb\"]}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 47, \"currentLinePosition\": 2, \"dialogueLineCount\": 3, \"currentParagraphText\": \"“Of course,” Jacob nodded before letting out a sad sigh. “I will miss Earth, but I also know going there would only be cause for trouble.”\", \"currentParagraphDialogue\": [{\"lineId\": 101, \"text\": \"I assume you’re also going?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 102, \"text\": \"Of course,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}, {\"lineId\": 104, \"text\": \"I will miss Earth, but I also know going there would only be cause for trouble.\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Of course,\", \"cuePosition\": \"after\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Jacob nodded before letting out a sad sigh.\", \"speakerSurface\": \"Jacob\", \"speakerNameMatch\": \"Jacob\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Of course,\", \"lastSentence\": \"Of course,\"}, {\"quoteIndex\": 1, \"quoteText\": \"I will miss Earth, but I also know going there would only be cause for trouble.\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Jacob nodded before letting out a sad sigh.\", \"speakerSurface\": \"Jacob\", \"speakerNameMatch\": \"Jacob\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I will miss Earth, but I also know going there would only be cause for trouble.\", \"lastSentence\": \"I will miss Earth, but I also know going there would only be cause for trouble.\"}]}, \"currentQuoteUnit\": null, \"sceneEntities\": [{\"surface\": \"jacob\", \"matches\": [{\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"score\": 0.99, \"evidence\": [\"ai_scene_memory\"]}]}], \"candidateCards\": [{\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [], \"roleLabels\": [\"jacob\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 98, \"paragraphIndex\": 45, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"Some other factions do also retain a presence there, but the one officially ruling everything will be the Holy Church, of that there is no doubt.\"}, {\"relativeIndex\": -3, \"lineId\": 99, \"paragraphIndex\": 46, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I guess I can’t get rid of you entirely quite yet, huh,\"}, {\"relativeIndex\": -2, \"lineId\": 101, \"paragraphIndex\": 47, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I assume you’re also going?\"}, {\"relativeIndex\": -1, \"lineId\": 102, \"paragraphIndex\": 47, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"Of course,\"}, {\"relativeIndex\": 1, \"lineId\": 105, \"paragraphIndex\": 49, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You could always sneak in,\"}, {\"relativeIndex\": 2, \"lineId\": 107, \"paragraphIndex\": 49, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"I have absolutely no stealth skills, am publicly known by many people, and entering without permission will no doubt only lead to even more problems,\"}], \"chapterCharacters\": [{\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-unique-lifeform\", \"name\": \"The Unique Lifeform\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"augur\", \"name\": \"Augur\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jacob\",\n  \"characterName\": \"Jacob\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"same_paragraph_continuation\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

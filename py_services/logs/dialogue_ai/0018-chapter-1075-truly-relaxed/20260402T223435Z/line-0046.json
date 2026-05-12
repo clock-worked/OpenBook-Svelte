@@ -1,0 +1,318 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "5c88184ae4b6616647bfdd8f81ab835edba5ed5c2f0155f0f08babe3eb6eab62",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\5c88184ae4b6616647bfdd8f81ab835edba5ed5c2f0155f0f08babe3eb6eab62.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "confidence": 1.0,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "paragraph_text_override"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "mom",
+            "characterName": "Mom",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "mom"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "name": "Caleb",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "maja",
+            "name": "Maja",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "adam",
+            "name": "Adam",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "mom",
+            "name": "Mom",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "dad",
+            "name": "Dad",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "He probably just decided impulsively to visit, not leaving him any time to call ahead,",
+          "lastSentence": "He probably just decided impulsively to visit, not leaving him any time to call ahead,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "He probably just decided impulsively to visit, not leaving him any time to call ahead,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Caleb",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.19599999999999995,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Mom",
+            "sourceCandidates": [
+              "Mom",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.804
+          },
+          "candidates": [
+            {
+              "characterId": "mom",
+              "confidence": 0.804,
+              "name": "Mom",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.444,
+              "name": "Jake",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "mom",
+          "currentCharacterName": "Mom",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 46,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "He probably just decided impulsively to visit, not leaving him any time to call ahead,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 1,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "mom",
+              "characterName": "Mom",
+              "isReturning": false,
+              "lineId": 45,
+              "text": "I wanted it to be a surprise?"
+            },
+            {
+              "characterId": "mom",
+              "characterName": "Mom",
+              "isReturning": false,
+              "lineId": 46,
+              "text": "He probably just decided impulsively to visit, not leaving him any time to call ahead,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "He probably just decided impulsively to visit, not leaving him any time to call ahead,",
+              "lastSentence": "He probably just decided impulsively to visit, not leaving him any time to call ahead,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "He probably just decided impulsively to visit, not leaving him any time to call ahead,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“He probably just decided impulsively to visit, not leaving him any time to call ahead,” Caleb took a dig at Jake, being entirely accurate with his assessment.",
+          "dialogueLineCount": 2,
+          "paragraphIndex": 32
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 39,
+            "paragraphIndex": 29,
+            "relativeIndex": -4,
+            "text": "Ribs, for sure,"
+          },
+          {
+            "characterId": "mom",
+            "characterName": "Mom",
+            "lineId": 41,
+            "paragraphIndex": 30,
+            "relativeIndex": -3,
+            "text": "Caleb wants those chili sausages, and Jake wants ribs!"
+          },
+          {
+            "characterId": "mom",
+            "characterName": "Mom",
+            "lineId": 43,
+            "paragraphIndex": 30,
+            "relativeIndex": -2,
+            "text": "You’re lucky we got extra from the butcher just yesterday. You could have given us a ring and said you’d come!"
+          },
+          {
+            "characterId": "mom",
+            "characterName": "Mom",
+            "lineId": 45,
+            "paragraphIndex": 32,
+            "relativeIndex": -1,
+            "text": "I wanted it to be a surprise?"
+          },
+          {
+            "characterId": "mom",
+            "characterName": "Mom",
+            "lineId": 48,
+            "paragraphIndex": 33,
+            "relativeIndex": 1,
+            "text": "Doesn’t matter,"
+          },
+          {
+            "characterId": "mom",
+            "characterName": "Mom",
+            "lineId": 50,
+            "paragraphIndex": 34,
+            "relativeIndex": 2,
+            "text": "Now come here!"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 46, \"text\": \"He probably just decided impulsively to visit, not leaving him any time to call ahead,\", \"currentCharacterId\": \"mom\", \"currentCharacterName\": \"Mom\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Mom\", \"sourceCandidates\": [\"Mom\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Caleb\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"mom\", \"name\": \"Mom\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 32, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“He probably just decided impulsively to visit, not leaving him any time to call ahead,” Caleb took a dig at Jake, being entirely accurate with his assessment.\", \"currentParagraphDialogue\": [{\"lineId\": 45, \"text\": \"I wanted it to be a surprise?\", \"characterId\": \"mom\", \"characterName\": \"Mom\", \"isReturning\": false}, {\"lineId\": 46, \"text\": \"He probably just decided impulsively to visit, not leaving him any time to call ahead,\", \"characterId\": \"mom\", \"characterName\": \"Mom\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"He probably just decided impulsively to visit, not leaving him any time to call ahead,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"He probably just decided impulsively to visit, not leaving him any time to call ahead,\", \"lastSentence\": \"He probably just decided impulsively to visit, not leaving him any time to call ahead,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"He probably just decided impulsively to visit, not leaving him any time to call ahead,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"He probably just decided impulsively to visit, not leaving him any time to call ahead,\", \"lastSentence\": \"He probably just decided impulsively to visit, not leaving him any time to call ahead,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"mom\", \"characterName\": \"Mom\", \"aliases\": [], \"roleLabels\": [\"mom\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 39, \"paragraphIndex\": 29, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Ribs, for sure,\"}, {\"relativeIndex\": -3, \"lineId\": 41, \"paragraphIndex\": 30, \"characterId\": \"mom\", \"characterName\": \"Mom\", \"text\": \"Caleb wants those chili sausages, and Jake wants ribs!\"}, {\"relativeIndex\": -2, \"lineId\": 43, \"paragraphIndex\": 30, \"characterId\": \"mom\", \"characterName\": \"Mom\", \"text\": \"You’re lucky we got extra from the butcher just yesterday. You could have given us a ring and said you’d come!\"}, {\"relativeIndex\": -1, \"lineId\": 45, \"paragraphIndex\": 32, \"characterId\": \"mom\", \"characterName\": \"Mom\", \"text\": \"I wanted it to be a surprise?\"}, {\"relativeIndex\": 1, \"lineId\": 48, \"paragraphIndex\": 33, \"characterId\": \"mom\", \"characterName\": \"Mom\", \"text\": \"Doesn’t matter,\"}, {\"relativeIndex\": 2, \"lineId\": 50, \"paragraphIndex\": 34, \"characterId\": \"mom\", \"characterName\": \"Mom\", \"text\": \"Now come here!\"}], \"chapterCharacters\": [{\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"maja\", \"name\": \"Maja\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"adam\", \"name\": \"Adam\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"mom\", \"name\": \"Mom\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dad\", \"name\": \"Dad\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"caleb\",\n  \"characterName\": \"Caleb\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"paragraph_text_override\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0018 - Chapter 1075 - Truly Relaxed",
+  "currentCharacterId": "mom",
+  "currentCharacterName": "Mom",
+  "currentParagraphText": "“He probably just decided impulsively to visit, not leaving him any time to call ahead,” Caleb took a dig at Jake, being entirely accurate with his assessment.",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 1.0,
+    "currentCharacterId": "mom",
+    "currentCharacterName": "Mom",
+    "currentParagraphText": "“He probably just decided impulsively to visit, not leaving him any time to call ahead,” Caleb took a dig at Jake, being entirely accurate with his assessment.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 46,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Doesn’t matter,” Jake’s mom smiled as she walked over to Jake. “Now come here!”",
+    "paragraphIndex": 32,
+    "previousParagraphText": "Jake scratched the back of his head as he smiled. “I wanted it to be a surprise?”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "paragraph_text_override"
+    ],
+    "suggestedCharacterId": "caleb",
+    "suggestedCharacterName": "Caleb",
+    "toolTrace": []
+  },
+  "lineId": 46,
+  "nextParagraphText": "“Doesn’t matter,” Jake’s mom smiled as she walked over to Jake. “Now come here!”",
+  "paragraphIndex": 32,
+  "previousParagraphText": "Jake scratched the back of his head as he smiled. “I wanted it to be a surprise?”"
+}

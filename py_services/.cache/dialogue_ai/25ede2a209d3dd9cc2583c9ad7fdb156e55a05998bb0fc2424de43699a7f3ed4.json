@@ -1,0 +1,334 @@
+{
+  "cacheKey": "25ede2a209d3dd9cc2583c9ad7fdb156e55a05998bb0fc2424de43699a7f3ed4",
+  "createdAt": "2026-05-11T21:34:17.043132+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "artemis",
+    "characterName": "Artemis",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "alias_match",
+      "dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "The City Lord"
+        ],
+        "characterId": "holstred",
+        "characterName": "Holstred",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "holstred",
+          "the city lord",
+          "city lord"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Godqueen",
+          "Viper"
+        ],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "artemis",
+          "godqueen",
+          "viper"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen",
+          "Viper"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "The City Lord"
+        ],
+        "characterId": "holstred",
+        "name": "Holstred",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": null,
+    "line": {
+      "alignment": {
+        "confidence": 0.92,
+        "isSpanFallback": false,
+        "method": "quote_text",
+        "paragraphIndex": 23,
+        "spanDistance": 0.0,
+        "spanParagraphIndex": 23
+      },
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "The Malefic Viper",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.7,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.33479999999999993,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "The Malefic Viper",
+        "sourceCandidates": [
+          "The Malefic Viper",
+          "Mage"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.796
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.796,
+          "name": "Artemis",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.436,
+          "name": "Mage",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 44,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "You-"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 44,
+          "text": "You-"
+        }
+      ],
+      "currentParagraphQuoteStructure": [],
+      "currentParagraphText": "The Viper looked surprised for a second as he looked at the mage. “You-“",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 45,
+          "text": "Also happen to be the World Leader,"
+        },
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": true,
+          "lineId": 47,
+          "text": "And I had fully expected something to happen during this auction. I heard rumors that someone was aiming for the Eye of the Magus, and the trap was truthfully prepared for them, but I guess catching you instead isn’t all too bad."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the mage’s smile deepened.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Also happen to be the World Leader,",
+          "lastSentence": "Also happen to be the World Leader,",
+          "mentionedEntities": [
+            "World Leader"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Also happen to be the World Leader,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the mage’s smile"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "the mage’s smile deepened.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "And I had fully expected something to happen during this auction.",
+          "lastSentence": "I heard rumors that someone was aiming for the Eye of the Magus, and the trap was truthfully prepared for them, but I guess catching you instead isn’t all too bad.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "And I had fully expected something to happen during this auction. I heard rumors that someone was aiming for the Eye of the Magus, and the trap was truthfully prepared for them, but I guess catching you instead isn’t all too bad.",
+          "speakerNameMatch": null,
+          "speakerSurface": "the mage’s smile"
+        }
+      ],
+      "nextParagraphText": "“Also happen to be the World Leader,” the mage’s smile deepened. “And I had fully expected something to happen during this auction. I heard rumors that someone was aiming for the Eye of the Magus, and the trap was truthfully prepared for them, but I guess catching you instead isn’t all too bad.”",
+      "paragraphIndex": 23,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Right as he said this, large pillars of energy erupted in all the cardinal directions. Screens of light quickly formed between them before a massive spherical barrier surrounded this entire piece of the planet."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "holstred",
+        "characterName": "Holstred",
+        "lineId": 36,
+        "paragraphIndex": 19,
+        "relativeIndex": -4,
+        "text": "It’s not my first time dealing with a beast like you."
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 37,
+        "paragraphIndex": 20,
+        "relativeIndex": -3,
+        "text": "Now that’s just you being prejudiced and hurtful,"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 39,
+        "paragraphIndex": 20,
+        "relativeIndex": -2,
+        "text": "Also, I’m wondering here… I know why I’m doing it, but why are you keeping this conversation going to buy time?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 41,
+        "paragraphIndex": 21,
+        "relativeIndex": -1,
+        "text": "To make sure you wouldn’t get away."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 45,
+        "paragraphIndex": 24,
+        "relativeIndex": 1,
+        "text": "Also happen to be the World Leader,"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 47,
+        "paragraphIndex": 24,
+        "relativeIndex": 2,
+        "text": "And I had fully expected something to happen during this auction. I heard rumors that someone was aiming for the Eye of the Magus, and the trap was truthfully prepared for them, but I guess catching you instead isn’t all too bad."
+      }
+    ],
+    "sceneEntities": [],
+    "sceneRoster": {
+      "paragraphWindow": 6,
+      "presentCharacterIds": [
+        "unknown",
+        "holstred",
+        "artemis"
+      ],
+      "presentCharacters": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown"
+        },
+        {
+          "characterId": "holstred",
+          "characterName": "Holstred"
+        },
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis"
+        }
+      ]
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 44, \"text\": \"You-\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"The Malefic Viper\", \"sourceCandidates\": [\"The Malefic Viper\", \"Mage\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.33479999999999993, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Malefic Viper\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.796, \"reasons\": null}, {\"characterId\": null, \"name\": \"Mage\", \"confidence\": 0.436, \"reasons\": null}], \"isReturning\": true, \"alignment\": {\"paragraphIndex\": 23, \"method\": \"quote_text\", \"confidence\": 0.92, \"spanParagraphIndex\": 23, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 23, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"The Viper looked surprised for a second as he looked at the mage. “You-“\", \"currentParagraphDialogue\": [{\"lineId\": 44, \"text\": \"You-\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"Right as he said this, large pillars of energy erupted in all the cardinal directions. Screens of light quickly formed between them before a massive spherical barrier surrounded this entire piece of the planet.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“Also happen to be the World Leader,” the mage’s smile deepened. “And I had fully expected something to happen during this auction. I heard rumors that someone was aiming for the Eye of the Magus, and the trap was truthfully prepared for them, but I guess catching you instead isn’t all too bad.”\", \"nextParagraphDialogue\": [{\"lineId\": 45, \"text\": \"Also happen to be the World Leader,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 47, \"text\": \"And I had fully expected something to happen during this auction. I heard rumors that someone was aiming for the Eye of the Magus, and the trap was truthfully prepared for them, but I guess catching you instead isn’t all too bad.\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Also happen to be the World Leader,\", \"cuePosition\": \"after\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"the mage’s smile deepened.\", \"speakerSurface\": \"the mage’s smile\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"World Leader\"], \"addressedEntity\": null, \"firstSentence\": \"Also happen to be the World Leader,\", \"lastSentence\": \"Also happen to be the World Leader,\"}, {\"quoteIndex\": 1, \"quoteText\": \"And I had fully expected something to happen during this auction. I heard rumors that someone was aiming for the Eye of the Magus, and the trap was truthfully prepared for them, but I guess catching you instead isn’t all too bad.\", \"cuePosition\": \"before\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"the mage’s smile deepened.\", \"speakerSurface\": \"the mage’s smile\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"And I had fully expected something to happen during this auction.\", \"lastSentence\": \"I heard rumors that someone was aiming for the Eye of the Magus, and the trap was truthfully prepared for them, but I guess catching you instead isn’t all too bad.\"}]}, \"currentQuoteUnit\": null, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"unknown\", \"holstred\", \"artemis\"], \"presentCharacters\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}, {\"characterId\": \"holstred\", \"characterName\": \"Holstred\"}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"holstred\", \"characterName\": \"Holstred\", \"aliases\": [\"The City Lord\"], \"roleLabels\": [\"holstred\", \"the city lord\", \"city lord\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [\"Godqueen\", \"Viper\"], \"roleLabels\": [\"artemis\", \"godqueen\", \"viper\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 36, \"paragraphIndex\": 19, \"characterId\": \"holstred\", \"characterName\": \"Holstred\", \"text\": \"It’s not my first time dealing with a beast like you.\"}, {\"relativeIndex\": -3, \"lineId\": 37, \"paragraphIndex\": 20, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Now that’s just you being prejudiced and hurtful,\"}, {\"relativeIndex\": -2, \"lineId\": 39, \"paragraphIndex\": 20, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Also, I’m wondering here… I know why I’m doing it, but why are you keeping this conversation going to buy time?\"}, {\"relativeIndex\": -1, \"lineId\": 41, \"paragraphIndex\": 21, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"To make sure you wouldn’t get away.\"}, {\"relativeIndex\": 1, \"lineId\": 45, \"paragraphIndex\": 24, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Also happen to be the World Leader,\"}, {\"relativeIndex\": 2, \"lineId\": 47, \"paragraphIndex\": 24, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"And I had fully expected something to happen during this auction. I heard rumors that someone was aiming for the Eye of the Magus, and the trap was truthfully prepared for them, but I guess catching you instead isn’t all too bad.\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\", \"Viper\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"holstred\", \"name\": \"Holstred\", \"aliases\": [\"The City Lord\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"artemis\",\n  \"characterName\": \"Artemis\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"alias_match\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

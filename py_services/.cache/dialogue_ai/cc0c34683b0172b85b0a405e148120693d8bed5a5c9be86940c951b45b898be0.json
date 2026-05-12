@@ -1,0 +1,335 @@
+{
+  "cacheKey": "cc0c34683b0172b85b0a405e148120693d8bed5a5c9be86940c951b45b898be0",
+  "createdAt": "2026-04-13T02:19:17.802391+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "artemis",
+    "characterName": "Artemis",
+    "confidence": 0.9,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "dialogue_flow",
+      "addressee_context",
+      "parser_suggestion"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "artemis"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Attendant",
+          "natures-attendant",
+          "natures-attendant-2",
+          "Nature Attendant"
+        ],
+        "characterId": "natures-attendant",
+        "name": "Nature's Attendant",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy",
+          "Vilas"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": null,
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Artemis",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.7,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.33479999999999993,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Artemis",
+        "sourceCandidates": [
+          "Artemis",
+          "Nature's Attendant"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.796
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.796,
+          "name": "Artemis",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.436,
+          "name": "Nature's Attendant",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 78,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "You’re saying that-"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 78,
+          "text": "You’re saying that-"
+        }
+      ],
+      "currentParagraphQuoteStructure": [],
+      "currentParagraphText": "“You’re saying that- “",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": false,
+          "lineId": 79,
+          "text": "Another Yip of Yore will rise, of that, there’s no doubt,"
+        },
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 81,
+          "text": "And there is a good chance the next genius who will make a meteoric rise has already been born. In fact, it may be the hunter we just met. So far, his performance has already surpassed Yip of Yore even when they were the same grade, and if he continues that growth..."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Nature’s Attendant said as he looked at Artemis.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Another Yip of Yore will rise, of that, there’s no doubt,",
+          "lastSentence": "Another Yip of Yore will rise, of that, there’s no doubt,",
+          "mentionedEntities": [
+            "yip"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Another Yip of Yore will rise, of that, there’s no doubt,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Nature’s Attendant"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Nature’s Attendant said as he looked at Artemis.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "And there is a good chance the next genius who will make a meteoric rise has already been born.",
+          "lastSentence": "So far, his performance has already surpassed Yip of Yore even when they were the same grade, and if he continues that growth...",
+          "mentionedEntities": [
+            "yip"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "And there is a good chance the next genius who will make a meteoric rise has already been born. In fact, it may be the hunter we just met. So far, his performance has already surpassed Yip of Yore even when they were the same grade, and if he continues that growth...",
+          "speakerNameMatch": null,
+          "speakerSurface": "Nature’s Attendant"
+        }
+      ],
+      "nextParagraphText": "“Another Yip of Yore will rise, of that, there’s no doubt,” Nature’s Attendant said as he looked at Artemis. “And there is a good chance the next genius who will make a meteoric rise has already been born. In fact, it may be the hunter we just met. So far, his performance has already surpassed Yip of Yore even when they were the same grade, and if he continues that growth...”",
+      "paragraphIndex": 43,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 75,
+          "text": "No,"
+        },
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 77,
+          "text": "They were not. And that’s the true cause for concern. Yip of Yore was impatient. He had barely lived for a full era before he foolishly tried to kill the Malefic Viper of all gods. Now, imagine if Yip had been smarter. What if he had waited for another era? Five more? What if he had honed himself and fully realized his Path before aiming for the throne? If he had... things could have gotten dangerous. Very dangerous."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Nature’s Attendant said in a stern voice.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "No,",
+          "lastSentence": "No,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "No,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Nature’s Attendant"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Nature’s Attendant said in a stern voice.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "They were not.",
+          "lastSentence": "Very dangerous.",
+          "mentionedEntities": [
+            "The Malefic Viper",
+            "The Malefic Viper",
+            "yip"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "They were not. And that’s the true cause for concern. Yip of Yore was impatient. He had barely lived for a full era before he foolishly tried to kill the Malefic Viper of all gods. Now, imagine if Yip had been smarter. What if he had waited for another era? Five more? What if he had honed himself and fully realized his Path before aiming for the throne? If he had... things could have gotten dangerous. Very dangerous.",
+          "speakerNameMatch": null,
+          "speakerSurface": "Nature’s Attendant"
+        }
+      ],
+      "previousParagraphText": "“No,” Nature’s Attendant said in a stern voice. “They were not. And that’s the true cause for concern. Yip of Yore was impatient. He had barely lived for a full era before he foolishly tried to kill the Malefic Viper of all gods. Now, imagine if Yip had been smarter. What if he had waited for another era? Five more? What if he had honed himself and fully realized his Path before aiming for the throne? If he had... things could have gotten dangerous. Very dangerous.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 72,
+        "paragraphIndex": 40,
+        "relativeIndex": -4,
+        "text": "Some viewed Yip as a sign of hope, which confused many of us. Hope against what? That’s when much of the resentment that had been hidden came to the fore. It’s in our nature to expand our factions, claim territory, resources, and recruit those we deem worthy, but this left many of the gods unwilling to serve other gods in the dust. They felt suppressed, undermined, and they began to resent those of us who monopolized everything. With Yip at their helm, they believed they had found a god capable of standing up to even the Primordials."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 73,
+        "paragraphIndex": 41,
+        "relativeIndex": -3,
+        "text": "They were obviously wrong,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 75,
+        "paragraphIndex": 42,
+        "relativeIndex": -2,
+        "text": "No,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 77,
+        "paragraphIndex": 42,
+        "relativeIndex": -1,
+        "text": "They were not. And that’s the true cause for concern. Yip of Yore was impatient. He had barely lived for a full era before he foolishly tried to kill the Malefic Viper of all gods. Now, imagine if Yip had been smarter. What if he had waited for another era? Five more? What if he had honed himself and fully realized his Path before aiming for the throne? If he had... things could have gotten dangerous. Very dangerous."
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 79,
+        "paragraphIndex": 44,
+        "relativeIndex": 1,
+        "text": "Another Yip of Yore will rise, of that, there’s no doubt,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 81,
+        "paragraphIndex": 44,
+        "relativeIndex": 2,
+        "text": "And there is a good chance the next genius who will make a meteoric rise has already been born. In fact, it may be the hunter we just met. So far, his performance has already surpassed Yip of Yore even when they were the same grade, and if he continues that growth..."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 78, \"text\": \"You’re saying that-\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Artemis\", \"sourceCandidates\": [\"Artemis\", \"Nature's Attendant\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.33479999999999993, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Artemis\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.796, \"reasons\": null}, {\"characterId\": null, \"name\": \"Nature's Attendant\", \"confidence\": 0.436, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 43, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“You’re saying that- “\", \"currentParagraphDialogue\": [{\"lineId\": 78, \"text\": \"You’re saying that-\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“No,” Nature’s Attendant said in a stern voice. “They were not. And that’s the true cause for concern. Yip of Yore was impatient. He had barely lived for a full era before he foolishly tried to kill the Malefic Viper of all gods. Now, imagine if Yip had been smarter. What if he had waited for another era? Five more? What if he had honed himself and fully realized his Path before aiming for the throne? If he had... things could have gotten dangerous. Very dangerous.”\", \"previousParagraphDialogue\": [{\"lineId\": 75, \"text\": \"No,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 77, \"text\": \"They were not. And that’s the true cause for concern. Yip of Yore was impatient. He had barely lived for a full era before he foolishly tried to kill the Malefic Viper of all gods. Now, imagine if Yip had been smarter. What if he had waited for another era? Five more? What if he had honed himself and fully realized his Path before aiming for the throne? If he had... things could have gotten dangerous. Very dangerous.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"nextParagraphText\": \"“Another Yip of Yore will rise, of that, there’s no doubt,” Nature’s Attendant said as he looked at Artemis. “And there is a good chance the next genius who will make a meteoric rise has already been born. In fact, it may be the hunter we just met. So far, his performance has already surpassed Yip of Yore even when they were the same grade, and if he continues that growth...”\", \"nextParagraphDialogue\": [{\"lineId\": 79, \"text\": \"Another Yip of Yore will rise, of that, there’s no doubt,\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": false}, {\"lineId\": 81, \"text\": \"And there is a good chance the next genius who will make a meteoric rise has already been born. In fact, it may be the hunter we just met. So far, his performance has already surpassed Yip of Yore even when they were the same grade, and if he continues that growth...\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"No,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Nature’s Attendant said in a stern voice.\", \"speakerSurface\": \"Nature’s Attendant\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"No,\", \"lastSentence\": \"No,\"}, {\"quoteIndex\": 1, \"quoteText\": \"They were not. And that’s the true cause for concern. Yip of Yore was impatient. He had barely lived for a full era before he foolishly tried to kill the Malefic Viper of all gods. Now, imagine if Yip had been smarter. What if he had waited for another era? Five more? What if he had honed himself and fully realized his Path before aiming for the throne? If he had... things could have gotten dangerous. Very dangerous.\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Nature’s Attendant said in a stern voice.\", \"speakerSurface\": \"Nature’s Attendant\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"The Malefic Viper\", \"The Malefic Viper\", \"yip\"], \"addressedEntity\": null, \"firstSentence\": \"They were not.\", \"lastSentence\": \"Very dangerous.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Another Yip of Yore will rise, of that, there’s no doubt,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Nature’s Attendant said as he looked at Artemis.\", \"speakerSurface\": \"Nature’s Attendant\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"yip\"], \"addressedEntity\": null, \"firstSentence\": \"Another Yip of Yore will rise, of that, there’s no doubt,\", \"lastSentence\": \"Another Yip of Yore will rise, of that, there’s no doubt,\"}, {\"quoteIndex\": 1, \"quoteText\": \"And there is a good chance the next genius who will make a meteoric rise has already been born. In fact, it may be the hunter we just met. So far, his performance has already surpassed Yip of Yore even when they were the same grade, and if he continues that growth...\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Nature’s Attendant said as he looked at Artemis.\", \"speakerSurface\": \"Nature’s Attendant\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"yip\"], \"addressedEntity\": null, \"firstSentence\": \"And there is a good chance the next genius who will make a meteoric rise has already been born.\", \"lastSentence\": \"So far, his performance has already surpassed Yip of Yore even when they were the same grade, and if he continues that growth...\"}]}, \"currentQuoteUnit\": null, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [], \"roleLabels\": [\"artemis\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 72, \"paragraphIndex\": 40, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Some viewed Yip as a sign of hope, which confused many of us. Hope against what? That’s when much of the resentment that had been hidden came to the fore. It’s in our nature to expand our factions, claim territory, resources, and recruit those we deem worthy, but this left many of the gods unwilling to serve other gods in the dust. They felt suppressed, undermined, and they began to resent those of us who monopolized everything. With Yip at their helm, they believed they had found a god capable of standing up to even the Primordials.\"}, {\"relativeIndex\": -3, \"lineId\": 73, \"paragraphIndex\": 41, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"They were obviously wrong,\"}, {\"relativeIndex\": -2, \"lineId\": 75, \"paragraphIndex\": 42, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"No,\"}, {\"relativeIndex\": -1, \"lineId\": 77, \"paragraphIndex\": 42, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"They were not. And that’s the true cause for concern. Yip of Yore was impatient. He had barely lived for a full era before he foolishly tried to kill the Malefic Viper of all gods. Now, imagine if Yip had been smarter. What if he had waited for another era? Five more? What if he had honed himself and fully realized his Path before aiming for the throne? If he had... things could have gotten dangerous. Very dangerous.\"}, {\"relativeIndex\": 1, \"lineId\": 79, \"paragraphIndex\": 44, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Another Yip of Yore will rise, of that, there’s no doubt,\"}, {\"relativeIndex\": 2, \"lineId\": 81, \"paragraphIndex\": 44, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"And there is a good chance the next genius who will make a meteoric rise has already been born. In fact, it may be the hunter we just met. So far, his performance has already surpassed Yip of Yore even when they were the same grade, and if he continues that growth...\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"natures-attendant\", \"name\": \"Nature's Attendant\", \"aliases\": [\"Attendant\", \"natures-attendant\", \"natures-attendant-2\", \"Nature Attendant\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\", \"Vilas\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"artemis\",\n  \"characterName\": \"Artemis\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"dialogue_flow\",\n    \"addressee_context\",\n    \"parser_suggestion\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

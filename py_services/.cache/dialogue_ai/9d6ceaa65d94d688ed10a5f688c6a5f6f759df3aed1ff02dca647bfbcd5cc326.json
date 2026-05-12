@@ -1,0 +1,354 @@
+{
+  "cacheKey": "9d6ceaa65d94d688ed10a5f688c6a5f6f759df3aed1ff02dca647bfbcd5cc326",
+  "createdAt": "2026-04-01T18:31:31.170768+00:00",
+  "decision": {
+    "action": "propose_new_character",
+    "aliasToAdd": null,
+    "characterId": null,
+    "characterName": null,
+    "confidence": 0.9,
+    "newCharacterProposal": {
+      "alias": "the head priest",
+      "name": "Head Priest",
+      "notes": "Explicitly identified by role in narration as the speaker, distinct from other named characters present."
+    },
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "new_role_mentioned"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "characterName": "Bertram",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "bertram"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "kindroth"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "protagonist",
+        "name": "Protagonist",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "arnold",
+        "name": "Arnold",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "name": "Bertram",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "name": "Iludar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "name": "Iludar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "pulse",
+        "name": "pulse",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,",
+      "lastSentence": "I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Bertram",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.19599999999999995,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Bertram",
+        "sourceCandidates": [
+          "Bertram",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": "bertram",
+          "confidence": 0.804,
+          "name": "Bertram",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.444,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "bertram",
+      "currentCharacterName": "Bertram",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 62,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "bertram",
+          "characterName": "Bertram",
+          "isReturning": false,
+          "lineId": 62,
+          "text": "I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,",
+          "lastSentence": "I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,” the head priest reiterated that he believed Jake’s visit was very sudden.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Perhaps it was partly true, as they had more likely than expected him to be more injured after the Ell’Hakan fight than he actually was. It was thus highly probable they had wanted to make more preparations before Jake visited that they simply didn’t have time to.",
+      "paragraphIndex": 47,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "bertram",
+          "characterName": "Bertram",
+          "isReturning": false,
+          "lineId": 60,
+          "text": "escort"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jacob, Bertram, the head priest, and seven other official-looking members of the Holy Church were part of Jake’s",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "escort",
+          "lastSentence": "escort",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "escort",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "previousParagraphText": "Jacob, Bertram, the head priest, and seven other official-looking members of the Holy Church were part of Jake’s “escort” as they entered a small cleared-out teleportation hub."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "lineId": 52,
+        "paragraphIndex": 40,
+        "relativeIndex": -4,
+        "text": "You wanted to talk. I came to talk... and take back that which is mine. That which you took from me."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 55,
+        "paragraphIndex": 42,
+        "relativeIndex": -3,
+        "text": "Perhaps we can have this discussion elsewhere in private?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 56,
+        "paragraphIndex": 43,
+        "relativeIndex": -2,
+        "text": "Very well, lead the way to this private discussion,"
+      },
+      {
+        "characterId": "bertram",
+        "characterName": "Bertram",
+        "lineId": 60,
+        "paragraphIndex": 46,
+        "relativeIndex": -1,
+        "text": "escort"
+      },
+      {
+        "characterId": "bertram",
+        "characterName": "Bertram",
+        "lineId": 65,
+        "paragraphIndex": 49,
+        "relativeIndex": 1,
+        "text": "Please follow me through the teleporter,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 67,
+        "paragraphIndex": 50,
+        "relativeIndex": 2,
+        "text": "Using a teleporter with an unknown destination seems highly unwise, especially when in territory I do not find particularly friendly,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 62, \"text\": \"I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,\", \"currentCharacterId\": \"bertram\", \"currentCharacterName\": \"Bertram\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Bertram\", \"sourceCandidates\": [\"Bertram\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Bertram\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"bertram\", \"name\": \"Bertram\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 47, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,” the head priest reiterated that he believed Jake’s visit was very sudden.\", \"currentParagraphDialogue\": [{\"lineId\": 62, \"text\": \"I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,\", \"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"isReturning\": false}], \"previousParagraphText\": \"Jacob, Bertram, the head priest, and seven other official-looking members of the Holy Church were part of Jake’s “escort” as they entered a small cleared-out teleportation hub.\", \"previousParagraphDialogue\": [{\"lineId\": 60, \"text\": \"escort\", \"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"isReturning\": false}], \"nextParagraphText\": \"Perhaps it was partly true, as they had more likely than expected him to be more injured after the Ell’Hakan fight than he actually was. It was thus highly probable they had wanted to make more preparations before Jake visited that they simply didn’t have time to.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,\", \"lastSentence\": \"I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"escort\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jacob, Bertram, the head priest, and seven other official-looking members of the Holy Church were part of Jake’s\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"escort\", \"lastSentence\": \"escort\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,\", \"lastSentence\": \"I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"aliases\": [], \"roleLabels\": [\"bertram\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [\"kindroth\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 52, \"paragraphIndex\": 40, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"You wanted to talk. I came to talk... and take back that which is mine. That which you took from me.\"}, {\"relativeIndex\": -3, \"lineId\": 55, \"paragraphIndex\": 42, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Perhaps we can have this discussion elsewhere in private?\"}, {\"relativeIndex\": -2, \"lineId\": 56, \"paragraphIndex\": 43, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Very well, lead the way to this private discussion,\"}, {\"relativeIndex\": -1, \"lineId\": 60, \"paragraphIndex\": 46, \"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"text\": \"escort\"}, {\"relativeIndex\": 1, \"lineId\": 65, \"paragraphIndex\": 49, \"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"text\": \"Please follow me through the teleporter,\"}, {\"relativeIndex\": 2, \"lineId\": 67, \"paragraphIndex\": 50, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Using a teleporter with an unknown destination seems highly unwise, especially when in territory I do not find particularly friendly,\"}], \"chapterCharacters\": [{\"characterId\": \"protagonist\", \"name\": \"Protagonist\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"arnold\", \"name\": \"Arnold\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"bertram\", \"name\": \"Bertram\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"pulse\", \"name\": \"pulse\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"propose_new_character\",\n  \"characterId\": null,\n  \"characterName\": null,\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"new_role_mentioned\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": {\n    \"name\": \"Head Priest\",\n    \"alias\": \"the head priest\",\n    \"notes\": \"Explicitly identified by role in narration as the speaker, distinct from other named characters present.\"\n  }\n}"
+}

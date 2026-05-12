@@ -1,0 +1,343 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "060ea777b61cafc2543f74a720e83d1542e6082b02b385c2aa2f6a37a27835e8",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\060ea777b61cafc2543f74a720e83d1542e6082b02b385c2aa2f6a37a27835e8.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "next_paragraph_narration_cue",
+          "content_fits_listener_response",
+          "previous_speaker_context",
+          "parser_agreement"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "viper",
+              "the malefic viper",
+              "malefic viper",
+              "villy"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "dad",
+            "name": "Dad",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "name": "Caleb",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "mom",
+            "name": "Mom",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "maja",
+            "name": "Maja",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "adam",
+            "name": "Adam",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Wait, I’m a bit confused...",
+          "lastSentence": "If so, why does this mushroom cave get called one while Yalsten didn’,t if they’re both just separate spaces?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Wait, I’m a bit confused... Yalsten wasn’t at all considered a World Wonder, right? If so, why does this mushroom cave get called one while Yalsten didn’,t if they’re both just separate spaces?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": true,
+              "nearbySpeechVerb": true,
+              "nextDialogueLegacy": "The Malefic Viper",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.54,
+            "misattributionRisk": 0.124,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "The Malefic Viper"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.876
+          },
+          "candidates": [
+            {
+              "characterId": "jake",
+              "confidence": 0.876,
+              "name": "Jake",
+              "reasons": [
+                "parser_match",
+                "legacy_match",
+                "speech_verb"
+              ]
+            },
+            {
+              "characterId": "viper",
+              "confidence": 0.336,
+              "name": "The Malefic Viper",
+              "reasons": [
+                "speech_verb",
+                "question_next_speaker_penalty"
+              ]
+            }
+          ],
+          "currentCharacterAliases": [
+            "Protagonist"
+          ],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 93,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Wait, I’m a bit confused... Yalsten wasn’t at all considered a World Wonder, right? If so, why does this mushroom cave get called one while Yalsten didn’,t if they’re both just separate spaces?"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 93,
+              "text": "Wait, I’m a bit confused... Yalsten wasn’t at all considered a World Wonder, right? If so, why does this mushroom cave get called one while Yalsten didn’,t if they’re both just separate spaces?"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Wait, I’m a bit confused...",
+              "lastSentence": "If so, why does this mushroom cave get called one while Yalsten didn’,t if they’re both just separate spaces?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Wait, I’m a bit confused... Yalsten wasn’t at all considered a World Wonder, right? If so, why does this mushroom cave get called one while Yalsten didn’,t if they’re both just separate spaces?",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Wait, I’m a bit confused... Yalsten wasn’t at all considered a World Wonder, right? If so, why does this mushroom cave get called one while Yalsten didn’,t if they’re both just separate spaces?”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "Jake wondered.",
+          "paragraphIndex": 71,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "Villy explained."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 83,
+            "paragraphIndex": 63,
+            "relativeIndex": -4,
+            "text": "Anyhow, what have you been up to recently?"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 85,
+            "paragraphIndex": 64,
+            "relativeIndex": -3,
+            "text": "Until very recently, I was busy digesting a certain someone. Still not entirely done, and I won’t be for a while, but it’s getting there. With my proper return to the multiverse, I also decided to finally explore some of the places I hadn’t had a chance to visit during my isolation. Not that long ago, I entered a World Wonder called the Mycotic Depths, and from the name alone, I’m sure you would love the place,"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 87,
+            "paragraphIndex": 67,
+            "relativeIndex": -2,
+            "text": "A World Wonder?"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 89,
+            "paragraphIndex": 67,
+            "relativeIndex": -1,
+            "text": "How does that one work? And are you talking to me from inside of it right now?"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 95,
+            "paragraphIndex": 73,
+            "relativeIndex": 1,
+            "text": "In many ways, World Wonders are just extremely useful objects or locations found within the different universes, but what truly makes them World Wonders is the system’s direct involvement. The Mycotic Depths has different caves one can use to enter, bringing you to different areas within, and while it’s all one space inside, they’re still separated. Do you remember that barrier in your Tutorial that cut off the inner section with more powerful monsters? This is a bit like that. Natural barriers result in certain sections being restricted to those below certain power levels. No matter how much I wanted to, I would never be able to enter the section for S-grades, much less C-grades like you. All regulated by the system."
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 96,
+            "paragraphIndex": 74,
+            "relativeIndex": 2,
+            "text": "I see... but it seems like the world isn’t entirely cut off, seeing as you can talk to me,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 93, \"text\": \"Wait, I’m a bit confused... Yalsten wasn’t at all considered a World Wonder, right? If so, why does this mushroom cave get called one while Yalsten didn’,t if they’re both just separate spaces?\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"The Malefic Viper\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.876, \"marginToSecond\": 0.54, \"misattributionRisk\": 0.124, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"The Malefic Viper\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.876, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.336, \"reasons\": [\"speech_verb\", \"question_next_speaker_penalty\"]}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 71, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Wait, I’m a bit confused... Yalsten wasn’t at all considered a World Wonder, right? If so, why does this mushroom cave get called one while Yalsten didn’,t if they’re both just separate spaces?”\", \"currentParagraphDialogue\": [{\"lineId\": 93, \"text\": \"Wait, I’m a bit confused... Yalsten wasn’t at all considered a World Wonder, right? If so, why does this mushroom cave get called one while Yalsten didn’,t if they’re both just separate spaces?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"Villy explained.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Jake wondered.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Wait, I’m a bit confused... Yalsten wasn’t at all considered a World Wonder, right? If so, why does this mushroom cave get called one while Yalsten didn’,t if they’re both just separate spaces?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Wait, I’m a bit confused...\", \"lastSentence\": \"If so, why does this mushroom cave get called one while Yalsten didn’,t if they’re both just separate spaces?\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Wait, I’m a bit confused... Yalsten wasn’t at all considered a World Wonder, right? If so, why does this mushroom cave get called one while Yalsten didn’,t if they’re both just separate spaces?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Wait, I’m a bit confused...\", \"lastSentence\": \"If so, why does this mushroom cave get called one while Yalsten didn’,t if they’re both just separate spaces?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 83, \"paragraphIndex\": 63, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Anyhow, what have you been up to recently?\"}, {\"relativeIndex\": -3, \"lineId\": 85, \"paragraphIndex\": 64, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Until very recently, I was busy digesting a certain someone. Still not entirely done, and I won’t be for a while, but it’s getting there. With my proper return to the multiverse, I also decided to finally explore some of the places I hadn’t had a chance to visit during my isolation. Not that long ago, I entered a World Wonder called the Mycotic Depths, and from the name alone, I’m sure you would love the place,\"}, {\"relativeIndex\": -2, \"lineId\": 87, \"paragraphIndex\": 67, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"A World Wonder?\"}, {\"relativeIndex\": -1, \"lineId\": 89, \"paragraphIndex\": 67, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"How does that one work? And are you talking to me from inside of it right now?\"}, {\"relativeIndex\": 1, \"lineId\": 95, \"paragraphIndex\": 73, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"In many ways, World Wonders are just extremely useful objects or locations found within the different universes, but what truly makes them World Wonders is the system’s direct involvement. The Mycotic Depths has different caves one can use to enter, bringing you to different areas within, and while it’s all one space inside, they’re still separated. Do you remember that barrier in your Tutorial that cut off the inner section with more powerful monsters? This is a bit like that. Natural barriers result in certain sections being restricted to those below certain power levels. No matter how much I wanted to, I would never be able to enter the section for S-grades, much less C-grades like you. All regulated by the system.\"}, {\"relativeIndex\": 2, \"lineId\": 96, \"paragraphIndex\": 74, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"I see... but it seems like the world isn’t entirely cut off, seeing as you can talk to me,\"}], \"chapterCharacters\": [{\"characterId\": \"dad\", \"name\": \"Dad\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"mom\", \"name\": \"Mom\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"maja\", \"name\": \"Maja\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"adam\", \"name\": \"Adam\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"next_paragraph_narration_cue\",\n    \"content_fits_listener_response\",\n    \"previous_speaker_context\",\n    \"parser_agreement\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0021 - Chapter 1078 - Time To Open Up",
+  "currentCharacterId": "jake",
+  "currentCharacterName": "Jake",
+  "currentParagraphText": "“Wait, I’m a bit confused... Yalsten wasn’t at all considered a World Wonder, right? If so, why does this mushroom cave get called one while Yalsten didn’,t if they’re both just separate spaces?”",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "jake",
+    "currentCharacterName": "Jake",
+    "currentParagraphText": "“Wait, I’m a bit confused... Yalsten wasn’t at all considered a World Wonder, right? If so, why does this mushroom cave get called one while Yalsten didn’,t if they’re both just separate spaces?”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 93,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "Jake wondered.",
+    "paragraphIndex": 71,
+    "previousParagraphText": "Villy explained.",
+    "reasonCodes": [
+      "next_paragraph_narration_cue",
+      "content_fits_listener_response",
+      "previous_speaker_context",
+      "parser_agreement"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 93,
+  "nextParagraphText": "Jake wondered.",
+  "paragraphIndex": 71,
+  "previousParagraphText": "Villy explained."
+}

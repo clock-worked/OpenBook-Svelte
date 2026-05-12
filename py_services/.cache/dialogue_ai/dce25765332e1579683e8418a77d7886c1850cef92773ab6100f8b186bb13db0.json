@@ -1,0 +1,315 @@
+{
+  "cacheKey": "dce25765332e1579683e8418a77d7886c1850cef92773ab6100f8b186bb13db0",
+  "createdAt": "2026-04-18T23:59:00.099476+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "artemis",
+    "characterName": "Artemis",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "narrative_flow",
+      "previous_paragraph_context",
+      "next_speaker_response"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "lord thayne",
+          "thayne"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "miranda"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "artemis",
+          "godqueen"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "That took longer than I expected.",
+      "lastSentence": "That took longer than I expected.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "That took longer than I expected.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Artemis",
+        "sourceCandidates": [
+          "Artemis",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Artemis",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 130,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "That took longer than I expected."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 130,
+          "text": "That took longer than I expected."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "That took longer than I expected.",
+          "lastSentence": "That took longer than I expected.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "That took longer than I expected.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“That took longer than I expected.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 131,
+          "text": "Partly my fault, it had been a while since we had a proper check-in, and she also wanted to know what I had been up to,"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake sighed.",
+          "cueVerb": "sighed",
+          "cueVerbType": "speech",
+          "firstSentence": "Partly my fault, it had been a while since we had a proper check-in, and she also wanted to know what I had been up to,",
+          "lastSentence": "Partly my fault, it had been a while since we had a proper check-in, and she also wanted to know what I had been up to,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Partly my fault, it had been a while since we had a proper check-in, and she also wanted to know what I had been up to,",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "nextParagraphText": "“Partly my fault, it had been a while since we had a proper check-in, and she also wanted to know what I had been up to,” Jake sighed.",
+      "paragraphIndex": 58,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Walking into the yard, he saw Artemis sitting on a bench with her eyes closed, meditating or perhaps focusing on an avatar or something to pass the time. When she detected Jake’s presence, she opened her eyes and turned to him."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 122,
+        "paragraphIndex": 54,
+        "relativeIndex": -4,
+        "text": "Sure thing,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 124,
+        "paragraphIndex": 54,
+        "relativeIndex": -3,
+        "text": "So, where were we? Also, you really don’t have any questions regarding me or Artemis?"
+      },
+      {
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "lineId": 125,
+        "paragraphIndex": 55,
+        "relativeIndex": -2,
+        "text": "I don’t, no,"
+      },
+      {
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "lineId": 127,
+        "paragraphIndex": 55,
+        "relativeIndex": -1,
+        "text": "Now, as I said before, Kindroth remains in loose contact with the Holy Church, and they seem to be fully focused on stabilizing their presence in the Andromeda Galaxy with no intent of trying to return to the Milky Way. Of course, we have still found a few smaller organizations scattered across the galaxy who claim to be part of the Holy Church, but none have had Blessings or any proof of their affiliation, making us conclude that their claims are unfounded and their presence not sanctioned by the actual Church. There’s also still..."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 131,
+        "paragraphIndex": 59,
+        "relativeIndex": 1,
+        "text": "Partly my fault, it had been a while since we had a proper check-in, and she also wanted to know what I had been up to,"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 133,
+        "paragraphIndex": 60,
+        "relativeIndex": 2,
+        "text": "That’s reasonable,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 130, \"text\": \"That took longer than I expected.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Artemis\", \"sourceCandidates\": [\"Artemis\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 58, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“That took longer than I expected.”\", \"currentParagraphDialogue\": [{\"lineId\": 130, \"text\": \"That took longer than I expected.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"Walking into the yard, he saw Artemis sitting on a bench with her eyes closed, meditating or perhaps focusing on an avatar or something to pass the time. When she detected Jake’s presence, she opened her eyes and turned to him.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“Partly my fault, it had been a while since we had a proper check-in, and she also wanted to know what I had been up to,” Jake sighed.\", \"nextParagraphDialogue\": [{\"lineId\": 131, \"text\": \"Partly my fault, it had been a while since we had a proper check-in, and she also wanted to know what I had been up to,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"That took longer than I expected.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"That took longer than I expected.\", \"lastSentence\": \"That took longer than I expected.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Partly my fault, it had been a while since we had a proper check-in, and she also wanted to know what I had been up to,\", \"cuePosition\": \"after\", \"cueVerb\": \"sighed\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake sighed.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Partly my fault, it had been a while since we had a proper check-in, and she also wanted to know what I had been up to,\", \"lastSentence\": \"Partly my fault, it had been a while since we had a proper check-in, and she also wanted to know what I had been up to,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"That took longer than I expected.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"That took longer than I expected.\", \"lastSentence\": \"That took longer than I expected.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"aliases\": [], \"roleLabels\": [\"miranda\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [\"artemis\", \"godqueen\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 122, \"paragraphIndex\": 54, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Sure thing,\"}, {\"relativeIndex\": -3, \"lineId\": 124, \"paragraphIndex\": 54, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"So, where were we? Also, you really don’t have any questions regarding me or Artemis?\"}, {\"relativeIndex\": -2, \"lineId\": 125, \"paragraphIndex\": 55, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"I don’t, no,\"}, {\"relativeIndex\": -1, \"lineId\": 127, \"paragraphIndex\": 55, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"Now, as I said before, Kindroth remains in loose contact with the Holy Church, and they seem to be fully focused on stabilizing their presence in the Andromeda Galaxy with no intent of trying to return to the Milky Way. Of course, we have still found a few smaller organizations scattered across the galaxy who claim to be part of the Holy Church, but none have had Blessings or any proof of their affiliation, making us conclude that their claims are unfounded and their presence not sanctioned by the actual Church. There’s also still...\"}, {\"relativeIndex\": 1, \"lineId\": 131, \"paragraphIndex\": 59, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Partly my fault, it had been a while since we had a proper check-in, and she also wanted to know what I had been up to,\"}, {\"relativeIndex\": 2, \"lineId\": 133, \"paragraphIndex\": 60, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"That’s reasonable,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"artemis\",\n  \"characterName\": \"Artemis\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"narrative_flow\",\n    \"previous_paragraph_context\",\n    \"next_speaker_response\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

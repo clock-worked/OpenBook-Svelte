@@ -1,0 +1,351 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "ef6db57c5ca0faaac15143e3e38b2f052c78c746a360e1c32c15c11626d4e459",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\ef6db57c5ca0faaac15143e3e38b2f052c78c746a360e1c32c15c11626d4e459.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "dragonkin",
+        "characterName": "Dragonkin",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration",
+          "plural_speaker",
+          "addressee_not_speaker",
+          "contextual_evidence"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": true
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "dragonkin",
+            "characterName": "Dragonkin",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "dragonkin"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "characterName": "Sylphie",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "sylphie"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "the-first-sage",
+              "the-first-sage-2"
+            ],
+            "characterId": "the-first-sage",
+            "characterName": "the first sage",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "the first sage",
+              "first sage",
+              "the first sage 2",
+              "first sage 2"
+            ],
+            "wasRecentSpeaker": false
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "name": "Sylphie",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "linea",
+            "name": "Linea",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "name": "Minaga",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "name": "The Sword Saint",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "this first group spoke, their words making others aware Jake and company had arrived, making them act in kind as Jake spent the next half a minute just having people greet him. While it was a bit annoying, it did allow Jake to scan what kind of people would go.",
+          "cueVerb": "spoke",
+          "cueVerbType": "speech",
+          "firstSentence": "We greet the Chosen of the Malefic One,",
+          "lastSentence": "We greet the Chosen of the Malefic One,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "We greet the Chosen of the Malefic One,",
+          "speakerNameMatch": null,
+          "speakerSurface": "this first group"
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Sylphie",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.19599999999999995,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "Dragonkin"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.804
+          },
+          "candidates": [
+            {
+              "characterId": "jake",
+              "confidence": 0.804,
+              "name": "Jake",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "dragonkin",
+              "confidence": 0.444,
+              "name": "Dragonkin",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [
+            "Protagonist"
+          ],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 9,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "We greet the Chosen of the Malefic One,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 9,
+              "text": "We greet the Chosen of the Malefic One,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "this first group spoke, their words making others aware Jake and company had arrived, making them act in kind as Jake spent the next half a minute just having people greet him. While it was a bit annoying, it did allow Jake to scan what kind of people would go.",
+              "cueVerb": "spoke",
+              "cueVerbType": "speech",
+              "firstSentence": "We greet the Chosen of the Malefic One,",
+              "lastSentence": "We greet the Chosen of the Malefic One,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "We greet the Chosen of the Malefic One,",
+              "speakerNameMatch": null,
+              "speakerSurface": "this first group"
+            }
+          ],
+          "currentParagraphText": "“We greet the Chosen of the Malefic One,” this first group spoke, their words making others aware Jake and company had arrived, making them act in kind as Jake spent the next half a minute just having people greet him. While it was a bit annoying, it did allow Jake to scan what kind of people would go.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "Jake estimated that about a hundred of the people present were alchemists. They made it kind of easy to figure that out, considering they were all wearing similar robes identifying them as members of the Academy of the Malefic Viper.",
+          "paragraphIndex": 7,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "Around two hundred people would be going this time around, and that didn’t even count the gods. Right as Jake and his friends entered the courtyard, all attention was instantly on them as the nearest people – a group of B- and A-grade dragonkin - lowered their heads."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 2,
+            "paragraphIndex": 0,
+            "relativeIndex": -1,
+            "text": "...Do we really need to bring that guy?"
+          },
+          {
+            "characterId": "sylphie",
+            "characterName": "Sylphie",
+            "lineId": 16,
+            "paragraphIndex": 13,
+            "relativeIndex": 1,
+            "text": "Greetings, everyone. I’m Linea, a relatively new member of the Order, and I’ve been tasked with organizing this expedition to the Pantheon of Life,"
+          },
+          {
+            "characterId": "sylphie",
+            "characterName": "Sylphie",
+            "lineId": 18,
+            "paragraphIndex": 13,
+            "relativeIndex": 2,
+            "text": "I want to first of all clarify that I’m merely the organizer. The true leader of this expedition shall be the Chosen of the Malefic One..."
+          }
+        ],
+        "sceneEntities": [
+          {
+            "matches": [
+              {
+                "characterId": "the-first-sage",
+                "characterName": "the first sage",
+                "evidence": [
+                  "token_overlap:first"
+                ],
+                "score": 0.5667
+              }
+            ],
+            "surface": "this first group"
+          }
+        ]
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 9, \"text\": \"We greet the Chosen of the Malefic One,\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Dragonkin\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Sylphie\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"dragonkin\", \"name\": \"Dragonkin\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 7, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“We greet the Chosen of the Malefic One,” this first group spoke, their words making others aware Jake and company had arrived, making them act in kind as Jake spent the next half a minute just having people greet him. While it was a bit annoying, it did allow Jake to scan what kind of people would go.\", \"currentParagraphDialogue\": [{\"lineId\": 9, \"text\": \"We greet the Chosen of the Malefic One,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"previousParagraphText\": \"Around two hundred people would be going this time around, and that didn’t even count the gods. Right as Jake and his friends entered the courtyard, all attention was instantly on them as the nearest people – a group of B- and A-grade dragonkin - lowered their heads.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Jake estimated that about a hundred of the people present were alchemists. They made it kind of easy to figure that out, considering they were all wearing similar robes identifying them as members of the Academy of the Malefic Viper.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"We greet the Chosen of the Malefic One,\", \"cuePosition\": \"after\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"this first group spoke, their words making others aware Jake and company had arrived, making them act in kind as Jake spent the next half a minute just having people greet him. While it was a bit annoying, it did allow Jake to scan what kind of people would go.\", \"speakerSurface\": \"this first group\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"We greet the Chosen of the Malefic One,\", \"lastSentence\": \"We greet the Chosen of the Malefic One,\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"We greet the Chosen of the Malefic One,\", \"cuePosition\": \"after\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"this first group spoke, their words making others aware Jake and company had arrived, making them act in kind as Jake spent the next half a minute just having people greet him. While it was a bit annoying, it did allow Jake to scan what kind of people would go.\", \"speakerSurface\": \"this first group\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"We greet the Chosen of the Malefic One,\", \"lastSentence\": \"We greet the Chosen of the Malefic One,\"}, \"sceneEntities\": [{\"surface\": \"this first group\", \"matches\": [{\"characterId\": \"the-first-sage\", \"characterName\": \"the first sage\", \"score\": 0.5667, \"evidence\": [\"token_overlap:first\"]}]}], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"dragonkin\", \"characterName\": \"Dragonkin\", \"aliases\": [], \"roleLabels\": [\"dragonkin\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [\"sylphie\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"the-first-sage\", \"characterName\": \"the first sage\", \"aliases\": [\"the-first-sage\", \"the-first-sage-2\"], \"roleLabels\": [\"the first sage\", \"first sage\", \"the first sage 2\", \"first sage 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -1, \"lineId\": 2, \"paragraphIndex\": 0, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"...Do we really need to bring that guy?\"}, {\"relativeIndex\": 1, \"lineId\": 16, \"paragraphIndex\": 13, \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"text\": \"Greetings, everyone. I’m Linea, a relatively new member of the Order, and I’ve been tasked with organizing this expedition to the Pantheon of Life,\"}, {\"relativeIndex\": 2, \"lineId\": 18, \"paragraphIndex\": 13, \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"text\": \"I want to first of all clarify that I’m merely the organizer. The true leader of this expedition shall be the Chosen of the Malefic One...\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"linea\", \"name\": \"Linea\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"dragonkin\",\n  \"characterName\": \"Dragonkin\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration\",\n    \"plural_speaker\",\n    \"addressee_not_speaker\",\n    \"contextual_evidence\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0030 - Chapter 1087 - ...Do we really need to bring that guy ”",
+  "currentCharacterId": "jake",
+  "currentCharacterName": "Jake",
+  "currentParagraphText": "“We greet the Chosen of the Malefic One,” this first group spoke, their words making others aware Jake and company had arrived, making them act in kind as Jake spent the next half a minute just having people greet him. While it was a bit annoying, it did allow Jake to scan what kind of people would go.",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "jake",
+    "currentCharacterName": "Jake",
+    "currentParagraphText": "“We greet the Chosen of the Malefic One,” this first group spoke, their words making others aware Jake and company had arrived, making them act in kind as Jake spent the next half a minute just having people greet him. While it was a bit annoying, it did allow Jake to scan what kind of people would go.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 9,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "Jake estimated that about a hundred of the people present were alchemists. They made it kind of easy to figure that out, considering they were all wearing similar robes identifying them as members of the Academy of the Malefic Viper.",
+    "paragraphIndex": 7,
+    "previousParagraphText": "Around two hundred people would be going this time around, and that didn’t even count the gods. Right as Jake and his friends entered the courtyard, all attention was instantly on them as the nearest people – a group of B- and A-grade dragonkin - lowered their heads.",
+    "reasonCodes": [
+      "explicit_narration",
+      "plural_speaker",
+      "addressee_not_speaker",
+      "contextual_evidence"
+    ],
+    "suggestedCharacterId": "dragonkin",
+    "suggestedCharacterName": "Dragonkin",
+    "toolTrace": []
+  },
+  "lineId": 9,
+  "nextParagraphText": "Jake estimated that about a hundred of the people present were alchemists. They made it kind of easy to figure that out, considering they were all wearing similar robes identifying them as members of the Academy of the Malefic Viper.",
+  "paragraphIndex": 7,
+  "previousParagraphText": "Around two hundred people would be going this time around, and that didn’t even count the gods. Right as Jake and his friends entered the courtyard, all attention was instantly on them as the nearest people – a group of B- and A-grade dragonkin - lowered their heads."
+}

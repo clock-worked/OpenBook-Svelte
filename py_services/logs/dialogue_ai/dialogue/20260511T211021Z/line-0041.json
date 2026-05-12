@@ -1,0 +1,434 @@
+{
+  "alignment": {
+    "confidence": 1.0,
+    "isSpanFallback": false,
+    "method": "quote_unit",
+    "paragraphIndex": 20,
+    "spanDistance": 0.0,
+    "spanParagraphIndex": 20
+  },
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "5c903830bc06a2aac350def393a7f8f5f170680661dd52f9e2f284cfa3807d1c",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\5c903830bc06a2aac350def393a7f8f5f170680661dd52f9e2f284cfa3807d1c.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "eversmile",
+        "characterName": "Eversmile",
+        "confidence": 1.0,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "continues_paragraph_dialogue"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "eversmile",
+            "characterName": "Eversmile",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "eversmile"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist",
+              "lord thayne",
+              "thayne",
+              "void god"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy",
+              "Vilas",
+              "Vilastromoz",
+              "The Viper",
+              "the-viper",
+              "the-viper-2"
+            ],
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "viper",
+              "the malefic viper",
+              "malefic viper",
+              "villy",
+              "vilas",
+              "vilastromoz",
+              "the viper",
+              "the viper 2"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Godqueen"
+            ],
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "artemis",
+              "godqueen"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "viper",
+              "Villy",
+              "Vilas",
+              "Vilastromoz",
+              "The Viper",
+              "the-viper",
+              "the-viper-2"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "eversmile",
+            "name": "Eversmile",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Godqueen"
+            ],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "First Sage"
+            ],
+            "characterId": "the first sage",
+            "name": "The First Sage",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Eversmile shook his head.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "But fine, I won’t pry.",
+          "lastSentence": "I’m just getting the distinct feeling you’re not being entirely truthful with me regarding him.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "But fine, I won’t pry. I’m just getting the distinct feeling you’re not being entirely truthful with me regarding him.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "alignment": {
+            "confidence": 1.0,
+            "isSpanFallback": false,
+            "method": "quote_unit",
+            "paragraphIndex": 20,
+            "spanDistance": 0.0,
+            "spanParagraphIndex": 20
+          },
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": true,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "The Malefic Viper",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.020000000000000018,
+            "misattributionRisk": 0.0,
+            "parserBackend": "legacy",
+            "resolutionStatus": "user_confirmed",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "The Malefic Viper"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 1.0
+          },
+          "candidates": [
+            {
+              "characterId": "eversmile",
+              "confidence": 1.0,
+              "name": "Eversmile",
+              "reasons": null
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.98,
+              "name": "Jake",
+              "reasons": null
+            },
+            {
+              "characterId": "viper",
+              "confidence": 0.456,
+              "name": "The Malefic Viper",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "eversmile",
+          "currentCharacterName": "Eversmile",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 41,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "But fine, I won’t pry. I’m just getting the distinct feeling you’re not being entirely truthful with me regarding him."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 1,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "eversmile",
+              "characterName": "Eversmile",
+              "isReturning": false,
+              "lineId": 39,
+              "text": "Overly-protective as always,"
+            },
+            {
+              "characterId": "eversmile",
+              "characterName": "Eversmile",
+              "isReturning": true,
+              "lineId": 41,
+              "text": "But fine, I won’t pry. I’m just getting the distinct feeling you’re not being entirely truthful with me regarding him."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Overly-protective as always,",
+              "lastSentence": "Overly-protective as always,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Overly-protective as always,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Eversmile shook his head.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "But fine, I won’t pry.",
+              "lastSentence": "I’m just getting the distinct feeling you’re not being entirely truthful with me regarding him.",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "But fine, I won’t pry. I’m just getting the distinct feeling you’re not being entirely truthful with me regarding him.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Overly-protective as always,” Eversmile shook his head. “But fine, I won’t pry. I’m just getting the distinct feeling you’re not being entirely truthful with me regarding him.”",
+          "dialogueLineCount": 2,
+          "paragraphIndex": 20
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 33,
+            "paragraphIndex": 17,
+            "relativeIndex": -4,
+            "text": "He’s been busy doing his thing,"
+          },
+          {
+            "characterId": "eversmile",
+            "characterName": "Eversmile",
+            "lineId": 35,
+            "paragraphIndex": 18,
+            "relativeIndex": -3,
+            "text": "Preparing to hunt down a dragon, I hear,"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 37,
+            "paragraphIndex": 19,
+            "relativeIndex": -2,
+            "text": "Exactly. As I said, he’s busy, and no, I don’t need your help to find a dragon for him to hunt. I already think I’ve found a very good one. You’re free to ask more about him, but unless you want a long speech on alchemy and the struggles of a C-grade successfully crafting bane poisons, I doubt you want to engage in the topic of my Chosen any longer,"
+          },
+          {
+            "characterId": "eversmile",
+            "characterName": "Eversmile",
+            "lineId": 39,
+            "paragraphIndex": 20,
+            "relativeIndex": -1,
+            "text": "Overly-protective as always,"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 42,
+            "paragraphIndex": 21,
+            "relativeIndex": 1,
+            "text": "Oh, I’m not, but that isn’t anything new either,"
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 51,
+            "paragraphIndex": 29,
+            "relativeIndex": 2,
+            "text": "You’re far more experienced in matters like this… have you ever seen a C-grade do something similar?"
+          }
+        ],
+        "sceneEntities": [],
+        "sceneRoster": {
+          "paragraphWindow": 6,
+          "presentCharacterIds": [
+            "viper",
+            "eversmile",
+            "artemis"
+          ],
+          "presentCharacters": [
+            {
+              "characterId": "viper",
+              "characterName": "The Malefic Viper"
+            },
+            {
+              "characterId": "eversmile",
+              "characterName": "Eversmile"
+            },
+            {
+              "characterId": "artemis",
+              "characterName": "Artemis"
+            }
+          ]
+        }
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 41, \"text\": \"But fine, I won’t pry. I’m just getting the distinct feeling you’re not being entirely truthful with me regarding him.\", \"currentCharacterId\": \"eversmile\", \"currentCharacterName\": \"Eversmile\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"user_confirmed\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"The Malefic Viper\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 1.0, \"marginToSecond\": 0.020000000000000018, \"misattributionRisk\": 0.0, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Malefic Viper\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"eversmile\", \"name\": \"Eversmile\", \"confidence\": 1.0, \"reasons\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.98, \"reasons\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true, \"alignment\": {\"paragraphIndex\": 20, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 20, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 20, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Overly-protective as always,” Eversmile shook his head. “But fine, I won’t pry. I’m just getting the distinct feeling you’re not being entirely truthful with me regarding him.”\", \"currentParagraphDialogue\": [{\"lineId\": 39, \"text\": \"Overly-protective as always,\", \"characterId\": \"eversmile\", \"characterName\": \"Eversmile\", \"isReturning\": false}, {\"lineId\": 41, \"text\": \"But fine, I won’t pry. I’m just getting the distinct feeling you’re not being entirely truthful with me regarding him.\", \"characterId\": \"eversmile\", \"characterName\": \"Eversmile\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Overly-protective as always,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Overly-protective as always,\", \"lastSentence\": \"Overly-protective as always,\"}, {\"quoteIndex\": 1, \"quoteText\": \"But fine, I won’t pry. I’m just getting the distinct feeling you’re not being entirely truthful with me regarding him.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Eversmile shook his head.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"But fine, I won’t pry.\", \"lastSentence\": \"I’m just getting the distinct feeling you’re not being entirely truthful with me regarding him.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"But fine, I won’t pry. I’m just getting the distinct feeling you’re not being entirely truthful with me regarding him.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Eversmile shook his head.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"But fine, I won’t pry.\", \"lastSentence\": \"I’m just getting the distinct feeling you’re not being entirely truthful with me regarding him.\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"viper\", \"eversmile\", \"artemis\"], \"presentCharacters\": [{\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\"}, {\"characterId\": \"eversmile\", \"characterName\": \"Eversmile\"}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"eversmile\", \"characterName\": \"Eversmile\", \"aliases\": [], \"roleLabels\": [\"eversmile\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\", \"void god\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\", \"Vilas\", \"Vilastromoz\", \"The Viper\", \"the-viper\", \"the-viper-2\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\", \"vilas\", \"vilastromoz\", \"the viper\", \"the viper 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [\"artemis\", \"godqueen\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 33, \"paragraphIndex\": 17, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"He’s been busy doing his thing,\"}, {\"relativeIndex\": -3, \"lineId\": 35, \"paragraphIndex\": 18, \"characterId\": \"eversmile\", \"characterName\": \"Eversmile\", \"text\": \"Preparing to hunt down a dragon, I hear,\"}, {\"relativeIndex\": -2, \"lineId\": 37, \"paragraphIndex\": 19, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Exactly. As I said, he’s busy, and no, I don’t need your help to find a dragon for him to hunt. I already think I’ve found a very good one. You’re free to ask more about him, but unless you want a long speech on alchemy and the struggles of a C-grade successfully crafting bane poisons, I doubt you want to engage in the topic of my Chosen any longer,\"}, {\"relativeIndex\": -1, \"lineId\": 39, \"paragraphIndex\": 20, \"characterId\": \"eversmile\", \"characterName\": \"Eversmile\", \"text\": \"Overly-protective as always,\"}, {\"relativeIndex\": 1, \"lineId\": 42, \"paragraphIndex\": 21, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Oh, I’m not, but that isn’t anything new either,\"}, {\"relativeIndex\": 2, \"lineId\": 51, \"paragraphIndex\": 29, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"You’re far more experienced in matters like this… have you ever seen a C-grade do something similar?\"}], \"chapterCharacters\": [{\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\", \"Vilas\", \"Vilastromoz\", \"The Viper\", \"the-viper\", \"the-viper-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"eversmile\", \"name\": \"Eversmile\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the first sage\", \"name\": \"The First Sage\", \"aliases\": [\"First Sage\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"eversmile\",\n  \"characterName\": \"Eversmile\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"continues_paragraph_dialogue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0161 - Chapter 1218 - A March Through Nothingness\\dialogue.json",
+  "currentCharacterId": "eversmile",
+  "currentCharacterName": "Eversmile",
+  "currentParagraphText": "“Overly-protective as always,” Eversmile shook his head. “But fine, I won’t pry. I’m just getting the distinct feeling you’re not being entirely truthful with me regarding him.”",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 1.0,
+    "currentCharacterId": "eversmile",
+    "currentCharacterName": "Eversmile",
+    "currentParagraphText": "“Overly-protective as always,” Eversmile shook his head. “But fine, I won’t pry. I’m just getting the distinct feeling you’re not being entirely truthful with me regarding him.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 41,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Oh, I’m not, but that isn’t anything new either,” Vilas shrugged. It was a bit annoying that he couldn’t be too much of an ass to Eversmile, considering he still needed the Primordial’s assistance, but that didn’t mean he couldn’t tease his peer at least a little. Besides, he knew Eversmile found Jake interesting, which was both a curse and a boon, and no matter what, he wouldn’t want some unknown faction to ruin his object of intrigue.",
+    "paragraphIndex": 20,
+    "previousParagraphText": "“Exactly. As I said, he’s busy, and no, I don’t need your help to find a dragon for him to hunt. I already think I’ve found a very good one. You’re free to ask more about him, but unless you want a long speech on alchemy and the struggles of a C-grade successfully crafting bane poisons, I doubt you want to engage in the topic of my Chosen any longer,” the Viper shut down that line of conversation.",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "continues_paragraph_dialogue"
+    ],
+    "suggestedCharacterId": "eversmile",
+    "suggestedCharacterName": "Eversmile",
+    "toolTrace": []
+  },
+  "lineId": 41,
+  "nextParagraphText": "“Oh, I’m not, but that isn’t anything new either,” Vilas shrugged. It was a bit annoying that he couldn’t be too much of an ass to Eversmile, considering he still needed the Primordial’s assistance, but that didn’t mean he couldn’t tease his peer at least a little. Besides, he knew Eversmile found Jake interesting, which was both a curse and a boon, and no matter what, he wouldn’t want some unknown faction to ruin his object of intrigue.",
+  "paragraphIndex": 20,
+  "previousParagraphText": "“Exactly. As I said, he’s busy, and no, I don’t need your help to find a dragon for him to hunt. I already think I’ve found a very good one. You’re free to ask more about him, but unless you want a long speech on alchemy and the struggles of a C-grade successfully crafting bane poisons, I doubt you want to engage in the topic of my Chosen any longer,” the Viper shut down that line of conversation.",
+  "sceneRoster": {
+    "paragraphWindow": 6,
+    "presentCharacterIds": [
+      "viper",
+      "eversmile",
+      "artemis"
+    ],
+    "presentCharacters": [
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper"
+      },
+      {
+        "characterId": "eversmile",
+        "characterName": "Eversmile"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis"
+      }
+    ]
+  }
+}

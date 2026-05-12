@@ -1,0 +1,359 @@
+{
+  "alignment": {
+    "confidence": 1.0,
+    "isSpanFallback": false,
+    "method": "quote_unit",
+    "paragraphIndex": 15,
+    "spanDistance": 0.0,
+    "spanParagraphIndex": 15
+  },
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "058a98be136010d4fa9463f8d098f96b2f21930dfd776c57e367c0de6b821ed2",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\058a98be136010d4fa9463f8d098f96b2f21930dfd776c57e367c0de6b821ed2.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "propose_new_character",
+        "aliasToAdd": null,
+        "characterId": null,
+        "characterName": "The Dealer",
+        "confidence": 0.95,
+        "newCharacterProposal": {
+          "alias": "dealer",
+          "name": "The Dealer",
+          "notes": "Female casino dealer."
+        },
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "gender_mismatch_with_current_attribution",
+          "role_not_resolved_to_existing_character"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": false,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "unknown-human-male",
+            "name": "Unknown Human (Male)",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Yrel"
+            ],
+            "characterId": "yrelstromoz",
+            "name": "Yrelstromoz",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "having",
+            "name": "having",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Attendant",
+              "natures-attendant",
+              "natures-attendant-2",
+              "Nature Attendant",
+              "Life"
+            ],
+            "characterId": "natures-attendant",
+            "name": "Nature's Attendant",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the dealer answered with a smile as she dealt the cards. Based on that brief interaction and the way he handled his cards, she already suspected this human was new to these kinds of places.",
+          "cueVerb": "answered",
+          "cueVerbType": "speech",
+          "firstSentence": "I can only wish the gentleman luck,",
+          "lastSentence": "I can only wish the gentleman luck,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I can only wish the gentleman luck,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the dealer"
+        },
+        "line": {
+          "alignment": {
+            "confidence": 1.0,
+            "isSpanFallback": false,
+            "method": "quote_unit",
+            "paragraphIndex": 15,
+            "spanDistance": 0.0,
+            "spanParagraphIndex": 15
+          },
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": true,
+              "nextDialogueLegacy": "Yrelstromoz",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.136,
+            "misattributionRisk": 0.0,
+            "parserBackend": "legacy",
+            "resolutionStatus": "user_confirmed",
+            "sourceAlias": "Yrelstromoz",
+            "sourceCandidates": [
+              "Yrelstromoz",
+              "having"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 1.0
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 1.0,
+              "name": "Unknown Human (Male)",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.864,
+              "name": "Yrelstromoz",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.504,
+              "name": "having",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown_human_(male)",
+          "currentCharacterName": "Unknown Human (Male)",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 17,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "I can only wish the gentleman luck,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown_human_(male)",
+              "characterName": "Unknown Human (Male)",
+              "isReturning": false,
+              "lineId": 17,
+              "text": "I can only wish the gentleman luck,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the dealer answered with a smile as she dealt the cards. Based on that brief interaction and the way he handled his cards, she already suspected this human was new to these kinds of places.",
+              "cueVerb": "answered",
+              "cueVerbType": "speech",
+              "firstSentence": "I can only wish the gentleman luck,",
+              "lastSentence": "I can only wish the gentleman luck,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "I can only wish the gentleman luck,",
+              "speakerNameMatch": null,
+              "speakerSurface": "the dealer"
+            }
+          ],
+          "currentParagraphText": "“I can only wish the gentleman luck,” the dealer answered with a smile as she dealt the cards. Based on that brief interaction and the way he handled his cards, she already suspected this human was new to these kinds of places.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Perhaps he was one of the people who believed it possible to fool the house without throwing out the rules entirely. Sadly for him, there was no way around the system skills that allowed the dealers and casino operators to ensure cheating was impossible, even if a god had been sitting at the table. Only the ones who were dealt the cards could see what they had, and the cards would only be",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "revealed",
+              "lastSentence": "revealed",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "revealed",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "nextParagraphText": "Perhaps he was one of the people who believed it possible to fool the house without throwing out the rules entirely. Sadly for him, there was no way around the system skills that allowed the dealers and casino operators to ensure cheating was impossible, even if a god had been sitting at the table. Only the ones who were dealt the cards could see what they had, and the cards would only be “revealed” once actually dealt. Counting cards could help, but usually they used infinitely generating decks and mostly true random card dealing, making it effectively impossible.",
+          "paragraphIndex": 15,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "unknown_human_(male)",
+              "characterName": "Unknown Human (Male)",
+              "isReturning": true,
+              "lineId": 16,
+              "text": "Let’s hope the heart of the cards is in my favor today. I’m feeling fairly lucky."
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "A man walked over and sat right next to her, not even throwing her a glance initially. He put down a hefty stack of chips and looked at the dealer.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Let’s hope the heart of the cards is in my favor today.",
+              "lastSentence": "I’m feeling fairly lucky.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Let’s hope the heart of the cards is in my favor today. I’m feeling fairly lucky.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "previousParagraphText": "A man walked over and sat right next to her, not even throwing her a glance initially. He put down a hefty stack of chips and looked at the dealer. “Let’s hope the heart of the cards is in my favor today. I’m feeling fairly lucky.”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "unknown_human_(male)",
+            "characterName": "Unknown Human (Male)",
+            "lineId": 16,
+            "paragraphIndex": 14,
+            "relativeIndex": -1,
+            "text": "Let’s hope the heart of the cards is in my favor today. I’m feeling fairly lucky."
+          },
+          {
+            "characterId": "unknown_human_(male)",
+            "characterName": "Unknown Human (Male)",
+            "lineId": 23,
+            "paragraphIndex": 18,
+            "relativeIndex": 1,
+            "text": "I guess I am really lucky today!"
+          },
+          {
+            "characterId": "unknown_human_(male)",
+            "characterName": "Unknown Human (Male)",
+            "lineId": 28,
+            "paragraphIndex": 21,
+            "relativeIndex": 2,
+            "text": "Is the lady not playing?"
+          }
+        ],
+        "sceneEntities": [],
+        "sceneRoster": {
+          "paragraphWindow": 6,
+          "presentCharacterIds": [
+            "unknown_human_(male)"
+          ],
+          "presentCharacters": [
+            {
+              "characterId": "unknown_human_(male)",
+              "characterName": "Unknown Human (Male)"
+            }
+          ]
+        }
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 17, \"text\": \"I can only wish the gentleman luck,\", \"currentCharacterId\": \"unknown_human_(male)\", \"currentCharacterName\": \"Unknown Human (Male)\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"user_confirmed\", \"sourceAlias\": \"Yrelstromoz\", \"sourceCandidates\": [\"Yrelstromoz\", \"having\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 1.0, \"marginToSecond\": 0.136, \"misattributionRisk\": 0.0, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Yrelstromoz\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Unknown Human (Male)\", \"confidence\": 1.0, \"reasons\": null}, {\"characterId\": null, \"name\": \"Yrelstromoz\", \"confidence\": 0.864, \"reasons\": null}, {\"characterId\": null, \"name\": \"having\", \"confidence\": 0.504, \"reasons\": null}], \"isReturning\": false, \"alignment\": {\"paragraphIndex\": 15, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 15, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 15, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I can only wish the gentleman luck,” the dealer answered with a smile as she dealt the cards. Based on that brief interaction and the way he handled his cards, she already suspected this human was new to these kinds of places.\", \"currentParagraphDialogue\": [{\"lineId\": 17, \"text\": \"I can only wish the gentleman luck,\", \"characterId\": \"unknown_human_(male)\", \"characterName\": \"Unknown Human (Male)\", \"isReturning\": false}], \"previousParagraphText\": \"A man walked over and sat right next to her, not even throwing her a glance initially. He put down a hefty stack of chips and looked at the dealer. “Let’s hope the heart of the cards is in my favor today. I’m feeling fairly lucky.”\", \"previousParagraphDialogue\": [{\"lineId\": 16, \"text\": \"Let’s hope the heart of the cards is in my favor today. I’m feeling fairly lucky.\", \"characterId\": \"unknown_human_(male)\", \"characterName\": \"Unknown Human (Male)\", \"isReturning\": true}], \"nextParagraphText\": \"Perhaps he was one of the people who believed it possible to fool the house without throwing out the rules entirely. Sadly for him, there was no way around the system skills that allowed the dealers and casino operators to ensure cheating was impossible, even if a god had been sitting at the table. Only the ones who were dealt the cards could see what they had, and the cards would only be “revealed” once actually dealt. Counting cards could help, but usually they used infinitely generating decks and mostly true random card dealing, making it effectively impossible.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I can only wish the gentleman luck,\", \"cuePosition\": \"after\", \"cueVerb\": \"answered\", \"cueVerbType\": \"speech\", \"cueText\": \"the dealer answered with a smile as she dealt the cards. Based on that brief interaction and the way he handled his cards, she already suspected this human was new to these kinds of places.\", \"speakerSurface\": \"the dealer\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I can only wish the gentleman luck,\", \"lastSentence\": \"I can only wish the gentleman luck,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Let’s hope the heart of the cards is in my favor today. I’m feeling fairly lucky.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"A man walked over and sat right next to her, not even throwing her a glance initially. He put down a hefty stack of chips and looked at the dealer.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Let’s hope the heart of the cards is in my favor today.\", \"lastSentence\": \"I’m feeling fairly lucky.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"revealed\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Perhaps he was one of the people who believed it possible to fool the house without throwing out the rules entirely. Sadly for him, there was no way around the system skills that allowed the dealers and casino operators to ensure cheating was impossible, even if a god had been sitting at the table. Only the ones who were dealt the cards could see what they had, and the cards would only be\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"revealed\", \"lastSentence\": \"revealed\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I can only wish the gentleman luck,\", \"cuePosition\": \"after\", \"cueVerb\": \"answered\", \"cueVerbType\": \"speech\", \"cueText\": \"the dealer answered with a smile as she dealt the cards. Based on that brief interaction and the way he handled his cards, she already suspected this human was new to these kinds of places.\", \"speakerSurface\": \"the dealer\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I can only wish the gentleman luck,\", \"lastSentence\": \"I can only wish the gentleman luck,\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"unknown_human_(male)\"], \"presentCharacters\": [{\"characterId\": \"unknown_human_(male)\", \"characterName\": \"Unknown Human (Male)\"}]}, \"sceneEntities\": [], \"candidateCards\": [], \"recentTurnHistory\": [{\"relativeIndex\": -1, \"lineId\": 16, \"paragraphIndex\": 14, \"characterId\": \"unknown_human_(male)\", \"characterName\": \"Unknown Human (Male)\", \"text\": \"Let’s hope the heart of the cards is in my favor today. I’m feeling fairly lucky.\"}, {\"relativeIndex\": 1, \"lineId\": 23, \"paragraphIndex\": 18, \"characterId\": \"unknown_human_(male)\", \"characterName\": \"Unknown Human (Male)\", \"text\": \"I guess I am really lucky today!\"}, {\"relativeIndex\": 2, \"lineId\": 28, \"paragraphIndex\": 21, \"characterId\": \"unknown_human_(male)\", \"characterName\": \"Unknown Human (Male)\", \"text\": \"Is the lady not playing?\"}], \"chapterCharacters\": [{\"characterId\": \"unknown-human-male\", \"name\": \"Unknown Human (Male)\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"yrelstromoz\", \"name\": \"Yrelstromoz\", \"aliases\": [\"Yrel\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"having\", \"name\": \"having\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"natures-attendant\", \"name\": \"Nature's Attendant\", \"aliases\": [\"Attendant\", \"natures-attendant\", \"natures-attendant-2\", \"Nature Attendant\", \"Life\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": false, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"propose_new_character\",\n  \"characterId\": null,\n  \"characterName\": \"The Dealer\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"gender_mismatch_with_current_attribution\",\n    \"role_not_resolved_to_existing_character\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": {\n    \"name\": \"The Dealer\",\n    \"alias\": \"dealer\",\n    \"notes\": \"Female casino dealer.\"\n  }\n}"
+    }
+  ],
+  "chapterPath": "0173 - Chapter 1230 - A Lucky Man/chapter.txt",
+  "currentCharacterId": "unknown_human_(male)",
+  "currentCharacterName": "Unknown Human (Male)",
+  "currentParagraphText": "“I can only wish the gentleman luck,” the dealer answered with a smile as she dealt the cards. Based on that brief interaction and the way he handled his cards, she already suspected this human was new to these kinds of places.",
+  "finalResult": {
+    "action": "propose_new_character",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "unknown_human_(male)",
+    "currentCharacterName": "Unknown Human (Male)",
+    "currentParagraphText": "“I can only wish the gentleman luck,” the dealer answered with a smile as she dealt the cards. Based on that brief interaction and the way he handled his cards, she already suspected this human was new to these kinds of places.",
+    "disposition": "new_character_approval",
+    "error": null,
+    "lineId": 17,
+    "logPath": null,
+    "newCharacterProposal": {
+      "alias": "dealer",
+      "name": "The Dealer",
+      "notes": "Female casino dealer."
+    },
+    "nextParagraphText": "Perhaps he was one of the people who believed it possible to fool the house without throwing out the rules entirely. Sadly for him, there was no way around the system skills that allowed the dealers and casino operators to ensure cheating was impossible, even if a god had been sitting at the table. Only the ones who were dealt the cards could see what they had, and the cards would only be “revealed” once actually dealt. Counting cards could help, but usually they used infinitely generating decks and mostly true random card dealing, making it effectively impossible.",
+    "paragraphIndex": 15,
+    "previousParagraphText": "A man walked over and sat right next to her, not even throwing her a glance initially. He put down a hefty stack of chips and looked at the dealer. “Let’s hope the heart of the cards is in my favor today. I’m feeling fairly lucky.”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "gender_mismatch_with_current_attribution",
+      "role_not_resolved_to_existing_character"
+    ],
+    "suggestedCharacterId": "unknown-human-male",
+    "suggestedCharacterName": "Unknown Human (Male)",
+    "toolTrace": []
+  },
+  "lineId": 17,
+  "nextParagraphText": "Perhaps he was one of the people who believed it possible to fool the house without throwing out the rules entirely. Sadly for him, there was no way around the system skills that allowed the dealers and casino operators to ensure cheating was impossible, even if a god had been sitting at the table. Only the ones who were dealt the cards could see what they had, and the cards would only be “revealed” once actually dealt. Counting cards could help, but usually they used infinitely generating decks and mostly true random card dealing, making it effectively impossible.",
+  "paragraphIndex": 15,
+  "previousParagraphText": "A man walked over and sat right next to her, not even throwing her a glance initially. He put down a hefty stack of chips and looked at the dealer. “Let’s hope the heart of the cards is in my favor today. I’m feeling fairly lucky.”",
+  "sceneRoster": {
+    "paragraphWindow": 6,
+    "presentCharacterIds": [
+      "unknown_human_(male)"
+    ],
+    "presentCharacters": [
+      {
+        "characterId": "unknown_human_(male)",
+        "characterName": "Unknown Human (Male)"
+      }
+    ]
+  }
+}

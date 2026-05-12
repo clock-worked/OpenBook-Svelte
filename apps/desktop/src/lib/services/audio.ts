@@ -454,6 +454,14 @@ export async function generateAudioForCharacter(
         id: Number(line.id),
         text: String((line as any)?.text ?? ''),
         characterId: (line as any)?.characterId ? String((line as any).characterId) : undefined,
+        characterName:
+          typeof (line as any)?.characterName === 'string' && String((line as any).characterName).trim()
+            ? String((line as any).characterName).trim()
+            : typeof (line as any)?.__queueCharacterName === 'string' && String((line as any).__queueCharacterName).trim()
+              ? String((line as any).__queueCharacterName).trim()
+              : typeof (line as any)?.chosenSpeaker === 'string' && String((line as any).chosenSpeaker).trim()
+                ? String((line as any).chosenSpeaker).trim()
+                : undefined,
         chosenSpeaker: (line as any)?.chosenSpeaker ? String((line as any).chosenSpeaker) : undefined,
         chapterTitle:
           typeof (line as any)?.chapterTitle === 'string' && String((line as any).chapterTitle).trim()
@@ -530,8 +538,29 @@ export async function generateAudioForCharacter(
       affectedChapters.add(chapterTitle);
     }
 
+    const affectedCharacterNames = new Set<string>();
+    for (const line of lines) {
+      const lineCharacterName =
+        (typeof (line as any)?.characterName === 'string' && String((line as any).characterName).trim())
+          ? String((line as any).characterName).trim()
+          : (typeof (line as any)?.__queueCharacterName === 'string' && String((line as any).__queueCharacterName).trim())
+            ? String((line as any).__queueCharacterName).trim()
+            : (typeof (line as any)?.chosenSpeaker === 'string' && String((line as any).chosenSpeaker).trim())
+              ? String((line as any).chosenSpeaker).trim()
+              : '';
+      if (lineCharacterName) {
+        affectedCharacterNames.add(lineCharacterName);
+      }
+    }
+
+    if (affectedCharacterNames.size === 0) {
+      affectedCharacterNames.add(characterName);
+    }
+
     for (const affectedChapter of affectedChapters) {
-      invalidateManifestCache(affectedChapter, characterName);
+      for (const affectedCharacterName of affectedCharacterNames) {
+        invalidateManifestCache(affectedChapter, affectedCharacterName);
+      }
     }
 
     const generatedCount = Number(data.generatedCount || 0);

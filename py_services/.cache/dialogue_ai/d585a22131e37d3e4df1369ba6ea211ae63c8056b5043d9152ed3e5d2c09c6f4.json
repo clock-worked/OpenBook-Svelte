@@ -1,0 +1,417 @@
+{
+  "cacheKey": "d585a22131e37d3e4df1369ba6ea211ae63c8056b5043d9152ed3e5d2c09c6f4",
+  "createdAt": "2026-05-11T23:19:18.072583+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "casper",
+    "characterName": "Casper",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_context"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Unique Lifeform",
+          "The Unique Lifeform",
+          "the-unique-lifeform",
+          "the-unique-lifeform-2"
+        ],
+        "characterId": "minaga",
+        "characterName": "Minaga",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "minaga",
+          "unique lifeform",
+          "the unique lifeform",
+          "the unique lifeform 2",
+          "unique lifeform 2"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "casper",
+        "characterName": "Casper",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "casper"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "risen",
+        "characterName": "risen",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "risen"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God",
+          "Unknown Human (Male)"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Attendant",
+          "natures-attendant",
+          "natures-attendant-2",
+          "Nature Attendant",
+          "Life"
+        ],
+        "characterId": "natures-attendant",
+        "name": "Nature's Attendant",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Unique Lifeform",
+          "The Unique Lifeform",
+          "the-unique-lifeform",
+          "the-unique-lifeform-2"
+        ],
+        "characterId": "minaga",
+        "name": "Minaga",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "casper",
+        "name": "Casper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "risen",
+        "name": "risen",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Casper, back to ignoring Minaga, looked at Jake.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "So, who is the mystery woman who managed to lock down the Chosen of the Malefic Viper?",
+      "lastSentence": "So, who is the mystery woman who managed to lock down the Chosen of the Malefic Viper?",
+      "mentionedEntities": [
+        "The Malefic Viper",
+        "chosen"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "So, who is the mystery woman who managed to lock down the Chosen of the Malefic Viper?",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "alignment": {
+        "confidence": 1.0,
+        "isSpanFallback": false,
+        "method": "quote_unit",
+        "paragraphIndex": 24,
+        "spanDistance": 0.0,
+        "spanParagraphIndex": 24
+      },
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "The Malefic Viper",
+            "chosen"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": true,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Minaga",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.18,
+        "misattributionRisk": 0.5007999999999999,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Minaga",
+        "sourceCandidates": [
+          "Minaga",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.636
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.636,
+          "name": "Minaga",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 48,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "So, who is the mystery woman who managed to lock down the Chosen of the Malefic Viper?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 48,
+          "text": "So, who is the mystery woman who managed to lock down the Chosen of the Malefic Viper?"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Casper, back to ignoring Minaga, looked at Jake.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "So, who is the mystery woman who managed to lock down the Chosen of the Malefic Viper?",
+          "lastSentence": "So, who is the mystery woman who managed to lock down the Chosen of the Malefic Viper?",
+          "mentionedEntities": [
+            "The Malefic Viper",
+            "chosen"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "So, who is the mystery woman who managed to lock down the Chosen of the Malefic Viper?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Casper, back to ignoring Minaga, looked at Jake. “So, who is the mystery woman who managed to lock down the Chosen of the Malefic Viper?”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 50,
+          "text": "Artemis."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Seeing no reason to beat around the bush, Jake just answered.",
+          "cueVerb": "answered",
+          "cueVerbType": "speech",
+          "firstSentence": "Artemis.",
+          "lastSentence": "Artemis.",
+          "mentionedEntities": [
+            "Artemis"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Artemis.",
+          "speakerNameMatch": null,
+          "speakerSurface": "Seeing"
+        }
+      ],
+      "nextParagraphText": "Seeing no reason to beat around the bush, Jake just answered. “Artemis.”",
+      "paragraphIndex": 24,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "minaga",
+          "characterName": "Minaga",
+          "isReturning": false,
+          "lineId": 45,
+          "text": "I know, discrimination is truly rampant in the multiverse, and I truly understand the struggles of the Risen, having gone through the same myself,"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Minaga continued as he tried to put a hand on Casper’s shoulder, only for it to phase straight through, seeing as he was merely a projection capable of producing sound.",
+          "cueVerb": "continued",
+          "cueVerbType": "speech",
+          "firstSentence": "I know, discrimination is truly rampant in the multiverse, and I truly understand the struggles of the Risen, having gone through the same myself,",
+          "lastSentence": "I know, discrimination is truly rampant in the multiverse, and I truly understand the struggles of the Risen, having gone through the same myself,",
+          "mentionedEntities": [
+            "risen",
+            "having",
+            "risen"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "I know, discrimination is truly rampant in the multiverse, and I truly understand the struggles of the Risen, having gone through the same myself,",
+          "speakerNameMatch": "Minaga",
+          "speakerSurface": "Minaga"
+        }
+      ],
+      "previousParagraphText": "“I know, discrimination is truly rampant in the multiverse, and I truly understand the struggles of the Risen, having gone through the same myself,” Minaga continued as he tried to put a hand on Casper’s shoulder, only for it to phase straight through, seeing as he was merely a projection capable of producing sound."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "minaga",
+        "characterName": "Minaga",
+        "lineId": 40,
+        "paragraphIndex": 21,
+        "relativeIndex": -4,
+        "text": "Ah, the life of the most eligible bachelor,"
+      },
+      {
+        "characterId": "minaga",
+        "characterName": "Minaga",
+        "lineId": 42,
+        "paragraphIndex": 21,
+        "relativeIndex": -3,
+        "text": "It’s almost unfair… despite all I’ve achieved, not once in my life have I experienced being sought after by so many."
+      },
+      {
+        "characterId": "casper",
+        "characterName": "Casper",
+        "lineId": 43,
+        "paragraphIndex": 22,
+        "relativeIndex": -2,
+        "text": "Because you’re a Unique Lifeform,"
+      },
+      {
+        "characterId": "minaga",
+        "characterName": "Minaga",
+        "lineId": 45,
+        "paragraphIndex": 23,
+        "relativeIndex": -1,
+        "text": "I know, discrimination is truly rampant in the multiverse, and I truly understand the struggles of the Risen, having gone through the same myself,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 50,
+        "paragraphIndex": 25,
+        "relativeIndex": 1,
+        "text": "Artemis."
+      },
+      {
+        "characterId": "risen",
+        "characterName": "risen",
+        "lineId": 52,
+        "paragraphIndex": 26,
+        "relativeIndex": 2,
+        "text": "You said that as if I’m supposed to know who that is. I reckon there are a lot with that name in the multiverse. Shit, isn’t there even a god with that name?"
+      }
+    ],
+    "sceneEntities": [],
+    "sceneRoster": {
+      "paragraphWindow": 6,
+      "presentCharacterIds": [
+        "minaga",
+        "jake",
+        "casper",
+        "unknown",
+        "risen"
+      ],
+      "presentCharacters": [
+        {
+          "characterId": "minaga",
+          "characterName": "Minaga"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake"
+        },
+        {
+          "characterId": "casper",
+          "characterName": "Casper"
+        },
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown"
+        },
+        {
+          "characterId": "risen",
+          "characterName": "risen"
+        }
+      ]
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 48, \"text\": \"So, who is the mystery woman who managed to lock down the Chosen of the Malefic Viper?\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Minaga\", \"sourceCandidates\": [\"Minaga\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.636, \"marginToSecond\": 0.18, \"misattributionRisk\": 0.5007999999999999, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"The Malefic Viper\", \"chosen\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Minaga\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Minaga\", \"confidence\": 0.636, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true, \"alignment\": {\"paragraphIndex\": 24, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 24, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 24, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Casper, back to ignoring Minaga, looked at Jake. “So, who is the mystery woman who managed to lock down the Chosen of the Malefic Viper?”\", \"currentParagraphDialogue\": [{\"lineId\": 48, \"text\": \"So, who is the mystery woman who managed to lock down the Chosen of the Malefic Viper?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“I know, discrimination is truly rampant in the multiverse, and I truly understand the struggles of the Risen, having gone through the same myself,” Minaga continued as he tried to put a hand on Casper’s shoulder, only for it to phase straight through, seeing as he was merely a projection capable of producing sound.\", \"previousParagraphDialogue\": [{\"lineId\": 45, \"text\": \"I know, discrimination is truly rampant in the multiverse, and I truly understand the struggles of the Risen, having gone through the same myself,\", \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"isReturning\": false}], \"nextParagraphText\": \"Seeing no reason to beat around the bush, Jake just answered. “Artemis.”\", \"nextParagraphDialogue\": [{\"lineId\": 50, \"text\": \"Artemis.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"So, who is the mystery woman who managed to lock down the Chosen of the Malefic Viper?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Casper, back to ignoring Minaga, looked at Jake.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"The Malefic Viper\", \"chosen\"], \"addressedEntity\": null, \"firstSentence\": \"So, who is the mystery woman who managed to lock down the Chosen of the Malefic Viper?\", \"lastSentence\": \"So, who is the mystery woman who managed to lock down the Chosen of the Malefic Viper?\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I know, discrimination is truly rampant in the multiverse, and I truly understand the struggles of the Risen, having gone through the same myself,\", \"cuePosition\": \"after\", \"cueVerb\": \"continued\", \"cueVerbType\": \"speech\", \"cueText\": \"Minaga continued as he tried to put a hand on Casper’s shoulder, only for it to phase straight through, seeing as he was merely a projection capable of producing sound.\", \"speakerSurface\": \"Minaga\", \"speakerNameMatch\": \"Minaga\", \"mentionedEntities\": [\"risen\", \"having\", \"risen\"], \"addressedEntity\": null, \"firstSentence\": \"I know, discrimination is truly rampant in the multiverse, and I truly understand the struggles of the Risen, having gone through the same myself,\", \"lastSentence\": \"I know, discrimination is truly rampant in the multiverse, and I truly understand the struggles of the Risen, having gone through the same myself,\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Artemis.\", \"cuePosition\": \"before\", \"cueVerb\": \"answered\", \"cueVerbType\": \"speech\", \"cueText\": \"Seeing no reason to beat around the bush, Jake just answered.\", \"speakerSurface\": \"Seeing\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"Artemis\"], \"addressedEntity\": null, \"firstSentence\": \"Artemis.\", \"lastSentence\": \"Artemis.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"So, who is the mystery woman who managed to lock down the Chosen of the Malefic Viper?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Casper, back to ignoring Minaga, looked at Jake.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"The Malefic Viper\", \"chosen\"], \"addressedEntity\": null, \"firstSentence\": \"So, who is the mystery woman who managed to lock down the Chosen of the Malefic Viper?\", \"lastSentence\": \"So, who is the mystery woman who managed to lock down the Chosen of the Malefic Viper?\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"minaga\", \"jake\", \"casper\", \"unknown\", \"risen\"], \"presentCharacters\": [{\"characterId\": \"minaga\", \"characterName\": \"Minaga\"}, {\"characterId\": \"jake\", \"characterName\": \"Jake\"}, {\"characterId\": \"casper\", \"characterName\": \"Casper\"}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}, {\"characterId\": \"risen\", \"characterName\": \"risen\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [\"minaga\", \"unique lifeform\", \"the unique lifeform\", \"the unique lifeform 2\", \"unique lifeform 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"casper\", \"characterName\": \"Casper\", \"aliases\": [], \"roleLabels\": [\"casper\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"risen\", \"characterName\": \"risen\", \"aliases\": [], \"roleLabels\": [\"risen\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 40, \"paragraphIndex\": 21, \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"text\": \"Ah, the life of the most eligible bachelor,\"}, {\"relativeIndex\": -3, \"lineId\": 42, \"paragraphIndex\": 21, \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"text\": \"It’s almost unfair… despite all I’ve achieved, not once in my life have I experienced being sought after by so many.\"}, {\"relativeIndex\": -2, \"lineId\": 43, \"paragraphIndex\": 22, \"characterId\": \"casper\", \"characterName\": \"Casper\", \"text\": \"Because you’re a Unique Lifeform,\"}, {\"relativeIndex\": -1, \"lineId\": 45, \"paragraphIndex\": 23, \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"text\": \"I know, discrimination is truly rampant in the multiverse, and I truly understand the struggles of the Risen, having gone through the same myself,\"}, {\"relativeIndex\": 1, \"lineId\": 50, \"paragraphIndex\": 25, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Artemis.\"}, {\"relativeIndex\": 2, \"lineId\": 52, \"paragraphIndex\": 26, \"characterId\": \"risen\", \"characterName\": \"risen\", \"text\": \"You said that as if I’m supposed to know who that is. I reckon there are a lot with that name in the multiverse. Shit, isn’t there even a god with that name?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"natures-attendant\", \"name\": \"Nature's Attendant\", \"aliases\": [\"Attendant\", \"natures-attendant\", \"natures-attendant-2\", \"Nature Attendant\", \"Life\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"casper\", \"name\": \"Casper\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"risen\", \"name\": \"risen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"casper\",\n  \"characterName\": \"Casper\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_context\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

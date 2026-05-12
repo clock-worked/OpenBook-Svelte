@@ -1,0 +1,310 @@
+{
+  "cacheKey": "57ff4deb7b2d1af77f2cc7e86c746b59588f76f5a0670fe24a5b775a509e9180",
+  "createdAt": "2026-04-01T20:12:18.120346+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "nimera",
+    "characterName": "Nimera",
+    "confidence": 0.9,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "alias_match",
+      "content_continuity",
+      "dialogue_flow"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Attendant"
+        ],
+        "characterId": "nimera",
+        "characterName": "Nimera",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "nimera",
+          "attendant"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "primordial"
+        ],
+        "characterId": "yggdrasil",
+        "name": "Yggdrasil",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Attendant"
+        ],
+        "characterId": "nimera",
+        "name": "Nimera",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "nature attendant",
+        "name": "Nature Attendant",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "But do consider what else you would want in addition.",
+      "lastSentence": "That fragment is a blueprint of his body, and within your mask, his Truesoul lingers.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "But do consider what else you would want in addition. Usually, it’s true that rebuilding the body and soul of a Unique Lifeform is as difficult, if not more so, than a revival, but this Fallen King has already laid the groundwork. That fragment is a blueprint of his body, and within your mask, his Truesoul lingers.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Yggdrasil",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Attendant",
+        "sourceCandidates": [
+          "Attendant",
+          "Yggdrasil"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Nimera",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Yggdrasil",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 151,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "But do consider what else you would want in addition. Usually, it’s true that rebuilding the body and soul of a Unique Lifeform is as difficult, if not more so, than a revival, but this Fallen King has already laid the groundwork. That fragment is a blueprint of his body, and within your mask, his Truesoul lingers."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 151,
+          "text": "But do consider what else you would want in addition. Usually, it’s true that rebuilding the body and soul of a Unique Lifeform is as difficult, if not more so, than a revival, but this Fallen King has already laid the groundwork. That fragment is a blueprint of his body, and within your mask, his Truesoul lingers."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "But do consider what else you would want in addition.",
+          "lastSentence": "That fragment is a blueprint of his body, and within your mask, his Truesoul lingers.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "But do consider what else you would want in addition. Usually, it’s true that rebuilding the body and soul of a Unique Lifeform is as difficult, if not more so, than a revival, but this Fallen King has already laid the groundwork. That fragment is a blueprint of his body, and within your mask, his Truesoul lingers.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“But do consider what else you would want in addition. Usually, it’s true that rebuilding the body and soul of a Unique Lifeform is as difficult, if not more so, than a revival, but this Fallen King has already laid the groundwork. That fragment is a blueprint of his body, and within your mask, his Truesoul lingers.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 153,
+          "text": "Does that mean that his memories will be intact?"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake couldn’t help but smile as he heard this.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Does that mean that his memories will be intact?",
+          "lastSentence": "Does that mean that his memories will be intact?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Does that mean that his memories will be intact?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "nextParagraphText": "Jake couldn’t help but smile as he heard this. “Does that mean that his memories will be intact?”",
+      "paragraphIndex": 87,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Yggdrasil agreed."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 144,
+        "paragraphIndex": 83,
+        "relativeIndex": -4,
+        "text": "If possible, yes,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 146,
+        "paragraphIndex": 84,
+        "relativeIndex": -3,
+        "text": "That’s not an easy matter,"
+      },
+      {
+        "characterId": "nimera",
+        "characterName": "Nimera",
+        "lineId": 148,
+        "paragraphIndex": 84,
+        "relativeIndex": -2,
+        "text": "We’re talking about a Unique Lifeform. Their bodies and souls are incredibly complex, and-"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 149,
+        "paragraphIndex": 85,
+        "relativeIndex": -1,
+        "text": "We accept,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 153,
+        "paragraphIndex": 88,
+        "relativeIndex": 1,
+        "text": "Does that mean that his memories will be intact?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 155,
+        "paragraphIndex": 89,
+        "relativeIndex": 2,
+        "text": "new"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 151, \"text\": \"But do consider what else you would want in addition. Usually, it’s true that rebuilding the body and soul of a Unique Lifeform is as difficult, if not more so, than a revival, but this Fallen King has already laid the groundwork. That fragment is a blueprint of his body, and within your mask, his Truesoul lingers.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Attendant\", \"sourceCandidates\": [\"Attendant\", \"Yggdrasil\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Yggdrasil\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Nimera\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Yggdrasil\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 87, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“But do consider what else you would want in addition. Usually, it’s true that rebuilding the body and soul of a Unique Lifeform is as difficult, if not more so, than a revival, but this Fallen King has already laid the groundwork. That fragment is a blueprint of his body, and within your mask, his Truesoul lingers.”\", \"currentParagraphDialogue\": [{\"lineId\": 151, \"text\": \"But do consider what else you would want in addition. Usually, it’s true that rebuilding the body and soul of a Unique Lifeform is as difficult, if not more so, than a revival, but this Fallen King has already laid the groundwork. That fragment is a blueprint of his body, and within your mask, his Truesoul lingers.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"Yggdrasil agreed.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Jake couldn’t help but smile as he heard this. “Does that mean that his memories will be intact?”\", \"nextParagraphDialogue\": [{\"lineId\": 153, \"text\": \"Does that mean that his memories will be intact?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"But do consider what else you would want in addition. Usually, it’s true that rebuilding the body and soul of a Unique Lifeform is as difficult, if not more so, than a revival, but this Fallen King has already laid the groundwork. That fragment is a blueprint of his body, and within your mask, his Truesoul lingers.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"But do consider what else you would want in addition.\", \"lastSentence\": \"That fragment is a blueprint of his body, and within your mask, his Truesoul lingers.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Does that mean that his memories will be intact?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake couldn’t help but smile as he heard this.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Does that mean that his memories will be intact?\", \"lastSentence\": \"Does that mean that his memories will be intact?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"But do consider what else you would want in addition. Usually, it’s true that rebuilding the body and soul of a Unique Lifeform is as difficult, if not more so, than a revival, but this Fallen King has already laid the groundwork. That fragment is a blueprint of his body, and within your mask, his Truesoul lingers.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"But do consider what else you would want in addition.\", \"lastSentence\": \"That fragment is a blueprint of his body, and within your mask, his Truesoul lingers.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"nimera\", \"characterName\": \"Nimera\", \"aliases\": [\"Attendant\"], \"roleLabels\": [\"nimera\", \"attendant\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 144, \"paragraphIndex\": 83, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"If possible, yes,\"}, {\"relativeIndex\": -3, \"lineId\": 146, \"paragraphIndex\": 84, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"That’s not an easy matter,\"}, {\"relativeIndex\": -2, \"lineId\": 148, \"paragraphIndex\": 84, \"characterId\": \"nimera\", \"characterName\": \"Nimera\", \"text\": \"We’re talking about a Unique Lifeform. Their bodies and souls are incredibly complex, and-\"}, {\"relativeIndex\": -1, \"lineId\": 149, \"paragraphIndex\": 85, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"We accept,\"}, {\"relativeIndex\": 1, \"lineId\": 153, \"paragraphIndex\": 88, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Does that mean that his memories will be intact?\"}, {\"relativeIndex\": 2, \"lineId\": 155, \"paragraphIndex\": 89, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"new\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"yggdrasil\", \"name\": \"Yggdrasil\", \"aliases\": [\"primordial\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"nimera\", \"name\": \"Nimera\", \"aliases\": [\"Attendant\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"nature attendant\", \"name\": \"Nature Attendant\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"nimera\",\n  \"characterName\": \"Nimera\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"alias_match\",\n    \"content_continuity\",\n    \"dialogue_flow\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

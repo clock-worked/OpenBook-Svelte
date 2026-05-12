@@ -1,0 +1,132 @@
+{
+  "cacheKey": "3f4297eb55947bb30a13ac979a3513029aaecf3a6265e978865db58427be46fc",
+  "createdAt": "2026-04-01T04:26:43.936108+00:00",
+  "decision": {
+    "responseType": "tool",
+    "tool": "request_book_characters"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob"
+      },
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "name": "Bertram"
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper"
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.136,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Bertram",
+        "sourceCandidates": [
+          "Bertram",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.864
+      },
+      "candidates": [
+        {
+          "characterId": "bertram",
+          "confidence": 0.864,
+          "name": "Bertram",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "speech_verb"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.504,
+          "name": "Jake",
+          "reasons": [
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "bertram",
+      "currentCharacterName": "Bertram",
+      "id": 62,
+      "isReturning": false,
+      "text": "Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "bertram",
+          "characterName": "Bertram",
+          "isReturning": false,
+          "lineId": 62,
+          "text": "Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,"
+        }
+      ],
+      "currentParagraphText": "“Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,” the god said in a booming voice that Jake couldn’t determine if was male or female.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 64,
+          "text": "I can’t say I know much about you considering I don’t know who I’m conversing with,"
+        }
+      ],
+      "nextParagraphText": "“I can’t say I know much about you considering I don’t know who I’m conversing with,” Jake spoke bluntly, feeling quite a few death stares on him, even from Jacob and Bertram... and this time, he really couldn’t tell if they were genuine or not.",
+      "paragraphIndex": 39,
+      "previousParagraphDialogue": [],
+      "previousParagraphText": "This figure looked down, but even before that, Jake already felt the god and even a number of other gods all observing him. He looked up to meet the eyes of the figure made up entirely of glowing yellowish holy light as he let the god speak first."
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 62, \"text\": \"Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,\", \"currentCharacterId\": \"bertram\", \"currentCharacterName\": \"Bertram\", \"currentCharacterAliases\": [], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Bertram\", \"sourceCandidates\": [\"Bertram\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.864, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.136, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"bertram\", \"name\": \"Bertram\", \"confidence\": 0.864, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.504, \"reasons\": [\"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 39, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,” the god said in a booming voice that Jake couldn’t determine if was male or female.\", \"currentParagraphDialogue\": [{\"lineId\": 62, \"text\": \"Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,\", \"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"isReturning\": false}], \"previousParagraphText\": \"This figure looked down, but even before that, Jake already felt the god and even a number of other gods all observing him. He looked up to meet the eyes of the figure made up entirely of glowing yellowish holy light as he let the god speak first.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“I can’t say I know much about you considering I don’t know who I’m conversing with,” Jake spoke bluntly, feeling quite a few death stares on him, even from Jacob and Bertram... and this time, he really couldn’t tell if they were genuine or not.\", \"nextParagraphDialogue\": [{\"lineId\": 64, \"text\": \"I can’t say I know much about you considering I don’t know who I’m conversing with,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}]}, \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": []}, {\"characterId\": \"bertram\", \"name\": \"Bertram\", \"aliases\": []}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"]}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"tool\",\n  \"tool\": \"request_book_characters\"\n}"
+}

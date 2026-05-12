@@ -1,0 +1,328 @@
+{
+  "cacheKey": "1fe589dbb21f329975affd5a05ed607a99cca62fffb9000c3c8b7530ee55fd5d",
+  "createdAt": "2026-04-01T18:39:53.922265+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "miranda",
+    "characterName": "Miranda",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "parser_match"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "miranda"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "characterName": "Iludar",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "iludar"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "characterName": "Blood",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "blood"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "vesperia",
+        "characterName": "Vesperia",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "vesperia"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "sandy",
+        "characterName": "Sandy",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "sandy"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "name": "Blood",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "vesperia",
+        "name": "Vesperia",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sandy",
+        "name": "Sandy",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "name": "Iludar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "william",
+        "name": "William",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "Miranda just asked straight up. In the multiverse, there were some customs and norms when it came to dealing with prisoners of war, none of which Miranda found very appealing.",
+      "cueVerb": "asked",
+      "cueVerbType": "speech",
+      "firstSentence": "I accept your surrender, but let me ask...",
+      "lastSentence": "what do you expect to happen now?",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "I accept your surrender, but let me ask... what do you expect to happen now?",
+      "speakerNameMatch": null,
+      "speakerSurface": "Miranda just"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": true,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Iludar",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.124,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Miranda",
+        "sourceCandidates": [
+          "Miranda",
+          "Iludar"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.876
+      },
+      "candidates": [
+        {
+          "characterId": "miranda",
+          "confidence": 0.876,
+          "name": "Miranda",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "speech_verb"
+          ]
+        },
+        {
+          "characterId": "iludar",
+          "confidence": 0.516,
+          "name": "Iludar",
+          "reasons": [
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "miranda",
+      "currentCharacterName": "Miranda",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 34,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "I accept your surrender, but let me ask... what do you expect to happen now?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "miranda",
+          "characterName": "Miranda",
+          "isReturning": false,
+          "lineId": 34,
+          "text": "I accept your surrender, but let me ask... what do you expect to happen now?"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Miranda just asked straight up. In the multiverse, there were some customs and norms when it came to dealing with prisoners of war, none of which Miranda found very appealing.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "I accept your surrender, but let me ask...",
+          "lastSentence": "what do you expect to happen now?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I accept your surrender, but let me ask... what do you expect to happen now?",
+          "speakerNameMatch": null,
+          "speakerSurface": "Miranda just"
+        }
+      ],
+      "currentParagraphText": "“I accept your surrender, but let me ask... what do you expect to happen now?” Miranda just asked straight up. In the multiverse, there were some customs and norms when it came to dealing with prisoners of war, none of which Miranda found very appealing.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "The most popular one was to not take prisoners in the first place, primarily because most wars happened between factions that absolutely hated each other. Another very popular method was to momentarily seal them away and pretty much imprison them, with the goal of doing either a prisoner exchange or selling the prisoners back to the force they originally came from. Something that was not an option in this case as said faction no longer existed.",
+      "paragraphIndex": 32,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Let’s just deal with the self-proclaimed king first, she thought, sighing internally."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "blood",
+        "characterName": "Blood",
+        "lineId": 23,
+        "paragraphIndex": 22,
+        "relativeIndex": -4,
+        "text": "Over already? That was super boring... but I’m still getting paid, right?"
+      },
+      {
+        "characterId": "vesperia",
+        "characterName": "Vesperia",
+        "lineId": 25,
+        "paragraphIndex": 24,
+        "relativeIndex": -3,
+        "text": "Of course you are. Thank you for the help, Chosen of the Lord Protector,"
+      },
+      {
+        "characterId": "sandy",
+        "characterName": "Sandy",
+        "lineId": 27,
+        "paragraphIndex": 26,
+        "relativeIndex": -2,
+        "text": "Yay!"
+      },
+      {
+        "characterId": "sandy",
+        "characterName": "Sandy",
+        "lineId": 29,
+        "paragraphIndex": 28,
+        "relativeIndex": -1,
+        "text": "Poke me when we go back..."
+      },
+      {
+        "characterId": "iludar",
+        "characterName": "Iludar",
+        "lineId": 38,
+        "paragraphIndex": 34,
+        "relativeIndex": 1,
+        "text": "trustworthy."
+      },
+      {
+        "characterId": "iludar",
+        "characterName": "Iludar",
+        "lineId": 43,
+        "paragraphIndex": 38,
+        "relativeIndex": 2,
+        "text": "I... I do not know,"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "miranda",
+            "characterName": "Miranda",
+            "evidence": [
+              "token_overlap:miranda"
+            ],
+            "score": 0.625
+          }
+        ],
+        "surface": "miranda just"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 34, \"text\": \"I accept your surrender, but let me ask... what do you expect to happen now?\", \"currentCharacterId\": \"miranda\", \"currentCharacterName\": \"Miranda\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Miranda\", \"sourceCandidates\": [\"Miranda\", \"Iludar\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.876, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.124, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Iludar\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"miranda\", \"name\": \"Miranda\", \"confidence\": 0.876, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"confidence\": 0.516, \"reasons\": [\"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 32, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I accept your surrender, but let me ask... what do you expect to happen now?” Miranda just asked straight up. In the multiverse, there were some customs and norms when it came to dealing with prisoners of war, none of which Miranda found very appealing.\", \"currentParagraphDialogue\": [{\"lineId\": 34, \"text\": \"I accept your surrender, but let me ask... what do you expect to happen now?\", \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"isReturning\": false}], \"previousParagraphText\": \"Let’s just deal with the self-proclaimed king first, she thought, sighing internally.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"The most popular one was to not take prisoners in the first place, primarily because most wars happened between factions that absolutely hated each other. Another very popular method was to momentarily seal them away and pretty much imprison them, with the goal of doing either a prisoner exchange or selling the prisoners back to the force they originally came from. Something that was not an option in this case as said faction no longer existed.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I accept your surrender, but let me ask... what do you expect to happen now?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Miranda just asked straight up. In the multiverse, there were some customs and norms when it came to dealing with prisoners of war, none of which Miranda found very appealing.\", \"speakerSurface\": \"Miranda just\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I accept your surrender, but let me ask...\", \"lastSentence\": \"what do you expect to happen now?\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I accept your surrender, but let me ask... what do you expect to happen now?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Miranda just asked straight up. In the multiverse, there were some customs and norms when it came to dealing with prisoners of war, none of which Miranda found very appealing.\", \"speakerSurface\": \"Miranda just\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I accept your surrender, but let me ask...\", \"lastSentence\": \"what do you expect to happen now?\"}, \"sceneEntities\": [{\"surface\": \"miranda just\", \"matches\": [{\"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"score\": 0.625, \"evidence\": [\"token_overlap:miranda\"]}]}], \"candidateCards\": [{\"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"aliases\": [], \"roleLabels\": [\"miranda\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"iludar\", \"characterName\": \"Iludar\", \"aliases\": [], \"roleLabels\": [\"iludar\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"blood\", \"characterName\": \"Blood\", \"aliases\": [], \"roleLabels\": [\"blood\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"vesperia\", \"characterName\": \"Vesperia\", \"aliases\": [], \"roleLabels\": [\"vesperia\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"sandy\", \"characterName\": \"Sandy\", \"aliases\": [], \"roleLabels\": [\"sandy\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 23, \"paragraphIndex\": 22, \"characterId\": \"blood\", \"characterName\": \"Blood\", \"text\": \"Over already? That was super boring... but I’m still getting paid, right?\"}, {\"relativeIndex\": -3, \"lineId\": 25, \"paragraphIndex\": 24, \"characterId\": \"vesperia\", \"characterName\": \"Vesperia\", \"text\": \"Of course you are. Thank you for the help, Chosen of the Lord Protector,\"}, {\"relativeIndex\": -2, \"lineId\": 27, \"paragraphIndex\": 26, \"characterId\": \"sandy\", \"characterName\": \"Sandy\", \"text\": \"Yay!\"}, {\"relativeIndex\": -1, \"lineId\": 29, \"paragraphIndex\": 28, \"characterId\": \"sandy\", \"characterName\": \"Sandy\", \"text\": \"Poke me when we go back...\"}, {\"relativeIndex\": 1, \"lineId\": 38, \"paragraphIndex\": 34, \"characterId\": \"iludar\", \"characterName\": \"Iludar\", \"text\": \"trustworthy.\"}, {\"relativeIndex\": 2, \"lineId\": 43, \"paragraphIndex\": 38, \"characterId\": \"iludar\", \"characterName\": \"Iludar\", \"text\": \"I... I do not know,\"}], \"chapterCharacters\": [{\"characterId\": \"blood\", \"name\": \"Blood\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vesperia\", \"name\": \"Vesperia\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sandy\", \"name\": \"Sandy\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"william\", \"name\": \"William\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"miranda\",\n  \"characterName\": \"Miranda\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"parser_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

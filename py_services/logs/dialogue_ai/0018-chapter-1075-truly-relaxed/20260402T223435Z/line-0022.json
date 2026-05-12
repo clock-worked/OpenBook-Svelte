@@ -1,0 +1,337 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "1abf4df239b3d9076790634f49cd64ba7c0ed5c440c3e75b1157df9f782ca883",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\1abf4df239b3d9076790634f49cd64ba7c0ed5c440c3e75b1157df9f782ca883.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "needs_review",
+        "aliasToAdd": null,
+        "characterId": null,
+        "characterName": null,
+        "confidence": 0.1,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "not_dialogue",
+          "embedded_in_narration"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "adam",
+            "characterName": "Adam",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "adam"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "characterName": "Caleb",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "caleb"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "maja",
+            "characterName": "Maja",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "maja"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "name": "Caleb",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "maja",
+            "name": "Maja",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "adam",
+            "name": "Adam",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "mom",
+            "name": "Mom",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "dad",
+            "name": "Dad",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "All the adults involved didn’t have to eat anymore. Even Maja and his parents had reached D-grade by now, making eating entirely unnecessary. The only one who still had to eat was Adam, but even he didn’t need to eat as much as before, though from what Jake knew, even humans benefitted from food when trying to reach their",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "natural",
+          "lastSentence": "natural",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "natural",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.7,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.20399999999999996,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Adam",
+            "sourceCandidates": [
+              "Adam",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.796
+          },
+          "candidates": [
+            {
+              "characterId": "adam",
+              "confidence": 0.796,
+              "name": "Adam",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.436,
+              "name": "Jake",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "adam",
+          "currentCharacterName": "Adam",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 22,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "natural"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "adam",
+              "characterName": "Adam",
+              "isReturning": false,
+              "lineId": 22,
+              "text": "natural"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "All the adults involved didn’t have to eat anymore. Even Maja and his parents had reached D-grade by now, making eating entirely unnecessary. The only one who still had to eat was Adam, but even he didn’t need to eat as much as before, though from what Jake knew, even humans benefitted from food when trying to reach their",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "natural",
+              "lastSentence": "natural",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "natural",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "All the adults involved didn’t have to eat anymore. Even Maja and his parents had reached D-grade by now, making eating entirely unnecessary. The only one who still had to eat was Adam, but even he didn’t need to eat as much as before, though from what Jake knew, even humans benefitted from food when trying to reach their “natural” grade while growing up.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "To clarify, seeing as Maja had been pregnant when the system arrived, Adam didn’t have a higher natural grade. Without training, he would naturally max out his race in F-grade, more accurately, around level 10 in F-grade, which also happened to be when Jake and everyone else had evolved to F-grade from G way back then – a grade Adam had entirely skipped.",
+          "paragraphIndex": 17,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "Jake also didn’t question why they were even eating dinner or having these afternoon snacks in the first place, even if it could easily be viewed as wasteful in the context of the wider multiverse."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "caleb",
+            "characterName": "Caleb",
+            "lineId": 14,
+            "paragraphIndex": 13,
+            "relativeIndex": -4,
+            "text": "You still eat dinner with Mom and Dad every night?"
+          },
+          {
+            "characterId": "maja",
+            "characterName": "Maja",
+            "lineId": 15,
+            "paragraphIndex": 14,
+            "relativeIndex": -3,
+            "text": "Not every night, but pretty often,"
+          },
+          {
+            "characterId": "maja",
+            "characterName": "Maja",
+            "lineId": 17,
+            "paragraphIndex": 14,
+            "relativeIndex": -2,
+            "text": "Though it is nearly every night when Caleb is gone."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 18,
+            "paragraphIndex": 15,
+            "relativeIndex": -1,
+            "text": "Understandable,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 31,
+            "paragraphIndex": 25,
+            "relativeIndex": 1,
+            "text": "You’re a bit early; Robert is still—"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 34,
+            "paragraphIndex": 26,
+            "relativeIndex": 2,
+            "text": "Robert! Jake and Caleb are also here!"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 22, \"text\": \"natural\", \"currentCharacterId\": \"adam\", \"currentCharacterName\": \"Adam\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Adam\", \"sourceCandidates\": [\"Adam\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.20399999999999996, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"adam\", \"name\": \"Adam\", \"confidence\": 0.796, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.436, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 17, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"All the adults involved didn’t have to eat anymore. Even Maja and his parents had reached D-grade by now, making eating entirely unnecessary. The only one who still had to eat was Adam, but even he didn’t need to eat as much as before, though from what Jake knew, even humans benefitted from food when trying to reach their “natural” grade while growing up.\", \"currentParagraphDialogue\": [{\"lineId\": 22, \"text\": \"natural\", \"characterId\": \"adam\", \"characterName\": \"Adam\", \"isReturning\": false}], \"previousParagraphText\": \"Jake also didn’t question why they were even eating dinner or having these afternoon snacks in the first place, even if it could easily be viewed as wasteful in the context of the wider multiverse.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"To clarify, seeing as Maja had been pregnant when the system arrived, Adam didn’t have a higher natural grade. Without training, he would naturally max out his race in F-grade, more accurately, around level 10 in F-grade, which also happened to be when Jake and everyone else had evolved to F-grade from G way back then – a grade Adam had entirely skipped.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"natural\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"All the adults involved didn’t have to eat anymore. Even Maja and his parents had reached D-grade by now, making eating entirely unnecessary. The only one who still had to eat was Adam, but even he didn’t need to eat as much as before, though from what Jake knew, even humans benefitted from food when trying to reach their\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"natural\", \"lastSentence\": \"natural\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"natural\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"All the adults involved didn’t have to eat anymore. Even Maja and his parents had reached D-grade by now, making eating entirely unnecessary. The only one who still had to eat was Adam, but even he didn’t need to eat as much as before, though from what Jake knew, even humans benefitted from food when trying to reach their\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"natural\", \"lastSentence\": \"natural\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"adam\", \"characterName\": \"Adam\", \"aliases\": [], \"roleLabels\": [\"adam\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"aliases\": [], \"roleLabels\": [\"caleb\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"maja\", \"characterName\": \"Maja\", \"aliases\": [], \"roleLabels\": [\"maja\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 14, \"paragraphIndex\": 13, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"You still eat dinner with Mom and Dad every night?\"}, {\"relativeIndex\": -3, \"lineId\": 15, \"paragraphIndex\": 14, \"characterId\": \"maja\", \"characterName\": \"Maja\", \"text\": \"Not every night, but pretty often,\"}, {\"relativeIndex\": -2, \"lineId\": 17, \"paragraphIndex\": 14, \"characterId\": \"maja\", \"characterName\": \"Maja\", \"text\": \"Though it is nearly every night when Caleb is gone.\"}, {\"relativeIndex\": -1, \"lineId\": 18, \"paragraphIndex\": 15, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Understandable,\"}, {\"relativeIndex\": 1, \"lineId\": 31, \"paragraphIndex\": 25, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You’re a bit early; Robert is still—\"}, {\"relativeIndex\": 2, \"lineId\": 34, \"paragraphIndex\": 26, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Robert! Jake and Caleb are also here!\"}], \"chapterCharacters\": [{\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"maja\", \"name\": \"Maja\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"adam\", \"name\": \"Adam\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"mom\", \"name\": \"Mom\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dad\", \"name\": \"Dad\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"needs_review\",\n  \"characterId\": null,\n  \"characterName\": null,\n  \"confidence\": 0.1,\n  \"reasonCodes\": [\n    \"not_dialogue\",\n    \"embedded_in_narration\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0018 - Chapter 1075 - Truly Relaxed",
+  "currentCharacterId": "adam",
+  "currentCharacterName": "Adam",
+  "currentParagraphText": "All the adults involved didn’t have to eat anymore. Even Maja and his parents had reached D-grade by now, making eating entirely unnecessary. The only one who still had to eat was Adam, but even he didn’t need to eat as much as before, though from what Jake knew, even humans benefitted from food when trying to reach their “natural” grade while growing up.",
+  "finalResult": {
+    "action": "needs_review",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.1,
+    "currentCharacterId": "adam",
+    "currentCharacterName": "Adam",
+    "currentParagraphText": "All the adults involved didn’t have to eat anymore. Even Maja and his parents had reached D-grade by now, making eating entirely unnecessary. The only one who still had to eat was Adam, but even he didn’t need to eat as much as before, though from what Jake knew, even humans benefitted from food when trying to reach their “natural” grade while growing up.",
+    "disposition": "review",
+    "error": null,
+    "lineId": 22,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "To clarify, seeing as Maja had been pregnant when the system arrived, Adam didn’t have a higher natural grade. Without training, he would naturally max out his race in F-grade, more accurately, around level 10 in F-grade, which also happened to be when Jake and everyone else had evolved to F-grade from G way back then – a grade Adam had entirely skipped.",
+    "paragraphIndex": 17,
+    "previousParagraphText": "Jake also didn’t question why they were even eating dinner or having these afternoon snacks in the first place, even if it could easily be viewed as wasteful in the context of the wider multiverse.",
+    "reasonCodes": [
+      "not_dialogue",
+      "embedded_in_narration"
+    ],
+    "suggestedCharacterId": "adam",
+    "suggestedCharacterName": "Adam",
+    "toolTrace": []
+  },
+  "lineId": 22,
+  "nextParagraphText": "To clarify, seeing as Maja had been pregnant when the system arrived, Adam didn’t have a higher natural grade. Without training, he would naturally max out his race in F-grade, more accurately, around level 10 in F-grade, which also happened to be when Jake and everyone else had evolved to F-grade from G way back then – a grade Adam had entirely skipped.",
+  "paragraphIndex": 17,
+  "previousParagraphText": "Jake also didn’t question why they were even eating dinner or having these afternoon snacks in the first place, even if it could easily be viewed as wasteful in the context of the wider multiverse."
+}

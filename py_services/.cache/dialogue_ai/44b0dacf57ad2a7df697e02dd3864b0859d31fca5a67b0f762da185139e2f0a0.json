@@ -1,0 +1,103 @@
+{
+  "cacheKey": "44b0dacf57ad2a7df697e02dd3864b0859d31fca5a67b0f762da185139e2f0a0",
+  "createdAt": "2026-04-01T04:35:51.398540+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "jacob",
+    "characterName": "Jacob",
+    "confidence": 1,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "direct_attribution_match"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob"
+      },
+      {
+        "aliases": [],
+        "characterId": "false god",
+        "name": "False God"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.98,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jacob",
+        "sourceCandidates": [
+          "Jacob"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "jacob",
+          "confidence": 0.98,
+          "name": "Jacob",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "post_quote_attribution"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "jacob",
+      "currentCharacterName": "Jacob",
+      "id": 20,
+      "isReturning": false,
+      "text": "I’m sorry,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 20,
+          "text": "I’m sorry,"
+        }
+      ],
+      "currentParagraphText": "“I’m sorry,” Jacob said, his voice low but still loud enough for Jake to hear. From the look on the Augur’s face, he seemed legitimately upset, which just perplexed Jake as he had so many questions. Why was the Desolate Child of Loss with Jacob? Why had he seemingly helped it heal?",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphText": "And why wasn’t it attacking him but instead looking at him with confusion.",
+      "paragraphIndex": 19,
+      "previousParagraphDialogue": [],
+      "previousParagraphText": "Jake did feel that it had grown stronger, though. Strong enough to register as a threat. He also saw something else that made him frown. Its passive aura of desolation spread out from its body, yet Jacob stood within this aura, completely untouched. It wasn’t that he somehow defended himself from the desolation either; he just wasn’t affected."
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 20, \"text\": \"I’m sorry,\", \"currentCharacterId\": \"jacob\", \"currentCharacterName\": \"Jacob\", \"currentCharacterAliases\": [], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jacob\", \"sourceCandidates\": [\"Jacob\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.98, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"post_quote_attribution\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 19, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I’m sorry,” Jacob said, his voice low but still loud enough for Jake to hear. From the look on the Augur’s face, he seemed legitimately upset, which just perplexed Jake as he had so many questions. Why was the Desolate Child of Loss with Jacob? Why had he seemingly helped it heal?\", \"currentParagraphDialogue\": [{\"lineId\": 20, \"text\": \"I’m sorry,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}], \"previousParagraphText\": \"Jake did feel that it had grown stronger, though. Strong enough to register as a threat. He also saw something else that made him frown. Its passive aura of desolation spread out from its body, yet Jacob stood within this aura, completely untouched. It wasn’t that he somehow defended himself from the desolation either; he just wasn’t affected.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"And why wasn’t it attacking him but instead looking at him with confusion.\", \"nextParagraphDialogue\": []}, \"chapterCharacters\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": []}, {\"characterId\": \"false god\", \"name\": \"False God\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jacob\",\n  \"characterName\": \"Jacob\",\n  \"confidence\": 1,\n  \"reasonCodes\": [\n    \"direct_attribution_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

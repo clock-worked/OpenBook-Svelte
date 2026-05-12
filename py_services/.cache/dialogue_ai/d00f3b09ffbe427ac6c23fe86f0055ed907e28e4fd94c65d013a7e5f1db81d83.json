@@ -1,0 +1,301 @@
+{
+  "cacheKey": "d00f3b09ffbe427ac6c23fe86f0055ed907e28e4fd94c65d013a7e5f1db81d83",
+  "createdAt": "2026-04-18T23:17:45.602908+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "keerla",
+    "characterName": "Keerla",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "next_paragraph_confirms_speaker"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "keerla",
+        "characterName": "Keerla",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "keerla"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "artemis",
+          "godqueen"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "keerla",
+        "name": "Keerla",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "solana",
+        "name": "Solana",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "He had spoken to Solana, but Keerla was the one to answer, keeping the same enthusiastic tone as she’d used when discussing with Artemis just prior.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "No skills, she’s all talent!",
+      "lastSentence": "No skills, she’s all talent!",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "No skills, she’s all talent!",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Keerla",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Keerla",
+        "sourceCandidates": [
+          "Keerla",
+          "Artemis"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Keerla",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Artemis",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 18,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "No skills, she’s all talent!"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 18,
+          "text": "No skills, she’s all talent!"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "He had spoken to Solana, but Keerla was the one to answer, keeping the same enthusiastic tone as she’d used when discussing with Artemis just prior.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "No skills, she’s all talent!",
+          "lastSentence": "No skills, she’s all talent!",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "No skills, she’s all talent!",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "He had spoken to Solana, but Keerla was the one to answer, keeping the same enthusiastic tone as she’d used when discussing with Artemis just prior. “No skills, she’s all talent!”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Keerla seemed to realize she’d spoken without thinking, and a flash of horror crossed her face... but luckily, Artemis was quick to jump in.",
+      "paragraphIndex": 13,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": true,
+          "lineId": 16,
+          "text": "Keerla really wasn’t lying, you are quite the chef. I guess you have some kind of skill?"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Finding a small lull in Keerla’s and Artemis’ conversation, Jake spoke up.",
+          "cueVerb": "spoke",
+          "cueVerbType": "speech",
+          "firstSentence": "Keerla really wasn’t lying, you are quite the chef.",
+          "lastSentence": "I guess you have some kind of skill?",
+          "mentionedEntities": [
+            "Keerla",
+            "Keerla"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Keerla really wasn’t lying, you are quite the chef. I guess you have some kind of skill?",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "previousParagraphText": "Finding a small lull in Keerla’s and Artemis’ conversation, Jake spoke up. “Keerla really wasn’t lying, you are quite the chef. I guess you have some kind of skill?”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "keerla",
+        "characterName": "Keerla",
+        "lineId": 6,
+        "paragraphIndex": 5,
+        "relativeIndex": -3,
+        "text": "I definitely think some of the newer regulations regarding the number of hunting parties allowed at a time are a bit too strict when it comes to the lower-level Hunting Grounds. One of my little nieces recently got to mid-tier D-grade, and she barely managed to spend two years in a Hunting Ground before she and her team were called back to make space for a new team to take their place. I think rather than limiting it by the number of teams, any regulations should take into account how efficient each team is,"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 8,
+        "paragraphIndex": 6,
+        "relativeIndex": -2,
+        "text": "My guess would be that these new regulations were, in part, made for the sake of simplicity. It’s difficult to keep track of every team’s efficiency at the same time unless there were way more surveillance throughout every Hunting Ground, which they also want to avoid. You are partly right that the hunting efficiency of teams should be considered, and that’s why they lowered the number. The average hunting team has simply gotten more efficient since the last update to regulations. Besides, if these new rules are overdoing it, I’m sure they’ll be rolled back sooner rather than later,"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 16,
+        "paragraphIndex": 12,
+        "relativeIndex": -1,
+        "text": "Keerla really wasn’t lying, you are quite the chef. I guess you have some kind of skill?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 20,
+        "paragraphIndex": 15,
+        "relativeIndex": 1,
+        "text": "Really? I’ve had similar dishes from people who make cooking their entire Path that weren't as good,"
+      },
+      {
+        "characterId": "keerla",
+        "characterName": "Keerla",
+        "lineId": 22,
+        "paragraphIndex": 15,
+        "relativeIndex": 2,
+        "text": "How about the Chosen? Does he have any interest in cooking? I know a fair share of alchemists, especially those from the Order of the Malefic Viper, pick it up as an auxiliary skill."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 18, \"text\": \"No skills, she’s all talent!\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Keerla\", \"sourceCandidates\": [\"Keerla\", \"Artemis\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Keerla\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Keerla\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 13, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"He had spoken to Solana, but Keerla was the one to answer, keeping the same enthusiastic tone as she’d used when discussing with Artemis just prior. “No skills, she’s all talent!”\", \"currentParagraphDialogue\": [{\"lineId\": 18, \"text\": \"No skills, she’s all talent!\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"Finding a small lull in Keerla’s and Artemis’ conversation, Jake spoke up. “Keerla really wasn’t lying, you are quite the chef. I guess you have some kind of skill?”\", \"previousParagraphDialogue\": [{\"lineId\": 16, \"text\": \"Keerla really wasn’t lying, you are quite the chef. I guess you have some kind of skill?\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": true}], \"nextParagraphText\": \"Keerla seemed to realize she’d spoken without thinking, and a flash of horror crossed her face... but luckily, Artemis was quick to jump in.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"No skills, she’s all talent!\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"He had spoken to Solana, but Keerla was the one to answer, keeping the same enthusiastic tone as she’d used when discussing with Artemis just prior.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"No skills, she’s all talent!\", \"lastSentence\": \"No skills, she’s all talent!\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Keerla really wasn’t lying, you are quite the chef. I guess you have some kind of skill?\", \"cuePosition\": \"before\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"Finding a small lull in Keerla’s and Artemis’ conversation, Jake spoke up.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [\"Keerla\", \"Keerla\"], \"addressedEntity\": null, \"firstSentence\": \"Keerla really wasn’t lying, you are quite the chef.\", \"lastSentence\": \"I guess you have some kind of skill?\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"No skills, she’s all talent!\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"He had spoken to Solana, but Keerla was the one to answer, keeping the same enthusiastic tone as she’d used when discussing with Artemis just prior.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"No skills, she’s all talent!\", \"lastSentence\": \"No skills, she’s all talent!\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"aliases\": [], \"roleLabels\": [\"keerla\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [\"artemis\", \"godqueen\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -3, \"lineId\": 6, \"paragraphIndex\": 5, \"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"text\": \"I definitely think some of the newer regulations regarding the number of hunting parties allowed at a time are a bit too strict when it comes to the lower-level Hunting Grounds. One of my little nieces recently got to mid-tier D-grade, and she barely managed to spend two years in a Hunting Ground before she and her team were called back to make space for a new team to take their place. I think rather than limiting it by the number of teams, any regulations should take into account how efficient each team is,\"}, {\"relativeIndex\": -2, \"lineId\": 8, \"paragraphIndex\": 6, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"My guess would be that these new regulations were, in part, made for the sake of simplicity. It’s difficult to keep track of every team’s efficiency at the same time unless there were way more surveillance throughout every Hunting Ground, which they also want to avoid. You are partly right that the hunting efficiency of teams should be considered, and that’s why they lowered the number. The average hunting team has simply gotten more efficient since the last update to regulations. Besides, if these new rules are overdoing it, I’m sure they’ll be rolled back sooner rather than later,\"}, {\"relativeIndex\": -1, \"lineId\": 16, \"paragraphIndex\": 12, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Keerla really wasn’t lying, you are quite the chef. I guess you have some kind of skill?\"}, {\"relativeIndex\": 1, \"lineId\": 20, \"paragraphIndex\": 15, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Really? I’ve had similar dishes from people who make cooking their entire Path that weren't as good,\"}, {\"relativeIndex\": 2, \"lineId\": 22, \"paragraphIndex\": 15, \"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"text\": \"How about the Chosen? Does he have any interest in cooking? I know a fair share of alchemists, especially those from the Order of the Malefic Viper, pick it up as an auxiliary skill.\"}], \"chapterCharacters\": [{\"characterId\": \"keerla\", \"name\": \"Keerla\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"solana\", \"name\": \"Solana\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"keerla\",\n  \"characterName\": \"Keerla\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"next_paragraph_confirms_speaker\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

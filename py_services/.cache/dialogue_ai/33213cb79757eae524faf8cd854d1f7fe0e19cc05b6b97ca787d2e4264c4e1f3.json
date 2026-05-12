@@ -1,0 +1,124 @@
+{
+  "cacheKey": "33213cb79757eae524faf8cd854d1f7fe0e19cc05b6b97ca787d2e4264c4e1f3",
+  "createdAt": "2026-04-01T04:47:04.005274+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "jacob",
+    "characterName": "Jacob",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "same_paragraph_continuation",
+      "explicit_attribution_previous_line"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen"
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [],
+        "characterId": "the-unique-lifeform",
+        "name": "The Unique Lifeform"
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob"
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "name": "Augur"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.98,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jacob",
+        "sourceCandidates": [
+          "Jacob"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "jacob",
+          "confidence": 0.98,
+          "name": "Jacob",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "same_paragraph_continuation"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "jacob",
+      "currentCharacterName": "Jacob",
+      "id": 82,
+      "isReturning": true,
+      "text": "I don’t think you want to start a needless slaughter of the average Holy Church member, and needless to say, It’s also something I want to avoid. So, I hope that, at the very least, we can agree to allow the evacuation of every Holy Church member in the Milky Way Galaxy."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 80,
+          "text": "As we’ve already established, the Holy Church has lost the battle for the Milky Way Galaxy. With that in mind, I would like to officially surrender as a representative of the Holy Church and discuss the terms,"
+        },
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": true,
+          "lineId": 82,
+          "text": "I don’t think you want to start a needless slaughter of the average Holy Church member, and needless to say, It’s also something I want to avoid. So, I hope that, at the very least, we can agree to allow the evacuation of every Holy Church member in the Milky Way Galaxy."
+        }
+      ],
+      "currentParagraphText": "“As we’ve already established, the Holy Church has lost the battle for the Milky Way Galaxy. With that in mind, I would like to officially surrender as a representative of the Holy Church and discuss the terms,” Jacob answered. “I don’t think you want to start a needless slaughter of the average Holy Church member, and needless to say, It’s also something I want to avoid. So, I hope that, at the very least, we can agree to allow the evacuation of every Holy Church member in the Milky Way Galaxy.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 39
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 82, \"text\": \"I don’t think you want to start a needless slaughter of the average Holy Church member, and needless to say, It’s also something I want to avoid. So, I hope that, at the very least, we can agree to allow the evacuation of every Holy Church member in the Milky Way Galaxy.\", \"currentCharacterId\": \"jacob\", \"currentCharacterName\": \"Jacob\", \"currentCharacterAliases\": [], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jacob\", \"sourceCandidates\": [\"Jacob\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.98, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"same_paragraph_continuation\"]}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 39, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“As we’ve already established, the Holy Church has lost the battle for the Milky Way Galaxy. With that in mind, I would like to officially surrender as a representative of the Holy Church and discuss the terms,” Jacob answered. “I don’t think you want to start a needless slaughter of the average Holy Church member, and needless to say, It’s also something I want to avoid. So, I hope that, at the very least, we can agree to allow the evacuation of every Holy Church member in the Milky Way Galaxy.”\", \"currentParagraphDialogue\": [{\"lineId\": 80, \"text\": \"As we’ve already established, the Holy Church has lost the battle for the Milky Way Galaxy. With that in mind, I would like to officially surrender as a representative of the Holy Church and discuss the terms,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}, {\"lineId\": 82, \"text\": \"I don’t think you want to start a needless slaughter of the average Holy Church member, and needless to say, It’s also something I want to avoid. So, I hope that, at the very least, we can agree to allow the evacuation of every Holy Church member in the Milky Way Galaxy.\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": true}]}, \"chapterCharacters\": [{\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": []}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"the-unique-lifeform\", \"name\": \"The Unique Lifeform\", \"aliases\": []}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": []}, {\"characterId\": \"augur\", \"name\": \"Augur\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jacob\",\n  \"characterName\": \"Jacob\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"same_paragraph_continuation\",\n    \"explicit_attribution_previous_line\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

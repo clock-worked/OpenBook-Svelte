@@ -1,0 +1,369 @@
+{
+  "cacheKey": "8e003a6e80bf269ec9b46c32e6d731e734c3eb91335f9a47ce374c99f1b17fe8",
+  "createdAt": "2026-04-02T15:43:58.994858+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_flow"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "holy-priest",
+          "holy-priest-2",
+          "head priest",
+          "the head priest"
+        ],
+        "characterId": "holy-priest",
+        "characterName": "Holy Priest",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "holy priest",
+          "priest",
+          "holy priest 2",
+          "priest 2",
+          "head priest",
+          "the head priest",
+          "the priest"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Augur",
+          "The Augur"
+        ],
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jacob",
+          "augur",
+          "the augur"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "characterName": "Bertram",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "bertram"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "holy-priest",
+          "holy-priest-2",
+          "head priest",
+          "the head priest"
+        ],
+        "characterId": "holy-priest",
+        "name": "Holy Priest",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Augur",
+          "The Augur"
+        ],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "name": "Bertram",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "Jake ended up nodding, and the slight look of disapproval on the head priest’s face only made Jake more assured there was some legitimacy to the offer. If not, the priest wouldn’t be so offended that Jake wasn’t elated at the mere offer of being in the presence of one of the Holy Church’s great gods.",
+      "cueVerb": "assured",
+      "cueVerbType": "speech",
+      "firstSentence": "Very well,",
+      "lastSentence": "Very well,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Very well,",
+      "speakerNameMatch": null,
+      "speakerSurface": "the head priest’s face only made Jake more"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Holy Priest",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.7,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.14400000000000002,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Holy Priest",
+        "sourceCandidates": [
+          "Holy Priest",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.856
+      },
+      "candidates": [
+        {
+          "characterId": "holy-priest",
+          "confidence": 0.856,
+          "name": "Holy Priest",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "speech_verb"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.496,
+          "name": "Jake",
+          "reasons": [
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [
+        "holy-priest",
+        "holy-priest-2",
+        "head priest",
+        "the head priest"
+      ],
+      "currentCharacterId": "holy-priest",
+      "currentCharacterName": "Holy Priest",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 52,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Very well,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "holy-priest",
+          "characterName": "Holy Priest",
+          "isReturning": false,
+          "lineId": 52,
+          "text": "Very well,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake ended up nodding, and the slight look of disapproval on the head priest’s face only made Jake more assured there was some legitimacy to the offer. If not, the priest wouldn’t be so offended that Jake wasn’t elated at the mere offer of being in the presence of one of the Holy Church’s great gods.",
+          "cueVerb": "assured",
+          "cueVerbType": "speech",
+          "firstSentence": "Very well,",
+          "lastSentence": "Very well,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Very well,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the head priest’s face only made Jake more"
+        }
+      ],
+      "currentParagraphText": "“Very well,” Jake ended up nodding, and the slight look of disapproval on the head priest’s face only made Jake more assured there was some legitimacy to the offer. If not, the priest wouldn’t be so offended that Jake wasn’t elated at the mere offer of being in the presence of one of the Holy Church’s great gods.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "holy-priest",
+          "characterName": "Holy Priest",
+          "isReturning": false,
+          "lineId": 54,
+          "text": "Allow me the honors,"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the head priest said as he moved to the side of the town hall building. There, Jake saw the etchings on the domed ceiling that he embarrassingly hadn’t recognized earlier as a formation. In his defense, it didn’t really look like one, though. It looked more like an artistic mural with actual pictures and stuff, but upon closer inspection, there definitely was a bit of energy hidden within.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Allow me the honors,",
+          "lastSentence": "Allow me the honors,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Allow me the honors,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the head priest"
+        }
+      ],
+      "nextParagraphText": "“Allow me the honors,” the head priest said as he moved to the side of the town hall building. There, Jake saw the etchings on the domed ceiling that he embarrassingly hadn’t recognized earlier as a formation. In his defense, it didn’t really look like one, though. It looked more like an artistic mural with actual pictures and stuff, but upon closer inspection, there definitely was a bit of energy hidden within.",
+      "paragraphIndex": 31,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "The look on the face of the head priest also made Jake think this could be a legitimate offer, as he genuinely looked as if he’d just offered Jake the best damn present imaginable."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 40,
+        "paragraphIndex": 22,
+        "relativeIndex": -4,
+        "text": "We truly cannot hand over the Truesoul, and you do not seem willing to accept any outcome that doesn’t involve you leaving without the Truesoul returning to wherever they go once dispersed. Am I correct in that assumption?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 41,
+        "paragraphIndex": 23,
+        "relativeIndex": -3,
+        "text": "That does seem to be the gist of it, yeah,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 44,
+        "paragraphIndex": 25,
+        "relativeIndex": -2,
+        "text": "I hoped we could reach some kind of compromise, but it seems that’s impossible,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 46,
+        "paragraphIndex": 25,
+        "relativeIndex": -1,
+        "text": "However, perhaps there is someone you can reach an agreement with. As I said, we are operating under the direct orders of the Holy Pantheon, and I have been granted the honor of allowing you an audience to directly commune with the one who initially wanted to recruit Ell’Hakan into the Holy Church."
+      },
+      {
+        "characterId": "holy-priest",
+        "characterName": "Holy Priest",
+        "lineId": 54,
+        "paragraphIndex": 32,
+        "relativeIndex": 1,
+        "text": "Allow me the honors,"
+      },
+      {
+        "characterId": "bertram",
+        "characterName": "Bertram",
+        "lineId": 62,
+        "paragraphIndex": 39,
+        "relativeIndex": 2,
+        "text": "Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "evidence": [
+              "token_overlap:jake"
+            ],
+            "score": 0.5
+          },
+          {
+            "characterId": "holy-priest",
+            "characterName": "Holy Priest",
+            "evidence": [
+              "token_overlap:priest"
+            ],
+            "score": 0.5
+          }
+        ],
+        "surface": "the head priest s face only made jake more"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 52, \"text\": \"Very well,\", \"currentCharacterId\": \"holy-priest\", \"currentCharacterName\": \"Holy Priest\", \"currentCharacterAliases\": [\"holy-priest\", \"holy-priest-2\", \"head priest\", \"the head priest\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Holy Priest\", \"sourceCandidates\": [\"Holy Priest\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.856, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.14400000000000002, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Holy Priest\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"holy-priest\", \"name\": \"Holy Priest\", \"confidence\": 0.856, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.496, \"reasons\": [\"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 31, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Very well,” Jake ended up nodding, and the slight look of disapproval on the head priest’s face only made Jake more assured there was some legitimacy to the offer. If not, the priest wouldn’t be so offended that Jake wasn’t elated at the mere offer of being in the presence of one of the Holy Church’s great gods.\", \"currentParagraphDialogue\": [{\"lineId\": 52, \"text\": \"Very well,\", \"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"isReturning\": false}], \"previousParagraphText\": \"The look on the face of the head priest also made Jake think this could be a legitimate offer, as he genuinely looked as if he’d just offered Jake the best damn present imaginable.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“Allow me the honors,” the head priest said as he moved to the side of the town hall building. There, Jake saw the etchings on the domed ceiling that he embarrassingly hadn’t recognized earlier as a formation. In his defense, it didn’t really look like one, though. It looked more like an artistic mural with actual pictures and stuff, but upon closer inspection, there definitely was a bit of energy hidden within.\", \"nextParagraphDialogue\": [{\"lineId\": 54, \"text\": \"Allow me the honors,\", \"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Very well,\", \"cuePosition\": \"after\", \"cueVerb\": \"assured\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake ended up nodding, and the slight look of disapproval on the head priest’s face only made Jake more assured there was some legitimacy to the offer. If not, the priest wouldn’t be so offended that Jake wasn’t elated at the mere offer of being in the presence of one of the Holy Church’s great gods.\", \"speakerSurface\": \"the head priest’s face only made Jake more\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Very well,\", \"lastSentence\": \"Very well,\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Allow me the honors,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the head priest said as he moved to the side of the town hall building. There, Jake saw the etchings on the domed ceiling that he embarrassingly hadn’t recognized earlier as a formation. In his defense, it didn’t really look like one, though. It looked more like an artistic mural with actual pictures and stuff, but upon closer inspection, there definitely was a bit of energy hidden within.\", \"speakerSurface\": \"the head priest\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Allow me the honors,\", \"lastSentence\": \"Allow me the honors,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Very well,\", \"cuePosition\": \"after\", \"cueVerb\": \"assured\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake ended up nodding, and the slight look of disapproval on the head priest’s face only made Jake more assured there was some legitimacy to the offer. If not, the priest wouldn’t be so offended that Jake wasn’t elated at the mere offer of being in the presence of one of the Holy Church’s great gods.\", \"speakerSurface\": \"the head priest’s face only made Jake more\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Very well,\", \"lastSentence\": \"Very well,\"}, \"sceneEntities\": [{\"surface\": \"the head priest s face only made jake more\", \"matches\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"score\": 0.5, \"evidence\": [\"token_overlap:jake\"]}, {\"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"score\": 0.5, \"evidence\": [\"token_overlap:priest\"]}]}], \"candidateCards\": [{\"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"aliases\": [\"holy-priest\", \"holy-priest-2\", \"head priest\", \"the head priest\"], \"roleLabels\": [\"holy priest\", \"priest\", \"holy priest 2\", \"priest 2\", \"head priest\", \"the head priest\", \"the priest\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [\"jacob\", \"augur\", \"the augur\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"aliases\": [], \"roleLabels\": [\"bertram\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 40, \"paragraphIndex\": 22, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"We truly cannot hand over the Truesoul, and you do not seem willing to accept any outcome that doesn’t involve you leaving without the Truesoul returning to wherever they go once dispersed. Am I correct in that assumption?\"}, {\"relativeIndex\": -3, \"lineId\": 41, \"paragraphIndex\": 23, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"That does seem to be the gist of it, yeah,\"}, {\"relativeIndex\": -2, \"lineId\": 44, \"paragraphIndex\": 25, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I hoped we could reach some kind of compromise, but it seems that’s impossible,\"}, {\"relativeIndex\": -1, \"lineId\": 46, \"paragraphIndex\": 25, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"However, perhaps there is someone you can reach an agreement with. As I said, we are operating under the direct orders of the Holy Pantheon, and I have been granted the honor of allowing you an audience to directly commune with the one who initially wanted to recruit Ell’Hakan into the Holy Church.\"}, {\"relativeIndex\": 1, \"lineId\": 54, \"paragraphIndex\": 32, \"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"text\": \"Allow me the honors,\"}, {\"relativeIndex\": 2, \"lineId\": 62, \"paragraphIndex\": 39, \"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"text\": \"Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"holy-priest\", \"name\": \"Holy Priest\", \"aliases\": [\"holy-priest\", \"holy-priest-2\", \"head priest\", \"the head priest\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"bertram\", \"name\": \"Bertram\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_flow\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

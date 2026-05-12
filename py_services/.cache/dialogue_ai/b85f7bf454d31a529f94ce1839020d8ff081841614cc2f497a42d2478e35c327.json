@@ -1,0 +1,292 @@
+{
+  "cacheKey": "b85f7bf454d31a529f94ce1839020d8ff081841614cc2f497a42d2478e35c327",
+  "createdAt": "2026-04-18T21:54:09.959310+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "artemis",
+    "characterName": "Artemis",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "artemis"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "chimera",
+          "monster"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "having",
+        "name": "Having",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Artemis wondered aloud.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "That amount of bad karma created will be far more substantial that way, not to mention the reaction when you find out.",
+      "lastSentence": "I’ve seen people killed for less.",
+      "mentionedEntities": [],
+      "quoteIndex": 1,
+      "quoteText": "That amount of bad karma created will be far more substantial that way, not to mention the reaction when you find out. I’ve seen people killed for less.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.524,
+        "misattributionRisk": 0.1568,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Artemis",
+        "sourceCandidates": [
+          "Artemis",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.98,
+          "name": "Artemis",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "artemis",
+      "currentCharacterName": "Artemis",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 87,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "That amount of bad karma created will be far more substantial that way, not to mention the reaction when you find out. I’ve seen people killed for less."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 85,
+          "text": "Wouldn’t it be riskier to keep it hidden?"
+        },
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": true,
+          "lineId": 87,
+          "text": "That amount of bad karma created will be far more substantial that way, not to mention the reaction when you find out. I’ve seen people killed for less."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Wouldn’t it be riskier to keep it hidden?",
+          "lastSentence": "Wouldn’t it be riskier to keep it hidden?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Wouldn’t it be riskier to keep it hidden?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Artemis wondered aloud.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "That amount of bad karma created will be far more substantial that way, not to mention the reaction when you find out.",
+          "lastSentence": "I’ve seen people killed for less.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "That amount of bad karma created will be far more substantial that way, not to mention the reaction when you find out. I’ve seen people killed for less.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Wouldn’t it be riskier to keep it hidden?” Artemis wondered aloud. “That amount of bad karma created will be far more substantial that way, not to mention the reaction when you find out. I’ve seen people killed for less.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 42
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 78,
+        "paragraphIndex": 38,
+        "relativeIndex": -4,
+        "text": "Alright, alright,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 82,
+        "paragraphIndex": 40,
+        "relativeIndex": -3,
+        "text": "I have a hard time imagining you taking such a passive approach to the matter, but I also believe that the core of the problem wasn’t that she was more interested in someone else. It’s the betrayal behind her actions and the deceit that went with it. Something piques my curiosity, though. Why hide it? It seemed inevitable that something like that would be found out, so it seems the smartest thing to do is just break things off beforehand."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 83,
+        "paragraphIndex": 41,
+        "relativeIndex": -2,
+        "text": "Cowardice, I reckon,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 85,
+        "paragraphIndex": 42,
+        "relativeIndex": -1,
+        "text": "Wouldn’t it be riskier to keep it hidden?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 88,
+        "paragraphIndex": 43,
+        "relativeIndex": 1,
+        "text": "Well, murder wasn’t exactly legal in my world before the system,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 90,
+        "paragraphIndex": 44,
+        "relativeIndex": 2,
+        "text": "Not even in cases like that?"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 87, \"text\": \"That amount of bad karma created will be far more substantial that way, not to mention the reaction when you find out. I’ve seen people killed for less.\", \"currentCharacterId\": \"artemis\", \"currentCharacterName\": \"Artemis\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Artemis\", \"sourceCandidates\": [\"Artemis\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.524, \"misattributionRisk\": 0.1568, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.98, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 42, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Wouldn’t it be riskier to keep it hidden?” Artemis wondered aloud. “That amount of bad karma created will be far more substantial that way, not to mention the reaction when you find out. I’ve seen people killed for less.”\", \"currentParagraphDialogue\": [{\"lineId\": 85, \"text\": \"Wouldn’t it be riskier to keep it hidden?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 87, \"text\": \"That amount of bad karma created will be far more substantial that way, not to mention the reaction when you find out. I’ve seen people killed for less.\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Wouldn’t it be riskier to keep it hidden?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Wouldn’t it be riskier to keep it hidden?\", \"lastSentence\": \"Wouldn’t it be riskier to keep it hidden?\"}, {\"quoteIndex\": 1, \"quoteText\": \"That amount of bad karma created will be far more substantial that way, not to mention the reaction when you find out. I’ve seen people killed for less.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Artemis wondered aloud.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"That amount of bad karma created will be far more substantial that way, not to mention the reaction when you find out.\", \"lastSentence\": \"I’ve seen people killed for less.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"That amount of bad karma created will be far more substantial that way, not to mention the reaction when you find out. I’ve seen people killed for less.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Artemis wondered aloud.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"That amount of bad karma created will be far more substantial that way, not to mention the reaction when you find out.\", \"lastSentence\": \"I’ve seen people killed for less.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [], \"roleLabels\": [\"artemis\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [\"jake\", \"protagonist\", \"chimera\", \"monster\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 78, \"paragraphIndex\": 38, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Alright, alright,\"}, {\"relativeIndex\": -3, \"lineId\": 82, \"paragraphIndex\": 40, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I have a hard time imagining you taking such a passive approach to the matter, but I also believe that the core of the problem wasn’t that she was more interested in someone else. It’s the betrayal behind her actions and the deceit that went with it. Something piques my curiosity, though. Why hide it? It seemed inevitable that something like that would be found out, so it seems the smartest thing to do is just break things off beforehand.\"}, {\"relativeIndex\": -2, \"lineId\": 83, \"paragraphIndex\": 41, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Cowardice, I reckon,\"}, {\"relativeIndex\": -1, \"lineId\": 85, \"paragraphIndex\": 42, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Wouldn’t it be riskier to keep it hidden?\"}, {\"relativeIndex\": 1, \"lineId\": 88, \"paragraphIndex\": 43, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Well, murder wasn’t exactly legal in my world before the system,\"}, {\"relativeIndex\": 2, \"lineId\": 90, \"paragraphIndex\": 44, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Not even in cases like that?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"having\", \"name\": \"Having\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"artemis\",\n  \"characterName\": \"Artemis\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

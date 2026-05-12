@@ -345,6 +345,25 @@ export async function unassignVoiceFromCharacter(characterId: string): Promise<v
   console.log(`[voices] Unassigned voice from character ${characterId}`);
 }
 
+export async function unassignVoicesFromCharacters(characterIds: string[]): Promise<void> {
+  const idsToRemove = new Set(
+    characterIds.filter((characterId): characterId is string => typeof characterId === 'string' && characterId.length > 0),
+  );
+  if (idsToRemove.size === 0) return;
+
+  const current = get(voices);
+  const nextAssignments = current.assignments.filter((assignment) => !idsToRemove.has(assignment.characterId));
+  if (nextAssignments.length === current.assignments.length) return;
+
+  voices.set({
+    ...current,
+    assignments: nextAssignments,
+  });
+
+  await saveVoicesData();
+  console.log(`[voices] Unassigned voices from ${idsToRemove.size} character(s)`);
+}
+
 /**
  * Get the voice assignment for a character
  */

@@ -1,0 +1,388 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "8500547131679a2a6ce322a34ebe9969e8322323e9b4406591cc5a6391bc12a7",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\8500547131679a2a6ce322a34ebe9969e8322323e9b4406591cc5a6391bc12a7.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "the-sword-saint",
+        "characterName": "The Sword Saint",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "contextual_clarification"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "characterName": "The Sword Saint",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "the sword saint",
+              "sword saint",
+              "the sword saint 2",
+              "sword saint 2",
+              "miyamoto"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "True Ancestor",
+              "Vampire Godess",
+              "vampire-godess"
+            ],
+            "characterId": "katherine",
+            "characterName": "Katherine",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "katherine",
+              "true ancestor",
+              "vampire godess"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "name": "The Sword Saint",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "True Ancestor",
+              "Vampire Godess",
+              "vampire-godess"
+            ],
+            "characterId": "katherine",
+            "name": "Katherine",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "iskar",
+            "name": "Iskar",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "irin",
+            "name": "Irin",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "succubus",
+            "name": "Succubus",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Yes, True Ancestor,",
+          "lastSentence": "Yes, True Ancestor,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Yes, True Ancestor,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "The Sword Saint",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.7,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.20399999999999996,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "The Sword Saint",
+            "sourceCandidates": [
+              "The Sword Saint",
+              "Katherine"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.796
+          },
+          "candidates": [
+            {
+              "characterId": "the-sword-saint",
+              "confidence": 0.796,
+              "name": "The Sword Saint",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "katherine",
+              "confidence": 0.436,
+              "name": "Katherine",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [
+            "the-sword-saint",
+            "the-sword-saint-2",
+            "Miyamoto"
+          ],
+          "currentCharacterId": "the-sword-saint",
+          "currentCharacterName": "The Sword Saint",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 41,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "Yes, True Ancestor,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "the-sword-saint",
+              "characterName": "The Sword Saint",
+              "isReturning": false,
+              "lineId": 41,
+              "text": "Yes, True Ancestor,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Yes, True Ancestor,",
+              "lastSentence": "Yes, True Ancestor,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Yes, True Ancestor,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Yes, True Ancestor,” the man bowed as he hurried out of the room.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "the-sword-saint",
+              "characterName": "The Sword Saint",
+              "isReturning": false,
+              "lineId": 43,
+              "text": "That was kind of you,"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the Sword Saint said, easily seeing through why she had sent him away. He didn’t doubt she had plenty of such refreshments on her already, so for her to send him out was clearly just a nice way to give him a break.",
+              "cueVerb": "said",
+              "cueVerbType": "speech",
+              "firstSentence": "That was kind of you,",
+              "lastSentence": "That was kind of you,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "That was kind of you,",
+              "speakerNameMatch": "The Sword Saint",
+              "speakerSurface": "Sword Saint"
+            }
+          ],
+          "nextParagraphText": "“That was kind of you,” the Sword Saint said, easily seeing through why she had sent him away. He didn’t doubt she had plenty of such refreshments on her already, so for her to send him out was clearly just a nice way to give him a break.",
+          "paragraphIndex": 23,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "the-sword-saint",
+              "characterName": "The Sword Saint",
+              "isReturning": true,
+              "lineId": 40,
+              "text": "It would be my pleasure to enlighten you. Fairleigh, go get us some refreshments."
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Katherine smiled.",
+              "cueVerb": "smiled",
+              "cueVerbType": "reaction",
+              "firstSentence": "It would be my pleasure to enlighten you.",
+              "lastSentence": "Fairleigh, go get us some refreshments.",
+              "mentionedEntities": [
+                "Fairleigh"
+              ],
+              "quoteIndex": 0,
+              "quoteText": "It would be my pleasure to enlighten you. Fairleigh, go get us some refreshments.",
+              "speakerNameMatch": "Katherine",
+              "speakerSurface": "Katherine"
+            }
+          ],
+          "previousParagraphText": "Katherine smiled. “It would be my pleasure to enlighten you. Fairleigh, go get us some refreshments.”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "katherine",
+            "characterName": "Katherine",
+            "lineId": 32,
+            "paragraphIndex": 18,
+            "relativeIndex": -4,
+            "text": "Thank you,"
+          },
+          {
+            "characterId": "the-sword-saint",
+            "characterName": "The Sword Saint",
+            "lineId": 34,
+            "paragraphIndex": 19,
+            "relativeIndex": -3,
+            "text": "I perhaps overstepped,"
+          },
+          {
+            "characterId": "the-sword-saint",
+            "characterName": "The Sword Saint",
+            "lineId": 36,
+            "paragraphIndex": 20,
+            "relativeIndex": -2,
+            "text": "With that matter settled... I am curious to learn more about the history of vampires. The parts most people don’t know, as I’m sure several factions have done much to suppress or erase your history,"
+          },
+          {
+            "characterId": "the-sword-saint",
+            "characterName": "The Sword Saint",
+            "lineId": 40,
+            "paragraphIndex": 22,
+            "relativeIndex": -1,
+            "text": "It would be my pleasure to enlighten you. Fairleigh, go get us some refreshments."
+          },
+          {
+            "characterId": "the-sword-saint",
+            "characterName": "The Sword Saint",
+            "lineId": 43,
+            "paragraphIndex": 24,
+            "relativeIndex": 1,
+            "text": "That was kind of you,"
+          },
+          {
+            "characterId": "katherine",
+            "characterName": "Katherine",
+            "lineId": 45,
+            "paragraphIndex": 25,
+            "relativeIndex": 2,
+            "text": "Usually, mortals don’t do well around gods for too long, though you do appear to be an exception to that rule. Courtesy of the Chosen of the Malefic Viper, I assume,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 41, \"text\": \"Yes, True Ancestor,\", \"currentCharacterId\": \"the-sword-saint\", \"currentCharacterName\": \"The Sword Saint\", \"currentCharacterAliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"The Sword Saint\", \"sourceCandidates\": [\"The Sword Saint\", \"Katherine\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.20399999999999996, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Sword Saint\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"confidence\": 0.796, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"katherine\", \"name\": \"Katherine\", \"confidence\": 0.436, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 23, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Yes, True Ancestor,” the man bowed as he hurried out of the room.\", \"currentParagraphDialogue\": [{\"lineId\": 41, \"text\": \"Yes, True Ancestor,\", \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"isReturning\": false}], \"previousParagraphText\": \"Katherine smiled. “It would be my pleasure to enlighten you. Fairleigh, go get us some refreshments.”\", \"previousParagraphDialogue\": [{\"lineId\": 40, \"text\": \"It would be my pleasure to enlighten you. Fairleigh, go get us some refreshments.\", \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"isReturning\": true}], \"nextParagraphText\": \"“That was kind of you,” the Sword Saint said, easily seeing through why she had sent him away. He didn’t doubt she had plenty of such refreshments on her already, so for her to send him out was clearly just a nice way to give him a break.\", \"nextParagraphDialogue\": [{\"lineId\": 43, \"text\": \"That was kind of you,\", \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Yes, True Ancestor,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yes, True Ancestor,\", \"lastSentence\": \"Yes, True Ancestor,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"It would be my pleasure to enlighten you. Fairleigh, go get us some refreshments.\", \"cuePosition\": \"before\", \"cueVerb\": \"smiled\", \"cueVerbType\": \"reaction\", \"cueText\": \"Katherine smiled.\", \"speakerSurface\": \"Katherine\", \"speakerNameMatch\": \"Katherine\", \"mentionedEntities\": [\"Fairleigh\"], \"addressedEntity\": null, \"firstSentence\": \"It would be my pleasure to enlighten you.\", \"lastSentence\": \"Fairleigh, go get us some refreshments.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"That was kind of you,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the Sword Saint said, easily seeing through why she had sent him away. He didn’t doubt she had plenty of such refreshments on her already, so for her to send him out was clearly just a nice way to give him a break.\", \"speakerSurface\": \"Sword Saint\", \"speakerNameMatch\": \"The Sword Saint\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"That was kind of you,\", \"lastSentence\": \"That was kind of you,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Yes, True Ancestor,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yes, True Ancestor,\", \"lastSentence\": \"Yes, True Ancestor,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [\"the sword saint\", \"sword saint\", \"the sword saint 2\", \"sword saint 2\", \"miyamoto\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"katherine\", \"characterName\": \"Katherine\", \"aliases\": [\"True Ancestor\", \"Vampire Godess\", \"vampire-godess\"], \"roleLabels\": [\"katherine\", \"true ancestor\", \"vampire godess\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 32, \"paragraphIndex\": 18, \"characterId\": \"katherine\", \"characterName\": \"Katherine\", \"text\": \"Thank you,\"}, {\"relativeIndex\": -3, \"lineId\": 34, \"paragraphIndex\": 19, \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"text\": \"I perhaps overstepped,\"}, {\"relativeIndex\": -2, \"lineId\": 36, \"paragraphIndex\": 20, \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"text\": \"With that matter settled... I am curious to learn more about the history of vampires. The parts most people don’t know, as I’m sure several factions have done much to suppress or erase your history,\"}, {\"relativeIndex\": -1, \"lineId\": 40, \"paragraphIndex\": 22, \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"text\": \"It would be my pleasure to enlighten you. Fairleigh, go get us some refreshments.\"}, {\"relativeIndex\": 1, \"lineId\": 43, \"paragraphIndex\": 24, \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"text\": \"That was kind of you,\"}, {\"relativeIndex\": 2, \"lineId\": 45, \"paragraphIndex\": 25, \"characterId\": \"katherine\", \"characterName\": \"Katherine\", \"text\": \"Usually, mortals don’t do well around gods for too long, though you do appear to be an exception to that rule. Courtesy of the Chosen of the Malefic Viper, I assume,\"}], \"chapterCharacters\": [{\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"katherine\", \"name\": \"Katherine\", \"aliases\": [\"True Ancestor\", \"Vampire Godess\", \"vampire-godess\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iskar\", \"name\": \"Iskar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"succubus\", \"name\": \"Succubus\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"the-sword-saint\",\n  \"characterName\": \"The Sword Saint\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"contextual_clarification\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0028 - Chapter 1085 - A Quality Week",
+  "currentCharacterId": "the-sword-saint",
+  "currentCharacterName": "The Sword Saint",
+  "currentParagraphText": "“Yes, True Ancestor,” the man bowed as he hurried out of the room.",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "the-sword-saint",
+    "currentCharacterName": "The Sword Saint",
+    "currentParagraphText": "“Yes, True Ancestor,” the man bowed as he hurried out of the room.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 41,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“That was kind of you,” the Sword Saint said, easily seeing through why she had sent him away. He didn’t doubt she had plenty of such refreshments on her already, so for her to send him out was clearly just a nice way to give him a break.",
+    "paragraphIndex": 23,
+    "previousParagraphText": "Katherine smiled. “It would be my pleasure to enlighten you. Fairleigh, go get us some refreshments.”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "contextual_clarification"
+    ],
+    "suggestedCharacterId": "the-sword-saint",
+    "suggestedCharacterName": "The Sword Saint",
+    "toolTrace": []
+  },
+  "lineId": 41,
+  "nextParagraphText": "“That was kind of you,” the Sword Saint said, easily seeing through why she had sent him away. He didn’t doubt she had plenty of such refreshments on her already, so for her to send him out was clearly just a nice way to give him a break.",
+  "paragraphIndex": 23,
+  "previousParagraphText": "Katherine smiled. “It would be my pleasure to enlighten you. Fairleigh, go get us some refreshments.”"
+}

@@ -1,0 +1,404 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "e2528b06a9264cc1e6a00a609d2a2782172d7ac16d510da20a2c637e3590d4a8",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\e2528b06a9264cc1e6a00a609d2a2782172d7ac16d510da20a2c637e3590d4a8.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 1.0,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "dialogue_context_fit"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "maja",
+            "characterName": "Maja",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "maja"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "maja",
+            "name": "Maja",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "adam",
+            "name": "Adam",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "name": "Caleb",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Sorry, I was just lost in thought about something,",
+          "lastSentence": "Sorry, I was just lost in thought about something,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Sorry, I was just lost in thought about something,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Maja",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.19599999999999995,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Maja",
+            "sourceCandidates": [
+              "Maja",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.804
+          },
+          "candidates": [
+            {
+              "characterId": "maja",
+              "confidence": 0.804,
+              "name": "Maja",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.444,
+              "name": "Jake",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "maja",
+          "currentCharacterName": "Maja",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 80,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Sorry, I was just lost in thought about something,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "maja",
+              "characterName": "Maja",
+              "isReturning": true,
+              "lineId": 80,
+              "text": "Sorry, I was just lost in thought about something,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Sorry, I was just lost in thought about something,",
+              "lastSentence": "Sorry, I was just lost in thought about something,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Sorry, I was just lost in thought about something,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Sorry, I was just lost in thought about something,” Jake excused himself.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "maja",
+              "characterName": "Maja",
+              "isReturning": false,
+              "lineId": 82,
+              "text": "Oh?"
+            },
+            {
+              "characterId": "maja",
+              "characterName": "Maja",
+              "isReturning": true,
+              "lineId": 84,
+              "text": "Were you perhaps thinking about a certain Runemaiden?"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Maja asked teasingly.",
+              "cueVerb": "asked",
+              "cueVerbType": "speech",
+              "firstSentence": "Oh?",
+              "lastSentence": "Oh?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Oh?",
+              "speakerNameMatch": "Maja",
+              "speakerSurface": "Maja"
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Maja asked teasingly.",
+              "cueVerb": "asked",
+              "cueVerbType": "speech",
+              "firstSentence": "Were you perhaps thinking about a certain Runemaiden?",
+              "lastSentence": "Were you perhaps thinking about a certain Runemaiden?",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "Were you perhaps thinking about a certain Runemaiden?",
+              "speakerNameMatch": "Maja",
+              "speakerSurface": "Maja"
+            }
+          ],
+          "nextParagraphText": "“Oh?” Maja asked teasingly. “Were you perhaps thinking about a certain Runemaiden?”",
+          "paragraphIndex": 39,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "maja",
+              "characterName": "Maja",
+              "isReturning": false,
+              "lineId": 77,
+              "text": "Jake?"
+            },
+            {
+              "characterId": "maja",
+              "characterName": "Maja",
+              "isReturning": true,
+              "lineId": 79,
+              "text": "You looked like you were about to drool."
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Jake?",
+              "lastSentence": "Jake?",
+              "mentionedEntities": [
+                "Jake",
+                "Jake"
+              ],
+              "quoteIndex": 0,
+              "quoteText": "Jake?",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Maja returned Jake to the real world.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "You looked like you were about to drool.",
+              "lastSentence": "You looked like you were about to drool.",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "You looked like you were about to drool.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "previousParagraphText": "“Jake?” Maja returned Jake to the real world. “You looked like you were about to drool.”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 72,
+            "paragraphIndex": 34,
+            "relativeIndex": -4,
+            "text": "You know, it would be nice if things could just calm down for a while. Like, really calm down."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 73,
+            "paragraphIndex": 35,
+            "relativeIndex": -3,
+            "text": "Agree,"
+          },
+          {
+            "characterId": "maja",
+            "characterName": "Maja",
+            "lineId": 77,
+            "paragraphIndex": 38,
+            "relativeIndex": -2,
+            "text": "Jake?"
+          },
+          {
+            "characterId": "maja",
+            "characterName": "Maja",
+            "lineId": 79,
+            "paragraphIndex": 38,
+            "relativeIndex": -1,
+            "text": "You looked like you were about to drool."
+          },
+          {
+            "characterId": "maja",
+            "characterName": "Maja",
+            "lineId": 82,
+            "paragraphIndex": 40,
+            "relativeIndex": 1,
+            "text": "Oh?"
+          },
+          {
+            "characterId": "maja",
+            "characterName": "Maja",
+            "lineId": 84,
+            "paragraphIndex": 40,
+            "relativeIndex": 2,
+            "text": "Were you perhaps thinking about a certain Runemaiden?"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 80, \"text\": \"Sorry, I was just lost in thought about something,\", \"currentCharacterId\": \"maja\", \"currentCharacterName\": \"Maja\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Maja\", \"sourceCandidates\": [\"Maja\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Maja\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"maja\", \"name\": \"Maja\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 39, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Sorry, I was just lost in thought about something,” Jake excused himself.\", \"currentParagraphDialogue\": [{\"lineId\": 80, \"text\": \"Sorry, I was just lost in thought about something,\", \"characterId\": \"maja\", \"characterName\": \"Maja\", \"isReturning\": true}], \"previousParagraphText\": \"“Jake?” Maja returned Jake to the real world. “You looked like you were about to drool.”\", \"previousParagraphDialogue\": [{\"lineId\": 77, \"text\": \"Jake?\", \"characterId\": \"maja\", \"characterName\": \"Maja\", \"isReturning\": false}, {\"lineId\": 79, \"text\": \"You looked like you were about to drool.\", \"characterId\": \"maja\", \"characterName\": \"Maja\", \"isReturning\": true}], \"nextParagraphText\": \"“Oh?” Maja asked teasingly. “Were you perhaps thinking about a certain Runemaiden?”\", \"nextParagraphDialogue\": [{\"lineId\": 82, \"text\": \"Oh?\", \"characterId\": \"maja\", \"characterName\": \"Maja\", \"isReturning\": false}, {\"lineId\": 84, \"text\": \"Were you perhaps thinking about a certain Runemaiden?\", \"characterId\": \"maja\", \"characterName\": \"Maja\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Sorry, I was just lost in thought about something,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Sorry, I was just lost in thought about something,\", \"lastSentence\": \"Sorry, I was just lost in thought about something,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Jake?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Jake\", \"Jake\"], \"addressedEntity\": null, \"firstSentence\": \"Jake?\", \"lastSentence\": \"Jake?\"}, {\"quoteIndex\": 1, \"quoteText\": \"You looked like you were about to drool.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Maja returned Jake to the real world.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You looked like you were about to drool.\", \"lastSentence\": \"You looked like you were about to drool.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Oh?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Maja asked teasingly.\", \"speakerSurface\": \"Maja\", \"speakerNameMatch\": \"Maja\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Oh?\", \"lastSentence\": \"Oh?\"}, {\"quoteIndex\": 1, \"quoteText\": \"Were you perhaps thinking about a certain Runemaiden?\", \"cuePosition\": \"before\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Maja asked teasingly.\", \"speakerSurface\": \"Maja\", \"speakerNameMatch\": \"Maja\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Were you perhaps thinking about a certain Runemaiden?\", \"lastSentence\": \"Were you perhaps thinking about a certain Runemaiden?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Sorry, I was just lost in thought about something,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Sorry, I was just lost in thought about something,\", \"lastSentence\": \"Sorry, I was just lost in thought about something,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"maja\", \"characterName\": \"Maja\", \"aliases\": [], \"roleLabels\": [\"maja\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 72, \"paragraphIndex\": 34, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You know, it would be nice if things could just calm down for a while. Like, really calm down.\"}, {\"relativeIndex\": -3, \"lineId\": 73, \"paragraphIndex\": 35, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Agree,\"}, {\"relativeIndex\": -2, \"lineId\": 77, \"paragraphIndex\": 38, \"characterId\": \"maja\", \"characterName\": \"Maja\", \"text\": \"Jake?\"}, {\"relativeIndex\": -1, \"lineId\": 79, \"paragraphIndex\": 38, \"characterId\": \"maja\", \"characterName\": \"Maja\", \"text\": \"You looked like you were about to drool.\"}, {\"relativeIndex\": 1, \"lineId\": 82, \"paragraphIndex\": 40, \"characterId\": \"maja\", \"characterName\": \"Maja\", \"text\": \"Oh?\"}, {\"relativeIndex\": 2, \"lineId\": 84, \"paragraphIndex\": 40, \"characterId\": \"maja\", \"characterName\": \"Maja\", \"text\": \"Were you perhaps thinking about a certain Runemaiden?\"}], \"chapterCharacters\": [{\"characterId\": \"maja\", \"name\": \"Maja\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"adam\", \"name\": \"Adam\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_context_fit\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0017 - Chapter 1074 - A Very Dangerous Question",
+  "currentCharacterId": "maja",
+  "currentCharacterName": "Maja",
+  "currentParagraphText": "“Sorry, I was just lost in thought about something,” Jake excused himself.",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 1.0,
+    "currentCharacterId": "maja",
+    "currentCharacterName": "Maja",
+    "currentParagraphText": "“Sorry, I was just lost in thought about something,” Jake excused himself.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 80,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Oh?” Maja asked teasingly. “Were you perhaps thinking about a certain Runemaiden?”",
+    "paragraphIndex": 39,
+    "previousParagraphText": "“Jake?” Maja returned Jake to the real world. “You looked like you were about to drool.”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_context_fit"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 80,
+  "nextParagraphText": "“Oh?” Maja asked teasingly. “Were you perhaps thinking about a certain Runemaiden?”",
+  "paragraphIndex": 39,
+  "previousParagraphText": "“Jake?” Maja returned Jake to the real world. “You looked like you were about to drool.”"
+}

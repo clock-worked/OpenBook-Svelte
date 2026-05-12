@@ -1,0 +1,330 @@
+{
+  "cacheKey": "bc490a958623d6cde0b8030404b7d07ef20b49a929cd80a862c2eaf702d17e36",
+  "createdAt": "2026-04-19T03:50:57.248143+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "warpsnatcher",
+    "characterName": "Warpsnatcher",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "alias_match"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "vampire",
+        "characterName": "Vampire",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "vampire"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Unique Lifeform",
+          "The Unique Lifeform",
+          "the-unique-lifeform",
+          "the-unique-lifeform-2"
+        ],
+        "characterId": "minaga",
+        "name": "Minaga",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "The Warpsnatcher",
+          "Jasper",
+          "the-warpsnatcher",
+          "the-warpsnatcher-2"
+        ],
+        "characterId": "warpsnatcher",
+        "name": "Warpsnatcher",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "vampire",
+        "name": "Vampire",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "the seeker",
+        "name": "The Seeker",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Jasper looked at the god for a few moments as he put his paws together and looked up with his big, innocent eyes.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "No treasures.",
+      "lastSentence": "No treasures.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "No treasures.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "The Seeker",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.85,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.3263999999999999,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "The Seeker",
+        "sourceCandidates": [
+          "The Seeker",
+          "Warpsnatcher"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.808
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.808,
+          "name": "The Seeker",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.448,
+          "name": "Warpsnatcher",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 20,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "No treasures."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 20,
+          "text": "No treasures."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jasper looked at the god for a few moments as he put his paws together and looked up with his big, innocent eyes.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "No treasures.",
+          "lastSentence": "No treasures.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "No treasures.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Jasper looked at the god for a few moments as he put his paws together and looked up with his big, innocent eyes. “No treasures.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 22,
+          "text": "Right, there are no treasures left in there."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "The Seeker nodded as he waved his hand and retrieved the cube he’d sealed Jasper within. He checked it for a moment before nodding again.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "Right, there are no treasures left in there.",
+          "lastSentence": "Right, there are no treasures left in there.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Right, there are no treasures left in there.",
+          "speakerNameMatch": "The Seeker",
+          "speakerSurface": "The Seeker"
+        }
+      ],
+      "nextParagraphText": "The Seeker nodded as he waved his hand and retrieved the cube he’d sealed Jasper within. He checked it for a moment before nodding again. “Right, there are no treasures left in there.”",
+      "paragraphIndex": 10,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 17,
+          "text": "True, the trial did have progressive difficulty, but it appears it didn’t quite reach a level where it could fully challenge you. Now, how about the collectibles? What items did you obtain within the trial?"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the god asked.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "True, the trial did have progressive difficulty, but it appears it didn’t quite reach a level where it could fully challenge you.",
+          "lastSentence": "What items did you obtain within the trial?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "True, the trial did have progressive difficulty, but it appears it didn’t quite reach a level where it could fully challenge you. Now, how about the collectibles? What items did you obtain within the trial?",
+          "speakerNameMatch": null,
+          "speakerSurface": "the god"
+        }
+      ],
+      "previousParagraphText": "“True, the trial did have progressive difficulty, but it appears it didn’t quite reach a level where it could fully challenge you. Now, how about the collectibles? What items did you obtain within the trial?” the god asked."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 12,
+        "paragraphIndex": 7,
+        "relativeIndex": -4,
+        "text": "Ah, we made a bet about when you’d succeed in the trial, and I won,"
+      },
+      {
+        "characterId": "vampire",
+        "characterName": "Vampire",
+        "lineId": 14,
+        "paragraphIndex": 7,
+        "relativeIndex": -3,
+        "text": "Speaking of, how did you find the test within?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 15,
+        "paragraphIndex": 8,
+        "relativeIndex": -2,
+        "text": "Easy. Harder. Not hard,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 17,
+        "paragraphIndex": 9,
+        "relativeIndex": -1,
+        "text": "True, the trial did have progressive difficulty, but it appears it didn’t quite reach a level where it could fully challenge you. Now, how about the collectibles? What items did you obtain within the trial?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 22,
+        "paragraphIndex": 11,
+        "relativeIndex": 1,
+        "text": "Right, there are no treasures left in there."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 24,
+        "paragraphIndex": 12,
+        "relativeIndex": 2,
+        "text": "Forgot?"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 20, \"text\": \"No treasures.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"The Seeker\", \"sourceCandidates\": [\"The Seeker\", \"Warpsnatcher\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.808, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.3263999999999999, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.85, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Seeker\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"The Seeker\", \"confidence\": 0.808, \"reasons\": null}, {\"characterId\": null, \"name\": \"Warpsnatcher\", \"confidence\": 0.448, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 10, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Jasper looked at the god for a few moments as he put his paws together and looked up with his big, innocent eyes. “No treasures.”\", \"currentParagraphDialogue\": [{\"lineId\": 20, \"text\": \"No treasures.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“True, the trial did have progressive difficulty, but it appears it didn’t quite reach a level where it could fully challenge you. Now, how about the collectibles? What items did you obtain within the trial?” the god asked.\", \"previousParagraphDialogue\": [{\"lineId\": 17, \"text\": \"True, the trial did have progressive difficulty, but it appears it didn’t quite reach a level where it could fully challenge you. Now, how about the collectibles? What items did you obtain within the trial?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"nextParagraphText\": \"The Seeker nodded as he waved his hand and retrieved the cube he’d sealed Jasper within. He checked it for a moment before nodding again. “Right, there are no treasures left in there.”\", \"nextParagraphDialogue\": [{\"lineId\": 22, \"text\": \"Right, there are no treasures left in there.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"No treasures.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jasper looked at the god for a few moments as he put his paws together and looked up with his big, innocent eyes.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"No treasures.\", \"lastSentence\": \"No treasures.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"True, the trial did have progressive difficulty, but it appears it didn’t quite reach a level where it could fully challenge you. Now, how about the collectibles? What items did you obtain within the trial?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"the god asked.\", \"speakerSurface\": \"the god\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"True, the trial did have progressive difficulty, but it appears it didn’t quite reach a level where it could fully challenge you.\", \"lastSentence\": \"What items did you obtain within the trial?\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Right, there are no treasures left in there.\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"The Seeker nodded as he waved his hand and retrieved the cube he’d sealed Jasper within. He checked it for a moment before nodding again.\", \"speakerSurface\": \"The Seeker\", \"speakerNameMatch\": \"The Seeker\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Right, there are no treasures left in there.\", \"lastSentence\": \"Right, there are no treasures left in there.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"No treasures.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jasper looked at the god for a few moments as he put his paws together and looked up with his big, innocent eyes.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"No treasures.\", \"lastSentence\": \"No treasures.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"vampire\", \"characterName\": \"Vampire\", \"aliases\": [], \"roleLabels\": [\"vampire\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 12, \"paragraphIndex\": 7, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Ah, we made a bet about when you’d succeed in the trial, and I won,\"}, {\"relativeIndex\": -3, \"lineId\": 14, \"paragraphIndex\": 7, \"characterId\": \"vampire\", \"characterName\": \"Vampire\", \"text\": \"Speaking of, how did you find the test within?\"}, {\"relativeIndex\": -2, \"lineId\": 15, \"paragraphIndex\": 8, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Easy. Harder. Not hard,\"}, {\"relativeIndex\": -1, \"lineId\": 17, \"paragraphIndex\": 9, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"True, the trial did have progressive difficulty, but it appears it didn’t quite reach a level where it could fully challenge you. Now, how about the collectibles? What items did you obtain within the trial?\"}, {\"relativeIndex\": 1, \"lineId\": 22, \"paragraphIndex\": 11, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Right, there are no treasures left in there.\"}, {\"relativeIndex\": 2, \"lineId\": 24, \"paragraphIndex\": 12, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Forgot?\"}], \"chapterCharacters\": [{\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"warpsnatcher\", \"name\": \"Warpsnatcher\", \"aliases\": [\"The Warpsnatcher\", \"Jasper\", \"the-warpsnatcher\", \"the-warpsnatcher-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vampire\", \"name\": \"Vampire\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the seeker\", \"name\": \"The Seeker\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"warpsnatcher\",\n  \"characterName\": \"Warpsnatcher\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"alias_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

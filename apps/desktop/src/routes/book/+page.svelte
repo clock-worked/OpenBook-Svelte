@@ -10,6 +10,7 @@
   import { audiobookSettings, parserHints } from '$lib/stores/settings';
   import {
     bookCharacters,
+    removeBookCharacters,
     setBookCharacterColor,
     setBookCharacterProvider,
     setBookCharacterVoiceId,
@@ -26,7 +27,7 @@
   import SpeakerManager from '$lib/components/book/SpeakerManager.svelte';
   import CharacterContextViewer from '$lib/components/book/CharacterContextViewer.svelte';
   import { ArrowUpDown, ChevronDown, ChevronRight, Loader2, Play, RefreshCw } from 'lucide-svelte';
-  import type { CharacterManifestStats } from '$lib/types';
+  import type { Character, CharacterManifestStats } from '$lib/types';
   import { 
     voices, 
     saveVoicesData, 
@@ -47,6 +48,7 @@
   let manifestError: Record<string, string | null> = {};
   let previewAudio: HTMLAudioElement | null = null;
   let refreshingCounts = false;
+  let pruningZeroLineCharacters = false;
 
   async function loadSettings() {
     const root = get(bookRoot);
@@ -314,6 +316,13 @@
 
   // List of available character names for PillList components
   $: availableCharacters = $bookCharacters.characters.map(c => c.name);
+  $: zeroLineCharacterNames = $bookCharacters.characters
+    .filter((character) => getCharacterLineCount(character) === 0)
+    .map((character) => character.name);
+
+  function getCharacterLineCount(character: Character): number {
+    return Math.max(0, character.stats?.totalLines ?? character.count ?? 0);
+  }
 
   function toggleExpanded(name: string) {
     const next = !expanded[name];
@@ -459,6 +468,50 @@
       console.error('Error refreshing character counts:', error);
     } finally {
       refreshingCounts = false;
+    }
+  }
+
+  async function removeZeroLineCharacters() {
+    if (zeroLineCharacterNames.length === 0 || pruningZeroLineCharacters) return;
+
+    const count = zeroLineCharacterNames.length;
+    const confirmed = confirm(
+      `Remove ${count} character${count === 1 ? '' : 's'} with 0 assigned lines from the book?`,
+    );
+    if (!confirmed) return;
+
+    pruningZeroLineCharacters = true;
+    try {
+      const namesToRemove = new Set(zeroLineCharacterNames);
+      const currentSettings = get(audiobookSettings);
+
+      audiobookSettings.set({
+        ...currentSettings,
+        narrators: (currentSettings.narrators || []).filter((name) => !namesToRemove.has(name)),
+        protagonist: currentSettings.protagonist && namesToRemove.has(currentSettings.protagonist)
+          ? null
+          : currentSettings.protagonist,
+        mainCharacters: (currentSettings.mainCharacters || []).filter((name) => !namesToRemove.has(name)),
+        sideCharacters: (currentSettings.sideCharacters || []).filter((name) => !namesToRemove.has(name)),
+      });
+
+      await removeBookCharacters(zeroLineCharacterNames);
+
+      expanded = Object.fromEntries(
+        Object.entries(expanded).filter(([name]) => !namesToRemove.has(name)),
+      );
+      manifestLoading = Object.fromEntries(
+        Object.entries(manifestLoading).filter(([name]) => !namesToRemove.has(name)),
+      );
+      manifestError = Object.fromEntries(
+        Object.entries(manifestError).filter(([name]) => !namesToRemove.has(name)),
+      );
+
+      await saveSettings();
+    } catch (error) {
+      console.error('Error removing zero-line characters:', error);
+    } finally {
+      pruningZeroLineCharacters = false;
     }
   }
 
@@ -614,6 +667,19 @@
         {:else}
           <RefreshCw size={16} />
           <span>Refresh</span>
+        {/if}
+      </button>
+      <button
+        class="toolbar-btn"
+        on:click={removeZeroLineCharacters}
+        disabled={pruningZeroLineCharacters || zeroLineCharacterNames.length === 0}
+        title="Remove characters with 0 assigned lines"
+      >
+        {#if pruningZeroLineCharacters}
+          <Loader2 size={16} class="spin" />
+          <span>Removing…</span>
+        {:else}
+          <span>Remove Empty{zeroLineCharacterNames.length > 0 ? ` (${zeroLineCharacterNames.length})` : ''}</span>
         {/if}
       </button>
     </div>

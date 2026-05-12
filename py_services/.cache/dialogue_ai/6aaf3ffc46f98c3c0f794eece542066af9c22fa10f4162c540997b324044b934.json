@@ -1,0 +1,334 @@
+{
+  "cacheKey": "6aaf3ffc46f98c3c0f794eece542066af9c22fa10f4162c540997b324044b934",
+  "createdAt": "2026-04-18T23:24:13.665140+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "chimera",
+          "monster"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "keerla",
+        "name": "Keerla",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "solana",
+        "name": "Solana",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "His comment earned him a few more stares as Jake elaborated.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Due to certain circumstances, both of them wanted to do me a favor, which ended up being them helping me with creating this bow.",
+      "lastSentence": "As for the string, I had the help of Artemis.",
+      "mentionedEntities": [
+        "Artemis",
+        "Artemis",
+        "Yggdrasil"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "Due to certain circumstances, both of them wanted to do me a favor, which ended up being them helping me with creating this bow. The wood comes half from a bow I already had, granted directly by the system, and the other from Yggdrasil. As for the string, I had the help of Artemis.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "Artemis",
+            "Yggdrasil"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Keerla",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Having",
+        "sourceCandidates": [
+          "Having",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Having",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 104,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Due to certain circumstances, both of them wanted to do me a favor, which ended up being them helping me with creating this bow. The wood comes half from a bow I already had, granted directly by the system, and the other from Yggdrasil. As for the string, I had the help of Artemis."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 104,
+          "text": "Due to certain circumstances, both of them wanted to do me a favor, which ended up being them helping me with creating this bow. The wood comes half from a bow I already had, granted directly by the system, and the other from Yggdrasil. As for the string, I had the help of Artemis."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "His comment earned him a few more stares as Jake elaborated.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Due to certain circumstances, both of them wanted to do me a favor, which ended up being them helping me with creating this bow.",
+          "lastSentence": "As for the string, I had the help of Artemis.",
+          "mentionedEntities": [
+            "Artemis",
+            "Artemis",
+            "Yggdrasil"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Due to certain circumstances, both of them wanted to do me a favor, which ended up being them helping me with creating this bow. The wood comes half from a bow I already had, granted directly by the system, and the other from Yggdrasil. As for the string, I had the help of Artemis.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "His comment earned him a few more stares as Jake elaborated. “Due to certain circumstances, both of them wanted to do me a favor, which ended up being them helping me with creating this bow. The wood comes half from a bow I already had, granted directly by the system, and the other from Yggdrasil. As for the string, I had the help of Artemis.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "This elaboration only made them stare even more, and Solana even lowered her head a little, seemingly unsure if she should be bowing toward an item that could be categorized as divine in nature. Keerla was a bit of the same as she stared down at her hands that had touched the bow earlier.",
+      "paragraphIndex": 50,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 100,
+          "text": "I would hope not,"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 102,
+          "text": "If it were, it would be an insult to Yggdrasil, Nature’s Attendant, and myself."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake chuckled, delighted to see his new weapon praised that much.",
+          "cueVerb": "chuckled",
+          "cueVerbType": "speech",
+          "firstSentence": "I would hope not,",
+          "lastSentence": "I would hope not,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I would hope not,",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        },
+        {
+          "addressedEntity": "Yggdrasil",
+          "cuePosition": "before",
+          "cueText": "Jake chuckled, delighted to see his new weapon praised that much.",
+          "cueVerb": "chuckled",
+          "cueVerbType": "speech",
+          "firstSentence": "If it were, it would be an insult to Yggdrasil, Nature’s Attendant, and myself.",
+          "lastSentence": "If it were, it would be an insult to Yggdrasil, Nature’s Attendant, and myself.",
+          "mentionedEntities": [
+            "Yggdrasil"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "If it were, it would be an insult to Yggdrasil, Nature’s Attendant, and myself.",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "previousParagraphText": "“I would hope not,” Jake chuckled, delighted to see his new weapon praised that much. “If it were, it would be an insult to Yggdrasil, Nature’s Attendant, and myself.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 95,
+        "paragraphIndex": 46,
+        "relativeIndex": -4,
+        "text": "Sure, but don’t try to infuse energy or anything. It can get a bit fussy if people do that,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 99,
+        "paragraphIndex": 48,
+        "relativeIndex": -3,
+        "text": "That... isn’t a normal weapon. Not in the slightest."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 100,
+        "paragraphIndex": 49,
+        "relativeIndex": -2,
+        "text": "I would hope not,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 102,
+        "paragraphIndex": 49,
+        "relativeIndex": -1,
+        "text": "If it were, it would be an insult to Yggdrasil, Nature’s Attendant, and myself."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 107,
+        "paragraphIndex": 52,
+        "relativeIndex": 1,
+        "text": "Thank you for allowing us to see this marvel of creation."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 108,
+        "paragraphIndex": 53,
+        "relativeIndex": 2,
+        "text": "You’re overdoing that politeness thing again,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 104, \"text\": \"Due to certain circumstances, both of them wanted to do me a favor, which ended up being them helping me with creating this bow. The wood comes half from a bow I already had, granted directly by the system, and the other from Yggdrasil. As for the string, I had the help of Artemis.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Having\", \"sourceCandidates\": [\"Having\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Artemis\", \"Yggdrasil\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Keerla\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Having\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 50, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"His comment earned him a few more stares as Jake elaborated. “Due to certain circumstances, both of them wanted to do me a favor, which ended up being them helping me with creating this bow. The wood comes half from a bow I already had, granted directly by the system, and the other from Yggdrasil. As for the string, I had the help of Artemis.”\", \"currentParagraphDialogue\": [{\"lineId\": 104, \"text\": \"Due to certain circumstances, both of them wanted to do me a favor, which ended up being them helping me with creating this bow. The wood comes half from a bow I already had, granted directly by the system, and the other from Yggdrasil. As for the string, I had the help of Artemis.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“I would hope not,” Jake chuckled, delighted to see his new weapon praised that much. “If it were, it would be an insult to Yggdrasil, Nature’s Attendant, and myself.”\", \"previousParagraphDialogue\": [{\"lineId\": 100, \"text\": \"I would hope not,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 102, \"text\": \"If it were, it would be an insult to Yggdrasil, Nature’s Attendant, and myself.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"nextParagraphText\": \"This elaboration only made them stare even more, and Solana even lowered her head a little, seemingly unsure if she should be bowing toward an item that could be categorized as divine in nature. Keerla was a bit of the same as she stared down at her hands that had touched the bow earlier.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Due to certain circumstances, both of them wanted to do me a favor, which ended up being them helping me with creating this bow. The wood comes half from a bow I already had, granted directly by the system, and the other from Yggdrasil. As for the string, I had the help of Artemis.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"His comment earned him a few more stares as Jake elaborated.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Artemis\", \"Artemis\", \"Yggdrasil\"], \"addressedEntity\": null, \"firstSentence\": \"Due to certain circumstances, both of them wanted to do me a favor, which ended up being them helping me with creating this bow.\", \"lastSentence\": \"As for the string, I had the help of Artemis.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I would hope not,\", \"cuePosition\": \"after\", \"cueVerb\": \"chuckled\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake chuckled, delighted to see his new weapon praised that much.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I would hope not,\", \"lastSentence\": \"I would hope not,\"}, {\"quoteIndex\": 1, \"quoteText\": \"If it were, it would be an insult to Yggdrasil, Nature’s Attendant, and myself.\", \"cuePosition\": \"before\", \"cueVerb\": \"chuckled\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake chuckled, delighted to see his new weapon praised that much.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [\"Yggdrasil\"], \"addressedEntity\": \"Yggdrasil\", \"firstSentence\": \"If it were, it would be an insult to Yggdrasil, Nature’s Attendant, and myself.\", \"lastSentence\": \"If it were, it would be an insult to Yggdrasil, Nature’s Attendant, and myself.\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Due to certain circumstances, both of them wanted to do me a favor, which ended up being them helping me with creating this bow. The wood comes half from a bow I already had, granted directly by the system, and the other from Yggdrasil. As for the string, I had the help of Artemis.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"His comment earned him a few more stares as Jake elaborated.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Artemis\", \"Artemis\", \"Yggdrasil\"], \"addressedEntity\": null, \"firstSentence\": \"Due to certain circumstances, both of them wanted to do me a favor, which ended up being them helping me with creating this bow.\", \"lastSentence\": \"As for the string, I had the help of Artemis.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [\"jake\", \"protagonist\", \"chimera\", \"monster\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 95, \"paragraphIndex\": 46, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Sure, but don’t try to infuse energy or anything. It can get a bit fussy if people do that,\"}, {\"relativeIndex\": -3, \"lineId\": 99, \"paragraphIndex\": 48, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"That... isn’t a normal weapon. Not in the slightest.\"}, {\"relativeIndex\": -2, \"lineId\": 100, \"paragraphIndex\": 49, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I would hope not,\"}, {\"relativeIndex\": -1, \"lineId\": 102, \"paragraphIndex\": 49, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"If it were, it would be an insult to Yggdrasil, Nature’s Attendant, and myself.\"}, {\"relativeIndex\": 1, \"lineId\": 107, \"paragraphIndex\": 52, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Thank you for allowing us to see this marvel of creation.\"}, {\"relativeIndex\": 2, \"lineId\": 108, \"paragraphIndex\": 53, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You’re overdoing that politeness thing again,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"keerla\", \"name\": \"Keerla\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"solana\", \"name\": \"Solana\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

@@ -1,0 +1,346 @@
+{
+  "cacheKey": "f9f764e5b0007dc7a6de75746f2aca7f26aaf242bd0f05f7d55a6bdc9e1ed778",
+  "createdAt": "2026-05-11T21:19:14.587103+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "viper",
+    "characterName": "The Malefic Viper",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "gender_mismatch_with_current_attribution",
+      "gender_match_with_alternative_character"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Godqueen",
+          "Viper"
+        ],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "artemis",
+          "godqueen",
+          "viper"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy",
+          "Vilas",
+          "Vilastromoz",
+          "The Viper",
+          "the-viper",
+          "the-viper-2"
+        ],
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "viper",
+          "the malefic viper",
+          "malefic viper",
+          "villy",
+          "vilas",
+          "vilastromoz",
+          "the viper",
+          "the viper 2"
+        ],
+        "wasRecentSpeaker": false
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen",
+          "Viper"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "beastkin",
+        "name": "Beastkin",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "the Viper answered in a kind tone as he stood up to greet her.",
+      "cueVerb": "answered",
+      "cueVerbType": "speech",
+      "firstSentence": "Hey, it’s your work and a priority in your life, who would I be to judge something like that?",
+      "lastSentence": "Hey, it’s your work and a priority in your life, who would I be to judge something like that?",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Hey, it’s your work and a priority in your life, who would I be to judge something like that?",
+      "speakerNameMatch": null,
+      "speakerSurface": "Viper"
+    },
+    "line": {
+      "alignment": {
+        "confidence": 1.0,
+        "isSpanFallback": false,
+        "method": "quote_unit",
+        "paragraphIndex": 3,
+        "spanDistance": 0.0,
+        "spanParagraphIndex": 3
+      },
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": true,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.876,
+        "misattributionRisk": 0.15,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "The Malefic Viper",
+        "sourceCandidates": [
+          "The Malefic Viper"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.876
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.876,
+          "name": "Artemis",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [
+        "Godqueen",
+        "Viper"
+      ],
+      "currentCharacterId": "artemis",
+      "currentCharacterName": "Artemis",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 5,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Hey, it’s your work and a priority in your life, who would I be to judge something like that?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": false,
+          "lineId": 5,
+          "text": "Hey, it’s your work and a priority in your life, who would I be to judge something like that?"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the Viper answered in a kind tone as he stood up to greet her.",
+          "cueVerb": "answered",
+          "cueVerbType": "speech",
+          "firstSentence": "Hey, it’s your work and a priority in your life, who would I be to judge something like that?",
+          "lastSentence": "Hey, it’s your work and a priority in your life, who would I be to judge something like that?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Hey, it’s your work and a priority in your life, who would I be to judge something like that?",
+          "speakerNameMatch": null,
+          "speakerSurface": "Viper"
+        }
+      ],
+      "currentParagraphText": "“Hey, it’s your work and a priority in your life, who would I be to judge something like that?” the Viper answered in a kind tone as he stood up to greet her.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "What happened next nearly sent Jake reeling as the woman closed him and embraced the Viper. He returned her hug as their lips touched for a brief moment before quickly disengaging from their public display of affection.",
+      "paragraphIndex": 3,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 4,
+          "text": "Sorry I was late; you know how my old man can be."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "As he was sitting there, a female beastkin approached him with a smile on her face.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Sorry I was late; you know how my old man can be.",
+          "lastSentence": "Sorry I was late; you know how my old man can be.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Sorry I was late; you know how my old man can be.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "previousParagraphText": "As he was sitting there, a female beastkin approached him with a smile on her face. “Sorry I was late; you know how my old man can be.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 4,
+        "paragraphIndex": 2,
+        "relativeIndex": -1,
+        "text": "Sorry I was late; you know how my old man can be."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 8,
+        "paragraphIndex": 5,
+        "relativeIndex": 1,
+        "text": "I’ve missed you,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 10,
+        "paragraphIndex": 5,
+        "relativeIndex": 2,
+        "text": "How did your mission go? Did you find it?"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "evidence": [
+              "exact_label_match",
+              "stripped_label_match",
+              "token_overlap:viper"
+            ],
+            "score": 0.98
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "evidence": [
+              "exact_label_match",
+              "stripped_label_match",
+              "token_overlap:viper"
+            ],
+            "score": 0.98
+          }
+        ],
+        "surface": "viper"
+      }
+    ],
+    "sceneRoster": {
+      "paragraphWindow": 6,
+      "presentCharacterIds": [
+        "unknown",
+        "artemis",
+        "jake"
+      ],
+      "presentCharacters": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown"
+        },
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake"
+        }
+      ]
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 5, \"text\": \"Hey, it’s your work and a priority in your life, who would I be to judge something like that?\", \"currentCharacterId\": \"artemis\", \"currentCharacterName\": \"Artemis\", \"currentCharacterAliases\": [\"Godqueen\", \"Viper\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"The Malefic Viper\", \"sourceCandidates\": [\"The Malefic Viper\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.876, \"marginToSecond\": 0.876, \"misattributionRisk\": 0.15, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.876, \"reasons\": null}], \"isReturning\": false, \"alignment\": {\"paragraphIndex\": 3, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 3, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 3, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Hey, it’s your work and a priority in your life, who would I be to judge something like that?” the Viper answered in a kind tone as he stood up to greet her.\", \"currentParagraphDialogue\": [{\"lineId\": 5, \"text\": \"Hey, it’s your work and a priority in your life, who would I be to judge something like that?\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": false}], \"previousParagraphText\": \"As he was sitting there, a female beastkin approached him with a smile on her face. “Sorry I was late; you know how my old man can be.”\", \"previousParagraphDialogue\": [{\"lineId\": 4, \"text\": \"Sorry I was late; you know how my old man can be.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"nextParagraphText\": \"What happened next nearly sent Jake reeling as the woman closed him and embraced the Viper. He returned her hug as their lips touched for a brief moment before quickly disengaging from their public display of affection.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Hey, it’s your work and a priority in your life, who would I be to judge something like that?\", \"cuePosition\": \"after\", \"cueVerb\": \"answered\", \"cueVerbType\": \"speech\", \"cueText\": \"the Viper answered in a kind tone as he stood up to greet her.\", \"speakerSurface\": \"Viper\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Hey, it’s your work and a priority in your life, who would I be to judge something like that?\", \"lastSentence\": \"Hey, it’s your work and a priority in your life, who would I be to judge something like that?\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Sorry I was late; you know how my old man can be.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"As he was sitting there, a female beastkin approached him with a smile on her face.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Sorry I was late; you know how my old man can be.\", \"lastSentence\": \"Sorry I was late; you know how my old man can be.\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Hey, it’s your work and a priority in your life, who would I be to judge something like that?\", \"cuePosition\": \"after\", \"cueVerb\": \"answered\", \"cueVerbType\": \"speech\", \"cueText\": \"the Viper answered in a kind tone as he stood up to greet her.\", \"speakerSurface\": \"Viper\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Hey, it’s your work and a priority in your life, who would I be to judge something like that?\", \"lastSentence\": \"Hey, it’s your work and a priority in your life, who would I be to judge something like that?\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"unknown\", \"artemis\", \"jake\"], \"presentCharacters\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\"}, {\"characterId\": \"jake\", \"characterName\": \"Jake\"}]}, \"sceneEntities\": [{\"surface\": \"viper\", \"matches\": [{\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"score\": 0.98, \"evidence\": [\"exact_label_match\", \"stripped_label_match\", \"token_overlap:viper\"]}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"score\": 0.98, \"evidence\": [\"exact_label_match\", \"stripped_label_match\", \"token_overlap:viper\"]}]}], \"candidateCards\": [{\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [\"Godqueen\", \"Viper\"], \"roleLabels\": [\"artemis\", \"godqueen\", \"viper\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\", \"Vilas\", \"Vilastromoz\", \"The Viper\", \"the-viper\", \"the-viper-2\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\", \"vilas\", \"vilastromoz\", \"the viper\", \"the viper 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -1, \"lineId\": 4, \"paragraphIndex\": 2, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Sorry I was late; you know how my old man can be.\"}, {\"relativeIndex\": 1, \"lineId\": 8, \"paragraphIndex\": 5, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I’ve missed you,\"}, {\"relativeIndex\": 2, \"lineId\": 10, \"paragraphIndex\": 5, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"How did your mission go? Did you find it?\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\", \"Viper\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"beastkin\", \"name\": \"Beastkin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"viper\",\n  \"characterName\": \"The Malefic Viper\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"gender_mismatch_with_current_attribution\",\n    \"gender_match_with_alternative_character\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

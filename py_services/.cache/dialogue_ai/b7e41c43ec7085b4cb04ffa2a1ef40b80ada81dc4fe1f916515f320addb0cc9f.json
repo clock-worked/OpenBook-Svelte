@@ -1,0 +1,330 @@
+{
+  "cacheKey": "b7e41c43ec7085b4cb04ffa2a1ef40b80ada81dc4fe1f916515f320addb0cc9f",
+  "createdAt": "2026-04-01T18:43:35.464232+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "augur",
+    "characterName": "Augur",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jacob"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "characterName": "Augur",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "augur"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "name": "Augur",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "the-unique-lifeform",
+        "name": "The Unique Lifeform",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Let me first give you a bit of a backstory on the Desolate Child of Loss.",
+      "lastSentence": "As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Let me first give you a bit of a backstory on the Desolate Child of Loss. As I suspect you already found out, it was born from a freak accident ritual performed by people entirely brainwashed by Ell’Hakan. People who genuinely believed he was a god. When they were struggling, facing the onslaught of the Prima Guardian they had foolishly released, they performed this ritual to try and summon Ell’Hakan and make him descend to their planet. As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Augur",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.19599999999999995,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jacob",
+        "sourceCandidates": [
+          "Jacob",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": "jacob",
+          "confidence": 0.804,
+          "name": "Jacob",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.444,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "jacob",
+      "currentCharacterName": "Jacob",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 46,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Let me first give you a bit of a backstory on the Desolate Child of Loss. As I suspect you already found out, it was born from a freak accident ritual performed by people entirely brainwashed by Ell’Hakan. People who genuinely believed he was a god. When they were struggling, facing the onslaught of the Prima Guardian they had foolishly released, they performed this ritual to try and summon Ell’Hakan and make him descend to their planet. As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 46,
+          "text": "Let me first give you a bit of a backstory on the Desolate Child of Loss. As I suspect you already found out, it was born from a freak accident ritual performed by people entirely brainwashed by Ell’Hakan. People who genuinely believed he was a god. When they were struggling, facing the onslaught of the Prima Guardian they had foolishly released, they performed this ritual to try and summon Ell’Hakan and make him descend to their planet. As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Let me first give you a bit of a backstory on the Desolate Child of Loss.",
+          "lastSentence": "As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Let me first give you a bit of a backstory on the Desolate Child of Loss. As I suspect you already found out, it was born from a freak accident ritual performed by people entirely brainwashed by Ell’Hakan. People who genuinely believed he was a god. When they were struggling, facing the onslaught of the Prima Guardian they had foolishly released, they performed this ritual to try and summon Ell’Hakan and make him descend to their planet. As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Let me first give you a bit of a backstory on the Desolate Child of Loss. As I suspect you already found out, it was born from a freak accident ritual performed by people entirely brainwashed by Ell’Hakan. People who genuinely believed he was a god. When they were struggling, facing the onslaught of the Prima Guardian they had foolishly released, they performed this ritual to try and summon Ell’Hakan and make him descend to their planet. As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,” the Augur began, and Jake was actually kind of curious as he had plenty of theories himself.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "augur",
+          "characterName": "Augur",
+          "isReturning": true,
+          "lineId": 48,
+          "text": "What they summoned was their idea of what Ell’Hakan was supposed to be. However, their idea and reality didn’t match up at all, and what appeared was an incomplete husk. Everything they knew about Ell’Hakan had been a lie, so when the False God was born, the Records it was born with were a complete mess. The main problem was that they didn’t have a unified vision of what Ell’Hakan was, as his mass indoctrination made them all simply see him as their ideal kind of god, something that differs from person to person. In the end, nothing fit together, yet Records were born. All that power and faith gathered but crumbled instantly... only for desolation to take its place. All that remains of their original intent is that the Desolate Child of Loss believes it’s the Celestial Child. The child has exact copies of some of Ell’Hakan’s Records, which is also why he felt like you had killed his other self. That you killed Ell’Hakan, who the Desolate Child of Loss views as a fake he was born to reclaim Records from. Now whatever Records of Ell’Hakan remain were absorbed by you."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "What they summoned was their idea of what Ell’Hakan was supposed to be.",
+          "lastSentence": "Now whatever Records of Ell’Hakan remain were absorbed by you.",
+          "mentionedEntities": [
+            "False God"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "What they summoned was their idea of what Ell’Hakan was supposed to be. However, their idea and reality didn’t match up at all, and what appeared was an incomplete husk. Everything they knew about Ell’Hakan had been a lie, so when the False God was born, the Records it was born with were a complete mess. The main problem was that they didn’t have a unified vision of what Ell’Hakan was, as his mass indoctrination made them all simply see him as their ideal kind of god, something that differs from person to person. In the end, nothing fit together, yet Records were born. All that power and faith gathered but crumbled instantly... only for desolation to take its place. All that remains of their original intent is that the Desolate Child of Loss believes it’s the Celestial Child. The child has exact copies of some of Ell’Hakan’s Records, which is also why he felt like you had killed his other self. That you killed Ell’Hakan, who the Desolate Child of Loss views as a fake he was born to reclaim Records from. Now whatever Records of Ell’Hakan remain were absorbed by you.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "nextParagraphText": "“What they summoned was their idea of what Ell’Hakan was supposed to be. However, their idea and reality didn’t match up at all, and what appeared was an incomplete husk. Everything they knew about Ell’Hakan had been a lie, so when the False God was born, the Records it was born with were a complete mess. The main problem was that they didn’t have a unified vision of what Ell’Hakan was, as his mass indoctrination made them all simply see him as their ideal kind of god, something that differs from person to person. In the end, nothing fit together, yet Records were born. All that power and faith gathered but crumbled instantly... only for desolation to take its place. All that remains of their original intent is that the Desolate Child of Loss believes it’s the Celestial Child. The child has exact copies of some of Ell’Hakan’s Records, which is also why he felt like you had killed his other self. That you killed Ell’Hakan, who the Desolate Child of Loss views as a fake he was born to reclaim Records from. Now whatever Records of Ell’Hakan remain were absorbed by you.”",
+      "paragraphIndex": 23,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 44,
+          "text": "Explain,"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake said, genuinely hoping for a bloody good explanation.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Explain,",
+          "lastSentence": "Explain,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Explain,",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "previousParagraphText": "“Explain,” Jake said, genuinely hoping for a bloody good explanation."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 40,
+        "paragraphIndex": 19,
+        "relativeIndex": -4,
+        "text": "Not that I can see why it would overly matter if anyone had. Another thought that crossed me was also... how is the Holy Church related to the birth of the Desolate Child of Loss?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 41,
+        "paragraphIndex": 20,
+        "relativeIndex": -3,
+        "text": "Not at all,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 43,
+        "paragraphIndex": 21,
+        "relativeIndex": -2,
+        "text": "No one in the multiverse can purposefully create a False God. But I will not deny that we – or especially I – saw an opportunity when the Desolate Child of Loss appeared."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 44,
+        "paragraphIndex": 22,
+        "relativeIndex": -1,
+        "text": "Explain,"
+      },
+      {
+        "characterId": "augur",
+        "characterName": "Augur",
+        "lineId": 48,
+        "paragraphIndex": 24,
+        "relativeIndex": 1,
+        "text": "What they summoned was their idea of what Ell’Hakan was supposed to be. However, their idea and reality didn’t match up at all, and what appeared was an incomplete husk. Everything they knew about Ell’Hakan had been a lie, so when the False God was born, the Records it was born with were a complete mess. The main problem was that they didn’t have a unified vision of what Ell’Hakan was, as his mass indoctrination made them all simply see him as their ideal kind of god, something that differs from person to person. In the end, nothing fit together, yet Records were born. All that power and faith gathered but crumbled instantly... only for desolation to take its place. All that remains of their original intent is that the Desolate Child of Loss believes it’s the Celestial Child. The child has exact copies of some of Ell’Hakan’s Records, which is also why he felt like you had killed his other self. That you killed Ell’Hakan, who the Desolate Child of Loss views as a fake he was born to reclaim Records from. Now whatever Records of Ell’Hakan remain were absorbed by you."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 49,
+        "paragraphIndex": 25,
+        "relativeIndex": 2,
+        "text": "You’re saying that the Desolate Child of Loss wanted to kill Ell’Hakan but now wants to kill me?"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 46, \"text\": \"Let me first give you a bit of a backstory on the Desolate Child of Loss. As I suspect you already found out, it was born from a freak accident ritual performed by people entirely brainwashed by Ell’Hakan. People who genuinely believed he was a god. When they were struggling, facing the onslaught of the Prima Guardian they had foolishly released, they performed this ritual to try and summon Ell’Hakan and make him descend to their planet. As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,\", \"currentCharacterId\": \"jacob\", \"currentCharacterName\": \"Jacob\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jacob\", \"sourceCandidates\": [\"Jacob\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Augur\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 23, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Let me first give you a bit of a backstory on the Desolate Child of Loss. As I suspect you already found out, it was born from a freak accident ritual performed by people entirely brainwashed by Ell’Hakan. People who genuinely believed he was a god. When they were struggling, facing the onslaught of the Prima Guardian they had foolishly released, they performed this ritual to try and summon Ell’Hakan and make him descend to their planet. As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,” the Augur began, and Jake was actually kind of curious as he had plenty of theories himself.\", \"currentParagraphDialogue\": [{\"lineId\": 46, \"text\": \"Let me first give you a bit of a backstory on the Desolate Child of Loss. As I suspect you already found out, it was born from a freak accident ritual performed by people entirely brainwashed by Ell’Hakan. People who genuinely believed he was a god. When they were struggling, facing the onslaught of the Prima Guardian they had foolishly released, they performed this ritual to try and summon Ell’Hakan and make him descend to their planet. As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}], \"previousParagraphText\": \"“Explain,” Jake said, genuinely hoping for a bloody good explanation.\", \"previousParagraphDialogue\": [{\"lineId\": 44, \"text\": \"Explain,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"nextParagraphText\": \"“What they summoned was their idea of what Ell’Hakan was supposed to be. However, their idea and reality didn’t match up at all, and what appeared was an incomplete husk. Everything they knew about Ell’Hakan had been a lie, so when the False God was born, the Records it was born with were a complete mess. The main problem was that they didn’t have a unified vision of what Ell’Hakan was, as his mass indoctrination made them all simply see him as their ideal kind of god, something that differs from person to person. In the end, nothing fit together, yet Records were born. All that power and faith gathered but crumbled instantly... only for desolation to take its place. All that remains of their original intent is that the Desolate Child of Loss believes it’s the Celestial Child. The child has exact copies of some of Ell’Hakan’s Records, which is also why he felt like you had killed his other self. That you killed Ell’Hakan, who the Desolate Child of Loss views as a fake he was born to reclaim Records from. Now whatever Records of Ell’Hakan remain were absorbed by you.”\", \"nextParagraphDialogue\": [{\"lineId\": 48, \"text\": \"What they summoned was their idea of what Ell’Hakan was supposed to be. However, their idea and reality didn’t match up at all, and what appeared was an incomplete husk. Everything they knew about Ell’Hakan had been a lie, so when the False God was born, the Records it was born with were a complete mess. The main problem was that they didn’t have a unified vision of what Ell’Hakan was, as his mass indoctrination made them all simply see him as their ideal kind of god, something that differs from person to person. In the end, nothing fit together, yet Records were born. All that power and faith gathered but crumbled instantly... only for desolation to take its place. All that remains of their original intent is that the Desolate Child of Loss believes it’s the Celestial Child. The child has exact copies of some of Ell’Hakan’s Records, which is also why he felt like you had killed his other self. That you killed Ell’Hakan, who the Desolate Child of Loss views as a fake he was born to reclaim Records from. Now whatever Records of Ell’Hakan remain were absorbed by you.\", \"characterId\": \"augur\", \"characterName\": \"Augur\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Let me first give you a bit of a backstory on the Desolate Child of Loss. As I suspect you already found out, it was born from a freak accident ritual performed by people entirely brainwashed by Ell’Hakan. People who genuinely believed he was a god. When they were struggling, facing the onslaught of the Prima Guardian they had foolishly released, they performed this ritual to try and summon Ell’Hakan and make him descend to their planet. As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Let me first give you a bit of a backstory on the Desolate Child of Loss.\", \"lastSentence\": \"As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Explain,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake said, genuinely hoping for a bloody good explanation.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Explain,\", \"lastSentence\": \"Explain,\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"What they summoned was their idea of what Ell’Hakan was supposed to be. However, their idea and reality didn’t match up at all, and what appeared was an incomplete husk. Everything they knew about Ell’Hakan had been a lie, so when the False God was born, the Records it was born with were a complete mess. The main problem was that they didn’t have a unified vision of what Ell’Hakan was, as his mass indoctrination made them all simply see him as their ideal kind of god, something that differs from person to person. In the end, nothing fit together, yet Records were born. All that power and faith gathered but crumbled instantly... only for desolation to take its place. All that remains of their original intent is that the Desolate Child of Loss believes it’s the Celestial Child. The child has exact copies of some of Ell’Hakan’s Records, which is also why he felt like you had killed his other self. That you killed Ell’Hakan, who the Desolate Child of Loss views as a fake he was born to reclaim Records from. Now whatever Records of Ell’Hakan remain were absorbed by you.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"False God\"], \"addressedEntity\": null, \"firstSentence\": \"What they summoned was their idea of what Ell’Hakan was supposed to be.\", \"lastSentence\": \"Now whatever Records of Ell’Hakan remain were absorbed by you.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Let me first give you a bit of a backstory on the Desolate Child of Loss. As I suspect you already found out, it was born from a freak accident ritual performed by people entirely brainwashed by Ell’Hakan. People who genuinely believed he was a god. When they were struggling, facing the onslaught of the Prima Guardian they had foolishly released, they performed this ritual to try and summon Ell’Hakan and make him descend to their planet. As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Let me first give you a bit of a backstory on the Desolate Child of Loss.\", \"lastSentence\": \"As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [], \"roleLabels\": [\"jacob\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"augur\", \"characterName\": \"Augur\", \"aliases\": [], \"roleLabels\": [\"augur\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 40, \"paragraphIndex\": 19, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Not that I can see why it would overly matter if anyone had. Another thought that crossed me was also... how is the Holy Church related to the birth of the Desolate Child of Loss?\"}, {\"relativeIndex\": -3, \"lineId\": 41, \"paragraphIndex\": 20, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Not at all,\"}, {\"relativeIndex\": -2, \"lineId\": 43, \"paragraphIndex\": 21, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"No one in the multiverse can purposefully create a False God. But I will not deny that we – or especially I – saw an opportunity when the Desolate Child of Loss appeared.\"}, {\"relativeIndex\": -1, \"lineId\": 44, \"paragraphIndex\": 22, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Explain,\"}, {\"relativeIndex\": 1, \"lineId\": 48, \"paragraphIndex\": 24, \"characterId\": \"augur\", \"characterName\": \"Augur\", \"text\": \"What they summoned was their idea of what Ell’Hakan was supposed to be. However, their idea and reality didn’t match up at all, and what appeared was an incomplete husk. Everything they knew about Ell’Hakan had been a lie, so when the False God was born, the Records it was born with were a complete mess. The main problem was that they didn’t have a unified vision of what Ell’Hakan was, as his mass indoctrination made them all simply see him as their ideal kind of god, something that differs from person to person. In the end, nothing fit together, yet Records were born. All that power and faith gathered but crumbled instantly... only for desolation to take its place. All that remains of their original intent is that the Desolate Child of Loss believes it’s the Celestial Child. The child has exact copies of some of Ell’Hakan’s Records, which is also why he felt like you had killed his other self. That you killed Ell’Hakan, who the Desolate Child of Loss views as a fake he was born to reclaim Records from. Now whatever Records of Ell’Hakan remain were absorbed by you.\"}, {\"relativeIndex\": 2, \"lineId\": 49, \"paragraphIndex\": 25, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You’re saying that the Desolate Child of Loss wanted to kill Ell’Hakan but now wants to kill me?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"augur\", \"name\": \"Augur\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-unique-lifeform\", \"name\": \"The Unique Lifeform\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"augur\",\n  \"characterName\": \"Augur\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

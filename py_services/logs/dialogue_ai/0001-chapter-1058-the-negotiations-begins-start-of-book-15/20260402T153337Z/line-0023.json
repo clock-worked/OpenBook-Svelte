@@ -1,0 +1,400 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "366776e7579e5b506610dde8c5b0d7431b7452ef0e81cb5b31d2cb735087e7da",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\366776e7579e5b506610dde8c5b0d7431b7452ef0e81cb5b31d2cb735087e7da.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 1.0,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "preceding_speaker_cue"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "bertram",
+            "characterName": "Bertram",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "bertram"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "miranda",
+            "characterName": "Miranda",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "miranda"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "arnold",
+            "characterName": "Arnold",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "arnold"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "King Iludar"
+            ],
+            "characterId": "iludar",
+            "characterName": "Iludar",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "iludar",
+              "king iludar"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "viper",
+              "the malefic viper",
+              "malefic viper",
+              "villy"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "miranda",
+            "name": "Miranda",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "arnold",
+            "name": "Arnold",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "bertram",
+            "name": "Bertram",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "King Iludar"
+            ],
+            "characterId": "iludar",
+            "name": "Iludar",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "kindroth",
+            "name": "Kindroth",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "holy-priest",
+              "holy-priest-2",
+              "head priest",
+              "the head priest"
+            ],
+            "characterId": "holy-priest",
+            "name": "Holy Priest",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Augur",
+              "The Augur"
+            ],
+            "characterId": "jacob",
+            "name": "Jacob",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I believe you have something that belongs to me.",
+          "lastSentence": "I believe you have something that belongs to me.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I believe you have something that belongs to me.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Iludar",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.18400000000000005,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Bertram",
+            "sourceCandidates": [
+              "Bertram",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": "bertram",
+              "confidence": 0.816,
+              "name": "Bertram",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.456,
+              "name": "Jake",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "bertram",
+          "currentCharacterName": "Bertram",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 23,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "I believe you have something that belongs to me."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "bertram",
+              "characterName": "Bertram",
+              "isReturning": true,
+              "lineId": 23,
+              "text": "I believe you have something that belongs to me."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "I believe you have something that belongs to me.",
+              "lastSentence": "I believe you have something that belongs to me.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "I believe you have something that belongs to me.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“I believe you have something that belongs to me.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "Iludar opened his eyes as the message arrived. The Chosen of the Malefic Viper had just reached the Holy Church’s Milky Way headquarters, signaling it was their time to move.",
+          "paragraphIndex": 17,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "Jake remained silent as more elites gathered until, finally, the people in charge made their appearance. Jacob, Bertram, and a bunch of people in priest robes and fancy attire exited the cathedral, and the moment it did, Jake’s will-infused voice echoed throughout the city."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 2,
+            "paragraphIndex": 0,
+            "relativeIndex": -4,
+            "text": "Negotiations"
+          },
+          {
+            "characterId": "miranda",
+            "characterName": "Miranda",
+            "lineId": 5,
+            "paragraphIndex": 1,
+            "relativeIndex": -3,
+            "text": "rightful compensation."
+          },
+          {
+            "characterId": "arnold",
+            "characterName": "Arnold",
+            "lineId": 10,
+            "paragraphIndex": 6,
+            "relativeIndex": -2,
+            "text": "Ready?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 12,
+            "paragraphIndex": 7,
+            "relativeIndex": -1,
+            "text": "Ready as can be,"
+          },
+          {
+            "characterId": "iludar",
+            "characterName": "Iludar",
+            "lineId": 26,
+            "paragraphIndex": 20,
+            "relativeIndex": 1,
+            "text": "We have safe houses set up all across the Milky Way. All we have to do is survive until the universe opens back up. You know as well as I do that this is your only chance for survival,"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 28,
+            "paragraphIndex": 21,
+            "relativeIndex": 2,
+            "text": "I know, I know, but it doesn’t make it any less nerve-wracking,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 23, \"text\": \"I believe you have something that belongs to me.\", \"currentCharacterId\": \"bertram\", \"currentCharacterName\": \"Bertram\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Bertram\", \"sourceCandidates\": [\"Bertram\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Iludar\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"bertram\", \"name\": \"Bertram\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 17, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I believe you have something that belongs to me.”\", \"currentParagraphDialogue\": [{\"lineId\": 23, \"text\": \"I believe you have something that belongs to me.\", \"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"isReturning\": true}], \"previousParagraphText\": \"Jake remained silent as more elites gathered until, finally, the people in charge made their appearance. Jacob, Bertram, and a bunch of people in priest robes and fancy attire exited the cathedral, and the moment it did, Jake’s will-infused voice echoed throughout the city.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Iludar opened his eyes as the message arrived. The Chosen of the Malefic Viper had just reached the Holy Church’s Milky Way headquarters, signaling it was their time to move.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I believe you have something that belongs to me.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I believe you have something that belongs to me.\", \"lastSentence\": \"I believe you have something that belongs to me.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I believe you have something that belongs to me.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I believe you have something that belongs to me.\", \"lastSentence\": \"I believe you have something that belongs to me.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"aliases\": [], \"roleLabels\": [\"bertram\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"aliases\": [], \"roleLabels\": [\"miranda\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"arnold\", \"characterName\": \"Arnold\", \"aliases\": [], \"roleLabels\": [\"arnold\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"iludar\", \"characterName\": \"Iludar\", \"aliases\": [\"King Iludar\"], \"roleLabels\": [\"iludar\", \"king iludar\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 2, \"paragraphIndex\": 0, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Negotiations\"}, {\"relativeIndex\": -3, \"lineId\": 5, \"paragraphIndex\": 1, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"rightful compensation.\"}, {\"relativeIndex\": -2, \"lineId\": 10, \"paragraphIndex\": 6, \"characterId\": \"arnold\", \"characterName\": \"Arnold\", \"text\": \"Ready?\"}, {\"relativeIndex\": -1, \"lineId\": 12, \"paragraphIndex\": 7, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Ready as can be,\"}, {\"relativeIndex\": 1, \"lineId\": 26, \"paragraphIndex\": 20, \"characterId\": \"iludar\", \"characterName\": \"Iludar\", \"text\": \"We have safe houses set up all across the Milky Way. All we have to do is survive until the universe opens back up. You know as well as I do that this is your only chance for survival,\"}, {\"relativeIndex\": 2, \"lineId\": 28, \"paragraphIndex\": 21, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"I know, I know, but it doesn’t make it any less nerve-wracking,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"arnold\", \"name\": \"Arnold\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"bertram\", \"name\": \"Bertram\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": [\"King Iludar\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"holy-priest\", \"name\": \"Holy Priest\", \"aliases\": [\"holy-priest\", \"holy-priest-2\", \"head priest\", \"the head priest\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"preceding_speaker_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0001 - Chapter 1058 - The Negotiations Begins - START OF BOOK 15",
+  "currentCharacterId": "bertram",
+  "currentCharacterName": "Bertram",
+  "currentParagraphText": "“I believe you have something that belongs to me.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 1.0,
+    "currentCharacterId": "bertram",
+    "currentCharacterName": "Bertram",
+    "currentParagraphText": "“I believe you have something that belongs to me.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 23,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "Iludar opened his eyes as the message arrived. The Chosen of the Malefic Viper had just reached the Holy Church’s Milky Way headquarters, signaling it was their time to move.",
+    "paragraphIndex": 17,
+    "previousParagraphText": "Jake remained silent as more elites gathered until, finally, the people in charge made their appearance. Jacob, Bertram, and a bunch of people in priest robes and fancy attire exited the cathedral, and the moment it did, Jake’s will-infused voice echoed throughout the city.",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "preceding_speaker_cue"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 23,
+  "nextParagraphText": "Iludar opened his eyes as the message arrived. The Chosen of the Malefic Viper had just reached the Holy Church’s Milky Way headquarters, signaling it was their time to move.",
+  "paragraphIndex": 17,
+  "previousParagraphText": "Jake remained silent as more elites gathered until, finally, the people in charge made their appearance. Jacob, Bertram, and a bunch of people in priest robes and fancy attire exited the cathedral, and the moment it did, Jake’s will-infused voice echoed throughout the city."
+}

@@ -1,0 +1,290 @@
+{
+  "cacheKey": "f36078a17cdf00fe900617fcb081517376c976d15c870579b7ff5ece9c648cf8",
+  "createdAt": "2026-04-02T22:32:44.162750+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "caleb",
+    "characterName": "Caleb",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "direct_attribution"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "caleb"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "caleb",
+        "name": "Caleb",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "arnold",
+        "name": "Arnold",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Beside him, Caleb couldn’t help but have a massive grin on his face as he watched this scene before turning to Jake.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Let’s head down there...",
+      "lastSentence": "oh, and I’m pretty sure Maja also said she was baking today, so maybe we’ll get lucky.",
+      "mentionedEntities": [
+        "Maja"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "Let’s head down there... oh, and I’m pretty sure Maja also said she was baking today, so maybe we’ll get lucky.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "Maja"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Caleb",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.124,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Caleb",
+        "sourceCandidates": [
+          "Caleb",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.876
+      },
+      "candidates": [
+        {
+          "characterId": "caleb",
+          "confidence": 0.876,
+          "name": "Caleb",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "speech_verb"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.516,
+          "name": "Jake",
+          "reasons": [
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "caleb",
+      "currentCharacterName": "Caleb",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 115,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Let’s head down there... oh, and I’m pretty sure Maja also said she was baking today, so maybe we’ll get lucky."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "caleb",
+          "characterName": "Caleb",
+          "isReturning": true,
+          "lineId": 115,
+          "text": "Let’s head down there... oh, and I’m pretty sure Maja also said she was baking today, so maybe we’ll get lucky."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Beside him, Caleb couldn’t help but have a massive grin on his face as he watched this scene before turning to Jake.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Let’s head down there...",
+          "lastSentence": "oh, and I’m pretty sure Maja also said she was baking today, so maybe we’ll get lucky.",
+          "mentionedEntities": [
+            "Maja"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Let’s head down there... oh, and I’m pretty sure Maja also said she was baking today, so maybe we’ll get lucky.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Beside him, Caleb couldn’t help but have a massive grin on his face as he watched this scene before turning to Jake. “Let’s head down there... oh, and I’m pretty sure Maja also said she was baking today, so maybe we’ll get lucky.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "caleb",
+          "characterName": "Caleb",
+          "isReturning": true,
+          "lineId": 117,
+          "text": "Let’s hope she made some of her raisin cookies; they’re awesome."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jake smiled and nodded.",
+          "cueVerb": "smiled",
+          "cueVerbType": "reaction",
+          "firstSentence": "Let’s hope she made some of her raisin cookies; they’re awesome.",
+          "lastSentence": "Let’s hope she made some of her raisin cookies; they’re awesome.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Let’s hope she made some of her raisin cookies; they’re awesome.",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "nextParagraphText": "Jake smiled and nodded. “Let’s hope she made some of her raisin cookies; they’re awesome.”",
+      "paragraphIndex": 55,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "He saw Maja sitting in a lawn chair, watching a boy run around swinging a stick in the air as if he was fighting invisible enemies. He was far faster than a pre-system kid, his swings powerful enough to kill a grown man by Jake’s estimation."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "lineId": 101,
+        "paragraphIndex": 47,
+        "relativeIndex": -4,
+        "text": "You’ll see for yourself soon. All I can say is that they grow quickly when this young. Too quickly for my liking at times,"
+      },
+      {
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "lineId": 105,
+        "paragraphIndex": 50,
+        "relativeIndex": -3,
+        "text": "Here,"
+      },
+      {
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "lineId": 107,
+        "paragraphIndex": 50,
+        "relativeIndex": -2,
+        "text": "Infuse your energy into that, and it’ll work like a key. Should let you slip through the barriers."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 109,
+        "paragraphIndex": 51,
+        "relativeIndex": -1,
+        "text": "unlock"
+      },
+      {
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "lineId": 117,
+        "paragraphIndex": 56,
+        "relativeIndex": 1,
+        "text": "Let’s hope she made some of her raisin cookies; they’re awesome."
+      },
+      {
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "lineId": 119,
+        "paragraphIndex": 57,
+        "relativeIndex": 2,
+        "text": "You know... often I question how my big brother became the Chosen of an evil snake god, but at other times, I fully understand."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 115, \"text\": \"Let’s head down there... oh, and I’m pretty sure Maja also said she was baking today, so maybe we’ll get lucky.\", \"currentCharacterId\": \"caleb\", \"currentCharacterName\": \"Caleb\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Caleb\", \"sourceCandidates\": [\"Caleb\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.876, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.124, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Maja\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Caleb\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"caleb\", \"name\": \"Caleb\", \"confidence\": 0.876, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.516, \"reasons\": [\"speech_verb\"]}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 55, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Beside him, Caleb couldn’t help but have a massive grin on his face as he watched this scene before turning to Jake. “Let’s head down there... oh, and I’m pretty sure Maja also said she was baking today, so maybe we’ll get lucky.”\", \"currentParagraphDialogue\": [{\"lineId\": 115, \"text\": \"Let’s head down there... oh, and I’m pretty sure Maja also said she was baking today, so maybe we’ll get lucky.\", \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"isReturning\": true}], \"previousParagraphText\": \"He saw Maja sitting in a lawn chair, watching a boy run around swinging a stick in the air as if he was fighting invisible enemies. He was far faster than a pre-system kid, his swings powerful enough to kill a grown man by Jake’s estimation.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Jake smiled and nodded. “Let’s hope she made some of her raisin cookies; they’re awesome.”\", \"nextParagraphDialogue\": [{\"lineId\": 117, \"text\": \"Let’s hope she made some of her raisin cookies; they’re awesome.\", \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Let’s head down there... oh, and I’m pretty sure Maja also said she was baking today, so maybe we’ll get lucky.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Beside him, Caleb couldn’t help but have a massive grin on his face as he watched this scene before turning to Jake.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Maja\"], \"addressedEntity\": null, \"firstSentence\": \"Let’s head down there...\", \"lastSentence\": \"oh, and I’m pretty sure Maja also said she was baking today, so maybe we’ll get lucky.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Let’s hope she made some of her raisin cookies; they’re awesome.\", \"cuePosition\": \"before\", \"cueVerb\": \"smiled\", \"cueVerbType\": \"reaction\", \"cueText\": \"Jake smiled and nodded.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Let’s hope she made some of her raisin cookies; they’re awesome.\", \"lastSentence\": \"Let’s hope she made some of her raisin cookies; they’re awesome.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Let’s head down there... oh, and I’m pretty sure Maja also said she was baking today, so maybe we’ll get lucky.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Beside him, Caleb couldn’t help but have a massive grin on his face as he watched this scene before turning to Jake.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Maja\"], \"addressedEntity\": null, \"firstSentence\": \"Let’s head down there...\", \"lastSentence\": \"oh, and I’m pretty sure Maja also said she was baking today, so maybe we’ll get lucky.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"aliases\": [], \"roleLabels\": [\"caleb\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 101, \"paragraphIndex\": 47, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"You’ll see for yourself soon. All I can say is that they grow quickly when this young. Too quickly for my liking at times,\"}, {\"relativeIndex\": -3, \"lineId\": 105, \"paragraphIndex\": 50, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"Here,\"}, {\"relativeIndex\": -2, \"lineId\": 107, \"paragraphIndex\": 50, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"Infuse your energy into that, and it’ll work like a key. Should let you slip through the barriers.\"}, {\"relativeIndex\": -1, \"lineId\": 109, \"paragraphIndex\": 51, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"unlock\"}, {\"relativeIndex\": 1, \"lineId\": 117, \"paragraphIndex\": 56, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"Let’s hope she made some of her raisin cookies; they’re awesome.\"}, {\"relativeIndex\": 2, \"lineId\": 119, \"paragraphIndex\": 57, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"You know... often I question how my big brother became the Chosen of an evil snake god, but at other times, I fully understand.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"arnold\", \"name\": \"Arnold\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"caleb\",\n  \"characterName\": \"Caleb\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"direct_attribution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

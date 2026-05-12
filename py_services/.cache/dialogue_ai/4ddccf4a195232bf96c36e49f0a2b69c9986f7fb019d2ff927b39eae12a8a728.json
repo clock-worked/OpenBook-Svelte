@@ -1,0 +1,328 @@
+{
+  "cacheKey": "4ddccf4a195232bf96c36e49f0a2b69c9986f7fb019d2ff927b39eae12a8a728",
+  "createdAt": "2026-04-01T18:28:22.577490+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_continuity",
+      "next_paragraph_confirms_speaker"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "narrator",
+        "characterName": "Narrator",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "narrator"
+        ],
+        "wasRecentSpeaker": false
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "name": "Bertram",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "The tension instantly grew as Jake broke it slightly by smiling.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Thanks for that, by the way.",
+      "lastSentence": "I don’t even want to imagine how disappointing his power would have been if he hadn’t been empowered by Yip of Yore’s Records.",
+      "mentionedEntities": [
+        "yip"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "Thanks for that, by the way. Made the fight a lot more interesting and enjoyable. I don’t even want to imagine how disappointing his power would have been if he hadn’t been empowered by Yip of Yore’s Records.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "yip"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Narrator"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.816,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "narrator",
+          "confidence": 0.456,
+          "name": "Narrator",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Ell'Hakan"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 10,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Thanks for that, by the way. Made the fight a lot more interesting and enjoyable. I don’t even want to imagine how disappointing his power would have been if he hadn’t been empowered by Yip of Yore’s Records."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 10,
+          "text": "Thanks for that, by the way. Made the fight a lot more interesting and enjoyable. I don’t even want to imagine how disappointing his power would have been if he hadn’t been empowered by Yip of Yore’s Records."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "The tension instantly grew as Jake broke it slightly by smiling.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Thanks for that, by the way.",
+          "lastSentence": "I don’t even want to imagine how disappointing his power would have been if he hadn’t been empowered by Yip of Yore’s Records.",
+          "mentionedEntities": [
+            "yip"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Thanks for that, by the way. Made the fight a lot more interesting and enjoyable. I don’t even want to imagine how disappointing his power would have been if he hadn’t been empowered by Yip of Yore’s Records.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "The tension instantly grew as Jake broke it slightly by smiling. “Thanks for that, by the way. Made the fight a lot more interesting and enjoyable. I don’t even want to imagine how disappointing his power would have been if he hadn’t been empowered by Yip of Yore’s Records.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Jake wasn’t even lying with that one, those were his genuine feelings. Feelings he could see evidently threw the head priest off quite a bit, as in his head, it probably didn’t make much sense to thank people who actively sought to make your enemies stronger.",
+      "paragraphIndex": 4,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 6,
+          "text": "Oh, I’m fully aware of that,"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 8,
+          "text": "You not only assisted him during this conflict in the Milky Way but even facilitated his Usurper ritual."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake said, staring down at the man.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Oh, I’m fully aware of that,",
+          "lastSentence": "Oh, I’m fully aware of that,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Oh, I’m fully aware of that,",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jake said, staring down at the man.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "You not only assisted him during this conflict in the Milky Way but even facilitated his Usurper ritual.",
+          "lastSentence": "You not only assisted him during this conflict in the Milky Way but even facilitated his Usurper ritual.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "You not only assisted him during this conflict in the Milky Way but even facilitated his Usurper ritual.",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "previousParagraphText": "“Oh, I’m fully aware of that,” Jake said, staring down at the man. “You not only assisted him during this conflict in the Milky Way but even facilitated his Usurper ritual.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 3,
+        "paragraphIndex": 2,
+        "relativeIndex": -4,
+        "text": "Please relax. There’s no reason for us to be antagonistic toward one another,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 5,
+        "paragraphIndex": 2,
+        "relativeIndex": -3,
+        "text": "I do not disagree that you did indeed have some – if not perhaps even primary – claim of the Usurper’s soul, but the Holy Church has also invested heavily in him."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 6,
+        "paragraphIndex": 3,
+        "relativeIndex": -2,
+        "text": "Oh, I’m fully aware of that,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 8,
+        "paragraphIndex": 3,
+        "relativeIndex": -1,
+        "text": "You not only assisted him during this conflict in the Milky Way but even facilitated his Usurper ritual."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 12,
+        "paragraphIndex": 6,
+        "relativeIndex": 1,
+        "text": "However, that still doesn’t make up for all the shit you did in the rest of the galaxy,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 14,
+        "paragraphIndex": 6,
+        "relativeIndex": 2,
+        "text": "You helped Ell’Hakan kill a lot of people and create a lot of chaos. Manipulated entire civilizations. You quite clearly positioned as an opposing force in this conflict, and now you want me to consider the Holy Church’s investment in the enemy leader of this war?"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 10, \"text\": \"Thanks for that, by the way. Made the fight a lot more interesting and enjoyable. I don’t even want to imagine how disappointing his power would have been if he hadn’t been empowered by Yip of Yore’s Records.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Ell'Hakan\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Narrator\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"yip\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"narrator\", \"name\": \"Narrator\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 4, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"The tension instantly grew as Jake broke it slightly by smiling. “Thanks for that, by the way. Made the fight a lot more interesting and enjoyable. I don’t even want to imagine how disappointing his power would have been if he hadn’t been empowered by Yip of Yore’s Records.”\", \"currentParagraphDialogue\": [{\"lineId\": 10, \"text\": \"Thanks for that, by the way. Made the fight a lot more interesting and enjoyable. I don’t even want to imagine how disappointing his power would have been if he hadn’t been empowered by Yip of Yore’s Records.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"“Oh, I’m fully aware of that,” Jake said, staring down at the man. “You not only assisted him during this conflict in the Milky Way but even facilitated his Usurper ritual.”\", \"previousParagraphDialogue\": [{\"lineId\": 6, \"text\": \"Oh, I’m fully aware of that,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 8, \"text\": \"You not only assisted him during this conflict in the Milky Way but even facilitated his Usurper ritual.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"nextParagraphText\": \"Jake wasn’t even lying with that one, those were his genuine feelings. Feelings he could see evidently threw the head priest off quite a bit, as in his head, it probably didn’t make much sense to thank people who actively sought to make your enemies stronger.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Thanks for that, by the way. Made the fight a lot more interesting and enjoyable. I don’t even want to imagine how disappointing his power would have been if he hadn’t been empowered by Yip of Yore’s Records.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"The tension instantly grew as Jake broke it slightly by smiling.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"yip\"], \"addressedEntity\": null, \"firstSentence\": \"Thanks for that, by the way.\", \"lastSentence\": \"I don’t even want to imagine how disappointing his power would have been if he hadn’t been empowered by Yip of Yore’s Records.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Oh, I’m fully aware of that,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake said, staring down at the man.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Oh, I’m fully aware of that,\", \"lastSentence\": \"Oh, I’m fully aware of that,\"}, {\"quoteIndex\": 1, \"quoteText\": \"You not only assisted him during this conflict in the Milky Way but even facilitated his Usurper ritual.\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake said, staring down at the man.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You not only assisted him during this conflict in the Milky Way but even facilitated his Usurper ritual.\", \"lastSentence\": \"You not only assisted him during this conflict in the Milky Way but even facilitated his Usurper ritual.\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Thanks for that, by the way. Made the fight a lot more interesting and enjoyable. I don’t even want to imagine how disappointing his power would have been if he hadn’t been empowered by Yip of Yore’s Records.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"The tension instantly grew as Jake broke it slightly by smiling.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"yip\"], \"addressedEntity\": null, \"firstSentence\": \"Thanks for that, by the way.\", \"lastSentence\": \"I don’t even want to imagine how disappointing his power would have been if he hadn’t been empowered by Yip of Yore’s Records.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"narrator\", \"characterName\": \"Narrator\", \"aliases\": [], \"roleLabels\": [\"narrator\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 3, \"paragraphIndex\": 2, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Please relax. There’s no reason for us to be antagonistic toward one another,\"}, {\"relativeIndex\": -3, \"lineId\": 5, \"paragraphIndex\": 2, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I do not disagree that you did indeed have some – if not perhaps even primary – claim of the Usurper’s soul, but the Holy Church has also invested heavily in him.\"}, {\"relativeIndex\": -2, \"lineId\": 6, \"paragraphIndex\": 3, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Oh, I’m fully aware of that,\"}, {\"relativeIndex\": -1, \"lineId\": 8, \"paragraphIndex\": 3, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You not only assisted him during this conflict in the Milky Way but even facilitated his Usurper ritual.\"}, {\"relativeIndex\": 1, \"lineId\": 12, \"paragraphIndex\": 6, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"However, that still doesn’t make up for all the shit you did in the rest of the galaxy,\"}, {\"relativeIndex\": 2, \"lineId\": 14, \"paragraphIndex\": 6, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You helped Ell’Hakan kill a lot of people and create a lot of chaos. Manipulated entire civilizations. You quite clearly positioned as an opposing force in this conflict, and now you want me to consider the Holy Church’s investment in the enemy leader of this war?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"bertram\", \"name\": \"Bertram\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_continuity\",\n    \"next_paragraph_confirms_speaker\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

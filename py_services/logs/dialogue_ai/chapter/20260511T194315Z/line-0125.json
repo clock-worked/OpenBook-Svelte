@@ -1,0 +1,342 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "53c1b69d33e640a4eca00367f20922e687a738e14f45f4893143f619fa1203a5",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\53c1b69d33e640a4eca00367f20922e687a738e14f45f4893143f619fa1203a5.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "the first sage",
+        "characterName": "The First Sage",
+        "confidence": 1.0,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "previous_paragraph_narration",
+          "next_dialogue_attribution",
+          "dialogue_continuity"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist",
+              "lord thayne",
+              "thayne",
+              "void god"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "First Sage"
+            ],
+            "characterId": "the first sage",
+            "name": "The First Sage",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy",
+              "Vilas",
+              "Vilastromoz",
+              "The Viper",
+              "the-viper",
+              "the-viper-2"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "If you’re wrong, you die.",
+          "lastSentence": "If you’re wrong, you die.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "If you’re wrong, you die.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.3208000000000001,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "The First Sage",
+            "sourceCandidates": [
+              "The First Sage",
+              "Jake"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.816,
+              "name": "The First Sage",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.456,
+              "name": "Jake",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 125,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "If you’re wrong, you die."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 125,
+              "text": "If you’re wrong, you die."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "If you’re wrong, you die.",
+              "lastSentence": "If you’re wrong, you die.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "If you’re wrong, you die.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“If you’re wrong, you die.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 126,
+              "text": "Yeah… but I feel like I’m right,"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake shrugged as he reached out and offered a hand to the old man.",
+              "cueVerb": "shrugged",
+              "cueVerbType": "reaction",
+              "firstSentence": "Yeah… but I feel like I’m right,",
+              "lastSentence": "Yeah… but I feel like I’m right,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Yeah… but I feel like I’m right,",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "nextParagraphText": "“Yeah… but I feel like I’m right,” Jake shrugged as he reached out and offered a hand to the old man.",
+          "paragraphIndex": 77,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "The First Sage looked up at Jake."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 118,
+            "paragraphIndex": 73,
+            "relativeIndex": -4,
+            "text": "By now, you should already be fully aware that I am indeed nothing but a conceptual representation of the First Sage created from the Records of the tome and your memory of your interaction."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 119,
+            "paragraphIndex": 74,
+            "relativeIndex": -3,
+            "text": "I am,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 121,
+            "paragraphIndex": 74,
+            "relativeIndex": -2,
+            "text": "Which is also why I know it was exactly for this moment the First Sage was so adamant about me strengthening my soul enough to be capable of defeating his Records."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 123,
+            "paragraphIndex": 75,
+            "relativeIndex": -1,
+            "text": "I also know what I have to do now."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 126,
+            "paragraphIndex": 78,
+            "relativeIndex": 1,
+            "text": "Yeah… but I feel like I’m right,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 129,
+            "paragraphIndex": 80,
+            "relativeIndex": 2,
+            "text": "Then let’s see if you’re right."
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 125, \"text\": \"If you’re wrong, you die.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"The First Sage\", \"sourceCandidates\": [\"The First Sage\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"The First Sage\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 77, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“If you’re wrong, you die.”\", \"currentParagraphDialogue\": [{\"lineId\": 125, \"text\": \"If you’re wrong, you die.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"The First Sage looked up at Jake.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“Yeah… but I feel like I’m right,” Jake shrugged as he reached out and offered a hand to the old man.\", \"nextParagraphDialogue\": [{\"lineId\": 126, \"text\": \"Yeah… but I feel like I’m right,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"If you’re wrong, you die.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"If you’re wrong, you die.\", \"lastSentence\": \"If you’re wrong, you die.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Yeah… but I feel like I’m right,\", \"cuePosition\": \"after\", \"cueVerb\": \"shrugged\", \"cueVerbType\": \"reaction\", \"cueText\": \"Jake shrugged as he reached out and offered a hand to the old man.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yeah… but I feel like I’m right,\", \"lastSentence\": \"Yeah… but I feel like I’m right,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"If you’re wrong, you die.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"If you’re wrong, you die.\", \"lastSentence\": \"If you’re wrong, you die.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\", \"void god\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 118, \"paragraphIndex\": 73, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"By now, you should already be fully aware that I am indeed nothing but a conceptual representation of the First Sage created from the Records of the tome and your memory of your interaction.\"}, {\"relativeIndex\": -3, \"lineId\": 119, \"paragraphIndex\": 74, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I am,\"}, {\"relativeIndex\": -2, \"lineId\": 121, \"paragraphIndex\": 74, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Which is also why I know it was exactly for this moment the First Sage was so adamant about me strengthening my soul enough to be capable of defeating his Records.\"}, {\"relativeIndex\": -1, \"lineId\": 123, \"paragraphIndex\": 75, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I also know what I have to do now.\"}, {\"relativeIndex\": 1, \"lineId\": 126, \"paragraphIndex\": 78, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Yeah… but I feel like I’m right,\"}, {\"relativeIndex\": 2, \"lineId\": 129, \"paragraphIndex\": 80, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Then let’s see if you’re right.\"}], \"chapterCharacters\": [{\"characterId\": \"the first sage\", \"name\": \"The First Sage\", \"aliases\": [\"First Sage\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\", \"Vilas\", \"Vilastromoz\", \"The Viper\", \"the-viper\", \"the-viper-2\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"the first sage\",\n  \"characterName\": \"The First Sage\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"previous_paragraph_narration\",\n    \"next_dialogue_attribution\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0162 - Chapter 1219 - Gate/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“If you’re wrong, you die.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 1.0,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“If you’re wrong, you die.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 125,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Yeah… but I feel like I’m right,” Jake shrugged as he reached out and offered a hand to the old man.",
+    "paragraphIndex": 77,
+    "previousParagraphText": "The First Sage looked up at Jake.",
+    "reasonCodes": [
+      "previous_paragraph_narration",
+      "next_dialogue_attribution",
+      "dialogue_continuity"
+    ],
+    "suggestedCharacterId": "the first sage",
+    "suggestedCharacterName": "The First Sage",
+    "toolTrace": []
+  },
+  "lineId": 125,
+  "nextParagraphText": "“Yeah… but I feel like I’m right,” Jake shrugged as he reached out and offered a hand to the old man.",
+  "paragraphIndex": 77,
+  "previousParagraphText": "The First Sage looked up at Jake."
+}

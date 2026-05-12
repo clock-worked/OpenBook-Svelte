@@ -1,0 +1,375 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "089327251ab267e08267d91ec0b1421bc0eccbb8fde918d844952055f378e638",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\089327251ab267e08267d91ec0b1421bc0eccbb8fde918d844952055f378e638.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.99,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "dialogue_continuity"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "characterName": "Caleb",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "caleb"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "adam",
+            "characterName": "Adam",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "adam"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "maja",
+            "characterName": "Maja",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "maja"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "viper",
+              "the malefic viper",
+              "malefic viper",
+              "villy"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "maja",
+            "name": "Maja",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "adam",
+            "name": "Adam",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "name": "Caleb",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "With that given context, Jake confidently nodded.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "Some do indeed call me that.",
+          "lastSentence": "Some do indeed call me that.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Some do indeed call me that.",
+          "speakerNameMatch": null,
+          "speakerSurface": "Jake confidently"
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Maja",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.18400000000000005,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Caleb",
+            "sourceCandidates": [
+              "Caleb",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": "caleb",
+              "confidence": 0.816,
+              "name": "Caleb",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.456,
+              "name": "Jake",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "caleb",
+          "currentCharacterName": "Caleb",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 115,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "Some do indeed call me that."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "caleb",
+              "characterName": "Caleb",
+              "isReturning": false,
+              "lineId": 115,
+              "text": "Some do indeed call me that."
+            }
+          ],
+          "currentParagraphQuoteStructure": [],
+          "currentParagraphText": "Well, it was mainly the system that called him that, seeing as his class was a variant of Arcane Hunter. Of all the titles his nephew could call him, it definitely was better than Pink Ranger and probably also a lot better than Chosen of the Malefic Viper. Jake felt pretty confident that not many things related to the Viper were suitable for kids.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "maja",
+              "characterName": "Maja",
+              "isReturning": false,
+              "lineId": 117,
+              "text": "Adam, what should you be doing when we have guests over?"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Maja spoke, the kid instantly realizing as he threw the stick and hurried over.",
+              "cueVerb": "spoke",
+              "cueVerbType": "speech",
+              "firstSentence": "Adam, what should you be doing when we have guests over?",
+              "lastSentence": "Adam, what should you be doing when we have guests over?",
+              "mentionedEntities": [
+                "Adam",
+                "Adam"
+              ],
+              "quoteIndex": 0,
+              "quoteText": "Adam, what should you be doing when we have guests over?",
+              "speakerNameMatch": "Maja",
+              "speakerSurface": "Maja"
+            }
+          ],
+          "nextParagraphText": "“Adam, what should you be doing when we have guests over?” Maja spoke, the kid instantly realizing as he threw the stick and hurried over.",
+          "paragraphIndex": 59,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "With that given context, Jake confidently nodded.",
+              "cueVerb": "nodded",
+              "cueVerbType": "speech",
+              "firstSentence": "Some do indeed call me that.",
+              "lastSentence": "Some do indeed call me that.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Some do indeed call me that.",
+              "speakerNameMatch": null,
+              "speakerSurface": "Jake confidently"
+            }
+          ],
+          "previousParagraphText": "With that given context, Jake confidently nodded. “Some do indeed call me that.”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "adam",
+            "characterName": "Adam",
+            "lineId": 104,
+            "paragraphIndex": 51,
+            "relativeIndex": -4,
+            "text": "I know he’s just pretending,"
+          },
+          {
+            "characterId": "adam",
+            "characterName": "Adam",
+            "lineId": 107,
+            "paragraphIndex": 54,
+            "relativeIndex": -3,
+            "text": "Hey, kid."
+          },
+          {
+            "characterId": "adam",
+            "characterName": "Adam",
+            "lineId": 111,
+            "paragraphIndex": 56,
+            "relativeIndex": -2,
+            "text": "The Arcane Hunter!"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 113,
+            "paragraphIndex": 57,
+            "relativeIndex": -1,
+            "text": "He’s seen some recordings of fights here and there. Heavily edited ones. Due to the color of your arcane affinity, he began to call you the Pink Ranger, but I managed to save some of your dignity by having it changed to Arcane Hunter."
+          },
+          {
+            "characterId": "maja",
+            "characterName": "Maja",
+            "lineId": 117,
+            "paragraphIndex": 60,
+            "relativeIndex": 1,
+            "text": "Adam, what should you be doing when we have guests over?"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 119,
+            "paragraphIndex": 61,
+            "relativeIndex": 2,
+            "text": "Hello, and welcome!"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 115, \"text\": \"Some do indeed call me that.\", \"currentCharacterId\": \"caleb\", \"currentCharacterName\": \"Caleb\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Caleb\", \"sourceCandidates\": [\"Caleb\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Maja\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"caleb\", \"name\": \"Caleb\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 59, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Well, it was mainly the system that called him that, seeing as his class was a variant of Arcane Hunter. Of all the titles his nephew could call him, it definitely was better than Pink Ranger and probably also a lot better than Chosen of the Malefic Viper. Jake felt pretty confident that not many things related to the Viper were suitable for kids.\", \"currentParagraphDialogue\": [{\"lineId\": 115, \"text\": \"Some do indeed call me that.\", \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"isReturning\": false}], \"previousParagraphText\": \"With that given context, Jake confidently nodded. “Some do indeed call me that.”\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“Adam, what should you be doing when we have guests over?” Maja spoke, the kid instantly realizing as he threw the stick and hurried over.\", \"nextParagraphDialogue\": [{\"lineId\": 117, \"text\": \"Adam, what should you be doing when we have guests over?\", \"characterId\": \"maja\", \"characterName\": \"Maja\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Some do indeed call me that.\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"With that given context, Jake confidently nodded.\", \"speakerSurface\": \"Jake confidently\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Some do indeed call me that.\", \"lastSentence\": \"Some do indeed call me that.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Adam, what should you be doing when we have guests over?\", \"cuePosition\": \"after\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"Maja spoke, the kid instantly realizing as he threw the stick and hurried over.\", \"speakerSurface\": \"Maja\", \"speakerNameMatch\": \"Maja\", \"mentionedEntities\": [\"Adam\", \"Adam\"], \"addressedEntity\": null, \"firstSentence\": \"Adam, what should you be doing when we have guests over?\", \"lastSentence\": \"Adam, what should you be doing when we have guests over?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Some do indeed call me that.\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"With that given context, Jake confidently nodded.\", \"speakerSurface\": \"Jake confidently\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Some do indeed call me that.\", \"lastSentence\": \"Some do indeed call me that.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"aliases\": [], \"roleLabels\": [\"caleb\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"adam\", \"characterName\": \"Adam\", \"aliases\": [], \"roleLabels\": [\"adam\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"maja\", \"characterName\": \"Maja\", \"aliases\": [], \"roleLabels\": [\"maja\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 104, \"paragraphIndex\": 51, \"characterId\": \"adam\", \"characterName\": \"Adam\", \"text\": \"I know he’s just pretending,\"}, {\"relativeIndex\": -3, \"lineId\": 107, \"paragraphIndex\": 54, \"characterId\": \"adam\", \"characterName\": \"Adam\", \"text\": \"Hey, kid.\"}, {\"relativeIndex\": -2, \"lineId\": 111, \"paragraphIndex\": 56, \"characterId\": \"adam\", \"characterName\": \"Adam\", \"text\": \"The Arcane Hunter!\"}, {\"relativeIndex\": -1, \"lineId\": 113, \"paragraphIndex\": 57, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"He’s seen some recordings of fights here and there. Heavily edited ones. Due to the color of your arcane affinity, he began to call you the Pink Ranger, but I managed to save some of your dignity by having it changed to Arcane Hunter.\"}, {\"relativeIndex\": 1, \"lineId\": 117, \"paragraphIndex\": 60, \"characterId\": \"maja\", \"characterName\": \"Maja\", \"text\": \"Adam, what should you be doing when we have guests over?\"}, {\"relativeIndex\": 2, \"lineId\": 119, \"paragraphIndex\": 61, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Hello, and welcome!\"}], \"chapterCharacters\": [{\"characterId\": \"maja\", \"name\": \"Maja\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"adam\", \"name\": \"Adam\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0017 - Chapter 1074 - A Very Dangerous Question",
+  "currentCharacterId": "caleb",
+  "currentCharacterName": "Caleb",
+  "currentParagraphText": "Well, it was mainly the system that called him that, seeing as his class was a variant of Arcane Hunter. Of all the titles his nephew could call him, it definitely was better than Pink Ranger and probably also a lot better than Chosen of the Malefic Viper. Jake felt pretty confident that not many things related to the Viper were suitable for kids.",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.99,
+    "currentCharacterId": "caleb",
+    "currentCharacterName": "Caleb",
+    "currentParagraphText": "Well, it was mainly the system that called him that, seeing as his class was a variant of Arcane Hunter. Of all the titles his nephew could call him, it definitely was better than Pink Ranger and probably also a lot better than Chosen of the Malefic Viper. Jake felt pretty confident that not many things related to the Viper were suitable for kids.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 115,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Adam, what should you be doing when we have guests over?” Maja spoke, the kid instantly realizing as he threw the stick and hurried over.",
+    "paragraphIndex": 59,
+    "previousParagraphText": "With that given context, Jake confidently nodded. “Some do indeed call me that.”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_continuity"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 115,
+  "nextParagraphText": "“Adam, what should you be doing when we have guests over?” Maja spoke, the kid instantly realizing as he threw the stick and hurried over.",
+  "paragraphIndex": 59,
+  "previousParagraphText": "With that given context, Jake confidently nodded. “Some do indeed call me that.”"
+}

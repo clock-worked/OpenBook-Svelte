@@ -1,0 +1,351 @@
+{
+  "cacheKey": "dcdf9fa58af89c65be8b34848ba4fc83a5766e082b667ebef5b3e4a9a071b7ac",
+  "createdAt": "2026-05-11T22:29:17.715894+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "artemis",
+    "characterName": "Artemis",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration",
+      "pronoun_resolution",
+      "dialogue_context"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "artemis",
+          "godqueen"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "lord thayne",
+          "thayne",
+          "void god"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Viper",
+          "Villy",
+          "Vilas",
+          "Vilastromoz",
+          "The Viper"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "eversmile",
+        "name": "Eversmile",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "she said, clearly enjoying teasing Jake.",
+      "cueVerb": "said",
+      "cueVerbType": "speech",
+      "firstSentence": "What?",
+      "lastSentence": "You need to recover right now, and the best way to recover is either to meditate or sleep, and both of those can comfortably be done in a bed, so go right ahead,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "What? You need to recover right now, and the best way to recover is either to meditate or sleep, and both of those can comfortably be done in a bed, so go right ahead,",
+      "speakerNameMatch": null,
+      "speakerSurface": "she"
+    },
+    "line": {
+      "alignment": {
+        "confidence": 1.0,
+        "isSpanFallback": false,
+        "method": "quote_unit",
+        "paragraphIndex": 49,
+        "spanDistance": 0.0,
+        "spanParagraphIndex": 49
+      },
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": "female",
+          "contextGenderCue": "she said",
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Artemis",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.15999999999999998,
+        "misattributionRisk": 0.5152,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Artemis",
+        "sourceCandidates": [
+          "Artemis",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.624
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.624,
+          "name": "Artemis",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.464,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 109,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "What? You need to recover right now, and the best way to recover is either to meditate or sleep, and both of those can comfortably be done in a bed, so go right ahead,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 109,
+          "text": "What? You need to recover right now, and the best way to recover is either to meditate or sleep, and both of those can comfortably be done in a bed, so go right ahead,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "she said, clearly enjoying teasing Jake.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "What?",
+          "lastSentence": "You need to recover right now, and the best way to recover is either to meditate or sleep, and both of those can comfortably be done in a bed, so go right ahead,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "What? You need to recover right now, and the best way to recover is either to meditate or sleep, and both of those can comfortably be done in a bed, so go right ahead,",
+          "speakerNameMatch": null,
+          "speakerSurface": "she"
+        }
+      ],
+      "currentParagraphText": "“What? You need to recover right now, and the best way to recover is either to meditate or sleep, and both of those can comfortably be done in a bed, so go right ahead,” she said, clearly enjoying teasing Jake.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 111,
+          "text": "I’m not that worn out, just a little tired,"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake protested.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I’m not that worn out, just a little tired,",
+          "lastSentence": "I’m not that worn out, just a little tired,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I’m not that worn out, just a little tired,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Jake"
+        }
+      ],
+      "nextParagraphText": "“I’m not that worn out, just a little tired,” Jake protested.",
+      "paragraphIndex": 49,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Jake was ready for something more to happen as Artemis threw a blanket at him, covering his entire body. He quickly pulled it off himself and saw Artemis standing there looking at him."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 101,
+        "paragraphIndex": 44,
+        "relativeIndex": -4,
+        "text": "I would reckon teleportation was easier than walking."
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 102,
+        "paragraphIndex": 45,
+        "relativeIndex": -3,
+        "text": "Most definitely,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 104,
+        "paragraphIndex": 46,
+        "relativeIndex": -2,
+        "text": "Would be cool if someone here was capable of teleporting,"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 106,
+        "paragraphIndex": 47,
+        "relativeIndex": -1,
+        "text": "Sure would,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 111,
+        "paragraphIndex": 50,
+        "relativeIndex": 1,
+        "text": "I’m not that worn out, just a little tired,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 113,
+        "paragraphIndex": 51,
+        "relativeIndex": 2,
+        "text": "Right,"
+      }
+    ],
+    "sceneEntities": [],
+    "sceneRoster": {
+      "paragraphWindow": 6,
+      "presentCharacterIds": [
+        "artemis",
+        "jake",
+        "unknown"
+      ],
+      "presentCharacters": [
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake"
+        },
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown"
+        }
+      ]
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 109, \"text\": \"What? You need to recover right now, and the best way to recover is either to meditate or sleep, and both of those can comfortably be done in a bed, so go right ahead,\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Artemis\", \"sourceCandidates\": [\"Artemis\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.624, \"marginToSecond\": 0.15999999999999998, \"misattributionRisk\": 0.5152, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Artemis\", \"contextGender\": \"female\", \"contextGenderCue\": \"she said\"}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.624, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.464, \"reasons\": null}], \"isReturning\": false, \"alignment\": {\"paragraphIndex\": 49, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 49, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 49, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“What? You need to recover right now, and the best way to recover is either to meditate or sleep, and both of those can comfortably be done in a bed, so go right ahead,” she said, clearly enjoying teasing Jake.\", \"currentParagraphDialogue\": [{\"lineId\": 109, \"text\": \"What? You need to recover right now, and the best way to recover is either to meditate or sleep, and both of those can comfortably be done in a bed, so go right ahead,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"previousParagraphText\": \"Jake was ready for something more to happen as Artemis threw a blanket at him, covering his entire body. He quickly pulled it off himself and saw Artemis standing there looking at him.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“I’m not that worn out, just a little tired,” Jake protested.\", \"nextParagraphDialogue\": [{\"lineId\": 111, \"text\": \"I’m not that worn out, just a little tired,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"What? You need to recover right now, and the best way to recover is either to meditate or sleep, and both of those can comfortably be done in a bed, so go right ahead,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"she said, clearly enjoying teasing Jake.\", \"speakerSurface\": \"she\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"What?\", \"lastSentence\": \"You need to recover right now, and the best way to recover is either to meditate or sleep, and both of those can comfortably be done in a bed, so go right ahead,\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I’m not that worn out, just a little tired,\", \"cuePosition\": \"after\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake protested.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’m not that worn out, just a little tired,\", \"lastSentence\": \"I’m not that worn out, just a little tired,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"What? You need to recover right now, and the best way to recover is either to meditate or sleep, and both of those can comfortably be done in a bed, so go right ahead,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"she said, clearly enjoying teasing Jake.\", \"speakerSurface\": \"she\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"What?\", \"lastSentence\": \"You need to recover right now, and the best way to recover is either to meditate or sleep, and both of those can comfortably be done in a bed, so go right ahead,\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"artemis\", \"jake\", \"unknown\"], \"presentCharacters\": [{\"characterId\": \"artemis\", \"characterName\": \"Artemis\"}, {\"characterId\": \"jake\", \"characterName\": \"Jake\"}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [\"artemis\", \"godqueen\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\", \"void god\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 101, \"paragraphIndex\": 44, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"I would reckon teleportation was easier than walking.\"}, {\"relativeIndex\": -3, \"lineId\": 102, \"paragraphIndex\": 45, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Most definitely,\"}, {\"relativeIndex\": -2, \"lineId\": 104, \"paragraphIndex\": 46, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Would be cool if someone here was capable of teleporting,\"}, {\"relativeIndex\": -1, \"lineId\": 106, \"paragraphIndex\": 47, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Sure would,\"}, {\"relativeIndex\": 1, \"lineId\": 111, \"paragraphIndex\": 50, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I’m not that worn out, just a little tired,\"}, {\"relativeIndex\": 2, \"lineId\": 113, \"paragraphIndex\": 51, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Right,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"Viper\", \"Villy\", \"Vilas\", \"Vilastromoz\", \"The Viper\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"eversmile\", \"name\": \"Eversmile\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"artemis\",\n  \"characterName\": \"Artemis\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration\",\n    \"pronoun_resolution\",\n    \"dialogue_context\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

@@ -1,0 +1,387 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "b1b0c87c753c5c8b95854a796c9e28d0f209cb502ab37bf007f7b5bd8ddc6a0b",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\b1b0c87c753c5c8b95854a796c9e28d0f209cb502ab37bf007f7b5bd8ddc6a0b.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "holy mother",
+        "characterName": "Holy Mother",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "dialogue_continuity",
+          "explicit_pronoun_reference",
+          "character_role_match"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "aeon",
+            "characterName": "Aeon",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "aeon"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "aeon",
+            "name": "Aeon",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "the viper",
+            "name": "The Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy",
+              "Vilas",
+              "Vilastromoz"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Attendant",
+              "natures-attendant",
+              "natures-attendant-2",
+              "Nature Attendant",
+              "Life"
+            ],
+            "characterId": "natures-attendant",
+            "name": "Nature's Attendant",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Void Dweller"
+            ],
+            "characterId": "oras",
+            "name": "Oras",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "gudrun",
+            "name": "Gudrun",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Godqueen"
+            ],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "valdemar",
+            "name": "Valdemar",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "holy mother",
+            "name": "Holy Mother",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me.",
+          "lastSentence": "These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Nature's Attendant",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.3208000000000001,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Nature's Attendant",
+            "sourceCandidates": [
+              "Nature's Attendant",
+              "Aeon"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.816,
+              "name": "Nature's Attendant",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.456,
+              "name": "Aeon",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 25,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 25,
+              "text": "These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me.",
+              "lastSentence": "These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "The Holy Mother had made her entrance after being contacted by Aeon earlier. Based on how fast she’d gotten there, this entire event clearly matters to her a lot.",
+          "paragraphIndex": 12,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 23,
+              "text": "If that was the case, why wouldn’t they still have left this one god behind to take the blame?"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "a familiar woman spoke, as a fresh voice joined the others, a cascade of holy light invading the void.",
+              "cueVerb": "spoke",
+              "cueVerbType": "speech",
+              "firstSentence": "If that was the case, why wouldn’t they still have left this one god behind to take the blame?",
+              "lastSentence": "If that was the case, why wouldn’t they still have left this one god behind to take the blame?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "If that was the case, why wouldn’t they still have left this one god behind to take the blame?",
+              "speakerNameMatch": null,
+              "speakerSurface": "a familiar woman"
+            }
+          ],
+          "previousParagraphText": "“If that was the case, why wouldn’t they still have left this one god behind to take the blame?” a familiar woman spoke, as a fresh voice joined the others, a cascade of holy light invading the void."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "aeon",
+            "characterName": "Aeon",
+            "lineId": 18,
+            "paragraphIndex": 8,
+            "relativeIndex": -4,
+            "text": "Doing so would have ended the lives of two people carrying Divine Blessings of Primordials, the favored granddaughter of Nature’s Attendant, and the newest Godqueen of the Pantheon of Life. Additionally, seeing as the Pantheon of Life had taken responsibility for the escort job, a disaster of this level would certainly have ruined any sort of friendship between the Order of the Malefic Viper and the Pantheon of Life."
+          },
+          {
+            "characterId": "the_malefic_viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 19,
+            "paragraphIndex": 9,
+            "relativeIndex": -3,
+            "text": "That’s… a good point,"
+          },
+          {
+            "characterId": "aeon",
+            "characterName": "Aeon",
+            "lineId": 21,
+            "paragraphIndex": 10,
+            "relativeIndex": -2,
+            "text": "Going by the historic actions of Vilas, it’s even likely they expected him to act out revenge on those he believed responsible. If the presumed-dead member of the Holy Church was the only one left behind and blew themselves up using the holy concept, all clues would have pointed toward them being responsible,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 23,
+            "paragraphIndex": 11,
+            "relativeIndex": -1,
+            "text": "If that was the case, why wouldn’t they still have left this one god behind to take the blame?"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 27,
+            "paragraphIndex": 14,
+            "relativeIndex": 1,
+            "text": "Not necessarily,"
+          },
+          {
+            "characterId": "nature's_attendant",
+            "characterName": "Nature'S Attendant",
+            "lineId": 29,
+            "paragraphIndex": 14,
+            "relativeIndex": 2,
+            "text": "As you said, they were operating under the assumption that none of them had been identified. With that in mind, it makes sense for them to reveal nothing, leaving us to wonder and make false assumptions all on our own. It’s only due to the Chosen we have at least some insight to operate from."
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 25, \"text\": \"These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Nature's Attendant\", \"sourceCandidates\": [\"Nature's Attendant\", \"Aeon\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Nature's Attendant\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Nature's Attendant\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Aeon\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 12, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me.”\", \"currentParagraphDialogue\": [{\"lineId\": 25, \"text\": \"These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“If that was the case, why wouldn’t they still have left this one god behind to take the blame?” a familiar woman spoke, as a fresh voice joined the others, a cascade of holy light invading the void.\", \"previousParagraphDialogue\": [{\"lineId\": 23, \"text\": \"If that was the case, why wouldn’t they still have left this one god behind to take the blame?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"nextParagraphText\": \"The Holy Mother had made her entrance after being contacted by Aeon earlier. Based on how fast she’d gotten there, this entire event clearly matters to her a lot.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me.\", \"lastSentence\": \"These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"If that was the case, why wouldn’t they still have left this one god behind to take the blame?\", \"cuePosition\": \"after\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"a familiar woman spoke, as a fresh voice joined the others, a cascade of holy light invading the void.\", \"speakerSurface\": \"a familiar woman\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"If that was the case, why wouldn’t they still have left this one god behind to take the blame?\", \"lastSentence\": \"If that was the case, why wouldn’t they still have left this one god behind to take the blame?\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me.\", \"lastSentence\": \"These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"aeon\", \"characterName\": \"Aeon\", \"aliases\": [], \"roleLabels\": [\"aeon\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 18, \"paragraphIndex\": 8, \"characterId\": \"aeon\", \"characterName\": \"Aeon\", \"text\": \"Doing so would have ended the lives of two people carrying Divine Blessings of Primordials, the favored granddaughter of Nature’s Attendant, and the newest Godqueen of the Pantheon of Life. Additionally, seeing as the Pantheon of Life had taken responsibility for the escort job, a disaster of this level would certainly have ruined any sort of friendship between the Order of the Malefic Viper and the Pantheon of Life.\"}, {\"relativeIndex\": -3, \"lineId\": 19, \"paragraphIndex\": 9, \"characterId\": \"the_malefic_viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"That’s… a good point,\"}, {\"relativeIndex\": -2, \"lineId\": 21, \"paragraphIndex\": 10, \"characterId\": \"aeon\", \"characterName\": \"Aeon\", \"text\": \"Going by the historic actions of Vilas, it’s even likely they expected him to act out revenge on those he believed responsible. If the presumed-dead member of the Holy Church was the only one left behind and blew themselves up using the holy concept, all clues would have pointed toward them being responsible,\"}, {\"relativeIndex\": -1, \"lineId\": 23, \"paragraphIndex\": 11, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"If that was the case, why wouldn’t they still have left this one god behind to take the blame?\"}, {\"relativeIndex\": 1, \"lineId\": 27, \"paragraphIndex\": 14, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Not necessarily,\"}, {\"relativeIndex\": 2, \"lineId\": 29, \"paragraphIndex\": 14, \"characterId\": \"nature's_attendant\", \"characterName\": \"Nature'S Attendant\", \"text\": \"As you said, they were operating under the assumption that none of them had been identified. With that in mind, it makes sense for them to reveal nothing, leaving us to wonder and make false assumptions all on our own. It’s only due to the Chosen we have at least some insight to operate from.\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"aeon\", \"name\": \"Aeon\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the viper\", \"name\": \"The Viper\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\", \"Vilas\", \"Vilastromoz\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"natures-attendant\", \"name\": \"Nature's Attendant\", \"aliases\": [\"Attendant\", \"natures-attendant\", \"natures-attendant-2\", \"Nature Attendant\", \"Life\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"oras\", \"name\": \"Oras\", \"aliases\": [\"Void Dweller\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"gudrun\", \"name\": \"Gudrun\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"valdemar\", \"name\": \"Valdemar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"holy mother\", \"name\": \"Holy Mother\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"holy mother\",\n  \"characterName\": \"Holy Mother\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"dialogue_continuity\",\n    \"explicit_pronoun_reference\",\n    \"character_role_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0142 - Chapter 1199 - Unexplainable Motives & Culprits/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 25,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "The Holy Mother had made her entrance after being contacted by Aeon earlier. Based on how fast she’d gotten there, this entire event clearly matters to her a lot.",
+    "paragraphIndex": 12,
+    "previousParagraphText": "“If that was the case, why wouldn’t they still have left this one god behind to take the blame?” a familiar woman spoke, as a fresh voice joined the others, a cascade of holy light invading the void.",
+    "reasonCodes": [
+      "dialogue_continuity",
+      "explicit_pronoun_reference",
+      "character_role_match"
+    ],
+    "suggestedCharacterId": "holy mother",
+    "suggestedCharacterName": "Holy Mother",
+    "toolTrace": []
+  },
+  "lineId": 25,
+  "nextParagraphText": "The Holy Mother had made her entrance after being contacted by Aeon earlier. Based on how fast she’d gotten there, this entire event clearly matters to her a lot.",
+  "paragraphIndex": 12,
+  "previousParagraphText": "“If that was the case, why wouldn’t they still have left this one god behind to take the blame?” a familiar woman spoke, as a fresh voice joined the others, a cascade of holy light invading the void."
+}

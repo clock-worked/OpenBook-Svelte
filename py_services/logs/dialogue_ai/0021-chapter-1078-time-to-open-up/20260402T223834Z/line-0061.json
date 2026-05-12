@@ -1,0 +1,414 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "96f0067be18481ecb85d25430b1500cb06e8a79f4748d8b6afb6315673992b5e",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\96f0067be18481ecb85d25430b1500cb06e8a79f4748d8b6afb6315673992b5e.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "confidence": 0.9,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_next_line_attribution",
+          "continuous_dialogue_turn",
+          "role_to_character_resolution"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": true
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "viper",
+              "the malefic viper",
+              "malefic viper",
+              "villy"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [],
+            "characterId": "adam",
+            "characterName": "Adam",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "adam"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "false god",
+            "characterName": "False God",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "false god"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [],
+            "characterId": "beastkin-god",
+            "characterName": "Beastkin God",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "beastkin god"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [
+              "unknown-god",
+              "unknown-god-2"
+            ],
+            "characterId": "unknown-god",
+            "characterName": "Unknown God",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "unknown god",
+              "unknown god 2"
+            ],
+            "wasRecentSpeaker": false
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "dad",
+            "name": "Dad",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "name": "Caleb",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "mom",
+            "name": "Mom",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "maja",
+            "name": "Maja",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "adam",
+            "name": "Adam",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Thoughts on the universe opening up soon?",
+          "lastSentence": "Thoughts on the universe opening up soon?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Thoughts on the universe opening up soon?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": true,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.18,
+            "misattributionRisk": 0.364,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "The Malefic Viper"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.636
+          },
+          "candidates": [
+            {
+              "characterId": "jake",
+              "confidence": 0.636,
+              "name": "Jake",
+              "reasons": [
+                "parser_match",
+                "legacy_match",
+                "question_next_speaker_penalty"
+              ]
+            },
+            {
+              "characterId": "viper",
+              "confidence": 0.456,
+              "name": "The Malefic Viper",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [
+            "Protagonist"
+          ],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 61,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "Thoughts on the universe opening up soon?"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 61,
+              "text": "Thoughts on the universe opening up soon?"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 62,
+              "text": "We all knew it would happen, didn’t we?"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the snake god answered promptly.",
+              "cueVerb": "answered",
+              "cueVerbType": "speech",
+              "firstSentence": "We all knew it would happen, didn’t we?",
+              "lastSentence": "We all knew it would happen, didn’t we?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "We all knew it would happen, didn’t we?",
+              "speakerNameMatch": null,
+              "speakerSurface": "the snake god"
+            }
+          ],
+          "currentParagraphText": "“We all knew it would happen, didn’t we?” the snake god answered promptly.",
+          "dialogueLineCount": 2,
+          "paragraphIndex": 43
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 53,
+            "paragraphIndex": 38,
+            "relativeIndex": -4,
+            "text": "When are you coming to visit again?"
+          },
+          {
+            "characterId": "adam",
+            "characterName": "Adam",
+            "lineId": 55,
+            "paragraphIndex": 38,
+            "relativeIndex": -3,
+            "text": "Who knows? Just know that when I’m not here, it’s because I’m fighting dragons or evil mushroom people."
+          },
+          {
+            "characterId": "adam",
+            "characterName": "Adam",
+            "lineId": 56,
+            "paragraphIndex": 39,
+            "relativeIndex": -2,
+            "text": "Are there good mushroom people?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 58,
+            "paragraphIndex": 40,
+            "relativeIndex": -1,
+            "text": "You have a bright future ahead of you,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 62,
+            "paragraphIndex": 43,
+            "relativeIndex": 1,
+            "text": "We all knew it would happen, didn’t we?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 64,
+            "paragraphIndex": 44,
+            "relativeIndex": 2,
+            "text": "One can only hope that the foundation you’ve established is powerful enough to survive what’s to come. And I’m not talking about a foundation purely based on power, but one of stability. Your little budding empire won’t rise or fall due to a lack of soldiers but inadequate administration. The only way I could see your rule fall apart due to a lack of power was if you died, but telling you not to die really isn’t advice I hope I’d need to give."
+          }
+        ],
+        "sceneEntities": [
+          {
+            "matches": [
+              {
+                "characterId": "false god",
+                "characterName": "False God",
+                "evidence": [
+                  "token_overlap:god"
+                ],
+                "score": 0.625
+              },
+              {
+                "characterId": "beastkin-god",
+                "characterName": "Beastkin God",
+                "evidence": [
+                  "token_overlap:god"
+                ],
+                "score": 0.625
+              },
+              {
+                "characterId": "unknown-god",
+                "characterName": "Unknown God",
+                "evidence": [
+                  "token_overlap:god",
+                  "generic_placeholder_penalty"
+                ],
+                "score": 0.4375
+              }
+            ],
+            "surface": "the snake god"
+          }
+        ]
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 61, \"text\": \"Thoughts on the universe opening up soon?\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"The Malefic Viper\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.636, \"marginToSecond\": 0.18, \"misattributionRisk\": 0.364, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.636, \"reasons\": [\"parser_match\", \"legacy_match\", \"question_next_speaker_penalty\"]}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 43, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“We all knew it would happen, didn’t we?” the snake god answered promptly.\", \"currentParagraphDialogue\": [{\"lineId\": 61, \"text\": \"Thoughts on the universe opening up soon?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 62, \"text\": \"We all knew it would happen, didn’t we?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"We all knew it would happen, didn’t we?\", \"cuePosition\": \"after\", \"cueVerb\": \"answered\", \"cueVerbType\": \"speech\", \"cueText\": \"the snake god answered promptly.\", \"speakerSurface\": \"the snake god\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"We all knew it would happen, didn’t we?\", \"lastSentence\": \"We all knew it would happen, didn’t we?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Thoughts on the universe opening up soon?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Thoughts on the universe opening up soon?\", \"lastSentence\": \"Thoughts on the universe opening up soon?\"}, \"sceneEntities\": [{\"surface\": \"the snake god\", \"matches\": [{\"characterId\": \"false god\", \"characterName\": \"False God\", \"score\": 0.625, \"evidence\": [\"token_overlap:god\"]}, {\"characterId\": \"beastkin-god\", \"characterName\": \"Beastkin God\", \"score\": 0.625, \"evidence\": [\"token_overlap:god\"]}, {\"characterId\": \"unknown-god\", \"characterName\": \"Unknown God\", \"score\": 0.4375, \"evidence\": [\"token_overlap:god\", \"generic_placeholder_penalty\"]}]}], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"adam\", \"characterName\": \"Adam\", \"aliases\": [], \"roleLabels\": [\"adam\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"false god\", \"characterName\": \"False God\", \"aliases\": [], \"roleLabels\": [\"false god\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"beastkin-god\", \"characterName\": \"Beastkin God\", \"aliases\": [], \"roleLabels\": [\"beastkin god\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"unknown-god\", \"characterName\": \"Unknown God\", \"aliases\": [\"unknown-god\", \"unknown-god-2\"], \"roleLabels\": [\"unknown god\", \"unknown god 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 53, \"paragraphIndex\": 38, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"When are you coming to visit again?\"}, {\"relativeIndex\": -3, \"lineId\": 55, \"paragraphIndex\": 38, \"characterId\": \"adam\", \"characterName\": \"Adam\", \"text\": \"Who knows? Just know that when I’m not here, it’s because I’m fighting dragons or evil mushroom people.\"}, {\"relativeIndex\": -2, \"lineId\": 56, \"paragraphIndex\": 39, \"characterId\": \"adam\", \"characterName\": \"Adam\", \"text\": \"Are there good mushroom people?\"}, {\"relativeIndex\": -1, \"lineId\": 58, \"paragraphIndex\": 40, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You have a bright future ahead of you,\"}, {\"relativeIndex\": 1, \"lineId\": 62, \"paragraphIndex\": 43, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"We all knew it would happen, didn’t we?\"}, {\"relativeIndex\": 2, \"lineId\": 64, \"paragraphIndex\": 44, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"One can only hope that the foundation you’ve established is powerful enough to survive what’s to come. And I’m not talking about a foundation purely based on power, but one of stability. Your little budding empire won’t rise or fall due to a lack of soldiers but inadequate administration. The only way I could see your rule fall apart due to a lack of power was if you died, but telling you not to die really isn’t advice I hope I’d need to give.\"}], \"chapterCharacters\": [{\"characterId\": \"dad\", \"name\": \"Dad\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"mom\", \"name\": \"Mom\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"maja\", \"name\": \"Maja\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"adam\", \"name\": \"Adam\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"viper\",\n  \"characterName\": \"The Malefic Viper\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"explicit_next_line_attribution\",\n    \"continuous_dialogue_turn\",\n    \"role_to_character_resolution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0021 - Chapter 1078 - Time To Open Up",
+  "currentCharacterId": "jake",
+  "currentCharacterName": "Jake",
+  "currentParagraphText": "“We all knew it would happen, didn’t we?” the snake god answered promptly.",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.9,
+    "currentCharacterId": "jake",
+    "currentCharacterName": "Jake",
+    "currentParagraphText": "“We all knew it would happen, didn’t we?” the snake god answered promptly.",
+    "disposition": "review",
+    "error": null,
+    "lineId": 61,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“One can only hope that the foundation you’ve established is powerful enough to survive what’s to come. And I’m not talking about a foundation purely based on power, but one of stability. Your little budding empire won’t rise or fall due to a lack of soldiers but inadequate administration. The only way I could see your rule fall apart due to a lack of power was if you died, but telling you not to die really isn’t advice I hope I’d need to give.”",
+    "paragraphIndex": 43,
+    "previousParagraphText": "“Thoughts on the universe opening up soon?”",
+    "reasonCodes": [
+      "explicit_next_line_attribution",
+      "continuous_dialogue_turn",
+      "role_to_character_resolution"
+    ],
+    "suggestedCharacterId": "viper",
+    "suggestedCharacterName": "The Malefic Viper",
+    "toolTrace": []
+  },
+  "lineId": 61,
+  "nextParagraphText": "“One can only hope that the foundation you’ve established is powerful enough to survive what’s to come. And I’m not talking about a foundation purely based on power, but one of stability. Your little budding empire won’t rise or fall due to a lack of soldiers but inadequate administration. The only way I could see your rule fall apart due to a lack of power was if you died, but telling you not to die really isn’t advice I hope I’d need to give.”",
+  "paragraphIndex": 43,
+  "previousParagraphText": "“Thoughts on the universe opening up soon?”"
+}

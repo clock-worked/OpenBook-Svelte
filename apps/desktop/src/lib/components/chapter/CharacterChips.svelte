@@ -10,7 +10,7 @@
   export let setHovered: (s: string | null) => void;
   export let toolMode: ToolMode = 'review';
 
-  const DISPLAY_ALPHA = 1.0; // Must match CharacterPanel
+  const CHIP_ALPHA = 0.68;
 
   const dispatch = createEventDispatcher();
   
@@ -93,7 +93,7 @@
       <span
         class="character-chip conflict-chip"
         class:chip-disabled={toolMode !== 'review' && toolMode !== 'audio'}
-                style={`--bg:linear-gradient(to right, ${hexToRgba(colorForCharacter(pair.left), 1)}, ${hexToRgba(colorForCharacter(pair.right), 1)});`}
+                style={`--bg:linear-gradient(to right, ${hexToRgba(colorForCharacter(pair.left), CHIP_ALPHA)}, ${hexToRgba(colorForCharacter(pair.right), CHIP_ALPHA)});`}
         role="button"
         tabindex={toolMode === 'review' || toolMode === 'audio' ? 0 : -1}
         aria-label={`Conflict between ${pair.left} and ${pair.right}`}
@@ -120,7 +120,7 @@
         class="character-chip"
         class:narrator-chip={charName?.toLowerCase() === 'narrator'}
         class:chip-disabled={toolMode !== 'review' && toolMode !== 'audio'}
-        style={charName?.toLowerCase() === 'narrator' ? '' : `--bg:${hexToRgba(colorForCharacter(charName as string), 1)};`}
+        style={charName?.toLowerCase() === 'narrator' ? '' : `--bg:${hexToRgba(colorForCharacter(charName as string), CHIP_ALPHA)};`}
         role="button"
         tabindex={toolMode === 'review' || toolMode === 'audio' ? 0 : -1}
         aria-label={`Character ${charName}`}
@@ -138,8 +138,8 @@
 
 <style>
   .character-col { width:56px; display:flex; flex-direction:column; align-items:flex-end; gap:4px; padding-top:2px; }
-  .character-chip { cursor:default; user-select:none; font-size:12px; padding:2px 6px; border-radius:10px; background: var(--bg, transparent); color:#222; white-space:nowrap; }
-  .character-chip.narrator-chip { font-style:italic; color:#555; background:#ffffff; opacity:1; }
+  .character-chip { cursor:default; user-select:none; font-size:12px; padding:2px 6px; border-radius:10px; background: var(--bg, transparent); color:var(--app-text); white-space:nowrap; }
+  .character-chip.narrator-chip { font-style:italic; color:var(--app-text-muted); background:var(--app-surface-raised); opacity:1; }
   .character-chip.chip-disabled { opacity:0.4; cursor:not-allowed; pointer-events:none; }
 </style>
 

@@ -1,0 +1,1121 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "11d418fd310330e8d2ebe7eb5288c79c7748e1f074d7fddbedcc184c0e2adeb0",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\11d418fd310330e8d2ebe7eb5288c79c7748e1f074d7fddbedcc184c0e2adeb0.json",
+      "callIndex": 1,
+      "decision": {
+        "responseType": "tool",
+        "tool": {
+          "args": {},
+          "name": "request_book_characters"
+        }
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": true
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "characterName": "Caleb",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "caleb"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [],
+            "characterId": "adam",
+            "characterName": "Adam",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "adam"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "mom",
+            "characterName": "Mom",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "mom"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "name": "Caleb",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "maja",
+            "name": "Maja",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "adam",
+            "name": "Adam",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "mom",
+            "name": "Mom",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "dad",
+            "name": "Dad",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "His mom turned to Jake and Caleb, the Judge answering first.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I’ll have whatever.",
+          "lastSentence": "I’ll have whatever.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I’ll have whatever.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.85,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.19199999999999995,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "Caleb"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.808
+          },
+          "candidates": [
+            {
+              "characterId": "jake",
+              "confidence": 0.808,
+              "name": "Jake",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "caleb",
+              "confidence": 0.448,
+              "name": "Caleb",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [
+            "Protagonist"
+          ],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 38,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "I’ll have whatever."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 38,
+              "text": "I’ll have whatever."
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 39,
+              "text": "Ribs, for sure,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake said as he was already looking forward to the meal.",
+              "cueVerb": "said",
+              "cueVerbType": "speech",
+              "firstSentence": "Ribs, for sure,",
+              "lastSentence": "Ribs, for sure,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Ribs, for sure,",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "currentParagraphText": "“Ribs, for sure,” Jake said as he was already looking forward to the meal.",
+          "dialogueLineCount": 2,
+          "paragraphIndex": 29
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "adam",
+            "characterName": "Adam",
+            "lineId": 22,
+            "paragraphIndex": 17,
+            "relativeIndex": -4,
+            "text": "natural"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 31,
+            "paragraphIndex": 25,
+            "relativeIndex": -3,
+            "text": "You’re a bit early; Robert is still—"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 34,
+            "paragraphIndex": 26,
+            "relativeIndex": -2,
+            "text": "Robert! Jake and Caleb are also here!"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 36,
+            "paragraphIndex": 27,
+            "relativeIndex": -1,
+            "text": "Do they want sausages or ribs? I think the roast is big enough even with two more, but I can throw on a second one..."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 39,
+            "paragraphIndex": 29,
+            "relativeIndex": 1,
+            "text": "Ribs, for sure,"
+          },
+          {
+            "characterId": "mom",
+            "characterName": "Mom",
+            "lineId": 41,
+            "paragraphIndex": 30,
+            "relativeIndex": 2,
+            "text": "Caleb wants those chili sausages, and Jake wants ribs!"
+          }
+        ],
+        "sceneEntities": [
+          {
+            "matches": [
+              {
+                "characterId": "jake",
+                "characterName": "Jake",
+                "evidence": [
+                  "ai_scene_memory"
+                ],
+                "score": 0.99
+              }
+            ],
+            "surface": "jake"
+          }
+        ]
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 38, \"text\": \"I’ll have whatever.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Caleb\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.808, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19199999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.85, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.808, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"confidence\": 0.448, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 29, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Ribs, for sure,” Jake said as he was already looking forward to the meal.\", \"currentParagraphDialogue\": [{\"lineId\": 38, \"text\": \"I’ll have whatever.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 39, \"text\": \"Ribs, for sure,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Ribs, for sure,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake said as he was already looking forward to the meal.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Ribs, for sure,\", \"lastSentence\": \"Ribs, for sure,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I’ll have whatever.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"His mom turned to Jake and Caleb, the Judge answering first.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’ll have whatever.\", \"lastSentence\": \"I’ll have whatever.\"}, \"sceneEntities\": [{\"surface\": \"jake\", \"matches\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"score\": 0.99, \"evidence\": [\"ai_scene_memory\"]}]}], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"aliases\": [], \"roleLabels\": [\"caleb\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"adam\", \"characterName\": \"Adam\", \"aliases\": [], \"roleLabels\": [\"adam\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"mom\", \"characterName\": \"Mom\", \"aliases\": [], \"roleLabels\": [\"mom\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 22, \"paragraphIndex\": 17, \"characterId\": \"adam\", \"characterName\": \"Adam\", \"text\": \"natural\"}, {\"relativeIndex\": -3, \"lineId\": 31, \"paragraphIndex\": 25, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You’re a bit early; Robert is still—\"}, {\"relativeIndex\": -2, \"lineId\": 34, \"paragraphIndex\": 26, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Robert! Jake and Caleb are also here!\"}, {\"relativeIndex\": -1, \"lineId\": 36, \"paragraphIndex\": 27, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Do they want sausages or ribs? I think the roast is big enough even with two more, but I can throw on a second one...\"}, {\"relativeIndex\": 1, \"lineId\": 39, \"paragraphIndex\": 29, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Ribs, for sure,\"}, {\"relativeIndex\": 2, \"lineId\": 41, \"paragraphIndex\": 30, \"characterId\": \"mom\", \"characterName\": \"Mom\", \"text\": \"Caleb wants those chili sausages, and Jake wants ribs!\"}], \"chapterCharacters\": [{\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"maja\", \"name\": \"Maja\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"adam\", \"name\": \"Adam\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"mom\", \"name\": \"Mom\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dad\", \"name\": \"Dad\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"tool\",\n  \"tool\": {\n    \"name\": \"request_book_characters\",\n    \"args\": {}\n  }\n}"
+    },
+    {
+      "cacheHit": false,
+      "cacheKey": "6348f1ae57c82208a90c0063ca4c273e5c86fdda11225a9c3bcb849b0cd6fc2d",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\6348f1ae57c82208a90c0063ca4c273e5c86fdda11225a9c3bcb849b0cd6fc2d.json",
+      "callIndex": 2,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "next_line_explicitly_attributed_to_jake",
+          "parser_high_confidence",
+          "continues_dialogue_sequence"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": true
+        },
+        "bookCharacters": [
+          {
+            "aliases": [],
+            "characterId": "narrator",
+            "name": "Narrator",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "carmen",
+            "name": "Carmen",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "kindroth",
+            "name": "Kindroth",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "miranda",
+            "name": "Miranda",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "lillian",
+            "name": "Lillian",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "arnold",
+            "name": "Arnold",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "sandy",
+            "name": "Sandy",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "vesperia",
+            "name": "Vesperia",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "william",
+            "name": "William",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "name": "Sylphie",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "viridia",
+            "name": "viridia",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Augur",
+              "The Augur"
+            ],
+            "characterId": "jacob",
+            "name": "Jacob",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "name": "The Sword Saint",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "duskleaf",
+            "name": "Duskleaf",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "irin",
+            "name": "Irin",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "valdemar",
+            "name": "Valdemar",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "bertram",
+            "name": "Bertram",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "holy-priest",
+              "holy-priest-2",
+              "head priest",
+              "the head priest"
+            ],
+            "characterId": "holy-priest",
+            "name": "Holy Priest",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "King Iludar"
+            ],
+            "characterId": "iludar",
+            "name": "Iludar",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "maria",
+            "name": "Maria",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "unknown-elf-male",
+              "unknown-elf-male-2",
+              "unknown-elf"
+            ],
+            "characterId": "unknown-elf-male",
+            "name": "Unknown Elf (Male)",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "lodestar-matron",
+              "lodestar-matron-2"
+            ],
+            "characterId": "lodestar-matron",
+            "name": "Lodestar Matron",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "false god",
+            "name": "False God",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "hank",
+            "name": "Hank",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "name": "Caleb",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "adam",
+            "name": "Adam",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "maja",
+            "name": "Maja",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "dad",
+            "name": "Dad",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "mom",
+            "name": "Mom",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown-elf-female",
+            "name": "Unknown Elf (Female)",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "beastkin",
+            "name": "Beastkin",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "the-first-sage",
+              "the-first-sage-2"
+            ],
+            "characterId": "the-first-sage",
+            "name": "the first sage",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "ellhakan",
+            "name": "ellhakan",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "yip",
+            "name": "yip",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "meira",
+            "name": "meira",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "fairleigh",
+            "name": "Fairleigh",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "succubus",
+            "name": "Succubus",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "iskar",
+            "name": "Iskar",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "True Ancestor",
+              "Vampire Godess",
+              "vampire-godess"
+            ],
+            "characterId": "katherine",
+            "name": "Katherine",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "vampire",
+            "name": "Vampire",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "linea",
+            "name": "Linea",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "name": "Minaga",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "dragonkin",
+            "name": "Dragonkin",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "beastkin-god",
+            "name": "Beastkin God",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "unknown-god",
+              "unknown-god-2"
+            ],
+            "characterId": "unknown-god",
+            "name": "Unknown God",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "stormild",
+            "name": "stormild",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "godqueen",
+            "name": "Godqueen",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "nimera",
+            "name": "Nimera",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "yggdrasil",
+            "name": "Yggdrasil",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Attendant",
+              "natures-attendant",
+              "natures-attendant-2",
+              "Nature Attendant"
+            ],
+            "characterId": "natures-attendant",
+            "name": "Nature's Attendant",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "blood",
+            "name": "blood",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "dina",
+            "name": "Dina",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "pulse",
+            "name": "pulse",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "candidateCards": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "characterName": "Caleb",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "caleb"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [],
+            "characterId": "adam",
+            "characterName": "Adam",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "adam"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "mom",
+            "characterName": "Mom",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "mom"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "name": "Caleb",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "maja",
+            "name": "Maja",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "adam",
+            "name": "Adam",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "mom",
+            "name": "Mom",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "dad",
+            "name": "Dad",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "His mom turned to Jake and Caleb, the Judge answering first.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I’ll have whatever.",
+          "lastSentence": "I’ll have whatever.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I’ll have whatever.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.85,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.19199999999999995,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "Caleb"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.808
+          },
+          "candidates": [
+            {
+              "characterId": "jake",
+              "confidence": 0.808,
+              "name": "Jake",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "caleb",
+              "confidence": 0.448,
+              "name": "Caleb",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [
+            "Protagonist"
+          ],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 38,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "I’ll have whatever."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 38,
+              "text": "I’ll have whatever."
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 39,
+              "text": "Ribs, for sure,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake said as he was already looking forward to the meal.",
+              "cueVerb": "said",
+              "cueVerbType": "speech",
+              "firstSentence": "Ribs, for sure,",
+              "lastSentence": "Ribs, for sure,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Ribs, for sure,",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "currentParagraphText": "“Ribs, for sure,” Jake said as he was already looking forward to the meal.",
+          "dialogueLineCount": 2,
+          "paragraphIndex": 29
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "adam",
+            "characterName": "Adam",
+            "lineId": 22,
+            "paragraphIndex": 17,
+            "relativeIndex": -4,
+            "text": "natural"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 31,
+            "paragraphIndex": 25,
+            "relativeIndex": -3,
+            "text": "You’re a bit early; Robert is still—"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 34,
+            "paragraphIndex": 26,
+            "relativeIndex": -2,
+            "text": "Robert! Jake and Caleb are also here!"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 36,
+            "paragraphIndex": 27,
+            "relativeIndex": -1,
+            "text": "Do they want sausages or ribs? I think the roast is big enough even with two more, but I can throw on a second one..."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 39,
+            "paragraphIndex": 29,
+            "relativeIndex": 1,
+            "text": "Ribs, for sure,"
+          },
+          {
+            "characterId": "mom",
+            "characterName": "Mom",
+            "lineId": 41,
+            "paragraphIndex": 30,
+            "relativeIndex": 2,
+            "text": "Caleb wants those chili sausages, and Jake wants ribs!"
+          }
+        ],
+        "sceneEntities": [
+          {
+            "matches": [
+              {
+                "characterId": "jake",
+                "characterName": "Jake",
+                "evidence": [
+                  "ai_scene_memory"
+                ],
+                "score": 0.99
+              }
+            ],
+            "surface": "jake"
+          }
+        ]
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 38, \"text\": \"I’ll have whatever.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Caleb\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.808, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19199999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.85, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.808, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"confidence\": 0.448, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 29, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Ribs, for sure,” Jake said as he was already looking forward to the meal.\", \"currentParagraphDialogue\": [{\"lineId\": 38, \"text\": \"I’ll have whatever.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 39, \"text\": \"Ribs, for sure,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Ribs, for sure,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake said as he was already looking forward to the meal.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Ribs, for sure,\", \"lastSentence\": \"Ribs, for sure,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I’ll have whatever.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"His mom turned to Jake and Caleb, the Judge answering first.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’ll have whatever.\", \"lastSentence\": \"I’ll have whatever.\"}, \"sceneEntities\": [{\"surface\": \"jake\", \"matches\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"score\": 0.99, \"evidence\": [\"ai_scene_memory\"]}]}], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"aliases\": [], \"roleLabels\": [\"caleb\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"adam\", \"characterName\": \"Adam\", \"aliases\": [], \"roleLabels\": [\"adam\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"mom\", \"characterName\": \"Mom\", \"aliases\": [], \"roleLabels\": [\"mom\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 22, \"paragraphIndex\": 17, \"characterId\": \"adam\", \"characterName\": \"Adam\", \"text\": \"natural\"}, {\"relativeIndex\": -3, \"lineId\": 31, \"paragraphIndex\": 25, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You’re a bit early; Robert is still—\"}, {\"relativeIndex\": -2, \"lineId\": 34, \"paragraphIndex\": 26, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Robert! Jake and Caleb are also here!\"}, {\"relativeIndex\": -1, \"lineId\": 36, \"paragraphIndex\": 27, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Do they want sausages or ribs? I think the roast is big enough even with two more, but I can throw on a second one...\"}, {\"relativeIndex\": 1, \"lineId\": 39, \"paragraphIndex\": 29, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Ribs, for sure,\"}, {\"relativeIndex\": 2, \"lineId\": 41, \"paragraphIndex\": 30, \"characterId\": \"mom\", \"characterName\": \"Mom\", \"text\": \"Caleb wants those chili sausages, and Jake wants ribs!\"}], \"chapterCharacters\": [{\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"maja\", \"name\": \"Maja\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"adam\", \"name\": \"Adam\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"mom\", \"name\": \"Mom\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dad\", \"name\": \"Dad\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}, \"bookCharacters\": [{\"characterId\": \"narrator\", \"name\": \"Narrator\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"lillian\", \"name\": \"Lillian\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"arnold\", \"name\": \"Arnold\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sandy\", \"name\": \"Sandy\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vesperia\", \"name\": \"Vesperia\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"william\", \"name\": \"William\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viridia\", \"name\": \"viridia\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"duskleaf\", \"name\": \"Duskleaf\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"valdemar\", \"name\": \"Valdemar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"bertram\", \"name\": \"Bertram\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"holy-priest\", \"name\": \"Holy Priest\", \"aliases\": [\"holy-priest\", \"holy-priest-2\", \"head priest\", \"the head priest\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": [\"King Iludar\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"maria\", \"name\": \"Maria\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown-elf-male\", \"name\": \"Unknown Elf (Male)\", \"aliases\": [\"unknown-elf-male\", \"unknown-elf-male-2\", \"unknown-elf\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"lodestar-matron\", \"name\": \"Lodestar Matron\", \"aliases\": [\"lodestar-matron\", \"lodestar-matron-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"false god\", \"name\": \"False God\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"hank\", \"name\": \"Hank\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"adam\", \"name\": \"Adam\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"maja\", \"name\": \"Maja\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dad\", \"name\": \"Dad\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"mom\", \"name\": \"Mom\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown-elf-female\", \"name\": \"Unknown Elf (Female)\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"beastkin\", \"name\": \"Beastkin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-first-sage\", \"name\": \"the first sage\", \"aliases\": [\"the-first-sage\", \"the-first-sage-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"ellhakan\", \"name\": \"ellhakan\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"yip\", \"name\": \"yip\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"meira\", \"name\": \"meira\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"fairleigh\", \"name\": \"Fairleigh\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"succubus\", \"name\": \"Succubus\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iskar\", \"name\": \"Iskar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"katherine\", \"name\": \"Katherine\", \"aliases\": [\"True Ancestor\", \"Vampire Godess\", \"vampire-godess\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vampire\", \"name\": \"Vampire\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"linea\", \"name\": \"Linea\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dragonkin\", \"name\": \"Dragonkin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"beastkin-god\", \"name\": \"Beastkin God\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown-god\", \"name\": \"Unknown God\", \"aliases\": [\"unknown-god\", \"unknown-god-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"stormild\", \"name\": \"stormild\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"godqueen\", \"name\": \"Godqueen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"nimera\", \"name\": \"Nimera\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"yggdrasil\", \"name\": \"Yggdrasil\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"natures-attendant\", \"name\": \"Nature's Attendant\", \"aliases\": [\"Attendant\", \"natures-attendant\", \"natures-attendant-2\", \"Nature Attendant\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"blood\", \"name\": \"blood\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dina\", \"name\": \"Dina\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"pulse\", \"name\": \"pulse\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}]}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"next_line_explicitly_attributed_to_jake\",\n    \"parser_high_confidence\",\n    \"continues_dialogue_sequence\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0018 - Chapter 1075 - Truly Relaxed",
+  "currentCharacterId": "jake",
+  "currentCharacterName": "Jake",
+  "currentParagraphText": "“Ribs, for sure,” Jake said as he was already looking forward to the meal.",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "jake",
+    "currentCharacterName": "Jake",
+    "currentParagraphText": "“Ribs, for sure,” Jake said as he was already looking forward to the meal.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 38,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Caleb wants those chili sausages, and Jake wants ribs!” his mom yelled back before she finally properly turned to address Jake. “You’re lucky we got extra from the butcher just yesterday. You could have given us a ring and said you’d come!”",
+    "paragraphIndex": 29,
+    "previousParagraphText": "His mom turned to Jake and Caleb, the Judge answering first. “I’ll have whatever.”",
+    "reasonCodes": [
+      "next_line_explicitly_attributed_to_jake",
+      "parser_high_confidence",
+      "continues_dialogue_sequence"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": [
+      {
+        "note": null,
+        "status": "used",
+        "tool": "request_book_characters"
+      }
+    ]
+  },
+  "lineId": 38,
+  "nextParagraphText": "“Caleb wants those chili sausages, and Jake wants ribs!” his mom yelled back before she finally properly turned to address Jake. “You’re lucky we got extra from the butcher just yesterday. You could have given us a ring and said you’d come!”",
+  "paragraphIndex": 29,
+  "previousParagraphText": "His mom turned to Jake and Caleb, the Judge answering first. “I’ll have whatever.”"
+}

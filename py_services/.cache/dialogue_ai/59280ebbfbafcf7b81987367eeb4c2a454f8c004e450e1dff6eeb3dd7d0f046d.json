@@ -1,0 +1,275 @@
+{
+  "cacheKey": "59280ebbfbafcf7b81987367eeb4c2a454f8c004e450e1dff6eeb3dd7d0f046d",
+  "createdAt": "2026-04-02T22:33:03.464103+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "maja",
+    "characterName": "Maja",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "narrative_cue_before_quote",
+      "dialogue_continuity",
+      "addressed_speaker_responds"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "maja",
+        "characterName": "Maja",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "maja"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "maja",
+        "name": "Maja",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "adam",
+        "name": "Adam",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "caleb",
+        "name": "Caleb",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "She was surprised when she saw Jake and turned to look him over.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Caleb didn’t mention you would come for a visit...",
+      "lastSentence": "though it does explain why he’s home early today.",
+      "mentionedEntities": [
+        "Caleb",
+        "Caleb"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "Caleb didn’t mention you would come for a visit... though it does explain why he’s home early today.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "Caleb"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Maja",
+        "sourceCandidates": [
+          "Maja",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "maja",
+          "confidence": 0.816,
+          "name": "Maja",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "maja",
+      "currentCharacterName": "Maja",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 5,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Caleb didn’t mention you would come for a visit... though it does explain why he’s home early today."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "maja",
+          "characterName": "Maja",
+          "isReturning": true,
+          "lineId": 5,
+          "text": "Caleb didn’t mention you would come for a visit... though it does explain why he’s home early today."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "She was surprised when she saw Jake and turned to look him over.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Caleb didn’t mention you would come for a visit...",
+          "lastSentence": "though it does explain why he’s home early today.",
+          "mentionedEntities": [
+            "Caleb",
+            "Caleb"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Caleb didn’t mention you would come for a visit... though it does explain why he’s home early today.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "She was surprised when she saw Jake and turned to look him over. “Caleb didn’t mention you would come for a visit... though it does explain why he’s home early today.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 6,
+          "text": "Sorry if I ruined your calm afternoon,"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake said as he pulled over a lawn chair for himself and sat down.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Sorry if I ruined your calm afternoon,",
+          "lastSentence": "Sorry if I ruined your calm afternoon,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Sorry if I ruined your calm afternoon,",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "nextParagraphText": "“Sorry if I ruined your calm afternoon,” Jake said as he pulled over a lawn chair for himself and sat down.",
+      "paragraphIndex": 3,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Adam was surprised for a moment before he also grinned and really started swinging. Caleb responded by blocking and slowly backing away, acting as if he was being pressured. Jake watched for a while before he slowly lowered himself and landed beside Maja who was also keeping an eye on her husband and kid."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 6,
+        "paragraphIndex": 4,
+        "relativeIndex": 1,
+        "text": "Sorry if I ruined your calm afternoon,"
+      },
+      {
+        "characterId": "maja",
+        "characterName": "Maja",
+        "lineId": 8,
+        "paragraphIndex": 5,
+        "relativeIndex": 2,
+        "text": "I wasn’t complaining,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 5, \"text\": \"Caleb didn’t mention you would come for a visit... though it does explain why he’s home early today.\", \"currentCharacterId\": \"maja\", \"currentCharacterName\": \"Maja\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Maja\", \"sourceCandidates\": [\"Maja\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Caleb\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"maja\", \"name\": \"Maja\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 3, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"She was surprised when she saw Jake and turned to look him over. “Caleb didn’t mention you would come for a visit... though it does explain why he’s home early today.”\", \"currentParagraphDialogue\": [{\"lineId\": 5, \"text\": \"Caleb didn’t mention you would come for a visit... though it does explain why he’s home early today.\", \"characterId\": \"maja\", \"characterName\": \"Maja\", \"isReturning\": true}], \"previousParagraphText\": \"Adam was surprised for a moment before he also grinned and really started swinging. Caleb responded by blocking and slowly backing away, acting as if he was being pressured. Jake watched for a while before he slowly lowered himself and landed beside Maja who was also keeping an eye on her husband and kid.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“Sorry if I ruined your calm afternoon,” Jake said as he pulled over a lawn chair for himself and sat down.\", \"nextParagraphDialogue\": [{\"lineId\": 6, \"text\": \"Sorry if I ruined your calm afternoon,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Caleb didn’t mention you would come for a visit... though it does explain why he’s home early today.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"She was surprised when she saw Jake and turned to look him over.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Caleb\", \"Caleb\"], \"addressedEntity\": null, \"firstSentence\": \"Caleb didn’t mention you would come for a visit...\", \"lastSentence\": \"though it does explain why he’s home early today.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Sorry if I ruined your calm afternoon,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake said as he pulled over a lawn chair for himself and sat down.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Sorry if I ruined your calm afternoon,\", \"lastSentence\": \"Sorry if I ruined your calm afternoon,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Caleb didn’t mention you would come for a visit... though it does explain why he’s home early today.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"She was surprised when she saw Jake and turned to look him over.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Caleb\", \"Caleb\"], \"addressedEntity\": null, \"firstSentence\": \"Caleb didn’t mention you would come for a visit...\", \"lastSentence\": \"though it does explain why he’s home early today.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"maja\", \"characterName\": \"Maja\", \"aliases\": [], \"roleLabels\": [\"maja\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": 1, \"lineId\": 6, \"paragraphIndex\": 4, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Sorry if I ruined your calm afternoon,\"}, {\"relativeIndex\": 2, \"lineId\": 8, \"paragraphIndex\": 5, \"characterId\": \"maja\", \"characterName\": \"Maja\", \"text\": \"I wasn’t complaining,\"}], \"chapterCharacters\": [{\"characterId\": \"maja\", \"name\": \"Maja\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"adam\", \"name\": \"Adam\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"maja\",\n  \"characterName\": \"Maja\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"narrative_cue_before_quote\",\n    \"dialogue_continuity\",\n    \"addressed_speaker_responds\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

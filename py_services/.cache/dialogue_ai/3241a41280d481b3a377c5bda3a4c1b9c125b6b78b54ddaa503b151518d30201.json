@@ -1,0 +1,304 @@
+{
+  "cacheKey": "3241a41280d481b3a377c5bda3a4c1b9c125b6b78b54ddaa503b151518d30201",
+  "createdAt": "2026-04-02T22:51:39.386035+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "irin",
+    "characterName": "Irin",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "succubus",
+        "characterName": "Succubus",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "succubus"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "True Ancestor",
+          "Vampire Godess",
+          "vampire-godess"
+        ],
+        "characterId": "katherine",
+        "name": "Katherine",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "iskar",
+        "name": "Iskar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "irin",
+        "name": "Irin",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "succubus",
+        "name": "Succubus",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Irin shook her head.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "We are all fully aware of what’s happening and are all just taking advantage.",
+      "lastSentence": "Everyone involved knows what’s happening, so no need to be concerned.",
+      "mentionedEntities": [],
+      "quoteIndex": 1,
+      "quoteText": "We are all fully aware of what’s happening and are all just taking advantage. Plus, even if the members of these factions have been told to try and get closer to us, that doesn’t mean genuine connections can’t be made. Everyone involved knows what’s happening, so no need to be concerned.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.46399999999999997,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Succubus",
+        "sourceCandidates": [
+          "Succubus",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "succubus",
+          "confidence": 0.98,
+          "name": "Succubus",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "same_paragraph_continuation",
+            "speech_verb"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.516,
+          "name": "Jake",
+          "reasons": [
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "succubus",
+      "currentCharacterName": "Succubus",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 96,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "We are all fully aware of what’s happening and are all just taking advantage. Plus, even if the members of these factions have been told to try and get closer to us, that doesn’t mean genuine connections can’t be made. Everyone involved knows what’s happening, so no need to be concerned."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 2,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 92,
+          "text": "Should I be worried?"
+        },
+        {
+          "characterId": "succubus",
+          "characterName": "Succubus",
+          "isReturning": false,
+          "lineId": 94,
+          "text": "I wouldn’t be,"
+        },
+        {
+          "characterId": "succubus",
+          "characterName": "Succubus",
+          "isReturning": true,
+          "lineId": 96,
+          "text": "We are all fully aware of what’s happening and are all just taking advantage. Plus, even if the members of these factions have been told to try and get closer to us, that doesn’t mean genuine connections can’t be made. Everyone involved knows what’s happening, so no need to be concerned."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I wouldn’t be,",
+          "lastSentence": "I wouldn’t be,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I wouldn’t be,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Irin shook her head.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "We are all fully aware of what’s happening and are all just taking advantage.",
+          "lastSentence": "Everyone involved knows what’s happening, so no need to be concerned.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "We are all fully aware of what’s happening and are all just taking advantage. Plus, even if the members of these factions have been told to try and get closer to us, that doesn’t mean genuine connections can’t be made. Everyone involved knows what’s happening, so no need to be concerned.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“I wouldn’t be,” Irin shook her head. “We are all fully aware of what’s happening and are all just taking advantage. Plus, even if the members of these factions have been told to try and get closer to us, that doesn’t mean genuine connections can’t be made. Everyone involved knows what’s happening, so no need to be concerned.”",
+      "dialogueLineCount": 3,
+      "paragraphIndex": 52
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "succubus",
+        "characterName": "Succubus",
+        "lineId": 89,
+        "paragraphIndex": 50,
+        "relativeIndex": -4,
+        "text": "Oh, of course, but I see it only as beneficial,"
+      },
+      {
+        "characterId": "succubus",
+        "characterName": "Succubus",
+        "lineId": 91,
+        "paragraphIndex": 50,
+        "relativeIndex": -3,
+        "text": "I’m riding high on all that attention. Anyway, different factions chose to target different people. The Altmar are naturally trying to get close to Lady Dawnleaf, though in her case, it's also in large part due to her position as Duskleaf’s Chosen. As for Scarlett, the Dragonflights chose her as their target."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 92,
+        "paragraphIndex": 52,
+        "relativeIndex": -2,
+        "text": "Should I be worried?"
+      },
+      {
+        "characterId": "succubus",
+        "characterName": "Succubus",
+        "lineId": 94,
+        "paragraphIndex": 52,
+        "relativeIndex": -1,
+        "text": "I wouldn’t be,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 97,
+        "paragraphIndex": 53,
+        "relativeIndex": 1,
+        "text": "Alright, I guess,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 96, \"text\": \"We are all fully aware of what’s happening and are all just taking advantage. Plus, even if the members of these factions have been told to try and get closer to us, that doesn’t mean genuine connections can’t be made. Everyone involved knows what’s happening, so no need to be concerned.\", \"currentCharacterId\": \"succubus\", \"currentCharacterName\": \"Succubus\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Succubus\", \"sourceCandidates\": [\"Succubus\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.46399999999999997, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"succubus\", \"name\": \"Succubus\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"same_paragraph_continuation\", \"speech_verb\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.516, \"reasons\": [\"speech_verb\"]}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 52, \"currentLinePosition\": 2, \"dialogueLineCount\": 3, \"currentParagraphText\": \"“I wouldn’t be,” Irin shook her head. “We are all fully aware of what’s happening and are all just taking advantage. Plus, even if the members of these factions have been told to try and get closer to us, that doesn’t mean genuine connections can’t be made. Everyone involved knows what’s happening, so no need to be concerned.”\", \"currentParagraphDialogue\": [{\"lineId\": 92, \"text\": \"Should I be worried?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 94, \"text\": \"I wouldn’t be,\", \"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"isReturning\": false}, {\"lineId\": 96, \"text\": \"We are all fully aware of what’s happening and are all just taking advantage. Plus, even if the members of these factions have been told to try and get closer to us, that doesn’t mean genuine connections can’t be made. Everyone involved knows what’s happening, so no need to be concerned.\", \"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I wouldn’t be,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I wouldn’t be,\", \"lastSentence\": \"I wouldn’t be,\"}, {\"quoteIndex\": 1, \"quoteText\": \"We are all fully aware of what’s happening and are all just taking advantage. Plus, even if the members of these factions have been told to try and get closer to us, that doesn’t mean genuine connections can’t be made. Everyone involved knows what’s happening, so no need to be concerned.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Irin shook her head.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"We are all fully aware of what’s happening and are all just taking advantage.\", \"lastSentence\": \"Everyone involved knows what’s happening, so no need to be concerned.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"We are all fully aware of what’s happening and are all just taking advantage. Plus, even if the members of these factions have been told to try and get closer to us, that doesn’t mean genuine connections can’t be made. Everyone involved knows what’s happening, so no need to be concerned.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Irin shook her head.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"We are all fully aware of what’s happening and are all just taking advantage.\", \"lastSentence\": \"Everyone involved knows what’s happening, so no need to be concerned.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"aliases\": [], \"roleLabels\": [\"succubus\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 89, \"paragraphIndex\": 50, \"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"text\": \"Oh, of course, but I see it only as beneficial,\"}, {\"relativeIndex\": -3, \"lineId\": 91, \"paragraphIndex\": 50, \"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"text\": \"I’m riding high on all that attention. Anyway, different factions chose to target different people. The Altmar are naturally trying to get close to Lady Dawnleaf, though in her case, it's also in large part due to her position as Duskleaf’s Chosen. As for Scarlett, the Dragonflights chose her as their target.\"}, {\"relativeIndex\": -2, \"lineId\": 92, \"paragraphIndex\": 52, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Should I be worried?\"}, {\"relativeIndex\": -1, \"lineId\": 94, \"paragraphIndex\": 52, \"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"text\": \"I wouldn’t be,\"}, {\"relativeIndex\": 1, \"lineId\": 97, \"paragraphIndex\": 53, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Alright, I guess,\"}], \"chapterCharacters\": [{\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"katherine\", \"name\": \"Katherine\", \"aliases\": [\"True Ancestor\", \"Vampire Godess\", \"vampire-godess\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iskar\", \"name\": \"Iskar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"succubus\", \"name\": \"Succubus\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"irin\",\n  \"characterName\": \"Irin\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

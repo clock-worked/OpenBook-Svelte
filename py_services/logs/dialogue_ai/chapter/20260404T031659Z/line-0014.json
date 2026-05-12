@@ -1,0 +1,234 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "aab03cda3758f8f287bf8f4a6794924d32579f790dc87e8ec544baf44433d3f3",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\aab03cda3758f8f287bf8f4a6794924d32579f790dc87e8ec544baf44433d3f3.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": null,
+        "characterName": "Jake",
+        "confidence": 0.85,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "previous_paragraph_context",
+          "quote_is_skill_description",
+          "character_reading_own_skill"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "As you forever chase the horizon, you have become more accustomed to facing higher-level enemies.",
+          "lastSentence": "Increases the user’s resistance to auras and gives a small increase to...",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "As you forever chase the horizon, you have become more accustomed to facing higher-level enemies. Increases the user’s resistance to auras and gives a small increase to...",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Solana",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.3208000000000001,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Artemis",
+            "sourceCandidates": [
+              "Artemis",
+              "Jake"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.816,
+              "name": "Artemis",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.456,
+              "name": "Jake",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 14,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "As you forever chase the horizon, you have become more accustomed to facing higher-level enemies. Increases the user’s resistance to auras and gives a small increase to..."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 14,
+              "text": "As you forever chase the horizon, you have become more accustomed to facing higher-level enemies. Increases the user’s resistance to auras and gives a small increase to..."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "As you forever chase the horizon, you have become more accustomed to facing higher-level enemies.",
+              "lastSentence": "Increases the user’s resistance to auras and gives a small increase to...",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "As you forever chase the horizon, you have become more accustomed to facing higher-level enemies. Increases the user’s resistance to auras and gives a small increase to...",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“As you forever chase the horizon, you have become more accustomed to facing higher-level enemies. Increases the user’s resistance to auras and gives a small increase to...”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "Aura resistance wasn’t really a thing to Jake, but it was apparently the aura of every living being that created this concept. This also made Jake wonder if his Bloodline made him immune to what was effectively a debuff when fighting higher-leveled foes. Not that it would be a massive effect, as Artemis made it clear, one would be hard-pressed to find anyone who regularly hunted down higher-leveled foes not to have an effect similar to Big Game Hunter’s aura resistance. In summary, it was mainly a problem for weak people.",
+          "paragraphIndex": 12,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "Pure power could counteract this concept somewhat, and there were also skills that could fight against or even nullify this concept entirely. One such example was a skill Jake had since the beginning of his Path as a hunter, namely Big Game Hunter. While Jake wanted to criticize the wording used, it was mentioned in the skill as part of a section that Jake never really cared about:"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 11,
+            "paragraphIndex": 10,
+            "relativeIndex": -1,
+            "text": "suppression of grade"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 23,
+            "paragraphIndex": 20,
+            "relativeIndex": 1,
+            "text": "planned"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 14, \"text\": \"As you forever chase the horizon, you have become more accustomed to facing higher-level enemies. Increases the user’s resistance to auras and gives a small increase to...\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Artemis\", \"sourceCandidates\": [\"Artemis\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Solana\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 12, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“As you forever chase the horizon, you have become more accustomed to facing higher-level enemies. Increases the user’s resistance to auras and gives a small increase to...”\", \"currentParagraphDialogue\": [{\"lineId\": 14, \"text\": \"As you forever chase the horizon, you have become more accustomed to facing higher-level enemies. Increases the user’s resistance to auras and gives a small increase to...\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"Pure power could counteract this concept somewhat, and there were also skills that could fight against or even nullify this concept entirely. One such example was a skill Jake had since the beginning of his Path as a hunter, namely Big Game Hunter. While Jake wanted to criticize the wording used, it was mentioned in the skill as part of a section that Jake never really cared about:\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Aura resistance wasn’t really a thing to Jake, but it was apparently the aura of every living being that created this concept. This also made Jake wonder if his Bloodline made him immune to what was effectively a debuff when fighting higher-leveled foes. Not that it would be a massive effect, as Artemis made it clear, one would be hard-pressed to find anyone who regularly hunted down higher-leveled foes not to have an effect similar to Big Game Hunter’s aura resistance. In summary, it was mainly a problem for weak people.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"As you forever chase the horizon, you have become more accustomed to facing higher-level enemies. Increases the user’s resistance to auras and gives a small increase to...\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"As you forever chase the horizon, you have become more accustomed to facing higher-level enemies.\", \"lastSentence\": \"Increases the user’s resistance to auras and gives a small increase to...\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"As you forever chase the horizon, you have become more accustomed to facing higher-level enemies. Increases the user’s resistance to auras and gives a small increase to...\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"As you forever chase the horizon, you have become more accustomed to facing higher-level enemies.\", \"lastSentence\": \"Increases the user’s resistance to auras and gives a small increase to...\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -1, \"lineId\": 11, \"paragraphIndex\": 10, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"suppression of grade\"}, {\"relativeIndex\": 1, \"lineId\": 23, \"paragraphIndex\": 20, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"planned\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": null,\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.85,\n  \"reasonCodes\": [\n    \"previous_paragraph_context\",\n    \"quote_is_skill_description\",\n    \"character_reading_own_skill\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0055 - Chapter 1112 - Simivita Island Outer Region/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“As you forever chase the horizon, you have become more accustomed to facing higher-level enemies. Increases the user’s resistance to auras and gives a small increase to...”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.85,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“As you forever chase the horizon, you have become more accustomed to facing higher-level enemies. Increases the user’s resistance to auras and gives a small increase to...”",
+    "disposition": "review",
+    "error": null,
+    "lineId": 14,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "Aura resistance wasn’t really a thing to Jake, but it was apparently the aura of every living being that created this concept. This also made Jake wonder if his Bloodline made him immune to what was effectively a debuff when fighting higher-leveled foes. Not that it would be a massive effect, as Artemis made it clear, one would be hard-pressed to find anyone who regularly hunted down higher-leveled foes not to have an effect similar to Big Game Hunter’s aura resistance. In summary, it was mainly a problem for weak people.",
+    "paragraphIndex": 12,
+    "previousParagraphText": "Pure power could counteract this concept somewhat, and there were also skills that could fight against or even nullify this concept entirely. One such example was a skill Jake had since the beginning of his Path as a hunter, namely Big Game Hunter. While Jake wanted to criticize the wording used, it was mentioned in the skill as part of a section that Jake never really cared about:",
+    "reasonCodes": [
+      "previous_paragraph_context",
+      "quote_is_skill_description",
+      "character_reading_own_skill"
+    ],
+    "suggestedCharacterId": "unknown",
+    "suggestedCharacterName": "Unknown",
+    "toolTrace": []
+  },
+  "lineId": 14,
+  "nextParagraphText": "Aura resistance wasn’t really a thing to Jake, but it was apparently the aura of every living being that created this concept. This also made Jake wonder if his Bloodline made him immune to what was effectively a debuff when fighting higher-leveled foes. Not that it would be a massive effect, as Artemis made it clear, one would be hard-pressed to find anyone who regularly hunted down higher-leveled foes not to have an effect similar to Big Game Hunter’s aura resistance. In summary, it was mainly a problem for weak people.",
+  "paragraphIndex": 12,
+  "previousParagraphText": "Pure power could counteract this concept somewhat, and there were also skills that could fight against or even nullify this concept entirely. One such example was a skill Jake had since the beginning of his Path as a hunter, namely Big Game Hunter. While Jake wanted to criticize the wording used, it was mentioned in the skill as part of a section that Jake never really cared about:"
+}

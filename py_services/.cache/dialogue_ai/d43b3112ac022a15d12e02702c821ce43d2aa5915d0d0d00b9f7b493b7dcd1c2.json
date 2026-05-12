@@ -1,0 +1,269 @@
+{
+  "cacheKey": "d43b3112ac022a15d12e02702c821ce43d2aa5915d0d0d00b9f7b493b7dcd1c2",
+  "createdAt": "2026-04-02T22:34:31.682232+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "adam",
+    "characterName": "Adam",
+    "confidence": 0.9,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "contextual_inference",
+      "narration_cue",
+      "dialogue_content_fits_addressee"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": false,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "adam",
+        "characterName": "Adam",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "adam"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "maja",
+        "characterName": "Maja",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "maja"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "maja",
+        "name": "Maja",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "adam",
+        "name": "Adam",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "caleb",
+        "name": "Caleb",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "You made the ones with raisins!",
+      "lastSentence": "Those are the best!",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "You made the ones with raisins! Those are the best!",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": null,
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Adam"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.816,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "adam",
+          "confidence": 0.456,
+          "name": "Adam",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Protagonist"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 178,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "You made the ones with raisins! Those are the best!"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 178,
+          "text": "You made the ones with raisins! Those are the best!"
+        }
+      ],
+      "currentParagraphQuoteStructure": [],
+      "currentParagraphText": "At that moment, Jake felt like perhaps he could get along really well with his little nephew.",
+      "dialogueLineCount": 1,
+      "paragraphIndex": 92,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "You made the ones with raisins!",
+          "lastSentence": "Those are the best!",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "You made the ones with raisins! Those are the best!",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "previousParagraphText": "“You made the ones with raisins! Those are the best!”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 169,
+        "paragraphIndex": 85,
+        "relativeIndex": -4,
+        "text": "When really strong people fight, it’s not good for everything around it. If your dad and I were to fight super seriously, it would get really dangerous for everyone else because we’re both so strong. Besides, brothers shouldn’t fight seriously as that can get incredibly dangerous, and if we don’t fight seriously, how can we really know who’s stronger?"
+      },
+      {
+        "characterId": "adam",
+        "characterName": "Adam",
+        "lineId": 171,
+        "paragraphIndex": 86,
+        "relativeIndex": -3,
+        "text": "I think I understand... but how come Dad can fight bad guys without it being dangerous or breaking things?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 172,
+        "paragraphIndex": 87,
+        "relativeIndex": -2,
+        "text": "If you’re a lot stronger than the one you’re fighting, you can win so fast it’s not even a real fight,"
+      },
+      {
+        "characterId": "maja",
+        "characterName": "Maja",
+        "lineId": 175,
+        "paragraphIndex": 89,
+        "relativeIndex": -1,
+        "text": "You guys should come over and have something to drink after such a hard fight,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 178, \"text\": \"You made the ones with raisins! Those are the best!\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Adam\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": null, \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"adam\", \"name\": \"Adam\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 92, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"At that moment, Jake felt like perhaps he could get along really well with his little nephew.\", \"currentParagraphDialogue\": [{\"lineId\": 178, \"text\": \"You made the ones with raisins! Those are the best!\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"“You made the ones with raisins! Those are the best!”\", \"previousParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You made the ones with raisins! Those are the best!\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You made the ones with raisins!\", \"lastSentence\": \"Those are the best!\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"You made the ones with raisins! Those are the best!\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You made the ones with raisins!\", \"lastSentence\": \"Those are the best!\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"adam\", \"characterName\": \"Adam\", \"aliases\": [], \"roleLabels\": [\"adam\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"maja\", \"characterName\": \"Maja\", \"aliases\": [], \"roleLabels\": [\"maja\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 169, \"paragraphIndex\": 85, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"When really strong people fight, it’s not good for everything around it. If your dad and I were to fight super seriously, it would get really dangerous for everyone else because we’re both so strong. Besides, brothers shouldn’t fight seriously as that can get incredibly dangerous, and if we don’t fight seriously, how can we really know who’s stronger?\"}, {\"relativeIndex\": -3, \"lineId\": 171, \"paragraphIndex\": 86, \"characterId\": \"adam\", \"characterName\": \"Adam\", \"text\": \"I think I understand... but how come Dad can fight bad guys without it being dangerous or breaking things?\"}, {\"relativeIndex\": -2, \"lineId\": 172, \"paragraphIndex\": 87, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"If you’re a lot stronger than the one you’re fighting, you can win so fast it’s not even a real fight,\"}, {\"relativeIndex\": -1, \"lineId\": 175, \"paragraphIndex\": 89, \"characterId\": \"maja\", \"characterName\": \"Maja\", \"text\": \"You guys should come over and have something to drink after such a hard fight,\"}], \"chapterCharacters\": [{\"characterId\": \"maja\", \"name\": \"Maja\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"adam\", \"name\": \"Adam\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": false, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"adam\",\n  \"characterName\": \"Adam\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"contextual_inference\",\n    \"narration_cue\",\n    \"dialogue_content_fits_addressee\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

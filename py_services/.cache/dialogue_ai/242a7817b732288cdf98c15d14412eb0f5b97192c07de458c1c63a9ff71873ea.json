@@ -1,0 +1,481 @@
+{
+  "cacheKey": "242a7817b732288cdf98c15d14412eb0f5b97192c07de458c1c63a9ff71873ea",
+  "createdAt": "2026-05-09T02:24:14.853738+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "king",
+    "characterName": "King",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "artemis",
+          "godqueen"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "sylphie"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "lord thayne",
+          "thayne"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Forest King",
+          "Fallen King",
+          "forest-king",
+          "forest-king-2"
+        ],
+        "characterId": "king",
+        "characterName": "King",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "king",
+          "forest king",
+          "fallen king",
+          "forest king 2"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "forest-king",
+        "characterName": "Forest King",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "forest king"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [
+          "fallen-king-2"
+        ],
+        "characterId": "fallen-king-2",
+        "characterName": "fallen-king",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "fallen king 2",
+          "fallen king"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [
+          "King Iludar"
+        ],
+        "characterId": "iludar",
+        "characterName": "Iludar",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "iludar",
+          "king iludar"
+        ],
+        "wasRecentSpeaker": false
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Forest King",
+          "Fallen King",
+          "forest-king",
+          "forest-king-2"
+        ],
+        "characterId": "king",
+        "name": "King",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "the Forest King quickly explained before even giving Jake a chance to.",
+      "cueVerb": "explained",
+      "cueVerbType": "speech",
+      "firstSentence": "She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,",
+      "lastSentence": "She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,",
+      "mentionedEntities": [
+        "Jake",
+        "Jake",
+        "Shimmershroud Planeswarper"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,",
+      "speakerNameMatch": null,
+      "speakerSurface": "the Forest King quickly"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "Jake",
+            "Shimmershroud Planeswarper"
+          ],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Sylphie",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.2872,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Artemis",
+        "sourceCandidates": [
+          "Artemis",
+          "The Sword Saint"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.864
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.864,
+          "name": "Artemis",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.504,
+          "name": "The Sword Saint",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [
+        "Godqueen"
+      ],
+      "currentCharacterId": "artemis",
+      "currentCharacterName": "Artemis",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 22,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": false,
+          "lineId": 22,
+          "text": "She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the Forest King quickly explained before even giving Jake a chance to.",
+          "cueVerb": "explained",
+          "cueVerbType": "speech",
+          "firstSentence": "She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,",
+          "lastSentence": "She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,",
+          "mentionedEntities": [
+            "Jake",
+            "Jake",
+            "Shimmershroud Planeswarper"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the Forest King quickly"
+        }
+      ],
+      "currentParagraphText": "“She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,” the Forest King quickly explained before even giving Jake a chance to.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "sylphie",
+          "characterName": "Sylphie",
+          "isReturning": false,
+          "lineId": 24,
+          "text": "Ree?"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Sylphie asked.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "Ree?",
+          "lastSentence": "Ree?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Ree?",
+          "speakerNameMatch": "Sylphie",
+          "speakerSurface": "Sylphie"
+        }
+      ],
+      "nextParagraphText": "“Ree?” Sylphie asked.",
+      "paragraphIndex": 13,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "the_sword_saint",
+          "characterName": "The Sword Saint",
+          "isReturning": false,
+          "lineId": 19,
+          "text": "The Seeker?"
+        },
+        {
+          "characterId": "the_sword_saint",
+          "characterName": "The Sword Saint",
+          "isReturning": true,
+          "lineId": 21,
+          "text": "Oh, isn’t that the one who crafted that puzzle cube Jake can’t stop being effusive about?"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the Sword Saint asked curiously as he seemed to recall something.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "The Seeker?",
+          "lastSentence": "The Seeker?",
+          "mentionedEntities": [
+            "The Seeker"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "The Seeker?",
+          "speakerNameMatch": "The Sword Saint",
+          "speakerSurface": "Sword Saint"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "the Sword Saint asked curiously as he seemed to recall something.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "Oh, isn’t that the one who crafted that puzzle cube Jake can’t stop being effusive about?",
+          "lastSentence": "Oh, isn’t that the one who crafted that puzzle cube Jake can’t stop being effusive about?",
+          "mentionedEntities": [
+            "Jake",
+            "Jake"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "Oh, isn’t that the one who crafted that puzzle cube Jake can’t stop being effusive about?",
+          "speakerNameMatch": "The Sword Saint",
+          "speakerSurface": "Sword Saint"
+        }
+      ],
+      "previousParagraphText": "“The Seeker?” the Sword Saint asked curiously as he seemed to recall something. “Oh, isn’t that the one who crafted that puzzle cube Jake can’t stop being effusive about?”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 16,
+        "paragraphIndex": 11,
+        "relativeIndex": -4,
+        "text": "Yes, like the atmosphere of a planet, it also defends against external attacks and even invasions through flight,"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 18,
+        "paragraphIndex": 11,
+        "relativeIndex": -3,
+        "text": "Moreover, the Mother Tree is connected to the entire barrier and knows of anyone and everything that goes through it. There are very few existences in the multiverse that can sneak in unnoticed... the Seeker counted amongst them."
+      },
+      {
+        "characterId": "the_sword_saint",
+        "characterName": "The Sword Saint",
+        "lineId": 19,
+        "paragraphIndex": 12,
+        "relativeIndex": -2,
+        "text": "The Seeker?"
+      },
+      {
+        "characterId": "the_sword_saint",
+        "characterName": "The Sword Saint",
+        "lineId": 21,
+        "paragraphIndex": 12,
+        "relativeIndex": -1,
+        "text": "Oh, isn’t that the one who crafted that puzzle cube Jake can’t stop being effusive about?"
+      },
+      {
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "lineId": 24,
+        "paragraphIndex": 14,
+        "relativeIndex": 1,
+        "text": "Ree?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 26,
+        "paragraphIndex": 15,
+        "relativeIndex": 2,
+        "text": "I don’t actually know where the Seeker took Jasper,"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "king",
+            "characterName": "King",
+            "evidence": [
+              "token_overlap:forest/king"
+            ],
+            "score": 0.6833
+          },
+          {
+            "characterId": "forest-king",
+            "characterName": "Forest King",
+            "evidence": [
+              "token_overlap:forest/king"
+            ],
+            "score": 0.6833
+          },
+          {
+            "characterId": "fallen-king-2",
+            "characterName": "fallen-king",
+            "evidence": [
+              "token_overlap:king"
+            ],
+            "score": 0.5667
+          },
+          {
+            "characterId": "iludar",
+            "characterName": "Iludar",
+            "evidence": [
+              "token_overlap:king"
+            ],
+            "score": 0.5667
+          },
+          {
+            "characterId": "forest fae",
+            "characterName": "Forest Fae",
+            "evidence": [
+              "token_overlap:forest"
+            ],
+            "score": 0.5667
+          }
+        ],
+        "surface": "the forest king quickly"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 22, \"text\": \"She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,\", \"currentCharacterId\": \"artemis\", \"currentCharacterName\": \"Artemis\", \"currentCharacterAliases\": [\"Godqueen\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Artemis\", \"sourceCandidates\": [\"Artemis\", \"The Sword Saint\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.864, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.2872, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Jake\", \"Shimmershroud Planeswarper\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Sylphie\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.864, \"reasons\": null}, {\"characterId\": null, \"name\": \"The Sword Saint\", \"confidence\": 0.504, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 13, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,” the Forest King quickly explained before even giving Jake a chance to.\", \"currentParagraphDialogue\": [{\"lineId\": 22, \"text\": \"She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": false}], \"previousParagraphText\": \"“The Seeker?” the Sword Saint asked curiously as he seemed to recall something. “Oh, isn’t that the one who crafted that puzzle cube Jake can’t stop being effusive about?”\", \"previousParagraphDialogue\": [{\"lineId\": 19, \"text\": \"The Seeker?\", \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"isReturning\": false}, {\"lineId\": 21, \"text\": \"Oh, isn’t that the one who crafted that puzzle cube Jake can’t stop being effusive about?\", \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"isReturning\": true}], \"nextParagraphText\": \"“Ree?” Sylphie asked.\", \"nextParagraphDialogue\": [{\"lineId\": 24, \"text\": \"Ree?\", \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,\", \"cuePosition\": \"after\", \"cueVerb\": \"explained\", \"cueVerbType\": \"speech\", \"cueText\": \"the Forest King quickly explained before even giving Jake a chance to.\", \"speakerSurface\": \"the Forest King quickly\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"Jake\", \"Jake\", \"Shimmershroud Planeswarper\"], \"addressedEntity\": null, \"firstSentence\": \"She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,\", \"lastSentence\": \"She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"The Seeker?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"the Sword Saint asked curiously as he seemed to recall something.\", \"speakerSurface\": \"Sword Saint\", \"speakerNameMatch\": \"The Sword Saint\", \"mentionedEntities\": [\"The Seeker\"], \"addressedEntity\": null, \"firstSentence\": \"The Seeker?\", \"lastSentence\": \"The Seeker?\"}, {\"quoteIndex\": 1, \"quoteText\": \"Oh, isn’t that the one who crafted that puzzle cube Jake can’t stop being effusive about?\", \"cuePosition\": \"before\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"the Sword Saint asked curiously as he seemed to recall something.\", \"speakerSurface\": \"Sword Saint\", \"speakerNameMatch\": \"The Sword Saint\", \"mentionedEntities\": [\"Jake\", \"Jake\"], \"addressedEntity\": null, \"firstSentence\": \"Oh, isn’t that the one who crafted that puzzle cube Jake can’t stop being effusive about?\", \"lastSentence\": \"Oh, isn’t that the one who crafted that puzzle cube Jake can’t stop being effusive about?\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Ree?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Sylphie asked.\", \"speakerSurface\": \"Sylphie\", \"speakerNameMatch\": \"Sylphie\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Ree?\", \"lastSentence\": \"Ree?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,\", \"cuePosition\": \"after\", \"cueVerb\": \"explained\", \"cueVerbType\": \"speech\", \"cueText\": \"the Forest King quickly explained before even giving Jake a chance to.\", \"speakerSurface\": \"the Forest King quickly\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"Jake\", \"Jake\", \"Shimmershroud Planeswarper\"], \"addressedEntity\": null, \"firstSentence\": \"She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,\", \"lastSentence\": \"She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,\"}, \"sceneEntities\": [{\"surface\": \"the forest king quickly\", \"matches\": [{\"characterId\": \"king\", \"characterName\": \"King\", \"score\": 0.6833, \"evidence\": [\"token_overlap:forest/king\"]}, {\"characterId\": \"forest-king\", \"characterName\": \"Forest King\", \"score\": 0.6833, \"evidence\": [\"token_overlap:forest/king\"]}, {\"characterId\": \"fallen-king-2\", \"characterName\": \"fallen-king\", \"score\": 0.5667, \"evidence\": [\"token_overlap:king\"]}, {\"characterId\": \"iludar\", \"characterName\": \"Iludar\", \"score\": 0.5667, \"evidence\": [\"token_overlap:king\"]}, {\"characterId\": \"forest fae\", \"characterName\": \"Forest Fae\", \"score\": 0.5667, \"evidence\": [\"token_overlap:forest\"]}]}], \"candidateCards\": [{\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [\"artemis\", \"godqueen\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [\"sylphie\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"king\", \"characterName\": \"King\", \"aliases\": [\"Forest King\", \"Fallen King\", \"forest-king\", \"forest-king-2\"], \"roleLabels\": [\"king\", \"forest king\", \"fallen king\", \"forest king 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"forest-king\", \"characterName\": \"Forest King\", \"aliases\": [], \"roleLabels\": [\"forest king\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"fallen-king-2\", \"characterName\": \"fallen-king\", \"aliases\": [\"fallen-king-2\"], \"roleLabels\": [\"fallen king 2\", \"fallen king\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"iludar\", \"characterName\": \"Iludar\", \"aliases\": [\"King Iludar\"], \"roleLabels\": [\"iludar\", \"king iludar\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 16, \"paragraphIndex\": 11, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Yes, like the atmosphere of a planet, it also defends against external attacks and even invasions through flight,\"}, {\"relativeIndex\": -3, \"lineId\": 18, \"paragraphIndex\": 11, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Moreover, the Mother Tree is connected to the entire barrier and knows of anyone and everything that goes through it. There are very few existences in the multiverse that can sneak in unnoticed... the Seeker counted amongst them.\"}, {\"relativeIndex\": -2, \"lineId\": 19, \"paragraphIndex\": 12, \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"text\": \"The Seeker?\"}, {\"relativeIndex\": -1, \"lineId\": 21, \"paragraphIndex\": 12, \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Oh, isn’t that the one who crafted that puzzle cube Jake can’t stop being effusive about?\"}, {\"relativeIndex\": 1, \"lineId\": 24, \"paragraphIndex\": 14, \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"text\": \"Ree?\"}, {\"relativeIndex\": 2, \"lineId\": 26, \"paragraphIndex\": 15, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I don’t actually know where the Seeker took Jasper,\"}], \"chapterCharacters\": [{\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"king\", \"name\": \"King\", \"aliases\": [\"Forest King\", \"Fallen King\", \"forest-king\", \"forest-king-2\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"king\",\n  \"characterName\": \"King\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

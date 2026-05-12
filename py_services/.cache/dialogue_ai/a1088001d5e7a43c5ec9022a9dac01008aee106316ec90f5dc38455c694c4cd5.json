@@ -1,0 +1,271 @@
+{
+  "cacheKey": "a1088001d5e7a43c5ec9022a9dac01008aee106316ec90f5dc38455c694c4cd5",
+  "createdAt": "2026-04-12T22:57:36.165755+00:00",
+  "decision": {
+    "action": "propose_new_character",
+    "aliasToAdd": null,
+    "characterId": null,
+    "characterName": "B-grade mantis",
+    "confidence": 0.99,
+    "newCharacterProposal": {
+      "alias": null,
+      "name": "B-grade mantis",
+      "notes": null
+    },
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "resolves_unknown_speaker"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "having",
+        "characterName": "Having",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "having"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "having",
+        "name": "Having",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "warlord",
+        "name": "Warlord",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "before",
+      "cueText": "the B-grade mantis sighed.",
+      "cueVerb": "sighed",
+      "cueVerbType": "speech",
+      "firstSentence": "We shall focus on defending our home for now.",
+      "lastSentence": "or toward us.",
+      "mentionedEntities": [],
+      "quoteIndex": 1,
+      "quoteText": "We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us.",
+      "speakerNameMatch": null,
+      "speakerSurface": "the B-grade mantis"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Having",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.98,
+        "misattributionRisk": 0.15,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Unknown",
+        "sourceCandidates": [
+          "Unknown"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.98,
+          "name": "Unknown",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 18,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 16,
+          "text": "They sense it, too,"
+        },
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 18,
+          "text": "We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the B-grade mantis sighed.",
+          "cueVerb": "sighed",
+          "cueVerbType": "speech",
+          "firstSentence": "They sense it, too,",
+          "lastSentence": "They sense it, too,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "They sense it, too,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the B-grade mantis"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "the B-grade mantis sighed.",
+          "cueVerb": "sighed",
+          "cueVerbType": "speech",
+          "firstSentence": "We shall focus on defending our home for now.",
+          "lastSentence": "or toward us.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us.",
+          "speakerNameMatch": null,
+          "speakerSurface": "the B-grade mantis"
+        }
+      ],
+      "currentParagraphText": "“They sense it, too,” the B-grade mantis sighed. “We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 9
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 9,
+        "paragraphIndex": 5,
+        "relativeIndex": -4,
+        "text": "One of the enlightened hunters?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 13,
+        "paragraphIndex": 7,
+        "relativeIndex": -3,
+        "text": "Have the other islands had any response yet?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 14,
+        "paragraphIndex": 8,
+        "relativeIndex": -2,
+        "text": "They also seem to have backed off and stopped invading the Simivitas for now,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 16,
+        "paragraphIndex": 9,
+        "relativeIndex": -1,
+        "text": "They sense it, too,"
+      },
+      {
+        "characterId": "having",
+        "characterName": "Having",
+        "lineId": 32,
+        "paragraphIndex": 23,
+        "relativeIndex": 1,
+        "text": "Hunter! If you hear me, come! It is I you have come for, isn’t it!?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 36,
+        "paragraphIndex": 26,
+        "relativeIndex": 2,
+        "text": "Finally, you dare approach me without an army,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 18, \"text\": \"We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Unknown\", \"sourceCandidates\": [\"Unknown\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.98, \"misattributionRisk\": 0.15, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Having\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Unknown\", \"confidence\": 0.98, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 9, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“They sense it, too,” the B-grade mantis sighed. “We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us.”\", \"currentParagraphDialogue\": [{\"lineId\": 16, \"text\": \"They sense it, too,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 18, \"text\": \"We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"They sense it, too,\", \"cuePosition\": \"after\", \"cueVerb\": \"sighed\", \"cueVerbType\": \"speech\", \"cueText\": \"the B-grade mantis sighed.\", \"speakerSurface\": \"the B-grade mantis\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"They sense it, too,\", \"lastSentence\": \"They sense it, too,\"}, {\"quoteIndex\": 1, \"quoteText\": \"We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us.\", \"cuePosition\": \"before\", \"cueVerb\": \"sighed\", \"cueVerbType\": \"speech\", \"cueText\": \"the B-grade mantis sighed.\", \"speakerSurface\": \"the B-grade mantis\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"We shall focus on defending our home for now.\", \"lastSentence\": \"or toward us.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us.\", \"cuePosition\": \"before\", \"cueVerb\": \"sighed\", \"cueVerbType\": \"speech\", \"cueText\": \"the B-grade mantis sighed.\", \"speakerSurface\": \"the B-grade mantis\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"We shall focus on defending our home for now.\", \"lastSentence\": \"or toward us.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"having\", \"characterName\": \"Having\", \"aliases\": [], \"roleLabels\": [\"having\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 9, \"paragraphIndex\": 5, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"One of the enlightened hunters?\"}, {\"relativeIndex\": -3, \"lineId\": 13, \"paragraphIndex\": 7, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Have the other islands had any response yet?\"}, {\"relativeIndex\": -2, \"lineId\": 14, \"paragraphIndex\": 8, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"They also seem to have backed off and stopped invading the Simivitas for now,\"}, {\"relativeIndex\": -1, \"lineId\": 16, \"paragraphIndex\": 9, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"They sense it, too,\"}, {\"relativeIndex\": 1, \"lineId\": 32, \"paragraphIndex\": 23, \"characterId\": \"having\", \"characterName\": \"Having\", \"text\": \"Hunter! If you hear me, come! It is I you have come for, isn’t it!?\"}, {\"relativeIndex\": 2, \"lineId\": 36, \"paragraphIndex\": 26, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Finally, you dare approach me without an army,\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"having\", \"name\": \"Having\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"warlord\", \"name\": \"Warlord\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"propose_new_character\",\n  \"characterId\": null,\n  \"characterName\": \"B-grade mantis\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"resolves_unknown_speaker\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": {\n    \"name\": \"B-grade mantis\",\n    \"alias\": null,\n    \"notes\": null\n  }\n}"
+}

@@ -1,0 +1,271 @@
+{
+  "cacheKey": "b0084b177fd31dfc73e105f9f7a7d532fca23abc87141928edd8c421047b81f1",
+  "createdAt": "2026-04-18T22:03:02.468799+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "next_paragraph_attribution"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy",
+          "Vilas"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Didn’t you already tell me the primary function of that clone is to stalk me?",
+      "lastSentence": "Didn’t you already tell me the primary function of that clone is to stalk me?",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Didn’t you already tell me the primary function of that clone is to stalk me?",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": true,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "The Malefic Viper",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.5399999999999999,
+        "misattributionRisk": 0.26680000000000004,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "The Malefic Viper"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.276,
+          "name": "The Malefic Viper",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 129,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Didn’t you already tell me the primary function of that clone is to stalk me?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 129,
+          "text": "Didn’t you already tell me the primary function of that clone is to stalk me?"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Didn’t you already tell me the primary function of that clone is to stalk me?",
+          "lastSentence": "Didn’t you already tell me the primary function of that clone is to stalk me?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Didn’t you already tell me the primary function of that clone is to stalk me?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Didn’t you already tell me the primary function of that clone is to stalk me?”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Jake accurately pointed out.",
+      "paragraphIndex": 117,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 128,
+          "text": "You enjoy yourself now. I’ll get back to more important matters."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "You enjoy yourself now.",
+          "lastSentence": "I’ll get back to more important matters.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "You enjoy yourself now. I’ll get back to more important matters.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "previousParagraphText": "“You enjoy yourself now. I’ll get back to more important matters.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 123,
+        "paragraphIndex": 112,
+        "relativeIndex": -4,
+        "text": "Eh, a lot of the stuff I’m doing. I may as well be doing back at the Order,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 125,
+        "paragraphIndex": 114,
+        "relativeIndex": -3,
+        "text": "So, sure, it shouldn’t end up taking that much longer. But as you said, I do have quite a few things I want to get done before leaving."
+      },
+      {
+        "characterId": "the_malefic_viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 126,
+        "paragraphIndex": 115,
+        "relativeIndex": -2,
+        "text": "No rush, no rush,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 128,
+        "paragraphIndex": 116,
+        "relativeIndex": -1,
+        "text": "You enjoy yourself now. I’ll get back to more important matters."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 131,
+        "paragraphIndex": 119,
+        "relativeIndex": 1,
+        "text": "Exactly, and when you’re talking to me, you’re not doing anything fun for me to observe,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 133,
+        "paragraphIndex": 121,
+        "relativeIndex": 2,
+        "text": "See ya!"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 129, \"text\": \"Didn’t you already tell me the primary function of that clone is to stalk me?\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"The Malefic Viper\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.5399999999999999, \"misattributionRisk\": 0.26680000000000004, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"The Malefic Viper\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"The Malefic Viper\", \"confidence\": 0.276, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 117, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Didn’t you already tell me the primary function of that clone is to stalk me?”\", \"currentParagraphDialogue\": [{\"lineId\": 129, \"text\": \"Didn’t you already tell me the primary function of that clone is to stalk me?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“You enjoy yourself now. I’ll get back to more important matters.”\", \"previousParagraphDialogue\": [{\"lineId\": 128, \"text\": \"You enjoy yourself now. I’ll get back to more important matters.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"nextParagraphText\": \"Jake accurately pointed out.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Didn’t you already tell me the primary function of that clone is to stalk me?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Didn’t you already tell me the primary function of that clone is to stalk me?\", \"lastSentence\": \"Didn’t you already tell me the primary function of that clone is to stalk me?\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You enjoy yourself now. I’ll get back to more important matters.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You enjoy yourself now.\", \"lastSentence\": \"I’ll get back to more important matters.\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Didn’t you already tell me the primary function of that clone is to stalk me?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Didn’t you already tell me the primary function of that clone is to stalk me?\", \"lastSentence\": \"Didn’t you already tell me the primary function of that clone is to stalk me?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 123, \"paragraphIndex\": 112, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Eh, a lot of the stuff I’m doing. I may as well be doing back at the Order,\"}, {\"relativeIndex\": -3, \"lineId\": 125, \"paragraphIndex\": 114, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"So, sure, it shouldn’t end up taking that much longer. But as you said, I do have quite a few things I want to get done before leaving.\"}, {\"relativeIndex\": -2, \"lineId\": 126, \"paragraphIndex\": 115, \"characterId\": \"the_malefic_viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"No rush, no rush,\"}, {\"relativeIndex\": -1, \"lineId\": 128, \"paragraphIndex\": 116, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"You enjoy yourself now. I’ll get back to more important matters.\"}, {\"relativeIndex\": 1, \"lineId\": 131, \"paragraphIndex\": 119, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Exactly, and when you’re talking to me, you’re not doing anything fun for me to observe,\"}, {\"relativeIndex\": 2, \"lineId\": 133, \"paragraphIndex\": 121, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"See ya!\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\", \"Vilas\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"next_paragraph_attribution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

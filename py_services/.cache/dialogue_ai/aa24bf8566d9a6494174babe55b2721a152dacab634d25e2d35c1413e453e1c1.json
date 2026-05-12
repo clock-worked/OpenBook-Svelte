@@ -1,0 +1,298 @@
+{
+  "cacheKey": "aa24bf8566d9a6494174babe55b2721a152dacab634d25e2d35c1413e453e1c1",
+  "createdAt": "2026-04-02T15:39:14.049944+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "dialogue_flow",
+      "question_answer_pair",
+      "previous_speaker_context"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Augur",
+          "The Augur"
+        ],
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jacob",
+          "augur",
+          "the augur"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Augur",
+          "The Augur"
+        ],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Unique Lifeform",
+          "The Unique Lifeform",
+          "the-unique-lifeform",
+          "the-unique-lifeform-2"
+        ],
+        "characterId": "minaga",
+        "name": "Minaga",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "What do you know about the fragment?",
+      "lastSentence": "What do you know about the fragment?",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "What do you know about the fragment?",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": true,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jacob",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.18,
+        "misattributionRisk": 0.364,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jacob",
+        "sourceCandidates": [
+          "Jacob",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.636
+      },
+      "candidates": [
+        {
+          "characterId": "jacob",
+          "confidence": 0.636,
+          "name": "Jacob",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "question_next_speaker_penalty"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Augur",
+        "The Augur"
+      ],
+      "currentCharacterId": "jacob",
+      "currentCharacterName": "Jacob",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 76,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "What do you know about the fragment?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 76,
+          "text": "What do you know about the fragment?"
+        },
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": true,
+          "lineId": 77,
+          "text": "Truthfully? Not much. All I have been able to glean is that it carries some resemblance to the Fallen King,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the Augur said.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Truthfully?",
+          "lastSentence": "All I have been able to glean is that it carries some resemblance to the Fallen King,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Truthfully? Not much. All I have been able to glean is that it carries some resemblance to the Fallen King,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Augur"
+        }
+      ],
+      "currentParagraphText": "“Truthfully? Not much. All I have been able to glean is that it carries some resemblance to the Fallen King,” the Augur said.",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 48
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 69,
+        "paragraphIndex": 41,
+        "relativeIndex": -4,
+        "text": "You’re seriously asking me to show it mercy?"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 71,
+        "paragraphIndex": 43,
+        "relativeIndex": -3,
+        "text": "You know what? No, I’m not going to assume you are. Because we should both know that’s not gonna happen."
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 72,
+        "paragraphIndex": 44,
+        "relativeIndex": -2,
+        "text": "I did consider asking you to show it mercy, yes, but I know that isn’t possible,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 74,
+        "paragraphIndex": 45,
+        "relativeIndex": -1,
+        "text": "It has caused too much destruction already, and if I were you, I wouldn’t trust me with such a dangerous creature either. Especially not when we will remain trapped in the galaxy for a while longer, and no one would enjoy having something closely resembling a living calamity in their backyard. Finally... you need that fragment, don’t you?"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 77,
+        "paragraphIndex": 48,
+        "relativeIndex": 1,
+        "text": "Truthfully? Not much. All I have been able to glean is that it carries some resemblance to the Fallen King,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 79,
+        "paragraphIndex": 49,
+        "relativeIndex": 2,
+        "text": "Are parts of his soul in there? Maybe even his Truesoul or something like that?"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "jacob",
+            "characterName": "Jacob",
+            "evidence": [
+              "ai_scene_memory"
+            ],
+            "score": 0.99
+          }
+        ],
+        "surface": "augur"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 76, \"text\": \"What do you know about the fragment?\", \"currentCharacterId\": \"jacob\", \"currentCharacterName\": \"Jacob\", \"currentCharacterAliases\": [\"Augur\", \"The Augur\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jacob\", \"sourceCandidates\": [\"Jacob\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.636, \"marginToSecond\": 0.18, \"misattributionRisk\": 0.364, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Jacob\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.636, \"reasons\": [\"parser_match\", \"legacy_match\", \"question_next_speaker_penalty\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 48, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Truthfully? Not much. All I have been able to glean is that it carries some resemblance to the Fallen King,” the Augur said.\", \"currentParagraphDialogue\": [{\"lineId\": 76, \"text\": \"What do you know about the fragment?\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}, {\"lineId\": 77, \"text\": \"Truthfully? Not much. All I have been able to glean is that it carries some resemblance to the Fallen King,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Truthfully? Not much. All I have been able to glean is that it carries some resemblance to the Fallen King,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the Augur said.\", \"speakerSurface\": \"Augur\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Truthfully?\", \"lastSentence\": \"All I have been able to glean is that it carries some resemblance to the Fallen King,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"What do you know about the fragment?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"What do you know about the fragment?\", \"lastSentence\": \"What do you know about the fragment?\"}, \"sceneEntities\": [{\"surface\": \"augur\", \"matches\": [{\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"score\": 0.99, \"evidence\": [\"ai_scene_memory\"]}]}], \"candidateCards\": [{\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [\"jacob\", \"augur\", \"the augur\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 69, \"paragraphIndex\": 41, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You’re seriously asking me to show it mercy?\"}, {\"relativeIndex\": -3, \"lineId\": 71, \"paragraphIndex\": 43, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"You know what? No, I’m not going to assume you are. Because we should both know that’s not gonna happen.\"}, {\"relativeIndex\": -2, \"lineId\": 72, \"paragraphIndex\": 44, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"I did consider asking you to show it mercy, yes, but I know that isn’t possible,\"}, {\"relativeIndex\": -1, \"lineId\": 74, \"paragraphIndex\": 45, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"It has caused too much destruction already, and if I were you, I wouldn’t trust me with such a dangerous creature either. Especially not when we will remain trapped in the galaxy for a while longer, and no one would enjoy having something closely resembling a living calamity in their backyard. Finally... you need that fragment, don’t you?\"}, {\"relativeIndex\": 1, \"lineId\": 77, \"paragraphIndex\": 48, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"Truthfully? Not much. All I have been able to glean is that it carries some resemblance to the Fallen King,\"}, {\"relativeIndex\": 2, \"lineId\": 79, \"paragraphIndex\": 49, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Are parts of his soul in there? Maybe even his Truesoul or something like that?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"dialogue_flow\",\n    \"question_answer_pair\",\n    \"previous_speaker_context\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

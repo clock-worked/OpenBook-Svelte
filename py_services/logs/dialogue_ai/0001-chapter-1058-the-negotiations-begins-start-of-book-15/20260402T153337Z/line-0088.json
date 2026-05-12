@@ -1,0 +1,394 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "9be8d9b1d4f11949e02ea00da3aa634eafac8f1122f341fb70dc9fc7d8302d43",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\9be8d9b1d4f11949e02ea00da3aa634eafac8f1122f341fb70dc9fc7d8302d43.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 1.0,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "quote_content_context"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "bertram",
+            "characterName": "Bertram",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "bertram"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Augur",
+              "The Augur"
+            ],
+            "characterId": "jacob",
+            "characterName": "Jacob",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jacob",
+              "augur",
+              "the augur"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "holy-priest",
+              "holy-priest-2",
+              "head priest",
+              "the head priest"
+            ],
+            "characterId": "holy-priest",
+            "characterName": "Holy Priest",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "holy priest",
+              "priest",
+              "holy priest 2",
+              "priest 2",
+              "head priest",
+              "the head priest",
+              "the priest"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "miranda",
+            "name": "Miranda",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "arnold",
+            "name": "Arnold",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "bertram",
+            "name": "Bertram",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "King Iludar"
+            ],
+            "characterId": "iludar",
+            "name": "Iludar",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "kindroth",
+            "name": "Kindroth",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "holy-priest",
+              "holy-priest-2",
+              "head priest",
+              "the head priest"
+            ],
+            "characterId": "holy-priest",
+            "name": "Holy Priest",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Augur",
+              "The Augur"
+            ],
+            "characterId": "jacob",
+            "name": "Jacob",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Staring directly at Jacob and Bertram, Jake scoffed.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty.",
+          "lastSentence": "Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty.",
+          "mentionedEntities": [
+            "yip"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [
+                "yip"
+              ],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Bertram",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.18400000000000005,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Bertram",
+            "sourceCandidates": [
+              "Bertram",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": "bertram",
+              "confidence": 0.816,
+              "name": "Bertram",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.456,
+              "name": "Jake",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "bertram",
+          "currentCharacterName": "Bertram",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 88,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 1,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "holy-priest",
+              "characterName": "Holy Priest",
+              "isReturning": false,
+              "lineId": 86,
+              "text": "This really shouldn’t take long, so let us get this over with."
+            },
+            {
+              "characterId": "bertram",
+              "characterName": "Bertram",
+              "isReturning": true,
+              "lineId": 88,
+              "text": "Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Staring directly at Jacob and Bertram, Jake scoffed.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty.",
+              "lastSentence": "Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty.",
+              "mentionedEntities": [
+                "yip"
+              ],
+              "quoteIndex": 0,
+              "quoteText": "Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "Staring directly at Jacob and Bertram, Jake scoffed. “Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty.”",
+          "dialogueLineCount": 2,
+          "paragraphIndex": 65
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jacob",
+            "characterName": "Jacob",
+            "lineId": 69,
+            "paragraphIndex": 51,
+            "relativeIndex": -4,
+            "text": "It will take us to an installation far away from the city, and what awaits on the other side is no trap,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 73,
+            "paragraphIndex": 54,
+            "relativeIndex": -3,
+            "text": "Fine,"
+          },
+          {
+            "characterId": "holy-priest",
+            "characterName": "Holy Priest",
+            "lineId": 79,
+            "paragraphIndex": 59,
+            "relativeIndex": -2,
+            "text": "Please, this way,"
+          },
+          {
+            "characterId": "holy-priest",
+            "characterName": "Holy Priest",
+            "lineId": 86,
+            "paragraphIndex": 65,
+            "relativeIndex": -1,
+            "text": "This really shouldn’t take long, so let us get this over with."
+          },
+          {
+            "characterId": "bertram",
+            "characterName": "Bertram",
+            "lineId": 89,
+            "paragraphIndex": 66,
+            "relativeIndex": 1,
+            "text": "Bullshit,"
+          },
+          {
+            "characterId": "jacob",
+            "characterName": "Jacob",
+            "lineId": 91,
+            "paragraphIndex": 67,
+            "relativeIndex": 2,
+            "text": "Apologize for my Guardian’s outburst. Your last encounter wasn’t a pleasant one for him either,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 88, \"text\": \"Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty.\", \"currentCharacterId\": \"bertram\", \"currentCharacterName\": \"Bertram\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Bertram\", \"sourceCandidates\": [\"Bertram\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"yip\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Bertram\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"bertram\", \"name\": \"Bertram\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 65, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"Staring directly at Jacob and Bertram, Jake scoffed. “Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty.”\", \"currentParagraphDialogue\": [{\"lineId\": 86, \"text\": \"This really shouldn’t take long, so let us get this over with.\", \"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"isReturning\": false}, {\"lineId\": 88, \"text\": \"Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty.\", \"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Staring directly at Jacob and Bertram, Jake scoffed.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"yip\"], \"addressedEntity\": null, \"firstSentence\": \"Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty.\", \"lastSentence\": \"Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Staring directly at Jacob and Bertram, Jake scoffed.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"yip\"], \"addressedEntity\": null, \"firstSentence\": \"Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty.\", \"lastSentence\": \"Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"aliases\": [], \"roleLabels\": [\"bertram\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [\"jacob\", \"augur\", \"the augur\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"aliases\": [\"holy-priest\", \"holy-priest-2\", \"head priest\", \"the head priest\"], \"roleLabels\": [\"holy priest\", \"priest\", \"holy priest 2\", \"priest 2\", \"head priest\", \"the head priest\", \"the priest\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 69, \"paragraphIndex\": 51, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"It will take us to an installation far away from the city, and what awaits on the other side is no trap,\"}, {\"relativeIndex\": -3, \"lineId\": 73, \"paragraphIndex\": 54, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Fine,\"}, {\"relativeIndex\": -2, \"lineId\": 79, \"paragraphIndex\": 59, \"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"text\": \"Please, this way,\"}, {\"relativeIndex\": -1, \"lineId\": 86, \"paragraphIndex\": 65, \"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"text\": \"This really shouldn’t take long, so let us get this over with.\"}, {\"relativeIndex\": 1, \"lineId\": 89, \"paragraphIndex\": 66, \"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"text\": \"Bullshit,\"}, {\"relativeIndex\": 2, \"lineId\": 91, \"paragraphIndex\": 67, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"Apologize for my Guardian’s outburst. Your last encounter wasn’t a pleasant one for him either,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"arnold\", \"name\": \"Arnold\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"bertram\", \"name\": \"Bertram\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": [\"King Iludar\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"holy-priest\", \"name\": \"Holy Priest\", \"aliases\": [\"holy-priest\", \"holy-priest-2\", \"head priest\", \"the head priest\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"quote_content_context\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0001 - Chapter 1058 - The Negotiations Begins - START OF BOOK 15",
+  "currentCharacterId": "bertram",
+  "currentCharacterName": "Bertram",
+  "currentParagraphText": "Staring directly at Jacob and Bertram, Jake scoffed. “Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 1.0,
+    "currentCharacterId": "bertram",
+    "currentCharacterName": "Bertram",
+    "currentParagraphText": "Staring directly at Jacob and Bertram, Jake scoffed. “Those two interfered in my battle against the Usurper of Yip of Yore and stole part of my rightful bounty.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 88,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Bullshit,” Bertram reacted, with Jacob instantly calming him with a hand on his shoulder as he stepped forward.",
+    "paragraphIndex": 65,
+    "previousParagraphText": "Jake looked at them but remained standing as he crossed his arms. “This really shouldn’t take long, so let us get this over with.”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "quote_content_context"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 88,
+  "nextParagraphText": "“Bullshit,” Bertram reacted, with Jacob instantly calming him with a hand on his shoulder as he stepped forward.",
+  "paragraphIndex": 65,
+  "previousParagraphText": "Jake looked at them but remained standing as he crossed his arms. “This really shouldn’t take long, so let us get this over with.”"
+}

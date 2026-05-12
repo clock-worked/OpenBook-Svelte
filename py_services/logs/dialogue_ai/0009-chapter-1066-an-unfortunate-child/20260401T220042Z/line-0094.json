@@ -1,0 +1,366 @@
+{
+  "calls": [
+    {
+      "cacheHit": true,
+      "cacheKey": "1690b94cfcd966396cb63215cdaca3439710e49024a0119c2bf43d20ceb59ee4",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\1690b94cfcd966396cb63215cdaca3439710e49024a0119c2bf43d20ceb59ee4.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_next_paragraph_cue",
+          "dialogue_flow_rebuttal"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Augur",
+              "The Augur"
+            ],
+            "characterId": "jacob",
+            "characterName": "Jacob",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jacob",
+              "augur",
+              "the augur"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "characterName": "Minaga",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "minaga",
+              "unique lifeform",
+              "the unique lifeform",
+              "the unique lifeform 2",
+              "unique lifeform 2"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "carmen",
+            "characterName": "Carmen",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "carmen"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Augur",
+              "The Augur"
+            ],
+            "characterId": "jacob",
+            "name": "Jacob",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "name": "Minaga",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "carmen",
+            "name": "Carmen",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,",
+          "lastSentence": "Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jacob",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.19599999999999995,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jacob",
+            "sourceCandidates": [
+              "Jacob",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.804
+          },
+          "candidates": [
+            {
+              "characterId": "jacob",
+              "confidence": 0.804,
+              "name": "Jacob",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.444,
+              "name": "Jake",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [
+            "Augur",
+            "The Augur"
+          ],
+          "currentCharacterId": "jacob",
+          "currentCharacterName": "Jacob",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 94,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "jacob",
+              "characterName": "Jacob",
+              "isReturning": true,
+              "lineId": 94,
+              "text": "Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,",
+              "lastSentence": "Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "Jake countered with a scoff.",
+          "paragraphIndex": 64,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "jacob",
+              "characterName": "Jacob",
+              "isReturning": true,
+              "lineId": 93,
+              "text": "It was the foreseeable outcome, after all. I am not saying this to lay any blame on you, but one of the reasons the head priest and those he serve chose to side with Ell’Hakan in the first place was because they saw it as their only option. You have already continuously shown your distaste for the Holy Church before, after all. They expected to be thrown out of the Milky Way should you win in the battle of Chosen, so they chose to support the one who would at least continue to allow their presence. Seeing as they believed you would throw them out no matter what, should Ell’Hakan lose, they wouldn’t really lose anything."
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "It was the foreseeable outcome, after all.",
+              "lastSentence": "Seeing as they believed you would throw them out no matter what, should Ell’Hakan lose, they wouldn’t really lose anything.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "It was the foreseeable outcome, after all. I am not saying this to lay any blame on you, but one of the reasons the head priest and those he serve chose to side with Ell’Hakan in the first place was because they saw it as their only option. You have already continuously shown your distaste for the Holy Church before, after all. They expected to be thrown out of the Milky Way should you win in the battle of Chosen, so they chose to support the one who would at least continue to allow their presence. Seeing as they believed you would throw them out no matter what, should Ell’Hakan lose, they wouldn’t really lose anything.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "previousParagraphText": "“It was the foreseeable outcome, after all. I am not saying this to lay any blame on you, but one of the reasons the head priest and those he serve chose to side with Ell’Hakan in the first place was because they saw it as their only option. You have already continuously shown your distaste for the Holy Church before, after all. They expected to be thrown out of the Milky Way should you win in the battle of Chosen, so they chose to support the one who would at least continue to allow their presence. Seeing as they believed you would throw them out no matter what, should Ell’Hakan lose, they wouldn’t really lose anything.”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "minaga",
+            "characterName": "Minaga",
+            "lineId": 88,
+            "paragraphIndex": 59,
+            "relativeIndex": -4,
+            "text": "I want to make something clear, by the way,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 90,
+            "paragraphIndex": 60,
+            "relativeIndex": -3,
+            "text": "After this bullshit, the Holy Church is gone from the Milky Way Galaxy. That includes you if you truly wish to stay with such a fucked up faction."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 91,
+            "paragraphIndex": 62,
+            "relativeIndex": -2,
+            "text": "I expected that to be the case,"
+          },
+          {
+            "characterId": "jacob",
+            "characterName": "Jacob",
+            "lineId": 93,
+            "paragraphIndex": 63,
+            "relativeIndex": -1,
+            "text": "It was the foreseeable outcome, after all. I am not saying this to lay any blame on you, but one of the reasons the head priest and those he serve chose to side with Ell’Hakan in the first place was because they saw it as their only option. You have already continuously shown your distaste for the Holy Church before, after all. They expected to be thrown out of the Milky Way should you win in the battle of Chosen, so they chose to support the one who would at least continue to allow their presence. Seeing as they believed you would throw them out no matter what, should Ell’Hakan lose, they wouldn’t really lose anything."
+          },
+          {
+            "characterId": "jacob",
+            "characterName": "Jacob",
+            "lineId": 96,
+            "paragraphIndex": 66,
+            "relativeIndex": 1,
+            "text": "A rounding error to the gods of the Holy Church,"
+          },
+          {
+            "characterId": "carmen",
+            "characterName": "Carmen",
+            "lineId": 103,
+            "paragraphIndex": 73,
+            "relativeIndex": 2,
+            "text": "Fist of Ragnarok."
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 94, \"text\": \"Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,\", \"currentCharacterId\": \"jacob\", \"currentCharacterName\": \"Jacob\", \"currentCharacterAliases\": [\"Augur\", \"The Augur\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jacob\", \"sourceCandidates\": [\"Jacob\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jacob\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 64, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,”\", \"currentParagraphDialogue\": [{\"lineId\": 94, \"text\": \"Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": true}], \"previousParagraphText\": \"“It was the foreseeable outcome, after all. I am not saying this to lay any blame on you, but one of the reasons the head priest and those he serve chose to side with Ell’Hakan in the first place was because they saw it as their only option. You have already continuously shown your distaste for the Holy Church before, after all. They expected to be thrown out of the Milky Way should you win in the battle of Chosen, so they chose to support the one who would at least continue to allow their presence. Seeing as they believed you would throw them out no matter what, should Ell’Hakan lose, they wouldn’t really lose anything.”\", \"previousParagraphDialogue\": [{\"lineId\": 93, \"text\": \"It was the foreseeable outcome, after all. I am not saying this to lay any blame on you, but one of the reasons the head priest and those he serve chose to side with Ell’Hakan in the first place was because they saw it as their only option. You have already continuously shown your distaste for the Holy Church before, after all. They expected to be thrown out of the Milky Way should you win in the battle of Chosen, so they chose to support the one who would at least continue to allow their presence. Seeing as they believed you would throw them out no matter what, should Ell’Hakan lose, they wouldn’t really lose anything.\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": true}], \"nextParagraphText\": \"Jake countered with a scoff.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,\", \"lastSentence\": \"Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"It was the foreseeable outcome, after all. I am not saying this to lay any blame on you, but one of the reasons the head priest and those he serve chose to side with Ell’Hakan in the first place was because they saw it as their only option. You have already continuously shown your distaste for the Holy Church before, after all. They expected to be thrown out of the Milky Way should you win in the battle of Chosen, so they chose to support the one who would at least continue to allow their presence. Seeing as they believed you would throw them out no matter what, should Ell’Hakan lose, they wouldn’t really lose anything.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"It was the foreseeable outcome, after all.\", \"lastSentence\": \"Seeing as they believed you would throw them out no matter what, should Ell’Hakan lose, they wouldn’t really lose anything.\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,\", \"lastSentence\": \"Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [\"jacob\", \"augur\", \"the augur\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [], \"roleLabels\": [\"jake\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [\"minaga\", \"unique lifeform\", \"the unique lifeform\", \"the unique lifeform 2\", \"unique lifeform 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"aliases\": [], \"roleLabels\": [\"carmen\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 88, \"paragraphIndex\": 59, \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"text\": \"I want to make something clear, by the way,\"}, {\"relativeIndex\": -3, \"lineId\": 90, \"paragraphIndex\": 60, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"After this bullshit, the Holy Church is gone from the Milky Way Galaxy. That includes you if you truly wish to stay with such a fucked up faction.\"}, {\"relativeIndex\": -2, \"lineId\": 91, \"paragraphIndex\": 62, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I expected that to be the case,\"}, {\"relativeIndex\": -1, \"lineId\": 93, \"paragraphIndex\": 63, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"It was the foreseeable outcome, after all. I am not saying this to lay any blame on you, but one of the reasons the head priest and those he serve chose to side with Ell’Hakan in the first place was because they saw it as their only option. You have already continuously shown your distaste for the Holy Church before, after all. They expected to be thrown out of the Milky Way should you win in the battle of Chosen, so they chose to support the one who would at least continue to allow their presence. Seeing as they believed you would throw them out no matter what, should Ell’Hakan lose, they wouldn’t really lose anything.\"}, {\"relativeIndex\": 1, \"lineId\": 96, \"paragraphIndex\": 66, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"A rounding error to the gods of the Holy Church,\"}, {\"relativeIndex\": 2, \"lineId\": 103, \"paragraphIndex\": 73, \"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"text\": \"Fist of Ragnarok.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_next_paragraph_cue\",\n    \"dialogue_flow_rebuttal\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0009 - Chapter 1066 - An Unfortunate Child",
+  "currentCharacterId": "jacob",
+  "currentCharacterName": "Jacob",
+  "currentParagraphText": "“Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "jacob",
+    "currentCharacterName": "Jacob",
+    "currentParagraphText": "“Except for the potential death of billions by truly making me and the rest of the galaxy into a mortal enemy,”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 94,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "Jake countered with a scoff.",
+    "paragraphIndex": 64,
+    "previousParagraphText": "“It was the foreseeable outcome, after all. I am not saying this to lay any blame on you, but one of the reasons the head priest and those he serve chose to side with Ell’Hakan in the first place was because they saw it as their only option. You have already continuously shown your distaste for the Holy Church before, after all. They expected to be thrown out of the Milky Way should you win in the battle of Chosen, so they chose to support the one who would at least continue to allow their presence. Seeing as they believed you would throw them out no matter what, should Ell’Hakan lose, they wouldn’t really lose anything.”",
+    "reasonCodes": [
+      "explicit_next_paragraph_cue",
+      "dialogue_flow_rebuttal"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 94,
+  "nextParagraphText": "Jake countered with a scoff.",
+  "paragraphIndex": 64,
+  "previousParagraphText": "“It was the foreseeable outcome, after all. I am not saying this to lay any blame on you, but one of the reasons the head priest and those he serve chose to side with Ell’Hakan in the first place was because they saw it as their only option. You have already continuously shown your distaste for the Holy Church before, after all. They expected to be thrown out of the Milky Way should you win in the battle of Chosen, so they chose to support the one who would at least continue to allow their presence. Seeing as they believed you would throw them out no matter what, should Ell’Hakan lose, they wouldn’t really lose anything.”"
+}

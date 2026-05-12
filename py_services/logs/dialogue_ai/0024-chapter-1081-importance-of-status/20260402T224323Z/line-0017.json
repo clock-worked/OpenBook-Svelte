@@ -1,0 +1,386 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "56de583edd50d339ad1db8f59b1e4c44d889ee9debd20048aae2ca38d0bbc9ab",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\56de583edd50d339ad1db8f59b1e4c44d889ee9debd20048aae2ca38d0bbc9ab.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.99,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "dialogue_flow"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "irin",
+            "characterName": "Irin",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "irin"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "irin",
+            "name": "Irin",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "name": "Sylphie",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "succubus",
+            "name": "Succubus",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "duskleaf",
+            "name": "Duskleaf",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "meira",
+            "name": "meira",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake listened and, upon realizing this would very much be a favor to the Demon Prince, couldn’t help but ask:",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "What’s in it for me?",
+          "lastSentence": "I assume there will be cake.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "What’s in it for me? Outside of cake. I assume there will be cake.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Irin",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.18400000000000005,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Irin",
+            "sourceCandidates": [
+              "Irin",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": "irin",
+              "confidence": 0.816,
+              "name": "Irin",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.456,
+              "name": "Jake",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "irin",
+          "currentCharacterName": "Irin",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 17,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "What’s in it for me? Outside of cake. I assume there will be cake."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "irin",
+              "characterName": "Irin",
+              "isReturning": true,
+              "lineId": 17,
+              "text": "What’s in it for me? Outside of cake. I assume there will be cake."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Jake listened and, upon realizing this would very much be a favor to the Demon Prince, couldn’t help but ask:",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "What’s in it for me?",
+              "lastSentence": "I assume there will be cake.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "What’s in it for me? Outside of cake. I assume there will be cake.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "Jake listened and, upon realizing this would very much be a favor to the Demon Prince, couldn’t help but ask: “What’s in it for me? Outside of cake. I assume there will be cake.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "irin",
+              "characterName": "Irin",
+              "isReturning": false,
+              "lineId": 18,
+              "text": "There will definitely be cake, and as for what’s in it for you, well, directly paying a prime witness to show up is incredibly shameful, so you won’t get anything from the Demon Prince or those affiliated with him. However, the other party – in this case, those from the Second Hell – will bring gifts to the other side’s prime witness, which is to say you, should you agree. This is another subtle competition to see who brought the prime witness that receives the best gifts. Give too bad gifts, and you risk offending the prime witness and whatever faction they may come from, but give too good ones, and you’re sure to lose this competition. In your case, I believe the Second Hell would willingly lose the competition to try and forge a better relationship with you and the Order, which is definitely also what the Demon Prince would expect,"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Irin continued the explain.",
+              "cueVerb": "continued",
+              "cueVerbType": "speech",
+              "firstSentence": "There will definitely be cake, and as for what’s in it for you, well, directly paying a prime witness to show up is incredibly shameful, so you won’t get anything from the Demon Prince or those affiliated with him.",
+              "lastSentence": "In your case, I believe the Second Hell would willingly lose the competition to try and forge a better relationship with you and the Order, which is definitely also what the Demon Prince would expect,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "There will definitely be cake, and as for what’s in it for you, well, directly paying a prime witness to show up is incredibly shameful, so you won’t get anything from the Demon Prince or those affiliated with him. However, the other party – in this case, those from the Second Hell – will bring gifts to the other side’s prime witness, which is to say you, should you agree. This is another subtle competition to see who brought the prime witness that receives the best gifts. Give too bad gifts, and you risk offending the prime witness and whatever faction they may come from, but give too good ones, and you’re sure to lose this competition. In your case, I believe the Second Hell would willingly lose the competition to try and forge a better relationship with you and the Order, which is definitely also what the Demon Prince would expect,",
+              "speakerNameMatch": "Irin",
+              "speakerSurface": "Irin"
+            }
+          ],
+          "nextParagraphText": "“There will definitely be cake, and as for what’s in it for you, well, directly paying a prime witness to show up is incredibly shameful, so you won’t get anything from the Demon Prince or those affiliated with him. However, the other party – in this case, those from the Second Hell – will bring gifts to the other side’s prime witness, which is to say you, should you agree. This is another subtle competition to see who brought the prime witness that receives the best gifts. Give too bad gifts, and you risk offending the prime witness and whatever faction they may come from, but give too good ones, and you’re sure to lose this competition. In your case, I believe the Second Hell would willingly lose the competition to try and forge a better relationship with you and the Order, which is definitely also what the Demon Prince would expect,” Irin continued the explain.",
+          "paragraphIndex": 7,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "irin",
+              "characterName": "Irin",
+              "isReturning": false,
+              "lineId": 13,
+              "text": "Being a prime witness does vary a bit from a best man based on what I read. There will be no expectations of you outside of your presence during the day in question, and your primary role will simply be to, well, be there and bear witness,"
+            },
+            {
+              "characterId": "irin",
+              "characterName": "Irin",
+              "isReturning": true,
+              "lineId": 15,
+              "text": "As for why he asked you... the prime witness always needs to be an outsider, and who you invite is a way to show off status. Having you, the Chosen of the Malefic Viper, show up will be quite a way to flaunt his connections. It also makes sense, considering your role in elevating his position, and you kinda were the impetus for this entire union in the first place. Also, to clarify, being asked to be a prime witness is usually viewed as a huge honor."
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Irin explained.",
+              "cueVerb": "explained",
+              "cueVerbType": "speech",
+              "firstSentence": "Being a prime witness does vary a bit from a best man based on what I read.",
+              "lastSentence": "There will be no expectations of you outside of your presence during the day in question, and your primary role will simply be to, well, be there and bear witness,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Being a prime witness does vary a bit from a best man based on what I read. There will be no expectations of you outside of your presence during the day in question, and your primary role will simply be to, well, be there and bear witness,",
+              "speakerNameMatch": "Irin",
+              "speakerSurface": "Irin"
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Irin explained.",
+              "cueVerb": "explained",
+              "cueVerbType": "speech",
+              "firstSentence": "As for why he asked you...",
+              "lastSentence": "Also, to clarify, being asked to be a prime witness is usually viewed as a huge honor.",
+              "mentionedEntities": [
+                "The Malefic Viper"
+              ],
+              "quoteIndex": 1,
+              "quoteText": "As for why he asked you... the prime witness always needs to be an outsider, and who you invite is a way to show off status. Having you, the Chosen of the Malefic Viper, show up will be quite a way to flaunt his connections. It also makes sense, considering your role in elevating his position, and you kinda were the impetus for this entire union in the first place. Also, to clarify, being asked to be a prime witness is usually viewed as a huge honor.",
+              "speakerNameMatch": "Irin",
+              "speakerSurface": "Irin"
+            }
+          ],
+          "previousParagraphText": "“Being a prime witness does vary a bit from a best man based on what I read. There will be no expectations of you outside of your presence during the day in question, and your primary role will simply be to, well, be there and bear witness,” Irin explained. “As for why he asked you... the prime witness always needs to be an outsider, and who you invite is a way to show off status. Having you, the Chosen of the Malefic Viper, show up will be quite a way to flaunt his connections. It also makes sense, considering your role in elevating his position, and you kinda were the impetus for this entire union in the first place. Also, to clarify, being asked to be a prime witness is usually viewed as a huge honor.”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "irin",
+            "characterName": "Irin",
+            "lineId": 10,
+            "paragraphIndex": 4,
+            "relativeIndex": -4,
+            "text": "As you well know, we demons put a lot of stock in contracts, and one of the most tried and tested methods to forge alliances is through marriage, especially among demons who put more stock in these unions than nearly every other race. Needless to say, this engagement is political in nature, though the two parties involved do know one another, which is far from a given."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 11,
+            "paragraphIndex": 5,
+            "relativeIndex": -3,
+            "text": "Yeah, I kinda assumed it was political, but again, why ask me of all people?"
+          },
+          {
+            "characterId": "irin",
+            "characterName": "Irin",
+            "lineId": 13,
+            "paragraphIndex": 6,
+            "relativeIndex": -2,
+            "text": "Being a prime witness does vary a bit from a best man based on what I read. There will be no expectations of you outside of your presence during the day in question, and your primary role will simply be to, well, be there and bear witness,"
+          },
+          {
+            "characterId": "irin",
+            "characterName": "Irin",
+            "lineId": 15,
+            "paragraphIndex": 6,
+            "relativeIndex": -1,
+            "text": "As for why he asked you... the prime witness always needs to be an outsider, and who you invite is a way to show off status. Having you, the Chosen of the Malefic Viper, show up will be quite a way to flaunt his connections. It also makes sense, considering your role in elevating his position, and you kinda were the impetus for this entire union in the first place. Also, to clarify, being asked to be a prime witness is usually viewed as a huge honor."
+          },
+          {
+            "characterId": "irin",
+            "characterName": "Irin",
+            "lineId": 18,
+            "paragraphIndex": 8,
+            "relativeIndex": 1,
+            "text": "There will definitely be cake, and as for what’s in it for you, well, directly paying a prime witness to show up is incredibly shameful, so you won’t get anything from the Demon Prince or those affiliated with him. However, the other party – in this case, those from the Second Hell – will bring gifts to the other side’s prime witness, which is to say you, should you agree. This is another subtle competition to see who brought the prime witness that receives the best gifts. Give too bad gifts, and you risk offending the prime witness and whatever faction they may come from, but give too good ones, and you’re sure to lose this competition. In your case, I believe the Second Hell would willingly lose the competition to try and forge a better relationship with you and the Order, which is definitely also what the Demon Prince would expect,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 20,
+            "paragraphIndex": 9,
+            "relativeIndex": 2,
+            "text": "You know, the more I hear, the more exhausting that entire ordeal sounds,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 17, \"text\": \"What’s in it for me? Outside of cake. I assume there will be cake.\", \"currentCharacterId\": \"irin\", \"currentCharacterName\": \"Irin\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Irin\", \"sourceCandidates\": [\"Irin\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Irin\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"irin\", \"name\": \"Irin\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 7, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Jake listened and, upon realizing this would very much be a favor to the Demon Prince, couldn’t help but ask: “What’s in it for me? Outside of cake. I assume there will be cake.”\", \"currentParagraphDialogue\": [{\"lineId\": 17, \"text\": \"What’s in it for me? Outside of cake. I assume there will be cake.\", \"characterId\": \"irin\", \"characterName\": \"Irin\", \"isReturning\": true}], \"previousParagraphText\": \"“Being a prime witness does vary a bit from a best man based on what I read. There will be no expectations of you outside of your presence during the day in question, and your primary role will simply be to, well, be there and bear witness,” Irin explained. “As for why he asked you... the prime witness always needs to be an outsider, and who you invite is a way to show off status. Having you, the Chosen of the Malefic Viper, show up will be quite a way to flaunt his connections. It also makes sense, considering your role in elevating his position, and you kinda were the impetus for this entire union in the first place. Also, to clarify, being asked to be a prime witness is usually viewed as a huge honor.”\", \"previousParagraphDialogue\": [{\"lineId\": 13, \"text\": \"Being a prime witness does vary a bit from a best man based on what I read. There will be no expectations of you outside of your presence during the day in question, and your primary role will simply be to, well, be there and bear witness,\", \"characterId\": \"irin\", \"characterName\": \"Irin\", \"isReturning\": false}, {\"lineId\": 15, \"text\": \"As for why he asked you... the prime witness always needs to be an outsider, and who you invite is a way to show off status. Having you, the Chosen of the Malefic Viper, show up will be quite a way to flaunt his connections. It also makes sense, considering your role in elevating his position, and you kinda were the impetus for this entire union in the first place. Also, to clarify, being asked to be a prime witness is usually viewed as a huge honor.\", \"characterId\": \"irin\", \"characterName\": \"Irin\", \"isReturning\": true}], \"nextParagraphText\": \"“There will definitely be cake, and as for what’s in it for you, well, directly paying a prime witness to show up is incredibly shameful, so you won’t get anything from the Demon Prince or those affiliated with him. However, the other party – in this case, those from the Second Hell – will bring gifts to the other side’s prime witness, which is to say you, should you agree. This is another subtle competition to see who brought the prime witness that receives the best gifts. Give too bad gifts, and you risk offending the prime witness and whatever faction they may come from, but give too good ones, and you’re sure to lose this competition. In your case, I believe the Second Hell would willingly lose the competition to try and forge a better relationship with you and the Order, which is definitely also what the Demon Prince would expect,” Irin continued the explain.\", \"nextParagraphDialogue\": [{\"lineId\": 18, \"text\": \"There will definitely be cake, and as for what’s in it for you, well, directly paying a prime witness to show up is incredibly shameful, so you won’t get anything from the Demon Prince or those affiliated with him. However, the other party – in this case, those from the Second Hell – will bring gifts to the other side’s prime witness, which is to say you, should you agree. This is another subtle competition to see who brought the prime witness that receives the best gifts. Give too bad gifts, and you risk offending the prime witness and whatever faction they may come from, but give too good ones, and you’re sure to lose this competition. In your case, I believe the Second Hell would willingly lose the competition to try and forge a better relationship with you and the Order, which is definitely also what the Demon Prince would expect,\", \"characterId\": \"irin\", \"characterName\": \"Irin\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"What’s in it for me? Outside of cake. I assume there will be cake.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake listened and, upon realizing this would very much be a favor to the Demon Prince, couldn’t help but ask:\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"What’s in it for me?\", \"lastSentence\": \"I assume there will be cake.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Being a prime witness does vary a bit from a best man based on what I read. There will be no expectations of you outside of your presence during the day in question, and your primary role will simply be to, well, be there and bear witness,\", \"cuePosition\": \"after\", \"cueVerb\": \"explained\", \"cueVerbType\": \"speech\", \"cueText\": \"Irin explained.\", \"speakerSurface\": \"Irin\", \"speakerNameMatch\": \"Irin\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Being a prime witness does vary a bit from a best man based on what I read.\", \"lastSentence\": \"There will be no expectations of you outside of your presence during the day in question, and your primary role will simply be to, well, be there and bear witness,\"}, {\"quoteIndex\": 1, \"quoteText\": \"As for why he asked you... the prime witness always needs to be an outsider, and who you invite is a way to show off status. Having you, the Chosen of the Malefic Viper, show up will be quite a way to flaunt his connections. It also makes sense, considering your role in elevating his position, and you kinda were the impetus for this entire union in the first place. Also, to clarify, being asked to be a prime witness is usually viewed as a huge honor.\", \"cuePosition\": \"before\", \"cueVerb\": \"explained\", \"cueVerbType\": \"speech\", \"cueText\": \"Irin explained.\", \"speakerSurface\": \"Irin\", \"speakerNameMatch\": \"Irin\", \"mentionedEntities\": [\"The Malefic Viper\"], \"addressedEntity\": null, \"firstSentence\": \"As for why he asked you...\", \"lastSentence\": \"Also, to clarify, being asked to be a prime witness is usually viewed as a huge honor.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"There will definitely be cake, and as for what’s in it for you, well, directly paying a prime witness to show up is incredibly shameful, so you won’t get anything from the Demon Prince or those affiliated with him. However, the other party – in this case, those from the Second Hell – will bring gifts to the other side’s prime witness, which is to say you, should you agree. This is another subtle competition to see who brought the prime witness that receives the best gifts. Give too bad gifts, and you risk offending the prime witness and whatever faction they may come from, but give too good ones, and you’re sure to lose this competition. In your case, I believe the Second Hell would willingly lose the competition to try and forge a better relationship with you and the Order, which is definitely also what the Demon Prince would expect,\", \"cuePosition\": \"after\", \"cueVerb\": \"continued\", \"cueVerbType\": \"speech\", \"cueText\": \"Irin continued the explain.\", \"speakerSurface\": \"Irin\", \"speakerNameMatch\": \"Irin\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"There will definitely be cake, and as for what’s in it for you, well, directly paying a prime witness to show up is incredibly shameful, so you won’t get anything from the Demon Prince or those affiliated with him.\", \"lastSentence\": \"In your case, I believe the Second Hell would willingly lose the competition to try and forge a better relationship with you and the Order, which is definitely also what the Demon Prince would expect,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"What’s in it for me? Outside of cake. I assume there will be cake.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake listened and, upon realizing this would very much be a favor to the Demon Prince, couldn’t help but ask:\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"What’s in it for me?\", \"lastSentence\": \"I assume there will be cake.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"irin\", \"characterName\": \"Irin\", \"aliases\": [], \"roleLabels\": [\"irin\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 10, \"paragraphIndex\": 4, \"characterId\": \"irin\", \"characterName\": \"Irin\", \"text\": \"As you well know, we demons put a lot of stock in contracts, and one of the most tried and tested methods to forge alliances is through marriage, especially among demons who put more stock in these unions than nearly every other race. Needless to say, this engagement is political in nature, though the two parties involved do know one another, which is far from a given.\"}, {\"relativeIndex\": -3, \"lineId\": 11, \"paragraphIndex\": 5, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Yeah, I kinda assumed it was political, but again, why ask me of all people?\"}, {\"relativeIndex\": -2, \"lineId\": 13, \"paragraphIndex\": 6, \"characterId\": \"irin\", \"characterName\": \"Irin\", \"text\": \"Being a prime witness does vary a bit from a best man based on what I read. There will be no expectations of you outside of your presence during the day in question, and your primary role will simply be to, well, be there and bear witness,\"}, {\"relativeIndex\": -1, \"lineId\": 15, \"paragraphIndex\": 6, \"characterId\": \"irin\", \"characterName\": \"Irin\", \"text\": \"As for why he asked you... the prime witness always needs to be an outsider, and who you invite is a way to show off status. Having you, the Chosen of the Malefic Viper, show up will be quite a way to flaunt his connections. It also makes sense, considering your role in elevating his position, and you kinda were the impetus for this entire union in the first place. Also, to clarify, being asked to be a prime witness is usually viewed as a huge honor.\"}, {\"relativeIndex\": 1, \"lineId\": 18, \"paragraphIndex\": 8, \"characterId\": \"irin\", \"characterName\": \"Irin\", \"text\": \"There will definitely be cake, and as for what’s in it for you, well, directly paying a prime witness to show up is incredibly shameful, so you won’t get anything from the Demon Prince or those affiliated with him. However, the other party – in this case, those from the Second Hell – will bring gifts to the other side’s prime witness, which is to say you, should you agree. This is another subtle competition to see who brought the prime witness that receives the best gifts. Give too bad gifts, and you risk offending the prime witness and whatever faction they may come from, but give too good ones, and you’re sure to lose this competition. In your case, I believe the Second Hell would willingly lose the competition to try and forge a better relationship with you and the Order, which is definitely also what the Demon Prince would expect,\"}, {\"relativeIndex\": 2, \"lineId\": 20, \"paragraphIndex\": 9, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You know, the more I hear, the more exhausting that entire ordeal sounds,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"succubus\", \"name\": \"Succubus\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"duskleaf\", \"name\": \"Duskleaf\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"meira\", \"name\": \"meira\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_flow\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0024 - Chapter 1081 - Importance of Status",
+  "currentCharacterId": "irin",
+  "currentCharacterName": "Irin",
+  "currentParagraphText": "Jake listened and, upon realizing this would very much be a favor to the Demon Prince, couldn’t help but ask: “What’s in it for me? Outside of cake. I assume there will be cake.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.99,
+    "currentCharacterId": "irin",
+    "currentCharacterName": "Irin",
+    "currentParagraphText": "Jake listened and, upon realizing this would very much be a favor to the Demon Prince, couldn’t help but ask: “What’s in it for me? Outside of cake. I assume there will be cake.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 17,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“There will definitely be cake, and as for what’s in it for you, well, directly paying a prime witness to show up is incredibly shameful, so you won’t get anything from the Demon Prince or those affiliated with him. However, the other party – in this case, those from the Second Hell – will bring gifts to the other side’s prime witness, which is to say you, should you agree. This is another subtle competition to see who brought the prime witness that receives the best gifts. Give too bad gifts, and you risk offending the prime witness and whatever faction they may come from, but give too good ones, and you’re sure to lose this competition. In your case, I believe the Second Hell would willingly lose the competition to try and forge a better relationship with you and the Order, which is definitely also what the Demon Prince would expect,” Irin continued the explain.",
+    "paragraphIndex": 7,
+    "previousParagraphText": "“Being a prime witness does vary a bit from a best man based on what I read. There will be no expectations of you outside of your presence during the day in question, and your primary role will simply be to, well, be there and bear witness,” Irin explained. “As for why he asked you... the prime witness always needs to be an outsider, and who you invite is a way to show off status. Having you, the Chosen of the Malefic Viper, show up will be quite a way to flaunt his connections. It also makes sense, considering your role in elevating his position, and you kinda were the impetus for this entire union in the first place. Also, to clarify, being asked to be a prime witness is usually viewed as a huge honor.”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_flow"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 17,
+  "nextParagraphText": "“There will definitely be cake, and as for what’s in it for you, well, directly paying a prime witness to show up is incredibly shameful, so you won’t get anything from the Demon Prince or those affiliated with him. However, the other party – in this case, those from the Second Hell – will bring gifts to the other side’s prime witness, which is to say you, should you agree. This is another subtle competition to see who brought the prime witness that receives the best gifts. Give too bad gifts, and you risk offending the prime witness and whatever faction they may come from, but give too good ones, and you’re sure to lose this competition. In your case, I believe the Second Hell would willingly lose the competition to try and forge a better relationship with you and the Order, which is definitely also what the Demon Prince would expect,” Irin continued the explain.",
+  "paragraphIndex": 7,
+  "previousParagraphText": "“Being a prime witness does vary a bit from a best man based on what I read. There will be no expectations of you outside of your presence during the day in question, and your primary role will simply be to, well, be there and bear witness,” Irin explained. “As for why he asked you... the prime witness always needs to be an outsider, and who you invite is a way to show off status. Having you, the Chosen of the Malefic Viper, show up will be quite a way to flaunt his connections. It also makes sense, considering your role in elevating his position, and you kinda were the impetus for this entire union in the first place. Also, to clarify, being asked to be a prime witness is usually viewed as a huge honor.”"
+}

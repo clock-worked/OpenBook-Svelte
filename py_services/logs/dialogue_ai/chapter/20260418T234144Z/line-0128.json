@@ -1,0 +1,345 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "a6d81a7b3401a2d885d7e0373943404fb11e8edab4ca9bcf688a7258634b5c7b",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\a6d81a7b3401a2d885d7e0373943404fb11e8edab4ca9bcf688a7258634b5c7b.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "dialogue_continuity"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Chimera",
+              "Monster"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist",
+              "chimera",
+              "monster"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Godqueen"
+            ],
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "artemis",
+              "godqueen"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "The Warpsnatcher",
+              "Jasper",
+              "the-warpsnatcher",
+              "the-warpsnatcher-2"
+            ],
+            "characterId": "warpsnatcher",
+            "characterName": "Warpsnatcher",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "warpsnatcher",
+              "the warpsnatcher",
+              "jasper",
+              "the warpsnatcher 2",
+              "warpsnatcher 2"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "solana",
+            "name": "Solana",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "diana",
+            "name": "Diana",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "keerla",
+            "name": "Keerla",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "lord thayne",
+            "name": "Lord Thayne",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Godqueen"
+            ],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Chimera",
+              "Monster"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "The Warpsnatcher",
+              "Jasper",
+              "the-warpsnatcher",
+              "the-warpsnatcher-2"
+            ],
+            "characterId": "warpsnatcher",
+            "name": "Warpsnatcher",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": null,
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.32919999999999994,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Artemis",
+            "sourceCandidates": [
+              "Artemis",
+              "Jake"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.804
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.804,
+              "name": "Artemis",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.444,
+              "name": "Jake",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 128,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "I guess you got a point... not every social gathering turns into the day being overly eventfu-"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 128,
+              "text": "I guess you got a point... not every social gathering turns into the day being overly eventfu-"
+            }
+          ],
+          "currentParagraphQuoteStructure": [],
+          "currentParagraphText": "In the end, Jake just sighed. “I guess you got a point... not every social gathering turns into the day being overly eventfu-“",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "As if on cue, the gateway in Jake’s temporary residence activated, and out stumbled a small, familiar, cat-like creature. Jake hadn’t even turned his head to look with his eyes before he noticed something was wrong.",
+          "paragraphIndex": 63,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "Jake was quiet for a little while as he wondered if perhaps the reason things usually went wrong was because of something Jake did or if he had just gotten unlucky. Sure, sometimes he could definitely pin things on Villy, such as the time he went eating with Scarlett and the Primordial decided to roleplay a waiter, but he couldn’t put it all on Villy. Maybe the explanation instead was that Artemis had been there and had helped Jake not say something that would have led to something major happening?"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 120,
+            "paragraphIndex": 59,
+            "relativeIndex": -4,
+            "text": "I’m almost beginning to understand why you’re not a fan of social events if that’s how you expect them all to go..."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 121,
+            "paragraphIndex": 60,
+            "relativeIndex": -3,
+            "text": "Well, not all of them,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 123,
+            "paragraphIndex": 61,
+            "relativeIndex": -2,
+            "text": "Most times, events are surprisingly uneventful. They are predictable. Sure, all those things could have happened, but the chance would be ridiculously low,"
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 125,
+            "paragraphIndex": 61,
+            "relativeIndex": -1,
+            "text": "Even if chaotic gods like the All-God Legion surely do skew things toward unpredictability."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 131,
+            "paragraphIndex": 66,
+            "relativeIndex": 1,
+            "text": "Jasper, what the hell happened?"
+          },
+          {
+            "characterId": "warpsnatcher",
+            "characterName": "Warpsnatcher",
+            "lineId": 133,
+            "paragraphIndex": 67,
+            "relativeIndex": 2,
+            "text": "Me... treasure,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 128, \"text\": \"I guess you got a point... not every social gathering turns into the day being overly eventfu-\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Artemis\", \"sourceCandidates\": [\"Artemis\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.32919999999999994, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.804, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.444, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 63, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"In the end, Jake just sighed. “I guess you got a point... not every social gathering turns into the day being overly eventfu-“\", \"currentParagraphDialogue\": [{\"lineId\": 128, \"text\": \"I guess you got a point... not every social gathering turns into the day being overly eventfu-\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"Jake was quiet for a little while as he wondered if perhaps the reason things usually went wrong was because of something Jake did or if he had just gotten unlucky. Sure, sometimes he could definitely pin things on Villy, such as the time he went eating with Scarlett and the Primordial decided to roleplay a waiter, but he couldn’t put it all on Villy. Maybe the explanation instead was that Artemis had been there and had helped Jake not say something that would have led to something major happening?\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"As if on cue, the gateway in Jake’s temporary residence activated, and out stumbled a small, familiar, cat-like creature. Jake hadn’t even turned his head to look with his eyes before he noticed something was wrong.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": null, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [\"jake\", \"protagonist\", \"chimera\", \"monster\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [\"artemis\", \"godqueen\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"warpsnatcher\", \"characterName\": \"Warpsnatcher\", \"aliases\": [\"The Warpsnatcher\", \"Jasper\", \"the-warpsnatcher\", \"the-warpsnatcher-2\"], \"roleLabels\": [\"warpsnatcher\", \"the warpsnatcher\", \"jasper\", \"the warpsnatcher 2\", \"warpsnatcher 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 120, \"paragraphIndex\": 59, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I’m almost beginning to understand why you’re not a fan of social events if that’s how you expect them all to go...\"}, {\"relativeIndex\": -3, \"lineId\": 121, \"paragraphIndex\": 60, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Well, not all of them,\"}, {\"relativeIndex\": -2, \"lineId\": 123, \"paragraphIndex\": 61, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Most times, events are surprisingly uneventful. They are predictable. Sure, all those things could have happened, but the chance would be ridiculously low,\"}, {\"relativeIndex\": -1, \"lineId\": 125, \"paragraphIndex\": 61, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Even if chaotic gods like the All-God Legion surely do skew things toward unpredictability.\"}, {\"relativeIndex\": 1, \"lineId\": 131, \"paragraphIndex\": 66, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Jasper, what the hell happened?\"}, {\"relativeIndex\": 2, \"lineId\": 133, \"paragraphIndex\": 67, \"characterId\": \"warpsnatcher\", \"characterName\": \"Warpsnatcher\", \"text\": \"Me... treasure,\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"solana\", \"name\": \"Solana\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"diana\", \"name\": \"Diana\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"keerla\", \"name\": \"Keerla\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"lord thayne\", \"name\": \"Lord Thayne\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"warpsnatcher\", \"name\": \"Warpsnatcher\", \"aliases\": [\"The Warpsnatcher\", \"Jasper\", \"the-warpsnatcher\", \"the-warpsnatcher-2\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0121 - Chapter 1178 - Not One Calm Day/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "In the end, Jake just sighed. “I guess you got a point... not every social gathering turns into the day being overly eventfu-“",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "In the end, Jake just sighed. “I guess you got a point... not every social gathering turns into the day being overly eventfu-“",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 128,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "As if on cue, the gateway in Jake’s temporary residence activated, and out stumbled a small, familiar, cat-like creature. Jake hadn’t even turned his head to look with his eyes before he noticed something was wrong.",
+    "paragraphIndex": 63,
+    "previousParagraphText": "Jake was quiet for a little while as he wondered if perhaps the reason things usually went wrong was because of something Jake did or if he had just gotten unlucky. Sure, sometimes he could definitely pin things on Villy, such as the time he went eating with Scarlett and the Primordial decided to roleplay a waiter, but he couldn’t put it all on Villy. Maybe the explanation instead was that Artemis had been there and had helped Jake not say something that would have led to something major happening?",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_continuity"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 128,
+  "nextParagraphText": "As if on cue, the gateway in Jake’s temporary residence activated, and out stumbled a small, familiar, cat-like creature. Jake hadn’t even turned his head to look with his eyes before he noticed something was wrong.",
+  "paragraphIndex": 63,
+  "previousParagraphText": "Jake was quiet for a little while as he wondered if perhaps the reason things usually went wrong was because of something Jake did or if he had just gotten unlucky. Sure, sometimes he could definitely pin things on Villy, such as the time he went eating with Scarlett and the Primordial decided to roleplay a waiter, but he couldn’t put it all on Villy. Maybe the explanation instead was that Artemis had been there and had helped Jake not say something that would have led to something major happening?"
+}

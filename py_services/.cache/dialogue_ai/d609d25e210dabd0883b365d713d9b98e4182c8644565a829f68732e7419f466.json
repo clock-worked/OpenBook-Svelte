@@ -1,0 +1,404 @@
+{
+  "cacheKey": "d609d25e210dabd0883b365d713d9b98e4182c8644565a829f68732e7419f466",
+  "createdAt": "2026-04-01T21:14:26.205846+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "unknown-god",
+    "characterName": "Unknown God",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration",
+      "parser_contradiction",
+      "next_turn_context"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "characterName": "Bertram",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "bertram"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Augur",
+          "The Augur"
+        ],
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jacob",
+          "augur",
+          "the augur"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "viper",
+          "the malefic viper",
+          "malefic viper",
+          "villy"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "false god",
+        "characterName": "False God",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "false god"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "beastkin-god",
+        "characterName": "Beastkin God",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "beastkin god"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [
+          "unknown-god",
+          "unknown-god-2"
+        ],
+        "characterId": "unknown-god",
+        "characterName": "Unknown God",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown god",
+          "unknown god 2"
+        ],
+        "wasRecentSpeaker": false
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Augur",
+          "The Augur"
+        ],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "name": "Bertram",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "the god said in a booming voice that Jake couldn’t determine if was male or female.",
+      "cueVerb": "said",
+      "cueVerbType": "speech",
+      "firstSentence": "Chosen of the Malefic Viper.",
+      "lastSentence": "I’ve heard much of your exploits and peculiar nature,",
+      "mentionedEntities": [
+        "The Malefic Viper",
+        "The Malefic Viper"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,",
+      "speakerNameMatch": null,
+      "speakerSurface": "the god"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "The Malefic Viper"
+          ],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.136,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Bertram",
+        "sourceCandidates": [
+          "Bertram",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.864
+      },
+      "candidates": [
+        {
+          "characterId": "bertram",
+          "confidence": 0.864,
+          "name": "Bertram",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "speech_verb"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.504,
+          "name": "Jake",
+          "reasons": [
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "bertram",
+      "currentCharacterName": "Bertram",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 62,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "bertram",
+          "characterName": "Bertram",
+          "isReturning": false,
+          "lineId": 62,
+          "text": "Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the god said in a booming voice that Jake couldn’t determine if was male or female.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Chosen of the Malefic Viper.",
+          "lastSentence": "I’ve heard much of your exploits and peculiar nature,",
+          "mentionedEntities": [
+            "The Malefic Viper",
+            "The Malefic Viper"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the god"
+        }
+      ],
+      "currentParagraphText": "“Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,” the god said in a booming voice that Jake couldn’t determine if was male or female.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 64,
+          "text": "I can’t say I know much about you considering I don’t know who I’m conversing with,"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake spoke bluntly, feeling quite a few death stares on him, even from Jacob and Bertram... and this time, he really couldn’t tell if they were genuine or not.",
+          "cueVerb": "spoke",
+          "cueVerbType": "speech",
+          "firstSentence": "I can’t say I know much about you considering I don’t know who I’m conversing with,",
+          "lastSentence": "I can’t say I know much about you considering I don’t know who I’m conversing with,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I can’t say I know much about you considering I don’t know who I’m conversing with,",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "nextParagraphText": "“I can’t say I know much about you considering I don’t know who I’m conversing with,” Jake spoke bluntly, feeling quite a few death stares on him, even from Jacob and Bertram... and this time, he really couldn’t tell if they were genuine or not.",
+      "paragraphIndex": 39,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "This figure looked down, but even before that, Jake already felt the god and even a number of other gods all observing him. He looked up to meet the eyes of the figure made up entirely of glowing yellowish holy light as he let the god speak first."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 44,
+        "paragraphIndex": 25,
+        "relativeIndex": -4,
+        "text": "I hoped we could reach some kind of compromise, but it seems that’s impossible,"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 46,
+        "paragraphIndex": 25,
+        "relativeIndex": -3,
+        "text": "However, perhaps there is someone you can reach an agreement with. As I said, we are operating under the direct orders of the Holy Pantheon, and I have been granted the honor of allowing you an audience to directly commune with the one who initially wanted to recruit Ell’Hakan into the Holy Church."
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 52,
+        "paragraphIndex": 31,
+        "relativeIndex": -2,
+        "text": "Very well,"
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 54,
+        "paragraphIndex": 32,
+        "relativeIndex": -1,
+        "text": "Allow me the honors,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 64,
+        "paragraphIndex": 40,
+        "relativeIndex": 1,
+        "text": "I can’t say I know much about you considering I don’t know who I’m conversing with,"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 66,
+        "paragraphIndex": 41,
+        "relativeIndex": 2,
+        "text": "You are speaking to the Lodestar Matron, the Fourteenth of the Holy Light,"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "false god",
+            "characterName": "False God",
+            "evidence": [
+              "token_overlap:god"
+            ],
+            "score": 0.8
+          },
+          {
+            "characterId": "beastkin-god",
+            "characterName": "Beastkin God",
+            "evidence": [
+              "token_overlap:god"
+            ],
+            "score": 0.8
+          },
+          {
+            "characterId": "unknown-god",
+            "characterName": "Unknown God",
+            "evidence": [
+              "token_overlap:god",
+              "generic_placeholder_penalty"
+            ],
+            "score": 0.56
+          }
+        ],
+        "surface": "the god"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 62, \"text\": \"Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,\", \"currentCharacterId\": \"bertram\", \"currentCharacterName\": \"Bertram\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Bertram\", \"sourceCandidates\": [\"Bertram\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.864, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.136, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"The Malefic Viper\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"bertram\", \"name\": \"Bertram\", \"confidence\": 0.864, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.504, \"reasons\": [\"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 39, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,” the god said in a booming voice that Jake couldn’t determine if was male or female.\", \"currentParagraphDialogue\": [{\"lineId\": 62, \"text\": \"Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,\", \"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"isReturning\": false}], \"previousParagraphText\": \"This figure looked down, but even before that, Jake already felt the god and even a number of other gods all observing him. He looked up to meet the eyes of the figure made up entirely of glowing yellowish holy light as he let the god speak first.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“I can’t say I know much about you considering I don’t know who I’m conversing with,” Jake spoke bluntly, feeling quite a few death stares on him, even from Jacob and Bertram... and this time, he really couldn’t tell if they were genuine or not.\", \"nextParagraphDialogue\": [{\"lineId\": 64, \"text\": \"I can’t say I know much about you considering I don’t know who I’m conversing with,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the god said in a booming voice that Jake couldn’t determine if was male or female.\", \"speakerSurface\": \"the god\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"The Malefic Viper\", \"The Malefic Viper\"], \"addressedEntity\": null, \"firstSentence\": \"Chosen of the Malefic Viper.\", \"lastSentence\": \"I’ve heard much of your exploits and peculiar nature,\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I can’t say I know much about you considering I don’t know who I’m conversing with,\", \"cuePosition\": \"after\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake spoke bluntly, feeling quite a few death stares on him, even from Jacob and Bertram... and this time, he really couldn’t tell if they were genuine or not.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I can’t say I know much about you considering I don’t know who I’m conversing with,\", \"lastSentence\": \"I can’t say I know much about you considering I don’t know who I’m conversing with,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the god said in a booming voice that Jake couldn’t determine if was male or female.\", \"speakerSurface\": \"the god\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"The Malefic Viper\", \"The Malefic Viper\"], \"addressedEntity\": null, \"firstSentence\": \"Chosen of the Malefic Viper.\", \"lastSentence\": \"I’ve heard much of your exploits and peculiar nature,\"}, \"sceneEntities\": [{\"surface\": \"the god\", \"matches\": [{\"characterId\": \"false god\", \"characterName\": \"False God\", \"score\": 0.8, \"evidence\": [\"token_overlap:god\"]}, {\"characterId\": \"beastkin-god\", \"characterName\": \"Beastkin God\", \"score\": 0.8, \"evidence\": [\"token_overlap:god\"]}, {\"characterId\": \"unknown-god\", \"characterName\": \"Unknown God\", \"score\": 0.56, \"evidence\": [\"token_overlap:god\", \"generic_placeholder_penalty\"]}]}], \"candidateCards\": [{\"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"aliases\": [], \"roleLabels\": [\"bertram\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [], \"roleLabels\": [\"jake\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [\"jacob\", \"augur\", \"the augur\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"false god\", \"characterName\": \"False God\", \"aliases\": [], \"roleLabels\": [\"false god\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"beastkin-god\", \"characterName\": \"Beastkin God\", \"aliases\": [], \"roleLabels\": [\"beastkin god\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"unknown-god\", \"characterName\": \"Unknown God\", \"aliases\": [\"unknown-god\", \"unknown-god-2\"], \"roleLabels\": [\"unknown god\", \"unknown god 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 44, \"paragraphIndex\": 25, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"I hoped we could reach some kind of compromise, but it seems that’s impossible,\"}, {\"relativeIndex\": -3, \"lineId\": 46, \"paragraphIndex\": 25, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"However, perhaps there is someone you can reach an agreement with. As I said, we are operating under the direct orders of the Holy Pantheon, and I have been granted the honor of allowing you an audience to directly commune with the one who initially wanted to recruit Ell’Hakan into the Holy Church.\"}, {\"relativeIndex\": -2, \"lineId\": 52, \"paragraphIndex\": 31, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Very well,\"}, {\"relativeIndex\": -1, \"lineId\": 54, \"paragraphIndex\": 32, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Allow me the honors,\"}, {\"relativeIndex\": 1, \"lineId\": 64, \"paragraphIndex\": 40, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I can’t say I know much about you considering I don’t know who I’m conversing with,\"}, {\"relativeIndex\": 2, \"lineId\": 66, \"paragraphIndex\": 41, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"You are speaking to the Lodestar Matron, the Fourteenth of the Holy Light,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"bertram\", \"name\": \"Bertram\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"unknown-god\",\n  \"characterName\": \"Unknown God\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration\",\n    \"parser_contradiction\",\n    \"next_turn_context\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

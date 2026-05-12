@@ -1,0 +1,328 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "18568615a6a8a90116c5110bc6c10368799f7d6af98744e3fb9ff7167f427b9d",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\18568615a6a8a90116c5110bc6c10368799f7d6af98744e3fb9ff7167f427b9d.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "confidence": 0.9,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "narrative_context",
+          "previous_speaker_continuity",
+          "next_action_by_other"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "viper",
+              "the malefic viper",
+              "malefic viper",
+              "villy"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "name": "The Sword Saint",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "miranda",
+            "name": "Miranda",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "beastkin",
+            "name": "Beastkin",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Oops, you’re cutting out, bye!",
+          "lastSentence": "Oops, you’re cutting out, bye!",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Oops, you’re cutting out, bye!",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.18400000000000005,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "The Malefic Viper",
+            "sourceCandidates": [
+              "The Malefic Viper",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": "viper",
+              "confidence": 0.816,
+              "name": "The Malefic Viper",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.456,
+              "name": "Jake",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [
+            "viper",
+            "Villy"
+          ],
+          "currentCharacterId": "viper",
+          "currentCharacterName": "The Malefic Viper",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 45,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "Oops, you’re cutting out, bye!"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "viper",
+              "characterName": "The Malefic Viper",
+              "isReturning": false,
+              "lineId": 45,
+              "text": "Oops, you’re cutting out, bye!"
+            }
+          ],
+          "currentParagraphQuoteStructure": [],
+          "currentParagraphText": "Jake said as he severed the telepathic connection before he could hear any more of such drivel.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "Besides, he had already arrived at the meeting hall in Haven, and as expected, he was the last person there. Partly because he really hadn’t hurried coming over. Also, everyone knew the system event would end soon, so the World Leaders had all returned to their own planets, only leaving behind a few dedicated diplomats – most of which had skills to contact the World Leader directly in case other means of communication didn’t work.",
+          "paragraphIndex": 39,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Oops, you’re cutting out, bye!",
+              "lastSentence": "Oops, you’re cutting out, bye!",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Oops, you’re cutting out, bye!",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "previousParagraphText": "“Oops, you’re cutting out, bye!”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 39,
+            "paragraphIndex": 33,
+            "relativeIndex": -4,
+            "text": "You need me back as soon as possible, right?"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 40,
+            "paragraphIndex": 34,
+            "relativeIndex": -3,
+            "text": "Eh, no rush,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 42,
+            "paragraphIndex": 35,
+            "relativeIndex": -2,
+            "text": "Please say you need me back as soon as possible,"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 44,
+            "paragraphIndex": 37,
+            "relativeIndex": -1,
+            "text": "I’m not gonna let you use me as an excuse to get out of a meeting. In fact, as your Patron, I would recommend that you really get engaged with it. That you go in there with full passion and are an active participant from beginning to end, truly-"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 55,
+            "paragraphIndex": 48,
+            "relativeIndex": 1,
+            "text": "There he is. It’s been a while."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 56,
+            "paragraphIndex": 48,
+            "relativeIndex": 2,
+            "text": "Yeah, it sure has,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 45, \"text\": \"Oops, you’re cutting out, bye!\", \"currentCharacterId\": \"viper\", \"currentCharacterName\": \"The Malefic Viper\", \"currentCharacterAliases\": [\"viper\", \"Villy\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"The Malefic Viper\", \"sourceCandidates\": [\"The Malefic Viper\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 39, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Jake said as he severed the telepathic connection before he could hear any more of such drivel.\", \"currentParagraphDialogue\": [{\"lineId\": 45, \"text\": \"Oops, you’re cutting out, bye!\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": false}], \"previousParagraphText\": \"“Oops, you’re cutting out, bye!”\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Besides, he had already arrived at the meeting hall in Haven, and as expected, he was the last person there. Partly because he really hadn’t hurried coming over. Also, everyone knew the system event would end soon, so the World Leaders had all returned to their own planets, only leaving behind a few dedicated diplomats – most of which had skills to contact the World Leader directly in case other means of communication didn’t work.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Oops, you’re cutting out, bye!\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Oops, you’re cutting out, bye!\", \"lastSentence\": \"Oops, you’re cutting out, bye!\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Oops, you’re cutting out, bye!\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Oops, you’re cutting out, bye!\", \"lastSentence\": \"Oops, you’re cutting out, bye!\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 39, \"paragraphIndex\": 33, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"You need me back as soon as possible, right?\"}, {\"relativeIndex\": -3, \"lineId\": 40, \"paragraphIndex\": 34, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Eh, no rush,\"}, {\"relativeIndex\": -2, \"lineId\": 42, \"paragraphIndex\": 35, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Please say you need me back as soon as possible,\"}, {\"relativeIndex\": -1, \"lineId\": 44, \"paragraphIndex\": 37, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"I’m not gonna let you use me as an excuse to get out of a meeting. In fact, as your Patron, I would recommend that you really get engaged with it. That you go in there with full passion and are an active participant from beginning to end, truly-\"}, {\"relativeIndex\": 1, \"lineId\": 55, \"paragraphIndex\": 48, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"There he is. It’s been a while.\"}, {\"relativeIndex\": 2, \"lineId\": 56, \"paragraphIndex\": 48, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Yeah, it sure has,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"beastkin\", \"name\": \"Beastkin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"viper\",\n  \"characterName\": \"The Malefic Viper\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"narrative_context\",\n    \"previous_speaker_continuity\",\n    \"next_action_by_other\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0022 - Chapter 1079 - One Last Meeting",
+  "currentCharacterId": "viper",
+  "currentCharacterName": "The Malefic Viper",
+  "currentParagraphText": "Jake said as he severed the telepathic connection before he could hear any more of such drivel.",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.9,
+    "currentCharacterId": "viper",
+    "currentCharacterName": "The Malefic Viper",
+    "currentParagraphText": "Jake said as he severed the telepathic connection before he could hear any more of such drivel.",
+    "disposition": "review",
+    "error": null,
+    "lineId": 45,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "Besides, he had already arrived at the meeting hall in Haven, and as expected, he was the last person there. Partly because he really hadn’t hurried coming over. Also, everyone knew the system event would end soon, so the World Leaders had all returned to their own planets, only leaving behind a few dedicated diplomats – most of which had skills to contact the World Leader directly in case other means of communication didn’t work.",
+    "paragraphIndex": 39,
+    "previousParagraphText": "“Oops, you’re cutting out, bye!”",
+    "reasonCodes": [
+      "narrative_context",
+      "previous_speaker_continuity",
+      "next_action_by_other"
+    ],
+    "suggestedCharacterId": "viper",
+    "suggestedCharacterName": "The Malefic Viper",
+    "toolTrace": []
+  },
+  "lineId": 45,
+  "nextParagraphText": "Besides, he had already arrived at the meeting hall in Haven, and as expected, he was the last person there. Partly because he really hadn’t hurried coming over. Also, everyone knew the system event would end soon, so the World Leaders had all returned to their own planets, only leaving behind a few dedicated diplomats – most of which had skills to contact the World Leader directly in case other means of communication didn’t work.",
+  "paragraphIndex": 39,
+  "previousParagraphText": "“Oops, you’re cutting out, bye!”"
+}

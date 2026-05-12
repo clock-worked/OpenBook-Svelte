@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { colorForCharacter, rgbaToOpaqueHex, characters } from '$lib/stores/characters';
+  import { colorForCharacter, hexToRgba, rgbaToOpaqueHex, characters } from '$lib/stores/characters';
   import { bookCharacters } from '$lib/stores/bookCharacters';
   import { defaultColors } from '$lib/theme/colors';
   import ColorPicker from '$lib/components/common/ColorPicker.svelte';
@@ -65,21 +65,21 @@
     const tone = normalizeGenderTone(bookChar?.gender ?? chapterChar?.gender ?? null);
 
     if (tone === 'male') {
-      return 'linear-gradient(90deg, rgba(96, 165, 250, 0.32) 0%, rgba(255, 255, 255, 0.96) 78%)';
+      return 'linear-gradient(90deg, rgba(168, 218, 220, 0.30) 0%, var(--app-surface-raised) 78%)';
     }
 
     if (tone === 'female') {
-      return 'linear-gradient(90deg, rgba(244, 114, 182, 0.30) 0%, rgba(255, 255, 255, 0.96) 78%)';
+      return 'linear-gradient(90deg, rgba(255, 193, 204, 0.30) 0%, var(--app-surface-raised) 78%)';
     }
 
-    return 'linear-gradient(90deg, rgba(148, 163, 184, 0.24) 0%, rgba(255, 255, 255, 0.96) 78%)';
+    return 'linear-gradient(90deg, rgba(179, 156, 208, 0.22) 0%, var(--app-surface-raised) 78%)';
   }
 </script>
 
 <style>
   .character-row {
-    border: 1px solid rgba(226, 232, 240, 0.92);
-    background: var(--gender-gradient, linear-gradient(90deg, #ffffff 0%, #ffffff 100%));
+    border: 1px solid var(--app-border-subtle);
+    background: var(--gender-gradient, var(--app-surface-raised));
     padding: 8px;
     border-radius: 6px;
     display: flex;
@@ -93,19 +93,19 @@
   }
 
   .character-row:hover {
-    border-color: rgba(148, 163, 184, 0.58);
-    box-shadow: 0 8px 18px rgba(148, 163, 184, 0.12);
+    border-color: var(--app-border-strong);
+    box-shadow: var(--app-shadow-sm);
   }
 
   .line-count-badge {
     font-size: 12px;
-    color: #222;
+    color: var(--app-text);
     padding: 2px 8px;
     border-radius: 10px;
     white-space: nowrap;
     flex-shrink: 0;
     cursor: pointer;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--app-border-subtle);
     min-width: 28px;
     text-align: center;
   }
@@ -117,7 +117,7 @@
   .name-input {
     flex: 1;
     padding: 2px 4px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--app-border);
     border-radius: 4px;
     font-size: 14px;
   }
@@ -149,7 +149,7 @@
   }
 
   .icon-btn:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: var(--app-surface-hover);
   }
 
   .apply-btn {
@@ -236,7 +236,7 @@
           class="line-count-badge" 
           title="Change color" 
           on:click={() => onToggleColor(item.origIndex)} 
-          style={`background:${rgbaToOpaqueHex(getCurrentColor(item.character.name), DISPLAY_ALPHA)};`}>
+           style={`background:${hexToRgba(getCurrentColor(item.character.name), 0.58)};`}>
           {#if lineCounts.has(item.character.name)}
             {lineCounts.get(item.character.name)}
           {:else}

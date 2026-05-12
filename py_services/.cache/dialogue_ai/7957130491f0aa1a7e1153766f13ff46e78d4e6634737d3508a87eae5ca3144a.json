@@ -1,0 +1,324 @@
+{
+  "cacheKey": "7957130491f0aa1a7e1153766f13ff46e78d4e6634737d3508a87eae5ca3144a",
+  "createdAt": "2026-05-11T21:22:23.293483+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "unknown",
+    "characterName": "Unknown",
+    "confidence": 0.9,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "consistent_paragraph_speaker"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "beastkin",
+        "characterName": "Beastkin",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "beastkin"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Godqueen",
+          "Viper"
+        ],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "artemis",
+          "godqueen",
+          "viper"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen",
+          "Viper"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "beastkin",
+        "name": "Beastkin",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "the man huffed as he looked at his daughter.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "But if you want to pay me back...",
+      "lastSentence": "But if you want to pay me back...",
+      "mentionedEntities": [],
+      "quoteIndex": 1,
+      "quoteText": "But if you want to pay me back...",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "alignment": {
+        "confidence": 1.0,
+        "isSpanFallback": false,
+        "method": "quote_unit",
+        "paragraphIndex": 52,
+        "spanDistance": 0.0,
+        "spanParagraphIndex": 52
+      },
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "The Malefic Viper",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.524,
+        "misattributionRisk": 0.1568,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Beastkin",
+        "sourceCandidates": [
+          "Beastkin",
+          "The Malefic Viper"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.98,
+          "name": "Beastkin",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Artemis",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "beastkin",
+      "currentCharacterName": "Beastkin",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 109,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "But if you want to pay me back..."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 107,
+          "text": "You’d better appreciate it,"
+        },
+        {
+          "characterId": "beastkin",
+          "characterName": "Beastkin",
+          "isReturning": true,
+          "lineId": 109,
+          "text": "But if you want to pay me back..."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "You’d better appreciate it,",
+          "lastSentence": "You’d better appreciate it,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "You’d better appreciate it,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "the man huffed as he looked at his daughter.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "But if you want to pay me back...",
+          "lastSentence": "But if you want to pay me back...",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "But if you want to pay me back...",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“You’d better appreciate it,” the man huffed as he looked at his daughter. “But if you want to pay me back...”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 52
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "beastkin",
+        "characterName": "Beastkin",
+        "lineId": 102,
+        "paragraphIndex": 49,
+        "relativeIndex": -4,
+        "text": "I guess that still makes you young, so I’m not going to say it’s hopeless, but it definitely won’t be easy."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 104,
+        "paragraphIndex": 50,
+        "relativeIndex": -3,
+        "text": "Look, I can put in a good word with the rest of the Golden Road Emporium, and if you do us some favors, perhaps someone can find a good teacher or something."
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 105,
+        "paragraphIndex": 51,
+        "relativeIndex": -2,
+        "text": "That would be much appreciated,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 107,
+        "paragraphIndex": 52,
+        "relativeIndex": -1,
+        "text": "You’d better appreciate it,"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 110,
+        "paragraphIndex": 53,
+        "relativeIndex": 1,
+        "text": "I understand,"
+      },
+      {
+        "characterId": "beastkin",
+        "characterName": "Beastkin",
+        "lineId": 112,
+        "paragraphIndex": 54,
+        "relativeIndex": 2,
+        "text": "Oh well, I'd better get back to work; we’re not entirely ready yet,"
+      }
+    ],
+    "sceneEntities": [],
+    "sceneRoster": {
+      "paragraphWindow": 6,
+      "presentCharacterIds": [
+        "unknown",
+        "beastkin",
+        "artemis"
+      ],
+      "presentCharacters": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown"
+        },
+        {
+          "characterId": "beastkin",
+          "characterName": "Beastkin"
+        },
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis"
+        }
+      ]
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 109, \"text\": \"But if you want to pay me back...\", \"currentCharacterId\": \"beastkin\", \"currentCharacterName\": \"Beastkin\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Beastkin\", \"sourceCandidates\": [\"Beastkin\", \"The Malefic Viper\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.524, \"misattributionRisk\": 0.1568, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Malefic Viper\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Beastkin\", \"confidence\": 0.98, \"reasons\": null}, {\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true, \"alignment\": {\"paragraphIndex\": 52, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 52, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 52, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“You’d better appreciate it,” the man huffed as he looked at his daughter. “But if you want to pay me back...”\", \"currentParagraphDialogue\": [{\"lineId\": 107, \"text\": \"You’d better appreciate it,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 109, \"text\": \"But if you want to pay me back...\", \"characterId\": \"beastkin\", \"characterName\": \"Beastkin\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You’d better appreciate it,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You’d better appreciate it,\", \"lastSentence\": \"You’d better appreciate it,\"}, {\"quoteIndex\": 1, \"quoteText\": \"But if you want to pay me back...\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"the man huffed as he looked at his daughter.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"But if you want to pay me back...\", \"lastSentence\": \"But if you want to pay me back...\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"But if you want to pay me back...\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"the man huffed as he looked at his daughter.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"But if you want to pay me back...\", \"lastSentence\": \"But if you want to pay me back...\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"unknown\", \"beastkin\", \"artemis\"], \"presentCharacters\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}, {\"characterId\": \"beastkin\", \"characterName\": \"Beastkin\"}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"beastkin\", \"characterName\": \"Beastkin\", \"aliases\": [], \"roleLabels\": [\"beastkin\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [\"Godqueen\", \"Viper\"], \"roleLabels\": [\"artemis\", \"godqueen\", \"viper\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 102, \"paragraphIndex\": 49, \"characterId\": \"beastkin\", \"characterName\": \"Beastkin\", \"text\": \"I guess that still makes you young, so I’m not going to say it’s hopeless, but it definitely won’t be easy.\"}, {\"relativeIndex\": -3, \"lineId\": 104, \"paragraphIndex\": 50, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Look, I can put in a good word with the rest of the Golden Road Emporium, and if you do us some favors, perhaps someone can find a good teacher or something.\"}, {\"relativeIndex\": -2, \"lineId\": 105, \"paragraphIndex\": 51, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"That would be much appreciated,\"}, {\"relativeIndex\": -1, \"lineId\": 107, \"paragraphIndex\": 52, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"You’d better appreciate it,\"}, {\"relativeIndex\": 1, \"lineId\": 110, \"paragraphIndex\": 53, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"I understand,\"}, {\"relativeIndex\": 2, \"lineId\": 112, \"paragraphIndex\": 54, \"characterId\": \"beastkin\", \"characterName\": \"Beastkin\", \"text\": \"Oh well, I'd better get back to work; we’re not entirely ready yet,\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\", \"Viper\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"beastkin\", \"name\": \"Beastkin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"unknown\",\n  \"characterName\": \"Unknown\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"consistent_paragraph_speaker\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

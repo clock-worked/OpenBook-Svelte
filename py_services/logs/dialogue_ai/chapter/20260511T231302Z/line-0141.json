@@ -1,0 +1,423 @@
+{
+  "alignment": {
+    "confidence": 1.0,
+    "isSpanFallback": false,
+    "method": "quote_unit",
+    "paragraphIndex": 74,
+    "spanDistance": 0.0,
+    "spanParagraphIndex": 74
+  },
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "fd1e1e9b53cc546ea3fb11e73b8519c86c69ced8430119d94e9f36dde2b6c62e",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\fd1e1e9b53cc546ea3fb11e73b8519c86c69ced8430119d94e9f36dde2b6c62e.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "casper",
+        "characterName": "Casper",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_he_cue",
+          "recent_character_action",
+          "dialogue_flow_continuity"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "casper",
+            "characterName": "Casper",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "casper"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God",
+              "Unknown Human (Male)"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist",
+              "lord thayne",
+              "thayne",
+              "void god",
+              "unknown human male"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God",
+              "Unknown Human (Male)"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "casper",
+            "name": "Casper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "name": "Minaga",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "he said with a voice full of sincerity.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "My lips are totally sealed,",
+          "lastSentence": "My lips are totally sealed,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "My lips are totally sealed,",
+          "speakerNameMatch": null,
+          "speakerSurface": "he"
+        },
+        "line": {
+          "alignment": {
+            "confidence": 1.0,
+            "isSpanFallback": false,
+            "method": "quote_unit",
+            "paragraphIndex": 74,
+            "spanDistance": 0.0,
+            "spanParagraphIndex": 74
+          },
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": "male",
+              "contextGenderCue": "he said",
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": true,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36,
+            "misattributionRisk": 0.2872,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Casper",
+            "sourceCandidates": [
+              "Casper",
+              "Minaga"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.864
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.864,
+              "name": "Casper",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.504,
+              "name": "Minaga",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "casper",
+          "currentCharacterName": "Casper",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 141,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "My lips are totally sealed,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "casper",
+              "characterName": "Casper",
+              "isReturning": false,
+              "lineId": 141,
+              "text": "My lips are totally sealed,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "he said with a voice full of sincerity.",
+              "cueVerb": "said",
+              "cueVerbType": "speech",
+              "firstSentence": "My lips are totally sealed,",
+              "lastSentence": "My lips are totally sealed,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "My lips are totally sealed,",
+              "speakerNameMatch": null,
+              "speakerSurface": "he"
+            }
+          ],
+          "currentParagraphText": "“My lips are totally sealed,” he said with a voice full of sincerity.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 143,
+              "text": "See, that doesn’t actually say much, seeing as you can just have some other guy who also happens to be called Minaga spill the news while you argue he had nothing to do with you,"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake sighed, shaking his head.",
+              "cueVerb": "sighed",
+              "cueVerbType": "speech",
+              "firstSentence": "See, that doesn’t actually say much, seeing as you can just have some other guy who also happens to be called Minaga spill the news while you argue he had nothing to do with you,",
+              "lastSentence": "See, that doesn’t actually say much, seeing as you can just have some other guy who also happens to be called Minaga spill the news while you argue he had nothing to do with you,",
+              "mentionedEntities": [
+                "Minaga",
+                "Minaga"
+              ],
+              "quoteIndex": 0,
+              "quoteText": "See, that doesn’t actually say much, seeing as you can just have some other guy who also happens to be called Minaga spill the news while you argue he had nothing to do with you,",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "nextParagraphText": "“See, that doesn’t actually say much, seeing as you can just have some other guy who also happens to be called Minaga spill the news while you argue he had nothing to do with you,” Jake sighed, shaking his head.",
+          "paragraphIndex": 74,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "Casper nodded, seemingly understanding. As for Minaga…"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 131,
+            "paragraphIndex": 68,
+            "relativeIndex": -4,
+            "text": "Yeah, yeah, that can wait,"
+          },
+          {
+            "characterId": "casper",
+            "characterName": "Casper",
+            "lineId": 133,
+            "paragraphIndex": 69,
+            "relativeIndex": -3,
+            "text": "I concur,"
+          },
+          {
+            "characterId": "casper",
+            "characterName": "Casper",
+            "lineId": 135,
+            "paragraphIndex": 69,
+            "relativeIndex": -2,
+            "text": "Wait, just to be clear, when you say girlfriend, you don’t just mean that you made a friend who’s female, right? It’s girlfriend as in girlfriend?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 138,
+            "paragraphIndex": 72,
+            "relativeIndex": -1,
+            "text": "I want to be clear, this is to be kept under wraps, and you two aren’t mentioning anything to anyone, alright?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 143,
+            "paragraphIndex": 75,
+            "relativeIndex": 1,
+            "text": "See, that doesn’t actually say much, seeing as you can just have some other guy who also happens to be called Minaga spill the news while you argue he had nothing to do with you,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 146,
+            "paragraphIndex": 76,
+            "relativeIndex": 2,
+            "text": "Alright, alright… I promise on behalf of myself and all the other mes in the whole vast multiverse and beyond, both past, present, and future versions in all possible realities. Should I lie or go against the spirit of this promise, may I be cursed to only ever be able to design underwater dungeons for the rest of eternity."
+          }
+        ],
+        "sceneEntities": [],
+        "sceneRoster": {
+          "paragraphWindow": 6,
+          "presentCharacterIds": [
+            "unknown",
+            "casper",
+            "jake",
+            "minaga"
+          ],
+          "presentCharacters": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown"
+            },
+            {
+              "characterId": "casper",
+              "characterName": "Casper"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake"
+            },
+            {
+              "characterId": "minaga",
+              "characterName": "Minaga"
+            }
+          ]
+        }
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 141, \"text\": \"My lips are totally sealed,\", \"currentCharacterId\": \"casper\", \"currentCharacterName\": \"Casper\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Casper\", \"sourceCandidates\": [\"Casper\", \"Minaga\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.864, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.2872, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": \"male\", \"contextGenderCue\": \"he said\"}}, \"candidates\": [{\"characterId\": null, \"name\": \"Casper\", \"confidence\": 0.864, \"reasons\": null}, {\"characterId\": null, \"name\": \"Minaga\", \"confidence\": 0.504, \"reasons\": null}], \"isReturning\": false, \"alignment\": {\"paragraphIndex\": 74, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 74, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 74, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“My lips are totally sealed,” he said with a voice full of sincerity.\", \"currentParagraphDialogue\": [{\"lineId\": 141, \"text\": \"My lips are totally sealed,\", \"characterId\": \"casper\", \"characterName\": \"Casper\", \"isReturning\": false}], \"previousParagraphText\": \"Casper nodded, seemingly understanding. As for Minaga…\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“See, that doesn’t actually say much, seeing as you can just have some other guy who also happens to be called Minaga spill the news while you argue he had nothing to do with you,” Jake sighed, shaking his head.\", \"nextParagraphDialogue\": [{\"lineId\": 143, \"text\": \"See, that doesn’t actually say much, seeing as you can just have some other guy who also happens to be called Minaga spill the news while you argue he had nothing to do with you,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"My lips are totally sealed,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"he said with a voice full of sincerity.\", \"speakerSurface\": \"he\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"My lips are totally sealed,\", \"lastSentence\": \"My lips are totally sealed,\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"See, that doesn’t actually say much, seeing as you can just have some other guy who also happens to be called Minaga spill the news while you argue he had nothing to do with you,\", \"cuePosition\": \"after\", \"cueVerb\": \"sighed\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake sighed, shaking his head.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [\"Minaga\", \"Minaga\"], \"addressedEntity\": null, \"firstSentence\": \"See, that doesn’t actually say much, seeing as you can just have some other guy who also happens to be called Minaga spill the news while you argue he had nothing to do with you,\", \"lastSentence\": \"See, that doesn’t actually say much, seeing as you can just have some other guy who also happens to be called Minaga spill the news while you argue he had nothing to do with you,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"My lips are totally sealed,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"he said with a voice full of sincerity.\", \"speakerSurface\": \"he\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"My lips are totally sealed,\", \"lastSentence\": \"My lips are totally sealed,\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"unknown\", \"casper\", \"jake\", \"minaga\"], \"presentCharacters\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}, {\"characterId\": \"casper\", \"characterName\": \"Casper\"}, {\"characterId\": \"jake\", \"characterName\": \"Jake\"}, {\"characterId\": \"minaga\", \"characterName\": \"Minaga\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"casper\", \"characterName\": \"Casper\", \"aliases\": [], \"roleLabels\": [\"casper\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\", \"void god\", \"unknown human male\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 131, \"paragraphIndex\": 68, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Yeah, yeah, that can wait,\"}, {\"relativeIndex\": -3, \"lineId\": 133, \"paragraphIndex\": 69, \"characterId\": \"casper\", \"characterName\": \"Casper\", \"text\": \"I concur,\"}, {\"relativeIndex\": -2, \"lineId\": 135, \"paragraphIndex\": 69, \"characterId\": \"casper\", \"characterName\": \"Casper\", \"text\": \"Wait, just to be clear, when you say girlfriend, you don’t just mean that you made a friend who’s female, right? It’s girlfriend as in girlfriend?\"}, {\"relativeIndex\": -1, \"lineId\": 138, \"paragraphIndex\": 72, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I want to be clear, this is to be kept under wraps, and you two aren’t mentioning anything to anyone, alright?\"}, {\"relativeIndex\": 1, \"lineId\": 143, \"paragraphIndex\": 75, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"See, that doesn’t actually say much, seeing as you can just have some other guy who also happens to be called Minaga spill the news while you argue he had nothing to do with you,\"}, {\"relativeIndex\": 2, \"lineId\": 146, \"paragraphIndex\": 76, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Alright, alright… I promise on behalf of myself and all the other mes in the whole vast multiverse and beyond, both past, present, and future versions in all possible realities. Should I lie or go against the spirit of this promise, may I be cursed to only ever be able to design underwater dungeons for the rest of eternity.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"casper\", \"name\": \"Casper\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"casper\",\n  \"characterName\": \"Casper\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_he_cue\",\n    \"recent_character_action\",\n    \"dialogue_flow_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0186 - Chapter 1243 - Too Easily Distracted/chapter.txt",
+  "currentCharacterId": "casper",
+  "currentCharacterName": "Casper",
+  "currentParagraphText": "“My lips are totally sealed,” he said with a voice full of sincerity.",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "casper",
+    "currentCharacterName": "Casper",
+    "currentParagraphText": "“My lips are totally sealed,” he said with a voice full of sincerity.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 141,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“See, that doesn’t actually say much, seeing as you can just have some other guy who also happens to be called Minaga spill the news while you argue he had nothing to do with you,” Jake sighed, shaking his head.",
+    "paragraphIndex": 74,
+    "previousParagraphText": "Casper nodded, seemingly understanding. As for Minaga…",
+    "reasonCodes": [
+      "explicit_he_cue",
+      "recent_character_action",
+      "dialogue_flow_continuity"
+    ],
+    "suggestedCharacterId": "casper",
+    "suggestedCharacterName": "Casper",
+    "toolTrace": []
+  },
+  "lineId": 141,
+  "nextParagraphText": "“See, that doesn’t actually say much, seeing as you can just have some other guy who also happens to be called Minaga spill the news while you argue he had nothing to do with you,” Jake sighed, shaking his head.",
+  "paragraphIndex": 74,
+  "previousParagraphText": "Casper nodded, seemingly understanding. As for Minaga…",
+  "sceneRoster": {
+    "paragraphWindow": 6,
+    "presentCharacterIds": [
+      "unknown",
+      "casper",
+      "jake",
+      "minaga"
+    ],
+    "presentCharacters": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown"
+      },
+      {
+        "characterId": "casper",
+        "characterName": "Casper"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake"
+      },
+      {
+        "characterId": "minaga",
+        "characterName": "Minaga"
+      }
+    ]
+  }
+}

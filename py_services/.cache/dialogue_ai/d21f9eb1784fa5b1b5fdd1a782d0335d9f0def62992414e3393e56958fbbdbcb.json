@@ -1,0 +1,321 @@
+{
+  "cacheKey": "d21f9eb1784fa5b1b5fdd1a782d0335d9f0def62992414e3393e56958fbbdbcb",
+  "createdAt": "2026-05-09T02:46:59.129224+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "narration_cue_before_dialogue",
+      "dialogue_response_context"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Forest King",
+          "Fallen King",
+          "forest-king",
+          "forest-king-2"
+        ],
+        "characterId": "king",
+        "name": "King",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown-god-female",
+        "name": "Unknown God (Female)",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "chosen",
+        "name": "Chosen",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Attendant",
+          "natures-attendant",
+          "natures-attendant-2",
+          "Nature Attendant",
+          "Life"
+        ],
+        "characterId": "natures-attendant",
+        "name": "Nature's Attendant",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Jake kept looking at the marble, feeling his connection to it remain as he also detected the faint changes within.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Aren’t you curious about what that is?",
+      "lastSentence": "Aren’t you curious about what that is?",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Aren’t you curious about what that is?",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": true,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Nature's Attendant",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.18,
+        "misattributionRisk": 0.5007999999999999,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Nature's Attendant",
+        "sourceCandidates": [
+          "Nature's Attendant",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.636
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.636,
+          "name": "Nature's Attendant",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 66,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Aren’t you curious about what that is?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 66,
+          "text": "Aren’t you curious about what that is?"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake kept looking at the marble, feeling his connection to it remain as he also detected the faint changes within.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Aren’t you curious about what that is?",
+          "lastSentence": "Aren’t you curious about what that is?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Aren’t you curious about what that is?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Jake kept looking at the marble, feeling his connection to it remain as he also detected the faint changes within. “Aren’t you curious about what that is?”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 67,
+          "text": "Not really,"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the god said dismissively.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Not really,",
+          "lastSentence": "Not really,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Not really,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the god"
+        }
+      ],
+      "nextParagraphText": "“Not really,” the god said dismissively.",
+      "paragraphIndex": 46,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 64,
+          "text": "Now, enough playing around. There is a limit to my patience, and you have just about reached it."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Now, enough playing around.",
+          "lastSentence": "There is a limit to my patience, and you have just about reached it.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Now, enough playing around. There is a limit to my patience, and you have just about reached it.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "previousParagraphText": "“Now, enough playing around. There is a limit to my patience, and you have just about reached it.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "nature's_attendant",
+        "characterName": "Nature'S Attendant",
+        "lineId": 58,
+        "paragraphIndex": 41,
+        "relativeIndex": -4,
+        "text": "I will admit, I would have been disappointed if you hadn’t tried to do anything,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 60,
+        "paragraphIndex": 42,
+        "relativeIndex": -3,
+        "text": "What is this? Some hidden treasure? Whatever it is-"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 62,
+        "paragraphIndex": 44,
+        "relativeIndex": -2,
+        "text": "A treasure of the void? Whatever it is, I think it’s broken,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 64,
+        "paragraphIndex": 45,
+        "relativeIndex": -1,
+        "text": "Now, enough playing around. There is a limit to my patience, and you have just about reached it."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 67,
+        "paragraphIndex": 47,
+        "relativeIndex": 1,
+        "text": "Not really,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 69,
+        "paragraphIndex": 48,
+        "relativeIndex": 2,
+        "text": "Your attempt to buy time is utterly meaningless."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 66, \"text\": \"Aren’t you curious about what that is?\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Nature's Attendant\", \"sourceCandidates\": [\"Nature's Attendant\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.636, \"marginToSecond\": 0.18, \"misattributionRisk\": 0.5007999999999999, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Nature's Attendant\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Nature's Attendant\", \"confidence\": 0.636, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 46, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Jake kept looking at the marble, feeling his connection to it remain as he also detected the faint changes within. “Aren’t you curious about what that is?”\", \"currentParagraphDialogue\": [{\"lineId\": 66, \"text\": \"Aren’t you curious about what that is?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“Now, enough playing around. There is a limit to my patience, and you have just about reached it.”\", \"previousParagraphDialogue\": [{\"lineId\": 64, \"text\": \"Now, enough playing around. There is a limit to my patience, and you have just about reached it.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"nextParagraphText\": \"“Not really,” the god said dismissively.\", \"nextParagraphDialogue\": [{\"lineId\": 67, \"text\": \"Not really,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Aren’t you curious about what that is?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake kept looking at the marble, feeling his connection to it remain as he also detected the faint changes within.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Aren’t you curious about what that is?\", \"lastSentence\": \"Aren’t you curious about what that is?\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Now, enough playing around. There is a limit to my patience, and you have just about reached it.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Now, enough playing around.\", \"lastSentence\": \"There is a limit to my patience, and you have just about reached it.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Not really,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the god said dismissively.\", \"speakerSurface\": \"the god\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Not really,\", \"lastSentence\": \"Not really,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Aren’t you curious about what that is?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake kept looking at the marble, feeling his connection to it remain as he also detected the faint changes within.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Aren’t you curious about what that is?\", \"lastSentence\": \"Aren’t you curious about what that is?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 58, \"paragraphIndex\": 41, \"characterId\": \"nature's_attendant\", \"characterName\": \"Nature'S Attendant\", \"text\": \"I will admit, I would have been disappointed if you hadn’t tried to do anything,\"}, {\"relativeIndex\": -3, \"lineId\": 60, \"paragraphIndex\": 42, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"What is this? Some hidden treasure? Whatever it is-\"}, {\"relativeIndex\": -2, \"lineId\": 62, \"paragraphIndex\": 44, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"A treasure of the void? Whatever it is, I think it’s broken,\"}, {\"relativeIndex\": -1, \"lineId\": 64, \"paragraphIndex\": 45, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Now, enough playing around. There is a limit to my patience, and you have just about reached it.\"}, {\"relativeIndex\": 1, \"lineId\": 67, \"paragraphIndex\": 47, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Not really,\"}, {\"relativeIndex\": 2, \"lineId\": 69, \"paragraphIndex\": 48, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Your attempt to buy time is utterly meaningless.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"king\", \"name\": \"King\", \"aliases\": [\"Forest King\", \"Fallen King\", \"forest-king\", \"forest-king-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown-god-female\", \"name\": \"Unknown God (Female)\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"chosen\", \"name\": \"Chosen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"natures-attendant\", \"name\": \"Nature's Attendant\", \"aliases\": [\"Attendant\", \"natures-attendant\", \"natures-attendant-2\", \"Nature Attendant\", \"Life\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"narration_cue_before_dialogue\",\n    \"dialogue_response_context\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

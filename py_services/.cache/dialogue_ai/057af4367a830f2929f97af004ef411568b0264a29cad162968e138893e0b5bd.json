@@ -1,0 +1,144 @@
+{
+  "cacheKey": "057af4367a830f2929f97af004ef411568b0264a29cad162968e138893e0b5bd",
+  "createdAt": "2026-04-01T04:27:44.615813+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "iludar",
+    "characterName": "Iludar",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "context_contradiction",
+      "pronoun_reference",
+      "next_paragraph_identification"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob"
+      },
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "name": "Bertram"
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper"
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.30399999999999994,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Kindroth",
+        "sourceCandidates": [
+          "Kindroth",
+          "Iludar"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "kindroth",
+          "confidence": 0.98,
+          "name": "Kindroth",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "speech_verb",
+            "context_gender_match"
+          ]
+        },
+        {
+          "characterId": "iludar",
+          "confidence": 0.676,
+          "name": "Iludar",
+          "reasons": [
+            "speech_verb",
+            "context_gender_match"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "kindroth",
+      "currentCharacterName": "Kindroth",
+      "id": 82,
+      "isReturning": false,
+      "text": "Good,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": false,
+          "lineId": 82,
+          "text": "Good,"
+        }
+      ],
+      "currentParagraphText": "“Good,” he nodded before quickly checking in with the ranger team he’d sent to follow Kindroth. They were the best stealth experts he had, and alongside some of the few spies and scouts he still had left on Earth, he confirmed that the elf was doing his job. He’d arrived in Haven and was now to drag out the witch.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphText": "This is our one chance, he told himself for the umpteenth time. In truth, Iludar still wasn’t sure why they wanted the witch who served the Malefic’s Chosen dead that badly. Sure, killing her would create chaos and trouble for the Chosen, but it wouldn’t cause any major damage in the long term. He could always just get another manager for his planet from the Order once the universe opened up.",
+      "paragraphIndex": 52,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": false,
+          "lineId": 80,
+          "text": "It’ll be done within ten minutes,"
+        }
+      ],
+      "previousParagraphText": "“It’ll be done within ten minutes,” the mage confirmed, much of the work having already been done beforehand as they were effectively just transcribing a not overly complicated sealing formation."
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 82, \"text\": \"Good,\", \"currentCharacterId\": \"kindroth\", \"currentCharacterName\": \"Kindroth\", \"currentCharacterAliases\": [], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Kindroth\", \"sourceCandidates\": [\"Kindroth\", \"Iludar\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.30399999999999994, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\", \"context_gender_match\"]}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"confidence\": 0.676, \"reasons\": [\"speech_verb\", \"context_gender_match\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 52, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Good,” he nodded before quickly checking in with the ranger team he’d sent to follow Kindroth. They were the best stealth experts he had, and alongside some of the few spies and scouts he still had left on Earth, he confirmed that the elf was doing his job. He’d arrived in Haven and was now to drag out the witch.\", \"currentParagraphDialogue\": [{\"lineId\": 82, \"text\": \"Good,\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": false}], \"previousParagraphText\": \"“It’ll be done within ten minutes,” the mage confirmed, much of the work having already been done beforehand as they were effectively just transcribing a not overly complicated sealing formation.\", \"previousParagraphDialogue\": [{\"lineId\": 80, \"text\": \"It’ll be done within ten minutes,\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": false}], \"nextParagraphText\": \"This is our one chance, he told himself for the umpteenth time. In truth, Iludar still wasn’t sure why they wanted the witch who served the Malefic’s Chosen dead that badly. Sure, killing her would create chaos and trouble for the Chosen, but it wouldn’t cause any major damage in the long term. He could always just get another manager for his planet from the Order once the universe opened up.\", \"nextParagraphDialogue\": []}, \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": []}, {\"characterId\": \"bertram\", \"name\": \"Bertram\", \"aliases\": []}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"]}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"iludar\",\n  \"characterName\": \"Iludar\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"context_contradiction\",\n    \"pronoun_reference\",\n    \"next_paragraph_identification\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

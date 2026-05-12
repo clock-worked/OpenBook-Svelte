@@ -9,7 +9,7 @@
     chapters,
   } from "$lib/stores/bookState";
   import { conflictCursor, toolMode } from "$lib/stores/selection";
-  import { estimatedCostPerChar, defaultNarrator } from "$lib/stores/settings";
+  import { appTheme, defaultNarrator } from "$lib/stores/settings";
   import {
     getScriptPath,
     readScript,
@@ -27,6 +27,8 @@
     Merge,
     PenSquare,
     Music,
+    Sun,
+    Moon,
   } from "lucide-svelte";
   import {
     bookCharacters,
@@ -240,6 +242,10 @@
       folderBusy.set(false);
     }
   }
+
+  function toggleTheme() {
+    appTheme.set($appTheme === "dark" ? "light" : "dark");
+  }
 </script>
 
 <div class="toolbar">
@@ -271,7 +277,7 @@
       <FolderOpen size={18} class={$folderBusy ? "spinning" : ""} />
     </button>
   </div>
-  {#if !$page.route.id?.includes("book")}
+  {#if $page.route.id?.includes("chapter")}
     <div class="conflict-controls">
       <button
         class="mode-btn"
@@ -378,13 +384,22 @@
     </div>
   {/if}
   <div class="toolbar-slot"><slot /></div>
-  <span class="cost-text"
-    >Est. cost: ${(
-      $conflicts *
-      80 /* approx chars/line */ *
-      $estimatedCostPerChar
-    ).toFixed(2)}</span
-  >
+  <div class="theme-switch-wrap" aria-label="Theme">
+    <Sun size={16} aria-hidden="true" />
+    <button
+      class="theme-switch"
+      class:dark={$appTheme === "dark"}
+      type="button"
+      role="switch"
+      aria-checked={$appTheme === "dark"}
+      aria-label={`Switch to ${$appTheme === "dark" ? "light" : "dark"} theme`}
+      title={`Switch to ${$appTheme === "dark" ? "light" : "dark"} theme`}
+      on:click={toggleTheme}
+    >
+      <span class="theme-thumb"></span>
+    </button>
+    <Moon size={16} aria-hidden="true" />
+  </div>
 </div>
 
 {#if $lastError}
@@ -406,13 +421,14 @@
     position: sticky;
     top: 0;
     z-index: 10;
-    background: #ffffff;
-    border-bottom: 1px solid #e0e0e0;
+    background: var(--app-surface);
+    border-bottom: 1px solid var(--app-border);
     padding: 12px 16px;
     display: flex;
     gap: 16px;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--app-shadow-sm);
+    color: var(--app-text);
   }
 
   .nav-controls {
@@ -439,17 +455,17 @@
     background: transparent;
     border-radius: 6px;
     cursor: pointer;
-    color: #5f6368;
+    color: var(--app-text-muted);
     transition: all 0.2s ease;
   }
 
   .folder-btn:hover:not(:disabled) {
-    background: #f1f3f4;
-    color: #1a73e8;
+    background: var(--app-surface-hover);
+    color: var(--app-primary-text);
   }
 
   .folder-btn:active:not(:disabled) {
-    background: #e8eaed;
+    background: var(--app-surface-active);
     transform: scale(0.95);
   }
 
@@ -467,17 +483,17 @@
     background: transparent;
     border-radius: 6px;
     cursor: pointer;
-    color: #5f6368;
+    color: var(--app-text-muted);
     transition: all 0.2s ease;
   }
 
   .reload-btn:hover:not(:disabled) {
-    background: #f1f3f4;
-    color: #1a73e8;
+    background: var(--app-surface-hover);
+    color: var(--app-primary-text);
   }
 
   .reload-btn:active:not(:disabled) {
-    background: #e8eaed;
+    background: var(--app-surface-active);
     transform: scale(0.95);
   }
 
@@ -495,22 +511,22 @@
     align-items: center;
     justify-content: center;
     padding: 6px;
-    border: 1px solid #dadce0;
-    background: #ffffff;
+    border: 1px solid var(--app-border);
+    background: var(--app-surface-raised);
     border-radius: 6px;
     cursor: pointer;
-    color: #5f6368;
+    color: var(--app-text-muted);
     transition: all 0.2s ease;
   }
 
-  .icon-btn:hover {
-    background: #f8f9fa;
-    border-color: #1a73e8;
-    color: #1a73e8;
+  .icon-btn:hover:not(:disabled) {
+    background: var(--app-surface-hover);
+    border-color: var(--app-primary);
+    color: var(--app-primary-text);
   }
 
-  .icon-btn:active {
-    background: #e8eaed;
+  .icon-btn:active:not(:disabled) {
+    background: var(--app-surface-active);
     transform: scale(0.95);
   }
 
@@ -521,27 +537,61 @@
 
   .conflict-text {
     font-style: italic;
-    color: #3c4043;
+    color: var(--app-text);
     font-size: 14px;
     font-weight: 500;
   }
 
-  .cost-text {
+  .theme-switch-wrap {
     margin-left: auto;
-    font-style: italic;
-    color: #5f6368;
-    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--app-text-muted);
+  }
+
+  .theme-switch {
+    width: 44px;
+    height: 24px;
+    padding: 2px;
+    border: 1px solid var(--app-border);
+    border-radius: 999px;
+    background: var(--app-surface-subtle);
+    cursor: pointer;
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .theme-switch:hover {
+    background: var(--app-surface-hover);
+    border-color: var(--app-primary);
+  }
+
+  .theme-thumb {
+    display: block;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: var(--app-primary);
+    box-shadow: var(--app-shadow-sm);
+    transform: translateX(0);
+    transition: transform 0.2s ease;
+  }
+
+  .theme-switch.dark .theme-thumb {
+    transform: translateX(18px);
   }
 
   .error-box {
-    background: #fef7f7;
-    color: #b00020;
-    border: 1px solid #f5c2c7;
-    border-left: 4px solid #b00020;
+    background: var(--app-danger-soft);
+    color: var(--app-danger);
+    border: 1px solid var(--app-danger);
+    border-left: 4px solid var(--app-danger);
     margin: 12px 16px;
     padding: 12px;
     border-radius: 6px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--app-shadow-sm);
   }
 
   .error-box strong {
@@ -550,28 +600,28 @@
   }
 
   .status-box {
-    background: #f6f8fb;
-    color: #1f2937;
-    border: 1px solid #d6dbe5;
-    border-left: 4px solid #64748b;
+    background: var(--app-surface-raised);
+    color: var(--app-text);
+    border: 1px solid var(--app-border);
+    border-left: 4px solid var(--app-border-strong);
     margin: 12px 16px;
     padding: 12px;
     border-radius: 6px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--app-shadow-sm);
   }
 
   .status-box.success {
-    background: #f0fdf4;
-    border-color: #c4f0cf;
-    border-left-color: #15803d;
-    color: #166534;
+    background: var(--app-success-soft);
+    border-color: var(--app-success);
+    border-left-color: var(--app-success);
+    color: var(--app-success);
   }
 
   .status-box.error {
-    background: #fef7f7;
-    border-color: #f5c2c7;
-    border-left-color: #b00020;
-    color: #b00020;
+    background: var(--app-danger-soft);
+    border-color: var(--app-danger);
+    border-left-color: var(--app-danger);
+    color: var(--app-danger);
   }
 
   .status-box strong {
@@ -586,9 +636,10 @@
   .view-tabs {
     display: flex;
     gap: 4px;
-    background: #e0e0e0;
+    background: var(--app-surface-subtle);
     padding: 4px;
     border-radius: 8px;
+    border: 1px solid var(--app-border-subtle);
   }
 
   .tab-btn {
@@ -598,20 +649,21 @@
     border-radius: 6px;
     cursor: pointer;
     font-weight: 500;
-    color: #333;
+    color: var(--app-text-muted);
     transition:
       background 0.2s ease,
       color 0.2s ease;
   }
 
-  .tab-btn:hover {
-    background: #f0f0f0;
+  .tab-btn:hover:not(.active) {
+    background: var(--app-surface-hover);
+    color: var(--app-text);
   }
 
   .tab-btn.active {
-    background: #ffffff;
-    color: #000;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background: var(--app-surface-raised);
+    color: var(--app-text);
+    box-shadow: var(--app-shadow-sm);
   }
 
   .toolbar-slot {
@@ -627,23 +679,23 @@
     background: transparent;
     border-radius: 6px;
     cursor: pointer;
-    color: #5f6368;
+    color: var(--app-text-muted);
     transition: all 0.2s ease;
   }
 
   .mode-btn:hover:not(:disabled) {
-    background: #f1f3f4;
-    color: #1a73e8;
+    background: var(--app-surface-hover);
+    color: var(--app-primary-text);
   }
 
   .mode-btn:active:not(:disabled) {
-    background: #e8eaed;
+    background: var(--app-surface-active);
     transform: scale(0.95);
   }
 
   .mode-btn.active {
-    background: #e8f0fe;
-    color: #1a73e8;
+    background: var(--app-primary-soft);
+    color: var(--app-primary-text);
   }
 
   .mode-btn:disabled {
@@ -654,7 +706,7 @@
   .divider {
     width: 1px;
     height: 24px;
-    background: #dadce0;
+    background: var(--app-border);
     margin: 0 4px;
   }
 

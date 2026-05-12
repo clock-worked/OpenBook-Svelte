@@ -1,0 +1,124 @@
+{
+  "cacheKey": "c74f0e864234a4f3094d5d93cb69aba410ed615a941d31f082c6aae5264b4519",
+  "createdAt": "2026-04-01T04:47:44.762058+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "jacob",
+    "characterName": "Jacob",
+    "confidence": 1,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "direct_attribution",
+      "paragraph_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen"
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [],
+        "characterId": "the-unique-lifeform",
+        "name": "The Unique Lifeform"
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob"
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "name": "Augur"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.98,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jacob",
+        "sourceCandidates": [
+          "Jacob"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "jacob",
+          "confidence": 0.98,
+          "name": "Jacob",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "post_quote_attribution"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "jacob",
+      "currentCharacterName": "Jacob",
+      "id": 96,
+      "isReturning": false,
+      "text": "The Andromeda Galaxy has, for all intents and purposes, been wholly taken over by the Holy Church. Even before the Prima Guardian event, it was mostly conquered using the Prima Alliance system, and after the system event, I believe the takeover will be complete,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 96,
+          "text": "The Andromeda Galaxy has, for all intents and purposes, been wholly taken over by the Holy Church. Even before the Prima Guardian event, it was mostly conquered using the Prima Alliance system, and after the system event, I believe the takeover will be complete,"
+        },
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": true,
+          "lineId": 98,
+          "text": "Some other factions do also retain a presence there, but the one officially ruling everything will be the Holy Church, of that there is no doubt."
+        }
+      ],
+      "currentParagraphText": "“The Andromeda Galaxy has, for all intents and purposes, been wholly taken over by the Holy Church. Even before the Prima Guardian event, it was mostly conquered using the Prima Alliance system, and after the system event, I believe the takeover will be complete,” Jacob explained. “Some other factions do also retain a presence there, but the one officially ruling everything will be the Holy Church, of that there is no doubt.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 45
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 96, \"text\": \"The Andromeda Galaxy has, for all intents and purposes, been wholly taken over by the Holy Church. Even before the Prima Guardian event, it was mostly conquered using the Prima Alliance system, and after the system event, I believe the takeover will be complete,\", \"currentCharacterId\": \"jacob\", \"currentCharacterName\": \"Jacob\", \"currentCharacterAliases\": [], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jacob\", \"sourceCandidates\": [\"Jacob\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.98, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"post_quote_attribution\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 45, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“The Andromeda Galaxy has, for all intents and purposes, been wholly taken over by the Holy Church. Even before the Prima Guardian event, it was mostly conquered using the Prima Alliance system, and after the system event, I believe the takeover will be complete,” Jacob explained. “Some other factions do also retain a presence there, but the one officially ruling everything will be the Holy Church, of that there is no doubt.”\", \"currentParagraphDialogue\": [{\"lineId\": 96, \"text\": \"The Andromeda Galaxy has, for all intents and purposes, been wholly taken over by the Holy Church. Even before the Prima Guardian event, it was mostly conquered using the Prima Alliance system, and after the system event, I believe the takeover will be complete,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}, {\"lineId\": 98, \"text\": \"Some other factions do also retain a presence there, but the one officially ruling everything will be the Holy Church, of that there is no doubt.\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": true}]}, \"chapterCharacters\": [{\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": []}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"the-unique-lifeform\", \"name\": \"The Unique Lifeform\", \"aliases\": []}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": []}, {\"characterId\": \"augur\", \"name\": \"Augur\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jacob\",\n  \"characterName\": \"Jacob\",\n  \"confidence\": 1,\n  \"reasonCodes\": [\n    \"direct_attribution\",\n    \"paragraph_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

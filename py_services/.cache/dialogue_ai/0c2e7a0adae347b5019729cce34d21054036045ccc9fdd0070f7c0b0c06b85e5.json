@@ -1,0 +1,298 @@
+{
+  "cacheKey": "0c2e7a0adae347b5019729cce34d21054036045ccc9fdd0070f7c0b0c06b85e5",
+  "createdAt": "2026-04-02T22:30:44.483413+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "same_paragraph_continuation"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "characterName": "Carmen",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "carmen"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "sylphie"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Unique Lifeform",
+          "The Unique Lifeform",
+          "the-unique-lifeform",
+          "the-unique-lifeform-2"
+        ],
+        "characterId": "minaga",
+        "name": "Minaga",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Jake waved off the Runemaiden.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "I will contact you if I get up to something interesting you may want to take part in.",
+      "lastSentence": "Probably off-planet exploration or something like that.",
+      "mentionedEntities": [],
+      "quoteIndex": 1,
+      "quoteText": "I will contact you if I get up to something interesting you may want to take part in. Probably off-planet exploration or something like that.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Carmen",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.524,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Carmen"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.98,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "same_paragraph_continuation"
+          ]
+        },
+        {
+          "characterId": "carmen",
+          "confidence": 0.456,
+          "name": "Carmen",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Protagonist"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 33,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "I will contact you if I get up to something interesting you may want to take part in. Probably off-planet exploration or something like that."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 31,
+          "text": "You go have fun,"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 33,
+          "text": "I will contact you if I get up to something interesting you may want to take part in. Probably off-planet exploration or something like that."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "You go have fun,",
+          "lastSentence": "You go have fun,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "You go have fun,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake waved off the Runemaiden.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I will contact you if I get up to something interesting you may want to take part in.",
+          "lastSentence": "Probably off-planet exploration or something like that.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "I will contact you if I get up to something interesting you may want to take part in. Probably off-planet exploration or something like that.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“You go have fun,” Jake waved off the Runemaiden. “I will contact you if I get up to something interesting you may want to take part in. Probably off-planet exploration or something like that.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 19
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "carmen",
+        "characterName": "Carmen",
+        "lineId": 27,
+        "paragraphIndex": 17,
+        "relativeIndex": -4,
+        "text": "See, this is why I shouldn’t be the one making laws."
+      },
+      {
+        "characterId": "carmen",
+        "characterName": "Carmen",
+        "lineId": 28,
+        "paragraphIndex": 18,
+        "relativeIndex": -3,
+        "text": "Amen to that,"
+      },
+      {
+        "characterId": "carmen",
+        "characterName": "Carmen",
+        "lineId": 30,
+        "paragraphIndex": 18,
+        "relativeIndex": -2,
+        "text": "Anyway, as I said, I’ll be off. I do plan on returning again in not that long, but with how everything is, I honestly don’t have a timeline."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 31,
+        "paragraphIndex": 19,
+        "relativeIndex": -1,
+        "text": "You go have fun,"
+      },
+      {
+        "characterId": "carmen",
+        "characterName": "Carmen",
+        "lineId": 34,
+        "paragraphIndex": 20,
+        "relativeIndex": 1,
+        "text": "You better give me a call,"
+      },
+      {
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "lineId": 36,
+        "paragraphIndex": 21,
+        "relativeIndex": 2,
+        "text": "Ree?"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 33, \"text\": \"I will contact you if I get up to something interesting you may want to take part in. Probably off-planet exploration or something like that.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Carmen\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.524, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Carmen\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"same_paragraph_continuation\"]}, {\"characterId\": \"carmen\", \"name\": \"Carmen\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 19, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“You go have fun,” Jake waved off the Runemaiden. “I will contact you if I get up to something interesting you may want to take part in. Probably off-planet exploration or something like that.”\", \"currentParagraphDialogue\": [{\"lineId\": 31, \"text\": \"You go have fun,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 33, \"text\": \"I will contact you if I get up to something interesting you may want to take part in. Probably off-planet exploration or something like that.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You go have fun,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You go have fun,\", \"lastSentence\": \"You go have fun,\"}, {\"quoteIndex\": 1, \"quoteText\": \"I will contact you if I get up to something interesting you may want to take part in. Probably off-planet exploration or something like that.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake waved off the Runemaiden.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I will contact you if I get up to something interesting you may want to take part in.\", \"lastSentence\": \"Probably off-planet exploration or something like that.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"I will contact you if I get up to something interesting you may want to take part in. Probably off-planet exploration or something like that.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake waved off the Runemaiden.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I will contact you if I get up to something interesting you may want to take part in.\", \"lastSentence\": \"Probably off-planet exploration or something like that.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"aliases\": [], \"roleLabels\": [\"carmen\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [\"sylphie\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 27, \"paragraphIndex\": 17, \"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"text\": \"See, this is why I shouldn’t be the one making laws.\"}, {\"relativeIndex\": -3, \"lineId\": 28, \"paragraphIndex\": 18, \"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"text\": \"Amen to that,\"}, {\"relativeIndex\": -2, \"lineId\": 30, \"paragraphIndex\": 18, \"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"text\": \"Anyway, as I said, I’ll be off. I do plan on returning again in not that long, but with how everything is, I honestly don’t have a timeline.\"}, {\"relativeIndex\": -1, \"lineId\": 31, \"paragraphIndex\": 19, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You go have fun,\"}, {\"relativeIndex\": 1, \"lineId\": 34, \"paragraphIndex\": 20, \"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"text\": \"You better give me a call,\"}, {\"relativeIndex\": 2, \"lineId\": 36, \"paragraphIndex\": 21, \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"text\": \"Ree?\"}], \"chapterCharacters\": [{\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"same_paragraph_continuation\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

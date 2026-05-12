@@ -1,0 +1,356 @@
+{
+  "cacheKey": "f9b91a0b8255ae63beaea37d57686081eabca4d2f760e444ffba2fc883a209a5",
+  "createdAt": "2026-04-02T22:43:10.909728+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "irin",
+    "characterName": "Irin",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "contextual_explanation",
+      "gender_mismatch"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "irin",
+        "characterName": "Irin",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "irin"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "maria",
+        "characterName": "Maria",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "maria"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "succubus",
+        "characterName": "Succubus",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "succubus"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "stormild",
+        "name": "stormild",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "vesperia",
+        "name": "Vesperia",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "maria",
+        "name": "Maria",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "succubus",
+        "name": "Succubus",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "irin",
+        "name": "Irin",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "she let him know after instantly recognizing Jake had no idea who they were.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "All of these people are individuals representing different factions, most of them small ones.",
+      "lastSentence": "Of course, their primary reason for being here is to form a stronger connection with the Order of the Malefic Viper while also being natives of not just your universe but your galaxy,",
+      "mentionedEntities": [
+        "The Malefic Viper"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "All of these people are individuals representing different factions, most of them small ones. While they naturally cannot compare to you or those you normally associate with, each of them is considered a genius in their respective fields of alchemy. Of course, their primary reason for being here is to form a stronger connection with the Order of the Malefic Viper while also being natives of not just your universe but your galaxy,",
+      "speakerNameMatch": null,
+      "speakerSurface": "she let him know after instantly"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "The Malefic Viper"
+          ],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Irin",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.19599999999999995,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Irin"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.804,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "irin",
+          "confidence": 0.444,
+          "name": "Irin",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Protagonist"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 76,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "All of these people are individuals representing different factions, most of them small ones. While they naturally cannot compare to you or those you normally associate with, each of them is considered a genius in their respective fields of alchemy. Of course, their primary reason for being here is to form a stronger connection with the Order of the Malefic Viper while also being natives of not just your universe but your galaxy,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 76,
+          "text": "All of these people are individuals representing different factions, most of them small ones. While they naturally cannot compare to you or those you normally associate with, each of them is considered a genius in their respective fields of alchemy. Of course, their primary reason for being here is to form a stronger connection with the Order of the Malefic Viper while also being natives of not just your universe but your galaxy,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "she let him know after instantly recognizing Jake had no idea who they were.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "All of these people are individuals representing different factions, most of them small ones.",
+          "lastSentence": "Of course, their primary reason for being here is to form a stronger connection with the Order of the Malefic Viper while also being natives of not just your universe but your galaxy,",
+          "mentionedEntities": [
+            "The Malefic Viper"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "All of these people are individuals representing different factions, most of them small ones. While they naturally cannot compare to you or those you normally associate with, each of them is considered a genius in their respective fields of alchemy. Of course, their primary reason for being here is to form a stronger connection with the Order of the Malefic Viper while also being natives of not just your universe but your galaxy,",
+          "speakerNameMatch": null,
+          "speakerSurface": "she let him know after instantly"
+        }
+      ],
+      "currentParagraphText": "“All of these people are individuals representing different factions, most of them small ones. While they naturally cannot compare to you or those you normally associate with, each of them is considered a genius in their respective fields of alchemy. Of course, their primary reason for being here is to form a stronger connection with the Order of the Malefic Viper while also being natives of not just your universe but your galaxy,” she let him know after instantly recognizing Jake had no idea who they were.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "irin",
+          "characterName": "Irin",
+          "isReturning": true,
+          "lineId": 78,
+          "text": "See, this is why I made you my official liaison,"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "See, this is why I made you my official liaison,",
+          "lastSentence": "See, this is why I made you my official liaison,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "See, this is why I made you my official liaison,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "nextParagraphText": "“See, this is why I made you my official liaison,”",
+      "paragraphIndex": 46,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "As Jake and Irin briefly spoke, the other demons also approached their respective targets. Jake was a bit confused at first about why they were there, but Irin luckily quickly explained telepathically."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "maria",
+        "characterName": "Maria",
+        "lineId": 65,
+        "paragraphIndex": 39,
+        "relativeIndex": -4,
+        "text": "I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 70,
+        "paragraphIndex": 43,
+        "relativeIndex": -3,
+        "text": "Thank you,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 72,
+        "paragraphIndex": 43,
+        "relativeIndex": -2,
+        "text": "I assume everything’s been taken care of here while I was gone?"
+      },
+      {
+        "characterId": "succubus",
+        "characterName": "Succubus",
+        "lineId": 73,
+        "paragraphIndex": 44,
+        "relativeIndex": -1,
+        "text": "Naturally, but if you find anything wanting, promptly let me know,"
+      },
+      {
+        "characterId": "irin",
+        "characterName": "Irin",
+        "lineId": 78,
+        "paragraphIndex": 47,
+        "relativeIndex": 1,
+        "text": "See, this is why I made you my official liaison,"
+      },
+      {
+        "characterId": "irin",
+        "characterName": "Irin",
+        "lineId": 80,
+        "paragraphIndex": 48,
+        "relativeIndex": 2,
+        "text": "Let us split up from here. I’m certain you all have a lot to process and go through, but just listen to the people from Humanoid Resources, and it should be fine. Happy onboarding."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 76, \"text\": \"All of these people are individuals representing different factions, most of them small ones. While they naturally cannot compare to you or those you normally associate with, each of them is considered a genius in their respective fields of alchemy. Of course, their primary reason for being here is to form a stronger connection with the Order of the Malefic Viper while also being natives of not just your universe but your galaxy,\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Irin\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"The Malefic Viper\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Irin\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 46, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“All of these people are individuals representing different factions, most of them small ones. While they naturally cannot compare to you or those you normally associate with, each of them is considered a genius in their respective fields of alchemy. Of course, their primary reason for being here is to form a stronger connection with the Order of the Malefic Viper while also being natives of not just your universe but your galaxy,” she let him know after instantly recognizing Jake had no idea who they were.\", \"currentParagraphDialogue\": [{\"lineId\": 76, \"text\": \"All of these people are individuals representing different factions, most of them small ones. While they naturally cannot compare to you or those you normally associate with, each of them is considered a genius in their respective fields of alchemy. Of course, their primary reason for being here is to form a stronger connection with the Order of the Malefic Viper while also being natives of not just your universe but your galaxy,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"previousParagraphText\": \"As Jake and Irin briefly spoke, the other demons also approached their respective targets. Jake was a bit confused at first about why they were there, but Irin luckily quickly explained telepathically.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“See, this is why I made you my official liaison,”\", \"nextParagraphDialogue\": [{\"lineId\": 78, \"text\": \"See, this is why I made you my official liaison,\", \"characterId\": \"irin\", \"characterName\": \"Irin\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"All of these people are individuals representing different factions, most of them small ones. While they naturally cannot compare to you or those you normally associate with, each of them is considered a genius in their respective fields of alchemy. Of course, their primary reason for being here is to form a stronger connection with the Order of the Malefic Viper while also being natives of not just your universe but your galaxy,\", \"cuePosition\": \"after\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"she let him know after instantly recognizing Jake had no idea who they were.\", \"speakerSurface\": \"she let him know after instantly\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"The Malefic Viper\"], \"addressedEntity\": null, \"firstSentence\": \"All of these people are individuals representing different factions, most of them small ones.\", \"lastSentence\": \"Of course, their primary reason for being here is to form a stronger connection with the Order of the Malefic Viper while also being natives of not just your universe but your galaxy,\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"See, this is why I made you my official liaison,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"See, this is why I made you my official liaison,\", \"lastSentence\": \"See, this is why I made you my official liaison,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"All of these people are individuals representing different factions, most of them small ones. While they naturally cannot compare to you or those you normally associate with, each of them is considered a genius in their respective fields of alchemy. Of course, their primary reason for being here is to form a stronger connection with the Order of the Malefic Viper while also being natives of not just your universe but your galaxy,\", \"cuePosition\": \"after\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"she let him know after instantly recognizing Jake had no idea who they were.\", \"speakerSurface\": \"she let him know after instantly\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"The Malefic Viper\"], \"addressedEntity\": null, \"firstSentence\": \"All of these people are individuals representing different factions, most of them small ones.\", \"lastSentence\": \"Of course, their primary reason for being here is to form a stronger connection with the Order of the Malefic Viper while also being natives of not just your universe but your galaxy,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"irin\", \"characterName\": \"Irin\", \"aliases\": [], \"roleLabels\": [\"irin\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"maria\", \"characterName\": \"Maria\", \"aliases\": [], \"roleLabels\": [\"maria\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"aliases\": [], \"roleLabels\": [\"succubus\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 65, \"paragraphIndex\": 39, \"characterId\": \"maria\", \"characterName\": \"Maria\", \"text\": \"I humbly welcome you all to the Order of the Malefic Viper, especially you, Lord Thayne, and I congratulate you on your victory over the Usurper of Yip of Yore,\"}, {\"relativeIndex\": -3, \"lineId\": 70, \"paragraphIndex\": 43, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Thank you,\"}, {\"relativeIndex\": -2, \"lineId\": 72, \"paragraphIndex\": 43, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I assume everything’s been taken care of here while I was gone?\"}, {\"relativeIndex\": -1, \"lineId\": 73, \"paragraphIndex\": 44, \"characterId\": \"succubus\", \"characterName\": \"Succubus\", \"text\": \"Naturally, but if you find anything wanting, promptly let me know,\"}, {\"relativeIndex\": 1, \"lineId\": 78, \"paragraphIndex\": 47, \"characterId\": \"irin\", \"characterName\": \"Irin\", \"text\": \"See, this is why I made you my official liaison,\"}, {\"relativeIndex\": 2, \"lineId\": 80, \"paragraphIndex\": 48, \"characterId\": \"irin\", \"characterName\": \"Irin\", \"text\": \"Let us split up from here. I’m certain you all have a lot to process and go through, but just listen to the people from Humanoid Resources, and it should be fine. Happy onboarding.\"}], \"chapterCharacters\": [{\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"stormild\", \"name\": \"stormild\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vesperia\", \"name\": \"Vesperia\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"maria\", \"name\": \"Maria\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"succubus\", \"name\": \"Succubus\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"irin\",\n  \"characterName\": \"Irin\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"contextual_explanation\",\n    \"gender_mismatch\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

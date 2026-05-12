@@ -1,0 +1,311 @@
+{
+  "cacheKey": "e8410b53a2f1d2ff4d51c725b86d460138e8b192ce9fd372f1b5cb089eca52f4",
+  "createdAt": "2026-04-02T22:45:16.992381+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "viper",
+    "characterName": "The Malefic Viper",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "alias_match",
+      "dialogue_continuation"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "viper",
+          "the malefic viper",
+          "malefic viper",
+          "villy"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "primordial",
+        "name": "Primordial",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-first-sage",
+          "the-first-sage-2"
+        ],
+        "characterId": "the-first-sage",
+        "name": "the first sage",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "yip",
+        "name": "yip",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Villy quickly shot down that notion.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Bloodlines and Truesouls are bound together intrinsically.",
+      "lastSentence": "It may get a skill or have its race be affected by the properties the Bloodline had, but that’s about it.",
+      "mentionedEntities": [],
+      "quoteIndex": 1,
+      "quoteText": "Bloodlines and Truesouls are bound together intrinsically. This item has no soul power whatsoever. Even if you somehow managed to use the item to give birth to some creature with your Primeval Origins abilities, it won’t have a Bloodline. It may get a skill or have its race be affected by the properties the Bloodline had, but that’s about it.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.524,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "The Malefic Viper",
+        "sourceCandidates": [
+          "The Malefic Viper",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "viper",
+          "confidence": 0.98,
+          "name": "The Malefic Viper",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "same_paragraph_continuation"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "viper",
+        "Villy"
+      ],
+      "currentCharacterId": "viper",
+      "currentCharacterName": "The Malefic Viper",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 96,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Bloodlines and Truesouls are bound together intrinsically. This item has no soul power whatsoever. Even if you somehow managed to use the item to give birth to some creature with your Primeval Origins abilities, it won’t have a Bloodline. It may get a skill or have its race be affected by the properties the Bloodline had, but that’s about it."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": false,
+          "lineId": 94,
+          "text": "No,"
+        },
+        {
+          "characterId": "viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": true,
+          "lineId": 96,
+          "text": "Bloodlines and Truesouls are bound together intrinsically. This item has no soul power whatsoever. Even if you somehow managed to use the item to give birth to some creature with your Primeval Origins abilities, it won’t have a Bloodline. It may get a skill or have its race be affected by the properties the Bloodline had, but that’s about it."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "No,",
+          "lastSentence": "No,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "No,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Villy quickly shot down that notion.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Bloodlines and Truesouls are bound together intrinsically.",
+          "lastSentence": "It may get a skill or have its race be affected by the properties the Bloodline had, but that’s about it.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "Bloodlines and Truesouls are bound together intrinsically. This item has no soul power whatsoever. Even if you somehow managed to use the item to give birth to some creature with your Primeval Origins abilities, it won’t have a Bloodline. It may get a skill or have its race be affected by the properties the Bloodline had, but that’s about it.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“No,” Villy quickly shot down that notion. “Bloodlines and Truesouls are bound together intrinsically. This item has no soul power whatsoever. Even if you somehow managed to use the item to give birth to some creature with your Primeval Origins abilities, it won’t have a Bloodline. It may get a skill or have its race be affected by the properties the Bloodline had, but that’s about it.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 44
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 89,
+        "paragraphIndex": 42,
+        "relativeIndex": -4,
+        "text": "Probably a wise choice,"
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 91,
+        "paragraphIndex": 42,
+        "relativeIndex": -3,
+        "text": "Having an item containing remnants of a Bloodline is incredibly rare, and it makes them dangerous by default. Its effects might be Transcendent in nature, making it a threat even to someone like me. Though, considering the system, I doubt the heart has any directly offensive properties. You may end up fucking up your own emotions considering how the Bloodline worked, though, so I would still be very careful."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 92,
+        "paragraphIndex": 43,
+        "relativeIndex": -2,
+        "text": "Hey... I’ve kind of been thinking, since it contains remnants of the Bloodline, does that mean this Starlight Heart could be used to give rise to his Bloodline again? Like, could the Records be transplanted into a living person somehow, or could a creature be born using the item as a catalyst?"
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 94,
+        "paragraphIndex": 44,
+        "relativeIndex": -1,
+        "text": "No,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 97,
+        "paragraphIndex": 45,
+        "relativeIndex": 1,
+        "text": "Alright... good,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 99,
+        "paragraphIndex": 45,
+        "relativeIndex": 2,
+        "text": "Doesn’t mean I have any idea what to use it for, though. I still find it too risky of an object to even experiment with, and there’s definitely no way in hell I’m gonna eat it. When you use Identify on it, does it also have the redacted portions?"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 96, \"text\": \"Bloodlines and Truesouls are bound together intrinsically. This item has no soul power whatsoever. Even if you somehow managed to use the item to give birth to some creature with your Primeval Origins abilities, it won’t have a Bloodline. It may get a skill or have its race be affected by the properties the Bloodline had, but that’s about it.\", \"currentCharacterId\": \"viper\", \"currentCharacterName\": \"The Malefic Viper\", \"currentCharacterAliases\": [\"viper\", \"Villy\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"The Malefic Viper\", \"sourceCandidates\": [\"The Malefic Viper\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.524, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"same_paragraph_continuation\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 44, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“No,” Villy quickly shot down that notion. “Bloodlines and Truesouls are bound together intrinsically. This item has no soul power whatsoever. Even if you somehow managed to use the item to give birth to some creature with your Primeval Origins abilities, it won’t have a Bloodline. It may get a skill or have its race be affected by the properties the Bloodline had, but that’s about it.”\", \"currentParagraphDialogue\": [{\"lineId\": 94, \"text\": \"No,\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": false}, {\"lineId\": 96, \"text\": \"Bloodlines and Truesouls are bound together intrinsically. This item has no soul power whatsoever. Even if you somehow managed to use the item to give birth to some creature with your Primeval Origins abilities, it won’t have a Bloodline. It may get a skill or have its race be affected by the properties the Bloodline had, but that’s about it.\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"No,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"No,\", \"lastSentence\": \"No,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Bloodlines and Truesouls are bound together intrinsically. This item has no soul power whatsoever. Even if you somehow managed to use the item to give birth to some creature with your Primeval Origins abilities, it won’t have a Bloodline. It may get a skill or have its race be affected by the properties the Bloodline had, but that’s about it.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Villy quickly shot down that notion.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Bloodlines and Truesouls are bound together intrinsically.\", \"lastSentence\": \"It may get a skill or have its race be affected by the properties the Bloodline had, but that’s about it.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"Bloodlines and Truesouls are bound together intrinsically. This item has no soul power whatsoever. Even if you somehow managed to use the item to give birth to some creature with your Primeval Origins abilities, it won’t have a Bloodline. It may get a skill or have its race be affected by the properties the Bloodline had, but that’s about it.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Villy quickly shot down that notion.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Bloodlines and Truesouls are bound together intrinsically.\", \"lastSentence\": \"It may get a skill or have its race be affected by the properties the Bloodline had, but that’s about it.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 89, \"paragraphIndex\": 42, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Probably a wise choice,\"}, {\"relativeIndex\": -3, \"lineId\": 91, \"paragraphIndex\": 42, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Having an item containing remnants of a Bloodline is incredibly rare, and it makes them dangerous by default. Its effects might be Transcendent in nature, making it a threat even to someone like me. Though, considering the system, I doubt the heart has any directly offensive properties. You may end up fucking up your own emotions considering how the Bloodline worked, though, so I would still be very careful.\"}, {\"relativeIndex\": -2, \"lineId\": 92, \"paragraphIndex\": 43, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Hey... I’ve kind of been thinking, since it contains remnants of the Bloodline, does that mean this Starlight Heart could be used to give rise to his Bloodline again? Like, could the Records be transplanted into a living person somehow, or could a creature be born using the item as a catalyst?\"}, {\"relativeIndex\": -1, \"lineId\": 94, \"paragraphIndex\": 44, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"No,\"}, {\"relativeIndex\": 1, \"lineId\": 97, \"paragraphIndex\": 45, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Alright... good,\"}, {\"relativeIndex\": 2, \"lineId\": 99, \"paragraphIndex\": 45, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Doesn’t mean I have any idea what to use it for, though. I still find it too risky of an object to even experiment with, and there’s definitely no way in hell I’m gonna eat it. When you use Identify on it, does it also have the redacted portions?\"}], \"chapterCharacters\": [{\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"primordial\", \"name\": \"Primordial\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-first-sage\", \"name\": \"the first sage\", \"aliases\": [\"the-first-sage\", \"the-first-sage-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"yip\", \"name\": \"yip\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"viper\",\n  \"characterName\": \"The Malefic Viper\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"alias_match\",\n    \"dialogue_continuation\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

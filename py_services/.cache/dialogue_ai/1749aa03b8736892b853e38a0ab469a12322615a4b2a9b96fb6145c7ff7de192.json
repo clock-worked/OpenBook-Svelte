@@ -1,0 +1,369 @@
+{
+  "cacheKey": "1749aa03b8736892b853e38a0ab469a12322615a4b2a9b96fb6145c7ff7de192",
+  "createdAt": "2026-04-01T18:47:30.564495+00:00",
+  "decision": {
+    "responseType": "tool",
+    "tool": {
+      "name": "request_book_characters"
+    }
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jacob"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "characterName": "Augur",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "augur"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "the-unique-lifeform",
+        "name": "The Unique Lifeform",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "name": "Augur",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "That head priest guy...?",
+      "lastSentence": "That head priest guy...?",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "That head priest guy...?",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": true,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.18,
+        "misattributionRisk": 0.364,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Jacob"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.636
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.636,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "question_next_speaker_penalty"
+          ]
+        },
+        {
+          "characterId": "jacob",
+          "confidence": 0.456,
+          "name": "Jacob",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Ell'Hakan"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 37,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "That head priest guy...?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 37,
+          "text": "That head priest guy...?"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "That head priest guy...?",
+          "lastSentence": "That head priest guy...?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "That head priest guy...?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“That head priest guy...?”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 38,
+          "text": "Found himself teleported somewhere with a lot of people not that friendly toward him,"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 40,
+          "text": "While the faction within the Church he belonged to was in charge, that didn’t mean other factions didn’t also have some power. Jacob wasn’t a fan, but sometimes, a few heads gotta roll to get bureaucracy moving."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Bertram just shrugged.",
+          "cueVerb": "shrugged",
+          "cueVerbType": "reaction",
+          "firstSentence": "Found himself teleported somewhere with a lot of people not that friendly toward him,",
+          "lastSentence": "Found himself teleported somewhere with a lot of people not that friendly toward him,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Found himself teleported somewhere with a lot of people not that friendly toward him,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Bertram just"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Bertram just shrugged.",
+          "cueVerb": "shrugged",
+          "cueVerbType": "reaction",
+          "firstSentence": "While the faction within the Church he belonged to was in charge, that didn’t mean other factions didn’t also have some power.",
+          "lastSentence": "Jacob wasn’t a fan, but sometimes, a few heads gotta roll to get bureaucracy moving.",
+          "mentionedEntities": [
+            "Jacob",
+            "Jacob"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "While the faction within the Church he belonged to was in charge, that didn’t mean other factions didn’t also have some power. Jacob wasn’t a fan, but sometimes, a few heads gotta roll to get bureaucracy moving.",
+          "speakerNameMatch": null,
+          "speakerSurface": "Bertram just"
+        }
+      ],
+      "nextParagraphText": "“Found himself teleported somewhere with a lot of people not that friendly toward him,” Bertram just shrugged. “While the faction within the Church he belonged to was in charge, that didn’t mean other factions didn’t also have some power. Jacob wasn’t a fan, but sometimes, a few heads gotta roll to get bureaucracy moving.”",
+      "paragraphIndex": 20,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 34,
+          "text": "Yes,"
+        },
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": true,
+          "lineId": 36,
+          "text": "Assuming you are willing to reconsider reopening the negotiation. As of about a minute ago, I’m the highest authority from the Holy Church in the Milky Way Galaxy, and with permission from the Holy Mother, I have been given full decision-making powers."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jacob nodded, even if he didn’t look super happy about it.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "Yes,",
+          "lastSentence": "Yes,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Yes,",
+          "speakerNameMatch": "Jacob",
+          "speakerSurface": "Jacob"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jacob nodded, even if he didn’t look super happy about it.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "Assuming you are willing to reconsider reopening the negotiation.",
+          "lastSentence": "As of about a minute ago, I’m the highest authority from the Holy Church in the Milky Way Galaxy, and with permission from the Holy Mother, I have been given full decision-making powers.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "Assuming you are willing to reconsider reopening the negotiation. As of about a minute ago, I’m the highest authority from the Holy Church in the Milky Way Galaxy, and with permission from the Holy Mother, I have been given full decision-making powers.",
+          "speakerNameMatch": "Jacob",
+          "speakerSurface": "Jacob"
+        }
+      ],
+      "previousParagraphText": "“Yes,” Jacob nodded, even if he didn’t look super happy about it. “Assuming you are willing to reconsider reopening the negotiation. As of about a minute ago, I’m the highest authority from the Holy Church in the Milky Way Galaxy, and with permission from the Holy Mother, I have been given full decision-making powers.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "augur",
+        "characterName": "Augur",
+        "lineId": 31,
+        "paragraphIndex": 17,
+        "relativeIndex": -4,
+        "text": "If it would make you feel better, you can also have the scenario include my death. That would require changing the narrative a bit, though."
+      },
+      {
+        "characterId": "augur",
+        "characterName": "Augur",
+        "lineId": 33,
+        "paragraphIndex": 18,
+        "relativeIndex": -3,
+        "text": "You’re really just gonna spin it like that? Blame everything on a now-dead entity?"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 34,
+        "paragraphIndex": 19,
+        "relativeIndex": -2,
+        "text": "Yes,"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 36,
+        "paragraphIndex": 19,
+        "relativeIndex": -1,
+        "text": "Assuming you are willing to reconsider reopening the negotiation. As of about a minute ago, I’m the highest authority from the Holy Church in the Milky Way Galaxy, and with permission from the Holy Mother, I have been given full decision-making powers."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 38,
+        "paragraphIndex": 21,
+        "relativeIndex": 1,
+        "text": "Found himself teleported somewhere with a lot of people not that friendly toward him,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 40,
+        "paragraphIndex": 21,
+        "relativeIndex": 2,
+        "text": "While the faction within the Church he belonged to was in charge, that didn’t mean other factions didn’t also have some power. Jacob wasn’t a fan, but sometimes, a few heads gotta roll to get bureaucracy moving."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 37, \"text\": \"That head priest guy...?\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Ell'Hakan\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Jacob\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.636, \"marginToSecond\": 0.18, \"misattributionRisk\": 0.364, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.636, \"reasons\": [\"parser_match\", \"legacy_match\", \"question_next_speaker_penalty\"]}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 20, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“That head priest guy...?”\", \"currentParagraphDialogue\": [{\"lineId\": 37, \"text\": \"That head priest guy...?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"“Yes,” Jacob nodded, even if he didn’t look super happy about it. “Assuming you are willing to reconsider reopening the negotiation. As of about a minute ago, I’m the highest authority from the Holy Church in the Milky Way Galaxy, and with permission from the Holy Mother, I have been given full decision-making powers.”\", \"previousParagraphDialogue\": [{\"lineId\": 34, \"text\": \"Yes,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}, {\"lineId\": 36, \"text\": \"Assuming you are willing to reconsider reopening the negotiation. As of about a minute ago, I’m the highest authority from the Holy Church in the Milky Way Galaxy, and with permission from the Holy Mother, I have been given full decision-making powers.\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": true}], \"nextParagraphText\": \"“Found himself teleported somewhere with a lot of people not that friendly toward him,” Bertram just shrugged. “While the faction within the Church he belonged to was in charge, that didn’t mean other factions didn’t also have some power. Jacob wasn’t a fan, but sometimes, a few heads gotta roll to get bureaucracy moving.”\", \"nextParagraphDialogue\": [{\"lineId\": 38, \"text\": \"Found himself teleported somewhere with a lot of people not that friendly toward him,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 40, \"text\": \"While the faction within the Church he belonged to was in charge, that didn’t mean other factions didn’t also have some power. Jacob wasn’t a fan, but sometimes, a few heads gotta roll to get bureaucracy moving.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"That head priest guy...?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"That head priest guy...?\", \"lastSentence\": \"That head priest guy...?\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Yes,\", \"cuePosition\": \"after\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Jacob nodded, even if he didn’t look super happy about it.\", \"speakerSurface\": \"Jacob\", \"speakerNameMatch\": \"Jacob\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yes,\", \"lastSentence\": \"Yes,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Assuming you are willing to reconsider reopening the negotiation. As of about a minute ago, I’m the highest authority from the Holy Church in the Milky Way Galaxy, and with permission from the Holy Mother, I have been given full decision-making powers.\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Jacob nodded, even if he didn’t look super happy about it.\", \"speakerSurface\": \"Jacob\", \"speakerNameMatch\": \"Jacob\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Assuming you are willing to reconsider reopening the negotiation.\", \"lastSentence\": \"As of about a minute ago, I’m the highest authority from the Holy Church in the Milky Way Galaxy, and with permission from the Holy Mother, I have been given full decision-making powers.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Found himself teleported somewhere with a lot of people not that friendly toward him,\", \"cuePosition\": \"after\", \"cueVerb\": \"shrugged\", \"cueVerbType\": \"reaction\", \"cueText\": \"Bertram just shrugged.\", \"speakerSurface\": \"Bertram just\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Found himself teleported somewhere with a lot of people not that friendly toward him,\", \"lastSentence\": \"Found himself teleported somewhere with a lot of people not that friendly toward him,\"}, {\"quoteIndex\": 1, \"quoteText\": \"While the faction within the Church he belonged to was in charge, that didn’t mean other factions didn’t also have some power. Jacob wasn’t a fan, but sometimes, a few heads gotta roll to get bureaucracy moving.\", \"cuePosition\": \"before\", \"cueVerb\": \"shrugged\", \"cueVerbType\": \"reaction\", \"cueText\": \"Bertram just shrugged.\", \"speakerSurface\": \"Bertram just\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"Jacob\", \"Jacob\"], \"addressedEntity\": null, \"firstSentence\": \"While the faction within the Church he belonged to was in charge, that didn’t mean other factions didn’t also have some power.\", \"lastSentence\": \"Jacob wasn’t a fan, but sometimes, a few heads gotta roll to get bureaucracy moving.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"That head priest guy...?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"That head priest guy...?\", \"lastSentence\": \"That head priest guy...?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [], \"roleLabels\": [\"jacob\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"augur\", \"characterName\": \"Augur\", \"aliases\": [], \"roleLabels\": [\"augur\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 31, \"paragraphIndex\": 17, \"characterId\": \"augur\", \"characterName\": \"Augur\", \"text\": \"If it would make you feel better, you can also have the scenario include my death. That would require changing the narrative a bit, though.\"}, {\"relativeIndex\": -3, \"lineId\": 33, \"paragraphIndex\": 18, \"characterId\": \"augur\", \"characterName\": \"Augur\", \"text\": \"You’re really just gonna spin it like that? Blame everything on a now-dead entity?\"}, {\"relativeIndex\": -2, \"lineId\": 34, \"paragraphIndex\": 19, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"Yes,\"}, {\"relativeIndex\": -1, \"lineId\": 36, \"paragraphIndex\": 19, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"Assuming you are willing to reconsider reopening the negotiation. As of about a minute ago, I’m the highest authority from the Holy Church in the Milky Way Galaxy, and with permission from the Holy Mother, I have been given full decision-making powers.\"}, {\"relativeIndex\": 1, \"lineId\": 38, \"paragraphIndex\": 21, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Found himself teleported somewhere with a lot of people not that friendly toward him,\"}, {\"relativeIndex\": 2, \"lineId\": 40, \"paragraphIndex\": 21, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"While the faction within the Church he belonged to was in charge, that didn’t mean other factions didn’t also have some power. Jacob wasn’t a fan, but sometimes, a few heads gotta roll to get bureaucracy moving.\"}], \"chapterCharacters\": [{\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-unique-lifeform\", \"name\": \"The Unique Lifeform\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"augur\", \"name\": \"Augur\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\"responseType\": \"tool\", \"tool\": {\"name\": \"request_book_characters\"}}"
+}

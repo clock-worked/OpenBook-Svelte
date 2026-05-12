@@ -1,0 +1,339 @@
+{
+  "cacheKey": "d70f24bed4580658256ddce980a0fd5bfc3c617615386ec906868be90848a4bf",
+  "createdAt": "2026-04-02T15:36:15.657573+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jacob",
+    "characterName": "Jacob",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "action_before_quote",
+      "dialogue_continuity",
+      "quote_content_context"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "holy-priest",
+          "holy-priest-2",
+          "head priest",
+          "the head priest"
+        ],
+        "characterId": "holy-priest",
+        "characterName": "Holy Priest",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "holy priest",
+          "priest",
+          "holy priest 2",
+          "priest 2",
+          "head priest",
+          "the head priest",
+          "the priest"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Augur",
+          "The Augur"
+        ],
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jacob",
+          "augur",
+          "the augur"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "kindroth"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Augur",
+          "The Augur"
+        ],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "holy-priest",
+          "holy-priest-2",
+          "head priest",
+          "the head priest"
+        ],
+        "characterId": "holy-priest",
+        "name": "Holy Priest",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Jacob looked at the man only for a single second more before sighing even louder than before.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Whatever happens next is your sole responsibility.",
+      "lastSentence": "One I doubt you will be able to bear.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Whatever happens next is your sole responsibility. One I doubt you will be able to bear.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Kindroth",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Holy Priest",
+        "sourceCandidates": [
+          "Holy Priest",
+          "Jacob"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "holy-priest",
+          "confidence": 0.816,
+          "name": "Holy Priest",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jacob",
+          "confidence": 0.456,
+          "name": "Jacob",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "holy-priest",
+        "holy-priest-2",
+        "head priest",
+        "the head priest"
+      ],
+      "currentCharacterId": "holy-priest",
+      "currentCharacterName": "Holy Priest",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 37,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Whatever happens next is your sole responsibility. One I doubt you will be able to bear."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "holy-priest",
+          "characterName": "Holy Priest",
+          "isReturning": true,
+          "lineId": 37,
+          "text": "Whatever happens next is your sole responsibility. One I doubt you will be able to bear."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jacob looked at the man only for a single second more before sighing even louder than before.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Whatever happens next is your sole responsibility.",
+          "lastSentence": "One I doubt you will be able to bear.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Whatever happens next is your sole responsibility. One I doubt you will be able to bear.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Jacob looked at the man only for a single second more before sighing even louder than before. “Whatever happens next is your sole responsibility. One I doubt you will be able to bear.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "The head priest just scoffed as Jacob knelt down and murmured some words as a small ritual circle appeared... and in the middle of it, a small box sat, looking oddly monochrome as if all color had been sucked out of it.",
+      "paragraphIndex": 21,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "holy-priest",
+          "characterName": "Holy Priest",
+          "isReturning": false,
+          "lineId": 33,
+          "text": "Are you done?"
+        },
+        {
+          "characterId": "holy-priest",
+          "characterName": "Holy Priest",
+          "isReturning": true,
+          "lineId": 35,
+          "text": "This is a direct order in accordance with the divine edict bestowed upon me. Release the creature to fight the Chosen of the Malefic Viper. Now."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the head priest said before finally taking out his trump card. In his hand, a small token flashed into existence as he made eye contact with Jacob.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Are you done?",
+          "lastSentence": "Are you done?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Are you done?",
+          "speakerNameMatch": null,
+          "speakerSurface": "the head priest"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "the head priest said before finally taking out his trump card. In his hand, a small token flashed into existence as he made eye contact with Jacob.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "This is a direct order in accordance with the divine edict bestowed upon me.",
+          "lastSentence": "Now.",
+          "mentionedEntities": [
+            "The Malefic Viper"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "This is a direct order in accordance with the divine edict bestowed upon me. Release the creature to fight the Chosen of the Malefic Viper. Now.",
+          "speakerNameMatch": null,
+          "speakerSurface": "the head priest"
+        }
+      ],
+      "previousParagraphText": "“Are you done?” the head priest said before finally taking out his trump card. In his hand, a small token flashed into existence as he made eye contact with Jacob. “This is a direct order in accordance with the divine edict bestowed upon me. Release the creature to fight the Chosen of the Malefic Viper. Now.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "holy-priest",
+        "characterName": "Holy Priest",
+        "lineId": 30,
+        "paragraphIndex": 18,
+        "relativeIndex": -4,
+        "text": "Though I don’t feel that the higher-ups would be that upset should the Chosen of the Malefic One meet an unfortunate end."
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 31,
+        "paragraphIndex": 19,
+        "relativeIndex": -3,
+        "text": "This will only escalate matters,"
+      },
+      {
+        "characterId": "holy-priest",
+        "characterName": "Holy Priest",
+        "lineId": 33,
+        "paragraphIndex": 20,
+        "relativeIndex": -2,
+        "text": "Are you done?"
+      },
+      {
+        "characterId": "holy-priest",
+        "characterName": "Holy Priest",
+        "lineId": 35,
+        "paragraphIndex": 20,
+        "relativeIndex": -1,
+        "text": "This is a direct order in accordance with the divine edict bestowed upon me. Release the creature to fight the Chosen of the Malefic Viper. Now."
+      },
+      {
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "lineId": 63,
+        "paragraphIndex": 47,
+        "relativeIndex": 1,
+        "text": "Disengage from combat, gather at my location... and surrender,"
+      },
+      {
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "lineId": 65,
+        "paragraphIndex": 48,
+        "relativeIndex": 2,
+        "text": "We surrender!"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 37, \"text\": \"Whatever happens next is your sole responsibility. One I doubt you will be able to bear.\", \"currentCharacterId\": \"holy-priest\", \"currentCharacterName\": \"Holy Priest\", \"currentCharacterAliases\": [\"holy-priest\", \"holy-priest-2\", \"head priest\", \"the head priest\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Holy Priest\", \"sourceCandidates\": [\"Holy Priest\", \"Jacob\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Kindroth\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"holy-priest\", \"name\": \"Holy Priest\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 21, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Jacob looked at the man only for a single second more before sighing even louder than before. “Whatever happens next is your sole responsibility. One I doubt you will be able to bear.”\", \"currentParagraphDialogue\": [{\"lineId\": 37, \"text\": \"Whatever happens next is your sole responsibility. One I doubt you will be able to bear.\", \"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"isReturning\": true}], \"previousParagraphText\": \"“Are you done?” the head priest said before finally taking out his trump card. In his hand, a small token flashed into existence as he made eye contact with Jacob. “This is a direct order in accordance with the divine edict bestowed upon me. Release the creature to fight the Chosen of the Malefic Viper. Now.”\", \"previousParagraphDialogue\": [{\"lineId\": 33, \"text\": \"Are you done?\", \"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"isReturning\": false}, {\"lineId\": 35, \"text\": \"This is a direct order in accordance with the divine edict bestowed upon me. Release the creature to fight the Chosen of the Malefic Viper. Now.\", \"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"isReturning\": true}], \"nextParagraphText\": \"The head priest just scoffed as Jacob knelt down and murmured some words as a small ritual circle appeared... and in the middle of it, a small box sat, looking oddly monochrome as if all color had been sucked out of it.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Whatever happens next is your sole responsibility. One I doubt you will be able to bear.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jacob looked at the man only for a single second more before sighing even louder than before.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Whatever happens next is your sole responsibility.\", \"lastSentence\": \"One I doubt you will be able to bear.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Are you done?\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the head priest said before finally taking out his trump card. In his hand, a small token flashed into existence as he made eye contact with Jacob.\", \"speakerSurface\": \"the head priest\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Are you done?\", \"lastSentence\": \"Are you done?\"}, {\"quoteIndex\": 1, \"quoteText\": \"This is a direct order in accordance with the divine edict bestowed upon me. Release the creature to fight the Chosen of the Malefic Viper. Now.\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the head priest said before finally taking out his trump card. In his hand, a small token flashed into existence as he made eye contact with Jacob.\", \"speakerSurface\": \"the head priest\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"The Malefic Viper\"], \"addressedEntity\": null, \"firstSentence\": \"This is a direct order in accordance with the divine edict bestowed upon me.\", \"lastSentence\": \"Now.\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Whatever happens next is your sole responsibility. One I doubt you will be able to bear.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jacob looked at the man only for a single second more before sighing even louder than before.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Whatever happens next is your sole responsibility.\", \"lastSentence\": \"One I doubt you will be able to bear.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"aliases\": [\"holy-priest\", \"holy-priest-2\", \"head priest\", \"the head priest\"], \"roleLabels\": [\"holy priest\", \"priest\", \"holy priest 2\", \"priest 2\", \"head priest\", \"the head priest\", \"the priest\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [\"jacob\", \"augur\", \"the augur\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [\"kindroth\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 30, \"paragraphIndex\": 18, \"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"text\": \"Though I don’t feel that the higher-ups would be that upset should the Chosen of the Malefic One meet an unfortunate end.\"}, {\"relativeIndex\": -3, \"lineId\": 31, \"paragraphIndex\": 19, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"This will only escalate matters,\"}, {\"relativeIndex\": -2, \"lineId\": 33, \"paragraphIndex\": 20, \"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"text\": \"Are you done?\"}, {\"relativeIndex\": -1, \"lineId\": 35, \"paragraphIndex\": 20, \"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"text\": \"This is a direct order in accordance with the divine edict bestowed upon me. Release the creature to fight the Chosen of the Malefic Viper. Now.\"}, {\"relativeIndex\": 1, \"lineId\": 63, \"paragraphIndex\": 47, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"Disengage from combat, gather at my location... and surrender,\"}, {\"relativeIndex\": 2, \"lineId\": 65, \"paragraphIndex\": 48, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"We surrender!\"}], \"chapterCharacters\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"holy-priest\", \"name\": \"Holy Priest\", \"aliases\": [\"holy-priest\", \"holy-priest-2\", \"head priest\", \"the head priest\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jacob\",\n  \"characterName\": \"Jacob\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"action_before_quote\",\n    \"dialogue_continuity\",\n    \"quote_content_context\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

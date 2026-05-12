@@ -1,0 +1,325 @@
+{
+  "cacheKey": "753304d451aff48979b629995247bb67252df9ec37ae795fa93fcff1df98af0b",
+  "createdAt": "2026-04-02T22:46:13.689583+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "viper",
+    "characterName": "The Malefic Viper",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narrative_cue",
+      "alias_match"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "viper",
+          "the malefic viper",
+          "malefic viper",
+          "villy"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "sylphie"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "irin",
+        "name": "Irin",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "succubus",
+        "name": "Succubus",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "vampire",
+        "name": "Vampire",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "fairleigh",
+        "name": "Fairleigh",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "name": "blood",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Villy looked at Jake for a moment before sighing.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Fine.",
+      "lastSentence": "Just saying it’s so much more relaxing to just let it out.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Fine. Just saying it’s so much more relaxing to just let it out.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Sylphie",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "The Malefic Viper",
+        "sourceCandidates": [
+          "The Malefic Viper",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "viper",
+          "confidence": 0.816,
+          "name": "The Malefic Viper",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "viper",
+        "Villy"
+      ],
+      "currentCharacterId": "viper",
+      "currentCharacterName": "The Malefic Viper",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 6,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Fine. Just saying it’s so much more relaxing to just let it out."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": true,
+          "lineId": 6,
+          "text": "Fine. Just saying it’s so much more relaxing to just let it out."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Villy looked at Jake for a moment before sighing.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Fine.",
+          "lastSentence": "Just saying it’s so much more relaxing to just let it out.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Fine. Just saying it’s so much more relaxing to just let it out.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Villy looked at Jake for a moment before sighing. “Fine. Just saying it’s so much more relaxing to just let it out.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Jake just continued looking at the god, who continued smiling as his aura weakened and was suppressed. It wasn’t really something Jake usually paid attention to, but the Viper hadn’t bothered to restrain his aura in the slightest ever since he appeared. That had probably contributed to Sylphie not being a fan of sticking around and was definitely the reason why Irin looked on the brink of collapse.",
+      "paragraphIndex": 3,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": true,
+          "lineId": 4,
+          "text": "Rein it in a bit."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "It was evident that the Viper’s aura was overwhelming for her, making Jake look at the snake god with narrowed eyes.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Rein it in a bit.",
+          "lastSentence": "Rein it in a bit.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Rein it in a bit.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "previousParagraphText": "It was evident that the Viper’s aura was overwhelming for her, making Jake look at the snake god with narrowed eyes. “Rein it in a bit.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 4,
+        "paragraphIndex": 2,
+        "relativeIndex": -1,
+        "text": "Rein it in a bit."
+      },
+      {
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "lineId": 10,
+        "paragraphIndex": 6,
+        "relativeIndex": 1,
+        "text": "You know, I don’t think we have anything overly urgent to discuss anymore. At least not anything we can’t talk about at any other time. So, I think I’m just gonna leave you two alone for now."
+      },
+      {
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "lineId": 12,
+        "paragraphIndex": 7,
+        "relativeIndex": 2,
+        "text": "I’ll stop by again with some things for you to bring along when you go to the Pantheon of Life. Gifts and stuff. I expect you’ll be leaving within the week, correct?"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 6, \"text\": \"Fine. Just saying it’s so much more relaxing to just let it out.\", \"currentCharacterId\": \"viper\", \"currentCharacterName\": \"The Malefic Viper\", \"currentCharacterAliases\": [\"viper\", \"Villy\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"The Malefic Viper\", \"sourceCandidates\": [\"The Malefic Viper\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Sylphie\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 3, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Villy looked at Jake for a moment before sighing. “Fine. Just saying it’s so much more relaxing to just let it out.”\", \"currentParagraphDialogue\": [{\"lineId\": 6, \"text\": \"Fine. Just saying it’s so much more relaxing to just let it out.\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": true}], \"previousParagraphText\": \"It was evident that the Viper’s aura was overwhelming for her, making Jake look at the snake god with narrowed eyes. “Rein it in a bit.”\", \"previousParagraphDialogue\": [{\"lineId\": 4, \"text\": \"Rein it in a bit.\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": true}], \"nextParagraphText\": \"Jake just continued looking at the god, who continued smiling as his aura weakened and was suppressed. It wasn’t really something Jake usually paid attention to, but the Viper hadn’t bothered to restrain his aura in the slightest ever since he appeared. That had probably contributed to Sylphie not being a fan of sticking around and was definitely the reason why Irin looked on the brink of collapse.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Fine. Just saying it’s so much more relaxing to just let it out.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Villy looked at Jake for a moment before sighing.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Fine.\", \"lastSentence\": \"Just saying it’s so much more relaxing to just let it out.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Rein it in a bit.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"It was evident that the Viper’s aura was overwhelming for her, making Jake look at the snake god with narrowed eyes.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Rein it in a bit.\", \"lastSentence\": \"Rein it in a bit.\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Fine. Just saying it’s so much more relaxing to just let it out.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Villy looked at Jake for a moment before sighing.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Fine.\", \"lastSentence\": \"Just saying it’s so much more relaxing to just let it out.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [\"sylphie\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -1, \"lineId\": 4, \"paragraphIndex\": 2, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Rein it in a bit.\"}, {\"relativeIndex\": 1, \"lineId\": 10, \"paragraphIndex\": 6, \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"text\": \"You know, I don’t think we have anything overly urgent to discuss anymore. At least not anything we can’t talk about at any other time. So, I think I’m just gonna leave you two alone for now.\"}, {\"relativeIndex\": 2, \"lineId\": 12, \"paragraphIndex\": 7, \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"text\": \"I’ll stop by again with some things for you to bring along when you go to the Pantheon of Life. Gifts and stuff. I expect you’ll be leaving within the week, correct?\"}], \"chapterCharacters\": [{\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"succubus\", \"name\": \"Succubus\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vampire\", \"name\": \"Vampire\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"fairleigh\", \"name\": \"Fairleigh\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"blood\", \"name\": \"blood\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"viper\",\n  \"characterName\": \"The Malefic Viper\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narrative_cue\",\n    \"alias_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

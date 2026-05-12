@@ -1,0 +1,376 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "38485677aabed55b4cadeffe6245fe5aab909b7a494e24d30a31217e7574eb6f",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\38485677aabed55b4cadeffe6245fe5aab909b7a494e24d30a31217e7574eb6f.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "the_sword_saint",
+        "characterName": "The Sword Saint",
+        "confidence": 0.9,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "consistent_paragraph_speaker",
+          "plausible_role_description"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Godqueen"
+            ],
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "artemis",
+              "godqueen"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "characterName": "Sylphie",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "sylphie"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist",
+              "lord thayne",
+              "thayne"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Forest King",
+              "Fallen King",
+              "forest-king",
+              "forest-king-2"
+            ],
+            "characterId": "king",
+            "characterName": "King",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "king",
+              "forest king",
+              "fallen king",
+              "forest king 2"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Godqueen"
+            ],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "name": "The Sword Saint",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "name": "Sylphie",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Forest King",
+              "Fallen King",
+              "forest-king",
+              "forest-king-2"
+            ],
+            "characterId": "king",
+            "name": "King",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the old man chuckled.",
+          "cueVerb": "chuckled",
+          "cueVerbType": "speech",
+          "firstSentence": "Seems like we missed quite the event,",
+          "lastSentence": "Seems like we missed quite the event,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Seems like we missed quite the event,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the old man"
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Having",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.19599999999999995,
+            "misattributionRisk": 0.0,
+            "parserBackend": "legacy",
+            "resolutionStatus": "user_confirmed",
+            "sourceAlias": "Having",
+            "sourceCandidates": [
+              "Having",
+              "Artemis"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 1.0
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 1.0,
+              "name": "The Sword Saint",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.804,
+              "name": "Having",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.444,
+              "name": "Artemis",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "the_sword_saint",
+          "currentCharacterName": "The Sword Saint",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 28,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "Seems like we missed quite the event,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "the_sword_saint",
+              "characterName": "The Sword Saint",
+              "isReturning": false,
+              "lineId": 28,
+              "text": "Seems like we missed quite the event,"
+            },
+            {
+              "characterId": "the_sword_saint",
+              "characterName": "The Sword Saint",
+              "isReturning": true,
+              "lineId": 30,
+              "text": "Since we have some time, let’s hear what everyone has been up to since we met last. Allow me to start..."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the old man chuckled.",
+              "cueVerb": "chuckled",
+              "cueVerbType": "speech",
+              "firstSentence": "Seems like we missed quite the event,",
+              "lastSentence": "Seems like we missed quite the event,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Seems like we missed quite the event,",
+              "speakerNameMatch": null,
+              "speakerSurface": "the old man"
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "the old man chuckled.",
+              "cueVerb": "chuckled",
+              "cueVerbType": "speech",
+              "firstSentence": "Since we have some time, let’s hear what everyone has been up to since we met last.",
+              "lastSentence": "Allow me to start...",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "Since we have some time, let’s hear what everyone has been up to since we met last. Allow me to start...",
+              "speakerNameMatch": null,
+              "speakerSurface": "the old man"
+            }
+          ],
+          "currentParagraphText": "“Seems like we missed quite the event,” the old man chuckled. “Since we have some time, let’s hear what everyone has been up to since we met last. Allow me to start...”",
+          "dialogueLineCount": 2,
+          "paragraphIndex": 16
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "the_sword_saint",
+            "characterName": "The Sword Saint",
+            "lineId": 21,
+            "paragraphIndex": 12,
+            "relativeIndex": -4,
+            "text": "Oh, isn’t that the one who crafted that puzzle cube Jake can’t stop being effusive about?"
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 22,
+            "paragraphIndex": 13,
+            "relativeIndex": -3,
+            "text": "She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,"
+          },
+          {
+            "characterId": "sylphie",
+            "characterName": "Sylphie",
+            "lineId": 24,
+            "paragraphIndex": 14,
+            "relativeIndex": -2,
+            "text": "Ree?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 26,
+            "paragraphIndex": 15,
+            "relativeIndex": -1,
+            "text": "I don’t actually know where the Seeker took Jasper,"
+          },
+          {
+            "characterId": "the_sword_saint",
+            "characterName": "The Sword Saint",
+            "lineId": 30,
+            "paragraphIndex": 16,
+            "relativeIndex": 1,
+            "text": "Since we have some time, let’s hear what everyone has been up to since we met last. Allow me to start..."
+          },
+          {
+            "characterId": "king",
+            "characterName": "King",
+            "lineId": 35,
+            "paragraphIndex": 20,
+            "relativeIndex": 2,
+            "text": "solidifying his foundation to ensure future excellence."
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 28, \"text\": \"Seems like we missed quite the event,\", \"currentCharacterId\": \"the_sword_saint\", \"currentCharacterName\": \"The Sword Saint\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"user_confirmed\", \"sourceAlias\": \"Having\", \"sourceCandidates\": [\"Having\", \"Artemis\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 1.0, \"marginToSecond\": 0.19599999999999995, \"misattributionRisk\": 0.0, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Having\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"The Sword Saint\", \"confidence\": 1.0, \"reasons\": null}, {\"characterId\": null, \"name\": \"Having\", \"confidence\": 0.804, \"reasons\": null}, {\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.444, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 16, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Seems like we missed quite the event,” the old man chuckled. “Since we have some time, let’s hear what everyone has been up to since we met last. Allow me to start...”\", \"currentParagraphDialogue\": [{\"lineId\": 28, \"text\": \"Seems like we missed quite the event,\", \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"isReturning\": false}, {\"lineId\": 30, \"text\": \"Since we have some time, let’s hear what everyone has been up to since we met last. Allow me to start...\", \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Seems like we missed quite the event,\", \"cuePosition\": \"after\", \"cueVerb\": \"chuckled\", \"cueVerbType\": \"speech\", \"cueText\": \"the old man chuckled.\", \"speakerSurface\": \"the old man\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Seems like we missed quite the event,\", \"lastSentence\": \"Seems like we missed quite the event,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Since we have some time, let’s hear what everyone has been up to since we met last. Allow me to start...\", \"cuePosition\": \"before\", \"cueVerb\": \"chuckled\", \"cueVerbType\": \"speech\", \"cueText\": \"the old man chuckled.\", \"speakerSurface\": \"the old man\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Since we have some time, let’s hear what everyone has been up to since we met last.\", \"lastSentence\": \"Allow me to start...\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Seems like we missed quite the event,\", \"cuePosition\": \"after\", \"cueVerb\": \"chuckled\", \"cueVerbType\": \"speech\", \"cueText\": \"the old man chuckled.\", \"speakerSurface\": \"the old man\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Seems like we missed quite the event,\", \"lastSentence\": \"Seems like we missed quite the event,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [\"artemis\", \"godqueen\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [\"sylphie\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"king\", \"characterName\": \"King\", \"aliases\": [\"Forest King\", \"Fallen King\", \"forest-king\", \"forest-king-2\"], \"roleLabels\": [\"king\", \"forest king\", \"fallen king\", \"forest king 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 21, \"paragraphIndex\": 12, \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Oh, isn’t that the one who crafted that puzzle cube Jake can’t stop being effusive about?\"}, {\"relativeIndex\": -3, \"lineId\": 22, \"paragraphIndex\": 13, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"She is pointing out his prowess, seeing as he recently paid a visit to the Pantheon of Life and ended up leaving with the Shimmershroud Planeswarper Jake had used his powers as a Harbinger of Primeval Origins to create,\"}, {\"relativeIndex\": -2, \"lineId\": 24, \"paragraphIndex\": 14, \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"text\": \"Ree?\"}, {\"relativeIndex\": -1, \"lineId\": 26, \"paragraphIndex\": 15, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I don’t actually know where the Seeker took Jasper,\"}, {\"relativeIndex\": 1, \"lineId\": 30, \"paragraphIndex\": 16, \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Since we have some time, let’s hear what everyone has been up to since we met last. Allow me to start...\"}, {\"relativeIndex\": 2, \"lineId\": 35, \"paragraphIndex\": 20, \"characterId\": \"king\", \"characterName\": \"King\", \"text\": \"solidifying his foundation to ensure future excellence.\"}], \"chapterCharacters\": [{\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"king\", \"name\": \"King\", \"aliases\": [\"Forest King\", \"Fallen King\", \"forest-king\", \"forest-king-2\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"the_sword_saint\",\n  \"characterName\": \"The Sword Saint\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"consistent_paragraph_speaker\",\n    \"plausible_role_description\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0138 - Chapter 1195 - A Retrospective Moment/chapter.txt",
+  "currentCharacterId": "the_sword_saint",
+  "currentCharacterName": "The Sword Saint",
+  "currentParagraphText": "“Seems like we missed quite the event,” the old man chuckled. “Since we have some time, let’s hear what everyone has been up to since we met last. Allow me to start...”",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.9,
+    "currentCharacterId": "the_sword_saint",
+    "currentCharacterName": "The Sword Saint",
+    "currentParagraphText": "“Seems like we missed quite the event,” the old man chuckled. “Since we have some time, let’s hear what everyone has been up to since we met last. Allow me to start...”",
+    "disposition": "review",
+    "error": null,
+    "lineId": 28,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "The Sword Saint did exactly that as he narrated the hunting he’d done since they last had a reunion, slightly after the King was revived. Same as Jake, the swordsman had primarily focused on getting class levels and improving his combat prowess, though he had also taken the time to go sightseeing a bit and had returned from the Pantheon of Life with a collection of paintings, some of which he also showed off.",
+    "paragraphIndex": 16,
+    "previousParagraphText": "“I don’t actually know where the Seeker took Jasper,” Jake shrugged, still having a bird sitting on his head. He looked at Artemis, but she also shook her head.",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "consistent_paragraph_speaker",
+      "plausible_role_description"
+    ],
+    "suggestedCharacterId": "the-sword-saint",
+    "suggestedCharacterName": "The Sword Saint",
+    "toolTrace": []
+  },
+  "lineId": 28,
+  "nextParagraphText": "The Sword Saint did exactly that as he narrated the hunting he’d done since they last had a reunion, slightly after the King was revived. Same as Jake, the swordsman had primarily focused on getting class levels and improving his combat prowess, though he had also taken the time to go sightseeing a bit and had returned from the Pantheon of Life with a collection of paintings, some of which he also showed off.",
+  "paragraphIndex": 16,
+  "previousParagraphText": "“I don’t actually know where the Seeker took Jasper,” Jake shrugged, still having a bird sitting on his head. He looked at Artemis, but she also shook her head."
+}

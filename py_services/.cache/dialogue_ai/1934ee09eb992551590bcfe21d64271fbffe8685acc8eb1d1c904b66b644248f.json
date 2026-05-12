@@ -1,0 +1,381 @@
+{
+  "cacheKey": "1934ee09eb992551590bcfe21d64271fbffe8685acc8eb1d1c904b66b644248f",
+  "createdAt": "2026-04-02T15:34:50.992079+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "miranda",
+    "characterName": "Miranda",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_cohesion",
+      "next_speaker_context"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "kindroth"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "miranda"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "lillian",
+        "characterName": "Lillian",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "lillian"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "lillian",
+        "name": "Lillian",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "lodestar-matron",
+          "lodestar-matron-2"
+        ],
+        "characterId": "lodestar-matron",
+        "name": "Lodestar Matron",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Miranda looked to focus for a brief while before nodding.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "True, I do feel some faint echoes of mana.",
+      "lastSentence": "Does have a signature similar to a concealment formation.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "True, I do feel some faint echoes of mana. Does have a signature similar to a concealment formation.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Kindroth",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Kindroth",
+        "sourceCandidates": [
+          "Kindroth",
+          "Miranda"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "kindroth",
+          "confidence": 0.816,
+          "name": "Kindroth",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "miranda",
+          "confidence": 0.456,
+          "name": "Miranda",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "kindroth",
+      "currentCharacterName": "Kindroth",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 27,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "True, I do feel some faint echoes of mana. Does have a signature similar to a concealment formation."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": true,
+          "lineId": 27,
+          "text": "True, I do feel some faint echoes of mana. Does have a signature similar to a concealment formation."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Miranda looked to focus for a brief while before nodding.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "True, I do feel some faint echoes of mana.",
+          "lastSentence": "Does have a signature similar to a concealment formation.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "True, I do feel some faint echoes of mana. Does have a signature similar to a concealment formation.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Miranda looked to focus for a brief while before nodding. “True, I do feel some faint echoes of mana. Does have a signature similar to a concealment formation.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": false,
+          "lineId": 28,
+          "text": "Right, makes sense,"
+        },
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": true,
+          "lineId": 30,
+          "text": "I wouldn’t really be able to tell. Not an expert in formations and all that."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Kindroth nodded.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "Right, makes sense,",
+          "lastSentence": "Right, makes sense,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Right, makes sense,",
+          "speakerNameMatch": "Kindroth",
+          "speakerSurface": "Kindroth"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Kindroth nodded.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "I wouldn’t really be able to tell.",
+          "lastSentence": "Not an expert in formations and all that.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "I wouldn’t really be able to tell. Not an expert in formations and all that.",
+          "speakerNameMatch": "Kindroth",
+          "speakerSurface": "Kindroth"
+        }
+      ],
+      "nextParagraphText": "“Right, makes sense,” Kindroth nodded. “I wouldn’t really be able to tell. Not an expert in formations and all that.”",
+      "paragraphIndex": 11,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": false,
+          "lineId": 23,
+          "text": "It should be just up ahead,"
+        },
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": true,
+          "lineId": 25,
+          "text": "If you feel for it carefully, you may even be able to detect the subtle mana of the natural formation from here."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Kindroth said after a little while.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "It should be just up ahead,",
+          "lastSentence": "It should be just up ahead,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "It should be just up ahead,",
+          "speakerNameMatch": "Kindroth",
+          "speakerSurface": "Kindroth"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Kindroth said after a little while.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "If you feel for it carefully, you may even be able to detect the subtle mana of the natural formation from here.",
+          "lastSentence": "If you feel for it carefully, you may even be able to detect the subtle mana of the natural formation from here.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "If you feel for it carefully, you may even be able to detect the subtle mana of the natural formation from here.",
+          "speakerNameMatch": "Kindroth",
+          "speakerSurface": "Kindroth"
+        }
+      ],
+      "previousParagraphText": "“It should be just up ahead,” Kindroth said after a little while. “If you feel for it carefully, you may even be able to detect the subtle mana of the natural formation from here.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "lineId": 19,
+        "paragraphIndex": 8,
+        "relativeIndex": -4,
+        "text": "Does sound possible, even if the level requirement to enter is only 280,"
+      },
+      {
+        "characterId": "lillian",
+        "characterName": "Lillian",
+        "lineId": 21,
+        "paragraphIndex": 9,
+        "relativeIndex": -3,
+        "text": "If it’s anything like the Undergrowth with quite a wide level scale, coupled with illusion... certainly doesn’t sound like a pleasant place,"
+      },
+      {
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "lineId": 23,
+        "paragraphIndex": 10,
+        "relativeIndex": -2,
+        "text": "It should be just up ahead,"
+      },
+      {
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "lineId": 25,
+        "paragraphIndex": 10,
+        "relativeIndex": -1,
+        "text": "If you feel for it carefully, you may even be able to detect the subtle mana of the natural formation from here."
+      },
+      {
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "lineId": 28,
+        "paragraphIndex": 12,
+        "relativeIndex": 1,
+        "text": "Right, makes sense,"
+      },
+      {
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "lineId": 30,
+        "paragraphIndex": 12,
+        "relativeIndex": 2,
+        "text": "I wouldn’t really be able to tell. Not an expert in formations and all that."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 27, \"text\": \"True, I do feel some faint echoes of mana. Does have a signature similar to a concealment formation.\", \"currentCharacterId\": \"kindroth\", \"currentCharacterName\": \"Kindroth\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Kindroth\", \"sourceCandidates\": [\"Kindroth\", \"Miranda\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Kindroth\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 11, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Miranda looked to focus for a brief while before nodding. “True, I do feel some faint echoes of mana. Does have a signature similar to a concealment formation.”\", \"currentParagraphDialogue\": [{\"lineId\": 27, \"text\": \"True, I do feel some faint echoes of mana. Does have a signature similar to a concealment formation.\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": true}], \"previousParagraphText\": \"“It should be just up ahead,” Kindroth said after a little while. “If you feel for it carefully, you may even be able to detect the subtle mana of the natural formation from here.”\", \"previousParagraphDialogue\": [{\"lineId\": 23, \"text\": \"It should be just up ahead,\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": false}, {\"lineId\": 25, \"text\": \"If you feel for it carefully, you may even be able to detect the subtle mana of the natural formation from here.\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": true}], \"nextParagraphText\": \"“Right, makes sense,” Kindroth nodded. “I wouldn’t really be able to tell. Not an expert in formations and all that.”\", \"nextParagraphDialogue\": [{\"lineId\": 28, \"text\": \"Right, makes sense,\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": false}, {\"lineId\": 30, \"text\": \"I wouldn’t really be able to tell. Not an expert in formations and all that.\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"True, I do feel some faint echoes of mana. Does have a signature similar to a concealment formation.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Miranda looked to focus for a brief while before nodding.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"True, I do feel some faint echoes of mana.\", \"lastSentence\": \"Does have a signature similar to a concealment formation.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"It should be just up ahead,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Kindroth said after a little while.\", \"speakerSurface\": \"Kindroth\", \"speakerNameMatch\": \"Kindroth\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"It should be just up ahead,\", \"lastSentence\": \"It should be just up ahead,\"}, {\"quoteIndex\": 1, \"quoteText\": \"If you feel for it carefully, you may even be able to detect the subtle mana of the natural formation from here.\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Kindroth said after a little while.\", \"speakerSurface\": \"Kindroth\", \"speakerNameMatch\": \"Kindroth\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"If you feel for it carefully, you may even be able to detect the subtle mana of the natural formation from here.\", \"lastSentence\": \"If you feel for it carefully, you may even be able to detect the subtle mana of the natural formation from here.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Right, makes sense,\", \"cuePosition\": \"after\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Kindroth nodded.\", \"speakerSurface\": \"Kindroth\", \"speakerNameMatch\": \"Kindroth\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Right, makes sense,\", \"lastSentence\": \"Right, makes sense,\"}, {\"quoteIndex\": 1, \"quoteText\": \"I wouldn’t really be able to tell. Not an expert in formations and all that.\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Kindroth nodded.\", \"speakerSurface\": \"Kindroth\", \"speakerNameMatch\": \"Kindroth\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I wouldn’t really be able to tell.\", \"lastSentence\": \"Not an expert in formations and all that.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"True, I do feel some faint echoes of mana. Does have a signature similar to a concealment formation.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Miranda looked to focus for a brief while before nodding.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"True, I do feel some faint echoes of mana.\", \"lastSentence\": \"Does have a signature similar to a concealment formation.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [\"kindroth\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"aliases\": [], \"roleLabels\": [\"miranda\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"lillian\", \"characterName\": \"Lillian\", \"aliases\": [], \"roleLabels\": [\"lillian\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 19, \"paragraphIndex\": 8, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"Does sound possible, even if the level requirement to enter is only 280,\"}, {\"relativeIndex\": -3, \"lineId\": 21, \"paragraphIndex\": 9, \"characterId\": \"lillian\", \"characterName\": \"Lillian\", \"text\": \"If it’s anything like the Undergrowth with quite a wide level scale, coupled with illusion... certainly doesn’t sound like a pleasant place,\"}, {\"relativeIndex\": -2, \"lineId\": 23, \"paragraphIndex\": 10, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"It should be just up ahead,\"}, {\"relativeIndex\": -1, \"lineId\": 25, \"paragraphIndex\": 10, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"If you feel for it carefully, you may even be able to detect the subtle mana of the natural formation from here.\"}, {\"relativeIndex\": 1, \"lineId\": 28, \"paragraphIndex\": 12, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"Right, makes sense,\"}, {\"relativeIndex\": 2, \"lineId\": 30, \"paragraphIndex\": 12, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"I wouldn’t really be able to tell. Not an expert in formations and all that.\"}], \"chapterCharacters\": [{\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"lillian\", \"name\": \"Lillian\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"lodestar-matron\", \"name\": \"Lodestar Matron\", \"aliases\": [\"lodestar-matron\", \"lodestar-matron-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"miranda\",\n  \"characterName\": \"Miranda\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_cohesion\",\n    \"next_speaker_context\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

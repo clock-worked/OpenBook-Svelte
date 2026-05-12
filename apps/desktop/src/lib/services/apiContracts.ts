@@ -112,6 +112,7 @@ export interface VibeVoiceCharacterLineRequest {
   id: number;
   text: string;
   characterId?: string;
+  characterName?: string;
   chosenSpeaker?: string;
   chapterTitle?: string;
   sourceFile?: string;
@@ -186,4 +187,117 @@ export interface BackendErrorPayload {
   detail?: string;
   error?: string;
   message?: string;
+}
+
+export type DialogueAiAssistAction =
+  | 'keep_existing'
+  | 'reassign_existing'
+  | 'needs_review'
+  | 'propose_alias'
+  | 'propose_new_character'
+  | 'error';
+
+export type DialogueAiAssistDisposition =
+  | 'auto_apply'
+  | 'review'
+  | 'alias_review'
+  | 'new_character_approval'
+  | 'error';
+
+export interface DialogueAiAssistCharacterRef {
+  characterId: string;
+  name: string;
+  aliases?: string[];
+  roleLabels?: string[];
+  notes?: string | null;
+}
+
+export interface DialogueAiAssistAliasProposal {
+  characterId: string;
+  characterName: string;
+  alias: string;
+}
+
+export interface DialogueAiAssistNewCharacterProposal {
+  name: string;
+  alias?: string | null;
+  notes?: string | null;
+}
+
+export interface DialogueAiAssistToolTraceEntry {
+  tool:
+  | 'request_previous_paragraph'
+  | 'request_next_paragraph'
+  | 'request_book_characters'
+  | 'request_quote_structure'
+  | 'request_recent_turn_history'
+  | 'request_scene_entities'
+  | 'request_candidate_cards'
+  | 'request_attribution_signals';
+  status: 'used' | 'unavailable' | 'ignored';
+  note?: string | null;
+}
+
+export interface DialogueAiAssistLineResult {
+  lineId: number;
+  paragraphIndex: number | null;
+  currentCharacterId?: string | null;
+  currentCharacterName?: string | null;
+  suggestedCharacterId?: string | null;
+  suggestedCharacterName?: string | null;
+  action: DialogueAiAssistAction;
+  disposition: DialogueAiAssistDisposition;
+  confidence: number;
+  reasonCodes: string[];
+  currentParagraphText: string;
+  previousParagraphText?: string | null;
+  nextParagraphText?: string | null;
+  toolTrace: DialogueAiAssistToolTraceEntry[];
+  aliasToAdd?: DialogueAiAssistAliasProposal | null;
+  newCharacterProposal?: DialogueAiAssistNewCharacterProposal | null;
+  cacheHit?: boolean;
+  logPath?: string | null;
+  error?: string | null;
+}
+
+export interface DialogueAiAssistSummary {
+  scannedLines: number;
+  autoApplyCount: number;
+  reviewCount: number;
+  aliasReviewCount: number;
+  newCharacterCount: number;
+  errorCount: number;
+  skippedNarratorLines: number;
+  cacheHits?: number;
+  modelCalls?: number;
+  logDirectory?: string | null;
+}
+
+export interface DialogueAiAssistStatus {
+  requestId: string;
+  status: 'queued' | 'running' | 'completed' | 'failed';
+  processedLines: number;
+  totalLines: number;
+  progressRatio: number;
+  startedAt?: string | null;
+  updatedAt?: string | null;
+  chapterPath?: string | null;
+  error?: string | null;
+  logDirectory?: string | null;
+}
+
+export interface DialogueAiAssistRequest {
+  request_id?: string | null;
+  chapter_path: string;
+  chapter_text: string;
+  dialogue: import('$lib/types').DialogueJson;
+  auto_apply_threshold?: number;
+  max_lines?: number | null;
+  dry_run?: boolean;
+}
+
+export interface DialogueAiAssistResponse {
+  summary: DialogueAiAssistSummary;
+  results: DialogueAiAssistLineResult[];
+  errors?: string[];
 }

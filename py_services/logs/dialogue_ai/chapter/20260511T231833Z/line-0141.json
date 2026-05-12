@@ -1,0 +1,471 @@
+{
+  "alignment": {
+    "confidence": 1.0,
+    "isSpanFallback": false,
+    "method": "quote_unit",
+    "paragraphIndex": 69,
+    "spanDistance": 0.0,
+    "spanParagraphIndex": 69
+  },
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "17794b8b8e8defd8b4283433d21603143c63090ca9f7e59b94967438d13dc272",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\17794b8b8e8defd8b4283433d21603143c63090ca9f7e59b94967438d13dc272.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.9,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "preceding_action_speaker",
+          "dialogue_flow_continuity"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "risen",
+            "characterName": "risen",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "risen"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God",
+              "Unknown Human (Male)"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist",
+              "lord thayne",
+              "thayne",
+              "void god",
+              "unknown human male"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "casper",
+            "characterName": "Casper",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "casper"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God",
+              "Unknown Human (Male)"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Attendant",
+              "natures-attendant",
+              "natures-attendant-2",
+              "Nature Attendant",
+              "Life"
+            ],
+            "characterId": "natures-attendant",
+            "name": "Nature's Attendant",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "name": "Minaga",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "casper",
+            "name": "Casper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "risen",
+            "name": "risen",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "That one word and the Risen’s look communicated all that had to be said as Jake gave him a smile in return.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Yeah, you'll definitely be invited to the wedding.",
+          "lastSentence": "Yeah, you'll definitely be invited to the wedding.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Yeah, you'll definitely be invited to the wedding.",
+          "speakerNameMatch": null,
+          "speakerSurface": "That"
+        },
+        "line": {
+          "alignment": {
+            "confidence": 1.0,
+            "isSpanFallback": false,
+            "method": "quote_unit",
+            "paragraphIndex": 69,
+            "spanDistance": 0.0,
+            "spanParagraphIndex": 69
+          },
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": true,
+              "nextDialogueLegacy": "Minaga",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36,
+            "misattributionRisk": 0.2788,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "risen",
+            "sourceCandidates": [
+              "risen",
+              "Jake"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.876
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.876,
+              "name": "risen",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.516,
+              "name": "Jake",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "risen",
+          "currentCharacterName": "risen",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 141,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Yeah, you'll definitely be invited to the wedding."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "risen",
+              "characterName": "risen",
+              "isReturning": true,
+              "lineId": 141,
+              "text": "Yeah, you'll definitely be invited to the wedding."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "That one word and the Risen’s look communicated all that had to be said as Jake gave him a smile in return.",
+              "cueVerb": "said",
+              "cueVerbType": "speech",
+              "firstSentence": "Yeah, you'll definitely be invited to the wedding.",
+              "lastSentence": "Yeah, you'll definitely be invited to the wedding.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Yeah, you'll definitely be invited to the wedding.",
+              "speakerNameMatch": null,
+              "speakerSurface": "That"
+            }
+          ],
+          "currentParagraphText": "That one word and the Risen’s look communicated all that had to be said as Jake gave him a smile in return. “Yeah, you'll definitely be invited to the wedding.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 142,
+              "text": "So there is going to be a wedding!?"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Minaga yelled, Jake and Casper both entirely ignoring him as they turned toward the actual building representing the dungeon.",
+              "cueVerb": "yelled",
+              "cueVerbType": "speech",
+              "firstSentence": "So there is going to be a wedding!?",
+              "lastSentence": "So there is going to be a wedding!?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "So there is going to be a wedding!?",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Minaga"
+            }
+          ],
+          "nextParagraphText": "“So there is going to be a wedding!?” Minaga yelled, Jake and Casper both entirely ignoring him as they turned toward the actual building representing the dungeon.",
+          "paragraphIndex": 69,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "casper",
+              "characterName": "Casper",
+              "isReturning": true,
+              "lineId": 139,
+              "text": "Nice."
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Casper put his hand on Jake’s shoulder and gave him a big approving smile as he spoke a single word.",
+              "cueVerb": "spoke",
+              "cueVerbType": "speech",
+              "firstSentence": "Nice.",
+              "lastSentence": "Nice.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Nice.",
+              "speakerNameMatch": null,
+              "speakerSurface": "Casper"
+            }
+          ],
+          "previousParagraphText": "Casper put his hand on Jake’s shoulder and gave him a big approving smile as he spoke a single word. “Nice.”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 133,
+            "paragraphIndex": 66,
+            "relativeIndex": -4,
+            "text": "Alright, alright, enough about my relationship. Can we actually get to the damn dungeon already?"
+          },
+          {
+            "characterId": "casper",
+            "characterName": "Casper",
+            "lineId": 135,
+            "paragraphIndex": 67,
+            "relativeIndex": -3,
+            "text": "Fine,"
+          },
+          {
+            "characterId": "casper",
+            "characterName": "Casper",
+            "lineId": 137,
+            "paragraphIndex": 67,
+            "relativeIndex": -2,
+            "text": "Just one more thing to finish off the topic. I also completed the Colosseum of Mortals and saw the Lord of the Hunt. I remember how she looked, her presence, and let me just say, from one guy to another…"
+          },
+          {
+            "characterId": "casper",
+            "characterName": "Casper",
+            "lineId": 139,
+            "paragraphIndex": 68,
+            "relativeIndex": -1,
+            "text": "Nice."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 142,
+            "paragraphIndex": 70,
+            "relativeIndex": 1,
+            "text": "So there is going to be a wedding!?"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 147,
+            "paragraphIndex": 74,
+            "relativeIndex": 2,
+            "text": "I take it the large gate inside is the entrance?"
+          }
+        ],
+        "sceneEntities": [],
+        "sceneRoster": {
+          "paragraphWindow": 6,
+          "presentCharacterIds": [
+            "unknown",
+            "jake",
+            "casper",
+            "risen"
+          ],
+          "presentCharacters": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake"
+            },
+            {
+              "characterId": "casper",
+              "characterName": "Casper"
+            },
+            {
+              "characterId": "risen",
+              "characterName": "risen"
+            }
+          ]
+        }
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 141, \"text\": \"Yeah, you'll definitely be invited to the wedding.\", \"currentCharacterId\": \"risen\", \"currentCharacterName\": \"risen\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"risen\", \"sourceCandidates\": [\"risen\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.876, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.2788, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Minaga\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"risen\", \"confidence\": 0.876, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.516, \"reasons\": null}], \"isReturning\": true, \"alignment\": {\"paragraphIndex\": 69, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 69, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 69, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"That one word and the Risen’s look communicated all that had to be said as Jake gave him a smile in return. “Yeah, you'll definitely be invited to the wedding.”\", \"currentParagraphDialogue\": [{\"lineId\": 141, \"text\": \"Yeah, you'll definitely be invited to the wedding.\", \"characterId\": \"risen\", \"characterName\": \"risen\", \"isReturning\": true}], \"previousParagraphText\": \"Casper put his hand on Jake’s shoulder and gave him a big approving smile as he spoke a single word. “Nice.”\", \"previousParagraphDialogue\": [{\"lineId\": 139, \"text\": \"Nice.\", \"characterId\": \"casper\", \"characterName\": \"Casper\", \"isReturning\": true}], \"nextParagraphText\": \"“So there is going to be a wedding!?” Minaga yelled, Jake and Casper both entirely ignoring him as they turned toward the actual building representing the dungeon.\", \"nextParagraphDialogue\": [{\"lineId\": 142, \"text\": \"So there is going to be a wedding!?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Yeah, you'll definitely be invited to the wedding.\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"That one word and the Risen’s look communicated all that had to be said as Jake gave him a smile in return.\", \"speakerSurface\": \"That\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yeah, you'll definitely be invited to the wedding.\", \"lastSentence\": \"Yeah, you'll definitely be invited to the wedding.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Nice.\", \"cuePosition\": \"before\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"Casper put his hand on Jake’s shoulder and gave him a big approving smile as he spoke a single word.\", \"speakerSurface\": \"Casper\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Nice.\", \"lastSentence\": \"Nice.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"So there is going to be a wedding!?\", \"cuePosition\": \"after\", \"cueVerb\": \"yelled\", \"cueVerbType\": \"speech\", \"cueText\": \"Minaga yelled, Jake and Casper both entirely ignoring him as they turned toward the actual building representing the dungeon.\", \"speakerSurface\": \"Minaga\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"So there is going to be a wedding!?\", \"lastSentence\": \"So there is going to be a wedding!?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Yeah, you'll definitely be invited to the wedding.\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"That one word and the Risen’s look communicated all that had to be said as Jake gave him a smile in return.\", \"speakerSurface\": \"That\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yeah, you'll definitely be invited to the wedding.\", \"lastSentence\": \"Yeah, you'll definitely be invited to the wedding.\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"unknown\", \"jake\", \"casper\", \"risen\"], \"presentCharacters\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}, {\"characterId\": \"jake\", \"characterName\": \"Jake\"}, {\"characterId\": \"casper\", \"characterName\": \"Casper\"}, {\"characterId\": \"risen\", \"characterName\": \"risen\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"risen\", \"characterName\": \"risen\", \"aliases\": [], \"roleLabels\": [\"risen\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\", \"void god\", \"unknown human male\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"casper\", \"characterName\": \"Casper\", \"aliases\": [], \"roleLabels\": [\"casper\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 133, \"paragraphIndex\": 66, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Alright, alright, enough about my relationship. Can we actually get to the damn dungeon already?\"}, {\"relativeIndex\": -3, \"lineId\": 135, \"paragraphIndex\": 67, \"characterId\": \"casper\", \"characterName\": \"Casper\", \"text\": \"Fine,\"}, {\"relativeIndex\": -2, \"lineId\": 137, \"paragraphIndex\": 67, \"characterId\": \"casper\", \"characterName\": \"Casper\", \"text\": \"Just one more thing to finish off the topic. I also completed the Colosseum of Mortals and saw the Lord of the Hunt. I remember how she looked, her presence, and let me just say, from one guy to another…\"}, {\"relativeIndex\": -1, \"lineId\": 139, \"paragraphIndex\": 68, \"characterId\": \"casper\", \"characterName\": \"Casper\", \"text\": \"Nice.\"}, {\"relativeIndex\": 1, \"lineId\": 142, \"paragraphIndex\": 70, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"So there is going to be a wedding!?\"}, {\"relativeIndex\": 2, \"lineId\": 147, \"paragraphIndex\": 74, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I take it the large gate inside is the entrance?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"natures-attendant\", \"name\": \"Nature's Attendant\", \"aliases\": [\"Attendant\", \"natures-attendant\", \"natures-attendant-2\", \"Nature Attendant\", \"Life\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"casper\", \"name\": \"Casper\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"risen\", \"name\": \"risen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"preceding_action_speaker\",\n    \"dialogue_flow_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0187 - Chapter 1244 - Invasive Personal Questions/chapter.txt",
+  "currentCharacterId": "risen",
+  "currentCharacterName": "risen",
+  "currentParagraphText": "That one word and the Risen’s look communicated all that had to be said as Jake gave him a smile in return. “Yeah, you'll definitely be invited to the wedding.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.9,
+    "currentCharacterId": "risen",
+    "currentCharacterName": "risen",
+    "currentParagraphText": "That one word and the Risen’s look communicated all that had to be said as Jake gave him a smile in return. “Yeah, you'll definitely be invited to the wedding.”",
+    "disposition": "review",
+    "error": null,
+    "lineId": 141,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“So there is going to be a wedding!?” Minaga yelled, Jake and Casper both entirely ignoring him as they turned toward the actual building representing the dungeon.",
+    "paragraphIndex": 69,
+    "previousParagraphText": "Casper put his hand on Jake’s shoulder and gave him a big approving smile as he spoke a single word. “Nice.”",
+    "reasonCodes": [
+      "preceding_action_speaker",
+      "dialogue_flow_continuity"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 141,
+  "nextParagraphText": "“So there is going to be a wedding!?” Minaga yelled, Jake and Casper both entirely ignoring him as they turned toward the actual building representing the dungeon.",
+  "paragraphIndex": 69,
+  "previousParagraphText": "Casper put his hand on Jake’s shoulder and gave him a big approving smile as he spoke a single word. “Nice.”",
+  "sceneRoster": {
+    "paragraphWindow": 6,
+    "presentCharacterIds": [
+      "unknown",
+      "jake",
+      "casper",
+      "risen"
+    ],
+    "presentCharacters": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake"
+      },
+      {
+        "characterId": "casper",
+        "characterName": "Casper"
+      },
+      {
+        "characterId": "risen",
+        "characterName": "risen"
+      }
+    ]
+  }
+}

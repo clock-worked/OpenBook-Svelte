@@ -1,0 +1,137 @@
+{
+  "cacheKey": "0adc4aba411c92636d97d717ca534d6590e78899360bf20176c4fa863e18ce2d",
+  "createdAt": "2026-04-01T04:43:52.928958+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jacob",
+    "characterName": "Jacob",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "narrative_attribution",
+      "dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "name": "Augur"
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob"
+      },
+      {
+        "aliases": [],
+        "characterId": "the-unique-lifeform",
+        "name": "The Unique Lifeform"
+      },
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.19599999999999995,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "False God"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.804,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "false god",
+          "confidence": 0.444,
+          "name": "False God",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Ell'Hakan"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "id": 91,
+      "isReturning": false,
+      "text": "I expected that to be the case,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 91,
+          "text": "I expected that to be the case,"
+        }
+      ],
+      "currentParagraphText": "Jacob just answered, not even addressing Jake’s heavy hinting that he should bail from the Holy Church.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": true,
+          "lineId": 93,
+          "text": "It was the foreseeable outcome, after all. I am not saying this to lay any blame on you, but one of the reasons the head priest and those he serve chose to side with Ell’Hakan in the first place was because they saw it as their only option. You have already continuously shown your distaste for the Holy Church before, after all. They expected to be thrown out of the Milky Way should you win in the battle of Chosen, so they chose to support the one who would at least continue to allow their presence. Seeing as they believed you would throw them out no matter what, should Ell’Hakan lose, they wouldn’t really lose anything."
+        }
+      ],
+      "nextParagraphText": "“It was the foreseeable outcome, after all. I am not saying this to lay any blame on you, but one of the reasons the head priest and those he serve chose to side with Ell’Hakan in the first place was because they saw it as their only option. You have already continuously shown your distaste for the Holy Church before, after all. They expected to be thrown out of the Milky Way should you win in the battle of Chosen, so they chose to support the one who would at least continue to allow their presence. Seeing as they believed you would throw them out no matter what, should Ell’Hakan lose, they wouldn’t really lose anything.”",
+      "paragraphIndex": 62,
+      "previousParagraphDialogue": [],
+      "previousParagraphText": "“I expected that to be the case,”"
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 91, \"text\": \"I expected that to be the case,\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Ell'Hakan\"], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"False God\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"false god\", \"name\": \"False God\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 62, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Jacob just answered, not even addressing Jake’s heavy hinting that he should bail from the Holy Church.\", \"currentParagraphDialogue\": [{\"lineId\": 91, \"text\": \"I expected that to be the case,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"previousParagraphText\": \"“I expected that to be the case,”\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“It was the foreseeable outcome, after all. I am not saying this to lay any blame on you, but one of the reasons the head priest and those he serve chose to side with Ell’Hakan in the first place was because they saw it as their only option. You have already continuously shown your distaste for the Holy Church before, after all. They expected to be thrown out of the Milky Way should you win in the battle of Chosen, so they chose to support the one who would at least continue to allow their presence. Seeing as they believed you would throw them out no matter what, should Ell’Hakan lose, they wouldn’t really lose anything.”\", \"nextParagraphDialogue\": [{\"lineId\": 93, \"text\": \"It was the foreseeable outcome, after all. I am not saying this to lay any blame on you, but one of the reasons the head priest and those he serve chose to side with Ell’Hakan in the first place was because they saw it as their only option. You have already continuously shown your distaste for the Holy Church before, after all. They expected to be thrown out of the Milky Way should you win in the battle of Chosen, so they chose to support the one who would at least continue to allow their presence. Seeing as they believed you would throw them out no matter what, should Ell’Hakan lose, they wouldn’t really lose anything.\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": true}]}, \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"augur\", \"name\": \"Augur\", \"aliases\": []}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": []}, {\"characterId\": \"the-unique-lifeform\", \"name\": \"The Unique Lifeform\", \"aliases\": []}, {\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jacob\",\n  \"characterName\": \"Jacob\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"narrative_attribution\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

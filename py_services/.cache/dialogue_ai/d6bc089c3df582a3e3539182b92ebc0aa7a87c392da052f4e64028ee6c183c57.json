@@ -1,0 +1,380 @@
+{
+  "cacheKey": "d6bc089c3df582a3e3539182b92ebc0aa7a87c392da052f4e64028ee6c183c57",
+  "createdAt": "2026-04-18T23:23:41.128685+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "solana",
+    "characterName": "Solana",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "speaker_verb_before_quote"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "chimera",
+          "monster"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "artemis",
+          "godqueen"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "keerla",
+        "name": "Keerla",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "solana",
+        "name": "Solana",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "before",
+      "cueText": "Solana listened and slowly nodded.",
+      "cueVerb": "nodded",
+      "cueVerbType": "speech",
+      "firstSentence": "I have a hard time wrapping my mind around how such an arrangement truly works, but I guess things are a lot different with the restrictions still placed upon the universe.",
+      "lastSentence": "I have a hard time wrapping my mind around how such an arrangement truly works, but I guess things are a lot different with the restrictions still placed upon the universe.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "I have a hard time wrapping my mind around how such an arrangement truly works, but I guess things are a lot different with the restrictions still placed upon the universe.",
+      "speakerNameMatch": null,
+      "speakerSurface": "a listened and"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Artemis",
+        "sourceCandidates": [
+          "Artemis",
+          "Solana"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Artemis",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Solana",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 45,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "I have a hard time wrapping my mind around how such an arrangement truly works, but I guess things are a lot different with the restrictions still placed upon the universe."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 45,
+          "text": "I have a hard time wrapping my mind around how such an arrangement truly works, but I guess things are a lot different with the restrictions still placed upon the universe."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Solana listened and slowly nodded.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "I have a hard time wrapping my mind around how such an arrangement truly works, but I guess things are a lot different with the restrictions still placed upon the universe.",
+          "lastSentence": "I have a hard time wrapping my mind around how such an arrangement truly works, but I guess things are a lot different with the restrictions still placed upon the universe.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I have a hard time wrapping my mind around how such an arrangement truly works, but I guess things are a lot different with the restrictions still placed upon the universe.",
+          "speakerNameMatch": null,
+          "speakerSurface": "a listened and"
+        }
+      ],
+      "currentParagraphText": "Solana listened and slowly nodded. “I have a hard time wrapping my mind around how such an arrangement truly works, but I guess things are a lot different with the restrictions still placed upon the universe.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 46,
+          "text": "Oh, yeah, for sure,"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 48,
+          "text": "It is opening up slowly, though. Speaking of, once it’s opened up to those at your level, you two are free to come for a visit. I would be remissnot to return the hospitality."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake nodded.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "Oh, yeah, for sure,",
+          "lastSentence": "Oh, yeah, for sure,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Oh, yeah, for sure,",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jake nodded.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "It is opening up slowly, though.",
+          "lastSentence": "I would be remissnot to return the hospitality.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "It is opening up slowly, though. Speaking of, once it’s opened up to those at your level, you two are free to come for a visit. I would be remissnot to return the hospitality.",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "nextParagraphText": "“Oh, yeah, for sure,” Jake nodded. “It is opening up slowly, though. Speaking of, once it’s opened up to those at your level, you two are free to come for a visit. I would be remissnot to return the hospitality.”",
+      "paragraphIndex": 23,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": false,
+          "lineId": 41,
+          "text": "And before you ask, no, that’s not mere semantics,"
+        },
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": true,
+          "lineId": 43,
+          "text": "The Order of the Malefic Viper is not the only faction with ruling power over the galaxy. Instead, from my understanding, it’s more a council of sorts, involving several influential World Leaders and powerful individuals. The Order’s true role is the powerful backing that ensures no other faction dares to try to take control."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Artemis said, having seen through their two hosts’ thoughts.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "And before you ask, no, that’s not mere semantics,",
+          "lastSentence": "And before you ask, no, that’s not mere semantics,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "And before you ask, no, that’s not mere semantics,",
+          "speakerNameMatch": "Artemis",
+          "speakerSurface": "Artemis"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Artemis said, having seen through their two hosts’ thoughts.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "The Order of the Malefic Viper is not the only faction with ruling power over the galaxy.",
+          "lastSentence": "The Order’s true role is the powerful backing that ensures no other faction dares to try to take control.",
+          "mentionedEntities": [
+            "The Malefic Viper"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "The Order of the Malefic Viper is not the only faction with ruling power over the galaxy. Instead, from my understanding, it’s more a council of sorts, involving several influential World Leaders and powerful individuals. The Order’s true role is the powerful backing that ensures no other faction dares to try to take control.",
+          "speakerNameMatch": "Artemis",
+          "speakerSurface": "Artemis"
+        }
+      ],
+      "previousParagraphText": "“And before you ask, no, that’s not mere semantics,” Artemis said, having seen through their two hosts’ thoughts. “The Order of the Malefic Viper is not the only faction with ruling power over the galaxy. Instead, from my understanding, it’s more a council of sorts, involving several influential World Leaders and powerful individuals. The Order’s true role is the powerful backing that ensures no other faction dares to try to take control.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 38,
+        "paragraphIndex": 21,
+        "relativeIndex": -4,
+        "text": "Small clarification,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 40,
+        "paragraphIndex": 21,
+        "relativeIndex": -3,
+        "text": "I’m the one who officially rules it. Not the Order of the Malefic Viper. Sure, they are involved, but it’s them helping me and not me conquering the galaxy for them."
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 41,
+        "paragraphIndex": 22,
+        "relativeIndex": -2,
+        "text": "And before you ask, no, that’s not mere semantics,"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 43,
+        "paragraphIndex": 22,
+        "relativeIndex": -1,
+        "text": "The Order of the Malefic Viper is not the only faction with ruling power over the galaxy. Instead, from my understanding, it’s more a council of sorts, involving several influential World Leaders and powerful individuals. The Order’s true role is the powerful backing that ensures no other faction dares to try to take control."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 46,
+        "paragraphIndex": 24,
+        "relativeIndex": 1,
+        "text": "Oh, yeah, for sure,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 48,
+        "paragraphIndex": 24,
+        "relativeIndex": 2,
+        "text": "It is opening up slowly, though. Speaking of, once it’s opened up to those at your level, you two are free to come for a visit. I would be remissnot to return the hospitality."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 45, \"text\": \"I have a hard time wrapping my mind around how such an arrangement truly works, but I guess things are a lot different with the restrictions still placed upon the universe.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Artemis\", \"sourceCandidates\": [\"Artemis\", \"Solana\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Solana\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 23, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Solana listened and slowly nodded. “I have a hard time wrapping my mind around how such an arrangement truly works, but I guess things are a lot different with the restrictions still placed upon the universe.”\", \"currentParagraphDialogue\": [{\"lineId\": 45, \"text\": \"I have a hard time wrapping my mind around how such an arrangement truly works, but I guess things are a lot different with the restrictions still placed upon the universe.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“And before you ask, no, that’s not mere semantics,” Artemis said, having seen through their two hosts’ thoughts. “The Order of the Malefic Viper is not the only faction with ruling power over the galaxy. Instead, from my understanding, it’s more a council of sorts, involving several influential World Leaders and powerful individuals. The Order’s true role is the powerful backing that ensures no other faction dares to try to take control.”\", \"previousParagraphDialogue\": [{\"lineId\": 41, \"text\": \"And before you ask, no, that’s not mere semantics,\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": false}, {\"lineId\": 43, \"text\": \"The Order of the Malefic Viper is not the only faction with ruling power over the galaxy. Instead, from my understanding, it’s more a council of sorts, involving several influential World Leaders and powerful individuals. The Order’s true role is the powerful backing that ensures no other faction dares to try to take control.\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": true}], \"nextParagraphText\": \"“Oh, yeah, for sure,” Jake nodded. “It is opening up slowly, though. Speaking of, once it’s opened up to those at your level, you two are free to come for a visit. I would be remissnot to return the hospitality.”\", \"nextParagraphDialogue\": [{\"lineId\": 46, \"text\": \"Oh, yeah, for sure,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 48, \"text\": \"It is opening up slowly, though. Speaking of, once it’s opened up to those at your level, you two are free to come for a visit. I would be remissnot to return the hospitality.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I have a hard time wrapping my mind around how such an arrangement truly works, but I guess things are a lot different with the restrictions still placed upon the universe.\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Solana listened and slowly nodded.\", \"speakerSurface\": \"a listened and\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I have a hard time wrapping my mind around how such an arrangement truly works, but I guess things are a lot different with the restrictions still placed upon the universe.\", \"lastSentence\": \"I have a hard time wrapping my mind around how such an arrangement truly works, but I guess things are a lot different with the restrictions still placed upon the universe.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"And before you ask, no, that’s not mere semantics,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Artemis said, having seen through their two hosts’ thoughts.\", \"speakerSurface\": \"Artemis\", \"speakerNameMatch\": \"Artemis\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"And before you ask, no, that’s not mere semantics,\", \"lastSentence\": \"And before you ask, no, that’s not mere semantics,\"}, {\"quoteIndex\": 1, \"quoteText\": \"The Order of the Malefic Viper is not the only faction with ruling power over the galaxy. Instead, from my understanding, it’s more a council of sorts, involving several influential World Leaders and powerful individuals. The Order’s true role is the powerful backing that ensures no other faction dares to try to take control.\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Artemis said, having seen through their two hosts’ thoughts.\", \"speakerSurface\": \"Artemis\", \"speakerNameMatch\": \"Artemis\", \"mentionedEntities\": [\"The Malefic Viper\"], \"addressedEntity\": null, \"firstSentence\": \"The Order of the Malefic Viper is not the only faction with ruling power over the galaxy.\", \"lastSentence\": \"The Order’s true role is the powerful backing that ensures no other faction dares to try to take control.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Oh, yeah, for sure,\", \"cuePosition\": \"after\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake nodded.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Oh, yeah, for sure,\", \"lastSentence\": \"Oh, yeah, for sure,\"}, {\"quoteIndex\": 1, \"quoteText\": \"It is opening up slowly, though. Speaking of, once it’s opened up to those at your level, you two are free to come for a visit. I would be remissnot to return the hospitality.\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake nodded.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"It is opening up slowly, though.\", \"lastSentence\": \"I would be remissnot to return the hospitality.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I have a hard time wrapping my mind around how such an arrangement truly works, but I guess things are a lot different with the restrictions still placed upon the universe.\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Solana listened and slowly nodded.\", \"speakerSurface\": \"a listened and\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I have a hard time wrapping my mind around how such an arrangement truly works, but I guess things are a lot different with the restrictions still placed upon the universe.\", \"lastSentence\": \"I have a hard time wrapping my mind around how such an arrangement truly works, but I guess things are a lot different with the restrictions still placed upon the universe.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [\"jake\", \"protagonist\", \"chimera\", \"monster\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [\"artemis\", \"godqueen\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 38, \"paragraphIndex\": 21, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Small clarification,\"}, {\"relativeIndex\": -3, \"lineId\": 40, \"paragraphIndex\": 21, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I’m the one who officially rules it. Not the Order of the Malefic Viper. Sure, they are involved, but it’s them helping me and not me conquering the galaxy for them.\"}, {\"relativeIndex\": -2, \"lineId\": 41, \"paragraphIndex\": 22, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"And before you ask, no, that’s not mere semantics,\"}, {\"relativeIndex\": -1, \"lineId\": 43, \"paragraphIndex\": 22, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"The Order of the Malefic Viper is not the only faction with ruling power over the galaxy. Instead, from my understanding, it’s more a council of sorts, involving several influential World Leaders and powerful individuals. The Order’s true role is the powerful backing that ensures no other faction dares to try to take control.\"}, {\"relativeIndex\": 1, \"lineId\": 46, \"paragraphIndex\": 24, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Oh, yeah, for sure,\"}, {\"relativeIndex\": 2, \"lineId\": 48, \"paragraphIndex\": 24, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"It is opening up slowly, though. Speaking of, once it’s opened up to those at your level, you two are free to come for a visit. I would be remissnot to return the hospitality.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"keerla\", \"name\": \"Keerla\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"solana\", \"name\": \"Solana\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"solana\",\n  \"characterName\": \"Solana\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"speaker_verb_before_quote\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

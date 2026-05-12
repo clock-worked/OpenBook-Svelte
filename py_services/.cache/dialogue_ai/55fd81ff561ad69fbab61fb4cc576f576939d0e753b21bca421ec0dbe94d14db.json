@@ -1,0 +1,291 @@
+{
+  "cacheKey": "55fd81ff561ad69fbab61fb4cc576f576939d0e753b21bca421ec0dbe94d14db",
+  "createdAt": "2026-04-01T18:47:52.383604+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "same_paragraph_continuation",
+      "parser_match"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jacob"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "the-unique-lifeform",
+        "name": "The Unique Lifeform",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "name": "Augur",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Jake followed up.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "And did she really sign off on all this bullshit?",
+      "lastSentence": "Because I genuinely thought she knew better, and if she did, that she could at least control her own damn faction.",
+      "mentionedEntities": [],
+      "quoteIndex": 1,
+      "quoteText": "And did she really sign off on all this bullshit? Because I genuinely thought she knew better, and if she did, that she could at least control her own damn faction.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jacob",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.524,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Jacob"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.98,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "same_paragraph_continuation"
+          ]
+        },
+        {
+          "characterId": "jacob",
+          "confidence": 0.456,
+          "name": "Jacob",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Ell'Hakan"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 50,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "And did she really sign off on all this bullshit? Because I genuinely thought she knew better, and if she did, that she could at least control her own damn faction."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 48,
+          "text": "Speaking of your Patron, is she gonna be a problem?"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 50,
+          "text": "And did she really sign off on all this bullshit? Because I genuinely thought she knew better, and if she did, that she could at least control her own damn faction."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Speaking of your Patron, is she gonna be a problem?",
+          "lastSentence": "Speaking of your Patron, is she gonna be a problem?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Speaking of your Patron, is she gonna be a problem?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake followed up.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "And did she really sign off on all this bullshit?",
+          "lastSentence": "Because I genuinely thought she knew better, and if she did, that she could at least control her own damn faction.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "And did she really sign off on all this bullshit? Because I genuinely thought she knew better, and if she did, that she could at least control her own damn faction.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Speaking of your Patron, is she gonna be a problem?” Jake followed up. “And did she really sign off on all this bullshit? Because I genuinely thought she knew better, and if she did, that she could at least control her own damn faction.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 25
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 43,
+        "paragraphIndex": 23,
+        "relativeIndex": -4,
+        "text": "Will the Lodestar Matron be a problem?"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 45,
+        "paragraphIndex": 24,
+        "relativeIndex": -3,
+        "text": "No, she’s not that stupid,"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 47,
+        "paragraphIndex": 24,
+        "relativeIndex": -2,
+        "text": "She may complain a bit, but nothing that will ever reach the ears of mortals. In fact, this will likely result in her getting taken down a peg by my Patron as the plans of herself and her allies failed spectacularly. I do find it a bit sad that they lose a war they could have never realistically won, but oh well."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 48,
+        "paragraphIndex": 25,
+        "relativeIndex": -1,
+        "text": "Speaking of your Patron, is she gonna be a problem?"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 51,
+        "paragraphIndex": 26,
+        "relativeIndex": 1,
+        "text": "In the eyes of the Holy Mother, this entire sequence of events would lead to the best final outcome. As I said before, the best end the Holy Church could hope for, assuming you defeated Ell’Hakan, would be a peaceful evacuation. Even if we had approached you as an early ally, what would you have given us? A few planets? The Holy Church desire, no, demands expansion. Even if we tried to limit it, the Church’s influence would create challenges down the lines that would eventually lead to our expulsion or something far worse,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 53,
+        "paragraphIndex": 27,
+        "relativeIndex": 2,
+        "text": "On the other hand, backing Ell’Hakan, there was confidence the Holy Church would one day rule the Milky Way Galaxy. With Yip of Yore dead, he would turn to the Church and officially become a member, at which point his victory would be our victory. As for you... yeah, no way you would ever give up the Milky Way no matter how much we tried to convince you. Remember that the gods don’t care about short timespans and they view distance as rather relative. The Holy Mother knew that should Ell’Hakan lose and the Milky Way be lost, there still had to be some way for the Holy Church and your faction to coexist... which is where I come in, I guess."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 50, \"text\": \"And did she really sign off on all this bullshit? Because I genuinely thought she knew better, and if she did, that she could at least control her own damn faction.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Ell'Hakan\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Jacob\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.524, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jacob\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"same_paragraph_continuation\"]}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 25, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Speaking of your Patron, is she gonna be a problem?” Jake followed up. “And did she really sign off on all this bullshit? Because I genuinely thought she knew better, and if she did, that she could at least control her own damn faction.”\", \"currentParagraphDialogue\": [{\"lineId\": 48, \"text\": \"Speaking of your Patron, is she gonna be a problem?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 50, \"text\": \"And did she really sign off on all this bullshit? Because I genuinely thought she knew better, and if she did, that she could at least control her own damn faction.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Speaking of your Patron, is she gonna be a problem?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Speaking of your Patron, is she gonna be a problem?\", \"lastSentence\": \"Speaking of your Patron, is she gonna be a problem?\"}, {\"quoteIndex\": 1, \"quoteText\": \"And did she really sign off on all this bullshit? Because I genuinely thought she knew better, and if she did, that she could at least control her own damn faction.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake followed up.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"And did she really sign off on all this bullshit?\", \"lastSentence\": \"Because I genuinely thought she knew better, and if she did, that she could at least control her own damn faction.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"And did she really sign off on all this bullshit? Because I genuinely thought she knew better, and if she did, that she could at least control her own damn faction.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake followed up.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"And did she really sign off on all this bullshit?\", \"lastSentence\": \"Because I genuinely thought she knew better, and if she did, that she could at least control her own damn faction.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [], \"roleLabels\": [\"jacob\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 43, \"paragraphIndex\": 23, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Will the Lodestar Matron be a problem?\"}, {\"relativeIndex\": -3, \"lineId\": 45, \"paragraphIndex\": 24, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"No, she’s not that stupid,\"}, {\"relativeIndex\": -2, \"lineId\": 47, \"paragraphIndex\": 24, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"She may complain a bit, but nothing that will ever reach the ears of mortals. In fact, this will likely result in her getting taken down a peg by my Patron as the plans of herself and her allies failed spectacularly. I do find it a bit sad that they lose a war they could have never realistically won, but oh well.\"}, {\"relativeIndex\": -1, \"lineId\": 48, \"paragraphIndex\": 25, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Speaking of your Patron, is she gonna be a problem?\"}, {\"relativeIndex\": 1, \"lineId\": 51, \"paragraphIndex\": 26, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"In the eyes of the Holy Mother, this entire sequence of events would lead to the best final outcome. As I said before, the best end the Holy Church could hope for, assuming you defeated Ell’Hakan, would be a peaceful evacuation. Even if we had approached you as an early ally, what would you have given us? A few planets? The Holy Church desire, no, demands expansion. Even if we tried to limit it, the Church’s influence would create challenges down the lines that would eventually lead to our expulsion or something far worse,\"}, {\"relativeIndex\": 2, \"lineId\": 53, \"paragraphIndex\": 27, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"On the other hand, backing Ell’Hakan, there was confidence the Holy Church would one day rule the Milky Way Galaxy. With Yip of Yore dead, he would turn to the Church and officially become a member, at which point his victory would be our victory. As for you... yeah, no way you would ever give up the Milky Way no matter how much we tried to convince you. Remember that the gods don’t care about short timespans and they view distance as rather relative. The Holy Mother knew that should Ell’Hakan lose and the Milky Way be lost, there still had to be some way for the Holy Church and your faction to coexist... which is where I come in, I guess.\"}], \"chapterCharacters\": [{\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-unique-lifeform\", \"name\": \"The Unique Lifeform\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"augur\", \"name\": \"Augur\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"same_paragraph_continuation\",\n    \"parser_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

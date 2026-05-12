@@ -126,6 +126,7 @@ class VibeVoiceLineInput(BaseModel):
     id: int
     text: str
     characterId: Optional[str] = None
+    characterName: Optional[str] = None
     chosenSpeaker: Optional[str] = None
     chapterTitle: Optional[str] = None
     sourceFile: Optional[str] = None
@@ -179,6 +180,19 @@ def _normalize_character_lines(
         if not text:
             continue
 
+        line_character_id = str(item.characterId or character_id or "").strip()
+        if not line_character_id:
+            line_character_id = str(character_id or "narrator").strip() or "narrator"
+
+        line_character_name = str(
+            item.characterName
+            or item.chosenSpeaker
+            or character_name
+            or ""
+        ).strip()
+        if not line_character_name:
+            line_character_name = str(character_name or "narrator").strip() or "narrator"
+
         chapter_title = str(item.chapterTitle or fallback_chapter_title or "").strip()
         if not chapter_title:
             chapter_title = str(fallback_chapter_title or "").strip()
@@ -192,8 +206,8 @@ def _normalize_character_lines(
         normalized.append(
             {
                 "id": int(item.id),
-                "characterId": character_id,
-                "characterFolder": character_name,
+                "characterId": line_character_id,
+                "characterFolder": line_character_name,
                 "text": text,
                 "chapterTitle": chapter_title,
                 "sourceFile": source_file,
@@ -333,7 +347,6 @@ def _write_character_split_clips(
     full_audio: Any,
     sample_rate: int,
     audio_root: Path,
-    character_name: str,
     default_chapter_title: str,
     default_source_file: str,
 ) -> list[dict[str, Any]]:
@@ -349,10 +362,14 @@ def _write_character_split_clips(
         if not source_file:
             source_file = str(default_source_file or default_chapter_title or "").strip()
 
-        character_dir = audio_root / chapter_title / "audio_lines" / character_name
+        line_character_name = str(line.get("characterFolder") or "").strip()
+        if not line_character_name:
+            line_character_name = "narrator"
+
+        character_dir = audio_root / chapter_title / "audio_lines" / line_character_name
         character_dir.mkdir(parents=True, exist_ok=True)
 
-        file_name = f"{line_id}-{character_name}.wav"
+        file_name = f"{line_id}-{line_character_name}.wav"
         file_path = character_dir / file_name
 
         write_audio_excerpt(
@@ -681,10 +698,61 @@ def _run_character_chunk_pipeline(
         full_audio=full_audio_2d,
         sample_rate=split_sample_rate,
         audio_root=service.audio_root,
-        character_name=request.character_name,
         default_chapter_title=default_chapter_title,
         default_source_file=default_source_file,
     )
+
+    def _upsert_split_manifests(split_lines_input: list[dict[str, Any]]) -> list[str]:
+        split_lines_by_target: dict[tuple[str, str, str, str], list[dict[str, Any]]] = {}
+        for item in split_lines_input:
+            chapter_title_value = item.get("chapterTitle") or default_chapter_title
+            source_file_value = item.get("sourceFile") or default_source_file
+            line_character_id_value = item.get("characterId") or request.character_id
+            line_character_name_value = item.get("characterFolder") or request.character_name
+            chapter_title = str(chapter_title_value).strip() or default_chapter_title
+            source_file = str(source_file_value).strip() or default_source_file
+            line_character_id = str(line_character_id_value).strip() or request.character_id
+            line_character_name = str(line_character_name_value).strip() or request.character_name
+            item["chapterTitle"] = chapter_title
+            item["sourceFile"] = source_file
+            item["characterId"] = line_character_id
+            item["characterFolder"] = line_character_name
+            split_lines_by_target.setdefault(
+                (chapter_title, source_file, line_character_id, line_character_name),
+                [],
+            ).append(item)
+
+        chapters = sorted({chapter for chapter, _, _, _ in split_lines_by_target})
+
+        for (
+            chapter_title,
+            source_file,
+            line_character_id,
+            line_character_name,
+        ), chapter_split_lines in split_lines_by_target.items():
+            manifest_path = (
+                service.audio_root
+                / chapter_title
+                / "audio_lines"
+                / line_character_name
+                / "manifest.json"
+            )
+            _upsert_character_manifest(
+                manifest_path=manifest_path,
+                chapter_title=chapter_title,
+                source_file=source_file,
+                character_id=line_character_id,
+                character_name=line_character_name,
+                voice_id=request.voice_id,
+                provider=request.provider,
+                split_lines=chapter_split_lines,
+            )
+
+        return chapters
+
+    # Persist manifests as soon as split clips are first written so the UI can
+    # reflect generated audio even if later validation steps fail.
+    chapters_affected = _upsert_split_manifests(split_lines)
 
     release_accelerator_cache()
     validation_engine, transcribe_split_clip = create_split_validation_transcriber(
@@ -775,10 +843,12 @@ def _run_character_chunk_pipeline(
             full_audio=full_audio_2d,
             sample_rate=split_sample_rate,
             audio_root=service.audio_root,
-            character_name=request.character_name,
             default_chapter_title=default_chapter_title,
             default_source_file=default_source_file,
         )
+
+        # Re-upsert manifests after boundary readjustment rewrites clips.
+        chapters_affected = _upsert_split_manifests(split_lines)
 
     attach_validation_summary_to_split_lines(
         split_lines=split_lines,
@@ -803,37 +873,6 @@ def _run_character_chunk_pipeline(
         json.dumps(split_validation_payload, indent=2, ensure_ascii=False),
         encoding="utf-8",
     )
-
-    split_lines_by_target: dict[tuple[str, str], list[dict[str, Any]]] = {}
-    for item in split_lines:
-        chapter_title_value = item.get("chapterTitle") or default_chapter_title
-        source_file_value = item.get("sourceFile") or default_source_file
-        chapter_title = str(chapter_title_value).strip() or default_chapter_title
-        source_file = str(source_file_value).strip() or default_source_file
-        item["chapterTitle"] = chapter_title
-        item["sourceFile"] = source_file
-        split_lines_by_target.setdefault((chapter_title, source_file), []).append(item)
-
-    chapters_affected = sorted({chapter for chapter, _ in split_lines_by_target})
-
-    for (chapter_title, source_file), chapter_split_lines in split_lines_by_target.items():
-        manifest_path = (
-            service.audio_root
-            / chapter_title
-            / "audio_lines"
-            / request.character_name
-            / "manifest.json"
-        )
-        _upsert_character_manifest(
-            manifest_path=manifest_path,
-            chapter_title=chapter_title,
-            source_file=source_file,
-            character_id=request.character_id,
-            character_name=request.character_name,
-            voice_id=request.voice_id,
-            provider=request.provider,
-            split_lines=chapter_split_lines,
-        )
 
     warnings_out: list[str] = []
     if generation_text["inputCharacters"] < DEFAULT_MIN_CHUNK_CHARS:

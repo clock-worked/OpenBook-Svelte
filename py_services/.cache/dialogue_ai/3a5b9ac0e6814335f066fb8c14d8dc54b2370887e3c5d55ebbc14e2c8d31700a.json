@@ -1,0 +1,312 @@
+{
+  "cacheKey": "3a5b9ac0e6814335f066fb8c14d8dc54b2370887e3c5d55ebbc14e2c8d31700a",
+  "createdAt": "2026-04-04T03:12:49.571747+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "keerla",
+    "characterName": "Keerla",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "self_identification_next_line",
+      "dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "having",
+        "characterName": "Having",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "having"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "unknown-elf-male",
+          "unknown-elf-male-2",
+          "unknown-elf"
+        ],
+        "characterId": "unknown-elf-male",
+        "characterName": "Unknown Elf (Male)",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown elf male",
+          "unknown elf male 2",
+          "unknown elf"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown-elf-female",
+        "characterName": "Unknown Elf (Female)",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown elf female"
+        ],
+        "wasRecentSpeaker": false
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "having",
+        "name": "Having",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "keerla",
+        "name": "Keerla",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "solana",
+        "name": "Solana",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "the high elf said in a polite tone as she and the dryad got close.",
+      "cueVerb": "said",
+      "cueVerbType": "speech",
+      "firstSentence": "Thanks for the assist.",
+      "lastSentence": "Things wouldn’t have turned out well without you,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Thanks for the assist. Things wouldn’t have turned out well without you,",
+      "speakerNameMatch": null,
+      "speakerSurface": "the high elf"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Having",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.2872,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Having",
+        "sourceCandidates": [
+          "Having",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.864
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.864,
+          "name": "Having",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.504,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "having",
+      "currentCharacterName": "Having",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 7,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Thanks for the assist. Things wouldn’t have turned out well without you,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "having",
+          "characterName": "Having",
+          "isReturning": false,
+          "lineId": 7,
+          "text": "Thanks for the assist. Things wouldn’t have turned out well without you,"
+        },
+        {
+          "characterId": "having",
+          "characterName": "Having",
+          "isReturning": true,
+          "lineId": 9,
+          "text": "I’m Keerla, and this is Solana. I think you’re owed an explanation of what’s going on, and what happened is that..."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the high elf said in a polite tone as she and the dryad got close.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Thanks for the assist.",
+          "lastSentence": "Things wouldn’t have turned out well without you,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Thanks for the assist. Things wouldn’t have turned out well without you,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the high elf"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "the high elf said in a polite tone as she and the dryad got close.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "I’m Keerla, and this is Solana.",
+          "lastSentence": "I think you’re owed an explanation of what’s going on, and what happened is that...",
+          "mentionedEntities": [
+            "Keerla",
+            "Solana",
+            "Keerla",
+            "Solana"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "I’m Keerla, and this is Solana. I think you’re owed an explanation of what’s going on, and what happened is that...",
+          "speakerNameMatch": null,
+          "speakerSurface": "the high elf"
+        }
+      ],
+      "currentParagraphText": "“Thanks for the assist. Things wouldn’t have turned out well without you,” the high elf said in a polite tone as she and the dryad got close. “I’m Keerla, and this is Solana. I think you’re owed an explanation of what’s going on, and what happened is that...”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 6
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "having",
+        "characterName": "Having",
+        "lineId": 9,
+        "paragraphIndex": 6,
+        "relativeIndex": 1,
+        "text": "I’m Keerla, and this is Solana. I think you’re owed an explanation of what’s going on, and what happened is that..."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 13,
+        "paragraphIndex": 9,
+        "relativeIndex": 2,
+        "text": "What happened to the Fortuna Ferret?"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "unknown-elf-male",
+            "characterName": "Unknown Elf (Male)",
+            "evidence": [
+              "token_overlap:elf",
+              "generic_placeholder_penalty"
+            ],
+            "score": 0.56
+          },
+          {
+            "characterId": "unknown-elf-female",
+            "characterName": "Unknown Elf (Female)",
+            "evidence": [
+              "token_overlap:elf",
+              "generic_placeholder_penalty"
+            ],
+            "score": 0.56
+          }
+        ],
+        "surface": "the high elf"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 7, \"text\": \"Thanks for the assist. Things wouldn’t have turned out well without you,\", \"currentCharacterId\": \"having\", \"currentCharacterName\": \"Having\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Having\", \"sourceCandidates\": [\"Having\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.864, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.2872, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Having\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Having\", \"confidence\": 0.864, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.504, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 6, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Thanks for the assist. Things wouldn’t have turned out well without you,” the high elf said in a polite tone as she and the dryad got close. “I’m Keerla, and this is Solana. I think you’re owed an explanation of what’s going on, and what happened is that...”\", \"currentParagraphDialogue\": [{\"lineId\": 7, \"text\": \"Thanks for the assist. Things wouldn’t have turned out well without you,\", \"characterId\": \"having\", \"characterName\": \"Having\", \"isReturning\": false}, {\"lineId\": 9, \"text\": \"I’m Keerla, and this is Solana. I think you’re owed an explanation of what’s going on, and what happened is that...\", \"characterId\": \"having\", \"characterName\": \"Having\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Thanks for the assist. Things wouldn’t have turned out well without you,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the high elf said in a polite tone as she and the dryad got close.\", \"speakerSurface\": \"the high elf\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Thanks for the assist.\", \"lastSentence\": \"Things wouldn’t have turned out well without you,\"}, {\"quoteIndex\": 1, \"quoteText\": \"I’m Keerla, and this is Solana. I think you’re owed an explanation of what’s going on, and what happened is that...\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the high elf said in a polite tone as she and the dryad got close.\", \"speakerSurface\": \"the high elf\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"Keerla\", \"Solana\", \"Keerla\", \"Solana\"], \"addressedEntity\": null, \"firstSentence\": \"I’m Keerla, and this is Solana.\", \"lastSentence\": \"I think you’re owed an explanation of what’s going on, and what happened is that...\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Thanks for the assist. Things wouldn’t have turned out well without you,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the high elf said in a polite tone as she and the dryad got close.\", \"speakerSurface\": \"the high elf\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Thanks for the assist.\", \"lastSentence\": \"Things wouldn’t have turned out well without you,\"}, \"sceneEntities\": [{\"surface\": \"the high elf\", \"matches\": [{\"characterId\": \"unknown-elf-male\", \"characterName\": \"Unknown Elf (Male)\", \"score\": 0.56, \"evidence\": [\"token_overlap:elf\", \"generic_placeholder_penalty\"]}, {\"characterId\": \"unknown-elf-female\", \"characterName\": \"Unknown Elf (Female)\", \"score\": 0.56, \"evidence\": [\"token_overlap:elf\", \"generic_placeholder_penalty\"]}]}], \"candidateCards\": [{\"characterId\": \"having\", \"characterName\": \"Having\", \"aliases\": [], \"roleLabels\": [\"having\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown-elf-male\", \"characterName\": \"Unknown Elf (Male)\", \"aliases\": [\"unknown-elf-male\", \"unknown-elf-male-2\", \"unknown-elf\"], \"roleLabels\": [\"unknown elf male\", \"unknown elf male 2\", \"unknown elf\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"unknown-elf-female\", \"characterName\": \"Unknown Elf (Female)\", \"aliases\": [], \"roleLabels\": [\"unknown elf female\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": 1, \"lineId\": 9, \"paragraphIndex\": 6, \"characterId\": \"having\", \"characterName\": \"Having\", \"text\": \"I’m Keerla, and this is Solana. I think you’re owed an explanation of what’s going on, and what happened is that...\"}, {\"relativeIndex\": 2, \"lineId\": 13, \"paragraphIndex\": 9, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"What happened to the Fortuna Ferret?\"}], \"chapterCharacters\": [{\"characterId\": \"having\", \"name\": \"Having\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"keerla\", \"name\": \"Keerla\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"solana\", \"name\": \"Solana\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"keerla\",\n  \"characterName\": \"Keerla\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"self_identification_next_line\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

@@ -1,0 +1,269 @@
+{
+  "cacheKey": "b782f5e0c4cc28195bc10154932a7c2f3a2d5ddbb4d3cd2c96ba6c9b78faedd5",
+  "createdAt": "2026-04-01T18:41:18.116730+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "miranda",
+    "characterName": "Miranda",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "parser_match"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "miranda"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "kindroth"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "name": "Blood",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "vesperia",
+        "name": "Vesperia",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sandy",
+        "name": "Sandy",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "name": "Iludar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "william",
+        "name": "William",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": null,
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Miranda",
+          "nextSentenceAttributedSpeaker": "Miranda",
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.98,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Miranda",
+        "sourceCandidates": [
+          "Miranda"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "miranda",
+          "confidence": 0.98,
+          "name": "Miranda",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "post_quote_attribution"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "miranda",
+      "currentCharacterName": "Miranda",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 100,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "We’ll find out later if that’s needed,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": false,
+          "lineId": 99,
+          "text": "Should I also be kneeling in surrender?"
+        },
+        {
+          "characterId": "miranda",
+          "characterName": "Miranda",
+          "isReturning": false,
+          "lineId": 100,
+          "text": "We’ll find out later if that’s needed,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Miranda said, not joking at all, before she looked over at Iludar and smiled.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "We’ll find out later if that’s needed,",
+          "lastSentence": "We’ll find out later if that’s needed,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "We’ll find out later if that’s needed,",
+          "speakerNameMatch": "Miranda",
+          "speakerSurface": "Miranda"
+        }
+      ],
+      "currentParagraphText": "“We’ll find out later if that’s needed,” Miranda said, not joking at all, before she looked over at Iludar and smiled.",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 64
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "lineId": 94,
+        "paragraphIndex": 62,
+        "relativeIndex": -4,
+        "text": "I knew enough to the extent that what I didn’t know caused us no harm,"
+      },
+      {
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "lineId": 96,
+        "paragraphIndex": 62,
+        "relativeIndex": -3,
+        "text": "I will need a long talk with you later, though. You say it’s complicated, but do humor me anyway."
+      },
+      {
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "lineId": 97,
+        "paragraphIndex": 63,
+        "relativeIndex": -2,
+        "text": "Alright, that was the plan anyway,"
+      },
+      {
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "lineId": 99,
+        "paragraphIndex": 64,
+        "relativeIndex": -1,
+        "text": "Should I also be kneeling in surrender?"
+      },
+      {
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "lineId": 102,
+        "paragraphIndex": 65,
+        "relativeIndex": 1,
+        "text": "I want to honor your request from earlier. We shall give your loyal soldiers a chance to recompense."
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "miranda",
+            "characterName": "Miranda",
+            "evidence": [
+              "ai_scene_memory"
+            ],
+            "score": 0.99
+          }
+        ],
+        "surface": "miranda"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 100, \"text\": \"We’ll find out later if that’s needed,\", \"currentCharacterId\": \"miranda\", \"currentCharacterName\": \"Miranda\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Miranda\", \"sourceCandidates\": [\"Miranda\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.98, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": \"Miranda\", \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Miranda\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"miranda\", \"name\": \"Miranda\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"post_quote_attribution\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 64, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“We’ll find out later if that’s needed,” Miranda said, not joking at all, before she looked over at Iludar and smiled.\", \"currentParagraphDialogue\": [{\"lineId\": 99, \"text\": \"Should I also be kneeling in surrender?\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": false}, {\"lineId\": 100, \"text\": \"We’ll find out later if that’s needed,\", \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"We’ll find out later if that’s needed,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Miranda said, not joking at all, before she looked over at Iludar and smiled.\", \"speakerSurface\": \"Miranda\", \"speakerNameMatch\": \"Miranda\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"We’ll find out later if that’s needed,\", \"lastSentence\": \"We’ll find out later if that’s needed,\"}]}, \"currentQuoteUnit\": null, \"sceneEntities\": [{\"surface\": \"miranda\", \"matches\": [{\"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"score\": 0.99, \"evidence\": [\"ai_scene_memory\"]}]}], \"candidateCards\": [{\"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"aliases\": [], \"roleLabels\": [\"miranda\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [\"kindroth\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 94, \"paragraphIndex\": 62, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"I knew enough to the extent that what I didn’t know caused us no harm,\"}, {\"relativeIndex\": -3, \"lineId\": 96, \"paragraphIndex\": 62, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"I will need a long talk with you later, though. You say it’s complicated, but do humor me anyway.\"}, {\"relativeIndex\": -2, \"lineId\": 97, \"paragraphIndex\": 63, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"Alright, that was the plan anyway,\"}, {\"relativeIndex\": -1, \"lineId\": 99, \"paragraphIndex\": 64, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"Should I also be kneeling in surrender?\"}, {\"relativeIndex\": 1, \"lineId\": 102, \"paragraphIndex\": 65, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"I want to honor your request from earlier. We shall give your loyal soldiers a chance to recompense.\"}], \"chapterCharacters\": [{\"characterId\": \"blood\", \"name\": \"Blood\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vesperia\", \"name\": \"Vesperia\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sandy\", \"name\": \"Sandy\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"william\", \"name\": \"William\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"miranda\",\n  \"characterName\": \"Miranda\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"parser_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

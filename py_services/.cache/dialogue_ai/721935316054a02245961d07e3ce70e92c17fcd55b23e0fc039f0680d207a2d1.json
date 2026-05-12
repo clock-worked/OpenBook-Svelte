@@ -1,0 +1,335 @@
+{
+  "cacheKey": "721935316054a02245961d07e3ce70e92c17fcd55b23e0fc039f0680d207a2d1",
+  "createdAt": "2026-05-11T23:13:27.176308+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "unknown",
+    "characterName": "Unknown",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_continuity_same_speaker",
+      "parser_misattribution_of_previous_line"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God",
+          "Unknown Human (Male)"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "lord thayne",
+          "thayne",
+          "void god",
+          "unknown human male"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "casper",
+        "characterName": "Casper",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "casper"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God",
+          "Unknown Human (Male)"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "casper",
+        "name": "Casper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Unique Lifeform",
+          "The Unique Lifeform",
+          "the-unique-lifeform",
+          "the-unique-lifeform-2"
+        ],
+        "characterId": "minaga",
+        "name": "Minaga",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "before",
+      "cueText": "the person Jake had expected to greet him suddenly yelled.",
+      "cueVerb": "yelled",
+      "cueVerbType": "speech",
+      "firstSentence": "Ahem, let’s start over.",
+      "lastSentence": "Ahem, let’s start over.",
+      "mentionedEntities": [],
+      "quoteIndex": 1,
+      "quoteText": "Ahem, let’s start over.",
+      "speakerNameMatch": null,
+      "speakerSurface": "greet him suddenly"
+    },
+    "line": {
+      "alignment": {
+        "confidence": 1.0,
+        "isSpanFallback": false,
+        "method": "quote_unit",
+        "paragraphIndex": 8,
+        "spanDistance": 0.0,
+        "spanParagraphIndex": 8
+      },
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.524,
+        "misattributionRisk": 0.1568,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "risen"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.98,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "risen",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [
+        "Protagonist",
+        "Lord Thayne",
+        "Void God",
+        "Unknown Human (Male)"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 13,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Ahem, let’s start over."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 11,
+          "text": "No, no, no! Stick to your lines!"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 13,
+          "text": "Ahem, let’s start over."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the person Jake had expected to greet him suddenly yelled.",
+          "cueVerb": "yelled",
+          "cueVerbType": "speech",
+          "firstSentence": "No, no, no!",
+          "lastSentence": "Stick to your lines!",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "No, no, no! Stick to your lines!",
+          "speakerNameMatch": null,
+          "speakerSurface": "greet him suddenly"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "the person Jake had expected to greet him suddenly yelled.",
+          "cueVerb": "yelled",
+          "cueVerbType": "speech",
+          "firstSentence": "Ahem, let’s start over.",
+          "lastSentence": "Ahem, let’s start over.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "Ahem, let’s start over.",
+          "speakerNameMatch": null,
+          "speakerSurface": "greet him suddenly"
+        }
+      ],
+      "currentParagraphText": "“No, no, no! Stick to your lines!” the person Jake had expected to greet him suddenly yelled. “Ahem, let’s start over.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 8
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 7,
+        "paragraphIndex": 6,
+        "relativeIndex": -3,
+        "text": "Casper?"
+      },
+      {
+        "characterId": "casper",
+        "characterName": "Casper",
+        "lineId": 9,
+        "paragraphIndex": 7,
+        "relativeIndex": -2,
+        "text": "Yo,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 11,
+        "paragraphIndex": 8,
+        "relativeIndex": -1,
+        "text": "No, no, no! Stick to your lines!"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 15,
+        "paragraphIndex": 10,
+        "relativeIndex": 1,
+        "text": "Welcome to the glorious, brilliant, and extremely exclusive pre-launch event for the venerated and illustrious Minaga’s newest-"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 16,
+        "paragraphIndex": 11,
+        "relativeIndex": 2,
+        "text": "Do you need to say it in the most deadpan and monotonous tone imaginable?"
+      }
+    ],
+    "sceneEntities": [],
+    "sceneRoster": {
+      "paragraphWindow": 6,
+      "presentCharacterIds": [
+        "jake",
+        "casper",
+        "unknown",
+        "minaga"
+      ],
+      "presentCharacters": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake"
+        },
+        {
+          "characterId": "casper",
+          "characterName": "Casper"
+        },
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown"
+        },
+        {
+          "characterId": "minaga",
+          "characterName": "Minaga"
+        }
+      ]
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 13, \"text\": \"Ahem, let’s start over.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"risen\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.524, \"misattributionRisk\": 0.1568, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.98, \"reasons\": null}, {\"characterId\": null, \"name\": \"risen\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true, \"alignment\": {\"paragraphIndex\": 8, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 8, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 8, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“No, no, no! Stick to your lines!” the person Jake had expected to greet him suddenly yelled. “Ahem, let’s start over.”\", \"currentParagraphDialogue\": [{\"lineId\": 11, \"text\": \"No, no, no! Stick to your lines!\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 13, \"text\": \"Ahem, let’s start over.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"No, no, no! Stick to your lines!\", \"cuePosition\": \"after\", \"cueVerb\": \"yelled\", \"cueVerbType\": \"speech\", \"cueText\": \"the person Jake had expected to greet him suddenly yelled.\", \"speakerSurface\": \"greet him suddenly\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"No, no, no!\", \"lastSentence\": \"Stick to your lines!\"}, {\"quoteIndex\": 1, \"quoteText\": \"Ahem, let’s start over.\", \"cuePosition\": \"before\", \"cueVerb\": \"yelled\", \"cueVerbType\": \"speech\", \"cueText\": \"the person Jake had expected to greet him suddenly yelled.\", \"speakerSurface\": \"greet him suddenly\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Ahem, let’s start over.\", \"lastSentence\": \"Ahem, let’s start over.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"Ahem, let’s start over.\", \"cuePosition\": \"before\", \"cueVerb\": \"yelled\", \"cueVerbType\": \"speech\", \"cueText\": \"the person Jake had expected to greet him suddenly yelled.\", \"speakerSurface\": \"greet him suddenly\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Ahem, let’s start over.\", \"lastSentence\": \"Ahem, let’s start over.\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"jake\", \"casper\", \"unknown\", \"minaga\"], \"presentCharacters\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\"}, {\"characterId\": \"casper\", \"characterName\": \"Casper\"}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}, {\"characterId\": \"minaga\", \"characterName\": \"Minaga\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\", \"void god\", \"unknown human male\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"casper\", \"characterName\": \"Casper\", \"aliases\": [], \"roleLabels\": [\"casper\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -3, \"lineId\": 7, \"paragraphIndex\": 6, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Casper?\"}, {\"relativeIndex\": -2, \"lineId\": 9, \"paragraphIndex\": 7, \"characterId\": \"casper\", \"characterName\": \"Casper\", \"text\": \"Yo,\"}, {\"relativeIndex\": -1, \"lineId\": 11, \"paragraphIndex\": 8, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"No, no, no! Stick to your lines!\"}, {\"relativeIndex\": 1, \"lineId\": 15, \"paragraphIndex\": 10, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Welcome to the glorious, brilliant, and extremely exclusive pre-launch event for the venerated and illustrious Minaga’s newest-\"}, {\"relativeIndex\": 2, \"lineId\": 16, \"paragraphIndex\": 11, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Do you need to say it in the most deadpan and monotonous tone imaginable?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"casper\", \"name\": \"Casper\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"unknown\",\n  \"characterName\": \"Unknown\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_continuity_same_speaker\",\n    \"parser_misattribution_of_previous_line\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

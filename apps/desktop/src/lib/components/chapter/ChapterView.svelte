@@ -64,6 +64,10 @@
   import SplitButton from '$lib/components/chapter/tools/join-split/SplitButton.svelte';
   import { audioUpdateTrigger } from '$lib/stores/audioUpdates';
   import { parserHints } from '$lib/stores/settings';
+  import {
+    registerDialogueAiAssistController,
+    resetDialogueAiAssistState,
+  } from '$lib/stores/dialogueAiAssist';
 
   const UNKNOWN_SPEAKER_LABEL = 'Unknown';
 
@@ -209,6 +213,7 @@
 
   onDestroy(() => {
     chapterAnimationPlanSeq += 1;
+    unregisterDialogueAiAssistController();
   });
 
   // Review tool state
@@ -218,7 +223,6 @@
   const reviewMenuY = writable<number>(0);
   const reviewMenuItems = writable<{ value: string; label: string }[]>([]);
   const reviewMenuSelected = writable<string | null>(null);
-
   // Audio tool state
   let audioExistsCache = new Map<string, boolean>();
   let generatedAudioLineIds = new Set<number>();
@@ -404,6 +408,24 @@
   function handleParagraphAssign(characterName: string, lineIds: number[]) {
     void ensureAndAssignCharacters(lineIds, characterName);
   }
+
+  const unregisterDialogueAiAssistController = registerDialogueAiAssistController({
+    getChapterInput: () => {
+      const chapter = get(currentChapter);
+      const normalized = get(normalizedScript);
+      const text = get(rawText);
+
+      if (!chapter || !normalized || !text) return null;
+
+      return {
+        chapterPath: chapter.path || chapter.title,
+        chapterTitle: chapter.title,
+        rawText: text,
+        normalizedScript: normalized,
+      };
+    },
+    ensureAndAssignCharacters,
+  });
 
   // Audio tool handlers
   async function handleLineAudioClick(lineId: number, characterName: string, event?: MouseEvent) {
@@ -606,6 +628,7 @@
       normalizedScript.set(null);
       rawText.set(null);
       paragraphRuns.set([]);
+      resetDialogueAiAssistState();
       isV2Format = false;
       const ch: any = $currentChapter;
       console.log('[ChapterView] Chapter path:', ch.path);
@@ -807,8 +830,8 @@
   .skeleton-line { height:1em; margin:10px 0; border-radius:4px; background:linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.12), rgba(0,0,0,0.06)); background-size:100% 200%; animation:pulse 1.2s ease-in-out infinite; }
   @keyframes pulse { 0% { background-position: 0% 0%; } 100% { background-position: 0% 200%; } }
 
-  .placeholder { color:#777; }
+  .placeholder { color:var(--app-text-muted); }
 
   .character-col { width:56px; display:flex; flex-direction:column; align-items:flex-end; gap:4px; padding-top:2px; }
-  .character-chip { cursor:default; user-select:none; font-size:12px; padding:2px 6px; border-radius:10px; background: var(--bg, transparent); color:#222; white-space:nowrap; }
+  .character-chip { cursor:default; user-select:none; font-size:12px; padding:2px 6px; border-radius:10px; background: var(--bg, transparent); color:var(--app-text); white-space:nowrap; }
 </style>

@@ -1,0 +1,278 @@
+{
+  "cacheKey": "4a471cf5faea9289d428b55f82c9e2d99baa660740f828b5d05f84338f095c44",
+  "createdAt": "2026-04-01T18:45:08.028455+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "parser_match",
+      "dialogue_continuity",
+      "next_line_attribution",
+      "recent_speaker_alternation"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jacob"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "characterName": "Augur",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "augur"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "name": "Augur",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "the-unique-lifeform",
+        "name": "The Unique Lifeform",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": null,
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "False God"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Jacob"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.816,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jacob",
+          "confidence": 0.456,
+          "name": "Jacob",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Ell'Hakan"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 68,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Genuinely, I believe the Desolate Child of Loss can be guided toward a proper Path. You’ve seen it today. He has improved his control tremendously in a small amount of time and given enough training and patience, he should one day be able to fully control it. If not in C-grade, his B-grade evolution may even turn the Desolate Child of Loss into something entirely different... perhaps even allowing it to lose its status as a False God."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 66,
+          "text": "That... is not my choice,"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 68,
+          "text": "Genuinely, I believe the Desolate Child of Loss can be guided toward a proper Path. You’ve seen it today. He has improved his control tremendously in a small amount of time and given enough training and patience, he should one day be able to fully control it. If not in C-grade, his B-grade evolution may even turn the Desolate Child of Loss into something entirely different... perhaps even allowing it to lose its status as a False God."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Genuinely, I believe the Desolate Child of Loss can be guided toward a proper Path.",
+          "lastSentence": "perhaps even allowing it to lose its status as a False God.",
+          "mentionedEntities": [
+            "False God"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Genuinely, I believe the Desolate Child of Loss can be guided toward a proper Path. You’ve seen it today. He has improved his control tremendously in a small amount of time and given enough training and patience, he should one day be able to fully control it. If not in C-grade, his B-grade evolution may even turn the Desolate Child of Loss into something entirely different... perhaps even allowing it to lose its status as a False God.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Genuinely, I believe the Desolate Child of Loss can be guided toward a proper Path. You’ve seen it today. He has improved his control tremendously in a small amount of time and given enough training and patience, he should one day be able to fully control it. If not in C-grade, his B-grade evolution may even turn the Desolate Child of Loss into something entirely different... perhaps even allowing it to lose its status as a False God.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 40
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "augur",
+        "characterName": "Augur",
+        "lineId": 60,
+        "paragraphIndex": 33,
+        "relativeIndex": -4,
+        "text": "Some parts of the Holy Church view the Usurper’s Bloodline as an invaluable boon that they simply must obtain, while others see the hidden dangers of doing so. As you know, I’m part of the camp that wants his Bloodline dead and gone. I have met Ell’Hakan personally, experienced his Bloodline, and seen what it can do. What he, a mere C-grade, could do with it. I don’t even want to imagine someone of a higher grade, much less a god, with such a Bloodline,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 62,
+        "paragraphIndex": 35,
+        "relativeIndex": -3,
+        "text": "Acting against Ell’Hakan openly wasn’t an option, though. We simply didn’t have the ability to defeat him here in this galaxy... not before the Desolate Child of Loss appeared. You can view the False God as your backup should you have failed to defeat Ell’Hakan. While the head priest believed the Desolate Child was a backup to defeat you, the Holy Mother and I always viewed it as a backup to defeat him."
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 64,
+        "paragraphIndex": 37,
+        "relativeIndex": -2,
+        "text": "But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 66,
+        "paragraphIndex": 40,
+        "relativeIndex": -1,
+        "text": "That... is not my choice,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 69,
+        "paragraphIndex": 41,
+        "relativeIndex": 1,
+        "text": "You’re seriously asking me to show it mercy?"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 71,
+        "paragraphIndex": 43,
+        "relativeIndex": 2,
+        "text": "You know what? No, I’m not going to assume you are. Because we should both know that’s not gonna happen."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 68, \"text\": \"Genuinely, I believe the Desolate Child of Loss can be guided toward a proper Path. You’ve seen it today. He has improved his control tremendously in a small amount of time and given enough training and patience, he should one day be able to fully control it. If not in C-grade, his B-grade evolution may even turn the Desolate Child of Loss into something entirely different... perhaps even allowing it to lose its status as a False God.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Ell'Hakan\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Jacob\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"False God\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 40, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Genuinely, I believe the Desolate Child of Loss can be guided toward a proper Path. You’ve seen it today. He has improved his control tremendously in a small amount of time and given enough training and patience, he should one day be able to fully control it. If not in C-grade, his B-grade evolution may even turn the Desolate Child of Loss into something entirely different... perhaps even allowing it to lose its status as a False God.”\", \"currentParagraphDialogue\": [{\"lineId\": 66, \"text\": \"That... is not my choice,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}, {\"lineId\": 68, \"text\": \"Genuinely, I believe the Desolate Child of Loss can be guided toward a proper Path. You’ve seen it today. He has improved his control tremendously in a small amount of time and given enough training and patience, he should one day be able to fully control it. If not in C-grade, his B-grade evolution may even turn the Desolate Child of Loss into something entirely different... perhaps even allowing it to lose its status as a False God.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Genuinely, I believe the Desolate Child of Loss can be guided toward a proper Path. You’ve seen it today. He has improved his control tremendously in a small amount of time and given enough training and patience, he should one day be able to fully control it. If not in C-grade, his B-grade evolution may even turn the Desolate Child of Loss into something entirely different... perhaps even allowing it to lose its status as a False God.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"False God\"], \"addressedEntity\": null, \"firstSentence\": \"Genuinely, I believe the Desolate Child of Loss can be guided toward a proper Path.\", \"lastSentence\": \"perhaps even allowing it to lose its status as a False God.\"}]}, \"currentQuoteUnit\": null, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [], \"roleLabels\": [\"jacob\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"augur\", \"characterName\": \"Augur\", \"aliases\": [], \"roleLabels\": [\"augur\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 60, \"paragraphIndex\": 33, \"characterId\": \"augur\", \"characterName\": \"Augur\", \"text\": \"Some parts of the Holy Church view the Usurper’s Bloodline as an invaluable boon that they simply must obtain, while others see the hidden dangers of doing so. As you know, I’m part of the camp that wants his Bloodline dead and gone. I have met Ell’Hakan personally, experienced his Bloodline, and seen what it can do. What he, a mere C-grade, could do with it. I don’t even want to imagine someone of a higher grade, much less a god, with such a Bloodline,\"}, {\"relativeIndex\": -3, \"lineId\": 62, \"paragraphIndex\": 35, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Acting against Ell’Hakan openly wasn’t an option, though. We simply didn’t have the ability to defeat him here in this galaxy... not before the Desolate Child of Loss appeared. You can view the False God as your backup should you have failed to defeat Ell’Hakan. While the head priest believed the Desolate Child was a backup to defeat you, the Holy Mother and I always viewed it as a backup to defeat him.\"}, {\"relativeIndex\": -2, \"lineId\": 64, \"paragraphIndex\": 37, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,\"}, {\"relativeIndex\": -1, \"lineId\": 66, \"paragraphIndex\": 40, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"That... is not my choice,\"}, {\"relativeIndex\": 1, \"lineId\": 69, \"paragraphIndex\": 41, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You’re seriously asking me to show it mercy?\"}, {\"relativeIndex\": 2, \"lineId\": 71, \"paragraphIndex\": 43, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"You know what? No, I’m not going to assume you are. Because we should both know that’s not gonna happen.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"augur\", \"name\": \"Augur\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-unique-lifeform\", \"name\": \"The Unique Lifeform\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"parser_match\",\n    \"dialogue_continuity\",\n    \"next_line_attribution\",\n    \"recent_speaker_alternation\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

@@ -1,0 +1,392 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "ddd16e632f98c6709028c05aa9741ba46962374edefeb02e89f2d693852dcbc0",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\ddd16e632f98c6709028c05aa9741ba46962374edefeb02e89f2d693852dcbc0.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "dragonkin",
+        "characterName": "Dragonkin",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration",
+          "contextual_role_match",
+          "dialogue_sequence"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "dragonkin",
+            "characterName": "Dragonkin",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "dragonkin"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "viper",
+              "the malefic viper",
+              "malefic viper",
+              "villy"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "viridia",
+            "characterName": "viridia",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "viridia"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "name": "Caleb",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Augur",
+              "The Augur"
+            ],
+            "characterId": "jacob",
+            "name": "Jacob",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "viridia",
+            "name": "viridia",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "dragonkin",
+            "name": "Dragonkin",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the assistant spoke curtly.",
+          "cueVerb": "spoke",
+          "cueVerbType": "speech",
+          "firstSentence": "I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,",
+          "lastSentence": "I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the assistant"
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": true,
+              "nextDialogueLegacy": "Dragonkin",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36,
+            "misattributionRisk": 0.136,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Dragonkin",
+            "sourceCandidates": [
+              "Dragonkin",
+              "The Malefic Viper"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.864
+          },
+          "candidates": [
+            {
+              "characterId": "dragonkin",
+              "confidence": 0.864,
+              "name": "Dragonkin",
+              "reasons": [
+                "parser_match",
+                "legacy_match",
+                "speech_verb"
+              ]
+            },
+            {
+              "characterId": "viper",
+              "confidence": 0.504,
+              "name": "The Malefic Viper",
+              "reasons": [
+                "speech_verb"
+              ]
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "dragonkin",
+          "currentCharacterName": "Dragonkin",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 82,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "dragonkin",
+              "characterName": "Dragonkin",
+              "isReturning": true,
+              "lineId": 82,
+              "text": "I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the assistant spoke curtly.",
+              "cueVerb": "spoke",
+              "cueVerbType": "speech",
+              "firstSentence": "I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,",
+              "lastSentence": "I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,",
+              "speakerNameMatch": null,
+              "speakerSurface": "the assistant"
+            }
+          ],
+          "currentParagraphText": "“I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,” the assistant spoke curtly.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "she frowned.",
+              "cueVerb": "frowned",
+              "cueVerbType": "reaction",
+              "firstSentence": "How many are we talking about?",
+              "lastSentence": "How many are we talking about?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "How many are we talking about?",
+              "speakerNameMatch": null,
+              "speakerSurface": "she"
+            }
+          ],
+          "nextParagraphText": "“How many are we talking about?” she frowned.",
+          "paragraphIndex": 49,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "viridia",
+              "characterName": "viridia",
+              "isReturning": false,
+              "lineId": 80,
+              "text": "What is it?"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Viridia asked, turning to the dragonkin as she wondered if more guests had arrived to try and form good relations with the Order of the Malefic Viper.",
+              "cueVerb": "asked",
+              "cueVerbType": "speech",
+              "firstSentence": "What is it?",
+              "lastSentence": "What is it?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "What is it?",
+              "speakerNameMatch": "viridia",
+              "speakerSurface": "Viridia"
+            }
+          ],
+          "previousParagraphText": "“What is it?” Viridia asked, turning to the dragonkin as she wondered if more guests had arrived to try and form good relations with the Order of the Malefic Viper."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 54,
+            "paragraphIndex": 24,
+            "relativeIndex": -4,
+            "text": "But do keep any reflective surfaces away. I still have very high Perception."
+          },
+          {
+            "characterId": "viridia",
+            "characterName": "viridia",
+            "lineId": 57,
+            "paragraphIndex": 27,
+            "relativeIndex": -3,
+            "text": "We will be sure to keep you in thought as we move forward,"
+          },
+          {
+            "characterId": "viridia",
+            "characterName": "viridia",
+            "lineId": 78,
+            "paragraphIndex": 47,
+            "relativeIndex": -2,
+            "text": "Excuse me, Hall Master?"
+          },
+          {
+            "characterId": "viridia",
+            "characterName": "viridia",
+            "lineId": 80,
+            "paragraphIndex": 48,
+            "relativeIndex": -1,
+            "text": "What is it?"
+          },
+          {
+            "characterId": "dragonkin",
+            "characterName": "Dragonkin",
+            "lineId": 84,
+            "paragraphIndex": 51,
+            "relativeIndex": 1,
+            "text": "How many are we talking about?"
+          },
+          {
+            "characterId": "dragonkin",
+            "characterName": "Dragonkin",
+            "lineId": 86,
+            "paragraphIndex": 51,
+            "relativeIndex": 2,
+            "text": "Initial estimates are around two thousand C-grades and a thousand B-grades to arrive within the week,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 82, \"text\": \"I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,\", \"currentCharacterId\": \"dragonkin\", \"currentCharacterName\": \"Dragonkin\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Dragonkin\", \"sourceCandidates\": [\"Dragonkin\", \"The Malefic Viper\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.864, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.136, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Dragonkin\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"dragonkin\", \"name\": \"Dragonkin\", \"confidence\": 0.864, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.504, \"reasons\": [\"speech_verb\"]}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 49, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,” the assistant spoke curtly.\", \"currentParagraphDialogue\": [{\"lineId\": 82, \"text\": \"I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,\", \"characterId\": \"dragonkin\", \"characterName\": \"Dragonkin\", \"isReturning\": true}], \"previousParagraphText\": \"“What is it?” Viridia asked, turning to the dragonkin as she wondered if more guests had arrived to try and form good relations with the Order of the Malefic Viper.\", \"previousParagraphDialogue\": [{\"lineId\": 80, \"text\": \"What is it?\", \"characterId\": \"viridia\", \"characterName\": \"viridia\", \"isReturning\": false}], \"nextParagraphText\": \"“How many are we talking about?” she frowned.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,\", \"cuePosition\": \"after\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"the assistant spoke curtly.\", \"speakerSurface\": \"the assistant\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,\", \"lastSentence\": \"I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"What is it?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Viridia asked, turning to the dragonkin as she wondered if more guests had arrived to try and form good relations with the Order of the Malefic Viper.\", \"speakerSurface\": \"Viridia\", \"speakerNameMatch\": \"viridia\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"What is it?\", \"lastSentence\": \"What is it?\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"How many are we talking about?\", \"cuePosition\": \"after\", \"cueVerb\": \"frowned\", \"cueVerbType\": \"reaction\", \"cueText\": \"she frowned.\", \"speakerSurface\": \"she\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"How many are we talking about?\", \"lastSentence\": \"How many are we talking about?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,\", \"cuePosition\": \"after\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"the assistant spoke curtly.\", \"speakerSurface\": \"the assistant\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,\", \"lastSentence\": \"I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"dragonkin\", \"characterName\": \"Dragonkin\", \"aliases\": [], \"roleLabels\": [\"dragonkin\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"viridia\", \"characterName\": \"viridia\", \"aliases\": [], \"roleLabels\": [\"viridia\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 54, \"paragraphIndex\": 24, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"But do keep any reflective surfaces away. I still have very high Perception.\"}, {\"relativeIndex\": -3, \"lineId\": 57, \"paragraphIndex\": 27, \"characterId\": \"viridia\", \"characterName\": \"viridia\", \"text\": \"We will be sure to keep you in thought as we move forward,\"}, {\"relativeIndex\": -2, \"lineId\": 78, \"paragraphIndex\": 47, \"characterId\": \"viridia\", \"characterName\": \"viridia\", \"text\": \"Excuse me, Hall Master?\"}, {\"relativeIndex\": -1, \"lineId\": 80, \"paragraphIndex\": 48, \"characterId\": \"viridia\", \"characterName\": \"viridia\", \"text\": \"What is it?\"}, {\"relativeIndex\": 1, \"lineId\": 84, \"paragraphIndex\": 51, \"characterId\": \"dragonkin\", \"characterName\": \"Dragonkin\", \"text\": \"How many are we talking about?\"}, {\"relativeIndex\": 2, \"lineId\": 86, \"paragraphIndex\": 51, \"characterId\": \"dragonkin\", \"characterName\": \"Dragonkin\", \"text\": \"Initial estimates are around two thousand C-grades and a thousand B-grades to arrive within the week,\"}], \"chapterCharacters\": [{\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viridia\", \"name\": \"viridia\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dragonkin\", \"name\": \"Dragonkin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"dragonkin\",\n  \"characterName\": \"Dragonkin\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration\",\n    \"contextual_role_match\",\n    \"dialogue_sequence\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0020 - Chapter 1077 - A Wonderful Place",
+  "currentCharacterId": "dragonkin",
+  "currentCharacterName": "Dragonkin",
+  "currentParagraphText": "“I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,” the assistant spoke curtly.",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "dragonkin",
+    "currentCharacterName": "Dragonkin",
+    "currentParagraphText": "“I just received a message that the Order will be sending exploratory teams of C and B-grades to enter the Mycotic Depths, and you are to ensure they have spots available,” the assistant spoke curtly.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 82,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“How many are we talking about?” she frowned.",
+    "paragraphIndex": 49,
+    "previousParagraphText": "“What is it?” Viridia asked, turning to the dragonkin as she wondered if more guests had arrived to try and form good relations with the Order of the Malefic Viper.",
+    "reasonCodes": [
+      "explicit_narration",
+      "contextual_role_match",
+      "dialogue_sequence"
+    ],
+    "suggestedCharacterId": "dragonkin",
+    "suggestedCharacterName": "Dragonkin",
+    "toolTrace": []
+  },
+  "lineId": 82,
+  "nextParagraphText": "“How many are we talking about?” she frowned.",
+  "paragraphIndex": 49,
+  "previousParagraphText": "“What is it?” Viridia asked, turning to the dragonkin as she wondered if more guests had arrived to try and form good relations with the Order of the Malefic Viper."
+}

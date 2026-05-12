@@ -1,0 +1,303 @@
+{
+  "cacheKey": "aafbaed48d2b958fa31f4f9b894ecb0956606d9008fc7ee7270b4a77ae82a3ec",
+  "createdAt": "2026-04-02T15:45:33.734761+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "miranda",
+    "characterName": "Miranda",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "parser_match",
+      "contextual_speaker",
+      "descriptive_attribution"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "miranda"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [
+          "King Iludar"
+        ],
+        "characterId": "iludar",
+        "characterName": "Iludar",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "iludar",
+          "king iludar"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "characterName": "blood",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "blood"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "if_jake",
+        "name": "If Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "lodestar-matron",
+          "lodestar-matron-2"
+        ],
+        "characterId": "lodestar-matron",
+        "name": "Lodestar Matron",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "King Iludar"
+        ],
+        "characterId": "iludar",
+        "name": "Iludar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "name": "blood",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "a voice echoed in the minds of all those present as the wall spoke while slightly wiggling back and forth, making the ground shake.",
+      "cueVerb": "spoke",
+      "cueVerbType": "speech",
+      "firstSentence": "Tehee, that tickles!",
+      "lastSentence": "Tehee, that tickles!",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Tehee, that tickles!",
+      "speakerNameMatch": null,
+      "speakerSurface": "the wall"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "blood",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.85,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.132,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Miranda",
+        "sourceCandidates": [
+          "Miranda",
+          "Iludar"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.868
+      },
+      "candidates": [
+        {
+          "characterId": "miranda",
+          "confidence": 0.868,
+          "name": "Miranda",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "speech_verb"
+          ]
+        },
+        {
+          "characterId": "iludar",
+          "confidence": 0.508,
+          "name": "Iludar",
+          "reasons": [
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "miranda",
+      "currentCharacterName": "Miranda",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 76,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Tehee, that tickles!"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "miranda",
+          "characterName": "Miranda",
+          "isReturning": false,
+          "lineId": 76,
+          "text": "Tehee, that tickles!"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "a voice echoed in the minds of all those present as the wall spoke while slightly wiggling back and forth, making the ground shake.",
+          "cueVerb": "spoke",
+          "cueVerbType": "speech",
+          "firstSentence": "Tehee, that tickles!",
+          "lastSentence": "Tehee, that tickles!",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Tehee, that tickles!",
+          "speakerNameMatch": null,
+          "speakerSurface": "the wall"
+        }
+      ],
+      "currentParagraphText": "“Tehee, that tickles!” a voice echoed in the minds of all those present as the wall spoke while slightly wiggling back and forth, making the ground shake.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Iludar didn’t even have to comprehend what was happening as he heard screams from one section of his elite forces. He briefly glanced over and, to his horror, saw body parts flying into the air, and in the middle, a figure in full metal armor stood as the faint gleam of thin strings of metal could be seen reflecting the sunlight where a bit of blood stuck to them. More than thirty people were killed instantly, but that was only the beginning.",
+      "paragraphIndex": 55,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "She responded by lifting her hand, and... something moved in her sleeves. Before the flames made contact, a large wall appeared between her and King Iludar, much to his shock as his eyes opened wide. His shock only grew in the following moments."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 65,
+        "paragraphIndex": 46,
+        "relativeIndex": -4,
+        "text": "Are you really going to do this? Throw away your lives for a god who couldn’t give two shits if you all died?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 66,
+        "paragraphIndex": 47,
+        "relativeIndex": -3,
+        "text": "I shall not be swayed by a blasphemer! We are to apprehend you, so if you surrender peacefully, we-"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 67,
+        "paragraphIndex": 48,
+        "relativeIndex": -2,
+        "text": "You made your choice,"
+      },
+      {
+        "characterId": "iludar",
+        "characterName": "Iludar",
+        "lineId": 72,
+        "paragraphIndex": 52,
+        "relativeIndex": -1,
+        "text": "I hope you like the place chosen to be your grave,"
+      },
+      {
+        "characterId": "blood",
+        "characterName": "blood",
+        "lineId": 84,
+        "paragraphIndex": 62,
+        "relativeIndex": 1,
+        "text": "Everyone, full focus on the witch! Kill her and retreat immediately!"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 76, \"text\": \"Tehee, that tickles!\", \"currentCharacterId\": \"miranda\", \"currentCharacterName\": \"Miranda\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Miranda\", \"sourceCandidates\": [\"Miranda\", \"Iludar\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.868, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.132, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.85, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"blood\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"miranda\", \"name\": \"Miranda\", \"confidence\": 0.868, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"confidence\": 0.508, \"reasons\": [\"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 55, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Tehee, that tickles!” a voice echoed in the minds of all those present as the wall spoke while slightly wiggling back and forth, making the ground shake.\", \"currentParagraphDialogue\": [{\"lineId\": 76, \"text\": \"Tehee, that tickles!\", \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"isReturning\": false}], \"previousParagraphText\": \"She responded by lifting her hand, and... something moved in her sleeves. Before the flames made contact, a large wall appeared between her and King Iludar, much to his shock as his eyes opened wide. His shock only grew in the following moments.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Iludar didn’t even have to comprehend what was happening as he heard screams from one section of his elite forces. He briefly glanced over and, to his horror, saw body parts flying into the air, and in the middle, a figure in full metal armor stood as the faint gleam of thin strings of metal could be seen reflecting the sunlight where a bit of blood stuck to them. More than thirty people were killed instantly, but that was only the beginning.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Tehee, that tickles!\", \"cuePosition\": \"after\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"a voice echoed in the minds of all those present as the wall spoke while slightly wiggling back and forth, making the ground shake.\", \"speakerSurface\": \"the wall\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Tehee, that tickles!\", \"lastSentence\": \"Tehee, that tickles!\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Tehee, that tickles!\", \"cuePosition\": \"after\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"a voice echoed in the minds of all those present as the wall spoke while slightly wiggling back and forth, making the ground shake.\", \"speakerSurface\": \"the wall\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Tehee, that tickles!\", \"lastSentence\": \"Tehee, that tickles!\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"aliases\": [], \"roleLabels\": [\"miranda\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"iludar\", \"characterName\": \"Iludar\", \"aliases\": [\"King Iludar\"], \"roleLabels\": [\"iludar\", \"king iludar\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"blood\", \"characterName\": \"blood\", \"aliases\": [], \"roleLabels\": [\"blood\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 65, \"paragraphIndex\": 46, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Are you really going to do this? Throw away your lives for a god who couldn’t give two shits if you all died?\"}, {\"relativeIndex\": -3, \"lineId\": 66, \"paragraphIndex\": 47, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I shall not be swayed by a blasphemer! We are to apprehend you, so if you surrender peacefully, we-\"}, {\"relativeIndex\": -2, \"lineId\": 67, \"paragraphIndex\": 48, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You made your choice,\"}, {\"relativeIndex\": -1, \"lineId\": 72, \"paragraphIndex\": 52, \"characterId\": \"iludar\", \"characterName\": \"Iludar\", \"text\": \"I hope you like the place chosen to be your grave,\"}, {\"relativeIndex\": 1, \"lineId\": 84, \"paragraphIndex\": 62, \"characterId\": \"blood\", \"characterName\": \"blood\", \"text\": \"Everyone, full focus on the witch! Kill her and retreat immediately!\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"if_jake\", \"name\": \"If Jake\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"lodestar-matron\", \"name\": \"Lodestar Matron\", \"aliases\": [\"lodestar-matron\", \"lodestar-matron-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": [\"King Iludar\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"blood\", \"name\": \"blood\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"miranda\",\n  \"characterName\": \"Miranda\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"parser_match\",\n    \"contextual_speaker\",\n    \"descriptive_attribution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

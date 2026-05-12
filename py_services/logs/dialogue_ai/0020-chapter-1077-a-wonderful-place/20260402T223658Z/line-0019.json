@@ -1,0 +1,327 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "58826d3c41c5fd256893673a77efd0b1c02c38b21e8e3250c11ab9efb33f9f71",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\58826d3c41c5fd256893673a77efd0b1c02c38b21e8e3250c11ab9efb33f9f71.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.99,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "same_paragraph_continuation",
+          "next_turn_confirms_speaker"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": true
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "characterName": "Caleb",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "caleb"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "name": "Caleb",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Augur",
+              "The Augur"
+            ],
+            "characterId": "jacob",
+            "name": "Jacob",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "viridia",
+            "name": "viridia",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "dragonkin",
+            "name": "Dragonkin",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": null,
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": true,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": true,
+              "nextDialogueLegacy": "Caleb",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.98,
+            "misattributionRisk": 0.020000000000000018,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.98
+          },
+          "candidates": [
+            {
+              "characterId": "jake",
+              "confidence": 0.98,
+              "name": "Jake",
+              "reasons": [
+                "parser_match",
+                "legacy_match",
+                "same_paragraph_continuation",
+                "speech_verb"
+              ]
+            }
+          ],
+          "currentCharacterAliases": [
+            "Protagonist"
+          ],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 19,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Say, did he also-"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 1,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 17,
+              "text": "Jacob, huh..."
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 19,
+              "text": "Say, did he also-"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake muttered as he frowned slightly. He was happy to hear that his sister-in-law had found a Path, but with Jacob having helped her, it begged the question: “Say, did he also-“",
+              "cueVerb": "muttered",
+              "cueVerbType": "speech",
+              "firstSentence": "Jacob, huh...",
+              "lastSentence": "Jacob, huh...",
+              "mentionedEntities": [
+                "Jacob",
+                "Jacob"
+              ],
+              "quoteIndex": 0,
+              "quoteText": "Jacob, huh...",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "currentParagraphText": "“Jacob, huh...” Jake muttered as he frowned slightly. He was happy to hear that his sister-in-law had found a Path, but with Jacob having helped her, it begged the question: “Say, did he also-“",
+          "dialogueLineCount": 2,
+          "paragraphIndex": 8
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 12,
+            "paragraphIndex": 6,
+            "relativeIndex": -4,
+            "text": "How did you manage to convince her?"
+          },
+          {
+            "characterId": "caleb",
+            "characterName": "Caleb",
+            "lineId": 14,
+            "paragraphIndex": 7,
+            "relativeIndex": -3,
+            "text": "I didn’t,"
+          },
+          {
+            "characterId": "caleb",
+            "characterName": "Caleb",
+            "lineId": 16,
+            "paragraphIndex": 7,
+            "relativeIndex": -2,
+            "text": "I tried and failed in several ways, and I’m not gonna lie, I got kind of desperate. Mind you, this was a good while ago... but I reached out to the Augur. He talked to her, and afterward, she seemed resolved and even began actively learning more about magic in her free time. Summoning magic, even. A notoriously difficult school, but she’s making great progress, and apparently, studying law is useful when learning summoning magic somehow, so I guess having her help with contracts and whatnot in the early days of the Court didn’t just help me, but her future Path. She still has a lot of levels to catch up on before she can actively fight anything close to her level, but any progress is good progress in my book. Plus, I think summoning suits her. In that way, she won’t have to fight directly but can take a more planned approach."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 17,
+            "paragraphIndex": 8,
+            "relativeIndex": -1,
+            "text": "Jacob, huh..."
+          },
+          {
+            "characterId": "caleb",
+            "characterName": "Caleb",
+            "lineId": 20,
+            "paragraphIndex": 9,
+            "relativeIndex": 1,
+            "text": "He did,"
+          },
+          {
+            "characterId": "caleb",
+            "characterName": "Caleb",
+            "lineId": 22,
+            "paragraphIndex": 9,
+            "relativeIndex": 2,
+            "text": "Now, don’t get mad. I know you had – likely still have - quite a few issues with him, and I’m not a massive fan of the Church either, but Jacob is still an Augur of Hope. He is all about helping people find their Paths, so I reckoned if anyone could convince them, it would be him. Or, you know, at least give me some tips on how to convince them."
+          }
+        ],
+        "sceneEntities": [
+          {
+            "matches": [
+              {
+                "characterId": "jake",
+                "characterName": "Jake",
+                "evidence": [
+                  "ai_scene_memory"
+                ],
+                "score": 0.99
+              }
+            ],
+            "surface": "jake"
+          }
+        ]
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 19, \"text\": \"Say, did he also-\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.98, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Caleb\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"same_paragraph_continuation\", \"speech_verb\"]}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 8, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Jacob, huh...” Jake muttered as he frowned slightly. He was happy to hear that his sister-in-law had found a Path, but with Jacob having helped her, it begged the question: “Say, did he also-“\", \"currentParagraphDialogue\": [{\"lineId\": 17, \"text\": \"Jacob, huh...\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 19, \"text\": \"Say, did he also-\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Jacob, huh...\", \"cuePosition\": \"after\", \"cueVerb\": \"muttered\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake muttered as he frowned slightly. He was happy to hear that his sister-in-law had found a Path, but with Jacob having helped her, it begged the question: “Say, did he also-“\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [\"Jacob\", \"Jacob\"], \"addressedEntity\": null, \"firstSentence\": \"Jacob, huh...\", \"lastSentence\": \"Jacob, huh...\"}]}, \"currentQuoteUnit\": null, \"sceneEntities\": [{\"surface\": \"jake\", \"matches\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"score\": 0.99, \"evidence\": [\"ai_scene_memory\"]}]}], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"aliases\": [], \"roleLabels\": [\"caleb\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 12, \"paragraphIndex\": 6, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"How did you manage to convince her?\"}, {\"relativeIndex\": -3, \"lineId\": 14, \"paragraphIndex\": 7, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"I didn’t,\"}, {\"relativeIndex\": -2, \"lineId\": 16, \"paragraphIndex\": 7, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"I tried and failed in several ways, and I’m not gonna lie, I got kind of desperate. Mind you, this was a good while ago... but I reached out to the Augur. He talked to her, and afterward, she seemed resolved and even began actively learning more about magic in her free time. Summoning magic, even. A notoriously difficult school, but she’s making great progress, and apparently, studying law is useful when learning summoning magic somehow, so I guess having her help with contracts and whatnot in the early days of the Court didn’t just help me, but her future Path. She still has a lot of levels to catch up on before she can actively fight anything close to her level, but any progress is good progress in my book. Plus, I think summoning suits her. In that way, she won’t have to fight directly but can take a more planned approach.\"}, {\"relativeIndex\": -1, \"lineId\": 17, \"paragraphIndex\": 8, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Jacob, huh...\"}, {\"relativeIndex\": 1, \"lineId\": 20, \"paragraphIndex\": 9, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"He did,\"}, {\"relativeIndex\": 2, \"lineId\": 22, \"paragraphIndex\": 9, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"Now, don’t get mad. I know you had – likely still have - quite a few issues with him, and I’m not a massive fan of the Church either, but Jacob is still an Augur of Hope. He is all about helping people find their Paths, so I reckoned if anyone could convince them, it would be him. Or, you know, at least give me some tips on how to convince them.\"}], \"chapterCharacters\": [{\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viridia\", \"name\": \"viridia\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dragonkin\", \"name\": \"Dragonkin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"same_paragraph_continuation\",\n    \"next_turn_confirms_speaker\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0020 - Chapter 1077 - A Wonderful Place",
+  "currentCharacterId": "jake",
+  "currentCharacterName": "Jake",
+  "currentParagraphText": "“Jacob, huh...” Jake muttered as he frowned slightly. He was happy to hear that his sister-in-law had found a Path, but with Jacob having helped her, it begged the question: “Say, did he also-“",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.99,
+    "currentCharacterId": "jake",
+    "currentCharacterName": "Jake",
+    "currentParagraphText": "“Jacob, huh...” Jake muttered as he frowned slightly. He was happy to hear that his sister-in-law had found a Path, but with Jacob having helped her, it begged the question: “Say, did he also-“",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 19,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“He did,” Caleb confirmed. “Now, don’t get mad. I know you had – likely still have - quite a few issues with him, and I’m not a massive fan of the Church either, but Jacob is still an Augur of Hope. He is all about helping people find their Paths, so I reckoned if anyone could convince them, it would be him. Or, you know, at least give me some tips on how to convince them.”",
+    "paragraphIndex": 8,
+    "previousParagraphText": "“I didn’t,” Caleb sighed. “I tried and failed in several ways, and I’m not gonna lie, I got kind of desperate. Mind you, this was a good while ago... but I reached out to the Augur. He talked to her, and afterward, she seemed resolved and even began actively learning more about magic in her free time. Summoning magic, even. A notoriously difficult school, but she’s making great progress, and apparently, studying law is useful when learning summoning magic somehow, so I guess having her help with contracts and whatnot in the early days of the Court didn’t just help me, but her future Path. She still has a lot of levels to catch up on before she can actively fight anything close to her level, but any progress is good progress in my book. Plus, I think summoning suits her. In that way, she won’t have to fight directly but can take a more planned approach.”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "same_paragraph_continuation",
+      "next_turn_confirms_speaker"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 19,
+  "nextParagraphText": "“He did,” Caleb confirmed. “Now, don’t get mad. I know you had – likely still have - quite a few issues with him, and I’m not a massive fan of the Church either, but Jacob is still an Augur of Hope. He is all about helping people find their Paths, so I reckoned if anyone could convince them, it would be him. Or, you know, at least give me some tips on how to convince them.”",
+  "paragraphIndex": 8,
+  "previousParagraphText": "“I didn’t,” Caleb sighed. “I tried and failed in several ways, and I’m not gonna lie, I got kind of desperate. Mind you, this was a good while ago... but I reached out to the Augur. He talked to her, and afterward, she seemed resolved and even began actively learning more about magic in her free time. Summoning magic, even. A notoriously difficult school, but she’s making great progress, and apparently, studying law is useful when learning summoning magic somehow, so I guess having her help with contracts and whatnot in the early days of the Court didn’t just help me, but her future Path. She still has a lot of levels to catch up on before she can actively fight anything close to her level, but any progress is good progress in my book. Plus, I think summoning suits her. In that way, she won’t have to fight directly but can take a more planned approach.”"
+}

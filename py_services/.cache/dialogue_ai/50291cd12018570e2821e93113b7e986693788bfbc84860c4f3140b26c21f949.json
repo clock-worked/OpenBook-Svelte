@@ -1,0 +1,268 @@
+{
+  "cacheKey": "50291cd12018570e2821e93113b7e986693788bfbc84860c4f3140b26c21f949",
+  "createdAt": "2026-04-13T02:18:54.077021+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "natures-attendant",
+    "characterName": "Nature's Attendant",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_continuity",
+      "role_resolution"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "artemis"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Attendant",
+          "natures-attendant",
+          "natures-attendant-2",
+          "Nature Attendant"
+        ],
+        "characterId": "natures-attendant",
+        "name": "Nature's Attendant",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy",
+          "Vilas"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "before",
+      "cueText": "Luckily for her, the second-in-command of the Pantheon of Life didn’t seem offended by her bluntness, as he just smiled.",
+      "cueVerb": "smiled",
+      "cueVerbType": "reaction",
+      "firstSentence": "You’ve been a god for a fair amount of time, haven’t you?",
+      "lastSentence": "You’ve been a god for a fair amount of time, haven’t you?",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "You’ve been a god for a fair amount of time, haven’t you?",
+      "speakerNameMatch": null,
+      "speakerSurface": "as he just"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": true,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Nature's Attendant",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.5399999999999999,
+        "misattributionRisk": 0.26680000000000004,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Nature's Attendant"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.276,
+          "name": "Nature's Attendant",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 11,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "You’ve been a god for a fair amount of time, haven’t you?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 11,
+          "text": "You’ve been a god for a fair amount of time, haven’t you?"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Luckily for her, the second-in-command of the Pantheon of Life didn’t seem offended by her bluntness, as he just smiled.",
+          "cueVerb": "smiled",
+          "cueVerbType": "reaction",
+          "firstSentence": "You’ve been a god for a fair amount of time, haven’t you?",
+          "lastSentence": "You’ve been a god for a fair amount of time, haven’t you?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "You’ve been a god for a fair amount of time, haven’t you?",
+          "speakerNameMatch": null,
+          "speakerSurface": "as he just"
+        }
+      ],
+      "currentParagraphText": "Luckily for her, the second-in-command of the Pantheon of Life didn’t seem offended by her bluntness, as he just smiled. “You’ve been a god for a fair amount of time, haven’t you?”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "She nodded, indeed having a few eras under her belt.",
+      "paragraphIndex": 8,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 8,
+          "text": "If I may... why do you treat Jake like this? Why are you acting towards him almost as if he’s an equal?"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "she asked Nature’s Attendant. Instantly after asking, she felt a tang of regret, but at that point, it was too late.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "If I may...",
+          "lastSentence": "Why are you acting towards him almost as if he’s an equal?",
+          "mentionedEntities": [
+            "Jake"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "If I may... why do you treat Jake like this? Why are you acting towards him almost as if he’s an equal?",
+          "speakerNameMatch": null,
+          "speakerSurface": "she"
+        }
+      ],
+      "previousParagraphText": "“If I may... why do you treat Jake like this? Why are you acting towards him almost as if he’s an equal?” she asked Nature’s Attendant. Instantly after asking, she felt a tang of regret, but at that point, it was too late."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 8,
+        "paragraphIndex": 7,
+        "relativeIndex": -1,
+        "text": "If I may... why do you treat Jake like this? Why are you acting towards him almost as if he’s an equal?"
+      },
+      {
+        "characterId": "nature's_attendant",
+        "characterName": "Nature'S Attendant",
+        "lineId": 13,
+        "paragraphIndex": 10,
+        "relativeIndex": 1,
+        "text": "During this time, you must have met your fair share of mortals. Geniuses beyond compare. Those who stood at the pinnacle of their generation. Tell me, when you recall all of them, do any of them remind you of the Viper’s Chosen?"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 15,
+        "paragraphIndex": 11,
+        "relativeIndex": 2,
+        "text": "In some aspects,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 11, \"text\": \"You’ve been a god for a fair amount of time, haven’t you?\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Nature's Attendant\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.5399999999999999, \"misattributionRisk\": 0.26680000000000004, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Nature's Attendant\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Nature's Attendant\", \"confidence\": 0.276, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 8, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Luckily for her, the second-in-command of the Pantheon of Life didn’t seem offended by her bluntness, as he just smiled. “You’ve been a god for a fair amount of time, haven’t you?”\", \"currentParagraphDialogue\": [{\"lineId\": 11, \"text\": \"You’ve been a god for a fair amount of time, haven’t you?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“If I may... why do you treat Jake like this? Why are you acting towards him almost as if he’s an equal?” she asked Nature’s Attendant. Instantly after asking, she felt a tang of regret, but at that point, it was too late.\", \"previousParagraphDialogue\": [{\"lineId\": 8, \"text\": \"If I may... why do you treat Jake like this? Why are you acting towards him almost as if he’s an equal?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"nextParagraphText\": \"She nodded, indeed having a few eras under her belt.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You’ve been a god for a fair amount of time, haven’t you?\", \"cuePosition\": \"before\", \"cueVerb\": \"smiled\", \"cueVerbType\": \"reaction\", \"cueText\": \"Luckily for her, the second-in-command of the Pantheon of Life didn’t seem offended by her bluntness, as he just smiled.\", \"speakerSurface\": \"as he just\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You’ve been a god for a fair amount of time, haven’t you?\", \"lastSentence\": \"You’ve been a god for a fair amount of time, haven’t you?\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"If I may... why do you treat Jake like this? Why are you acting towards him almost as if he’s an equal?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"she asked Nature’s Attendant. Instantly after asking, she felt a tang of regret, but at that point, it was too late.\", \"speakerSurface\": \"she\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"Jake\"], \"addressedEntity\": null, \"firstSentence\": \"If I may...\", \"lastSentence\": \"Why are you acting towards him almost as if he’s an equal?\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"You’ve been a god for a fair amount of time, haven’t you?\", \"cuePosition\": \"before\", \"cueVerb\": \"smiled\", \"cueVerbType\": \"reaction\", \"cueText\": \"Luckily for her, the second-in-command of the Pantheon of Life didn’t seem offended by her bluntness, as he just smiled.\", \"speakerSurface\": \"as he just\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You’ve been a god for a fair amount of time, haven’t you?\", \"lastSentence\": \"You’ve been a god for a fair amount of time, haven’t you?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [], \"roleLabels\": [\"artemis\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -1, \"lineId\": 8, \"paragraphIndex\": 7, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"If I may... why do you treat Jake like this? Why are you acting towards him almost as if he’s an equal?\"}, {\"relativeIndex\": 1, \"lineId\": 13, \"paragraphIndex\": 10, \"characterId\": \"nature's_attendant\", \"characterName\": \"Nature'S Attendant\", \"text\": \"During this time, you must have met your fair share of mortals. Geniuses beyond compare. Those who stood at the pinnacle of their generation. Tell me, when you recall all of them, do any of them remind you of the Viper’s Chosen?\"}, {\"relativeIndex\": 2, \"lineId\": 15, \"paragraphIndex\": 11, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"In some aspects,\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"natures-attendant\", \"name\": \"Nature's Attendant\", \"aliases\": [\"Attendant\", \"natures-attendant\", \"natures-attendant-2\", \"Nature Attendant\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\", \"Vilas\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"natures-attendant\",\n  \"characterName\": \"Nature's Attendant\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_continuity\",\n    \"role_resolution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

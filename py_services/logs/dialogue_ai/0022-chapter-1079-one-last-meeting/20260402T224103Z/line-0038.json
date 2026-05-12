@@ -1,0 +1,375 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "4d0be12f760c8522224cf5b7e3bb8169fb432a7c8bead5e3969286fa7ce359d5",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\4d0be12f760c8522224cf5b7e3bb8169fb432a7c8bead5e3969286fa7ce359d5.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "previous_paragraph_explicit_attribution",
+          "dialogue_continuity",
+          "parser_top_candidate"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "viper",
+              "the malefic viper",
+              "malefic viper",
+              "villy"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": false
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "name": "The Sword Saint",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "miranda",
+            "name": "Miranda",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "beastkin",
+            "name": "Beastkin",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Anyway, we’ll talk more when you’re done on Earth and stop by the Order.",
+          "lastSentence": "How long do you reckon it’ll take?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Anyway, we’ll talk more when you’re done on Earth and stop by the Order. How long do you reckon it’ll take?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": true,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "The Malefic Viper",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.18,
+            "misattributionRisk": 0.364,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "The Malefic Viper",
+            "sourceCandidates": [
+              "The Malefic Viper",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.636
+          },
+          "candidates": [
+            {
+              "characterId": "viper",
+              "confidence": 0.636,
+              "name": "The Malefic Viper",
+              "reasons": [
+                "parser_match",
+                "legacy_match",
+                "question_next_speaker_penalty"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.456,
+              "name": "Jake",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [
+            "viper",
+            "Villy"
+          ],
+          "currentCharacterId": "viper",
+          "currentCharacterName": "The Malefic Viper",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 38,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Anyway, we’ll talk more when you’re done on Earth and stop by the Order. How long do you reckon it’ll take?"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "viper",
+              "characterName": "The Malefic Viper",
+              "isReturning": true,
+              "lineId": 38,
+              "text": "Anyway, we’ll talk more when you’re done on Earth and stop by the Order. How long do you reckon it’ll take?"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Anyway, we’ll talk more when you’re done on Earth and stop by the Order.",
+              "lastSentence": "How long do you reckon it’ll take?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Anyway, we’ll talk more when you’re done on Earth and stop by the Order. How long do you reckon it’ll take?",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Anyway, we’ll talk more when you’re done on Earth and stop by the Order. How long do you reckon it’ll take?”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "viper",
+              "characterName": "The Malefic Viper",
+              "isReturning": true,
+              "lineId": 39,
+              "text": "You need me back as soon as possible, right?"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "You need me back as soon as possible, right?",
+              "lastSentence": "You need me back as soon as possible, right?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "You need me back as soon as possible, right?",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "nextParagraphText": "“You need me back as soon as possible, right?”",
+          "paragraphIndex": 32,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "viper",
+              "characterName": "The Malefic Viper",
+              "isReturning": false,
+              "lineId": 36,
+              "text": "Well, excuse me for finding throwing stones at birds a silly thing when you can instead devour some savory snacks,"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the Viper continued to tease Jake.",
+              "cueVerb": "continued",
+              "cueVerbType": "speech",
+              "firstSentence": "Well, excuse me for finding throwing stones at birds a silly thing when you can instead devour some savory snacks,",
+              "lastSentence": "Well, excuse me for finding throwing stones at birds a silly thing when you can instead devour some savory snacks,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Well, excuse me for finding throwing stones at birds a silly thing when you can instead devour some savory snacks,",
+              "speakerNameMatch": null,
+              "speakerSurface": "Viper"
+            }
+          ],
+          "previousParagraphText": "“Well, excuse me for finding throwing stones at birds a silly thing when you can instead devour some savory snacks,” the Viper continued to tease Jake."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 31,
+            "paragraphIndex": 26,
+            "relativeIndex": -4,
+            "text": "So now it’s suddenly a work trip, huh,"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 33,
+            "paragraphIndex": 29,
+            "relativeIndex": -3,
+            "text": "Two mushrooms with one bite!"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 34,
+            "paragraphIndex": 29,
+            "relativeIndex": -2,
+            "text": "Never, ever, use that saying again,"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 36,
+            "paragraphIndex": 31,
+            "relativeIndex": -1,
+            "text": "Well, excuse me for finding throwing stones at birds a silly thing when you can instead devour some savory snacks,"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 39,
+            "paragraphIndex": 33,
+            "relativeIndex": 1,
+            "text": "You need me back as soon as possible, right?"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 40,
+            "paragraphIndex": 34,
+            "relativeIndex": 2,
+            "text": "Eh, no rush,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 38, \"text\": \"Anyway, we’ll talk more when you’re done on Earth and stop by the Order. How long do you reckon it’ll take?\", \"currentCharacterId\": \"viper\", \"currentCharacterName\": \"The Malefic Viper\", \"currentCharacterAliases\": [\"viper\", \"Villy\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"The Malefic Viper\", \"sourceCandidates\": [\"The Malefic Viper\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.636, \"marginToSecond\": 0.18, \"misattributionRisk\": 0.364, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"The Malefic Viper\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.636, \"reasons\": [\"parser_match\", \"legacy_match\", \"question_next_speaker_penalty\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 32, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Anyway, we’ll talk more when you’re done on Earth and stop by the Order. How long do you reckon it’ll take?”\", \"currentParagraphDialogue\": [{\"lineId\": 38, \"text\": \"Anyway, we’ll talk more when you’re done on Earth and stop by the Order. How long do you reckon it’ll take?\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": true}], \"previousParagraphText\": \"“Well, excuse me for finding throwing stones at birds a silly thing when you can instead devour some savory snacks,” the Viper continued to tease Jake.\", \"previousParagraphDialogue\": [{\"lineId\": 36, \"text\": \"Well, excuse me for finding throwing stones at birds a silly thing when you can instead devour some savory snacks,\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": false}], \"nextParagraphText\": \"“You need me back as soon as possible, right?”\", \"nextParagraphDialogue\": [{\"lineId\": 39, \"text\": \"You need me back as soon as possible, right?\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Anyway, we’ll talk more when you’re done on Earth and stop by the Order. How long do you reckon it’ll take?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Anyway, we’ll talk more when you’re done on Earth and stop by the Order.\", \"lastSentence\": \"How long do you reckon it’ll take?\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Well, excuse me for finding throwing stones at birds a silly thing when you can instead devour some savory snacks,\", \"cuePosition\": \"after\", \"cueVerb\": \"continued\", \"cueVerbType\": \"speech\", \"cueText\": \"the Viper continued to tease Jake.\", \"speakerSurface\": \"Viper\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Well, excuse me for finding throwing stones at birds a silly thing when you can instead devour some savory snacks,\", \"lastSentence\": \"Well, excuse me for finding throwing stones at birds a silly thing when you can instead devour some savory snacks,\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You need me back as soon as possible, right?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You need me back as soon as possible, right?\", \"lastSentence\": \"You need me back as soon as possible, right?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Anyway, we’ll talk more when you’re done on Earth and stop by the Order. How long do you reckon it’ll take?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Anyway, we’ll talk more when you’re done on Earth and stop by the Order.\", \"lastSentence\": \"How long do you reckon it’ll take?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 31, \"paragraphIndex\": 26, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"So now it’s suddenly a work trip, huh,\"}, {\"relativeIndex\": -3, \"lineId\": 33, \"paragraphIndex\": 29, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Two mushrooms with one bite!\"}, {\"relativeIndex\": -2, \"lineId\": 34, \"paragraphIndex\": 29, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Never, ever, use that saying again,\"}, {\"relativeIndex\": -1, \"lineId\": 36, \"paragraphIndex\": 31, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Well, excuse me for finding throwing stones at birds a silly thing when you can instead devour some savory snacks,\"}, {\"relativeIndex\": 1, \"lineId\": 39, \"paragraphIndex\": 33, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"You need me back as soon as possible, right?\"}, {\"relativeIndex\": 2, \"lineId\": 40, \"paragraphIndex\": 34, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Eh, no rush,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"beastkin\", \"name\": \"Beastkin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"viper\",\n  \"characterName\": \"The Malefic Viper\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"previous_paragraph_explicit_attribution\",\n    \"dialogue_continuity\",\n    \"parser_top_candidate\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0022 - Chapter 1079 - One Last Meeting",
+  "currentCharacterId": "viper",
+  "currentCharacterName": "The Malefic Viper",
+  "currentParagraphText": "“Anyway, we’ll talk more when you’re done on Earth and stop by the Order. How long do you reckon it’ll take?”",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "viper",
+    "currentCharacterName": "The Malefic Viper",
+    "currentParagraphText": "“Anyway, we’ll talk more when you’re done on Earth and stop by the Order. How long do you reckon it’ll take?”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 38,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“You need me back as soon as possible, right?”",
+    "paragraphIndex": 32,
+    "previousParagraphText": "“Well, excuse me for finding throwing stones at birds a silly thing when you can instead devour some savory snacks,” the Viper continued to tease Jake.",
+    "reasonCodes": [
+      "previous_paragraph_explicit_attribution",
+      "dialogue_continuity",
+      "parser_top_candidate"
+    ],
+    "suggestedCharacterId": "viper",
+    "suggestedCharacterName": "The Malefic Viper",
+    "toolTrace": []
+  },
+  "lineId": 38,
+  "nextParagraphText": "“You need me back as soon as possible, right?”",
+  "paragraphIndex": 32,
+  "previousParagraphText": "“Well, excuse me for finding throwing stones at birds a silly thing when you can instead devour some savory snacks,” the Viper continued to tease Jake."
+}

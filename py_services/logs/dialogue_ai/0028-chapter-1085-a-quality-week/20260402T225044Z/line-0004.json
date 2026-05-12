@@ -1,0 +1,367 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "69bdf614723828c4b485a47dae89195b4453185d30e8f893a3c3a208a0d198f8",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\69bdf614723828c4b485a47dae89195b4453185d30e8f893a3c3a208a0d198f8.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "the-sword-saint",
+        "characterName": "The Sword Saint",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "pronoun_match",
+          "contextual_fit"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "characterName": "The Sword Saint",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "the sword saint",
+              "sword saint",
+              "the sword saint 2",
+              "sword saint 2",
+              "miyamoto"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [],
+            "characterId": "vampire",
+            "characterName": "Vampire",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "vampire"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [
+              "True Ancestor",
+              "Vampire Godess",
+              "vampire-godess"
+            ],
+            "characterId": "katherine",
+            "characterName": "Katherine",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "katherine",
+              "true ancestor",
+              "vampire godess"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "name": "The Sword Saint",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "True Ancestor",
+              "Vampire Godess",
+              "vampire-godess"
+            ],
+            "characterId": "katherine",
+            "name": "Katherine",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "iskar",
+            "name": "Iskar",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "irin",
+            "name": "Irin",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "succubus",
+            "name": "Succubus",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "he merely said with a sigh, hoping the discussion would end there, even if he knew that wasn’t going to happen.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Vampirism...",
+          "lastSentence": "isn’t part of my Path,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Vampirism... isn’t part of my Path,",
+          "speakerNameMatch": null,
+          "speakerSurface": "he merely"
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": true,
+              "nextDialogueLegacy": "Katherine",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36,
+            "misattributionRisk": 0.136,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "The Sword Saint",
+            "sourceCandidates": [
+              "The Sword Saint",
+              "Vampire"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.864
+          },
+          "candidates": [
+            {
+              "characterId": "the-sword-saint",
+              "confidence": 0.864,
+              "name": "The Sword Saint",
+              "reasons": [
+                "parser_match",
+                "legacy_match",
+                "speech_verb"
+              ]
+            },
+            {
+              "characterId": "vampire",
+              "confidence": 0.504,
+              "name": "Vampire",
+              "reasons": [
+                "speech_verb"
+              ]
+            }
+          ],
+          "currentCharacterAliases": [
+            "the-sword-saint",
+            "the-sword-saint-2",
+            "Miyamoto"
+          ],
+          "currentCharacterId": "the-sword-saint",
+          "currentCharacterName": "The Sword Saint",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 4,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "Vampirism... isn’t part of my Path,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "the-sword-saint",
+              "characterName": "The Sword Saint",
+              "isReturning": false,
+              "lineId": 4,
+              "text": "Vampirism... isn’t part of my Path,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "he merely said with a sigh, hoping the discussion would end there, even if he knew that wasn’t going to happen.",
+              "cueVerb": "said",
+              "cueVerbType": "speech",
+              "firstSentence": "Vampirism...",
+              "lastSentence": "isn’t part of my Path,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Vampirism... isn’t part of my Path,",
+              "speakerNameMatch": null,
+              "speakerSurface": "he merely"
+            }
+          ],
+          "currentParagraphText": "“Vampirism... isn’t part of my Path,” he merely said with a sigh, hoping the discussion would end there, even if he knew that wasn’t going to happen.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "katherine",
+              "characterName": "Katherine",
+              "isReturning": false,
+              "lineId": 6,
+              "text": "Perhaps not right now, but one’s Path is nothing if not adaptable,"
+            },
+            {
+              "characterId": "katherine",
+              "characterName": "Katherine",
+              "isReturning": true,
+              "lineId": 8,
+              "text": "I did a bit of research on you, and from my understanding, you are a man who pursues the sword with great fervor, yet you also have a profession. Painting. While I understand you might find such a pastime relaxing or perhaps even soothing for the soul, it doesn’t quite seem to fit with your Path from my perspective."
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Katherine argued.",
+              "cueVerb": "argued",
+              "cueVerbType": "speech",
+              "firstSentence": "Perhaps not right now, but one’s Path is nothing if not adaptable,",
+              "lastSentence": "Perhaps not right now, but one’s Path is nothing if not adaptable,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Perhaps not right now, but one’s Path is nothing if not adaptable,",
+              "speakerNameMatch": "Katherine",
+              "speakerSurface": "Katherine"
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Katherine argued.",
+              "cueVerb": "argued",
+              "cueVerbType": "speech",
+              "firstSentence": "I did a bit of research on you, and from my understanding, you are a man who pursues the sword with great fervor, yet you also have a profession.",
+              "lastSentence": "While I understand you might find such a pastime relaxing or perhaps even soothing for the soul, it doesn’t quite seem to fit with your Path from my perspective.",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "I did a bit of research on you, and from my understanding, you are a man who pursues the sword with great fervor, yet you also have a profession. Painting. While I understand you might find such a pastime relaxing or perhaps even soothing for the soul, it doesn’t quite seem to fit with your Path from my perspective.",
+              "speakerNameMatch": "Katherine",
+              "speakerSurface": "Katherine"
+            }
+          ],
+          "nextParagraphText": "“Perhaps not right now, but one’s Path is nothing if not adaptable,” Katherine argued. “I did a bit of research on you, and from my understanding, you are a man who pursues the sword with great fervor, yet you also have a profession. Painting. While I understand you might find such a pastime relaxing or perhaps even soothing for the soul, it doesn’t quite seem to fit with your Path from my perspective.”",
+          "paragraphIndex": 3,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "One’s they quite frankly weren’t privy to."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "katherine",
+            "characterName": "Katherine",
+            "lineId": 6,
+            "paragraphIndex": 4,
+            "relativeIndex": 1,
+            "text": "Perhaps not right now, but one’s Path is nothing if not adaptable,"
+          },
+          {
+            "characterId": "katherine",
+            "characterName": "Katherine",
+            "lineId": 8,
+            "paragraphIndex": 4,
+            "relativeIndex": 2,
+            "text": "I did a bit of research on you, and from my understanding, you are a man who pursues the sword with great fervor, yet you also have a profession. Painting. While I understand you might find such a pastime relaxing or perhaps even soothing for the soul, it doesn’t quite seem to fit with your Path from my perspective."
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 4, \"text\": \"Vampirism... isn’t part of my Path,\", \"currentCharacterId\": \"the-sword-saint\", \"currentCharacterName\": \"The Sword Saint\", \"currentCharacterAliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"The Sword Saint\", \"sourceCandidates\": [\"The Sword Saint\", \"Vampire\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.864, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.136, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Katherine\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"confidence\": 0.864, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"vampire\", \"name\": \"Vampire\", \"confidence\": 0.504, \"reasons\": [\"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 3, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Vampirism... isn’t part of my Path,” he merely said with a sigh, hoping the discussion would end there, even if he knew that wasn’t going to happen.\", \"currentParagraphDialogue\": [{\"lineId\": 4, \"text\": \"Vampirism... isn’t part of my Path,\", \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"isReturning\": false}], \"previousParagraphText\": \"One’s they quite frankly weren’t privy to.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“Perhaps not right now, but one’s Path is nothing if not adaptable,” Katherine argued. “I did a bit of research on you, and from my understanding, you are a man who pursues the sword with great fervor, yet you also have a profession. Painting. While I understand you might find such a pastime relaxing or perhaps even soothing for the soul, it doesn’t quite seem to fit with your Path from my perspective.”\", \"nextParagraphDialogue\": [{\"lineId\": 6, \"text\": \"Perhaps not right now, but one’s Path is nothing if not adaptable,\", \"characterId\": \"katherine\", \"characterName\": \"Katherine\", \"isReturning\": false}, {\"lineId\": 8, \"text\": \"I did a bit of research on you, and from my understanding, you are a man who pursues the sword with great fervor, yet you also have a profession. Painting. While I understand you might find such a pastime relaxing or perhaps even soothing for the soul, it doesn’t quite seem to fit with your Path from my perspective.\", \"characterId\": \"katherine\", \"characterName\": \"Katherine\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Vampirism... isn’t part of my Path,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"he merely said with a sigh, hoping the discussion would end there, even if he knew that wasn’t going to happen.\", \"speakerSurface\": \"he merely\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Vampirism...\", \"lastSentence\": \"isn’t part of my Path,\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Perhaps not right now, but one’s Path is nothing if not adaptable,\", \"cuePosition\": \"after\", \"cueVerb\": \"argued\", \"cueVerbType\": \"speech\", \"cueText\": \"Katherine argued.\", \"speakerSurface\": \"Katherine\", \"speakerNameMatch\": \"Katherine\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Perhaps not right now, but one’s Path is nothing if not adaptable,\", \"lastSentence\": \"Perhaps not right now, but one’s Path is nothing if not adaptable,\"}, {\"quoteIndex\": 1, \"quoteText\": \"I did a bit of research on you, and from my understanding, you are a man who pursues the sword with great fervor, yet you also have a profession. Painting. While I understand you might find such a pastime relaxing or perhaps even soothing for the soul, it doesn’t quite seem to fit with your Path from my perspective.\", \"cuePosition\": \"before\", \"cueVerb\": \"argued\", \"cueVerbType\": \"speech\", \"cueText\": \"Katherine argued.\", \"speakerSurface\": \"Katherine\", \"speakerNameMatch\": \"Katherine\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I did a bit of research on you, and from my understanding, you are a man who pursues the sword with great fervor, yet you also have a profession.\", \"lastSentence\": \"While I understand you might find such a pastime relaxing or perhaps even soothing for the soul, it doesn’t quite seem to fit with your Path from my perspective.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Vampirism... isn’t part of my Path,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"he merely said with a sigh, hoping the discussion would end there, even if he knew that wasn’t going to happen.\", \"speakerSurface\": \"he merely\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Vampirism...\", \"lastSentence\": \"isn’t part of my Path,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [\"the sword saint\", \"sword saint\", \"the sword saint 2\", \"sword saint 2\", \"miyamoto\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"vampire\", \"characterName\": \"Vampire\", \"aliases\": [], \"roleLabels\": [\"vampire\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"katherine\", \"characterName\": \"Katherine\", \"aliases\": [\"True Ancestor\", \"Vampire Godess\", \"vampire-godess\"], \"roleLabels\": [\"katherine\", \"true ancestor\", \"vampire godess\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": 1, \"lineId\": 6, \"paragraphIndex\": 4, \"characterId\": \"katherine\", \"characterName\": \"Katherine\", \"text\": \"Perhaps not right now, but one’s Path is nothing if not adaptable,\"}, {\"relativeIndex\": 2, \"lineId\": 8, \"paragraphIndex\": 4, \"characterId\": \"katherine\", \"characterName\": \"Katherine\", \"text\": \"I did a bit of research on you, and from my understanding, you are a man who pursues the sword with great fervor, yet you also have a profession. Painting. While I understand you might find such a pastime relaxing or perhaps even soothing for the soul, it doesn’t quite seem to fit with your Path from my perspective.\"}], \"chapterCharacters\": [{\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"katherine\", \"name\": \"Katherine\", \"aliases\": [\"True Ancestor\", \"Vampire Godess\", \"vampire-godess\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iskar\", \"name\": \"Iskar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"succubus\", \"name\": \"Succubus\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"the-sword-saint\",\n  \"characterName\": \"The Sword Saint\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"pronoun_match\",\n    \"contextual_fit\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0028 - Chapter 1085 - A Quality Week",
+  "currentCharacterId": "the-sword-saint",
+  "currentCharacterName": "The Sword Saint",
+  "currentParagraphText": "“Vampirism... isn’t part of my Path,” he merely said with a sigh, hoping the discussion would end there, even if he knew that wasn’t going to happen.",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "the-sword-saint",
+    "currentCharacterName": "The Sword Saint",
+    "currentParagraphText": "“Vampirism... isn’t part of my Path,” he merely said with a sigh, hoping the discussion would end there, even if he knew that wasn’t going to happen.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 4,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Perhaps not right now, but one’s Path is nothing if not adaptable,” Katherine argued. “I did a bit of research on you, and from my understanding, you are a man who pursues the sword with great fervor, yet you also have a profession. Painting. While I understand you might find such a pastime relaxing or perhaps even soothing for the soul, it doesn’t quite seem to fit with your Path from my perspective.”",
+    "paragraphIndex": 3,
+    "previousParagraphText": "One’s they quite frankly weren’t privy to.",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "pronoun_match",
+      "contextual_fit"
+    ],
+    "suggestedCharacterId": "the-sword-saint",
+    "suggestedCharacterName": "The Sword Saint",
+    "toolTrace": []
+  },
+  "lineId": 4,
+  "nextParagraphText": "“Perhaps not right now, but one’s Path is nothing if not adaptable,” Katherine argued. “I did a bit of research on you, and from my understanding, you are a man who pursues the sword with great fervor, yet you also have a profession. Painting. While I understand you might find such a pastime relaxing or perhaps even soothing for the soul, it doesn’t quite seem to fit with your Path from my perspective.”",
+  "paragraphIndex": 3,
+  "previousParagraphText": "One’s they quite frankly weren’t privy to."
+}

@@ -1,0 +1,297 @@
+{
+  "cacheKey": "4d5dfb9a25b0f10e7a79072b20289760fab15e9921e5f97de2c7dc1365acbba7",
+  "createdAt": "2026-04-01T20:11:05.891726+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "yggdrasil",
+    "characterName": "Yggdrasil",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "next_paragraph_explicit_attribution",
+      "continues_explanation",
+      "answers_previous_question"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "primordial"
+        ],
+        "characterId": "yggdrasil",
+        "name": "Yggdrasil",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Attendant"
+        ],
+        "characterId": "nimera",
+        "name": "Nimera",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "nature attendant",
+        "name": "Nature Attendant",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "That he’s still the best alchemist in the multiverse,",
+      "lastSentence": "That he’s still the best alchemist in the multiverse,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "That he’s still the best alchemist in the multiverse,",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.32919999999999994,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Attendant",
+        "sourceCandidates": [
+          "Attendant",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.804,
+          "name": "Nimera",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.444,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 106,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "That he’s still the best alchemist in the multiverse,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 106,
+          "text": "That he’s still the best alchemist in the multiverse,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "That he’s still the best alchemist in the multiverse,",
+          "lastSentence": "That he’s still the best alchemist in the multiverse,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "That he’s still the best alchemist in the multiverse,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“That he’s still the best alchemist in the multiverse,”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Yggdrasil answered.",
+      "paragraphIndex": 60,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 104,
+          "text": "A declaration of what?"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake asked, confused.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "A declaration of what?",
+          "lastSentence": "A declaration of what?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "A declaration of what?",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "previousParagraphText": "“A declaration of what?” Jake asked, confused."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 99,
+        "paragraphIndex": 55,
+        "relativeIndex": -4,
+        "text": "This was very purposeful, wasn’t it?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 100,
+        "paragraphIndex": 56,
+        "relativeIndex": -3,
+        "text": "Yes,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 103,
+        "paragraphIndex": 58,
+        "relativeIndex": -2,
+        "text": "I cannot share with you exactly what these flasks contain, but I will share with you the intent behind them. This is a statement, nay, a declaration."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 104,
+        "paragraphIndex": 59,
+        "relativeIndex": -1,
+        "text": "A declaration of what?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 108,
+        "paragraphIndex": 62,
+        "relativeIndex": 1,
+        "text": "Despite the eras, he clearly never stopped honing his craft. No one has seen any creations by him similar to these since the seventh era, making many doubt if he was still as skilled as he used to be. Alchemy has gotten far more complex and powerful as the general power level of the multiverse has grown in tandem with the ever-increasing influx of Records, and no one could be sure if he had kept up. Most of the best alchemists learn through sparring with one another and exchanging knowledge... but then again, that was never something Vilas bothered much with. He always viewed all other alchemists as beneath him. I don’t think he’s ever encountered a single alchemist he even considered worth learning from."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 110,
+        "paragraphIndex": 64,
+        "relativeIndex": 2,
+        "text": "Guess I chose a good Patron for my profession,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 106, \"text\": \"That he’s still the best alchemist in the multiverse,\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Attendant\", \"sourceCandidates\": [\"Attendant\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.32919999999999994, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Nimera\", \"confidence\": 0.804, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.444, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 60, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“That he’s still the best alchemist in the multiverse,”\", \"currentParagraphDialogue\": [{\"lineId\": 106, \"text\": \"That he’s still the best alchemist in the multiverse,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“A declaration of what?” Jake asked, confused.\", \"previousParagraphDialogue\": [{\"lineId\": 104, \"text\": \"A declaration of what?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"nextParagraphText\": \"Yggdrasil answered.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"That he’s still the best alchemist in the multiverse,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"That he’s still the best alchemist in the multiverse,\", \"lastSentence\": \"That he’s still the best alchemist in the multiverse,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"A declaration of what?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake asked, confused.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"A declaration of what?\", \"lastSentence\": \"A declaration of what?\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"That he’s still the best alchemist in the multiverse,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"That he’s still the best alchemist in the multiverse,\", \"lastSentence\": \"That he’s still the best alchemist in the multiverse,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 99, \"paragraphIndex\": 55, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"This was very purposeful, wasn’t it?\"}, {\"relativeIndex\": -3, \"lineId\": 100, \"paragraphIndex\": 56, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Yes,\"}, {\"relativeIndex\": -2, \"lineId\": 103, \"paragraphIndex\": 58, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I cannot share with you exactly what these flasks contain, but I will share with you the intent behind them. This is a statement, nay, a declaration.\"}, {\"relativeIndex\": -1, \"lineId\": 104, \"paragraphIndex\": 59, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"A declaration of what?\"}, {\"relativeIndex\": 1, \"lineId\": 108, \"paragraphIndex\": 62, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Despite the eras, he clearly never stopped honing his craft. No one has seen any creations by him similar to these since the seventh era, making many doubt if he was still as skilled as he used to be. Alchemy has gotten far more complex and powerful as the general power level of the multiverse has grown in tandem with the ever-increasing influx of Records, and no one could be sure if he had kept up. Most of the best alchemists learn through sparring with one another and exchanging knowledge... but then again, that was never something Vilas bothered much with. He always viewed all other alchemists as beneath him. I don’t think he’s ever encountered a single alchemist he even considered worth learning from.\"}, {\"relativeIndex\": 2, \"lineId\": 110, \"paragraphIndex\": 64, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Guess I chose a good Patron for my profession,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"yggdrasil\", \"name\": \"Yggdrasil\", \"aliases\": [\"primordial\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"nimera\", \"name\": \"Nimera\", \"aliases\": [\"Attendant\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"nature attendant\", \"name\": \"Nature Attendant\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"yggdrasil\",\n  \"characterName\": \"Yggdrasil\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"next_paragraph_explicit_attribution\",\n    \"continues_explanation\",\n    \"answers_previous_question\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

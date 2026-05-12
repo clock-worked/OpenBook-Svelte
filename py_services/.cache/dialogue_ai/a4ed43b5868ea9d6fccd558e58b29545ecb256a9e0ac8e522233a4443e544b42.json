@@ -1,0 +1,404 @@
+{
+  "cacheKey": "a4ed43b5868ea9d6fccd558e58b29545ecb256a9e0ac8e522233a4443e544b42",
+  "createdAt": "2026-05-11T21:06:25.885320+00:00",
+  "decision": {
+    "action": "propose_alias",
+    "aliasToAdd": {
+      "alias": "Primordial of karma",
+      "characterId": "eversmile",
+      "characterName": "Eversmile"
+    },
+    "characterId": "eversmile",
+    "characterName": "Eversmile",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_next_paragraph_attribution",
+      "role_alias_identified"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "eversmile",
+        "characterName": "Eversmile",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "eversmile"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy",
+          "Vilas",
+          "Vilastromoz",
+          "The Viper",
+          "the-viper",
+          "the-viper-2"
+        ],
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "viper",
+          "the malefic viper",
+          "malefic viper",
+          "villy",
+          "vilas",
+          "vilastromoz",
+          "the viper",
+          "the viper 2"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "primordial",
+        "characterName": "Primordial",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "primordial"
+        ],
+        "wasRecentSpeaker": false
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "viper",
+          "Villy",
+          "Vilas",
+          "Vilastromoz",
+          "The Viper",
+          "the-viper",
+          "the-viper-2"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "eversmile",
+        "name": "Eversmile",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "First Sage"
+        ],
+        "characterId": "the first sage",
+        "name": "The First Sage",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "the Primordial of karma commented.",
+      "cueVerb": "commented",
+      "cueVerbType": "speech",
+      "firstSentence": "I do not see that as an option worth considering.",
+      "lastSentence": "If they were powerful enough to pull something like that off, they wouldn’t have to use these strategies in the first place but would face up openly,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "I do not see that as an option worth considering. If they were powerful enough to pull something like that off, they wouldn’t have to use these strategies in the first place but would face up openly,",
+      "speakerNameMatch": null,
+      "speakerSurface": "the Primordial of karma"
+    },
+    "line": {
+      "alignment": {
+        "confidence": 1.0,
+        "isSpanFallback": false,
+        "method": "quote_unit",
+        "paragraphIndex": 13,
+        "spanDistance": 0.0,
+        "spanParagraphIndex": 13
+      },
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "The Malefic Viper",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.0,
+        "parserBackend": "legacy",
+        "resolutionStatus": "user_confirmed",
+        "sourceAlias": "Eversmile",
+        "sourceCandidates": [
+          "Eversmile",
+          "The Malefic Viper"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": "eversmile",
+          "confidence": 0.804,
+          "name": "Eversmile",
+          "reasons": null
+        },
+        {
+          "characterId": "viper",
+          "confidence": 0.444,
+          "name": "The Malefic Viper",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "eversmile",
+      "currentCharacterName": "Eversmile",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 26,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "I do not see that as an option worth considering. If they were powerful enough to pull something like that off, they wouldn’t have to use these strategies in the first place but would face up openly,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "eversmile",
+          "characterName": "Eversmile",
+          "isReturning": false,
+          "lineId": 26,
+          "text": "I do not see that as an option worth considering. If they were powerful enough to pull something like that off, they wouldn’t have to use these strategies in the first place but would face up openly,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the Primordial of karma commented.",
+          "cueVerb": "commented",
+          "cueVerbType": "speech",
+          "firstSentence": "I do not see that as an option worth considering.",
+          "lastSentence": "If they were powerful enough to pull something like that off, they wouldn’t have to use these strategies in the first place but would face up openly,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I do not see that as an option worth considering. If they were powerful enough to pull something like that off, they wouldn’t have to use these strategies in the first place but would face up openly,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the Primordial of karma"
+        }
+      ],
+      "currentParagraphText": "“I do not see that as an option worth considering. If they were powerful enough to pull something like that off, they wouldn’t have to use these strategies in the first place but would face up openly,” the Primordial of karma commented.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": false,
+          "lineId": 28,
+          "text": "As humble as always,"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Vilas chuckled, though he didn’t disagree with Eversmile’s statement in the slightest.",
+          "cueVerb": "chuckled",
+          "cueVerbType": "speech",
+          "firstSentence": "As humble as always,",
+          "lastSentence": "As humble as always,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "As humble as always,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Vilas"
+        }
+      ],
+      "nextParagraphText": "“As humble as always,” Vilas chuckled, though he didn’t disagree with Eversmile’s statement in the slightest.",
+      "paragraphIndex": 13,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": false,
+          "lineId": 23,
+          "text": "All we can do is keep a lookout,"
+        },
+        {
+          "characterId": "viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": true,
+          "lineId": 25,
+          "text": "If they do communicate, they’re bound to create some kind of karmic link in that moment. Now, if you somehow can’t use that to find out more… well, in that case, we’re well and truly screwed."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the Viper sighed.",
+          "cueVerb": "sighed",
+          "cueVerbType": "speech",
+          "firstSentence": "All we can do is keep a lookout,",
+          "lastSentence": "All we can do is keep a lookout,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "All we can do is keep a lookout,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Viper"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "the Viper sighed.",
+          "cueVerb": "sighed",
+          "cueVerbType": "speech",
+          "firstSentence": "If they do communicate, they’re bound to create some kind of karmic link in that moment.",
+          "lastSentence": "Now, if you somehow can’t use that to find out more… well, in that case, we’re well and truly screwed.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "If they do communicate, they’re bound to create some kind of karmic link in that moment. Now, if you somehow can’t use that to find out more… well, in that case, we’re well and truly screwed.",
+          "speakerNameMatch": null,
+          "speakerSurface": "Viper"
+        }
+      ],
+      "previousParagraphText": "“All we can do is keep a lookout,” the Viper sighed. “If they do communicate, they’re bound to create some kind of karmic link in that moment. Now, if you somehow can’t use that to find out more… well, in that case, we’re well and truly screwed.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 14,
+        "paragraphIndex": 7,
+        "relativeIndex": -4,
+        "text": "True, but if we suddenly start cracking down on low-level D-grade spies, we would be the ones acting suspiciously,"
+      },
+      {
+        "characterId": "eversmile",
+        "characterName": "Eversmile",
+        "lineId": 21,
+        "paragraphIndex": 11,
+        "relativeIndex": -3,
+        "text": "Telling the others who know to limit karmic obscuration would also appear suspicious if this unknown faction is observing the situation,"
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 23,
+        "paragraphIndex": 12,
+        "relativeIndex": -2,
+        "text": "All we can do is keep a lookout,"
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 25,
+        "paragraphIndex": 12,
+        "relativeIndex": -1,
+        "text": "If they do communicate, they’re bound to create some kind of karmic link in that moment. Now, if you somehow can’t use that to find out more… well, in that case, we’re well and truly screwed."
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 28,
+        "paragraphIndex": 14,
+        "relativeIndex": 1,
+        "text": "As humble as always,"
+      },
+      {
+        "characterId": "eversmile",
+        "characterName": "Eversmile",
+        "lineId": 30,
+        "paragraphIndex": 15,
+        "relativeIndex": 2,
+        "text": "Speaking of lacking humbleness… I haven’t heard about that Chosen of yours since his lesson,"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "primordial",
+            "characterName": "Primordial",
+            "evidence": [
+              "token_overlap:primordial"
+            ],
+            "score": 0.625
+          }
+        ],
+        "surface": "the primordial of karma"
+      }
+    ],
+    "sceneRoster": {
+      "paragraphWindow": 6,
+      "presentCharacterIds": [
+        "viper",
+        "eversmile"
+      ],
+      "presentCharacters": [
+        {
+          "characterId": "viper",
+          "characterName": "The Malefic Viper"
+        },
+        {
+          "characterId": "eversmile",
+          "characterName": "Eversmile"
+        }
+      ]
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 26, \"text\": \"I do not see that as an option worth considering. If they were powerful enough to pull something like that off, they wouldn’t have to use these strategies in the first place but would face up openly,\", \"currentCharacterId\": \"eversmile\", \"currentCharacterName\": \"Eversmile\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"user_confirmed\", \"sourceAlias\": \"Eversmile\", \"sourceCandidates\": [\"Eversmile\", \"The Malefic Viper\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.0, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Malefic Viper\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"eversmile\", \"name\": \"Eversmile\", \"confidence\": 0.804, \"reasons\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.444, \"reasons\": null}], \"isReturning\": false, \"alignment\": {\"paragraphIndex\": 13, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 13, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 13, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I do not see that as an option worth considering. If they were powerful enough to pull something like that off, they wouldn’t have to use these strategies in the first place but would face up openly,” the Primordial of karma commented.\", \"currentParagraphDialogue\": [{\"lineId\": 26, \"text\": \"I do not see that as an option worth considering. If they were powerful enough to pull something like that off, they wouldn’t have to use these strategies in the first place but would face up openly,\", \"characterId\": \"eversmile\", \"characterName\": \"Eversmile\", \"isReturning\": false}], \"previousParagraphText\": \"“All we can do is keep a lookout,” the Viper sighed. “If they do communicate, they’re bound to create some kind of karmic link in that moment. Now, if you somehow can’t use that to find out more… well, in that case, we’re well and truly screwed.”\", \"previousParagraphDialogue\": [{\"lineId\": 23, \"text\": \"All we can do is keep a lookout,\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": false}, {\"lineId\": 25, \"text\": \"If they do communicate, they’re bound to create some kind of karmic link in that moment. Now, if you somehow can’t use that to find out more… well, in that case, we’re well and truly screwed.\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": true}], \"nextParagraphText\": \"“As humble as always,” Vilas chuckled, though he didn’t disagree with Eversmile’s statement in the slightest.\", \"nextParagraphDialogue\": [{\"lineId\": 28, \"text\": \"As humble as always,\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I do not see that as an option worth considering. If they were powerful enough to pull something like that off, they wouldn’t have to use these strategies in the first place but would face up openly,\", \"cuePosition\": \"after\", \"cueVerb\": \"commented\", \"cueVerbType\": \"speech\", \"cueText\": \"the Primordial of karma commented.\", \"speakerSurface\": \"the Primordial of karma\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I do not see that as an option worth considering.\", \"lastSentence\": \"If they were powerful enough to pull something like that off, they wouldn’t have to use these strategies in the first place but would face up openly,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"All we can do is keep a lookout,\", \"cuePosition\": \"after\", \"cueVerb\": \"sighed\", \"cueVerbType\": \"speech\", \"cueText\": \"the Viper sighed.\", \"speakerSurface\": \"Viper\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"All we can do is keep a lookout,\", \"lastSentence\": \"All we can do is keep a lookout,\"}, {\"quoteIndex\": 1, \"quoteText\": \"If they do communicate, they’re bound to create some kind of karmic link in that moment. Now, if you somehow can’t use that to find out more… well, in that case, we’re well and truly screwed.\", \"cuePosition\": \"before\", \"cueVerb\": \"sighed\", \"cueVerbType\": \"speech\", \"cueText\": \"the Viper sighed.\", \"speakerSurface\": \"Viper\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"If they do communicate, they’re bound to create some kind of karmic link in that moment.\", \"lastSentence\": \"Now, if you somehow can’t use that to find out more… well, in that case, we’re well and truly screwed.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"As humble as always,\", \"cuePosition\": \"after\", \"cueVerb\": \"chuckled\", \"cueVerbType\": \"speech\", \"cueText\": \"Vilas chuckled, though he didn’t disagree with Eversmile’s statement in the slightest.\", \"speakerSurface\": \"Vilas\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"As humble as always,\", \"lastSentence\": \"As humble as always,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I do not see that as an option worth considering. If they were powerful enough to pull something like that off, they wouldn’t have to use these strategies in the first place but would face up openly,\", \"cuePosition\": \"after\", \"cueVerb\": \"commented\", \"cueVerbType\": \"speech\", \"cueText\": \"the Primordial of karma commented.\", \"speakerSurface\": \"the Primordial of karma\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I do not see that as an option worth considering.\", \"lastSentence\": \"If they were powerful enough to pull something like that off, they wouldn’t have to use these strategies in the first place but would face up openly,\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"viper\", \"eversmile\"], \"presentCharacters\": [{\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\"}, {\"characterId\": \"eversmile\", \"characterName\": \"Eversmile\"}]}, \"sceneEntities\": [{\"surface\": \"the primordial of karma\", \"matches\": [{\"characterId\": \"primordial\", \"characterName\": \"Primordial\", \"score\": 0.625, \"evidence\": [\"token_overlap:primordial\"]}]}], \"candidateCards\": [{\"characterId\": \"eversmile\", \"characterName\": \"Eversmile\", \"aliases\": [], \"roleLabels\": [\"eversmile\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\", \"Vilas\", \"Vilastromoz\", \"The Viper\", \"the-viper\", \"the-viper-2\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\", \"vilas\", \"vilastromoz\", \"the viper\", \"the viper 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"primordial\", \"characterName\": \"Primordial\", \"aliases\": [], \"roleLabels\": [\"primordial\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 14, \"paragraphIndex\": 7, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"True, but if we suddenly start cracking down on low-level D-grade spies, we would be the ones acting suspiciously,\"}, {\"relativeIndex\": -3, \"lineId\": 21, \"paragraphIndex\": 11, \"characterId\": \"eversmile\", \"characterName\": \"Eversmile\", \"text\": \"Telling the others who know to limit karmic obscuration would also appear suspicious if this unknown faction is observing the situation,\"}, {\"relativeIndex\": -2, \"lineId\": 23, \"paragraphIndex\": 12, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"All we can do is keep a lookout,\"}, {\"relativeIndex\": -1, \"lineId\": 25, \"paragraphIndex\": 12, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"If they do communicate, they’re bound to create some kind of karmic link in that moment. Now, if you somehow can’t use that to find out more… well, in that case, we’re well and truly screwed.\"}, {\"relativeIndex\": 1, \"lineId\": 28, \"paragraphIndex\": 14, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"As humble as always,\"}, {\"relativeIndex\": 2, \"lineId\": 30, \"paragraphIndex\": 15, \"characterId\": \"eversmile\", \"characterName\": \"Eversmile\", \"text\": \"Speaking of lacking humbleness… I haven’t heard about that Chosen of yours since his lesson,\"}], \"chapterCharacters\": [{\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\", \"Vilas\", \"Vilastromoz\", \"The Viper\", \"the-viper\", \"the-viper-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"eversmile\", \"name\": \"Eversmile\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the first sage\", \"name\": \"The First Sage\", \"aliases\": [\"First Sage\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"propose_alias\",\n  \"characterId\": \"eversmile\",\n  \"characterName\": \"Eversmile\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_next_paragraph_attribution\",\n    \"role_alias_identified\"\n  ],\n  \"aliasToAdd\": {\n    \"characterId\": \"eversmile\",\n    \"characterName\": \"Eversmile\",\n    \"alias\": \"Primordial of karma\"\n  },\n  \"newCharacterProposal\": null\n}"
+}

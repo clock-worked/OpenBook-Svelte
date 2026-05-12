@@ -1,0 +1,342 @@
+{
+  "cacheKey": "e79bfb3adb2b36f51d1326338e5fa4bdcc942c03294e4842effbcde54961310e",
+  "createdAt": "2026-04-01T18:32:28.544750+00:00",
+  "decision": {
+    "action": "needs_review",
+    "aliasToAdd": null,
+    "characterId": null,
+    "characterName": null,
+    "confidence": 0.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "not_dialogue",
+      "embedded_in_narration"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": false,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jacob"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "protagonist",
+        "name": "Protagonist",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "arnold",
+        "name": "Arnold",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "name": "Bertram",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "name": "Iludar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "name": "Iludar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "pulse",
+        "name": "pulse",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "before",
+      "cueText": "Okay, admittedly, Jake hadn’t really entered this so-called",
+      "cueVerb": "called",
+      "cueVerbType": "speech",
+      "firstSentence": "negotiation",
+      "lastSentence": "negotiation",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "negotiation",
+      "speakerNameMatch": null,
+      "speakerSurface": "so"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": null,
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.7,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.20399999999999996,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jacob",
+        "sourceCandidates": [
+          "Jacob",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.796
+      },
+      "candidates": [
+        {
+          "characterId": "jacob",
+          "confidence": 0.796,
+          "name": "Jacob",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.436,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "jacob",
+      "currentCharacterName": "Jacob",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 98,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "negotiation"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 98,
+          "text": "negotiation"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Okay, admittedly, Jake hadn’t really entered this so-called",
+          "cueVerb": "called",
+          "cueVerbType": "speech",
+          "firstSentence": "negotiation",
+          "lastSentence": "negotiation",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "negotiation",
+          "speakerNameMatch": null,
+          "speakerSurface": "so"
+        }
+      ],
+      "currentParagraphText": "Okay, admittedly, Jake hadn’t really entered this so-called “negotiation” with a mindset for compromise... but Jake got the distinct feeling Jacob wouldn’t want Jake to be in a too diplomatic mood either.",
+      "dialogueLineCount": 1,
+      "paragraphIndex": 70,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 94,
+          "text": "You talk as if any of what you just said matters,"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 96,
+          "text": "No matter what I wanted to do with what’s mine, it has nothing to do with you. All that matters is that you stole something from me; that’s the end of it."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake said, openly pressuring Jacob with his aura.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "You talk as if any of what you just said matters,",
+          "lastSentence": "You talk as if any of what you just said matters,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "You talk as if any of what you just said matters,",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jake said, openly pressuring Jacob with his aura.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "No matter what I wanted to do with what’s mine, it has nothing to do with you.",
+          "lastSentence": "All that matters is that you stole something from me; that’s the end of it.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "No matter what I wanted to do with what’s mine, it has nothing to do with you. All that matters is that you stole something from me; that’s the end of it.",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "previousParagraphText": "“You talk as if any of what you just said matters,” Jake said, openly pressuring Jacob with his aura. “No matter what I wanted to do with what’s mine, it has nothing to do with you. All that matters is that you stole something from me; that’s the end of it.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 91,
+        "paragraphIndex": 67,
+        "relativeIndex": -4,
+        "text": "Apologize for my Guardian’s outburst. Your last encounter wasn’t a pleasant one for him either,"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 93,
+        "paragraphIndex": 68,
+        "relativeIndex": -3,
+        "text": "I shall not deny that we claimed the Truesoul of Ell’Hakan, the Usurper of Yip of Yore, but we only did so after you had already taken what you had come to take. We are, at worst, scavengers infringing on your leftovers, but I object to us being branded thieves. We only took what you were unable or unwilling to claim in the first place."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 94,
+        "paragraphIndex": 69,
+        "relativeIndex": -2,
+        "text": "You talk as if any of what you just said matters,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 96,
+        "paragraphIndex": 69,
+        "relativeIndex": -1,
+        "text": "No matter what I wanted to do with what’s mine, it has nothing to do with you. All that matters is that you stole something from me; that’s the end of it."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 98, \"text\": \"negotiation\", \"currentCharacterId\": \"jacob\", \"currentCharacterName\": \"Jacob\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jacob\", \"sourceCandidates\": [\"Jacob\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.20399999999999996, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": null, \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.796, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.436, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 70, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Okay, admittedly, Jake hadn’t really entered this so-called “negotiation” with a mindset for compromise... but Jake got the distinct feeling Jacob wouldn’t want Jake to be in a too diplomatic mood either.\", \"currentParagraphDialogue\": [{\"lineId\": 98, \"text\": \"negotiation\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}], \"previousParagraphText\": \"“You talk as if any of what you just said matters,” Jake said, openly pressuring Jacob with his aura. “No matter what I wanted to do with what’s mine, it has nothing to do with you. All that matters is that you stole something from me; that’s the end of it.”\", \"previousParagraphDialogue\": [{\"lineId\": 94, \"text\": \"You talk as if any of what you just said matters,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 96, \"text\": \"No matter what I wanted to do with what’s mine, it has nothing to do with you. All that matters is that you stole something from me; that’s the end of it.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"negotiation\", \"cuePosition\": \"before\", \"cueVerb\": \"called\", \"cueVerbType\": \"speech\", \"cueText\": \"Okay, admittedly, Jake hadn’t really entered this so-called\", \"speakerSurface\": \"so\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"negotiation\", \"lastSentence\": \"negotiation\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You talk as if any of what you just said matters,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake said, openly pressuring Jacob with his aura.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You talk as if any of what you just said matters,\", \"lastSentence\": \"You talk as if any of what you just said matters,\"}, {\"quoteIndex\": 1, \"quoteText\": \"No matter what I wanted to do with what’s mine, it has nothing to do with you. All that matters is that you stole something from me; that’s the end of it.\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake said, openly pressuring Jacob with his aura.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"No matter what I wanted to do with what’s mine, it has nothing to do with you.\", \"lastSentence\": \"All that matters is that you stole something from me; that’s the end of it.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"negotiation\", \"cuePosition\": \"before\", \"cueVerb\": \"called\", \"cueVerbType\": \"speech\", \"cueText\": \"Okay, admittedly, Jake hadn’t really entered this so-called\", \"speakerSurface\": \"so\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"negotiation\", \"lastSentence\": \"negotiation\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [], \"roleLabels\": [\"jacob\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 91, \"paragraphIndex\": 67, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"Apologize for my Guardian’s outburst. Your last encounter wasn’t a pleasant one for him either,\"}, {\"relativeIndex\": -3, \"lineId\": 93, \"paragraphIndex\": 68, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"I shall not deny that we claimed the Truesoul of Ell’Hakan, the Usurper of Yip of Yore, but we only did so after you had already taken what you had come to take. We are, at worst, scavengers infringing on your leftovers, but I object to us being branded thieves. We only took what you were unable or unwilling to claim in the first place.\"}, {\"relativeIndex\": -2, \"lineId\": 94, \"paragraphIndex\": 69, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You talk as if any of what you just said matters,\"}, {\"relativeIndex\": -1, \"lineId\": 96, \"paragraphIndex\": 69, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"No matter what I wanted to do with what’s mine, it has nothing to do with you. All that matters is that you stole something from me; that’s the end of it.\"}], \"chapterCharacters\": [{\"characterId\": \"protagonist\", \"name\": \"Protagonist\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"arnold\", \"name\": \"Arnold\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"bertram\", \"name\": \"Bertram\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"pulse\", \"name\": \"pulse\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": false, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"needs_review\",\n  \"characterId\": null,\n  \"characterName\": null,\n  \"confidence\": 0.0,\n  \"reasonCodes\": [\n    \"not_dialogue\",\n    \"embedded_in_narration\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

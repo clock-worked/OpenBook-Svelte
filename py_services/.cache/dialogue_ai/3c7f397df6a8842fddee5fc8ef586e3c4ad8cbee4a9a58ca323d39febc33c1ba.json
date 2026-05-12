@@ -1,0 +1,383 @@
+{
+  "cacheKey": "3c7f397df6a8842fddee5fc8ef586e3c4ad8cbee4a9a58ca323d39febc33c1ba",
+  "createdAt": "2026-05-11T21:22:11.146897+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "beastkin",
+    "characterName": "Beastkin",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_continuity",
+      "plausible_generic_descriptor"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "beastkin",
+        "characterName": "Beastkin",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "beastkin"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Godqueen",
+          "Viper"
+        ],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "artemis",
+          "godqueen",
+          "viper"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen",
+          "Viper"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "beastkin",
+        "name": "Beastkin",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "the man said, inviting the Viper into the auction hall itself.",
+      "cueVerb": "said",
+      "cueVerbType": "speech",
+      "firstSentence": "No one told you to buy anything, but giving an extra number out shouldn’t be a problem, and besides, having more people there makes for more competitive betting even if you don’t bet yourself,",
+      "lastSentence": "No one told you to buy anything, but giving an extra number out shouldn’t be a problem, and besides, having more people there makes for more competitive betting even if you don’t bet yourself,",
+      "mentionedEntities": [
+        "having"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "No one told you to buy anything, but giving an extra number out shouldn’t be a problem, and besides, having more people there makes for more competitive betting even if you don’t bet yourself,",
+      "speakerNameMatch": null,
+      "speakerSurface": "the man"
+    },
+    "line": {
+      "alignment": {
+        "confidence": 1.0,
+        "isSpanFallback": false,
+        "method": "quote_unit",
+        "paragraphIndex": 43,
+        "spanDistance": 0.0,
+        "spanParagraphIndex": 43
+      },
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "having"
+          ],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Beastkin",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.2872,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Beastkin",
+        "sourceCandidates": [
+          "Beastkin",
+          "The Malefic Viper"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.864
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.864,
+          "name": "Beastkin",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.504,
+          "name": "Artemis",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "beastkin",
+      "currentCharacterName": "Beastkin",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 87,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "No one told you to buy anything, but giving an extra number out shouldn’t be a problem, and besides, having more people there makes for more competitive betting even if you don’t bet yourself,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "beastkin",
+          "characterName": "Beastkin",
+          "isReturning": false,
+          "lineId": 87,
+          "text": "No one told you to buy anything, but giving an extra number out shouldn’t be a problem, and besides, having more people there makes for more competitive betting even if you don’t bet yourself,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the man said, inviting the Viper into the auction hall itself.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "No one told you to buy anything, but giving an extra number out shouldn’t be a problem, and besides, having more people there makes for more competitive betting even if you don’t bet yourself,",
+          "lastSentence": "No one told you to buy anything, but giving an extra number out shouldn’t be a problem, and besides, having more people there makes for more competitive betting even if you don’t bet yourself,",
+          "mentionedEntities": [
+            "having"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "No one told you to buy anything, but giving an extra number out shouldn’t be a problem, and besides, having more people there makes for more competitive betting even if you don’t bet yourself,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the man"
+        }
+      ],
+      "currentParagraphText": "“No one told you to buy anything, but giving an extra number out shouldn’t be a problem, and besides, having more people there makes for more competitive betting even if you don’t bet yourself,” the man said, inviting the Viper into the auction hall itself.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 89,
+          "text": "I would be remiss to miss being there,"
+        },
+        {
+          "characterId": "beastkin",
+          "characterName": "Beastkin",
+          "isReturning": true,
+          "lineId": 91,
+          "text": "I guess the real bidders will be the A-grades today, right?"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the Viper relented.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I would be remiss to miss being there,",
+          "lastSentence": "I would be remiss to miss being there,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I would be remiss to miss being there,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the Viper"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "the Viper relented.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I guess the real bidders will be the A-grades today, right?",
+          "lastSentence": "I guess the real bidders will be the A-grades today, right?",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "I guess the real bidders will be the A-grades today, right?",
+          "speakerNameMatch": null,
+          "speakerSurface": "the Viper"
+        }
+      ],
+      "nextParagraphText": "“I would be remiss to miss being there,” the Viper relented. “I guess the real bidders will be the A-grades today, right?”",
+      "paragraphIndex": 43,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": false,
+          "lineId": 85,
+          "text": "I don’t have that kind of money,"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the Viper said, his hands raised in defense of his own poverty.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "I don’t have that kind of money,",
+          "lastSentence": "I don’t have that kind of money,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I don’t have that kind of money,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Viper"
+        }
+      ],
+      "previousParagraphText": "“I don’t have that kind of money,” the Viper said, his hands raised in defense of his own poverty."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 80,
+        "paragraphIndex": 40,
+        "relativeIndex": -4,
+        "text": "I see,"
+      },
+      {
+        "characterId": "beastkin",
+        "characterName": "Beastkin",
+        "lineId": 82,
+        "paragraphIndex": 41,
+        "relativeIndex": -3,
+        "text": "Why the long face?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 84,
+        "paragraphIndex": 41,
+        "relativeIndex": -2,
+        "text": "Just attend it yourself."
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 85,
+        "paragraphIndex": 42,
+        "relativeIndex": -1,
+        "text": "I don’t have that kind of money,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 89,
+        "paragraphIndex": 44,
+        "relativeIndex": 1,
+        "text": "I would be remiss to miss being there,"
+      },
+      {
+        "characterId": "beastkin",
+        "characterName": "Beastkin",
+        "lineId": 91,
+        "paragraphIndex": 44,
+        "relativeIndex": 2,
+        "text": "I guess the real bidders will be the A-grades today, right?"
+      }
+    ],
+    "sceneEntities": [],
+    "sceneRoster": {
+      "paragraphWindow": 6,
+      "presentCharacterIds": [
+        "unknown",
+        "artemis",
+        "beastkin"
+      ],
+      "presentCharacters": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown"
+        },
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis"
+        },
+        {
+          "characterId": "beastkin",
+          "characterName": "Beastkin"
+        }
+      ]
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 87, \"text\": \"No one told you to buy anything, but giving an extra number out shouldn’t be a problem, and besides, having more people there makes for more competitive betting even if you don’t bet yourself,\", \"currentCharacterId\": \"beastkin\", \"currentCharacterName\": \"Beastkin\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Beastkin\", \"sourceCandidates\": [\"Beastkin\", \"The Malefic Viper\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.864, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.2872, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"having\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Beastkin\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Beastkin\", \"confidence\": 0.864, \"reasons\": null}, {\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.504, \"reasons\": null}], \"isReturning\": false, \"alignment\": {\"paragraphIndex\": 43, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 43, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 43, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“No one told you to buy anything, but giving an extra number out shouldn’t be a problem, and besides, having more people there makes for more competitive betting even if you don’t bet yourself,” the man said, inviting the Viper into the auction hall itself.\", \"currentParagraphDialogue\": [{\"lineId\": 87, \"text\": \"No one told you to buy anything, but giving an extra number out shouldn’t be a problem, and besides, having more people there makes for more competitive betting even if you don’t bet yourself,\", \"characterId\": \"beastkin\", \"characterName\": \"Beastkin\", \"isReturning\": false}], \"previousParagraphText\": \"“I don’t have that kind of money,” the Viper said, his hands raised in defense of his own poverty.\", \"previousParagraphDialogue\": [{\"lineId\": 85, \"text\": \"I don’t have that kind of money,\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": false}], \"nextParagraphText\": \"“I would be remiss to miss being there,” the Viper relented. “I guess the real bidders will be the A-grades today, right?”\", \"nextParagraphDialogue\": [{\"lineId\": 89, \"text\": \"I would be remiss to miss being there,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 91, \"text\": \"I guess the real bidders will be the A-grades today, right?\", \"characterId\": \"beastkin\", \"characterName\": \"Beastkin\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"No one told you to buy anything, but giving an extra number out shouldn’t be a problem, and besides, having more people there makes for more competitive betting even if you don’t bet yourself,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the man said, inviting the Viper into the auction hall itself.\", \"speakerSurface\": \"the man\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"having\"], \"addressedEntity\": null, \"firstSentence\": \"No one told you to buy anything, but giving an extra number out shouldn’t be a problem, and besides, having more people there makes for more competitive betting even if you don’t bet yourself,\", \"lastSentence\": \"No one told you to buy anything, but giving an extra number out shouldn’t be a problem, and besides, having more people there makes for more competitive betting even if you don’t bet yourself,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I don’t have that kind of money,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the Viper said, his hands raised in defense of his own poverty.\", \"speakerSurface\": \"Viper\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I don’t have that kind of money,\", \"lastSentence\": \"I don’t have that kind of money,\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I would be remiss to miss being there,\", \"cuePosition\": \"after\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"the Viper relented.\", \"speakerSurface\": \"the Viper\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I would be remiss to miss being there,\", \"lastSentence\": \"I would be remiss to miss being there,\"}, {\"quoteIndex\": 1, \"quoteText\": \"I guess the real bidders will be the A-grades today, right?\", \"cuePosition\": \"before\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"the Viper relented.\", \"speakerSurface\": \"the Viper\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I guess the real bidders will be the A-grades today, right?\", \"lastSentence\": \"I guess the real bidders will be the A-grades today, right?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"No one told you to buy anything, but giving an extra number out shouldn’t be a problem, and besides, having more people there makes for more competitive betting even if you don’t bet yourself,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the man said, inviting the Viper into the auction hall itself.\", \"speakerSurface\": \"the man\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"having\"], \"addressedEntity\": null, \"firstSentence\": \"No one told you to buy anything, but giving an extra number out shouldn’t be a problem, and besides, having more people there makes for more competitive betting even if you don’t bet yourself,\", \"lastSentence\": \"No one told you to buy anything, but giving an extra number out shouldn’t be a problem, and besides, having more people there makes for more competitive betting even if you don’t bet yourself,\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"unknown\", \"artemis\", \"beastkin\"], \"presentCharacters\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\"}, {\"characterId\": \"beastkin\", \"characterName\": \"Beastkin\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"beastkin\", \"characterName\": \"Beastkin\", \"aliases\": [], \"roleLabels\": [\"beastkin\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [\"Godqueen\", \"Viper\"], \"roleLabels\": [\"artemis\", \"godqueen\", \"viper\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 80, \"paragraphIndex\": 40, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I see,\"}, {\"relativeIndex\": -3, \"lineId\": 82, \"paragraphIndex\": 41, \"characterId\": \"beastkin\", \"characterName\": \"Beastkin\", \"text\": \"Why the long face?\"}, {\"relativeIndex\": -2, \"lineId\": 84, \"paragraphIndex\": 41, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Just attend it yourself.\"}, {\"relativeIndex\": -1, \"lineId\": 85, \"paragraphIndex\": 42, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"I don’t have that kind of money,\"}, {\"relativeIndex\": 1, \"lineId\": 89, \"paragraphIndex\": 44, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I would be remiss to miss being there,\"}, {\"relativeIndex\": 2, \"lineId\": 91, \"paragraphIndex\": 44, \"characterId\": \"beastkin\", \"characterName\": \"Beastkin\", \"text\": \"I guess the real bidders will be the A-grades today, right?\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\", \"Viper\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"beastkin\", \"name\": \"Beastkin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"beastkin\",\n  \"characterName\": \"Beastkin\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_continuity\",\n    \"plausible_generic_descriptor\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

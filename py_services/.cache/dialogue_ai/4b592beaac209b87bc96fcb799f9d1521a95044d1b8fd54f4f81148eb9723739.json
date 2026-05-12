@@ -1,0 +1,250 @@
+{
+  "cacheKey": "4b592beaac209b87bc96fcb799f9d1521a95044d1b8fd54f4f81148eb9723739",
+  "createdAt": "2026-04-01T22:05:33.594807+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "artemis",
+    "characterName": "Artemis",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_she_said_cue",
+      "contextual_explanation_matches_previous_mention",
+      "dialogue_turn_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "artemis"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "she said.",
+      "cueVerb": "said",
+      "cueVerbType": "speech",
+      "firstSentence": "While most races can reduce their physical forms, to some, it isn’t very comfortable.",
+      "lastSentence": "That’s why it was decided to be on the safer side when constructing the bedrooms,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "While most races can reduce their physical forms, to some, it isn’t very comfortable. That’s why it was decided to be on the safer side when constructing the bedrooms,",
+      "speakerNameMatch": null,
+      "speakerSurface": "she"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": "female",
+          "contextGenderCue": "she said",
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Protagonist",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.904,
+        "misattributionRisk": 0.15,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Protagonist",
+        "sourceCandidates": [
+          "Protagonist"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.904
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.904,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [
+        "Protagonist"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 7,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "While most races can reduce their physical forms, to some, it isn’t very comfortable. That’s why it was decided to be on the safer side when constructing the bedrooms,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 7,
+          "text": "While most races can reduce their physical forms, to some, it isn’t very comfortable. That’s why it was decided to be on the safer side when constructing the bedrooms,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "she said.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "While most races can reduce their physical forms, to some, it isn’t very comfortable.",
+          "lastSentence": "That’s why it was decided to be on the safer side when constructing the bedrooms,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "While most races can reduce their physical forms, to some, it isn’t very comfortable. That’s why it was decided to be on the safer side when constructing the bedrooms,",
+          "speakerNameMatch": null,
+          "speakerSurface": "she"
+        }
+      ],
+      "currentParagraphText": "“While most races can reduce their physical forms, to some, it isn’t very comfortable. That’s why it was decided to be on the safer side when constructing the bedrooms,” she said.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 10,
+          "text": "I guess that makes sense; it just looks a little silly."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake stared at the more than a hundred-meter-wide bed as he scratched the back of his head.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I guess that makes sense; it just looks a little silly.",
+          "lastSentence": "I guess that makes sense; it just looks a little silly.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I guess that makes sense; it just looks a little silly.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "nextParagraphText": "Jake stared at the more than a hundred-meter-wide bed as he scratched the back of his head. “I guess that makes sense; it just looks a little silly.”",
+      "paragraphIndex": 4,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "The sleeping quarters were also needlessly large. Many of the rooms were spatially expanded with great flexibility to make them even larger than Jake could see a need for, which Artemis had a good explanation for."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 2,
+        "paragraphIndex": 0,
+        "relativeIndex": -1,
+        "text": "To be a gag gift, or not a gag gift, that is the question."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 10,
+        "paragraphIndex": 5,
+        "relativeIndex": 1,
+        "text": "I guess that makes sense; it just looks a little silly."
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 11,
+        "paragraphIndex": 6,
+        "relativeIndex": 2,
+        "text": "Just choose a room more fitting for the human form,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 7, \"text\": \"While most races can reduce their physical forms, to some, it isn’t very comfortable. That’s why it was decided to be on the safer side when constructing the bedrooms,\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Protagonist\", \"sourceCandidates\": [\"Protagonist\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.904, \"marginToSecond\": 0.904, \"misattributionRisk\": 0.15, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Protagonist\", \"contextGender\": \"female\", \"contextGenderCue\": \"she said\"}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.904, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 4, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“While most races can reduce their physical forms, to some, it isn’t very comfortable. That’s why it was decided to be on the safer side when constructing the bedrooms,” she said.\", \"currentParagraphDialogue\": [{\"lineId\": 7, \"text\": \"While most races can reduce their physical forms, to some, it isn’t very comfortable. That’s why it was decided to be on the safer side when constructing the bedrooms,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"previousParagraphText\": \"The sleeping quarters were also needlessly large. Many of the rooms were spatially expanded with great flexibility to make them even larger than Jake could see a need for, which Artemis had a good explanation for.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Jake stared at the more than a hundred-meter-wide bed as he scratched the back of his head. “I guess that makes sense; it just looks a little silly.”\", \"nextParagraphDialogue\": [{\"lineId\": 10, \"text\": \"I guess that makes sense; it just looks a little silly.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"While most races can reduce their physical forms, to some, it isn’t very comfortable. That’s why it was decided to be on the safer side when constructing the bedrooms,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"she said.\", \"speakerSurface\": \"she\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"While most races can reduce their physical forms, to some, it isn’t very comfortable.\", \"lastSentence\": \"That’s why it was decided to be on the safer side when constructing the bedrooms,\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I guess that makes sense; it just looks a little silly.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake stared at the more than a hundred-meter-wide bed as he scratched the back of his head.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I guess that makes sense; it just looks a little silly.\", \"lastSentence\": \"I guess that makes sense; it just looks a little silly.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"While most races can reduce their physical forms, to some, it isn’t very comfortable. That’s why it was decided to be on the safer side when constructing the bedrooms,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"she said.\", \"speakerSurface\": \"she\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"While most races can reduce their physical forms, to some, it isn’t very comfortable.\", \"lastSentence\": \"That’s why it was decided to be on the safer side when constructing the bedrooms,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [], \"roleLabels\": [\"artemis\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -1, \"lineId\": 2, \"paragraphIndex\": 0, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"To be a gag gift, or not a gag gift, that is the question.\"}, {\"relativeIndex\": 1, \"lineId\": 10, \"paragraphIndex\": 5, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I guess that makes sense; it just looks a little silly.\"}, {\"relativeIndex\": 2, \"lineId\": 11, \"paragraphIndex\": 6, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Just choose a room more fitting for the human form,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"artemis\",\n  \"characterName\": \"Artemis\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_she_said_cue\",\n    \"contextual_explanation_matches_previous_mention\",\n    \"dialogue_turn_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

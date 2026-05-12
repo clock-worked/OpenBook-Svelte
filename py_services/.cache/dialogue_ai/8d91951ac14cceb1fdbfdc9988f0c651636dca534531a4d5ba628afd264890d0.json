@@ -1,0 +1,308 @@
+{
+  "cacheKey": "8d91951ac14cceb1fdbfdc9988f0c651636dca534531a4d5ba628afd264890d0",
+  "createdAt": "2026-04-02T22:49:22.255042+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "the-sword-saint",
+    "characterName": "The Sword Saint",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration",
+      "alias_resolution"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "vampire",
+        "characterName": "Vampire",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "vampire"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "characterName": "The Sword Saint",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "the sword saint",
+          "sword saint",
+          "the sword saint 2",
+          "sword saint 2",
+          "miyamoto"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "name": "blood",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "vampire",
+        "name": "Vampire",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "fairleigh",
+        "name": "Fairleigh",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "iskar",
+        "name": "Iskar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "True Ancestor",
+          "Vampire Godess",
+          "vampire-godess"
+        ],
+        "characterId": "katherine",
+        "name": "Katherine",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "I am the one who chose such an arrogant title for myself, yes,",
+      "lastSentence": "I am the one who chose such an arrogant title for myself, yes,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "I am the one who chose such an arrogant title for myself, yes,",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Vampire",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.19599999999999995,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Vampire",
+        "sourceCandidates": [
+          "Vampire",
+          "The Sword Saint"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": "vampire",
+          "confidence": 0.804,
+          "name": "Vampire",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "the-sword-saint",
+          "confidence": 0.444,
+          "name": "The Sword Saint",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "vampire",
+      "currentCharacterName": "Vampire",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 40,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "I am the one who chose such an arrogant title for myself, yes,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "vampire",
+          "characterName": "Vampire",
+          "isReturning": false,
+          "lineId": 40,
+          "text": "I am the one who chose such an arrogant title for myself, yes,"
+        },
+        {
+          "characterId": "vampire",
+          "characterName": "Vampire",
+          "isReturning": true,
+          "lineId": 42,
+          "text": "And as you said, the Blood Legacy stems from Yalsten. From my understanding, the system chose to freeze the time of the world at some point, only to restart it once it was used for the system event."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I am the one who chose such an arrogant title for myself, yes,",
+          "lastSentence": "I am the one who chose such an arrogant title for myself, yes,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I am the one who chose such an arrogant title for myself, yes,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Miyamoto bowed toward the god.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "And as you said, the Blood Legacy stems from Yalsten.",
+          "lastSentence": "From my understanding, the system chose to freeze the time of the world at some point, only to restart it once it was used for the system event.",
+          "mentionedEntities": [
+            "blood",
+            "blood"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "And as you said, the Blood Legacy stems from Yalsten. From my understanding, the system chose to freeze the time of the world at some point, only to restart it once it was used for the system event.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“I am the one who chose such an arrogant title for myself, yes,” Miyamoto bowed toward the god. “And as you said, the Blood Legacy stems from Yalsten. From my understanding, the system chose to freeze the time of the world at some point, only to restart it once it was used for the system event.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 29
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "the-sword-saint",
+        "characterName": "The Sword Saint",
+        "lineId": 25,
+        "paragraphIndex": 18,
+        "relativeIndex": -4,
+        "text": "I understand,"
+      },
+      {
+        "characterId": "vampire",
+        "characterName": "Vampire",
+        "lineId": 35,
+        "paragraphIndex": 27,
+        "relativeIndex": -3,
+        "text": "You got this through a system event?"
+      },
+      {
+        "characterId": "the-sword-saint",
+        "characterName": "The Sword Saint",
+        "lineId": 37,
+        "paragraphIndex": 27,
+        "relativeIndex": -2,
+        "text": "Yalsten, you said. I remember that it was lost... the entrance severed from the multiverse. It appears the system chose to recycle it and allow what was left by His Lordship to emerge once more."
+      },
+      {
+        "characterId": "vampire",
+        "characterName": "Vampire",
+        "lineId": 39,
+        "paragraphIndex": 28,
+        "relativeIndex": -1,
+        "text": "You are the human who calls himself the Sword Saint, correct?"
+      },
+      {
+        "characterId": "vampire",
+        "characterName": "Vampire",
+        "lineId": 42,
+        "paragraphIndex": 29,
+        "relativeIndex": 1,
+        "text": "And as you said, the Blood Legacy stems from Yalsten. From my understanding, the system chose to freeze the time of the world at some point, only to restart it once it was used for the system event."
+      },
+      {
+        "characterId": "vampire",
+        "characterName": "Vampire",
+        "lineId": 43,
+        "paragraphIndex": 30,
+        "relativeIndex": 2,
+        "text": "I see,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 40, \"text\": \"I am the one who chose such an arrogant title for myself, yes,\", \"currentCharacterId\": \"vampire\", \"currentCharacterName\": \"Vampire\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Vampire\", \"sourceCandidates\": [\"Vampire\", \"The Sword Saint\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Vampire\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"vampire\", \"name\": \"Vampire\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 29, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“I am the one who chose such an arrogant title for myself, yes,” Miyamoto bowed toward the god. “And as you said, the Blood Legacy stems from Yalsten. From my understanding, the system chose to freeze the time of the world at some point, only to restart it once it was used for the system event.”\", \"currentParagraphDialogue\": [{\"lineId\": 40, \"text\": \"I am the one who chose such an arrogant title for myself, yes,\", \"characterId\": \"vampire\", \"characterName\": \"Vampire\", \"isReturning\": false}, {\"lineId\": 42, \"text\": \"And as you said, the Blood Legacy stems from Yalsten. From my understanding, the system chose to freeze the time of the world at some point, only to restart it once it was used for the system event.\", \"characterId\": \"vampire\", \"characterName\": \"Vampire\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I am the one who chose such an arrogant title for myself, yes,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I am the one who chose such an arrogant title for myself, yes,\", \"lastSentence\": \"I am the one who chose such an arrogant title for myself, yes,\"}, {\"quoteIndex\": 1, \"quoteText\": \"And as you said, the Blood Legacy stems from Yalsten. From my understanding, the system chose to freeze the time of the world at some point, only to restart it once it was used for the system event.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Miyamoto bowed toward the god.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"blood\", \"blood\"], \"addressedEntity\": null, \"firstSentence\": \"And as you said, the Blood Legacy stems from Yalsten.\", \"lastSentence\": \"From my understanding, the system chose to freeze the time of the world at some point, only to restart it once it was used for the system event.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I am the one who chose such an arrogant title for myself, yes,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I am the one who chose such an arrogant title for myself, yes,\", \"lastSentence\": \"I am the one who chose such an arrogant title for myself, yes,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"vampire\", \"characterName\": \"Vampire\", \"aliases\": [], \"roleLabels\": [\"vampire\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [\"the sword saint\", \"sword saint\", \"the sword saint 2\", \"sword saint 2\", \"miyamoto\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 25, \"paragraphIndex\": 18, \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"text\": \"I understand,\"}, {\"relativeIndex\": -3, \"lineId\": 35, \"paragraphIndex\": 27, \"characterId\": \"vampire\", \"characterName\": \"Vampire\", \"text\": \"You got this through a system event?\"}, {\"relativeIndex\": -2, \"lineId\": 37, \"paragraphIndex\": 27, \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Yalsten, you said. I remember that it was lost... the entrance severed from the multiverse. It appears the system chose to recycle it and allow what was left by His Lordship to emerge once more.\"}, {\"relativeIndex\": -1, \"lineId\": 39, \"paragraphIndex\": 28, \"characterId\": \"vampire\", \"characterName\": \"Vampire\", \"text\": \"You are the human who calls himself the Sword Saint, correct?\"}, {\"relativeIndex\": 1, \"lineId\": 42, \"paragraphIndex\": 29, \"characterId\": \"vampire\", \"characterName\": \"Vampire\", \"text\": \"And as you said, the Blood Legacy stems from Yalsten. From my understanding, the system chose to freeze the time of the world at some point, only to restart it once it was used for the system event.\"}, {\"relativeIndex\": 2, \"lineId\": 43, \"paragraphIndex\": 30, \"characterId\": \"vampire\", \"characterName\": \"Vampire\", \"text\": \"I see,\"}], \"chapterCharacters\": [{\"characterId\": \"blood\", \"name\": \"blood\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vampire\", \"name\": \"Vampire\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"fairleigh\", \"name\": \"Fairleigh\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iskar\", \"name\": \"Iskar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"katherine\", \"name\": \"Katherine\", \"aliases\": [\"True Ancestor\", \"Vampire Godess\", \"vampire-godess\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"the-sword-saint\",\n  \"characterName\": \"The Sword Saint\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration\",\n    \"alias_resolution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

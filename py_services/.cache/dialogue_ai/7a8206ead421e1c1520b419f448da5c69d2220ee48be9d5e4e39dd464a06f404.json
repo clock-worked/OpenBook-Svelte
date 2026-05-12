@@ -1,0 +1,256 @@
+{
+  "cacheKey": "7a8206ead421e1c1520b419f448da5c69d2220ee48be9d5e4e39dd464a06f404",
+  "createdAt": "2026-04-04T02:36:54.999346+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "next_paragraph_confirms_speaker_action",
+      "previous_paragraph_context_leads_to_speaker_action",
+      "recent_speaker_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "mage",
+        "name": "Mage",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "New Character"
+        ],
+        "characterId": "ranger",
+        "name": "Ranger",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "rogue",
+        "name": "Rogue",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "There are no B-grades among the Rainbowfeather Flock in Area 1.",
+      "lastSentence": "There are no B-grades among the Rainbowfeather Flock in Area 1.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "There are no B-grades among the Rainbowfeather Flock in Area 1.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": null,
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "pulse"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "pulse",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 34,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "There are no B-grades among the Rainbowfeather Flock in Area 1."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 34,
+          "text": "There are no B-grades among the Rainbowfeather Flock in Area 1."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "There are no B-grades among the Rainbowfeather Flock in Area 1.",
+          "lastSentence": "There are no B-grades among the Rainbowfeather Flock in Area 1.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "There are no B-grades among the Rainbowfeather Flock in Area 1.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“There are no B-grades among the Rainbowfeather Flock in Area 1.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "With that knowledge, Jake had all the confidence he needed to announce his presence to the local flock of birdbrains. He flew up above the treeline as he unleashed his aura as well as a beam of arcane mana, both into the ground below and the sky above. He already saw monsters coming for him and took out his bow with a slight smirk, identifying a few of the weird parrots he saw running across the treetops.",
+      "paragraphIndex": 24,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "That was why he decided to step up this time around. With a single Pulse, he knew he was surrounded by enemies coming for him from all sides. He did use his head a little and quickly skimmed what the pamphlet said about Rainbowfeather Songbirds, and one section convinced him to go ahead with this plan:"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 20,
+        "paragraphIndex": 13,
+        "relativeIndex": -4,
+        "text": "Could still be a hunter. They would only get help if they used the hunter manual to seek assistance,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 22,
+        "paragraphIndex": 14,
+        "relativeIndex": -3,
+        "text": "Yeah, he’s got a point! Maybe someone or some party decided that taking on an entire flock of Rainbowfeathers was a good idea. You know, for the fun of it,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 24,
+        "paragraphIndex": 15,
+        "relativeIndex": -2,
+        "text": "Enough,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 26,
+        "paragraphIndex": 16,
+        "relativeIndex": -1,
+        "text": "Regroup, and let’s return and go the long way around. Chances are, whoever was stupid enough to slay a Rainbowfeather Songbird is already dead, or it’s a B-grade. In either case, we'd best stay clear of the area until it calms down again."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 34, \"text\": \"There are no B-grades among the Rainbowfeather Flock in Area 1.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"pulse\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": null, \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"pulse\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 24, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“There are no B-grades among the Rainbowfeather Flock in Area 1.”\", \"currentParagraphDialogue\": [{\"lineId\": 34, \"text\": \"There are no B-grades among the Rainbowfeather Flock in Area 1.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"That was why he decided to step up this time around. With a single Pulse, he knew he was surrounded by enemies coming for him from all sides. He did use his head a little and quickly skimmed what the pamphlet said about Rainbowfeather Songbirds, and one section convinced him to go ahead with this plan:\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"With that knowledge, Jake had all the confidence he needed to announce his presence to the local flock of birdbrains. He flew up above the treeline as he unleashed his aura as well as a beam of arcane mana, both into the ground below and the sky above. He already saw monsters coming for him and took out his bow with a slight smirk, identifying a few of the weird parrots he saw running across the treetops.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"There are no B-grades among the Rainbowfeather Flock in Area 1.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"There are no B-grades among the Rainbowfeather Flock in Area 1.\", \"lastSentence\": \"There are no B-grades among the Rainbowfeather Flock in Area 1.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"There are no B-grades among the Rainbowfeather Flock in Area 1.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"There are no B-grades among the Rainbowfeather Flock in Area 1.\", \"lastSentence\": \"There are no B-grades among the Rainbowfeather Flock in Area 1.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 20, \"paragraphIndex\": 13, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Could still be a hunter. They would only get help if they used the hunter manual to seek assistance,\"}, {\"relativeIndex\": -3, \"lineId\": 22, \"paragraphIndex\": 14, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Yeah, he’s got a point! Maybe someone or some party decided that taking on an entire flock of Rainbowfeathers was a good idea. You know, for the fun of it,\"}, {\"relativeIndex\": -2, \"lineId\": 24, \"paragraphIndex\": 15, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Enough,\"}, {\"relativeIndex\": -1, \"lineId\": 26, \"paragraphIndex\": 16, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Regroup, and let’s return and go the long way around. Chances are, whoever was stupid enough to slay a Rainbowfeather Songbird is already dead, or it’s a B-grade. In either case, we'd best stay clear of the area until it calms down again.\"}], \"chapterCharacters\": [{\"characterId\": \"mage\", \"name\": \"Mage\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"ranger\", \"name\": \"Ranger\", \"aliases\": [\"New Character\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"rogue\", \"name\": \"Rogue\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"next_paragraph_confirms_speaker_action\",\n    \"previous_paragraph_context_leads_to_speaker_action\",\n    \"recent_speaker_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

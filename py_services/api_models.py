@@ -1,6 +1,6 @@
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class SetRootRequest(BaseModel):
@@ -69,7 +69,7 @@ class Attribution(BaseModel):
     genderConflict: Optional[bool] = None
     parserBackend: Optional[str] = None
     decisionTrace: Optional[AttributionDecisionTrace] = None
-    candidates: List[AttributionCandidate] = []
+    candidates: List[AttributionCandidate] = Field(default_factory=list)
 
 
 class DialogueLine(BaseModel):
@@ -155,3 +155,109 @@ class ReconcileAudioManifestRequest(BaseModel):
     chapter_title: str
     character_name: str
     audio_root: Optional[str] = None
+
+
+class DialogueAiCharacterRef(BaseModel):
+    characterId: str
+    name: str
+    aliases: List[str] = Field(default_factory=list)
+    roleLabels: List[str] = Field(default_factory=list)
+    notes: Optional[str] = None
+
+
+class DialogueAiAliasProposal(BaseModel):
+    characterId: str
+    characterName: str
+    alias: str
+
+
+class DialogueAiNewCharacterProposal(BaseModel):
+    name: str
+    alias: Optional[str] = None
+    notes: Optional[str] = None
+
+
+class DialogueAiToolTraceEntry(BaseModel):
+    tool: Literal[
+        "request_previous_paragraph",
+        "request_next_paragraph",
+        "request_book_characters",
+        "request_quote_structure",
+        "request_recent_turn_history",
+        "request_scene_entities",
+        "request_candidate_cards",
+        "request_attribution_signals",
+    ]
+    status: Literal["used", "unavailable", "ignored"]
+    note: Optional[str] = None
+
+
+class DialogueAiLineResult(BaseModel):
+    lineId: int
+    paragraphIndex: Optional[int] = None
+    currentCharacterId: Optional[str] = None
+    currentCharacterName: Optional[str] = None
+    suggestedCharacterId: Optional[str] = None
+    suggestedCharacterName: Optional[str] = None
+    action: Literal[
+        "keep_existing",
+        "reassign_existing",
+        "needs_review",
+        "propose_alias",
+        "propose_new_character",
+        "error",
+    ]
+    disposition: Literal["auto_apply", "review", "alias_review", "new_character_approval", "error"]
+    confidence: float
+    reasonCodes: List[str] = Field(default_factory=list)
+    currentParagraphText: str
+    previousParagraphText: Optional[str] = None
+    nextParagraphText: Optional[str] = None
+    toolTrace: List[DialogueAiToolTraceEntry] = Field(default_factory=list)
+    aliasToAdd: Optional[DialogueAiAliasProposal] = None
+    newCharacterProposal: Optional[DialogueAiNewCharacterProposal] = None
+    cacheHit: bool = False
+    logPath: Optional[str] = None
+    error: Optional[str] = None
+
+
+class DialogueAiAssistSummary(BaseModel):
+    scannedLines: int
+    autoApplyCount: int
+    reviewCount: int
+    aliasReviewCount: int
+    newCharacterCount: int
+    errorCount: int
+    skippedNarratorLines: int
+    cacheHits: int = 0
+    modelCalls: int = 0
+    logDirectory: Optional[str] = None
+
+
+class DialogueAiAssistStatus(BaseModel):
+    requestId: str
+    status: Literal["queued", "running", "completed", "failed"]
+    processedLines: int = 0
+    totalLines: int = 0
+    progressRatio: float = 0.0
+    startedAt: Optional[str] = None
+    updatedAt: Optional[str] = None
+    chapterPath: Optional[str] = None
+    error: Optional[str] = None
+    logDirectory: Optional[str] = None
+
+
+class DialogueAiAssistRequest(BaseModel):
+    request_id: Optional[str] = None
+    chapter_path: str
+    chapter_text: str
+    dialogue: DialogueJson
+    auto_apply_threshold: float = 0.92
+    max_lines: Optional[int] = None
+    dry_run: bool = False
+
+
+class DialogueAiAssistResponse(BaseModel):
+    summary: DialogueAiAssistSummary
+    results: List[DialogueAiLineResult] = Field(default_factory=list)
+    errors: List[str] = Field(default_factory=list)

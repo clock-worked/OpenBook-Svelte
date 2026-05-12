@@ -1,0 +1,322 @@
+{
+  "calls": [
+    {
+      "cacheHit": true,
+      "cacheKey": "25c113e0aa8c2fcad928e911e38a4689da74f46800a9054b84939843cddc63c1",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\25c113e0aa8c2fcad928e911e38a4689da74f46800a9054b84939843cddc63c1.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "needs_review",
+        "aliasToAdd": null,
+        "characterId": null,
+        "characterName": null,
+        "confidence": 0.0,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "not_direct_dialogue",
+          "narrative_quote_within_narration"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "characterName": "Minaga",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "minaga",
+              "unique lifeform",
+              "the unique lifeform",
+              "the unique lifeform 2",
+              "unique lifeform 2"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "carmen",
+            "characterName": "Carmen",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "carmen"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "carmen",
+            "name": "Carmen",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "name": "Minaga",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Augur",
+              "The Augur"
+            ],
+            "characterId": "jacob",
+            "name": "Jacob",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Especially that last sentence stood out. Unknown energies could be so many things, and knowing the Fallen King, Jake couldn’t help but see a reality where the Unique Lifeform had managed to save some parts of himself. He also recalled that the King had infused the mask Jake wore with something before heading off and",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "defeating",
+          "lastSentence": "defeating",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "defeating",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Carmen",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.7,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.20399999999999996,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Minaga",
+            "sourceCandidates": [
+              "Minaga",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.796
+          },
+          "candidates": [
+            {
+              "characterId": "minaga",
+              "confidence": 0.796,
+              "name": "Minaga",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.436,
+              "name": "Jake",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [
+            "Unique Lifeform",
+            "The Unique Lifeform",
+            "the-unique-lifeform",
+            "the-unique-lifeform-2"
+          ],
+          "currentCharacterId": "minaga",
+          "currentCharacterName": "Minaga",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 16,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "defeating"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "minaga",
+              "characterName": "Minaga",
+              "isReturning": false,
+              "lineId": 16,
+              "text": "defeating"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Especially that last sentence stood out. Unknown energies could be so many things, and knowing the Fallen King, Jake couldn’t help but see a reality where the Unique Lifeform had managed to save some parts of himself. He also recalled that the King had infused the mask Jake wore with something before heading off and",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "defeating",
+              "lastSentence": "defeating",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "defeating",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "Especially that last sentence stood out. Unknown energies could be so many things, and knowing the Fallen King, Jake couldn’t help but see a reality where the Unique Lifeform had managed to save some parts of himself. He also recalled that the King had infused the mask Jake wore with something before heading off and “defeating” the Desolate Child of Loss. He still couldn’t figure out what that something was, and honestly, right now, the more things Jake didn’t understand, the more hopeful he felt.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "There was just one thing about this fragment that Jake viewed as a problem... it had technically come from the Desolate Child of Loss, which Carmen had slain, meaning it didn’t belong to Jake. However, before he could even say anything, Carmen reached up and took the fragment before instantly tossing it to Jake.",
+          "paragraphIndex": 11,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "[Fragment of the Fallen King (Legendary)] – A single fragment and all that remains of what had once been the Unique Lifeform known as the Fallen King. Records and energy of the Fallen King remain within, granting this fragment incredible durability and the ability to enhance certain soul-related abilities when used as a catalyst. Has many alchemical uses, especially when used in any soul-related creations. WARNING: Unknown energies linger within that may lead to unforeseen effects upon use."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "carmen",
+            "characterName": "Carmen",
+            "lineId": 7,
+            "paragraphIndex": 6,
+            "relativeIndex": -3,
+            "text": "Three class levels and four in the profession,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 9,
+            "paragraphIndex": 6,
+            "relativeIndex": -2,
+            "text": "Now I feel like you’re the one who did me a favor by bringing me here and not the other way around."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 10,
+            "paragraphIndex": 7,
+            "relativeIndex": -1,
+            "text": "Just a win-win, I guess,"
+          },
+          {
+            "characterId": "carmen",
+            "characterName": "Carmen",
+            "lineId": 19,
+            "paragraphIndex": 13,
+            "relativeIndex": 1,
+            "text": "Yeah, no, I saw that look. I’m not that much of a bitch to take advantage in a situation like this. Oh, and I would be very mad you assumed I would, which you totally weren’t, right?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 21,
+            "paragraphIndex": 14,
+            "relativeIndex": 2,
+            "text": "Such untoward thoughts would never even dare cross my mind,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 16, \"text\": \"defeating\", \"currentCharacterId\": \"minaga\", \"currentCharacterName\": \"Minaga\", \"currentCharacterAliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Minaga\", \"sourceCandidates\": [\"Minaga\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.20399999999999996, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Carmen\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"minaga\", \"name\": \"Minaga\", \"confidence\": 0.796, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.436, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 11, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Especially that last sentence stood out. Unknown energies could be so many things, and knowing the Fallen King, Jake couldn’t help but see a reality where the Unique Lifeform had managed to save some parts of himself. He also recalled that the King had infused the mask Jake wore with something before heading off and “defeating” the Desolate Child of Loss. He still couldn’t figure out what that something was, and honestly, right now, the more things Jake didn’t understand, the more hopeful he felt.\", \"currentParagraphDialogue\": [{\"lineId\": 16, \"text\": \"defeating\", \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"isReturning\": false}], \"previousParagraphText\": \"[Fragment of the Fallen King (Legendary)] – A single fragment and all that remains of what had once been the Unique Lifeform known as the Fallen King. Records and energy of the Fallen King remain within, granting this fragment incredible durability and the ability to enhance certain soul-related abilities when used as a catalyst. Has many alchemical uses, especially when used in any soul-related creations. WARNING: Unknown energies linger within that may lead to unforeseen effects upon use.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"There was just one thing about this fragment that Jake viewed as a problem... it had technically come from the Desolate Child of Loss, which Carmen had slain, meaning it didn’t belong to Jake. However, before he could even say anything, Carmen reached up and took the fragment before instantly tossing it to Jake.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"defeating\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Especially that last sentence stood out. Unknown energies could be so many things, and knowing the Fallen King, Jake couldn’t help but see a reality where the Unique Lifeform had managed to save some parts of himself. He also recalled that the King had infused the mask Jake wore with something before heading off and\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"defeating\", \"lastSentence\": \"defeating\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"defeating\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Especially that last sentence stood out. Unknown energies could be so many things, and knowing the Fallen King, Jake couldn’t help but see a reality where the Unique Lifeform had managed to save some parts of himself. He also recalled that the King had infused the mask Jake wore with something before heading off and\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"defeating\", \"lastSentence\": \"defeating\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [\"minaga\", \"unique lifeform\", \"the unique lifeform\", \"the unique lifeform 2\", \"unique lifeform 2\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [], \"roleLabels\": [\"jake\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"aliases\": [], \"roleLabels\": [\"carmen\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -3, \"lineId\": 7, \"paragraphIndex\": 6, \"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"text\": \"Three class levels and four in the profession,\"}, {\"relativeIndex\": -2, \"lineId\": 9, \"paragraphIndex\": 6, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Now I feel like you’re the one who did me a favor by bringing me here and not the other way around.\"}, {\"relativeIndex\": -1, \"lineId\": 10, \"paragraphIndex\": 7, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Just a win-win, I guess,\"}, {\"relativeIndex\": 1, \"lineId\": 19, \"paragraphIndex\": 13, \"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"text\": \"Yeah, no, I saw that look. I’m not that much of a bitch to take advantage in a situation like this. Oh, and I would be very mad you assumed I would, which you totally weren’t, right?\"}, {\"relativeIndex\": 2, \"lineId\": 21, \"paragraphIndex\": 14, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Such untoward thoughts would never even dare cross my mind,\"}], \"chapterCharacters\": [{\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"needs_review\",\n  \"characterId\": null,\n  \"characterName\": null,\n  \"confidence\": 0.0,\n  \"reasonCodes\": [\n    \"not_direct_dialogue\",\n    \"narrative_quote_within_narration\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0010 - Chapter 1067 - Finally All Over",
+  "currentCharacterId": "minaga",
+  "currentCharacterName": "Minaga",
+  "currentParagraphText": "Especially that last sentence stood out. Unknown energies could be so many things, and knowing the Fallen King, Jake couldn’t help but see a reality where the Unique Lifeform had managed to save some parts of himself. He also recalled that the King had infused the mask Jake wore with something before heading off and “defeating” the Desolate Child of Loss. He still couldn’t figure out what that something was, and honestly, right now, the more things Jake didn’t understand, the more hopeful he felt.",
+  "finalResult": {
+    "action": "needs_review",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.0,
+    "currentCharacterId": "minaga",
+    "currentCharacterName": "Minaga",
+    "currentParagraphText": "Especially that last sentence stood out. Unknown energies could be so many things, and knowing the Fallen King, Jake couldn’t help but see a reality where the Unique Lifeform had managed to save some parts of himself. He also recalled that the King had infused the mask Jake wore with something before heading off and “defeating” the Desolate Child of Loss. He still couldn’t figure out what that something was, and honestly, right now, the more things Jake didn’t understand, the more hopeful he felt.",
+    "disposition": "review",
+    "error": null,
+    "lineId": 16,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "There was just one thing about this fragment that Jake viewed as a problem... it had technically come from the Desolate Child of Loss, which Carmen had slain, meaning it didn’t belong to Jake. However, before he could even say anything, Carmen reached up and took the fragment before instantly tossing it to Jake.",
+    "paragraphIndex": 11,
+    "previousParagraphText": "[Fragment of the Fallen King (Legendary)] – A single fragment and all that remains of what had once been the Unique Lifeform known as the Fallen King. Records and energy of the Fallen King remain within, granting this fragment incredible durability and the ability to enhance certain soul-related abilities when used as a catalyst. Has many alchemical uses, especially when used in any soul-related creations. WARNING: Unknown energies linger within that may lead to unforeseen effects upon use.",
+    "reasonCodes": [
+      "not_direct_dialogue",
+      "narrative_quote_within_narration"
+    ],
+    "suggestedCharacterId": "minaga",
+    "suggestedCharacterName": "Minaga",
+    "toolTrace": []
+  },
+  "lineId": 16,
+  "nextParagraphText": "There was just one thing about this fragment that Jake viewed as a problem... it had technically come from the Desolate Child of Loss, which Carmen had slain, meaning it didn’t belong to Jake. However, before he could even say anything, Carmen reached up and took the fragment before instantly tossing it to Jake.",
+  "paragraphIndex": 11,
+  "previousParagraphText": "[Fragment of the Fallen King (Legendary)] – A single fragment and all that remains of what had once been the Unique Lifeform known as the Fallen King. Records and energy of the Fallen King remain within, granting this fragment incredible durability and the ability to enhance certain soul-related abilities when used as a catalyst. Has many alchemical uses, especially when used in any soul-related creations. WARNING: Unknown energies linger within that may lead to unforeseen effects upon use."
+}

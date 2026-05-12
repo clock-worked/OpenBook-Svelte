@@ -1,0 +1,474 @@
+{
+  "alignment": {
+    "confidence": 1.0,
+    "isSpanFallback": false,
+    "method": "quote_unit",
+    "paragraphIndex": 6,
+    "spanDistance": 0.0,
+    "spanParagraphIndex": 6
+  },
+  "calls": [
+    {
+      "cacheHit": true,
+      "cacheKey": "7acfc5473a38934d53ef9c5984b8204e5b73da8585829bbac34a45fa2dbfe62f",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\7acfc5473a38934d53ef9c5984b8204e5b73da8585829bbac34a45fa2dbfe62f.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "primordial",
+        "characterName": "Primordial",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "speaker_surface_match",
+          "generic_character_guard"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": true
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "eversmile",
+            "characterName": "Eversmile",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "eversmile"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "primordial",
+            "characterName": "Primordial",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "primordial"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy",
+              "Vilas",
+              "Vilastromoz",
+              "The Viper",
+              "the-viper",
+              "the-viper-2"
+            ],
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "viper",
+              "the malefic viper",
+              "malefic viper",
+              "villy",
+              "vilas",
+              "vilastromoz",
+              "the viper",
+              "the viper 2"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "viper",
+              "Villy",
+              "Vilas",
+              "Vilastromoz",
+              "The Viper",
+              "the-viper",
+              "the-viper-2"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "eversmile",
+            "name": "Eversmile",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Godqueen"
+            ],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "First Sage"
+            ],
+            "characterId": "the first sage",
+            "name": "The First Sage",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the other Primordial pointed out.",
+          "cueVerb": "pointed out",
+          "cueVerbType": "attribution",
+          "firstSentence": "Their presence muddies the water,",
+          "lastSentence": "Their presence muddies the water,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Their presence muddies the water,",
+          "speakerNameMatch": "Primordial",
+          "speakerSurface": "Primordial"
+        },
+        "line": {
+          "alignment": {
+            "confidence": 1.0,
+            "isSpanFallback": false,
+            "method": "quote_unit",
+            "paragraphIndex": 6,
+            "spanDistance": 0.0,
+            "spanParagraphIndex": 6
+          },
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "The Malefic Viper",
+              "nextSentenceAttributedSpeaker": "Primordial",
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.039999999999999925,
+            "misattributionRisk": 0.0,
+            "parserBackend": "legacy",
+            "resolutionStatus": "user_confirmed",
+            "sourceAlias": "Primordial",
+            "sourceCandidates": [
+              "Primordial",
+              "Eversmile",
+              "The Malefic Viper"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.844
+          },
+          "candidates": [
+            {
+              "characterId": "primordial",
+              "confidence": 0.844,
+              "name": "Primordial",
+              "reasons": null
+            },
+            {
+              "characterId": "eversmile",
+              "confidence": 0.804,
+              "name": "Eversmile",
+              "reasons": null
+            },
+            {
+              "characterId": "viper",
+              "confidence": 0.444,
+              "name": "The Malefic Viper",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "eversmile",
+          "currentCharacterName": "Eversmile",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 12,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "Their presence muddies the water,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "eversmile",
+              "characterName": "Eversmile",
+              "isReturning": false,
+              "lineId": 12,
+              "text": "Their presence muddies the water,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the other Primordial pointed out.",
+              "cueVerb": "pointed out",
+              "cueVerbType": "attribution",
+              "firstSentence": "Their presence muddies the water,",
+              "lastSentence": "Their presence muddies the water,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Their presence muddies the water,",
+              "speakerNameMatch": "Primordial",
+              "speakerSurface": "Primordial"
+            }
+          ],
+          "currentParagraphText": "“Their presence muddies the water,” the other Primordial pointed out.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "viper",
+              "characterName": "The Malefic Viper",
+              "isReturning": false,
+              "lineId": 14,
+              "text": "True, but if we suddenly start cracking down on low-level D-grade spies, we would be the ones acting suspiciously,"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "True, but if we suddenly start cracking down on low-level D-grade spies, we would be the ones acting suspiciously,",
+              "lastSentence": "True, but if we suddenly start cracking down on low-level D-grade spies, we would be the ones acting suspiciously,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "True, but if we suddenly start cracking down on low-level D-grade spies, we would be the ones acting suspiciously,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "nextParagraphText": "“True, but if we suddenly start cracking down on low-level D-grade spies, we would be the ones acting suspiciously,” the Viper shook his head.",
+          "paragraphIndex": 6,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "viper",
+              "characterName": "The Malefic Viper",
+              "isReturning": false,
+              "lineId": 9,
+              "text": "Yeah, but those are just the regular spies,"
+            },
+            {
+              "characterId": "viper",
+              "characterName": "The Malefic Viper",
+              "isReturning": true,
+              "lineId": 11,
+              "text": "That’s just business as usual."
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Vilas shrugged.",
+              "cueVerb": "shrugged",
+              "cueVerbType": "reaction",
+              "firstSentence": "Yeah, but those are just the regular spies,",
+              "lastSentence": "Yeah, but those are just the regular spies,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Yeah, but those are just the regular spies,",
+              "speakerNameMatch": null,
+              "speakerSurface": "Vilas"
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Vilas shrugged.",
+              "cueVerb": "shrugged",
+              "cueVerbType": "reaction",
+              "firstSentence": "That’s just business as usual.",
+              "lastSentence": "That’s just business as usual.",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "That’s just business as usual.",
+              "speakerNameMatch": null,
+              "speakerSurface": "Vilas"
+            }
+          ],
+          "previousParagraphText": "“Yeah, but those are just the regular spies,” Vilas shrugged. “That’s just business as usual.”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 4,
+            "paragraphIndex": 1,
+            "relativeIndex": -4,
+            "text": "Then again, it could be so weird that it’s purposefully done to throw us off her scent."
+          },
+          {
+            "characterId": "eversmile",
+            "characterName": "Eversmile",
+            "lineId": 7,
+            "paragraphIndex": 4,
+            "relativeIndex": -3,
+            "text": "There are some who’ve made odd movements and even purposefully tried to harm their karmic connections,"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 9,
+            "paragraphIndex": 5,
+            "relativeIndex": -2,
+            "text": "Yeah, but those are just the regular spies,"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 11,
+            "paragraphIndex": 5,
+            "relativeIndex": -1,
+            "text": "That’s just business as usual."
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 14,
+            "paragraphIndex": 7,
+            "relativeIndex": 1,
+            "text": "True, but if we suddenly start cracking down on low-level D-grade spies, we would be the ones acting suspiciously,"
+          },
+          {
+            "characterId": "eversmile",
+            "characterName": "Eversmile",
+            "lineId": 21,
+            "paragraphIndex": 11,
+            "relativeIndex": 2,
+            "text": "Telling the others who know to limit karmic obscuration would also appear suspicious if this unknown faction is observing the situation,"
+          }
+        ],
+        "sceneEntities": [
+          {
+            "matches": [
+              {
+                "characterId": "primordial",
+                "characterName": "Primordial",
+                "evidence": [
+                  "exact_label_match",
+                  "stripped_label_match",
+                  "token_overlap:primordial"
+                ],
+                "score": 0.98
+              }
+            ],
+            "surface": "primordial"
+          }
+        ],
+        "sceneRoster": {
+          "paragraphWindow": 6,
+          "presentCharacterIds": [
+            "viper",
+            "eversmile"
+          ],
+          "presentCharacters": [
+            {
+              "characterId": "viper",
+              "characterName": "The Malefic Viper"
+            },
+            {
+              "characterId": "eversmile",
+              "characterName": "Eversmile"
+            }
+          ]
+        }
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 12, \"text\": \"Their presence muddies the water,\", \"currentCharacterId\": \"eversmile\", \"currentCharacterName\": \"Eversmile\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"user_confirmed\", \"sourceAlias\": \"Primordial\", \"sourceCandidates\": [\"Primordial\", \"Eversmile\", \"The Malefic Viper\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.844, \"marginToSecond\": 0.039999999999999925, \"misattributionRisk\": 0.0, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": \"Primordial\", \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Malefic Viper\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"primordial\", \"name\": \"Primordial\", \"confidence\": 0.844, \"reasons\": null}, {\"characterId\": \"eversmile\", \"name\": \"Eversmile\", \"confidence\": 0.804, \"reasons\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.444, \"reasons\": null}], \"isReturning\": false, \"alignment\": {\"paragraphIndex\": 6, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 6, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 6, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Their presence muddies the water,” the other Primordial pointed out.\", \"currentParagraphDialogue\": [{\"lineId\": 12, \"text\": \"Their presence muddies the water,\", \"characterId\": \"eversmile\", \"characterName\": \"Eversmile\", \"isReturning\": false}], \"previousParagraphText\": \"“Yeah, but those are just the regular spies,” Vilas shrugged. “That’s just business as usual.”\", \"previousParagraphDialogue\": [{\"lineId\": 9, \"text\": \"Yeah, but those are just the regular spies,\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": false}, {\"lineId\": 11, \"text\": \"That’s just business as usual.\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": true}], \"nextParagraphText\": \"“True, but if we suddenly start cracking down on low-level D-grade spies, we would be the ones acting suspiciously,” the Viper shook his head.\", \"nextParagraphDialogue\": [{\"lineId\": 14, \"text\": \"True, but if we suddenly start cracking down on low-level D-grade spies, we would be the ones acting suspiciously,\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Their presence muddies the water,\", \"cuePosition\": \"after\", \"cueVerb\": \"pointed out\", \"cueVerbType\": \"attribution\", \"cueText\": \"the other Primordial pointed out.\", \"speakerSurface\": \"Primordial\", \"speakerNameMatch\": \"Primordial\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Their presence muddies the water,\", \"lastSentence\": \"Their presence muddies the water,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Yeah, but those are just the regular spies,\", \"cuePosition\": \"after\", \"cueVerb\": \"shrugged\", \"cueVerbType\": \"reaction\", \"cueText\": \"Vilas shrugged.\", \"speakerSurface\": \"Vilas\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yeah, but those are just the regular spies,\", \"lastSentence\": \"Yeah, but those are just the regular spies,\"}, {\"quoteIndex\": 1, \"quoteText\": \"That’s just business as usual.\", \"cuePosition\": \"before\", \"cueVerb\": \"shrugged\", \"cueVerbType\": \"reaction\", \"cueText\": \"Vilas shrugged.\", \"speakerSurface\": \"Vilas\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"That’s just business as usual.\", \"lastSentence\": \"That’s just business as usual.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"True, but if we suddenly start cracking down on low-level D-grade spies, we would be the ones acting suspiciously,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"True, but if we suddenly start cracking down on low-level D-grade spies, we would be the ones acting suspiciously,\", \"lastSentence\": \"True, but if we suddenly start cracking down on low-level D-grade spies, we would be the ones acting suspiciously,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Their presence muddies the water,\", \"cuePosition\": \"after\", \"cueVerb\": \"pointed out\", \"cueVerbType\": \"attribution\", \"cueText\": \"the other Primordial pointed out.\", \"speakerSurface\": \"Primordial\", \"speakerNameMatch\": \"Primordial\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Their presence muddies the water,\", \"lastSentence\": \"Their presence muddies the water,\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"viper\", \"eversmile\"], \"presentCharacters\": [{\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\"}, {\"characterId\": \"eversmile\", \"characterName\": \"Eversmile\"}]}, \"sceneEntities\": [{\"surface\": \"primordial\", \"matches\": [{\"characterId\": \"primordial\", \"characterName\": \"Primordial\", \"score\": 0.98, \"evidence\": [\"exact_label_match\", \"stripped_label_match\", \"token_overlap:primordial\"]}]}], \"candidateCards\": [{\"characterId\": \"eversmile\", \"characterName\": \"Eversmile\", \"aliases\": [], \"roleLabels\": [\"eversmile\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"primordial\", \"characterName\": \"Primordial\", \"aliases\": [], \"roleLabels\": [\"primordial\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\", \"Vilas\", \"Vilastromoz\", \"The Viper\", \"the-viper\", \"the-viper-2\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\", \"vilas\", \"vilastromoz\", \"the viper\", \"the viper 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 4, \"paragraphIndex\": 1, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Then again, it could be so weird that it’s purposefully done to throw us off her scent.\"}, {\"relativeIndex\": -3, \"lineId\": 7, \"paragraphIndex\": 4, \"characterId\": \"eversmile\", \"characterName\": \"Eversmile\", \"text\": \"There are some who’ve made odd movements and even purposefully tried to harm their karmic connections,\"}, {\"relativeIndex\": -2, \"lineId\": 9, \"paragraphIndex\": 5, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Yeah, but those are just the regular spies,\"}, {\"relativeIndex\": -1, \"lineId\": 11, \"paragraphIndex\": 5, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"That’s just business as usual.\"}, {\"relativeIndex\": 1, \"lineId\": 14, \"paragraphIndex\": 7, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"True, but if we suddenly start cracking down on low-level D-grade spies, we would be the ones acting suspiciously,\"}, {\"relativeIndex\": 2, \"lineId\": 21, \"paragraphIndex\": 11, \"characterId\": \"eversmile\", \"characterName\": \"Eversmile\", \"text\": \"Telling the others who know to limit karmic obscuration would also appear suspicious if this unknown faction is observing the situation,\"}], \"chapterCharacters\": [{\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\", \"Vilas\", \"Vilastromoz\", \"The Viper\", \"the-viper\", \"the-viper-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"eversmile\", \"name\": \"Eversmile\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the first sage\", \"name\": \"The First Sage\", \"aliases\": [\"First Sage\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"primordial\",\n  \"characterName\": \"Primordial\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"speaker_surface_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0161 - Chapter 1218 - A March Through Nothingness\\dialogue.json",
+  "currentCharacterId": "eversmile",
+  "currentCharacterName": "Eversmile",
+  "currentParagraphText": "“Their presence muddies the water,” the other Primordial pointed out.",
+  "finalResult": {
+    "action": "needs_review",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.72,
+    "currentCharacterId": "eversmile",
+    "currentCharacterName": "Eversmile",
+    "currentParagraphText": "“Their presence muddies the water,” the other Primordial pointed out.",
+    "disposition": "review",
+    "error": null,
+    "lineId": 12,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“True, but if we suddenly start cracking down on low-level D-grade spies, we would be the ones acting suspiciously,” the Viper shook his head.",
+    "paragraphIndex": 6,
+    "previousParagraphText": "“Yeah, but those are just the regular spies,” Vilas shrugged. “That’s just business as usual.”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "speaker_surface_match",
+      "generic_character_guard"
+    ],
+    "suggestedCharacterId": "eversmile",
+    "suggestedCharacterName": "Eversmile",
+    "toolTrace": []
+  },
+  "lineId": 12,
+  "nextParagraphText": "“True, but if we suddenly start cracking down on low-level D-grade spies, we would be the ones acting suspiciously,” the Viper shook his head.",
+  "paragraphIndex": 6,
+  "previousParagraphText": "“Yeah, but those are just the regular spies,” Vilas shrugged. “That’s just business as usual.”",
+  "sceneRoster": {
+    "paragraphWindow": 6,
+    "presentCharacterIds": [
+      "viper",
+      "eversmile"
+    ],
+    "presentCharacters": [
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper"
+      },
+      {
+        "characterId": "eversmile",
+        "characterName": "Eversmile"
+      }
+    ]
+  }
+}

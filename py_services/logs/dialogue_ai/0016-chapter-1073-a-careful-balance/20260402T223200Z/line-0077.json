@@ -1,0 +1,338 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "c94450a0850684941d064618242976fa455209e96006945ef42798e8a8dbaca5",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\c94450a0850684941d064618242976fa455209e96006945ef42798e8a8dbaca5.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "speaker_surface_match",
+          "dialogue_context"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "characterName": "Caleb",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "caleb"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "arnold",
+            "characterName": "Arnold",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "arnold"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "name": "Caleb",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "arnold",
+            "name": "Arnold",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "his little brother nodded as he motioned for Jake to follow. The two of them took to the air as Caleb also took the chance to explain a few of the changes the city had gone through recently.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "Of course,",
+          "lastSentence": "Of course,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Of course,",
+          "speakerNameMatch": null,
+          "speakerSurface": "his little brother"
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": true,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.7,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36,
+            "misattributionRisk": 0.14400000000000002,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "Caleb"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.856
+          },
+          "candidates": [
+            {
+              "characterId": "jake",
+              "confidence": 0.856,
+              "name": "Jake",
+              "reasons": [
+                "parser_match",
+                "legacy_match",
+                "speech_verb"
+              ]
+            },
+            {
+              "characterId": "caleb",
+              "confidence": 0.496,
+              "name": "Caleb",
+              "reasons": [
+                "speech_verb"
+              ]
+            }
+          ],
+          "currentCharacterAliases": [
+            "Protagonist"
+          ],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 77,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "Of course,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 77,
+              "text": "Of course,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "his little brother nodded as he motioned for Jake to follow. The two of them took to the air as Caleb also took the chance to explain a few of the changes the city had gone through recently.",
+              "cueVerb": "nodded",
+              "cueVerbType": "speech",
+              "firstSentence": "Of course,",
+              "lastSentence": "Of course,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Of course,",
+              "speakerNameMatch": null,
+              "speakerSurface": "his little brother"
+            }
+          ],
+          "currentParagraphText": "“Of course,” his little brother nodded as he motioned for Jake to follow. The two of them took to the air as Caleb also took the chance to explain a few of the changes the city had gone through recently.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "Overall, it had expanded greatly. No longer needing to hide, the Court of Shadows wanted to show off their presence on Earth, which meant the city was also more open now than it used to be. No longer was it a requirement to be related to a member of the Court, and many freed slaves or recent immigrants had chosen to settle down in Skyggen.",
+          "paragraphIndex": 36,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 75,
+              "text": "Can you lead the way to their... I wanna say manor from how mom described it?"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake asked, wanting to give Caleb the chance to show him to his parent’s new home.",
+              "cueVerb": "asked",
+              "cueVerbType": "speech",
+              "firstSentence": "Can you lead the way to their...",
+              "lastSentence": "I wanna say manor from how mom described it?",
+              "mentionedEntities": [
+                "Mom"
+              ],
+              "quoteIndex": 0,
+              "quoteText": "Can you lead the way to their... I wanna say manor from how mom described it?",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "previousParagraphText": "“Can you lead the way to their... I wanna say manor from how mom described it?” Jake asked, wanting to give Caleb the chance to show him to his parent’s new home."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "caleb",
+            "characterName": "Caleb",
+            "lineId": 65,
+            "paragraphIndex": 29,
+            "relativeIndex": -4,
+            "text": "Mom’s gonna be happy. She’s worried a lot."
+          },
+          {
+            "characterId": "arnold",
+            "characterName": "Arnold",
+            "lineId": 70,
+            "paragraphIndex": 33,
+            "relativeIndex": -3,
+            "text": "good"
+          },
+          {
+            "characterId": "arnold",
+            "characterName": "Arnold",
+            "lineId": 72,
+            "paragraphIndex": 33,
+            "relativeIndex": -2,
+            "text": "good"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 75,
+            "paragraphIndex": 35,
+            "relativeIndex": -1,
+            "text": "Can you lead the way to their... I wanna say manor from how mom described it?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 81,
+            "paragraphIndex": 39,
+            "relativeIndex": 1,
+            "text": "That’s my office building,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 83,
+            "paragraphIndex": 39,
+            "relativeIndex": 2,
+            "text": "Filled from top to bottom with administrative staff or others working for the Court of Shadows. Most of the training facilities are placed below ground."
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 77, \"text\": \"Of course,\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Caleb\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.856, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.14400000000000002, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.856, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"confidence\": 0.496, \"reasons\": [\"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 36, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Of course,” his little brother nodded as he motioned for Jake to follow. The two of them took to the air as Caleb also took the chance to explain a few of the changes the city had gone through recently.\", \"currentParagraphDialogue\": [{\"lineId\": 77, \"text\": \"Of course,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"previousParagraphText\": \"“Can you lead the way to their... I wanna say manor from how mom described it?” Jake asked, wanting to give Caleb the chance to show him to his parent’s new home.\", \"previousParagraphDialogue\": [{\"lineId\": 75, \"text\": \"Can you lead the way to their... I wanna say manor from how mom described it?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"nextParagraphText\": \"Overall, it had expanded greatly. No longer needing to hide, the Court of Shadows wanted to show off their presence on Earth, which meant the city was also more open now than it used to be. No longer was it a requirement to be related to a member of the Court, and many freed slaves or recent immigrants had chosen to settle down in Skyggen.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Of course,\", \"cuePosition\": \"after\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"his little brother nodded as he motioned for Jake to follow. The two of them took to the air as Caleb also took the chance to explain a few of the changes the city had gone through recently.\", \"speakerSurface\": \"his little brother\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Of course,\", \"lastSentence\": \"Of course,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Can you lead the way to their... I wanna say manor from how mom described it?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake asked, wanting to give Caleb the chance to show him to his parent’s new home.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [\"Mom\"], \"addressedEntity\": null, \"firstSentence\": \"Can you lead the way to their...\", \"lastSentence\": \"I wanna say manor from how mom described it?\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Of course,\", \"cuePosition\": \"after\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"his little brother nodded as he motioned for Jake to follow. The two of them took to the air as Caleb also took the chance to explain a few of the changes the city had gone through recently.\", \"speakerSurface\": \"his little brother\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Of course,\", \"lastSentence\": \"Of course,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"aliases\": [], \"roleLabels\": [\"caleb\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"arnold\", \"characterName\": \"Arnold\", \"aliases\": [], \"roleLabels\": [\"arnold\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 65, \"paragraphIndex\": 29, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"Mom’s gonna be happy. She’s worried a lot.\"}, {\"relativeIndex\": -3, \"lineId\": 70, \"paragraphIndex\": 33, \"characterId\": \"arnold\", \"characterName\": \"Arnold\", \"text\": \"good\"}, {\"relativeIndex\": -2, \"lineId\": 72, \"paragraphIndex\": 33, \"characterId\": \"arnold\", \"characterName\": \"Arnold\", \"text\": \"good\"}, {\"relativeIndex\": -1, \"lineId\": 75, \"paragraphIndex\": 35, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Can you lead the way to their... I wanna say manor from how mom described it?\"}, {\"relativeIndex\": 1, \"lineId\": 81, \"paragraphIndex\": 39, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"That’s my office building,\"}, {\"relativeIndex\": 2, \"lineId\": 83, \"paragraphIndex\": 39, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Filled from top to bottom with administrative staff or others working for the Court of Shadows. Most of the training facilities are placed below ground.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"arnold\", \"name\": \"Arnold\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"caleb\",\n  \"characterName\": \"Caleb\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"speaker_surface_match\",\n    \"dialogue_context\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0016 - Chapter 1073 - A Careful Balance",
+  "currentCharacterId": "jake",
+  "currentCharacterName": "Jake",
+  "currentParagraphText": "“Of course,” his little brother nodded as he motioned for Jake to follow. The two of them took to the air as Caleb also took the chance to explain a few of the changes the city had gone through recently.",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "jake",
+    "currentCharacterName": "Jake",
+    "currentParagraphText": "“Of course,” his little brother nodded as he motioned for Jake to follow. The two of them took to the air as Caleb also took the chance to explain a few of the changes the city had gone through recently.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 77,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "Overall, it had expanded greatly. No longer needing to hide, the Court of Shadows wanted to show off their presence on Earth, which meant the city was also more open now than it used to be. No longer was it a requirement to be related to a member of the Court, and many freed slaves or recent immigrants had chosen to settle down in Skyggen.",
+    "paragraphIndex": 36,
+    "previousParagraphText": "“Can you lead the way to their... I wanna say manor from how mom described it?” Jake asked, wanting to give Caleb the chance to show him to his parent’s new home.",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "speaker_surface_match",
+      "dialogue_context"
+    ],
+    "suggestedCharacterId": "caleb",
+    "suggestedCharacterName": "Caleb",
+    "toolTrace": []
+  },
+  "lineId": 77,
+  "nextParagraphText": "Overall, it had expanded greatly. No longer needing to hide, the Court of Shadows wanted to show off their presence on Earth, which meant the city was also more open now than it used to be. No longer was it a requirement to be related to a member of the Court, and many freed slaves or recent immigrants had chosen to settle down in Skyggen.",
+  "paragraphIndex": 36,
+  "previousParagraphText": "“Can you lead the way to their... I wanna say manor from how mom described it?” Jake asked, wanting to give Caleb the chance to show him to his parent’s new home."
+}

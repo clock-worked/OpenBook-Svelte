@@ -1,0 +1,303 @@
+{
+  "cacheKey": "a734223cb4ffa3236cb6dfee69301a024c9f3a80f8a74789754c45443e08e0cf",
+  "createdAt": "2026-04-04T02:43:48.933419+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "artemis",
+    "characterName": "Artemis",
+    "confidence": 0.9,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "previous_speaker_continuity",
+      "dialogue_flow_logical"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "artemis"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "keerla",
+        "characterName": "Keerla",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "keerla"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "keerla",
+        "name": "Keerla",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "solana",
+        "name": "Solana",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "simivitas",
+        "name": "Simivitas",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "chieftain",
+        "name": "Chieftain",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "leader",
+        "name": "Leader",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Can they be moved?",
+      "lastSentence": "What do you need me to do?",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Can they be moved? What do you need me to do?",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": true,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Artemis",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.18,
+        "misattributionRisk": 0.5007999999999999,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Artemis",
+        "sourceCandidates": [
+          "Artemis",
+          "Creature"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.636
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.636,
+          "name": "Artemis",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Creature",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 19,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Can they be moved? What do you need me to do?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 19,
+          "text": "Can they be moved? What do you need me to do?"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Can they be moved?",
+          "lastSentence": "What do you need me to do?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Can they be moved? What do you need me to do?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Can they be moved? What do you need me to do?”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Solana instantly responded, knowing the situation was dire.",
+      "paragraphIndex": 14,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": false,
+          "lineId": 17,
+          "text": "It’s kits... Fortuna Ferret kits..."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "she said, those words enough to convince her partner.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "It’s kits...",
+          "lastSentence": "Fortuna Ferret kits...",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "It’s kits... Fortuna Ferret kits...",
+          "speakerNameMatch": null,
+          "speakerSurface": "she"
+        }
+      ],
+      "previousParagraphText": "“It’s kits... Fortuna Ferret kits...” she said, those words enough to convince her partner."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 6,
+        "paragraphIndex": 5,
+        "relativeIndex": -3,
+        "text": "That’s the Fortuna Ferret... I didn’t even know any of those were still here ,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 9,
+        "paragraphIndex": 6,
+        "relativeIndex": -2,
+        "text": "altering fate."
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 17,
+        "paragraphIndex": 13,
+        "relativeIndex": -1,
+        "text": "It’s kits... Fortuna Ferret kits..."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 25,
+        "paragraphIndex": 20,
+        "relativeIndex": 1,
+        "text": "I’m not sure they can be moved, and their mother is still alive... so for now, I think the best we can do is stall,"
+      },
+      {
+        "characterId": "keerla",
+        "characterName": "Keerla",
+        "lineId": 30,
+        "paragraphIndex": 25,
+        "relativeIndex": 2,
+        "text": "Wait, we don’t want to fight!"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 19, \"text\": \"Can they be moved? What do you need me to do?\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Artemis\", \"sourceCandidates\": [\"Artemis\", \"Creature\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.636, \"marginToSecond\": 0.18, \"misattributionRisk\": 0.5007999999999999, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Artemis\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.636, \"reasons\": null}, {\"characterId\": null, \"name\": \"Creature\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 14, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Can they be moved? What do you need me to do?”\", \"currentParagraphDialogue\": [{\"lineId\": 19, \"text\": \"Can they be moved? What do you need me to do?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“It’s kits... Fortuna Ferret kits...” she said, those words enough to convince her partner.\", \"previousParagraphDialogue\": [{\"lineId\": 17, \"text\": \"It’s kits... Fortuna Ferret kits...\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": false}], \"nextParagraphText\": \"Solana instantly responded, knowing the situation was dire.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Can they be moved? What do you need me to do?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Can they be moved?\", \"lastSentence\": \"What do you need me to do?\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"It’s kits... Fortuna Ferret kits...\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"she said, those words enough to convince her partner.\", \"speakerSurface\": \"she\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"It’s kits...\", \"lastSentence\": \"Fortuna Ferret kits...\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Can they be moved? What do you need me to do?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Can they be moved?\", \"lastSentence\": \"What do you need me to do?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [], \"roleLabels\": [\"artemis\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"aliases\": [], \"roleLabels\": [\"keerla\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -3, \"lineId\": 6, \"paragraphIndex\": 5, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"That’s the Fortuna Ferret... I didn’t even know any of those were still here ,\"}, {\"relativeIndex\": -2, \"lineId\": 9, \"paragraphIndex\": 6, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"altering fate.\"}, {\"relativeIndex\": -1, \"lineId\": 17, \"paragraphIndex\": 13, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"It’s kits... Fortuna Ferret kits...\"}, {\"relativeIndex\": 1, \"lineId\": 25, \"paragraphIndex\": 20, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I’m not sure they can be moved, and their mother is still alive... so for now, I think the best we can do is stall,\"}, {\"relativeIndex\": 2, \"lineId\": 30, \"paragraphIndex\": 25, \"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"text\": \"Wait, we don’t want to fight!\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"keerla\", \"name\": \"Keerla\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"solana\", \"name\": \"Solana\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"simivitas\", \"name\": \"Simivitas\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"chieftain\", \"name\": \"Chieftain\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"leader\", \"name\": \"Leader\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"artemis\",\n  \"characterName\": \"Artemis\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"previous_speaker_continuity\",\n    \"dialogue_flow_logical\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

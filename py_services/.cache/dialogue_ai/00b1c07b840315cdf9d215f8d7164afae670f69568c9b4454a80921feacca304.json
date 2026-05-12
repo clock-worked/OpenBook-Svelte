@@ -1,0 +1,169 @@
+{
+  "cacheKey": "00b1c07b840315cdf9d215f8d7164afae670f69568c9b4454a80921feacca304",
+  "createdAt": "2026-04-01T04:33:51.638604+00:00",
+  "decision": {
+    "action": "propose_new_character",
+    "aliasToAdd": null,
+    "characterId": null,
+    "characterName": null,
+    "confidence": 0.95,
+    "newCharacterProposal": {
+      "alias": null,
+      "name": "Head Priest",
+      "notes": "Explicitly identified as 'the head priest' in the dialogue tag for line 17. Distinct from Jacob, who is speaking in adjacent paragraphs and is described as standing opposite the head priest."
+    },
+    "reasonCodes": [
+      "explicit_attribution",
+      "new_character_identified"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob"
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper"
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth"
+      },
+      {
+        "aliases": [],
+        "characterId": "primordial",
+        "name": "primordial"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.136,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Jacob"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.864
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.864,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "speech_verb"
+          ]
+        },
+        {
+          "characterId": "jacob",
+          "confidence": 0.504,
+          "name": "Jacob",
+          "reasons": [
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [
+        "Ell'Hakan"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "id": 17,
+      "isReturning": false,
+      "text": "It’s a monster, nothing more, nothing less. One not tolerated according to the edicts of the Holy Church,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 17,
+          "text": "It’s a monster, nothing more, nothing less. One not tolerated according to the edicts of the Holy Church,"
+        }
+      ],
+      "currentParagraphText": "“It’s a monster, nothing more, nothing less. One not tolerated according to the edicts of the Holy Church,” the head priest said in between desperately trying to keep track of how the warriors were doing against the Chosen of the Malefic Viper. Needless to say, they weren’t doing very well.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 19,
+          "text": "A young monster yet to even fully learn who and what it is,"
+        },
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": true,
+          "lineId": 21,
+          "text": "If given proper time and guidance, I believe-"
+        }
+      ],
+      "nextParagraphText": "“A young monster yet to even fully learn who and what it is,” Jacob said in a harsh tone. “If given proper time and guidance, I believe-“",
+      "paragraphIndex": 14,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 14,
+          "text": "He will die,"
+        },
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": true,
+          "lineId": 16,
+          "text": "I will not throw a young one with a promising future to his own death like that. His Path has only barely begun, and you’re asking me to cut it short before I can give him proper guidance."
+        }
+      ],
+      "previousParagraphText": "“He will die,” Jacob said with certainty in his voice as he stood opposite the head priest. “I will not throw a young one with a promising future to his own death like that. His Path has only barely begun, and you’re asking me to cut it short before I can give him proper guidance.”"
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 17, \"text\": \"It’s a monster, nothing more, nothing less. One not tolerated according to the edicts of the Holy Church,\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Ell'Hakan\"], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Jacob\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.864, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.136, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.864, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.504, \"reasons\": [\"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 14, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“It’s a monster, nothing more, nothing less. One not tolerated according to the edicts of the Holy Church,” the head priest said in between desperately trying to keep track of how the warriors were doing against the Chosen of the Malefic Viper. Needless to say, they weren’t doing very well.\", \"currentParagraphDialogue\": [{\"lineId\": 17, \"text\": \"It’s a monster, nothing more, nothing less. One not tolerated according to the edicts of the Holy Church,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"previousParagraphText\": \"“He will die,” Jacob said with certainty in his voice as he stood opposite the head priest. “I will not throw a young one with a promising future to his own death like that. His Path has only barely begun, and you’re asking me to cut it short before I can give him proper guidance.”\", \"previousParagraphDialogue\": [{\"lineId\": 14, \"text\": \"He will die,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}, {\"lineId\": 16, \"text\": \"I will not throw a young one with a promising future to his own death like that. His Path has only barely begun, and you’re asking me to cut it short before I can give him proper guidance.\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": true}], \"nextParagraphText\": \"“A young monster yet to even fully learn who and what it is,” Jacob said in a harsh tone. “If given proper time and guidance, I believe-“\", \"nextParagraphDialogue\": [{\"lineId\": 19, \"text\": \"A young monster yet to even fully learn who and what it is,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}, {\"lineId\": 21, \"text\": \"If given proper time and guidance, I believe-\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": true}]}, \"chapterCharacters\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": []}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"]}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": []}, {\"characterId\": \"primordial\", \"name\": \"primordial\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"propose_new_character\",\n  \"characterId\": null,\n  \"characterName\": null,\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_attribution\",\n    \"new_character_identified\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": {\n    \"name\": \"Head Priest\",\n    \"alias\": null,\n    \"notes\": \"Explicitly identified as 'the head priest' in the dialogue tag for line 17. Distinct from Jacob, who is speaking in adjacent paragraphs and is described as standing opposite the head priest.\"\n  }\n}"
+}

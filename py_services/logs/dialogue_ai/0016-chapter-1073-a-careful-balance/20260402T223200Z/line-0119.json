@@ -1,0 +1,363 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "110869b4d0fdd7743720499d676dc4928b6950272b2550860dfc98dac3af8c01",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\110869b4d0fdd7743720499d676dc4928b6950272b2550860dfc98dac3af8c01.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "dialogue_content_consistent"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "characterName": "Caleb",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "caleb"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "caleb",
+            "name": "Caleb",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "arnold",
+            "name": "Arnold",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Caleb looked at Jake with a deadpan expression.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "You know...",
+          "lastSentence": "often I question how my big brother became the Chosen of an evil snake god, but at other times, I fully understand.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "You know... often I question how my big brother became the Chosen of an evil snake god, but at other times, I fully understand.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.18400000000000005,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Caleb",
+            "sourceCandidates": [
+              "Caleb",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": "caleb",
+              "confidence": 0.816,
+              "name": "Caleb",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.456,
+              "name": "Jake",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "caleb",
+          "currentCharacterName": "Caleb",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 119,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "You know... often I question how my big brother became the Chosen of an evil snake god, but at other times, I fully understand."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "caleb",
+              "characterName": "Caleb",
+              "isReturning": true,
+              "lineId": 119,
+              "text": "You know... often I question how my big brother became the Chosen of an evil snake god, but at other times, I fully understand."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Caleb looked at Jake with a deadpan expression.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "You know...",
+              "lastSentence": "often I question how my big brother became the Chosen of an evil snake god, but at other times, I fully understand.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "You know... often I question how my big brother became the Chosen of an evil snake god, but at other times, I fully understand.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "Caleb looked at Jake with a deadpan expression. “You know... often I question how my big brother became the Chosen of an evil snake god, but at other times, I fully understand.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 120,
+              "text": "Raisin cookies are good, and the hate for them is entirely unwarranted,"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 122,
+              "text": "...actually, I guess I could reconsider accepting a job with your name on it."
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake argued with conviction.",
+              "cueVerb": "argued",
+              "cueVerbType": "speech",
+              "firstSentence": "Raisin cookies are good, and the hate for them is entirely unwarranted,",
+              "lastSentence": "Raisin cookies are good, and the hate for them is entirely unwarranted,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Raisin cookies are good, and the hate for them is entirely unwarranted,",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Jake argued with conviction.",
+              "cueVerb": "argued",
+              "cueVerbType": "speech",
+              "firstSentence": "...actually, I guess I could reconsider accepting a job with your name on it.",
+              "lastSentence": "...actually, I guess I could reconsider accepting a job with your name on it.",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "...actually, I guess I could reconsider accepting a job with your name on it.",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "nextParagraphText": "“Raisin cookies are good, and the hate for them is entirely unwarranted,” Jake argued with conviction. “...actually, I guess I could reconsider accepting a job with your name on it.”",
+          "paragraphIndex": 57,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "caleb",
+              "characterName": "Caleb",
+              "isReturning": true,
+              "lineId": 117,
+              "text": "Let’s hope she made some of her raisin cookies; they’re awesome."
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Jake smiled and nodded.",
+              "cueVerb": "smiled",
+              "cueVerbType": "reaction",
+              "firstSentence": "Let’s hope she made some of her raisin cookies; they’re awesome.",
+              "lastSentence": "Let’s hope she made some of her raisin cookies; they’re awesome.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Let’s hope she made some of her raisin cookies; they’re awesome.",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "previousParagraphText": "Jake smiled and nodded. “Let’s hope she made some of her raisin cookies; they’re awesome.”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "caleb",
+            "characterName": "Caleb",
+            "lineId": 107,
+            "paragraphIndex": 50,
+            "relativeIndex": -4,
+            "text": "Infuse your energy into that, and it’ll work like a key. Should let you slip through the barriers."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 109,
+            "paragraphIndex": 51,
+            "relativeIndex": -3,
+            "text": "unlock"
+          },
+          {
+            "characterId": "caleb",
+            "characterName": "Caleb",
+            "lineId": 115,
+            "paragraphIndex": 55,
+            "relativeIndex": -2,
+            "text": "Let’s head down there... oh, and I’m pretty sure Maja also said she was baking today, so maybe we’ll get lucky."
+          },
+          {
+            "characterId": "caleb",
+            "characterName": "Caleb",
+            "lineId": 117,
+            "paragraphIndex": 56,
+            "relativeIndex": -1,
+            "text": "Let’s hope she made some of her raisin cookies; they’re awesome."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 120,
+            "paragraphIndex": 58,
+            "relativeIndex": 1,
+            "text": "Raisin cookies are good, and the hate for them is entirely unwarranted,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 122,
+            "paragraphIndex": 58,
+            "relativeIndex": 2,
+            "text": "...actually, I guess I could reconsider accepting a job with your name on it."
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 119, \"text\": \"You know... often I question how my big brother became the Chosen of an evil snake god, but at other times, I fully understand.\", \"currentCharacterId\": \"caleb\", \"currentCharacterName\": \"Caleb\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Caleb\", \"sourceCandidates\": [\"Caleb\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"caleb\", \"name\": \"Caleb\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 57, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Caleb looked at Jake with a deadpan expression. “You know... often I question how my big brother became the Chosen of an evil snake god, but at other times, I fully understand.”\", \"currentParagraphDialogue\": [{\"lineId\": 119, \"text\": \"You know... often I question how my big brother became the Chosen of an evil snake god, but at other times, I fully understand.\", \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"isReturning\": true}], \"previousParagraphText\": \"Jake smiled and nodded. “Let’s hope she made some of her raisin cookies; they’re awesome.”\", \"previousParagraphDialogue\": [{\"lineId\": 117, \"text\": \"Let’s hope she made some of her raisin cookies; they’re awesome.\", \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"isReturning\": true}], \"nextParagraphText\": \"“Raisin cookies are good, and the hate for them is entirely unwarranted,” Jake argued with conviction. “...actually, I guess I could reconsider accepting a job with your name on it.”\", \"nextParagraphDialogue\": [{\"lineId\": 120, \"text\": \"Raisin cookies are good, and the hate for them is entirely unwarranted,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 122, \"text\": \"...actually, I guess I could reconsider accepting a job with your name on it.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You know... often I question how my big brother became the Chosen of an evil snake god, but at other times, I fully understand.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Caleb looked at Jake with a deadpan expression.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You know...\", \"lastSentence\": \"often I question how my big brother became the Chosen of an evil snake god, but at other times, I fully understand.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Let’s hope she made some of her raisin cookies; they’re awesome.\", \"cuePosition\": \"before\", \"cueVerb\": \"smiled\", \"cueVerbType\": \"reaction\", \"cueText\": \"Jake smiled and nodded.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Let’s hope she made some of her raisin cookies; they’re awesome.\", \"lastSentence\": \"Let’s hope she made some of her raisin cookies; they’re awesome.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Raisin cookies are good, and the hate for them is entirely unwarranted,\", \"cuePosition\": \"after\", \"cueVerb\": \"argued\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake argued with conviction.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Raisin cookies are good, and the hate for them is entirely unwarranted,\", \"lastSentence\": \"Raisin cookies are good, and the hate for them is entirely unwarranted,\"}, {\"quoteIndex\": 1, \"quoteText\": \"...actually, I guess I could reconsider accepting a job with your name on it.\", \"cuePosition\": \"before\", \"cueVerb\": \"argued\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake argued with conviction.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"...actually, I guess I could reconsider accepting a job with your name on it.\", \"lastSentence\": \"...actually, I guess I could reconsider accepting a job with your name on it.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"You know... often I question how my big brother became the Chosen of an evil snake god, but at other times, I fully understand.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Caleb looked at Jake with a deadpan expression.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You know...\", \"lastSentence\": \"often I question how my big brother became the Chosen of an evil snake god, but at other times, I fully understand.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"aliases\": [], \"roleLabels\": [\"caleb\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 107, \"paragraphIndex\": 50, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"Infuse your energy into that, and it’ll work like a key. Should let you slip through the barriers.\"}, {\"relativeIndex\": -3, \"lineId\": 109, \"paragraphIndex\": 51, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"unlock\"}, {\"relativeIndex\": -2, \"lineId\": 115, \"paragraphIndex\": 55, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"Let’s head down there... oh, and I’m pretty sure Maja also said she was baking today, so maybe we’ll get lucky.\"}, {\"relativeIndex\": -1, \"lineId\": 117, \"paragraphIndex\": 56, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"Let’s hope she made some of her raisin cookies; they’re awesome.\"}, {\"relativeIndex\": 1, \"lineId\": 120, \"paragraphIndex\": 58, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Raisin cookies are good, and the hate for them is entirely unwarranted,\"}, {\"relativeIndex\": 2, \"lineId\": 122, \"paragraphIndex\": 58, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"...actually, I guess I could reconsider accepting a job with your name on it.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"arnold\", \"name\": \"Arnold\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"caleb\",\n  \"characterName\": \"Caleb\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_content_consistent\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0016 - Chapter 1073 - A Careful Balance",
+  "currentCharacterId": "caleb",
+  "currentCharacterName": "Caleb",
+  "currentParagraphText": "Caleb looked at Jake with a deadpan expression. “You know... often I question how my big brother became the Chosen of an evil snake god, but at other times, I fully understand.”",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "caleb",
+    "currentCharacterName": "Caleb",
+    "currentParagraphText": "Caleb looked at Jake with a deadpan expression. “You know... often I question how my big brother became the Chosen of an evil snake god, but at other times, I fully understand.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 119,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Raisin cookies are good, and the hate for them is entirely unwarranted,” Jake argued with conviction. “...actually, I guess I could reconsider accepting a job with your name on it.”",
+    "paragraphIndex": 57,
+    "previousParagraphText": "Jake smiled and nodded. “Let’s hope she made some of her raisin cookies; they’re awesome.”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_content_consistent"
+    ],
+    "suggestedCharacterId": "caleb",
+    "suggestedCharacterName": "Caleb",
+    "toolTrace": []
+  },
+  "lineId": 119,
+  "nextParagraphText": "“Raisin cookies are good, and the hate for them is entirely unwarranted,” Jake argued with conviction. “...actually, I guess I could reconsider accepting a job with your name on it.”",
+  "paragraphIndex": 57,
+  "previousParagraphText": "Jake smiled and nodded. “Let’s hope she made some of her raisin cookies; they’re awesome.”"
+}

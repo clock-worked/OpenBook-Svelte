@@ -1,0 +1,343 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "27d0d44c6ebedd0f1477789b85ae1813799e5cc36a3507bc03b34427c1442b4a",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\27d0d44c6ebedd0f1477789b85ae1813799e5cc36a3507bc03b34427c1442b4a.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "next_paragraph_narration_cue",
+          "dialogue_continuity"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "characterName": "The Sword Saint",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "the sword saint",
+              "sword saint",
+              "the sword saint 2",
+              "sword saint 2",
+              "miyamoto"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [],
+            "characterId": "miranda",
+            "characterName": "Miranda",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "miranda"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "name": "The Sword Saint",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "miranda",
+            "name": "Miranda",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "beastkin",
+            "name": "Beastkin",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Adding on to that, we also have the ones personally allied with the Chosen of the Malefic Viper and not the Order itself.",
+          "lastSentence": "Besides that, he is personally close to high-level figures among the Risen, Court of Shadows, Valhal, and even the Dao Sect.",
+          "mentionedEntities": [
+            "The Malefic Viper",
+            "Vesperia",
+            "The Malefic Viper",
+            "stormild"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Adding on to that, we also have the ones personally allied with the Chosen of the Malefic Viper and not the Order itself. This includes the Sylphian Hawk, who carries a Divine Blessing from Stormild, as well as Vesperia, True Royal of the Endless Empire. Besides that, he is personally close to high-level figures among the Risen, Court of Shadows, Valhal, and even the Dao Sect.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [
+                "The Malefic Viper",
+                "Vesperia",
+                "stormild"
+              ],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.18400000000000005,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "The Sword Saint"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": "jake",
+              "confidence": 0.816,
+              "name": "Jake",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "the-sword-saint",
+              "confidence": 0.456,
+              "name": "The Sword Saint",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [
+            "Protagonist"
+          ],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 91,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Adding on to that, we also have the ones personally allied with the Chosen of the Malefic Viper and not the Order itself. This includes the Sylphian Hawk, who carries a Divine Blessing from Stormild, as well as Vesperia, True Royal of the Endless Empire. Besides that, he is personally close to high-level figures among the Risen, Court of Shadows, Valhal, and even the Dao Sect."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 91,
+              "text": "Adding on to that, we also have the ones personally allied with the Chosen of the Malefic Viper and not the Order itself. This includes the Sylphian Hawk, who carries a Divine Blessing from Stormild, as well as Vesperia, True Royal of the Endless Empire. Besides that, he is personally close to high-level figures among the Risen, Court of Shadows, Valhal, and even the Dao Sect."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Adding on to that, we also have the ones personally allied with the Chosen of the Malefic Viper and not the Order itself.",
+              "lastSentence": "Besides that, he is personally close to high-level figures among the Risen, Court of Shadows, Valhal, and even the Dao Sect.",
+              "mentionedEntities": [
+                "The Malefic Viper",
+                "Vesperia",
+                "The Malefic Viper",
+                "stormild"
+              ],
+              "quoteIndex": 0,
+              "quoteText": "Adding on to that, we also have the ones personally allied with the Chosen of the Malefic Viper and not the Order itself. This includes the Sylphian Hawk, who carries a Divine Blessing from Stormild, as well as Vesperia, True Royal of the Endless Empire. Besides that, he is personally close to high-level figures among the Risen, Court of Shadows, Valhal, and even the Dao Sect.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Adding on to that, we also have the ones personally allied with the Chosen of the Malefic Viper and not the Order itself. This includes the Sylphian Hawk, who carries a Divine Blessing from Stormild, as well as Vesperia, True Royal of the Endless Empire. Besides that, he is personally close to high-level figures among the Risen, Court of Shadows, Valhal, and even the Dao Sect.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "Okay, Jake wouldn’t really say he was close to Eron in the slightest, but sure, Miranda could use him as an example. Also, he noticed how she didn’t mention Arnold or even Maria, but he didn’t say anything as he assumed she had a reason. Also... the absence of the Fallen King in that list of names was jarring.",
+          "paragraphIndex": 70,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "It was a bit on the nose, but again, it seemed to work. The Sword Saint also used Jake’s actual name and not a title, indicating they were on roughly equal levels... something Jake wouldn’t even contest. While he believed he was more powerful than the Sword Saint by a fair margin, that didn’t include if the old man went all-out with his Transcendence. If he did use it, well, Jake didn’t think he was the only person in the galaxy who had a chance to slay Ell’Hakan, though the Sword Saint would have suffered far worse consequences even if he succeeded."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "miranda",
+            "characterName": "Miranda",
+            "lineId": 83,
+            "paragraphIndex": 65,
+            "relativeIndex": -4,
+            "text": "Correct... for the most part,"
+          },
+          {
+            "characterId": "miranda",
+            "characterName": "Miranda",
+            "lineId": 85,
+            "paragraphIndex": 65,
+            "relativeIndex": -3,
+            "text": "All of these factions also have in common that they are on friendly terms with the Order of the Malefic Viper. Something they want to continue being the case. While you may fear what the next few generations might plan, do remember that without the backing of their factions, they will be unable to be any threat whatsoever. Does anyone genuinely believe that any one faction dares to make an enemy out of a Primordial just for one small galaxy? Now or in a thousand years?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 87,
+            "paragraphIndex": 67,
+            "relativeIndex": -2,
+            "text": "Also, do allow me to remind everyone that while the Chosen of the Malefic Viper is the person in charge of Earth, he is not the only individual with the power to suppress entire factions from our small little planet."
+          },
+          {
+            "characterId": "miranda",
+            "characterName": "Miranda",
+            "lineId": 89,
+            "paragraphIndex": 68,
+            "relativeIndex": -1,
+            "text": "I do find it a bit offensive that Jake gets all the attention. I even began to believe it was because I had fallen behind and had so many worthy opponents to fight in the galaxy... yet after wiping out the resistance on dozens of planets, I didn’t meet a single person who could handle more than three sword strokes."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 96,
+            "paragraphIndex": 74,
+            "relativeIndex": 1,
+            "text": "Continue your good work. Let’s hope I won’t need to personally get involved in any of it."
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 91, \"text\": \"Adding on to that, we also have the ones personally allied with the Chosen of the Malefic Viper and not the Order itself. This includes the Sylphian Hawk, who carries a Divine Blessing from Stormild, as well as Vesperia, True Royal of the Endless Empire. Besides that, he is personally close to high-level figures among the Risen, Court of Shadows, Valhal, and even the Dao Sect.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"The Sword Saint\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"The Malefic Viper\", \"Vesperia\", \"stormild\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 70, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Adding on to that, we also have the ones personally allied with the Chosen of the Malefic Viper and not the Order itself. This includes the Sylphian Hawk, who carries a Divine Blessing from Stormild, as well as Vesperia, True Royal of the Endless Empire. Besides that, he is personally close to high-level figures among the Risen, Court of Shadows, Valhal, and even the Dao Sect.”\", \"currentParagraphDialogue\": [{\"lineId\": 91, \"text\": \"Adding on to that, we also have the ones personally allied with the Chosen of the Malefic Viper and not the Order itself. This includes the Sylphian Hawk, who carries a Divine Blessing from Stormild, as well as Vesperia, True Royal of the Endless Empire. Besides that, he is personally close to high-level figures among the Risen, Court of Shadows, Valhal, and even the Dao Sect.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"It was a bit on the nose, but again, it seemed to work. The Sword Saint also used Jake’s actual name and not a title, indicating they were on roughly equal levels... something Jake wouldn’t even contest. While he believed he was more powerful than the Sword Saint by a fair margin, that didn’t include if the old man went all-out with his Transcendence. If he did use it, well, Jake didn’t think he was the only person in the galaxy who had a chance to slay Ell’Hakan, though the Sword Saint would have suffered far worse consequences even if he succeeded.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Okay, Jake wouldn’t really say he was close to Eron in the slightest, but sure, Miranda could use him as an example. Also, he noticed how she didn’t mention Arnold or even Maria, but he didn’t say anything as he assumed she had a reason. Also... the absence of the Fallen King in that list of names was jarring.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Adding on to that, we also have the ones personally allied with the Chosen of the Malefic Viper and not the Order itself. This includes the Sylphian Hawk, who carries a Divine Blessing from Stormild, as well as Vesperia, True Royal of the Endless Empire. Besides that, he is personally close to high-level figures among the Risen, Court of Shadows, Valhal, and even the Dao Sect.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"The Malefic Viper\", \"Vesperia\", \"The Malefic Viper\", \"stormild\"], \"addressedEntity\": null, \"firstSentence\": \"Adding on to that, we also have the ones personally allied with the Chosen of the Malefic Viper and not the Order itself.\", \"lastSentence\": \"Besides that, he is personally close to high-level figures among the Risen, Court of Shadows, Valhal, and even the Dao Sect.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Adding on to that, we also have the ones personally allied with the Chosen of the Malefic Viper and not the Order itself. This includes the Sylphian Hawk, who carries a Divine Blessing from Stormild, as well as Vesperia, True Royal of the Endless Empire. Besides that, he is personally close to high-level figures among the Risen, Court of Shadows, Valhal, and even the Dao Sect.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"The Malefic Viper\", \"Vesperia\", \"The Malefic Viper\", \"stormild\"], \"addressedEntity\": null, \"firstSentence\": \"Adding on to that, we also have the ones personally allied with the Chosen of the Malefic Viper and not the Order itself.\", \"lastSentence\": \"Besides that, he is personally close to high-level figures among the Risen, Court of Shadows, Valhal, and even the Dao Sect.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [\"the sword saint\", \"sword saint\", \"the sword saint 2\", \"sword saint 2\", \"miyamoto\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"aliases\": [], \"roleLabels\": [\"miranda\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 83, \"paragraphIndex\": 65, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"Correct... for the most part,\"}, {\"relativeIndex\": -3, \"lineId\": 85, \"paragraphIndex\": 65, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"All of these factions also have in common that they are on friendly terms with the Order of the Malefic Viper. Something they want to continue being the case. While you may fear what the next few generations might plan, do remember that without the backing of their factions, they will be unable to be any threat whatsoever. Does anyone genuinely believe that any one faction dares to make an enemy out of a Primordial just for one small galaxy? Now or in a thousand years?\"}, {\"relativeIndex\": -2, \"lineId\": 87, \"paragraphIndex\": 67, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Also, do allow me to remind everyone that while the Chosen of the Malefic Viper is the person in charge of Earth, he is not the only individual with the power to suppress entire factions from our small little planet.\"}, {\"relativeIndex\": -1, \"lineId\": 89, \"paragraphIndex\": 68, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"I do find it a bit offensive that Jake gets all the attention. I even began to believe it was because I had fallen behind and had so many worthy opponents to fight in the galaxy... yet after wiping out the resistance on dozens of planets, I didn’t meet a single person who could handle more than three sword strokes.\"}, {\"relativeIndex\": 1, \"lineId\": 96, \"paragraphIndex\": 74, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Continue your good work. Let’s hope I won’t need to personally get involved in any of it.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"beastkin\", \"name\": \"Beastkin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"miranda\",\n  \"characterName\": \"Miranda\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"next_paragraph_narration_cue\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0022 - Chapter 1079 - One Last Meeting",
+  "currentCharacterId": "jake",
+  "currentCharacterName": "Jake",
+  "currentParagraphText": "“Adding on to that, we also have the ones personally allied with the Chosen of the Malefic Viper and not the Order itself. This includes the Sylphian Hawk, who carries a Divine Blessing from Stormild, as well as Vesperia, True Royal of the Endless Empire. Besides that, he is personally close to high-level figures among the Risen, Court of Shadows, Valhal, and even the Dao Sect.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "jake",
+    "currentCharacterName": "Jake",
+    "currentParagraphText": "“Adding on to that, we also have the ones personally allied with the Chosen of the Malefic Viper and not the Order itself. This includes the Sylphian Hawk, who carries a Divine Blessing from Stormild, as well as Vesperia, True Royal of the Endless Empire. Besides that, he is personally close to high-level figures among the Risen, Court of Shadows, Valhal, and even the Dao Sect.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 91,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "Okay, Jake wouldn’t really say he was close to Eron in the slightest, but sure, Miranda could use him as an example. Also, he noticed how she didn’t mention Arnold or even Maria, but he didn’t say anything as he assumed she had a reason. Also... the absence of the Fallen King in that list of names was jarring.",
+    "paragraphIndex": 70,
+    "previousParagraphText": "It was a bit on the nose, but again, it seemed to work. The Sword Saint also used Jake’s actual name and not a title, indicating they were on roughly equal levels... something Jake wouldn’t even contest. While he believed he was more powerful than the Sword Saint by a fair margin, that didn’t include if the old man went all-out with his Transcendence. If he did use it, well, Jake didn’t think he was the only person in the galaxy who had a chance to slay Ell’Hakan, though the Sword Saint would have suffered far worse consequences even if he succeeded.",
+    "reasonCodes": [
+      "next_paragraph_narration_cue",
+      "dialogue_continuity"
+    ],
+    "suggestedCharacterId": "miranda",
+    "suggestedCharacterName": "Miranda",
+    "toolTrace": []
+  },
+  "lineId": 91,
+  "nextParagraphText": "Okay, Jake wouldn’t really say he was close to Eron in the slightest, but sure, Miranda could use him as an example. Also, he noticed how she didn’t mention Arnold or even Maria, but he didn’t say anything as he assumed she had a reason. Also... the absence of the Fallen King in that list of names was jarring.",
+  "paragraphIndex": 70,
+  "previousParagraphText": "It was a bit on the nose, but again, it seemed to work. The Sword Saint also used Jake’s actual name and not a title, indicating they were on roughly equal levels... something Jake wouldn’t even contest. While he believed he was more powerful than the Sword Saint by a fair margin, that didn’t include if the old man went all-out with his Transcendence. If he did use it, well, Jake didn’t think he was the only person in the galaxy who had a chance to slay Ell’Hakan, though the Sword Saint would have suffered far worse consequences even if he succeeded."
+}

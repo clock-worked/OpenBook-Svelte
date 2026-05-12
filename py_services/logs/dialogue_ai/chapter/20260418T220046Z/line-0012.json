@@ -1,0 +1,309 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "22ab38b6b36bd777e98b5351a9ab972b01698e1d22b6c1e5d8aaf6510bff7a35",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\22ab38b6b36bd777e98b5351a9ab972b01698e1d22b6c1e5d8aaf6510bff7a35.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "confidence": 0.99,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_next_paragraph_attribution",
+          "dialogue_continuity"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy",
+              "Vilas"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Chimera",
+              "Monster"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,",
+          "lastSentence": "Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.32919999999999994,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "The Malefic Viper",
+            "sourceCandidates": [
+              "The Malefic Viper",
+              "Jake"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.804
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.804,
+              "name": "The Malefic Viper",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.444,
+              "name": "Jake",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 12,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 12,
+              "text": "Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,",
+              "lastSentence": "Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "Villy responded.",
+          "paragraphIndex": 11,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 11,
+              "text": "And am I to assume you’ve just been sitting around waiting for me to reach back out so you can hear all the gossip?"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "And am I to assume you’ve just been sitting around waiting for me to reach back out so you can hear all the gossip?",
+              "lastSentence": "And am I to assume you’ve just been sitting around waiting for me to reach back out so you can hear all the gossip?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "And am I to assume you’ve just been sitting around waiting for me to reach back out so you can hear all the gossip?",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "previousParagraphText": "“And am I to assume you’ve just been sitting around waiting for me to reach back out so you can hear all the gossip?”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 6,
+            "paragraphIndex": 5,
+            "relativeIndex": -4,
+            "text": "Well, well, well, what do we have here?"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 8,
+            "paragraphIndex": 7,
+            "relativeIndex": -3,
+            "text": "You look a little tired there, buddy. Been a long day, eh?"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 9,
+            "paragraphIndex": 8,
+            "relativeIndex": -2,
+            "text": "Actually, it turns out that time flies when you’re having fun,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 11,
+            "paragraphIndex": 10,
+            "relativeIndex": -1,
+            "text": "And am I to assume you’ve just been sitting around waiting for me to reach back out so you can hear all the gossip?"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 14,
+            "paragraphIndex": 13,
+            "relativeIndex": 1,
+            "text": "But your curtness can be forgiven in exchange for a little gossip abou-"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 15,
+            "paragraphIndex": 14,
+            "relativeIndex": 2,
+            "text": "Sounds like I’m gonna remain unforgiven, then, as I’m not gonna share any details,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 12, \"text\": \"Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"The Malefic Viper\", \"sourceCandidates\": [\"The Malefic Viper\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.32919999999999994, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"The Malefic Viper\", \"confidence\": 0.804, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.444, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 11, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,”\", \"currentParagraphDialogue\": [{\"lineId\": 12, \"text\": \"Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“And am I to assume you’ve just been sitting around waiting for me to reach back out so you can hear all the gossip?”\", \"previousParagraphDialogue\": [{\"lineId\": 11, \"text\": \"And am I to assume you’ve just been sitting around waiting for me to reach back out so you can hear all the gossip?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"nextParagraphText\": \"Villy responded.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,\", \"lastSentence\": \"Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"And am I to assume you’ve just been sitting around waiting for me to reach back out so you can hear all the gossip?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"And am I to assume you’ve just been sitting around waiting for me to reach back out so you can hear all the gossip?\", \"lastSentence\": \"And am I to assume you’ve just been sitting around waiting for me to reach back out so you can hear all the gossip?\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,\", \"lastSentence\": \"Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 6, \"paragraphIndex\": 5, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Well, well, well, what do we have here?\"}, {\"relativeIndex\": -3, \"lineId\": 8, \"paragraphIndex\": 7, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"You look a little tired there, buddy. Been a long day, eh?\"}, {\"relativeIndex\": -2, \"lineId\": 9, \"paragraphIndex\": 8, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Actually, it turns out that time flies when you’re having fun,\"}, {\"relativeIndex\": -1, \"lineId\": 11, \"paragraphIndex\": 10, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"And am I to assume you’ve just been sitting around waiting for me to reach back out so you can hear all the gossip?\"}, {\"relativeIndex\": 1, \"lineId\": 14, \"paragraphIndex\": 13, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"But your curtness can be forgiven in exchange for a little gossip abou-\"}, {\"relativeIndex\": 2, \"lineId\": 15, \"paragraphIndex\": 14, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Sounds like I’m gonna remain unforgiven, then, as I’m not gonna share any details,\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\", \"Vilas\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"viper\",\n  \"characterName\": \"The Malefic Viper\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_next_paragraph_attribution\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0108 - Chapter 1165 - A Successful Diplomatic Mission/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.99,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“Saying I’m just sitting around feels a bit hurtful, considering this avatar’s primary function is to communicate with you,”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 12,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "Villy responded.",
+    "paragraphIndex": 11,
+    "previousParagraphText": "“And am I to assume you’ve just been sitting around waiting for me to reach back out so you can hear all the gossip?”",
+    "reasonCodes": [
+      "explicit_next_paragraph_attribution",
+      "dialogue_continuity"
+    ],
+    "suggestedCharacterId": "viper",
+    "suggestedCharacterName": "The Malefic Viper",
+    "toolTrace": []
+  },
+  "lineId": 12,
+  "nextParagraphText": "Villy responded.",
+  "paragraphIndex": 11,
+  "previousParagraphText": "“And am I to assume you’ve just been sitting around waiting for me to reach back out so you can hear all the gossip?”"
+}

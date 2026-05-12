@@ -1,0 +1,394 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "0b8585223b53b99ec662a920ad736a59f00378d2ffac356eee01ecbf9aba6735",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\0b8585223b53b99ec662a920ad736a59f00378d2ffac356eee01ecbf9aba6735.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "lodestar-matron",
+        "characterName": "Lodestar Matron",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration",
+          "direct_quote_from_previous_dialogue"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "lodestar-matron",
+              "lodestar-matron-2"
+            ],
+            "characterId": "lodestar-matron",
+            "characterName": "Lodestar Matron",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "lodestar matron",
+              "lodestar matron 2"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "viper",
+              "the malefic viper",
+              "malefic viper",
+              "villy"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "miranda",
+            "name": "Miranda",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "kindroth",
+            "name": "Kindroth",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "lillian",
+            "name": "Lillian",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "lodestar-matron",
+              "lodestar-matron-2"
+            ],
+            "characterId": "lodestar-matron",
+            "name": "Lodestar Matron",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "of making a few kids before the Church would happily ship off the expecting father straight to Jake for slaughter. Or, you know, just off him themselves at Jake’s behest. They effectively told him that they would lease Ell’Hakan from Jake for a while without contesting his life belonged to Jake.",
+          "cueVerb": "told",
+          "cueVerbType": "speech",
+          "firstSentence": "fulfill his oath",
+          "lastSentence": "fulfill his oath",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "fulfill his oath",
+          "speakerNameMatch": null,
+          "speakerSurface": "They effectively"
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": true,
+              "nextDialogueLegacy": "Lodestar Matron",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.7,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36,
+            "misattributionRisk": 0.14400000000000002,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "Lodestar Matron"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.856
+          },
+          "candidates": [
+            {
+              "characterId": "jake",
+              "confidence": 0.856,
+              "name": "Jake",
+              "reasons": [
+                "parser_match",
+                "legacy_match",
+                "speech_verb"
+              ]
+            },
+            {
+              "characterId": "lodestar-matron",
+              "confidence": 0.496,
+              "name": "Lodestar Matron",
+              "reasons": [
+                "speech_verb"
+              ]
+            }
+          ],
+          "currentCharacterAliases": [
+            "Protagonist"
+          ],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 82,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "fulfill his oath"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 82,
+              "text": "fulfill his oath"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "of making a few kids before the Church would happily ship off the expecting father straight to Jake for slaughter. Or, you know, just off him themselves at Jake’s behest. They effectively told him that they would lease Ell’Hakan from Jake for a while without contesting his life belonged to Jake.",
+              "cueVerb": "told",
+              "cueVerbType": "speech",
+              "firstSentence": "fulfill his oath",
+              "lastSentence": "fulfill his oath",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "fulfill his oath",
+              "speakerNameMatch": null,
+              "speakerSurface": "They effectively"
+            }
+          ],
+          "currentParagraphText": "Jake really had to do a double-take of what the Lodestar Matron had said to make sure he hadn’t heard wrong, but nope. Her offer was... fuck, it was cold as ice. She effectively offered to resurrect Ell’Hakan for only a brief period and have him “fulfill his oath” of making a few kids before the Church would happily ship off the expecting father straight to Jake for slaughter. Or, you know, just off him themselves at Jake’s behest. They effectively told him that they would lease Ell’Hakan from Jake for a while without contesting his life belonged to Jake.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "lodestar-matron",
+              "characterName": "Lodestar Matron",
+              "isReturning": false,
+              "lineId": 85,
+              "text": "force for good"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "It wasn’t even an option Jake had considered for a moment, and the mere fact she offered it really put things into perspective. The Holy Church was known as a",
+              "cueVerb": "offered",
+              "cueVerbType": "speech",
+              "firstSentence": "force for good",
+              "lastSentence": "force for good",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "force for good",
+              "speakerNameMatch": null,
+              "speakerSurface": "the mere fact she"
+            }
+          ],
+          "nextParagraphText": "It wasn’t even an option Jake had considered for a moment, and the mere fact she offered it really put things into perspective. The Holy Church was known as a “force for good” in the eyes of many, and it did have a general philosophy of maximizing the happiness of as many people as possible.",
+          "paragraphIndex": 48,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 80,
+              "text": "Your assessment that the Usurper’s use of the Bloodline was reckless and dangerous was entirely accurate. That’s why anyone with it needs direction from birth. Guidance. People who can understand it and control how it’s used. Chances also are that any offspring of the Bloodline Patriarch will be weaker than the Usurper, lessening the threat level. I am aware this will temporarily delay the full completion of your hunt, but the fate of Ell’Hakan will remain sealed, the circumstances of his final end still in your hands."
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Your assessment that the Usurper’s use of the Bloodline was reckless and dangerous was entirely accurate.",
+              "lastSentence": "I am aware this will temporarily delay the full completion of your hunt, but the fate of Ell’Hakan will remain sealed, the circumstances of his final end still in your hands.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Your assessment that the Usurper’s use of the Bloodline was reckless and dangerous was entirely accurate. That’s why anyone with it needs direction from birth. Guidance. People who can understand it and control how it’s used. Chances also are that any offspring of the Bloodline Patriarch will be weaker than the Usurper, lessening the threat level. I am aware this will temporarily delay the full completion of your hunt, but the fate of Ell’Hakan will remain sealed, the circumstances of his final end still in your hands.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "previousParagraphText": "“Your assessment that the Usurper’s use of the Bloodline was reckless and dangerous was entirely accurate. That’s why anyone with it needs direction from birth. Guidance. People who can understand it and control how it’s used. Chances also are that any offspring of the Bloodline Patriarch will be weaker than the Usurper, lessening the threat level. I am aware this will temporarily delay the full completion of your hunt, but the fate of Ell’Hakan will remain sealed, the circumstances of his final end still in your hands.”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 74,
+            "paragraphIndex": 44,
+            "relativeIndex": -4,
+            "text": "I do despise his Bloodline; you are right on that, but that still doesn’t change the fundamental facts of what happened,"
+          },
+          {
+            "characterId": "lodestar-matron",
+            "characterName": "Lodestar Matron",
+            "lineId": 76,
+            "paragraphIndex": 45,
+            "relativeIndex": -3,
+            "text": "You’re right. The Truesoul is rightfully yours. That’s why we are even having this discussion in the first place. We at the Holy Church do want to make you whole, but for that to happen, there needs to be room for negotiation. Suppose you refuse to budge even the slightest in every aspect, then you are right that this is pointless, but allow me to give you an offer at least,"
+          },
+          {
+            "characterId": "lodestar-matron",
+            "characterName": "Lodestar Matron",
+            "lineId": 78,
+            "paragraphIndex": 46,
+            "relativeIndex": -2,
+            "text": "I understand that you have your Path, but we also have ours. You can have his Truesoul, but not now. I’m not asking for you to give it to us, but merely borrow it for a time. Allow us to resurrect what remains of the Usurper and have him fulfill his oath to us, after which he is yours to do with what you want once more. Or, if it’s easier for you, we can dispose of him in your stead,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 80,
+            "paragraphIndex": 47,
+            "relativeIndex": -1,
+            "text": "Your assessment that the Usurper’s use of the Bloodline was reckless and dangerous was entirely accurate. That’s why anyone with it needs direction from birth. Guidance. People who can understand it and control how it’s used. Chances also are that any offspring of the Bloodline Patriarch will be weaker than the Usurper, lessening the threat level. I am aware this will temporarily delay the full completion of your hunt, but the fate of Ell’Hakan will remain sealed, the circumstances of his final end still in your hands."
+          },
+          {
+            "characterId": "lodestar-matron",
+            "characterName": "Lodestar Matron",
+            "lineId": 85,
+            "paragraphIndex": 49,
+            "relativeIndex": 1,
+            "text": "force for good"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 89,
+            "paragraphIndex": 52,
+            "relativeIndex": 2,
+            "text": "Let’s say I am in the slightest open to that idea; why would I possibly agree and take such a risk? What are you offering?"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 82, \"text\": \"fulfill his oath\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Lodestar Matron\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.856, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.14400000000000002, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Lodestar Matron\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.856, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"lodestar-matron\", \"name\": \"Lodestar Matron\", \"confidence\": 0.496, \"reasons\": [\"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 48, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Jake really had to do a double-take of what the Lodestar Matron had said to make sure he hadn’t heard wrong, but nope. Her offer was... fuck, it was cold as ice. She effectively offered to resurrect Ell’Hakan for only a brief period and have him “fulfill his oath” of making a few kids before the Church would happily ship off the expecting father straight to Jake for slaughter. Or, you know, just off him themselves at Jake’s behest. They effectively told him that they would lease Ell’Hakan from Jake for a while without contesting his life belonged to Jake.\", \"currentParagraphDialogue\": [{\"lineId\": 82, \"text\": \"fulfill his oath\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"previousParagraphText\": \"“Your assessment that the Usurper’s use of the Bloodline was reckless and dangerous was entirely accurate. That’s why anyone with it needs direction from birth. Guidance. People who can understand it and control how it’s used. Chances also are that any offspring of the Bloodline Patriarch will be weaker than the Usurper, lessening the threat level. I am aware this will temporarily delay the full completion of your hunt, but the fate of Ell’Hakan will remain sealed, the circumstances of his final end still in your hands.”\", \"previousParagraphDialogue\": [{\"lineId\": 80, \"text\": \"Your assessment that the Usurper’s use of the Bloodline was reckless and dangerous was entirely accurate. That’s why anyone with it needs direction from birth. Guidance. People who can understand it and control how it’s used. Chances also are that any offspring of the Bloodline Patriarch will be weaker than the Usurper, lessening the threat level. I am aware this will temporarily delay the full completion of your hunt, but the fate of Ell’Hakan will remain sealed, the circumstances of his final end still in your hands.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"nextParagraphText\": \"It wasn’t even an option Jake had considered for a moment, and the mere fact she offered it really put things into perspective. The Holy Church was known as a “force for good” in the eyes of many, and it did have a general philosophy of maximizing the happiness of as many people as possible.\", \"nextParagraphDialogue\": [{\"lineId\": 85, \"text\": \"force for good\", \"characterId\": \"lodestar-matron\", \"characterName\": \"Lodestar Matron\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"fulfill his oath\", \"cuePosition\": \"after\", \"cueVerb\": \"told\", \"cueVerbType\": \"speech\", \"cueText\": \"of making a few kids before the Church would happily ship off the expecting father straight to Jake for slaughter. Or, you know, just off him themselves at Jake’s behest. They effectively told him that they would lease Ell’Hakan from Jake for a while without contesting his life belonged to Jake.\", \"speakerSurface\": \"They effectively\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"fulfill his oath\", \"lastSentence\": \"fulfill his oath\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Your assessment that the Usurper’s use of the Bloodline was reckless and dangerous was entirely accurate. That’s why anyone with it needs direction from birth. Guidance. People who can understand it and control how it’s used. Chances also are that any offspring of the Bloodline Patriarch will be weaker than the Usurper, lessening the threat level. I am aware this will temporarily delay the full completion of your hunt, but the fate of Ell’Hakan will remain sealed, the circumstances of his final end still in your hands.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Your assessment that the Usurper’s use of the Bloodline was reckless and dangerous was entirely accurate.\", \"lastSentence\": \"I am aware this will temporarily delay the full completion of your hunt, but the fate of Ell’Hakan will remain sealed, the circumstances of his final end still in your hands.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"force for good\", \"cuePosition\": \"before\", \"cueVerb\": \"offered\", \"cueVerbType\": \"speech\", \"cueText\": \"It wasn’t even an option Jake had considered for a moment, and the mere fact she offered it really put things into perspective. The Holy Church was known as a\", \"speakerSurface\": \"the mere fact she\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"force for good\", \"lastSentence\": \"force for good\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"fulfill his oath\", \"cuePosition\": \"after\", \"cueVerb\": \"told\", \"cueVerbType\": \"speech\", \"cueText\": \"of making a few kids before the Church would happily ship off the expecting father straight to Jake for slaughter. Or, you know, just off him themselves at Jake’s behest. They effectively told him that they would lease Ell’Hakan from Jake for a while without contesting his life belonged to Jake.\", \"speakerSurface\": \"They effectively\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"fulfill his oath\", \"lastSentence\": \"fulfill his oath\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"lodestar-matron\", \"characterName\": \"Lodestar Matron\", \"aliases\": [\"lodestar-matron\", \"lodestar-matron-2\"], \"roleLabels\": [\"lodestar matron\", \"lodestar matron 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 74, \"paragraphIndex\": 44, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"I do despise his Bloodline; you are right on that, but that still doesn’t change the fundamental facts of what happened,\"}, {\"relativeIndex\": -3, \"lineId\": 76, \"paragraphIndex\": 45, \"characterId\": \"lodestar-matron\", \"characterName\": \"Lodestar Matron\", \"text\": \"You’re right. The Truesoul is rightfully yours. That’s why we are even having this discussion in the first place. We at the Holy Church do want to make you whole, but for that to happen, there needs to be room for negotiation. Suppose you refuse to budge even the slightest in every aspect, then you are right that this is pointless, but allow me to give you an offer at least,\"}, {\"relativeIndex\": -2, \"lineId\": 78, \"paragraphIndex\": 46, \"characterId\": \"lodestar-matron\", \"characterName\": \"Lodestar Matron\", \"text\": \"I understand that you have your Path, but we also have ours. You can have his Truesoul, but not now. I’m not asking for you to give it to us, but merely borrow it for a time. Allow us to resurrect what remains of the Usurper and have him fulfill his oath to us, after which he is yours to do with what you want once more. Or, if it’s easier for you, we can dispose of him in your stead,\"}, {\"relativeIndex\": -1, \"lineId\": 80, \"paragraphIndex\": 47, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Your assessment that the Usurper’s use of the Bloodline was reckless and dangerous was entirely accurate. That’s why anyone with it needs direction from birth. Guidance. People who can understand it and control how it’s used. Chances also are that any offspring of the Bloodline Patriarch will be weaker than the Usurper, lessening the threat level. I am aware this will temporarily delay the full completion of your hunt, but the fate of Ell’Hakan will remain sealed, the circumstances of his final end still in your hands.\"}, {\"relativeIndex\": 1, \"lineId\": 85, \"paragraphIndex\": 49, \"characterId\": \"lodestar-matron\", \"characterName\": \"Lodestar Matron\", \"text\": \"force for good\"}, {\"relativeIndex\": 2, \"lineId\": 89, \"paragraphIndex\": 52, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Let’s say I am in the slightest open to that idea; why would I possibly agree and take such a risk? What are you offering?\"}], \"chapterCharacters\": [{\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"lillian\", \"name\": \"Lillian\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"lodestar-matron\", \"name\": \"Lodestar Matron\", \"aliases\": [\"lodestar-matron\", \"lodestar-matron-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"lodestar-matron\",\n  \"characterName\": \"Lodestar Matron\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration\",\n    \"direct_quote_from_previous_dialogue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0003 - Chapter 1060 - Question(s) Of Trust",
+  "currentCharacterId": "jake",
+  "currentCharacterName": "Jake",
+  "currentParagraphText": "Jake really had to do a double-take of what the Lodestar Matron had said to make sure he hadn’t heard wrong, but nope. Her offer was... fuck, it was cold as ice. She effectively offered to resurrect Ell’Hakan for only a brief period and have him “fulfill his oath” of making a few kids before the Church would happily ship off the expecting father straight to Jake for slaughter. Or, you know, just off him themselves at Jake’s behest. They effectively told him that they would lease Ell’Hakan from Jake for a while without contesting his life belonged to Jake.",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "jake",
+    "currentCharacterName": "Jake",
+    "currentParagraphText": "Jake really had to do a double-take of what the Lodestar Matron had said to make sure he hadn’t heard wrong, but nope. Her offer was... fuck, it was cold as ice. She effectively offered to resurrect Ell’Hakan for only a brief period and have him “fulfill his oath” of making a few kids before the Church would happily ship off the expecting father straight to Jake for slaughter. Or, you know, just off him themselves at Jake’s behest. They effectively told him that they would lease Ell’Hakan from Jake for a while without contesting his life belonged to Jake.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 82,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "It wasn’t even an option Jake had considered for a moment, and the mere fact she offered it really put things into perspective. The Holy Church was known as a “force for good” in the eyes of many, and it did have a general philosophy of maximizing the happiness of as many people as possible.",
+    "paragraphIndex": 48,
+    "previousParagraphText": "“Your assessment that the Usurper’s use of the Bloodline was reckless and dangerous was entirely accurate. That’s why anyone with it needs direction from birth. Guidance. People who can understand it and control how it’s used. Chances also are that any offspring of the Bloodline Patriarch will be weaker than the Usurper, lessening the threat level. I am aware this will temporarily delay the full completion of your hunt, but the fate of Ell’Hakan will remain sealed, the circumstances of his final end still in your hands.”",
+    "reasonCodes": [
+      "explicit_narration",
+      "direct_quote_from_previous_dialogue"
+    ],
+    "suggestedCharacterId": "lodestar-matron",
+    "suggestedCharacterName": "Lodestar Matron",
+    "toolTrace": []
+  },
+  "lineId": 82,
+  "nextParagraphText": "It wasn’t even an option Jake had considered for a moment, and the mere fact she offered it really put things into perspective. The Holy Church was known as a “force for good” in the eyes of many, and it did have a general philosophy of maximizing the happiness of as many people as possible.",
+  "paragraphIndex": 48,
+  "previousParagraphText": "“Your assessment that the Usurper’s use of the Bloodline was reckless and dangerous was entirely accurate. That’s why anyone with it needs direction from birth. Guidance. People who can understand it and control how it’s used. Chances also are that any offspring of the Bloodline Patriarch will be weaker than the Usurper, lessening the threat level. I am aware this will temporarily delay the full completion of your hunt, but the fate of Ell’Hakan will remain sealed, the circumstances of his final end still in your hands.”"
+}

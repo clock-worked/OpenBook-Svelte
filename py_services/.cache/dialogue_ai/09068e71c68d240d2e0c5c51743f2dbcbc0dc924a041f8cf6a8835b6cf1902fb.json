@@ -1,0 +1,293 @@
+{
+  "cacheKey": "09068e71c68d240d2e0c5c51743f2dbcbc0dc924a041f8cf6a8835b6cf1902fb",
+  "createdAt": "2026-04-02T22:41:34.802449+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "viper",
+    "characterName": "The Malefic Viper",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_flow_consistency"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "viper",
+          "the malefic viper",
+          "malefic viper",
+          "villy"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "beastkin",
+        "name": "Beastkin",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Ah, yes!",
+      "lastSentence": "I’ve heard through the grapevine that she’s taken an interest in your abilities, and seeing as Yggdrasil is a very good friend to have, I would heavily implore you to go,",
+      "mentionedEntities": [
+        "Yggdrasil"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "Ah, yes! Yggdrasil would probably also like to see you. I’ve heard through the grapevine that she’s taken an interest in your abilities, and seeing as Yggdrasil is a very good friend to have, I would heavily implore you to go,",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "Yggdrasil"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.19599999999999995,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "The Malefic Viper"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.804,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "viper",
+          "confidence": 0.444,
+          "name": "The Malefic Viper",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Protagonist"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 12,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Ah, yes! Yggdrasil would probably also like to see you. I’ve heard through the grapevine that she’s taken an interest in your abilities, and seeing as Yggdrasil is a very good friend to have, I would heavily implore you to go,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 12,
+          "text": "Ah, yes! Yggdrasil would probably also like to see you. I’ve heard through the grapevine that she’s taken an interest in your abilities, and seeing as Yggdrasil is a very good friend to have, I would heavily implore you to go,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Ah, yes!",
+          "lastSentence": "I’ve heard through the grapevine that she’s taken an interest in your abilities, and seeing as Yggdrasil is a very good friend to have, I would heavily implore you to go,",
+          "mentionedEntities": [
+            "Yggdrasil"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Ah, yes! Yggdrasil would probably also like to see you. I’ve heard through the grapevine that she’s taken an interest in your abilities, and seeing as Yggdrasil is a very good friend to have, I would heavily implore you to go,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Ah, yes! Yggdrasil would probably also like to see you. I’ve heard through the grapevine that she’s taken an interest in your abilities, and seeing as Yggdrasil is a very good friend to have, I would heavily implore you to go,”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Villy continued, at least turning a bit more serious.",
+      "paragraphIndex": 10,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Jake refused to answer on principle, as he knew the Viper was just playing with him."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 4,
+        "paragraphIndex": 3,
+        "relativeIndex": -4,
+        "text": "It was merely an observation. If I wanted to insult you, I would have insinuated you were a paraphiliac instead,"
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 6,
+        "paragraphIndex": 5,
+        "relativeIndex": -3,
+        "text": "I know this is probably really funny for you, but I’m just getting confused,"
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 8,
+        "paragraphIndex": 7,
+        "relativeIndex": -2,
+        "text": "Eh, fine. I was just hinting at it being a good idea for you to pay the Pantheon of Life a little visit,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 10,
+        "paragraphIndex": 8,
+        "relativeIndex": -1,
+        "text": "If I recall correctly, you have a standing invitation and a little gift waiting from Nature’s Attendant, and I’m sure Dina would also welcome you. Oh, and there was one more person there, right? Who was it again..."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 14,
+        "paragraphIndex": 12,
+        "relativeIndex": 1,
+        "text": "I already planned on paying them a visit,"
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 16,
+        "paragraphIndex": 14,
+        "relativeIndex": 2,
+        "text": "Also, it’s about time I clear up the situation with Artemis."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 12, \"text\": \"Ah, yes! Yggdrasil would probably also like to see you. I’ve heard through the grapevine that she’s taken an interest in your abilities, and seeing as Yggdrasil is a very good friend to have, I would heavily implore you to go,\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"The Malefic Viper\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Yggdrasil\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 10, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Ah, yes! Yggdrasil would probably also like to see you. I’ve heard through the grapevine that she’s taken an interest in your abilities, and seeing as Yggdrasil is a very good friend to have, I would heavily implore you to go,”\", \"currentParagraphDialogue\": [{\"lineId\": 12, \"text\": \"Ah, yes! Yggdrasil would probably also like to see you. I’ve heard through the grapevine that she’s taken an interest in your abilities, and seeing as Yggdrasil is a very good friend to have, I would heavily implore you to go,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"Jake refused to answer on principle, as he knew the Viper was just playing with him.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Villy continued, at least turning a bit more serious.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Ah, yes! Yggdrasil would probably also like to see you. I’ve heard through the grapevine that she’s taken an interest in your abilities, and seeing as Yggdrasil is a very good friend to have, I would heavily implore you to go,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Yggdrasil\"], \"addressedEntity\": null, \"firstSentence\": \"Ah, yes!\", \"lastSentence\": \"I’ve heard through the grapevine that she’s taken an interest in your abilities, and seeing as Yggdrasil is a very good friend to have, I would heavily implore you to go,\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Ah, yes! Yggdrasil would probably also like to see you. I’ve heard through the grapevine that she’s taken an interest in your abilities, and seeing as Yggdrasil is a very good friend to have, I would heavily implore you to go,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Yggdrasil\"], \"addressedEntity\": null, \"firstSentence\": \"Ah, yes!\", \"lastSentence\": \"I’ve heard through the grapevine that she’s taken an interest in your abilities, and seeing as Yggdrasil is a very good friend to have, I would heavily implore you to go,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 4, \"paragraphIndex\": 3, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"It was merely an observation. If I wanted to insult you, I would have insinuated you were a paraphiliac instead,\"}, {\"relativeIndex\": -3, \"lineId\": 6, \"paragraphIndex\": 5, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"I know this is probably really funny for you, but I’m just getting confused,\"}, {\"relativeIndex\": -2, \"lineId\": 8, \"paragraphIndex\": 7, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Eh, fine. I was just hinting at it being a good idea for you to pay the Pantheon of Life a little visit,\"}, {\"relativeIndex\": -1, \"lineId\": 10, \"paragraphIndex\": 8, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"If I recall correctly, you have a standing invitation and a little gift waiting from Nature’s Attendant, and I’m sure Dina would also welcome you. Oh, and there was one more person there, right? Who was it again...\"}, {\"relativeIndex\": 1, \"lineId\": 14, \"paragraphIndex\": 12, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I already planned on paying them a visit,\"}, {\"relativeIndex\": 2, \"lineId\": 16, \"paragraphIndex\": 14, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Also, it’s about time I clear up the situation with Artemis.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"beastkin\", \"name\": \"Beastkin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"viper\",\n  \"characterName\": \"The Malefic Viper\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_flow_consistency\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

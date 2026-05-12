@@ -1,0 +1,318 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "b03b5936e90cc856508b74947a96ccf1d097d64eacb702801e14b71e0a1c3391",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\b03b5936e90cc856508b74947a96ccf1d097d64eacb702801e14b71e0a1c3391.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "confidence": 0.98,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "continues_paragraph_dialogue"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "artemis"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Artemis shook her head, with Jake beginning to feel a bit nervous with that answer.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I reckon Vitesse is the cause of this question?",
+          "lastSentence": "One day, perhaps she will feel that her debt is paid, at which point she will leave, but I don’t know when that will be, so until then, she is effectively a slave of her own oath.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "I reckon Vitesse is the cause of this question? I personally wouldn’t classify her as a slave. There’s no contract and no forced compulsion. However, from an outside point of view, the distinction doesn’t seem to matter much. She pledged her life to me, swearing she would serve me eternally for sparing her life. I have clarified her debt is paid, but her oath still binds her. I personally view her more as a servant now, and most of the time, she’s free to do as she wants to, and it isn’t as if her life is bound to mine. One day, perhaps she will feel that her debt is paid, at which point she will leave, but I don’t know when that will be, so until then, she is effectively a slave of her own oath.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": true,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": true,
+              "nextDialogueLegacy": "Artemis",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.46399999999999997,
+            "misattributionRisk": 0.1748,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Artemis",
+            "sourceCandidates": [
+              "Artemis",
+              "Jake"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.98
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.98,
+              "name": "Artemis",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.516,
+              "name": "Jake",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "artemis",
+          "currentCharacterName": "Artemis",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 37,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "I reckon Vitesse is the cause of this question? I personally wouldn’t classify her as a slave. There’s no contract and no forced compulsion. However, from an outside point of view, the distinction doesn’t seem to matter much. She pledged her life to me, swearing she would serve me eternally for sparing her life. I have clarified her debt is paid, but her oath still binds her. I personally view her more as a servant now, and most of the time, she’s free to do as she wants to, and it isn’t as if her life is bound to mine. One day, perhaps she will feel that her debt is paid, at which point she will leave, but I don’t know when that will be, so until then, she is effectively a slave of her own oath."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 1,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 35,
+              "text": "I believe that depends on your definition of the word,"
+            },
+            {
+              "characterId": "artemis",
+              "characterName": "Artemis",
+              "isReturning": true,
+              "lineId": 37,
+              "text": "I reckon Vitesse is the cause of this question? I personally wouldn’t classify her as a slave. There’s no contract and no forced compulsion. However, from an outside point of view, the distinction doesn’t seem to matter much. She pledged her life to me, swearing she would serve me eternally for sparing her life. I have clarified her debt is paid, but her oath still binds her. I personally view her more as a servant now, and most of the time, she’s free to do as she wants to, and it isn’t as if her life is bound to mine. One day, perhaps she will feel that her debt is paid, at which point she will leave, but I don’t know when that will be, so until then, she is effectively a slave of her own oath."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "I believe that depends on your definition of the word,",
+              "lastSentence": "I believe that depends on your definition of the word,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "I believe that depends on your definition of the word,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Artemis shook her head, with Jake beginning to feel a bit nervous with that answer.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "I reckon Vitesse is the cause of this question?",
+              "lastSentence": "One day, perhaps she will feel that her debt is paid, at which point she will leave, but I don’t know when that will be, so until then, she is effectively a slave of her own oath.",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "I reckon Vitesse is the cause of this question? I personally wouldn’t classify her as a slave. There’s no contract and no forced compulsion. However, from an outside point of view, the distinction doesn’t seem to matter much. She pledged her life to me, swearing she would serve me eternally for sparing her life. I have clarified her debt is paid, but her oath still binds her. I personally view her more as a servant now, and most of the time, she’s free to do as she wants to, and it isn’t as if her life is bound to mine. One day, perhaps she will feel that her debt is paid, at which point she will leave, but I don’t know when that will be, so until then, she is effectively a slave of her own oath.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“I believe that depends on your definition of the word,” Artemis shook her head, with Jake beginning to feel a bit nervous with that answer. “I reckon Vitesse is the cause of this question? I personally wouldn’t classify her as a slave. There’s no contract and no forced compulsion. However, from an outside point of view, the distinction doesn’t seem to matter much. She pledged her life to me, swearing she would serve me eternally for sparing her life. I have clarified her debt is paid, but her oath still binds her. I personally view her more as a servant now, and most of the time, she’s free to do as she wants to, and it isn’t as if her life is bound to mine. One day, perhaps she will feel that her debt is paid, at which point she will leave, but I don’t know when that will be, so until then, she is effectively a slave of her own oath.”",
+          "dialogueLineCount": 2,
+          "paragraphIndex": 17
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 29,
+            "paragraphIndex": 13,
+            "relativeIndex": -4,
+            "text": "As eusocial creatures, there is a natural caste among them, with some innately subordinate to others. The drones of a hive are born into what many would define as slavery to their queen, and I personally have no issue with that. That’s just how their race works. The same is true for others. There are monsters that rely on controlling and enslaving others to defend themselves, as they have no combat capabilities by themself but have everything invested in mental stats. Then there are parasitic beings that cannot live without invading and influencing a host, effectively enslaving them. I do not see myself as a judge who can decide what part of nature I find acceptable, as long as it doesn’t threaten the ecosystems themselves... even if I do have an aversion to some things."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 32,
+            "paragraphIndex": 16,
+            "relativeIndex": -3,
+            "text": "What’s your personal opinion on the matter?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 34,
+            "paragraphIndex": 16,
+            "relativeIndex": -2,
+            "text": "Would you personally take on a slave?"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 35,
+            "paragraphIndex": 17,
+            "relativeIndex": -1,
+            "text": "I believe that depends on your definition of the word,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 39,
+            "paragraphIndex": 18,
+            "relativeIndex": 1,
+            "text": "That does sound complicated. Have you ever forced anyone to serve you?"
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 40,
+            "paragraphIndex": 19,
+            "relativeIndex": 2,
+            "text": "No,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 37, \"text\": \"I reckon Vitesse is the cause of this question? I personally wouldn’t classify her as a slave. There’s no contract and no forced compulsion. However, from an outside point of view, the distinction doesn’t seem to matter much. She pledged her life to me, swearing she would serve me eternally for sparing her life. I have clarified her debt is paid, but her oath still binds her. I personally view her more as a servant now, and most of the time, she’s free to do as she wants to, and it isn’t as if her life is bound to mine. One day, perhaps she will feel that her debt is paid, at which point she will leave, but I don’t know when that will be, so until then, she is effectively a slave of her own oath.\", \"currentCharacterId\": \"artemis\", \"currentCharacterName\": \"Artemis\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Artemis\", \"sourceCandidates\": [\"Artemis\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.46399999999999997, \"misattributionRisk\": 0.1748, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Artemis\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.98, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.516, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 17, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“I believe that depends on your definition of the word,” Artemis shook her head, with Jake beginning to feel a bit nervous with that answer. “I reckon Vitesse is the cause of this question? I personally wouldn’t classify her as a slave. There’s no contract and no forced compulsion. However, from an outside point of view, the distinction doesn’t seem to matter much. She pledged her life to me, swearing she would serve me eternally for sparing her life. I have clarified her debt is paid, but her oath still binds her. I personally view her more as a servant now, and most of the time, she’s free to do as she wants to, and it isn’t as if her life is bound to mine. One day, perhaps she will feel that her debt is paid, at which point she will leave, but I don’t know when that will be, so until then, she is effectively a slave of her own oath.”\", \"currentParagraphDialogue\": [{\"lineId\": 35, \"text\": \"I believe that depends on your definition of the word,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 37, \"text\": \"I reckon Vitesse is the cause of this question? I personally wouldn’t classify her as a slave. There’s no contract and no forced compulsion. However, from an outside point of view, the distinction doesn’t seem to matter much. She pledged her life to me, swearing she would serve me eternally for sparing her life. I have clarified her debt is paid, but her oath still binds her. I personally view her more as a servant now, and most of the time, she’s free to do as she wants to, and it isn’t as if her life is bound to mine. One day, perhaps she will feel that her debt is paid, at which point she will leave, but I don’t know when that will be, so until then, she is effectively a slave of her own oath.\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I believe that depends on your definition of the word,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I believe that depends on your definition of the word,\", \"lastSentence\": \"I believe that depends on your definition of the word,\"}, {\"quoteIndex\": 1, \"quoteText\": \"I reckon Vitesse is the cause of this question? I personally wouldn’t classify her as a slave. There’s no contract and no forced compulsion. However, from an outside point of view, the distinction doesn’t seem to matter much. She pledged her life to me, swearing she would serve me eternally for sparing her life. I have clarified her debt is paid, but her oath still binds her. I personally view her more as a servant now, and most of the time, she’s free to do as she wants to, and it isn’t as if her life is bound to mine. One day, perhaps she will feel that her debt is paid, at which point she will leave, but I don’t know when that will be, so until then, she is effectively a slave of her own oath.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Artemis shook her head, with Jake beginning to feel a bit nervous with that answer.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I reckon Vitesse is the cause of this question?\", \"lastSentence\": \"One day, perhaps she will feel that her debt is paid, at which point she will leave, but I don’t know when that will be, so until then, she is effectively a slave of her own oath.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"I reckon Vitesse is the cause of this question? I personally wouldn’t classify her as a slave. There’s no contract and no forced compulsion. However, from an outside point of view, the distinction doesn’t seem to matter much. She pledged her life to me, swearing she would serve me eternally for sparing her life. I have clarified her debt is paid, but her oath still binds her. I personally view her more as a servant now, and most of the time, she’s free to do as she wants to, and it isn’t as if her life is bound to mine. One day, perhaps she will feel that her debt is paid, at which point she will leave, but I don’t know when that will be, so until then, she is effectively a slave of her own oath.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Artemis shook her head, with Jake beginning to feel a bit nervous with that answer.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I reckon Vitesse is the cause of this question?\", \"lastSentence\": \"One day, perhaps she will feel that her debt is paid, at which point she will leave, but I don’t know when that will be, so until then, she is effectively a slave of her own oath.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [], \"roleLabels\": [\"artemis\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 29, \"paragraphIndex\": 13, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"As eusocial creatures, there is a natural caste among them, with some innately subordinate to others. The drones of a hive are born into what many would define as slavery to their queen, and I personally have no issue with that. That’s just how their race works. The same is true for others. There are monsters that rely on controlling and enslaving others to defend themselves, as they have no combat capabilities by themself but have everything invested in mental stats. Then there are parasitic beings that cannot live without invading and influencing a host, effectively enslaving them. I do not see myself as a judge who can decide what part of nature I find acceptable, as long as it doesn’t threaten the ecosystems themselves... even if I do have an aversion to some things.\"}, {\"relativeIndex\": -3, \"lineId\": 32, \"paragraphIndex\": 16, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"What’s your personal opinion on the matter?\"}, {\"relativeIndex\": -2, \"lineId\": 34, \"paragraphIndex\": 16, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Would you personally take on a slave?\"}, {\"relativeIndex\": -1, \"lineId\": 35, \"paragraphIndex\": 17, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I believe that depends on your definition of the word,\"}, {\"relativeIndex\": 1, \"lineId\": 39, \"paragraphIndex\": 18, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"That does sound complicated. Have you ever forced anyone to serve you?\"}, {\"relativeIndex\": 2, \"lineId\": 40, \"paragraphIndex\": 19, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"No,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"artemis\",\n  \"characterName\": \"Artemis\",\n  \"confidence\": 0.98,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"continues_paragraph_dialogue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0039 - Chapter 1096 - To be a gag gift, or not a gag gift, that is the question. - A worried Jake/chapter.txt",
+  "currentCharacterId": "artemis",
+  "currentCharacterName": "Artemis",
+  "currentParagraphText": "“I believe that depends on your definition of the word,” Artemis shook her head, with Jake beginning to feel a bit nervous with that answer. “I reckon Vitesse is the cause of this question? I personally wouldn’t classify her as a slave. There’s no contract and no forced compulsion. However, from an outside point of view, the distinction doesn’t seem to matter much. She pledged her life to me, swearing she would serve me eternally for sparing her life. I have clarified her debt is paid, but her oath still binds her. I personally view her more as a servant now, and most of the time, she’s free to do as she wants to, and it isn’t as if her life is bound to mine. One day, perhaps she will feel that her debt is paid, at which point she will leave, but I don’t know when that will be, so until then, she is effectively a slave of her own oath.”",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.98,
+    "currentCharacterId": "artemis",
+    "currentCharacterName": "Artemis",
+    "currentParagraphText": "“I believe that depends on your definition of the word,” Artemis shook her head, with Jake beginning to feel a bit nervous with that answer. “I reckon Vitesse is the cause of this question? I personally wouldn’t classify her as a slave. There’s no contract and no forced compulsion. However, from an outside point of view, the distinction doesn’t seem to matter much. She pledged her life to me, swearing she would serve me eternally for sparing her life. I have clarified her debt is paid, but her oath still binds her. I personally view her more as a servant now, and most of the time, she’s free to do as she wants to, and it isn’t as if her life is bound to mine. One day, perhaps she will feel that her debt is paid, at which point she will leave, but I don’t know when that will be, so until then, she is effectively a slave of her own oath.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 37,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "Jake frowned a bit as he considered the matter. “That does sound complicated. Have you ever forced anyone to serve you?”",
+    "paragraphIndex": 17,
+    "previousParagraphText": "“What’s your personal opinion on the matter?” Jake asked. “Would you personally take on a slave?”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "continues_paragraph_dialogue"
+    ],
+    "suggestedCharacterId": "artemis",
+    "suggestedCharacterName": "Artemis",
+    "toolTrace": []
+  },
+  "lineId": 37,
+  "nextParagraphText": "Jake frowned a bit as he considered the matter. “That does sound complicated. Have you ever forced anyone to serve you?”",
+  "paragraphIndex": 17,
+  "previousParagraphText": "“What’s your personal opinion on the matter?” Jake asked. “Would you personally take on a slave?”"
+}

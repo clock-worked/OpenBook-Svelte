@@ -1,0 +1,463 @@
+{
+  "alignment": {
+    "confidence": 1.0,
+    "isSpanFallback": false,
+    "method": "quote_unit",
+    "paragraphIndex": 55,
+    "spanDistance": 0.0,
+    "spanParagraphIndex": 55
+  },
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "430ac3f7c6466acd0ca0cc4e7b5a4cf7f0b03ab1551bf084d8012eac0db43645",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\430ac3f7c6466acd0ca0cc4e7b5a4cf7f0b03ab1551bf084d8012eac0db43645.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "casper",
+        "characterName": "Casper",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "dialogue_continuity",
+          "parser_top_candidate_match"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "casper",
+            "characterName": "Casper",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "casper"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God",
+              "Unknown Human (Male)"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist",
+              "lord thayne",
+              "thayne",
+              "void god",
+              "unknown human male"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God",
+              "Unknown Human (Male)"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Attendant",
+              "natures-attendant",
+              "natures-attendant-2",
+              "Nature Attendant",
+              "Life"
+            ],
+            "characterId": "natures-attendant",
+            "name": "Nature's Attendant",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "name": "Minaga",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "casper",
+            "name": "Casper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "risen",
+            "name": "risen",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "he continued, scratching the back of his head.",
+          "cueVerb": "continued",
+          "cueVerbType": "speech",
+          "firstSentence": "You know… logistically…",
+          "lastSentence": "You know… logistically…",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "You know… logistically…",
+          "speakerNameMatch": null,
+          "speakerSurface": "he"
+        },
+        "line": {
+          "alignment": {
+            "confidence": 1.0,
+            "isSpanFallback": false,
+            "method": "quote_unit",
+            "paragraphIndex": 55,
+            "spanDistance": 0.0,
+            "spanParagraphIndex": 55
+          },
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": "male",
+              "contextGenderCue": "he continued",
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": "Jake",
+              "quoteBoundaryQuality": 0.7,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.020000000000000018,
+            "misattributionRisk": 0.43679999999999997,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Casper",
+            "sourceCandidates": [
+              "Casper",
+              "Jake"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.796
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.796,
+              "name": "Casper",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.776,
+              "name": "Jake",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 112,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "You know… logistically…"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 112,
+              "text": "You know… logistically…"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "he continued, scratching the back of his head.",
+              "cueVerb": "continued",
+              "cueVerbType": "speech",
+              "firstSentence": "You know… logistically…",
+              "lastSentence": "You know… logistically…",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "You know… logistically…",
+              "speakerNameMatch": null,
+              "speakerSurface": "he"
+            }
+          ],
+          "currentParagraphText": "“You know… logistically…” he continued, scratching the back of his head.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 115,
+              "text": "I have no idea what you even mean. I find it weirder that your partner is a ghost. You are fully aware that gods are just regular people who’ve lived for a long time and gotten real powerful, right?"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Jake stared at the Risen before sighing.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "I have no idea what you even mean.",
+              "lastSentence": "You are fully aware that gods are just regular people who’ve lived for a long time and gotten real powerful, right?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "I have no idea what you even mean. I find it weirder that your partner is a ghost. You are fully aware that gods are just regular people who’ve lived for a long time and gotten real powerful, right?",
+              "speakerNameMatch": null,
+              "speakerSurface": "Jake"
+            }
+          ],
+          "nextParagraphText": "Jake stared at the Risen before sighing. “I have no idea what you even mean. I find it weirder that your partner is a ghost. You are fully aware that gods are just regular people who’ve lived for a long time and gotten real powerful, right?”",
+          "paragraphIndex": 55,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 110,
+              "text": "Not sure what you mean?"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake asked.",
+              "cueVerb": "asked",
+              "cueVerbType": "speech",
+              "firstSentence": "Not sure what you mean?",
+              "lastSentence": "Not sure what you mean?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Not sure what you mean?",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "previousParagraphText": "“Not sure what you mean?” Jake asked."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "casper",
+            "characterName": "Casper",
+            "lineId": 104,
+            "paragraphIndex": 50,
+            "relativeIndex": -4,
+            "text": "Have you considered that I’m more than willing to share all our dirty deeds? Because let me tell you, despite being a ghost, Lyra is — ouch, I was just joking!"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 106,
+            "paragraphIndex": 52,
+            "relativeIndex": -3,
+            "text": "You two do remember to keep everything a secret, right?"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 109,
+            "paragraphIndex": 53,
+            "relativeIndex": -2,
+            "text": "I gotta know how it all works with her being a literal goddess and you a mortal?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 110,
+            "paragraphIndex": 54,
+            "relativeIndex": -1,
+            "text": "Not sure what you mean?"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 115,
+            "paragraphIndex": 56,
+            "relativeIndex": 1,
+            "text": "I have no idea what you even mean. I find it weirder that your partner is a ghost. You are fully aware that gods are just regular people who’ve lived for a long time and gotten real powerful, right?"
+          },
+          {
+            "characterId": "casper",
+            "characterName": "Casper",
+            "lineId": 116,
+            "paragraphIndex": 57,
+            "relativeIndex": 2,
+            "text": "I guess… but still,"
+          }
+        ],
+        "sceneEntities": [],
+        "sceneRoster": {
+          "paragraphWindow": 6,
+          "presentCharacterIds": [
+            "minaga",
+            "unknown",
+            "casper",
+            "jake"
+          ],
+          "presentCharacters": [
+            {
+              "characterId": "minaga",
+              "characterName": "Minaga"
+            },
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown"
+            },
+            {
+              "characterId": "casper",
+              "characterName": "Casper"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake"
+            }
+          ]
+        }
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 112, \"text\": \"You know… logistically…\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Casper\", \"sourceCandidates\": [\"Casper\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.020000000000000018, \"misattributionRisk\": 0.43679999999999997, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": \"Jake\", \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": \"male\", \"contextGenderCue\": \"he continued\"}}, \"candidates\": [{\"characterId\": null, \"name\": \"Casper\", \"confidence\": 0.796, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.776, \"reasons\": null}], \"isReturning\": false, \"alignment\": {\"paragraphIndex\": 55, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 55, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 55, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“You know… logistically…” he continued, scratching the back of his head.\", \"currentParagraphDialogue\": [{\"lineId\": 112, \"text\": \"You know… logistically…\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"previousParagraphText\": \"“Not sure what you mean?” Jake asked.\", \"previousParagraphDialogue\": [{\"lineId\": 110, \"text\": \"Not sure what you mean?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"nextParagraphText\": \"Jake stared at the Risen before sighing. “I have no idea what you even mean. I find it weirder that your partner is a ghost. You are fully aware that gods are just regular people who’ve lived for a long time and gotten real powerful, right?”\", \"nextParagraphDialogue\": [{\"lineId\": 115, \"text\": \"I have no idea what you even mean. I find it weirder that your partner is a ghost. You are fully aware that gods are just regular people who’ve lived for a long time and gotten real powerful, right?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You know… logistically…\", \"cuePosition\": \"after\", \"cueVerb\": \"continued\", \"cueVerbType\": \"speech\", \"cueText\": \"he continued, scratching the back of his head.\", \"speakerSurface\": \"he\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You know… logistically…\", \"lastSentence\": \"You know… logistically…\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Not sure what you mean?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake asked.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Not sure what you mean?\", \"lastSentence\": \"Not sure what you mean?\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I have no idea what you even mean. I find it weirder that your partner is a ghost. You are fully aware that gods are just regular people who’ve lived for a long time and gotten real powerful, right?\", \"cuePosition\": \"before\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake stared at the Risen before sighing.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I have no idea what you even mean.\", \"lastSentence\": \"You are fully aware that gods are just regular people who’ve lived for a long time and gotten real powerful, right?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"You know… logistically…\", \"cuePosition\": \"after\", \"cueVerb\": \"continued\", \"cueVerbType\": \"speech\", \"cueText\": \"he continued, scratching the back of his head.\", \"speakerSurface\": \"he\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You know… logistically…\", \"lastSentence\": \"You know… logistically…\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"minaga\", \"unknown\", \"casper\", \"jake\"], \"presentCharacters\": [{\"characterId\": \"minaga\", \"characterName\": \"Minaga\"}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}, {\"characterId\": \"casper\", \"characterName\": \"Casper\"}, {\"characterId\": \"jake\", \"characterName\": \"Jake\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"casper\", \"characterName\": \"Casper\", \"aliases\": [], \"roleLabels\": [\"casper\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\", \"void god\", \"unknown human male\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 104, \"paragraphIndex\": 50, \"characterId\": \"casper\", \"characterName\": \"Casper\", \"text\": \"Have you considered that I’m more than willing to share all our dirty deeds? Because let me tell you, despite being a ghost, Lyra is — ouch, I was just joking!\"}, {\"relativeIndex\": -3, \"lineId\": 106, \"paragraphIndex\": 52, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You two do remember to keep everything a secret, right?\"}, {\"relativeIndex\": -2, \"lineId\": 109, \"paragraphIndex\": 53, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I gotta know how it all works with her being a literal goddess and you a mortal?\"}, {\"relativeIndex\": -1, \"lineId\": 110, \"paragraphIndex\": 54, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Not sure what you mean?\"}, {\"relativeIndex\": 1, \"lineId\": 115, \"paragraphIndex\": 56, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I have no idea what you even mean. I find it weirder that your partner is a ghost. You are fully aware that gods are just regular people who’ve lived for a long time and gotten real powerful, right?\"}, {\"relativeIndex\": 2, \"lineId\": 116, \"paragraphIndex\": 57, \"characterId\": \"casper\", \"characterName\": \"Casper\", \"text\": \"I guess… but still,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"natures-attendant\", \"name\": \"Nature's Attendant\", \"aliases\": [\"Attendant\", \"natures-attendant\", \"natures-attendant-2\", \"Nature Attendant\", \"Life\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"casper\", \"name\": \"Casper\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"risen\", \"name\": \"risen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"casper\",\n  \"characterName\": \"Casper\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_continuity\",\n    \"parser_top_candidate_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0187 - Chapter 1244 - Invasive Personal Questions/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“You know… logistically…” he continued, scratching the back of his head.",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“You know… logistically…” he continued, scratching the back of his head.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 112,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "Jake stared at the Risen before sighing. “I have no idea what you even mean. I find it weirder that your partner is a ghost. You are fully aware that gods are just regular people who’ve lived for a long time and gotten real powerful, right?”",
+    "paragraphIndex": 55,
+    "previousParagraphText": "“Not sure what you mean?” Jake asked.",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_continuity",
+      "parser_top_candidate_match"
+    ],
+    "suggestedCharacterId": "casper",
+    "suggestedCharacterName": "Casper",
+    "toolTrace": []
+  },
+  "lineId": 112,
+  "nextParagraphText": "Jake stared at the Risen before sighing. “I have no idea what you even mean. I find it weirder that your partner is a ghost. You are fully aware that gods are just regular people who’ve lived for a long time and gotten real powerful, right?”",
+  "paragraphIndex": 55,
+  "previousParagraphText": "“Not sure what you mean?” Jake asked.",
+  "sceneRoster": {
+    "paragraphWindow": 6,
+    "presentCharacterIds": [
+      "minaga",
+      "unknown",
+      "casper",
+      "jake"
+    ],
+    "presentCharacters": [
+      {
+        "characterId": "minaga",
+        "characterName": "Minaga"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown"
+      },
+      {
+        "characterId": "casper",
+        "characterName": "Casper"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake"
+      }
+    ]
+  }
+}

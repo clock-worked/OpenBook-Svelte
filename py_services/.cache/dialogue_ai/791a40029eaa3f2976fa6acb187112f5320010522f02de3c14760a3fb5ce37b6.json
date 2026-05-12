@@ -1,0 +1,370 @@
+{
+  "cacheKey": "791a40029eaa3f2976fa6acb187112f5320010522f02de3c14760a3fb5ce37b6",
+  "createdAt": "2026-04-01T22:17:45.686521+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "the-sword-saint",
+    "characterName": "The Sword Saint",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "addressed_character_consistent"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "dina",
+        "characterName": "Dina",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "dina"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "sylphie"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "dina",
+        "name": "Dina",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Jake, sometimes your lack of communication skills really shines through, as that definitely wasn’t on purpose,",
+      "lastSentence": "Jake, sometimes your lack of communication skills really shines through, as that definitely wasn’t on purpose,",
+      "mentionedEntities": [
+        "Jake",
+        "Jake"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "Jake, sometimes your lack of communication skills really shines through, as that definitely wasn’t on purpose,",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "Jake"
+          ],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "The Sword Saint",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.51,
+        "misattributionRisk": 0.28419999999999995,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Dina",
+        "sourceCandidates": [
+          "Dina",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.804,
+          "name": "Dina",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.294,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 93,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Jake, sometimes your lack of communication skills really shines through, as that definitely wasn’t on purpose,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 93,
+          "text": "Jake, sometimes your lack of communication skills really shines through, as that definitely wasn’t on purpose,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Jake, sometimes your lack of communication skills really shines through, as that definitely wasn’t on purpose,",
+          "lastSentence": "Jake, sometimes your lack of communication skills really shines through, as that definitely wasn’t on purpose,",
+          "mentionedEntities": [
+            "Jake",
+            "Jake"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Jake, sometimes your lack of communication skills really shines through, as that definitely wasn’t on purpose,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Jake, sometimes your lack of communication skills really shines through, as that definitely wasn’t on purpose,” the Sword Saint shook his head.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 96,
+          "text": "When Carmen killed the Desolate Child of Loss, a fragment of the Fallen King appeared, and inside my mask, the Truesoul of the Fallen King still lingers, along with something else apparently. A copy of the Fallen King’s memories or something like that... not entirely sure."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Scratching his head, a bit embarrassed, Jake tried to elaborate.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "When Carmen killed the Desolate Child of Loss, a fragment of the Fallen King appeared, and inside my mask, the Truesoul of the Fallen King still lingers, along with something else apparently.",
+          "lastSentence": "not entirely sure.",
+          "mentionedEntities": [
+            "Carmen"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "When Carmen killed the Desolate Child of Loss, a fragment of the Fallen King appeared, and inside my mask, the Truesoul of the Fallen King still lingers, along with something else apparently. A copy of the Fallen King’s memories or something like that... not entirely sure.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "nextParagraphText": "Scratching his head, a bit embarrassed, Jake tried to elaborate. “When Carmen killed the Desolate Child of Loss, a fragment of the Fallen King appeared, and inside my mask, the Truesoul of the Fallen King still lingers, along with something else apparently. A copy of the Fallen King’s memories or something like that... not entirely sure.”",
+      "paragraphIndex": 50,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 90,
+          "text": "No, no, you got it backward,"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 92,
+          "text": "They said it was too easy for it to count as a real favor."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "No, no, you got it backward,",
+          "lastSentence": "No, no, you got it backward,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "No, no, you got it backward,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake quickly tried to clear up the misunderstanding.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "They said it was too easy for it to count as a real favor.",
+          "lastSentence": "They said it was too easy for it to count as a real favor.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "They said it was too easy for it to count as a real favor.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "previousParagraphText": "“No, no, you got it backward,” Jake quickly tried to clear up the misunderstanding. “They said it was too easy for it to count as a real favor.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "dina",
+        "characterName": "Dina",
+        "lineId": 87,
+        "paragraphIndex": 48,
+        "relativeIndex": -4,
+        "text": "I’m fine with what my grandfather did, and I’m happy you at least tried to use the favor to help the Fallen King,"
+      },
+      {
+        "characterId": "dina",
+        "characterName": "Dina",
+        "lineId": 89,
+        "paragraphIndex": 48,
+        "relativeIndex": -3,
+        "text": "If even Grandpa and Yggdrasil rejected using the favor to help him... I don’t know what else—"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 90,
+        "paragraphIndex": 49,
+        "relativeIndex": -2,
+        "text": "No, no, you got it backward,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 92,
+        "paragraphIndex": 49,
+        "relativeIndex": -1,
+        "text": "They said it was too easy for it to count as a real favor."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 96,
+        "paragraphIndex": 51,
+        "relativeIndex": 1,
+        "text": "When Carmen killed the Desolate Child of Loss, a fragment of the Fallen King appeared, and inside my mask, the Truesoul of the Fallen King still lingers, along with something else apparently. A copy of the Fallen King’s memories or something like that... not entirely sure."
+      },
+      {
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "lineId": 97,
+        "paragraphIndex": 52,
+        "relativeIndex": 2,
+        "text": "Ree, ree?"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 93, \"text\": \"Jake, sometimes your lack of communication skills really shines through, as that definitely wasn’t on purpose,\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Dina\", \"sourceCandidates\": [\"Dina\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.51, \"misattributionRisk\": 0.28419999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Jake\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Sword Saint\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Dina\", \"confidence\": 0.804, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.294, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 50, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Jake, sometimes your lack of communication skills really shines through, as that definitely wasn’t on purpose,” the Sword Saint shook his head.\", \"currentParagraphDialogue\": [{\"lineId\": 93, \"text\": \"Jake, sometimes your lack of communication skills really shines through, as that definitely wasn’t on purpose,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"previousParagraphText\": \"“No, no, you got it backward,” Jake quickly tried to clear up the misunderstanding. “They said it was too easy for it to count as a real favor.”\", \"previousParagraphDialogue\": [{\"lineId\": 90, \"text\": \"No, no, you got it backward,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 92, \"text\": \"They said it was too easy for it to count as a real favor.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"nextParagraphText\": \"Scratching his head, a bit embarrassed, Jake tried to elaborate. “When Carmen killed the Desolate Child of Loss, a fragment of the Fallen King appeared, and inside my mask, the Truesoul of the Fallen King still lingers, along with something else apparently. A copy of the Fallen King’s memories or something like that... not entirely sure.”\", \"nextParagraphDialogue\": [{\"lineId\": 96, \"text\": \"When Carmen killed the Desolate Child of Loss, a fragment of the Fallen King appeared, and inside my mask, the Truesoul of the Fallen King still lingers, along with something else apparently. A copy of the Fallen King’s memories or something like that... not entirely sure.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Jake, sometimes your lack of communication skills really shines through, as that definitely wasn’t on purpose,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Jake\", \"Jake\"], \"addressedEntity\": null, \"firstSentence\": \"Jake, sometimes your lack of communication skills really shines through, as that definitely wasn’t on purpose,\", \"lastSentence\": \"Jake, sometimes your lack of communication skills really shines through, as that definitely wasn’t on purpose,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"No, no, you got it backward,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"No, no, you got it backward,\", \"lastSentence\": \"No, no, you got it backward,\"}, {\"quoteIndex\": 1, \"quoteText\": \"They said it was too easy for it to count as a real favor.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake quickly tried to clear up the misunderstanding.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"They said it was too easy for it to count as a real favor.\", \"lastSentence\": \"They said it was too easy for it to count as a real favor.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"When Carmen killed the Desolate Child of Loss, a fragment of the Fallen King appeared, and inside my mask, the Truesoul of the Fallen King still lingers, along with something else apparently. A copy of the Fallen King’s memories or something like that... not entirely sure.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Scratching his head, a bit embarrassed, Jake tried to elaborate.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Carmen\"], \"addressedEntity\": null, \"firstSentence\": \"When Carmen killed the Desolate Child of Loss, a fragment of the Fallen King appeared, and inside my mask, the Truesoul of the Fallen King still lingers, along with something else apparently.\", \"lastSentence\": \"not entirely sure.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Jake, sometimes your lack of communication skills really shines through, as that definitely wasn’t on purpose,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Jake\", \"Jake\"], \"addressedEntity\": null, \"firstSentence\": \"Jake, sometimes your lack of communication skills really shines through, as that definitely wasn’t on purpose,\", \"lastSentence\": \"Jake, sometimes your lack of communication skills really shines through, as that definitely wasn’t on purpose,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"dina\", \"characterName\": \"Dina\", \"aliases\": [], \"roleLabels\": [\"dina\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [\"sylphie\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 87, \"paragraphIndex\": 48, \"characterId\": \"dina\", \"characterName\": \"Dina\", \"text\": \"I’m fine with what my grandfather did, and I’m happy you at least tried to use the favor to help the Fallen King,\"}, {\"relativeIndex\": -3, \"lineId\": 89, \"paragraphIndex\": 48, \"characterId\": \"dina\", \"characterName\": \"Dina\", \"text\": \"If even Grandpa and Yggdrasil rejected using the favor to help him... I don’t know what else—\"}, {\"relativeIndex\": -2, \"lineId\": 90, \"paragraphIndex\": 49, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"No, no, you got it backward,\"}, {\"relativeIndex\": -1, \"lineId\": 92, \"paragraphIndex\": 49, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"They said it was too easy for it to count as a real favor.\"}, {\"relativeIndex\": 1, \"lineId\": 96, \"paragraphIndex\": 51, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"When Carmen killed the Desolate Child of Loss, a fragment of the Fallen King appeared, and inside my mask, the Truesoul of the Fallen King still lingers, along with something else apparently. A copy of the Fallen King’s memories or something like that... not entirely sure.\"}, {\"relativeIndex\": 2, \"lineId\": 97, \"paragraphIndex\": 52, \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"text\": \"Ree, ree?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dina\", \"name\": \"Dina\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"the-sword-saint\",\n  \"characterName\": \"The Sword Saint\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"addressed_character_consistent\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

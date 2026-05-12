@@ -1,0 +1,287 @@
+{
+  "cacheKey": "32cd352ad5dc95311860587bead88933bd3da5ce901a2074a8aaf52a1aa7f922",
+  "createdAt": "2026-04-13T02:14:08.538059+00:00",
+  "decision": {
+    "action": "propose_new_character",
+    "aliasToAdd": null,
+    "characterId": null,
+    "characterName": "Yggdrasil",
+    "confidence": 1.0,
+    "newCharacterProposal": {
+      "alias": null,
+      "name": "Yggdrasil",
+      "notes": "Female dryad embodying the aura of Yggdrasil, introduced in the previous paragraph as the speaker."
+    },
+    "reasonCodes": [
+      "explicit_speaker_introduction",
+      "new_entity_speaking"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "chimera",
+          "monster"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "artemis"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Attendant",
+          "natures-attendant",
+          "natures-attendant-2",
+          "Nature Attendant"
+        ],
+        "characterId": "natures-attendant",
+        "name": "Nature's Attendant",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "You came faster than I’d expected.",
+      "lastSentence": "We are ready to move on to the next phase of the rejuvenation of the Unique Lifeform.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "You came faster than I’d expected. Good. We are ready to move on to the next phase of the rejuvenation of the Unique Lifeform.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Yggdrasil",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Yggdrasil"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Yggdrasil",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 21,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "You came faster than I’d expected. Good. We are ready to move on to the next phase of the rejuvenation of the Unique Lifeform."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 21,
+          "text": "You came faster than I’d expected. Good. We are ready to move on to the next phase of the rejuvenation of the Unique Lifeform."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "You came faster than I’d expected.",
+          "lastSentence": "We are ready to move on to the next phase of the rejuvenation of the Unique Lifeform.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "You came faster than I’d expected. Good. We are ready to move on to the next phase of the rejuvenation of the Unique Lifeform.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“You came faster than I’d expected. Good. We are ready to move on to the next phase of the rejuvenation of the Unique Lifeform.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "With a wave of her hand, the tree in front of them had its crown open up, revealing a familiar-looking figure within. Jake’s eyes opened wide as he recognized the Fallen King’s body.",
+      "paragraphIndex": 14,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "This mana gathered into a female dryad, embodying the aura of Yggdrasil. She looked at both of them before speaking."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 10,
+        "paragraphIndex": 7,
+        "relativeIndex": -4,
+        "text": "I’m just wondering why,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 12,
+        "paragraphIndex": 7,
+        "relativeIndex": -3,
+        "text": "Like, what’s the worst that can happen? I doubt she would call us there just to harm us, so no reason to be nervous about anything in that vein. So the only thing we really could be nervous about is what she’ll think of us once there. Seeing as I reckon she already knows you quite well, as long as you act normally, what can go wrong? Just don’t say anything weird or start spouting your most batshit conspiracy theories that you really shouldn’t ever mention to anyone, and things will be fine."
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 14,
+        "paragraphIndex": 8,
+        "relativeIndex": -2,
+        "text": "You of all people should know that sometimes emotions can be irrational. This is one of those times. Also, now you got me curious about which insane conspiracy theories you’re hiding."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 15,
+        "paragraphIndex": 9,
+        "relativeIndex": -1,
+        "text": "Ah, sorry, we don’t have time to go over all of them before we get there,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 23,
+        "paragraphIndex": 16,
+        "relativeIndex": 1,
+        "text": "Is that-"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 24,
+        "paragraphIndex": 17,
+        "relativeIndex": 2,
+        "text": "Part of the vessel,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 21, \"text\": \"You came faster than I’d expected. Good. We are ready to move on to the next phase of the rejuvenation of the Unique Lifeform.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Yggdrasil\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Yggdrasil\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Yggdrasil\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 14, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“You came faster than I’d expected. Good. We are ready to move on to the next phase of the rejuvenation of the Unique Lifeform.”\", \"currentParagraphDialogue\": [{\"lineId\": 21, \"text\": \"You came faster than I’d expected. Good. We are ready to move on to the next phase of the rejuvenation of the Unique Lifeform.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"This mana gathered into a female dryad, embodying the aura of Yggdrasil. She looked at both of them before speaking.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"With a wave of her hand, the tree in front of them had its crown open up, revealing a familiar-looking figure within. Jake’s eyes opened wide as he recognized the Fallen King’s body.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You came faster than I’d expected. Good. We are ready to move on to the next phase of the rejuvenation of the Unique Lifeform.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You came faster than I’d expected.\", \"lastSentence\": \"We are ready to move on to the next phase of the rejuvenation of the Unique Lifeform.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"You came faster than I’d expected. Good. We are ready to move on to the next phase of the rejuvenation of the Unique Lifeform.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You came faster than I’d expected.\", \"lastSentence\": \"We are ready to move on to the next phase of the rejuvenation of the Unique Lifeform.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [\"jake\", \"protagonist\", \"chimera\", \"monster\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [], \"roleLabels\": [\"artemis\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 10, \"paragraphIndex\": 7, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I’m just wondering why,\"}, {\"relativeIndex\": -3, \"lineId\": 12, \"paragraphIndex\": 7, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Like, what’s the worst that can happen? I doubt she would call us there just to harm us, so no reason to be nervous about anything in that vein. So the only thing we really could be nervous about is what she’ll think of us once there. Seeing as I reckon she already knows you quite well, as long as you act normally, what can go wrong? Just don’t say anything weird or start spouting your most batshit conspiracy theories that you really shouldn’t ever mention to anyone, and things will be fine.\"}, {\"relativeIndex\": -2, \"lineId\": 14, \"paragraphIndex\": 8, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"You of all people should know that sometimes emotions can be irrational. This is one of those times. Also, now you got me curious about which insane conspiracy theories you’re hiding.\"}, {\"relativeIndex\": -1, \"lineId\": 15, \"paragraphIndex\": 9, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Ah, sorry, we don’t have time to go over all of them before we get there,\"}, {\"relativeIndex\": 1, \"lineId\": 23, \"paragraphIndex\": 16, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Is that-\"}, {\"relativeIndex\": 2, \"lineId\": 24, \"paragraphIndex\": 17, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Part of the vessel,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"natures-attendant\", \"name\": \"Nature's Attendant\", \"aliases\": [\"Attendant\", \"natures-attendant\", \"natures-attendant-2\", \"Nature Attendant\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"propose_new_character\",\n  \"characterId\": null,\n  \"characterName\": \"Yggdrasil\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_speaker_introduction\",\n    \"new_entity_speaking\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": {\n    \"name\": \"Yggdrasil\",\n    \"alias\": null,\n    \"notes\": \"Female dryad embodying the aura of Yggdrasil, introduced in the previous paragraph as the speaker.\"\n  }\n}"
+}

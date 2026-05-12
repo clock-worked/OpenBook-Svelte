@@ -1,0 +1,285 @@
+{
+  "cacheKey": "586bc108e02ff63e392d184b0927fa00924b03566716991031353fe0a7f276ed",
+  "createdAt": "2026-04-18T23:17:54.591519+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "keerla",
+    "characterName": "Keerla",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "continues_paragraph_dialogue",
+      "speaker_identified_in_previous_quote_cue"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "keerla",
+        "characterName": "Keerla",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "keerla"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "chimera",
+          "monster"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "keerla",
+        "name": "Keerla",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "solana",
+        "name": "Solana",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": null,
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "Chosen"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.98,
+        "misattributionRisk": 0.15,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Keerla",
+        "sourceCandidates": [
+          "Keerla"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.98,
+          "name": "Keerla",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "keerla",
+      "currentCharacterName": "Keerla",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 43,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Not that I mean any disrespect toward the Chosen of the-"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "keerla",
+          "characterName": "Keerla",
+          "isReturning": false,
+          "lineId": 41,
+          "text": "Fair enough. Still seems silly to sleep away a third of every day,"
+        },
+        {
+          "characterId": "keerla",
+          "characterName": "Keerla",
+          "isReturning": true,
+          "lineId": 43,
+          "text": "Not that I mean any disrespect toward the Chosen of the-"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Keerla said with a smile, earning her a small kick from Solana below the table, making the elf speak again. “Not that I mean any disrespect toward the Chosen of the-“",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Fair enough.",
+          "lastSentence": "Still seems silly to sleep away a third of every day,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Fair enough. Still seems silly to sleep away a third of every day,",
+          "speakerNameMatch": "Keerla",
+          "speakerSurface": "Keerla"
+        }
+      ],
+      "currentParagraphText": "“Fair enough. Still seems silly to sleep away a third of every day,” Keerla said with a smile, earning her a small kick from Solana below the table, making the elf speak again. “Not that I mean any disrespect toward the Chosen of the-“",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 24
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 35,
+        "paragraphIndex": 21,
+        "relativeIndex": -4,
+        "text": "Recommended to sleep at least eight hours and three healthy meals every single day,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 37,
+        "paragraphIndex": 22,
+        "relativeIndex": -3,
+        "text": "How did society even work with so much time dedicated to nothing?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 39,
+        "paragraphIndex": 23,
+        "relativeIndex": -2,
+        "text": "You know, I do find that notion a bit funny, considering people post-system can easily spend what would be considered an entire lifespan just sitting on their ass in meditation,"
+      },
+      {
+        "characterId": "keerla",
+        "characterName": "Keerla",
+        "lineId": 41,
+        "paragraphIndex": 24,
+        "relativeIndex": -1,
+        "text": "Fair enough. Still seems silly to sleep away a third of every day,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 44,
+        "paragraphIndex": 25,
+        "relativeIndex": 1,
+        "text": "No, it’s definitely silly by multiversal standards,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 46,
+        "paragraphIndex": 25,
+        "relativeIndex": 2,
+        "text": "And no need to apologize. As I said, I’m just here as a fellow hunter. Truthfully, I prefer being treated normally and find it awkward when people are overly respectful. If I’m getting any respect, I would prefer it to come from my own achievements and not because a god decided to give me a True Blessing."
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "keerla",
+            "characterName": "Keerla",
+            "evidence": [
+              "ai_scene_memory"
+            ],
+            "score": 0.99
+          }
+        ],
+        "surface": "keerla"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 43, \"text\": \"Not that I mean any disrespect toward the Chosen of the-\", \"currentCharacterId\": \"keerla\", \"currentCharacterName\": \"Keerla\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Keerla\", \"sourceCandidates\": [\"Keerla\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.98, \"misattributionRisk\": 0.15, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Chosen\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Keerla\", \"confidence\": 0.98, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 24, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Fair enough. Still seems silly to sleep away a third of every day,” Keerla said with a smile, earning her a small kick from Solana below the table, making the elf speak again. “Not that I mean any disrespect toward the Chosen of the-“\", \"currentParagraphDialogue\": [{\"lineId\": 41, \"text\": \"Fair enough. Still seems silly to sleep away a third of every day,\", \"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"isReturning\": false}, {\"lineId\": 43, \"text\": \"Not that I mean any disrespect toward the Chosen of the-\", \"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Fair enough. Still seems silly to sleep away a third of every day,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Keerla said with a smile, earning her a small kick from Solana below the table, making the elf speak again. “Not that I mean any disrespect toward the Chosen of the-“\", \"speakerSurface\": \"Keerla\", \"speakerNameMatch\": \"Keerla\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Fair enough.\", \"lastSentence\": \"Still seems silly to sleep away a third of every day,\"}]}, \"currentQuoteUnit\": null, \"sceneEntities\": [{\"surface\": \"keerla\", \"matches\": [{\"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"score\": 0.99, \"evidence\": [\"ai_scene_memory\"]}]}], \"candidateCards\": [{\"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"aliases\": [], \"roleLabels\": [\"keerla\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [\"jake\", \"protagonist\", \"chimera\", \"monster\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 35, \"paragraphIndex\": 21, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Recommended to sleep at least eight hours and three healthy meals every single day,\"}, {\"relativeIndex\": -3, \"lineId\": 37, \"paragraphIndex\": 22, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"How did society even work with so much time dedicated to nothing?\"}, {\"relativeIndex\": -2, \"lineId\": 39, \"paragraphIndex\": 23, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You know, I do find that notion a bit funny, considering people post-system can easily spend what would be considered an entire lifespan just sitting on their ass in meditation,\"}, {\"relativeIndex\": -1, \"lineId\": 41, \"paragraphIndex\": 24, \"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"text\": \"Fair enough. Still seems silly to sleep away a third of every day,\"}, {\"relativeIndex\": 1, \"lineId\": 44, \"paragraphIndex\": 25, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"No, it’s definitely silly by multiversal standards,\"}, {\"relativeIndex\": 2, \"lineId\": 46, \"paragraphIndex\": 25, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"And no need to apologize. As I said, I’m just here as a fellow hunter. Truthfully, I prefer being treated normally and find it awkward when people are overly respectful. If I’m getting any respect, I would prefer it to come from my own achievements and not because a god decided to give me a True Blessing.\"}], \"chapterCharacters\": [{\"characterId\": \"keerla\", \"name\": \"Keerla\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"solana\", \"name\": \"Solana\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"keerla\",\n  \"characterName\": \"Keerla\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"continues_paragraph_dialogue\",\n    \"speaker_identified_in_previous_quote_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

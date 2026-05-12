@@ -1,0 +1,359 @@
+{
+  "cacheKey": "972abfffa13e3bbc46b871740b75846e6d49f8e97876a0266294297f09916443",
+  "createdAt": "2026-04-18T21:54:40.695893+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration",
+      "speech_verb_cue"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "artemis"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "chimera",
+          "monster"
+        ],
+        "wasRecentSpeaker": false
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "having",
+        "name": "Having",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "Jake readily agreed.",
+      "cueVerb": "agreed",
+      "cueVerbType": "speech",
+      "firstSentence": "Alright,",
+      "lastSentence": "Alright,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Alright,",
+      "speakerNameMatch": null,
+      "speakerSurface": "Jake readily"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Artemis",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.7,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.33479999999999993,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Artemis"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.796
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.796,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.436,
+          "name": "Artemis",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 136,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Alright,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 136,
+          "text": "Alright,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake readily agreed.",
+          "cueVerb": "agreed",
+          "cueVerbType": "speech",
+          "firstSentence": "Alright,",
+          "lastSentence": "Alright,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Alright,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Jake readily"
+        }
+      ],
+      "currentParagraphText": "“Alright,” Jake readily agreed.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": false,
+          "lineId": 138,
+          "text": "Also, don’t go around taking other lovers without at least consulting with me first,"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Artemis said, Jake finally feeling like they had some common ground when it came to relationship logic... or not...",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Also, don’t go around taking other lovers without at least consulting with me first,",
+          "lastSentence": "Also, don’t go around taking other lovers without at least consulting with me first,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Also, don’t go around taking other lovers without at least consulting with me first,",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Artemis"
+        }
+      ],
+      "nextParagraphText": "“Also, don’t go around taking other lovers without at least consulting with me first,” Artemis said, Jake finally feeling like they had some common ground when it came to relationship logic... or not...",
+      "paragraphIndex": 63,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": false,
+          "lineId": 133,
+          "text": "However, I do have some basic demands,"
+        },
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": true,
+          "lineId": 135,
+          "text": "I’m not going to accept being considered second. When it comes to anything official, I’m your partner."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Artemis continued, keeping a serious look on Jake.",
+          "cueVerb": "continued",
+          "cueVerbType": "speech",
+          "firstSentence": "However, I do have some basic demands,",
+          "lastSentence": "However, I do have some basic demands,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "However, I do have some basic demands,",
+          "speakerNameMatch": "Artemis",
+          "speakerSurface": "Artemis"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Artemis continued, keeping a serious look on Jake.",
+          "cueVerb": "continued",
+          "cueVerbType": "speech",
+          "firstSentence": "I’m not going to accept being considered second.",
+          "lastSentence": "When it comes to anything official, I’m your partner.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "I’m not going to accept being considered second. When it comes to anything official, I’m your partner.",
+          "speakerNameMatch": "Artemis",
+          "speakerSurface": "Artemis"
+        }
+      ],
+      "previousParagraphText": "“However, I do have some basic demands,” Artemis continued, keeping a serious look on Jake. “I’m not going to accept being considered second. When it comes to anything official, I’m your partner.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 129,
+        "paragraphIndex": 60,
+        "relativeIndex": -4,
+        "text": "It’s fine,"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 131,
+        "paragraphIndex": 60,
+        "relativeIndex": -3,
+        "text": "I’m not against you having other women in your life. Honestly, I would have been disappointed if you didn’t. In the end, they’re both just mortals, and even in the event of them making it to godhood, I see nothing negative coming from you, having a positive relationship with a god from another large faction. Especially not the Runemaiden, as having someone like that as an ally can prove quite valuable."
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 133,
+        "paragraphIndex": 62,
+        "relativeIndex": -2,
+        "text": "However, I do have some basic demands,"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 135,
+        "paragraphIndex": 62,
+        "relativeIndex": -1,
+        "text": "I’m not going to accept being considered second. When it comes to anything official, I’m your partner."
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 138,
+        "paragraphIndex": 64,
+        "relativeIndex": 1,
+        "text": "Also, don’t go around taking other lovers without at least consulting with me first,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 140,
+        "paragraphIndex": 65,
+        "relativeIndex": 2,
+        "text": "We need to at least make sure they aren’t part of any factions considered antagonistic towards either the Pantheon of Life or the Order of the Malefic Viper. It could cause quite the political misunderstanding if you’re found sleeping with someone I would view as an enemy. Of course, I will extend the same courtesy to you if I ever meet someone I consider worthy of taking in as a lover."
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "evidence": [
+              "token_overlap:jake"
+            ],
+            "score": 0.625
+          }
+        ],
+        "surface": "jake readily"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 136, \"text\": \"Alright,\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Artemis\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.33479999999999993, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Artemis\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.796, \"reasons\": null}, {\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.436, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 63, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Alright,” Jake readily agreed.\", \"currentParagraphDialogue\": [{\"lineId\": 136, \"text\": \"Alright,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"previousParagraphText\": \"“However, I do have some basic demands,” Artemis continued, keeping a serious look on Jake. “I’m not going to accept being considered second. When it comes to anything official, I’m your partner.”\", \"previousParagraphDialogue\": [{\"lineId\": 133, \"text\": \"However, I do have some basic demands,\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": false}, {\"lineId\": 135, \"text\": \"I’m not going to accept being considered second. When it comes to anything official, I’m your partner.\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": true}], \"nextParagraphText\": \"“Also, don’t go around taking other lovers without at least consulting with me first,” Artemis said, Jake finally feeling like they had some common ground when it came to relationship logic... or not...\", \"nextParagraphDialogue\": [{\"lineId\": 138, \"text\": \"Also, don’t go around taking other lovers without at least consulting with me first,\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Alright,\", \"cuePosition\": \"after\", \"cueVerb\": \"agreed\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake readily agreed.\", \"speakerSurface\": \"Jake readily\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Alright,\", \"lastSentence\": \"Alright,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"However, I do have some basic demands,\", \"cuePosition\": \"after\", \"cueVerb\": \"continued\", \"cueVerbType\": \"speech\", \"cueText\": \"Artemis continued, keeping a serious look on Jake.\", \"speakerSurface\": \"Artemis\", \"speakerNameMatch\": \"Artemis\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"However, I do have some basic demands,\", \"lastSentence\": \"However, I do have some basic demands,\"}, {\"quoteIndex\": 1, \"quoteText\": \"I’m not going to accept being considered second. When it comes to anything official, I’m your partner.\", \"cuePosition\": \"before\", \"cueVerb\": \"continued\", \"cueVerbType\": \"speech\", \"cueText\": \"Artemis continued, keeping a serious look on Jake.\", \"speakerSurface\": \"Artemis\", \"speakerNameMatch\": \"Artemis\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’m not going to accept being considered second.\", \"lastSentence\": \"When it comes to anything official, I’m your partner.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Also, don’t go around taking other lovers without at least consulting with me first,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Artemis said, Jake finally feeling like they had some common ground when it came to relationship logic... or not...\", \"speakerSurface\": \"Artemis\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Also, don’t go around taking other lovers without at least consulting with me first,\", \"lastSentence\": \"Also, don’t go around taking other lovers without at least consulting with me first,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Alright,\", \"cuePosition\": \"after\", \"cueVerb\": \"agreed\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake readily agreed.\", \"speakerSurface\": \"Jake readily\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Alright,\", \"lastSentence\": \"Alright,\"}, \"sceneEntities\": [{\"surface\": \"jake readily\", \"matches\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"score\": 0.625, \"evidence\": [\"token_overlap:jake\"]}]}], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [], \"roleLabels\": [\"artemis\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [\"jake\", \"protagonist\", \"chimera\", \"monster\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 129, \"paragraphIndex\": 60, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"It’s fine,\"}, {\"relativeIndex\": -3, \"lineId\": 131, \"paragraphIndex\": 60, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"I’m not against you having other women in your life. Honestly, I would have been disappointed if you didn’t. In the end, they’re both just mortals, and even in the event of them making it to godhood, I see nothing negative coming from you, having a positive relationship with a god from another large faction. Especially not the Runemaiden, as having someone like that as an ally can prove quite valuable.\"}, {\"relativeIndex\": -2, \"lineId\": 133, \"paragraphIndex\": 62, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"However, I do have some basic demands,\"}, {\"relativeIndex\": -1, \"lineId\": 135, \"paragraphIndex\": 62, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"I’m not going to accept being considered second. When it comes to anything official, I’m your partner.\"}, {\"relativeIndex\": 1, \"lineId\": 138, \"paragraphIndex\": 64, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Also, don’t go around taking other lovers without at least consulting with me first,\"}, {\"relativeIndex\": 2, \"lineId\": 140, \"paragraphIndex\": 65, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"We need to at least make sure they aren’t part of any factions considered antagonistic towards either the Pantheon of Life or the Order of the Malefic Viper. It could cause quite the political misunderstanding if you’re found sleeping with someone I would view as an enemy. Of course, I will extend the same courtesy to you if I ever meet someone I consider worthy of taking in as a lover.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"having\", \"name\": \"Having\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration\",\n    \"speech_verb_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

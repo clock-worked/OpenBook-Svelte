@@ -1,0 +1,251 @@
+{
+  "cacheKey": "edc975049c8ca24d36a883142fd5b224ccd135f2b25da1d6691905994c7707e4",
+  "createdAt": "2026-04-01T22:09:59.652682+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "dina",
+    "characterName": "Dina",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "next_paragraph_explicit_cue",
+      "dialogue_context_match"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "dina",
+        "name": "Dina",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "You shouldn’t tease me like that...",
+      "lastSentence": "you know...",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "You shouldn’t tease me like that... and we both know I’m not... you know...",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "The Sword Saint",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Dina"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Dina",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 86,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "You shouldn’t tease me like that... and we both know I’m not... you know..."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 86,
+          "text": "You shouldn’t tease me like that... and we both know I’m not... you know..."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "You shouldn’t tease me like that...",
+          "lastSentence": "you know...",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "You shouldn’t tease me like that... and we both know I’m not... you know...",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“You shouldn’t tease me like that... and we both know I’m not... you know...”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Dina replied once she’d gotten out of her stun lock, also making Miyamoto stop reminiscing. He nearly considered continuing to tease her, but it looked like he wouldn’t quite have the time for that.",
+      "paragraphIndex": 54,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Besides, it didn’t sound like the hopes of the Pantheon of Life were entirely squashed based on what Dina had said about the god called Artemis. The Sword Saint was curious about what was going on there and would love to talk with Jake about it, as Dina had only let a little slip accidentally here and there. From what little tidbits he heard from Dina, it did sound like something interesting was developing there."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 70,
+        "paragraphIndex": 41,
+        "relativeIndex": -4,
+        "text": "I assume he and his party lost badly, and he doesn’t want us to think less of him for it,"
+      },
+      {
+        "characterId": "the_sword_saint",
+        "characterName": "The Sword Saint",
+        "lineId": 72,
+        "paragraphIndex": 43,
+        "relativeIndex": -3,
+        "text": "Oh no, he doesn’t care what I think about him. It’s you he doesn’t want to think less of him,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 74,
+        "paragraphIndex": 44,
+        "relativeIndex": -2,
+        "text": "It’s pretty obvious this young man wants to get closer to you. Hopes you notice him. Ah, such youthful spirit."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 79,
+        "paragraphIndex": 48,
+        "relativeIndex": -1,
+        "text": "homework"
+      },
+      {
+        "characterId": "the_sword_saint",
+        "characterName": "The Sword Saint",
+        "lineId": 91,
+        "paragraphIndex": 59,
+        "relativeIndex": 1,
+        "text": "Seems like she’s done,"
+      },
+      {
+        "characterId": "the_sword_saint",
+        "characterName": "The Sword Saint",
+        "lineId": 93,
+        "paragraphIndex": 59,
+        "relativeIndex": 2,
+        "text": "She must have spent a fair deal of mana, considering she took down six groups in a row."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 86, \"text\": \"You shouldn’t tease me like that... and we both know I’m not... you know...\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Dina\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Sword Saint\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Dina\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 54, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“You shouldn’t tease me like that... and we both know I’m not... you know...”\", \"currentParagraphDialogue\": [{\"lineId\": 86, \"text\": \"You shouldn’t tease me like that... and we both know I’m not... you know...\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"Besides, it didn’t sound like the hopes of the Pantheon of Life were entirely squashed based on what Dina had said about the god called Artemis. The Sword Saint was curious about what was going on there and would love to talk with Jake about it, as Dina had only let a little slip accidentally here and there. From what little tidbits he heard from Dina, it did sound like something interesting was developing there.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Dina replied once she’d gotten out of her stun lock, also making Miyamoto stop reminiscing. He nearly considered continuing to tease her, but it looked like he wouldn’t quite have the time for that.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You shouldn’t tease me like that... and we both know I’m not... you know...\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You shouldn’t tease me like that...\", \"lastSentence\": \"you know...\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"You shouldn’t tease me like that... and we both know I’m not... you know...\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You shouldn’t tease me like that...\", \"lastSentence\": \"you know...\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 70, \"paragraphIndex\": 41, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I assume he and his party lost badly, and he doesn’t want us to think less of him for it,\"}, {\"relativeIndex\": -3, \"lineId\": 72, \"paragraphIndex\": 43, \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Oh no, he doesn’t care what I think about him. It’s you he doesn’t want to think less of him,\"}, {\"relativeIndex\": -2, \"lineId\": 74, \"paragraphIndex\": 44, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"It’s pretty obvious this young man wants to get closer to you. Hopes you notice him. Ah, such youthful spirit.\"}, {\"relativeIndex\": -1, \"lineId\": 79, \"paragraphIndex\": 48, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"homework\"}, {\"relativeIndex\": 1, \"lineId\": 91, \"paragraphIndex\": 59, \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Seems like she’s done,\"}, {\"relativeIndex\": 2, \"lineId\": 93, \"paragraphIndex\": 59, \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"text\": \"She must have spent a fair deal of mana, considering she took down six groups in a row.\"}], \"chapterCharacters\": [{\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dina\", \"name\": \"Dina\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"dina\",\n  \"characterName\": \"Dina\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"next_paragraph_explicit_cue\",\n    \"dialogue_context_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

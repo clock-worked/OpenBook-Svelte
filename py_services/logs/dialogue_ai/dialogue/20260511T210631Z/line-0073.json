@@ -1,0 +1,373 @@
+{
+  "alignment": {
+    "confidence": 1.0,
+    "isSpanFallback": false,
+    "method": "quote_unit",
+    "paragraphIndex": 46,
+    "spanDistance": 0.0,
+    "spanParagraphIndex": 46
+  },
+  "calls": [
+    {
+      "cacheHit": true,
+      "cacheKey": "42e9347f9607558c34d8818a7d9720bbc17077af7302094ac526913e5ae25004",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\42e9347f9607558c34d8818a7d9720bbc17077af7302094ac526913e5ae25004.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 1.0,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "continues_paragraph_dialogue"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake",
+              "protagonist",
+              "lord thayne",
+              "thayne",
+              "void god"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "First Sage"
+            ],
+            "characterId": "the first sage",
+            "characterName": "The First Sage",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "the first sage",
+              "first sage"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "First Sage"
+            ],
+            "characterId": "the first sage",
+            "name": "The First Sage",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake shook his head.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Clearly, there are some things he cannot simply teach himself, such as the ability to give out Blessings.",
+          "lastSentence": "That’s why I’ve chosen to believe that he got the Meditate skill upon becoming a god… something all gods do.",
+          "mentionedEntities": [
+            "chosen"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "Clearly, there are some things he cannot simply teach himself, such as the ability to give out Blessings. Meditate seems to be a very system-heavy skill that I simply can't imagine how he discovered in the first place, no matter how much time he spent. I can’t imagine how he would form that initial connection to the system. That’s why I’ve chosen to believe that he got the Meditate skill upon becoming a god… something all gods do.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "alignment": {
+            "confidence": 1.0,
+            "isSpanFallback": false,
+            "method": "quote_unit",
+            "paragraphIndex": 46,
+            "spanDistance": 0.0,
+            "spanParagraphIndex": 46
+          },
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": true,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [
+                "chosen"
+              ],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "The First Sage",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.524,
+            "misattributionRisk": 0.1568,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "The First Sage"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.98
+          },
+          "candidates": [
+            {
+              "characterId": "jake",
+              "confidence": 0.98,
+              "name": "Jake",
+              "reasons": null
+            },
+            {
+              "characterId": "the first sage",
+              "confidence": 0.456,
+              "name": "The First Sage",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [
+            "Protagonist",
+            "Lord Thayne",
+            "Void God"
+          ],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 73,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Clearly, there are some things he cannot simply teach himself, such as the ability to give out Blessings. Meditate seems to be a very system-heavy skill that I simply can't imagine how he discovered in the first place, no matter how much time he spent. I can’t imagine how he would form that initial connection to the system. That’s why I’ve chosen to believe that he got the Meditate skill upon becoming a god… something all gods do."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 1,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 71,
+              "text": "Theoretically, but I don’t think so,"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 73,
+              "text": "Clearly, there are some things he cannot simply teach himself, such as the ability to give out Blessings. Meditate seems to be a very system-heavy skill that I simply can't imagine how he discovered in the first place, no matter how much time he spent. I can’t imagine how he would form that initial connection to the system. That’s why I’ve chosen to believe that he got the Meditate skill upon becoming a god… something all gods do."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Theoretically, but I don’t think so,",
+              "lastSentence": "Theoretically, but I don’t think so,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Theoretically, but I don’t think so,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Jake shook his head.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Clearly, there are some things he cannot simply teach himself, such as the ability to give out Blessings.",
+              "lastSentence": "That’s why I’ve chosen to believe that he got the Meditate skill upon becoming a god… something all gods do.",
+              "mentionedEntities": [
+                "chosen"
+              ],
+              "quoteIndex": 1,
+              "quoteText": "Clearly, there are some things he cannot simply teach himself, such as the ability to give out Blessings. Meditate seems to be a very system-heavy skill that I simply can't imagine how he discovered in the first place, no matter how much time he spent. I can’t imagine how he would form that initial connection to the system. That’s why I’ve chosen to believe that he got the Meditate skill upon becoming a god… something all gods do.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Theoretically, but I don’t think so,” Jake shook his head. “Clearly, there are some things he cannot simply teach himself, such as the ability to give out Blessings. Meditate seems to be a very system-heavy skill that I simply can't imagine how he discovered in the first place, no matter how much time he spent. I can’t imagine how he would form that initial connection to the system. That’s why I’ve chosen to believe that he got the Meditate skill upon becoming a god… something all gods do.”",
+          "dialogueLineCount": 2,
+          "paragraphIndex": 46
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 67,
+            "paragraphIndex": 43,
+            "relativeIndex": -4,
+            "text": "And I concluded that in some ways, it isn’t. Sure, the Meditate skill I and every other mortal have is a Legacy skill of yours, but the Meditate skill possessed by gods isn’t the same thing at all. What really hammered home this theory was something I didn’t even think about when I first saw it, but made sense later… Minaga meditates. As a Unique Lifeform who is so restricted from other skills, why does he seemingly possess the Meditate skill?"
+          },
+          {
+            "characterId": "the first sage",
+            "characterName": "The First Sage",
+            "lineId": 68,
+            "paragraphIndex": 44,
+            "relativeIndex": -3,
+            "text": "He may not have it,"
+          },
+          {
+            "characterId": "the first sage",
+            "characterName": "The First Sage",
+            "lineId": 70,
+            "paragraphIndex": 45,
+            "relativeIndex": -2,
+            "text": "Isn’t it possible he is not using a skill but is doing something self-taught?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 71,
+            "paragraphIndex": 46,
+            "relativeIndex": -1,
+            "text": "Theoretically, but I don’t think so,"
+          },
+          {
+            "characterId": "the first sage",
+            "characterName": "The First Sage",
+            "lineId": 74,
+            "paragraphIndex": 47,
+            "relativeIndex": 1,
+            "text": "Isn’t there a flaw in this argument?"
+          },
+          {
+            "characterId": "the first sage",
+            "characterName": "The First Sage",
+            "lineId": 76,
+            "paragraphIndex": 48,
+            "relativeIndex": 2,
+            "text": "If you cannot imagine him establishing this connection in the first place, how would I have created the Meditate skill and made it my Legacy?"
+          }
+        ],
+        "sceneEntities": [],
+        "sceneRoster": {
+          "paragraphWindow": 6,
+          "presentCharacterIds": [
+            "the first sage",
+            "jake"
+          ],
+          "presentCharacters": [
+            {
+              "characterId": "the first sage",
+              "characterName": "The First Sage"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake"
+            }
+          ]
+        }
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 73, \"text\": \"Clearly, there are some things he cannot simply teach himself, such as the ability to give out Blessings. Meditate seems to be a very system-heavy skill that I simply can't imagine how he discovered in the first place, no matter how much time he spent. I can’t imagine how he would form that initial connection to the system. That’s why I’ve chosen to believe that he got the Meditate skill upon becoming a god… something all gods do.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"The First Sage\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.524, \"misattributionRisk\": 0.1568, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"chosen\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The First Sage\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.98, \"reasons\": null}, {\"characterId\": \"the first sage\", \"name\": \"The First Sage\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true, \"alignment\": {\"paragraphIndex\": 46, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 46, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 46, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Theoretically, but I don’t think so,” Jake shook his head. “Clearly, there are some things he cannot simply teach himself, such as the ability to give out Blessings. Meditate seems to be a very system-heavy skill that I simply can't imagine how he discovered in the first place, no matter how much time he spent. I can’t imagine how he would form that initial connection to the system. That’s why I’ve chosen to believe that he got the Meditate skill upon becoming a god… something all gods do.”\", \"currentParagraphDialogue\": [{\"lineId\": 71, \"text\": \"Theoretically, but I don’t think so,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 73, \"text\": \"Clearly, there are some things he cannot simply teach himself, such as the ability to give out Blessings. Meditate seems to be a very system-heavy skill that I simply can't imagine how he discovered in the first place, no matter how much time he spent. I can’t imagine how he would form that initial connection to the system. That’s why I’ve chosen to believe that he got the Meditate skill upon becoming a god… something all gods do.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Theoretically, but I don’t think so,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Theoretically, but I don’t think so,\", \"lastSentence\": \"Theoretically, but I don’t think so,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Clearly, there are some things he cannot simply teach himself, such as the ability to give out Blessings. Meditate seems to be a very system-heavy skill that I simply can't imagine how he discovered in the first place, no matter how much time he spent. I can’t imagine how he would form that initial connection to the system. That’s why I’ve chosen to believe that he got the Meditate skill upon becoming a god… something all gods do.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake shook his head.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"chosen\"], \"addressedEntity\": null, \"firstSentence\": \"Clearly, there are some things he cannot simply teach himself, such as the ability to give out Blessings.\", \"lastSentence\": \"That’s why I’ve chosen to believe that he got the Meditate skill upon becoming a god… something all gods do.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"Clearly, there are some things he cannot simply teach himself, such as the ability to give out Blessings. Meditate seems to be a very system-heavy skill that I simply can't imagine how he discovered in the first place, no matter how much time he spent. I can’t imagine how he would form that initial connection to the system. That’s why I’ve chosen to believe that he got the Meditate skill upon becoming a god… something all gods do.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake shook his head.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"chosen\"], \"addressedEntity\": null, \"firstSentence\": \"Clearly, there are some things he cannot simply teach himself, such as the ability to give out Blessings.\", \"lastSentence\": \"That’s why I’ve chosen to believe that he got the Meditate skill upon becoming a god… something all gods do.\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"the first sage\", \"jake\"], \"presentCharacters\": [{\"characterId\": \"the first sage\", \"characterName\": \"The First Sage\"}, {\"characterId\": \"jake\", \"characterName\": \"Jake\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\", \"void god\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"the first sage\", \"characterName\": \"The First Sage\", \"aliases\": [\"First Sage\"], \"roleLabels\": [\"the first sage\", \"first sage\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 67, \"paragraphIndex\": 43, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"And I concluded that in some ways, it isn’t. Sure, the Meditate skill I and every other mortal have is a Legacy skill of yours, but the Meditate skill possessed by gods isn’t the same thing at all. What really hammered home this theory was something I didn’t even think about when I first saw it, but made sense later… Minaga meditates. As a Unique Lifeform who is so restricted from other skills, why does he seemingly possess the Meditate skill?\"}, {\"relativeIndex\": -3, \"lineId\": 68, \"paragraphIndex\": 44, \"characterId\": \"the first sage\", \"characterName\": \"The First Sage\", \"text\": \"He may not have it,\"}, {\"relativeIndex\": -2, \"lineId\": 70, \"paragraphIndex\": 45, \"characterId\": \"the first sage\", \"characterName\": \"The First Sage\", \"text\": \"Isn’t it possible he is not using a skill but is doing something self-taught?\"}, {\"relativeIndex\": -1, \"lineId\": 71, \"paragraphIndex\": 46, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Theoretically, but I don’t think so,\"}, {\"relativeIndex\": 1, \"lineId\": 74, \"paragraphIndex\": 47, \"characterId\": \"the first sage\", \"characterName\": \"The First Sage\", \"text\": \"Isn’t there a flaw in this argument?\"}, {\"relativeIndex\": 2, \"lineId\": 76, \"paragraphIndex\": 48, \"characterId\": \"the first sage\", \"characterName\": \"The First Sage\", \"text\": \"If you cannot imagine him establishing this connection in the first place, how would I have created the Meditate skill and made it my Legacy?\"}], \"chapterCharacters\": [{\"characterId\": \"the first sage\", \"name\": \"The First Sage\", \"aliases\": [\"First Sage\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"continues_paragraph_dialogue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0162 - Chapter 1219 - Gate\\dialogue.json",
+  "currentCharacterId": "jake",
+  "currentCharacterName": "Jake",
+  "currentParagraphText": "“Theoretically, but I don’t think so,” Jake shook his head. “Clearly, there are some things he cannot simply teach himself, such as the ability to give out Blessings. Meditate seems to be a very system-heavy skill that I simply can't imagine how he discovered in the first place, no matter how much time he spent. I can’t imagine how he would form that initial connection to the system. That’s why I’ve chosen to believe that he got the Meditate skill upon becoming a god… something all gods do.”",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 1.0,
+    "currentCharacterId": "jake",
+    "currentCharacterName": "Jake",
+    "currentParagraphText": "“Theoretically, but I don’t think so,” Jake shook his head. “Clearly, there are some things he cannot simply teach himself, such as the ability to give out Blessings. Meditate seems to be a very system-heavy skill that I simply can't imagine how he discovered in the first place, no matter how much time he spent. I can’t imagine how he would form that initial connection to the system. That’s why I’ve chosen to believe that he got the Meditate skill upon becoming a god… something all gods do.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 73,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Isn’t there a flaw in this argument?” the First Sage asked.",
+    "paragraphIndex": 46,
+    "previousParagraphText": "“Isn’t it possible he is not using a skill but is doing something self-taught?”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "continues_paragraph_dialogue"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 73,
+  "nextParagraphText": "“Isn’t there a flaw in this argument?” the First Sage asked.",
+  "paragraphIndex": 46,
+  "previousParagraphText": "“Isn’t it possible he is not using a skill but is doing something self-taught?”",
+  "sceneRoster": {
+    "paragraphWindow": 6,
+    "presentCharacterIds": [
+      "the first sage",
+      "jake"
+    ],
+    "presentCharacters": [
+      {
+        "characterId": "the first sage",
+        "characterName": "The First Sage"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake"
+      }
+    ]
+  }
+}

@@ -1,0 +1,307 @@
+{
+  "cacheKey": "4f471416d5d8255a70ecd395ef8faf31bc39c2c07c494411bac0d32971b7e8cc",
+  "createdAt": "2026-04-01T18:43:09.252114+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "augur",
+    "characterName": "Augur",
+    "confidence": 0.9,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "dialogue_response_context",
+      "previous_narration_cue"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "characterName": "Augur",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "augur"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jacob"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "name": "Augur",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "the-unique-lifeform",
+        "name": "The Unique Lifeform",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "I apologize for not being entirely straightforward, but I’m not in a position to speak freely these days.",
+      "lastSentence": "Even now, I’m constantly under surveillance, and I couldn’t be sure if anyone was still listening in before.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "I apologize for not being entirely straightforward, but I’m not in a position to speak freely these days. Even now, I’m constantly under surveillance, and I couldn’t be sure if anyone was still listening in before.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Augur"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.816,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "augur",
+          "confidence": 0.456,
+          "name": "Augur",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Ell'Hakan"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 37,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "I apologize for not being entirely straightforward, but I’m not in a position to speak freely these days. Even now, I’m constantly under surveillance, and I couldn’t be sure if anyone was still listening in before."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 37,
+          "text": "I apologize for not being entirely straightforward, but I’m not in a position to speak freely these days. Even now, I’m constantly under surveillance, and I couldn’t be sure if anyone was still listening in before."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I apologize for not being entirely straightforward, but I’m not in a position to speak freely these days.",
+          "lastSentence": "Even now, I’m constantly under surveillance, and I couldn’t be sure if anyone was still listening in before.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I apologize for not being entirely straightforward, but I’m not in a position to speak freely these days. Even now, I’m constantly under surveillance, and I couldn’t be sure if anyone was still listening in before.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“I apologize for not being entirely straightforward, but I’m not in a position to speak freely these days. Even now, I’m constantly under surveillance, and I couldn’t be sure if anyone was still listening in before.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 38,
+          "text": "No one was listening in as far as I could tell,"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake simply said, confused about Jacob’s shift in tone.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "No one was listening in as far as I could tell,",
+          "lastSentence": "No one was listening in as far as I could tell,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "No one was listening in as far as I could tell,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Jake simply"
+        }
+      ],
+      "nextParagraphText": "“No one was listening in as far as I could tell,” Jake simply said, confused about Jacob’s shift in tone.",
+      "paragraphIndex": 17,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Shortly after they set off in flight, Jake heard the Augur’s voice echo in his mind."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 30,
+        "paragraphIndex": 13,
+        "relativeIndex": -4,
+        "text": "Again... the situation isn’t what I hoped it would be. But please, do at least allow me to try and make you understand while we go where the Runemaiden and the False God are fighting."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 31,
+        "paragraphIndex": 14,
+        "relativeIndex": -3,
+        "text": "Fine,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 33,
+        "paragraphIndex": 14,
+        "relativeIndex": -2,
+        "text": "But don’t you try anything."
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 34,
+        "paragraphIndex": 15,
+        "relativeIndex": -1,
+        "text": "I won’t,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 38,
+        "paragraphIndex": 18,
+        "relativeIndex": 1,
+        "text": "No one was listening in as far as I could tell,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 40,
+        "paragraphIndex": 19,
+        "relativeIndex": 2,
+        "text": "Not that I can see why it would overly matter if anyone had. Another thought that crossed me was also... how is the Holy Church related to the birth of the Desolate Child of Loss?"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 37, \"text\": \"I apologize for not being entirely straightforward, but I’m not in a position to speak freely these days. Even now, I’m constantly under surveillance, and I couldn’t be sure if anyone was still listening in before.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Ell'Hakan\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Augur\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"augur\", \"name\": \"Augur\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 17, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I apologize for not being entirely straightforward, but I’m not in a position to speak freely these days. Even now, I’m constantly under surveillance, and I couldn’t be sure if anyone was still listening in before.”\", \"currentParagraphDialogue\": [{\"lineId\": 37, \"text\": \"I apologize for not being entirely straightforward, but I’m not in a position to speak freely these days. Even now, I’m constantly under surveillance, and I couldn’t be sure if anyone was still listening in before.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"Shortly after they set off in flight, Jake heard the Augur’s voice echo in his mind.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“No one was listening in as far as I could tell,” Jake simply said, confused about Jacob’s shift in tone.\", \"nextParagraphDialogue\": [{\"lineId\": 38, \"text\": \"No one was listening in as far as I could tell,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I apologize for not being entirely straightforward, but I’m not in a position to speak freely these days. Even now, I’m constantly under surveillance, and I couldn’t be sure if anyone was still listening in before.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I apologize for not being entirely straightforward, but I’m not in a position to speak freely these days.\", \"lastSentence\": \"Even now, I’m constantly under surveillance, and I couldn’t be sure if anyone was still listening in before.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"No one was listening in as far as I could tell,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake simply said, confused about Jacob’s shift in tone.\", \"speakerSurface\": \"Jake simply\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"No one was listening in as far as I could tell,\", \"lastSentence\": \"No one was listening in as far as I could tell,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I apologize for not being entirely straightforward, but I’m not in a position to speak freely these days. Even now, I’m constantly under surveillance, and I couldn’t be sure if anyone was still listening in before.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I apologize for not being entirely straightforward, but I’m not in a position to speak freely these days.\", \"lastSentence\": \"Even now, I’m constantly under surveillance, and I couldn’t be sure if anyone was still listening in before.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"augur\", \"characterName\": \"Augur\", \"aliases\": [], \"roleLabels\": [\"augur\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [], \"roleLabels\": [\"jacob\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 30, \"paragraphIndex\": 13, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"Again... the situation isn’t what I hoped it would be. But please, do at least allow me to try and make you understand while we go where the Runemaiden and the False God are fighting.\"}, {\"relativeIndex\": -3, \"lineId\": 31, \"paragraphIndex\": 14, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Fine,\"}, {\"relativeIndex\": -2, \"lineId\": 33, \"paragraphIndex\": 14, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"But don’t you try anything.\"}, {\"relativeIndex\": -1, \"lineId\": 34, \"paragraphIndex\": 15, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"I won’t,\"}, {\"relativeIndex\": 1, \"lineId\": 38, \"paragraphIndex\": 18, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"No one was listening in as far as I could tell,\"}, {\"relativeIndex\": 2, \"lineId\": 40, \"paragraphIndex\": 19, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Not that I can see why it would overly matter if anyone had. Another thought that crossed me was also... how is the Holy Church related to the birth of the Desolate Child of Loss?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"augur\", \"name\": \"Augur\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-unique-lifeform\", \"name\": \"The Unique Lifeform\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"augur\",\n  \"characterName\": \"Augur\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"dialogue_response_context\",\n    \"previous_narration_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

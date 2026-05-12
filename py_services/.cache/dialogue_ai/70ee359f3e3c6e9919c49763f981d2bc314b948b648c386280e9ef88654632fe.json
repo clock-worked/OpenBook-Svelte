@@ -1,0 +1,302 @@
+{
+  "cacheKey": "70ee359f3e3c6e9919c49763f981d2bc314b948b648c386280e9ef88654632fe",
+  "createdAt": "2026-04-01T18:48:15.479446+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "same_paragraph_continuation",
+      "parser_match"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "characterName": "Augur",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "augur"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jacob"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "the-unique-lifeform",
+        "name": "The Unique Lifeform",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "name": "Augur",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": null,
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": true,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jacob",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.98,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.98,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "same_paragraph_continuation"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [
+        "Ell'Hakan"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 90,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "I assume you mean they will remain in the same universe?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 2,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 87,
+          "text": "Besides, the move won’t even be that far."
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 88,
+          "text": "Oh?"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 90,
+          "text": "I assume you mean they will remain in the same universe?"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake asked.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "Oh?",
+          "lastSentence": "Oh?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Oh?",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jake asked.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "I assume you mean they will remain in the same universe?",
+          "lastSentence": "I assume you mean they will remain in the same universe?",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "I assume you mean they will remain in the same universe?",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "currentParagraphText": "“Oh?” Jake asked. “I assume you mean they will remain in the same universe?”",
+      "dialogueLineCount": 3,
+      "paragraphIndex": 42
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 83,
+        "paragraphIndex": 40,
+        "relativeIndex": -4,
+        "text": "Is the Holy Church really willing to invest that many resources in saving mortals?"
+      },
+      {
+        "characterId": "augur",
+        "characterName": "Augur",
+        "lineId": 85,
+        "paragraphIndex": 41,
+        "relativeIndex": -3,
+        "text": "See, in this instance, it’s rather lucky that there are so many eyes on the Milky Way Galaxy. If we left them behind, there would be many enemies who would use it against the Church, while should we invest a lot to evacuate everyone properly, it will look incredibly good and show everyone how much we care about every member,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 87,
+        "paragraphIndex": 42,
+        "relativeIndex": -2,
+        "text": "Besides, the move won’t even be that far."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 88,
+        "paragraphIndex": 42,
+        "relativeIndex": -1,
+        "text": "Oh?"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 91,
+        "paragraphIndex": 43,
+        "relativeIndex": 1,
+        "text": "Of course,"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 93,
+        "paragraphIndex": 43,
+        "relativeIndex": 2,
+        "text": "And quite nearby, too. This is another reason why we wanted this matter settled without there publicly being a lot of bad blood between the Holy Church and the faction you are creating. Sure, the relationship won’t be good, we with the agreement today, there will at least be a precedent that we can be diplomatic, which is pretty needed as even if you push the Holy Church out of this galaxy, we’re still neighbors."
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "evidence": [
+              "ai_scene_memory"
+            ],
+            "score": 0.99
+          }
+        ],
+        "surface": "jake"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 90, \"text\": \"I assume you mean they will remain in the same universe?\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Ell'Hakan\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.98, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Jacob\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"same_paragraph_continuation\"]}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 42, \"currentLinePosition\": 2, \"dialogueLineCount\": 3, \"currentParagraphText\": \"“Oh?” Jake asked. “I assume you mean they will remain in the same universe?”\", \"currentParagraphDialogue\": [{\"lineId\": 87, \"text\": \"Besides, the move won’t even be that far.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 88, \"text\": \"Oh?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 90, \"text\": \"I assume you mean they will remain in the same universe?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Oh?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake asked.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Oh?\", \"lastSentence\": \"Oh?\"}, {\"quoteIndex\": 1, \"quoteText\": \"I assume you mean they will remain in the same universe?\", \"cuePosition\": \"before\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake asked.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I assume you mean they will remain in the same universe?\", \"lastSentence\": \"I assume you mean they will remain in the same universe?\"}]}, \"currentQuoteUnit\": null, \"sceneEntities\": [{\"surface\": \"jake\", \"matches\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"score\": 0.99, \"evidence\": [\"ai_scene_memory\"]}]}], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"augur\", \"characterName\": \"Augur\", \"aliases\": [], \"roleLabels\": [\"augur\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [], \"roleLabels\": [\"jacob\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 83, \"paragraphIndex\": 40, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Is the Holy Church really willing to invest that many resources in saving mortals?\"}, {\"relativeIndex\": -3, \"lineId\": 85, \"paragraphIndex\": 41, \"characterId\": \"augur\", \"characterName\": \"Augur\", \"text\": \"See, in this instance, it’s rather lucky that there are so many eyes on the Milky Way Galaxy. If we left them behind, there would be many enemies who would use it against the Church, while should we invest a lot to evacuate everyone properly, it will look incredibly good and show everyone how much we care about every member,\"}, {\"relativeIndex\": -2, \"lineId\": 87, \"paragraphIndex\": 42, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Besides, the move won’t even be that far.\"}, {\"relativeIndex\": -1, \"lineId\": 88, \"paragraphIndex\": 42, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Oh?\"}, {\"relativeIndex\": 1, \"lineId\": 91, \"paragraphIndex\": 43, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"Of course,\"}, {\"relativeIndex\": 2, \"lineId\": 93, \"paragraphIndex\": 43, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"And quite nearby, too. This is another reason why we wanted this matter settled without there publicly being a lot of bad blood between the Holy Church and the faction you are creating. Sure, the relationship won’t be good, we with the agreement today, there will at least be a precedent that we can be diplomatic, which is pretty needed as even if you push the Holy Church out of this galaxy, we’re still neighbors.\"}], \"chapterCharacters\": [{\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-unique-lifeform\", \"name\": \"The Unique Lifeform\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"augur\", \"name\": \"Augur\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"same_paragraph_continuation\",\n    \"parser_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

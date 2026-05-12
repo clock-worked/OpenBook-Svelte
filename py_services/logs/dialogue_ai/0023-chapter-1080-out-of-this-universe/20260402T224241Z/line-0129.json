@@ -1,0 +1,432 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "1caa04b32eb364f20242aadc3262d5387aeb21fa6a148df98781608025dd6be3",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\1caa04b32eb364f20242aadc3262d5387aeb21fa6a148df98781608025dd6be3.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "irin",
+        "characterName": "Irin",
+        "confidence": 0.99,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "dialogue_flow_continuity"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "irin",
+            "characterName": "Irin",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "irin"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "carmen",
+            "name": "Carmen",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "name": "The Sword Saint",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "name": "Sylphie",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "stormild",
+            "name": "stormild",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "vesperia",
+            "name": "Vesperia",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "maria",
+            "name": "Maria",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "succubus",
+            "name": "Succubus",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "irin",
+            "name": "Irin",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Irin looked in thought for a while before answering.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince.",
+          "lastSentence": "Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.18400000000000005,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "Irin"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": "jake",
+              "confidence": 0.816,
+              "name": "Jake",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "irin",
+              "confidence": 0.456,
+              "name": "Irin",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [
+            "Protagonist"
+          ],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 129,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 129,
+              "text": "Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Irin looked in thought for a while before answering.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince.",
+              "lastSentence": "Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "Irin looked in thought for a while before answering. “Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 130,
+              "text": "Oh, how is he doing?"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 132,
+              "text": "Last I heard, the Devil King there made him his Chosen, so I reckon he’s doing well?"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake asked curiously.",
+              "cueVerb": "asked",
+              "cueVerbType": "speech",
+              "firstSentence": "Oh, how is he doing?",
+              "lastSentence": "Oh, how is he doing?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Oh, how is he doing?",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Jake asked curiously.",
+              "cueVerb": "asked",
+              "cueVerbType": "speech",
+              "firstSentence": "Last I heard, the Devil King there made him his Chosen, so I reckon he’s doing well?",
+              "lastSentence": "Last I heard, the Devil King there made him his Chosen, so I reckon he’s doing well?",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "Last I heard, the Devil King there made him his Chosen, so I reckon he’s doing well?",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "nextParagraphText": "“Oh, how is he doing?” Jake asked curiously. “Last I heard, the Devil King there made him his Chosen, so I reckon he’s doing well?”",
+          "paragraphIndex": 74,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 125,
+              "text": "Damn, a lot has happened while I was gone, huh,"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 127,
+              "text": "Any other massive news you may as well tell me now so I don’t get surprised later?"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake muttered.",
+              "cueVerb": "muttered",
+              "cueVerbType": "speech",
+              "firstSentence": "Damn, a lot has happened while I was gone, huh,",
+              "lastSentence": "Damn, a lot has happened while I was gone, huh,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Damn, a lot has happened while I was gone, huh,",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Jake muttered.",
+              "cueVerb": "muttered",
+              "cueVerbType": "speech",
+              "firstSentence": "Any other massive news you may as well tell me now so I don’t get surprised later?",
+              "lastSentence": "Any other massive news you may as well tell me now so I don’t get surprised later?",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "Any other massive news you may as well tell me now so I don’t get surprised later?",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "previousParagraphText": "“Damn, a lot has happened while I was gone, huh,” Jake muttered. “Any other massive news you may as well tell me now so I don’t get surprised later?”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 118,
+            "paragraphIndex": 68,
+            "relativeIndex": -4,
+            "text": "You call this minor?"
+          },
+          {
+            "characterId": "irin",
+            "characterName": "Irin",
+            "lineId": 123,
+            "paragraphIndex": 72,
+            "relativeIndex": -3,
+            "text": "I was told experts from the Altmar Empire visited and assisted in constructing the tower for Lady Dawnleaf. Of course they weren’t allowed to be in your personal space, so Duskleaf had them make it in a separate one he then merged with your residence,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 125,
+            "paragraphIndex": 73,
+            "relativeIndex": -2,
+            "text": "Damn, a lot has happened while I was gone, huh,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 127,
+            "paragraphIndex": 73,
+            "relativeIndex": -1,
+            "text": "Any other massive news you may as well tell me now so I don’t get surprised later?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 130,
+            "paragraphIndex": 75,
+            "relativeIndex": 1,
+            "text": "Oh, how is he doing?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 132,
+            "paragraphIndex": 75,
+            "relativeIndex": 2,
+            "text": "Last I heard, the Devil King there made him his Chosen, so I reckon he’s doing well?"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 129, \"text\": \"Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Irin\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 74, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Irin looked in thought for a while before answering. “Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince.”\", \"currentParagraphDialogue\": [{\"lineId\": 129, \"text\": \"Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"“Damn, a lot has happened while I was gone, huh,” Jake muttered. “Any other massive news you may as well tell me now so I don’t get surprised later?”\", \"previousParagraphDialogue\": [{\"lineId\": 125, \"text\": \"Damn, a lot has happened while I was gone, huh,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 127, \"text\": \"Any other massive news you may as well tell me now so I don’t get surprised later?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"nextParagraphText\": \"“Oh, how is he doing?” Jake asked curiously. “Last I heard, the Devil King there made him his Chosen, so I reckon he’s doing well?”\", \"nextParagraphDialogue\": [{\"lineId\": 130, \"text\": \"Oh, how is he doing?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 132, \"text\": \"Last I heard, the Devil King there made him his Chosen, so I reckon he’s doing well?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Irin looked in thought for a while before answering.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince.\", \"lastSentence\": \"Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Damn, a lot has happened while I was gone, huh,\", \"cuePosition\": \"after\", \"cueVerb\": \"muttered\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake muttered.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Damn, a lot has happened while I was gone, huh,\", \"lastSentence\": \"Damn, a lot has happened while I was gone, huh,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Any other massive news you may as well tell me now so I don’t get surprised later?\", \"cuePosition\": \"before\", \"cueVerb\": \"muttered\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake muttered.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Any other massive news you may as well tell me now so I don’t get surprised later?\", \"lastSentence\": \"Any other massive news you may as well tell me now so I don’t get surprised later?\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Oh, how is he doing?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake asked curiously.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Oh, how is he doing?\", \"lastSentence\": \"Oh, how is he doing?\"}, {\"quoteIndex\": 1, \"quoteText\": \"Last I heard, the Devil King there made him his Chosen, so I reckon he’s doing well?\", \"cuePosition\": \"before\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake asked curiously.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Last I heard, the Devil King there made him his Chosen, so I reckon he’s doing well?\", \"lastSentence\": \"Last I heard, the Devil King there made him his Chosen, so I reckon he’s doing well?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Irin looked in thought for a while before answering.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince.\", \"lastSentence\": \"Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"irin\", \"characterName\": \"Irin\", \"aliases\": [], \"roleLabels\": [\"irin\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 118, \"paragraphIndex\": 68, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You call this minor?\"}, {\"relativeIndex\": -3, \"lineId\": 123, \"paragraphIndex\": 72, \"characterId\": \"irin\", \"characterName\": \"Irin\", \"text\": \"I was told experts from the Altmar Empire visited and assisted in constructing the tower for Lady Dawnleaf. Of course they weren’t allowed to be in your personal space, so Duskleaf had them make it in a separate one he then merged with your residence,\"}, {\"relativeIndex\": -2, \"lineId\": 125, \"paragraphIndex\": 73, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Damn, a lot has happened while I was gone, huh,\"}, {\"relativeIndex\": -1, \"lineId\": 127, \"paragraphIndex\": 73, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Any other massive news you may as well tell me now so I don’t get surprised later?\"}, {\"relativeIndex\": 1, \"lineId\": 130, \"paragraphIndex\": 75, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Oh, how is he doing?\"}, {\"relativeIndex\": 2, \"lineId\": 132, \"paragraphIndex\": 75, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Last I heard, the Devil King there made him his Chosen, so I reckon he’s doing well?\"}], \"chapterCharacters\": [{\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"stormild\", \"name\": \"stormild\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vesperia\", \"name\": \"Vesperia\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"maria\", \"name\": \"Maria\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"succubus\", \"name\": \"Succubus\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"irin\",\n  \"characterName\": \"Irin\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_flow_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0023 - Chapter 1080 - Out Of This Universe",
+  "currentCharacterId": "jake",
+  "currentCharacterName": "Jake",
+  "currentParagraphText": "Irin looked in thought for a while before answering. “Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.99,
+    "currentCharacterId": "jake",
+    "currentCharacterName": "Jake",
+    "currentParagraphText": "Irin looked in thought for a while before answering. “Well, I’m not sure if it’s massive in your eyes, but I went to the Fourth Hell and met with the Demon Prince.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 129,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Oh, how is he doing?” Jake asked curiously. “Last I heard, the Devil King there made him his Chosen, so I reckon he’s doing well?”",
+    "paragraphIndex": 74,
+    "previousParagraphText": "“Damn, a lot has happened while I was gone, huh,” Jake muttered. “Any other massive news you may as well tell me now so I don’t get surprised later?”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_flow_continuity"
+    ],
+    "suggestedCharacterId": "irin",
+    "suggestedCharacterName": "Irin",
+    "toolTrace": []
+  },
+  "lineId": 129,
+  "nextParagraphText": "“Oh, how is he doing?” Jake asked curiously. “Last I heard, the Devil King there made him his Chosen, so I reckon he’s doing well?”",
+  "paragraphIndex": 74,
+  "previousParagraphText": "“Damn, a lot has happened while I was gone, huh,” Jake muttered. “Any other massive news you may as well tell me now so I don’t get surprised later?”"
+}

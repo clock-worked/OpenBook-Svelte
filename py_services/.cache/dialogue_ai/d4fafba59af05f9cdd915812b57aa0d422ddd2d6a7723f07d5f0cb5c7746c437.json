@@ -1,0 +1,335 @@
+{
+  "cacheKey": "d4fafba59af05f9cdd915812b57aa0d422ddd2d6a7723f07d5f0cb5c7746c437",
+  "createdAt": "2026-05-11T23:20:14.663473+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "minaga",
+    "characterName": "Minaga",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "split_quote_attribution"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "casper",
+        "characterName": "Casper",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "casper"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God",
+          "Unknown Human (Male)"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Attendant",
+          "natures-attendant",
+          "natures-attendant-2",
+          "Nature Attendant",
+          "Life"
+        ],
+        "characterId": "natures-attendant",
+        "name": "Nature's Attendant",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Unique Lifeform",
+          "The Unique Lifeform",
+          "the-unique-lifeform",
+          "the-unique-lifeform-2"
+        ],
+        "characterId": "minaga",
+        "name": "Minaga",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "casper",
+        "name": "Casper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "risen",
+        "name": "risen",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Nah, that’s not really a thing that happens,",
+      "lastSentence": "Nah, that’s not really a thing that happens,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Nah, that’s not really a thing that happens,",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "alignment": {
+        "confidence": 1.0,
+        "isSpanFallback": false,
+        "method": "quote_unit",
+        "paragraphIndex": 58,
+        "spanDistance": 0.0,
+        "spanParagraphIndex": 58
+      },
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Casper",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.32919999999999994,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "risen",
+        "sourceCandidates": [
+          "risen",
+          "Casper"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.804,
+          "name": "risen",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.444,
+          "name": "Casper",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 119,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Nah, that’s not really a thing that happens,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 119,
+          "text": "Nah, that’s not really a thing that happens,"
+        },
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 121,
+          "text": "Same as you don’t randomly explode the body of an E-grade while coincidentally bumping into them, truly powerful people instinctively never really harm their environment either. No matter how much they lose themselves, that part of their control stays. Also, Artemis is a Godqueen from the Pantheon of Life, so I’m sure she has a Golden Leaf of Yggdrasil if an accident somehow still happens."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Nah, that’s not really a thing that happens,",
+          "lastSentence": "Nah, that’s not really a thing that happens,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Nah, that’s not really a thing that happens,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Minaga surprisingly came to the rescue of this awkward question.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Same as you don’t randomly explode the body of an E-grade while coincidentally bumping into them, truly powerful people instinctively never really harm their environment either.",
+          "lastSentence": "Also, Artemis is a Godqueen from the Pantheon of Life, so I’m sure she has a Golden Leaf of Yggdrasil if an accident somehow still happens.",
+          "mentionedEntities": [
+            "Artemis",
+            "Yggdrasil"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "Same as you don’t randomly explode the body of an E-grade while coincidentally bumping into them, truly powerful people instinctively never really harm their environment either. No matter how much they lose themselves, that part of their control stays. Also, Artemis is a Godqueen from the Pantheon of Life, so I’m sure she has a Golden Leaf of Yggdrasil if an accident somehow still happens.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Nah, that’s not really a thing that happens,” Minaga surprisingly came to the rescue of this awkward question. “Same as you don’t randomly explode the body of an E-grade while coincidentally bumping into them, truly powerful people instinctively never really harm their environment either. No matter how much they lose themselves, that part of their control stays. Also, Artemis is a Godqueen from the Pantheon of Life, so I’m sure she has a Golden Leaf of Yggdrasil if an accident somehow still happens.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 58
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 112,
+        "paragraphIndex": 55,
+        "relativeIndex": -4,
+        "text": "You know… logistically…"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 115,
+        "paragraphIndex": 56,
+        "relativeIndex": -3,
+        "text": "I have no idea what you even mean. I find it weirder that your partner is a ghost. You are fully aware that gods are just regular people who’ve lived for a long time and gotten real powerful, right?"
+      },
+      {
+        "characterId": "casper",
+        "characterName": "Casper",
+        "lineId": 116,
+        "paragraphIndex": 57,
+        "relativeIndex": -2,
+        "text": "I guess… but still,"
+      },
+      {
+        "characterId": "casper",
+        "characterName": "Casper",
+        "lineId": 118,
+        "paragraphIndex": 57,
+        "relativeIndex": -1,
+        "text": "Considering the sheer difference in power, if she happens to get a little too enthusiastic, can’t it get… dangerous?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 121,
+        "paragraphIndex": 58,
+        "relativeIndex": 1,
+        "text": "Same as you don’t randomly explode the body of an E-grade while coincidentally bumping into them, truly powerful people instinctively never really harm their environment either. No matter how much they lose themselves, that part of their control stays. Also, Artemis is a Godqueen from the Pantheon of Life, so I’m sure she has a Golden Leaf of Yggdrasil if an accident somehow still happens."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 123,
+        "paragraphIndex": 60,
+        "relativeIndex": 2,
+        "text": "No, rather than logistic questions, I would ask moral ones. Artemis is a god who has lived for many eras, while Jake is a tiny little mortal who hasn’t been alive for even close to a millennium. She’s, like, a million times older than him. Also, as you mentioned, there is a massive power imbalance to consider. Can we truly call a relationship with such a huge age disparity ethical?"
+      }
+    ],
+    "sceneEntities": [],
+    "sceneRoster": {
+      "paragraphWindow": 6,
+      "presentCharacterIds": [
+        "jake",
+        "unknown",
+        "casper"
+      ],
+      "presentCharacters": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake"
+        },
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown"
+        },
+        {
+          "characterId": "casper",
+          "characterName": "Casper"
+        }
+      ]
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 119, \"text\": \"Nah, that’s not really a thing that happens,\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"risen\", \"sourceCandidates\": [\"risen\", \"Casper\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.32919999999999994, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Casper\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"risen\", \"confidence\": 0.804, \"reasons\": null}, {\"characterId\": null, \"name\": \"Casper\", \"confidence\": 0.444, \"reasons\": null}], \"isReturning\": false, \"alignment\": {\"paragraphIndex\": 58, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 58, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 58, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Nah, that’s not really a thing that happens,” Minaga surprisingly came to the rescue of this awkward question. “Same as you don’t randomly explode the body of an E-grade while coincidentally bumping into them, truly powerful people instinctively never really harm their environment either. No matter how much they lose themselves, that part of their control stays. Also, Artemis is a Godqueen from the Pantheon of Life, so I’m sure she has a Golden Leaf of Yggdrasil if an accident somehow still happens.”\", \"currentParagraphDialogue\": [{\"lineId\": 119, \"text\": \"Nah, that’s not really a thing that happens,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 121, \"text\": \"Same as you don’t randomly explode the body of an E-grade while coincidentally bumping into them, truly powerful people instinctively never really harm their environment either. No matter how much they lose themselves, that part of their control stays. Also, Artemis is a Godqueen from the Pantheon of Life, so I’m sure she has a Golden Leaf of Yggdrasil if an accident somehow still happens.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Nah, that’s not really a thing that happens,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Nah, that’s not really a thing that happens,\", \"lastSentence\": \"Nah, that’s not really a thing that happens,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Same as you don’t randomly explode the body of an E-grade while coincidentally bumping into them, truly powerful people instinctively never really harm their environment either. No matter how much they lose themselves, that part of their control stays. Also, Artemis is a Godqueen from the Pantheon of Life, so I’m sure she has a Golden Leaf of Yggdrasil if an accident somehow still happens.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Minaga surprisingly came to the rescue of this awkward question.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Artemis\", \"Yggdrasil\"], \"addressedEntity\": null, \"firstSentence\": \"Same as you don’t randomly explode the body of an E-grade while coincidentally bumping into them, truly powerful people instinctively never really harm their environment either.\", \"lastSentence\": \"Also, Artemis is a Godqueen from the Pantheon of Life, so I’m sure she has a Golden Leaf of Yggdrasil if an accident somehow still happens.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Nah, that’s not really a thing that happens,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Nah, that’s not really a thing that happens,\", \"lastSentence\": \"Nah, that’s not really a thing that happens,\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"jake\", \"unknown\", \"casper\"], \"presentCharacters\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\"}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}, {\"characterId\": \"casper\", \"characterName\": \"Casper\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"casper\", \"characterName\": \"Casper\", \"aliases\": [], \"roleLabels\": [\"casper\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 112, \"paragraphIndex\": 55, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"You know… logistically…\"}, {\"relativeIndex\": -3, \"lineId\": 115, \"paragraphIndex\": 56, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I have no idea what you even mean. I find it weirder that your partner is a ghost. You are fully aware that gods are just regular people who’ve lived for a long time and gotten real powerful, right?\"}, {\"relativeIndex\": -2, \"lineId\": 116, \"paragraphIndex\": 57, \"characterId\": \"casper\", \"characterName\": \"Casper\", \"text\": \"I guess… but still,\"}, {\"relativeIndex\": -1, \"lineId\": 118, \"paragraphIndex\": 57, \"characterId\": \"casper\", \"characterName\": \"Casper\", \"text\": \"Considering the sheer difference in power, if she happens to get a little too enthusiastic, can’t it get… dangerous?\"}, {\"relativeIndex\": 1, \"lineId\": 121, \"paragraphIndex\": 58, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Same as you don’t randomly explode the body of an E-grade while coincidentally bumping into them, truly powerful people instinctively never really harm their environment either. No matter how much they lose themselves, that part of their control stays. Also, Artemis is a Godqueen from the Pantheon of Life, so I’m sure she has a Golden Leaf of Yggdrasil if an accident somehow still happens.\"}, {\"relativeIndex\": 2, \"lineId\": 123, \"paragraphIndex\": 60, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"No, rather than logistic questions, I would ask moral ones. Artemis is a god who has lived for many eras, while Jake is a tiny little mortal who hasn’t been alive for even close to a millennium. She’s, like, a million times older than him. Also, as you mentioned, there is a massive power imbalance to consider. Can we truly call a relationship with such a huge age disparity ethical?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"natures-attendant\", \"name\": \"Nature's Attendant\", \"aliases\": [\"Attendant\", \"natures-attendant\", \"natures-attendant-2\", \"Nature Attendant\", \"Life\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"casper\", \"name\": \"Casper\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"risen\", \"name\": \"risen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"minaga\",\n  \"characterName\": \"Minaga\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"split_quote_attribution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

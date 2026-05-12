@@ -1,0 +1,258 @@
+{
+  "cacheKey": "eb6f4ad43a05bcd0b7d7dc0be2ef78c666d29a557641e4deff20b84cceed669e",
+  "createdAt": "2026-04-18T22:02:26.967614+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "viper",
+    "characterName": "The Malefic Viper",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "next_paragraph_attribution",
+      "dialogue_continuity",
+      "speaker_gives_advice_about_mentioned_character"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy",
+          "Vilas"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Life’s complicated, and if you are in doubt, just talk to her.",
+      "lastSentence": "Not telling you to pour out every thought and feeling unprompted, but when asked, be honest,",
+      "mentionedEntities": [
+        "Artemis",
+        "Life"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "Life’s complicated, and if you are in doubt, just talk to her. Genuinely. From what I know about Artemis, she’s a very curt and honest woman, and if she’s unhappy about something, she’s sure to let you know. You should do the same. She’s a god who specializes in Perception for fuck’s sake, I reckon she picks up on most things already, so hiding your true feelings on matters won’t do you any good. Not telling you to pour out every thought and feeling unprompted, but when asked, be honest,",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "Artemis",
+            "Life"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Artemis",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.21000000000000002,
+        "misattributionRisk": 0.47919999999999996,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Artemis",
+        "sourceCandidates": [
+          "Artemis",
+          "The Malefic Viper"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.654
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.654,
+          "name": "Artemis",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.444,
+          "name": "The Malefic Viper",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 90,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Life’s complicated, and if you are in doubt, just talk to her. Genuinely. From what I know about Artemis, she’s a very curt and honest woman, and if she’s unhappy about something, she’s sure to let you know. You should do the same. She’s a god who specializes in Perception for fuck’s sake, I reckon she picks up on most things already, so hiding your true feelings on matters won’t do you any good. Not telling you to pour out every thought and feeling unprompted, but when asked, be honest,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 90,
+          "text": "Life’s complicated, and if you are in doubt, just talk to her. Genuinely. From what I know about Artemis, she’s a very curt and honest woman, and if she’s unhappy about something, she’s sure to let you know. You should do the same. She’s a god who specializes in Perception for fuck’s sake, I reckon she picks up on most things already, so hiding your true feelings on matters won’t do you any good. Not telling you to pour out every thought and feeling unprompted, but when asked, be honest,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Life’s complicated, and if you are in doubt, just talk to her.",
+          "lastSentence": "Not telling you to pour out every thought and feeling unprompted, but when asked, be honest,",
+          "mentionedEntities": [
+            "Artemis",
+            "Life"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Life’s complicated, and if you are in doubt, just talk to her. Genuinely. From what I know about Artemis, she’s a very curt and honest woman, and if she’s unhappy about something, she’s sure to let you know. You should do the same. She’s a god who specializes in Perception for fuck’s sake, I reckon she picks up on most things already, so hiding your true feelings on matters won’t do you any good. Not telling you to pour out every thought and feeling unprompted, but when asked, be honest,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Life’s complicated, and if you are in doubt, just talk to her. Genuinely. From what I know about Artemis, she’s a very curt and honest woman, and if she’s unhappy about something, she’s sure to let you know. You should do the same. She’s a god who specializes in Perception for fuck’s sake, I reckon she picks up on most things already, so hiding your true feelings on matters won’t do you any good. Not telling you to pour out every thought and feeling unprompted, but when asked, be honest,”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Villy gave some more sage advice.",
+      "paragraphIndex": 81,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Because the Viper did have a point... Jake wouldn’t like Artemis coming to him and showing off some S-grade guy she’d taken a fancy to. He just hadn’t said anything because he hoped that wouldn’t happen any time soon, if ever. Objecting to it would also be very hypocritical. Hearing Villy say it had a low chance of happening eased his worries a lot, but if it ever did happen anyway... he’d worry about that bridge when he had to cross it."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "the_malefic_viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 82,
+        "paragraphIndex": 73,
+        "relativeIndex": -4,
+        "text": "Yet logical. Getting emotionally involved with every partner would be a great way for gods to burn themselves out. You can only fully invest yourself in a mortal partner and have them die on you so many times before you either become apathetic to it or learn how to protect yourself by only investing strong emotions in other immortals. Mortals simply die too fast to even enter emotions into the equation in most cases, which I strongly suspect is also the case for Artemis. I’d bet that if you told her you were interested in another god, she would object harshly and even get a little jealous. Meanwhile, she genuinely doesn’t give a shit about mortals, as chances are they’re either gonna die soon or you and this other mortal will have grown apart by the time you reach godhood."
+      },
+      {
+        "characterId": "the_malefic_viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 83,
+        "paragraphIndex": 74,
+        "relativeIndex": -3,
+        "text": "A bit morbid of a mindset to have, but yeah, I guess I can see the logic from an immortal’s point of view. Still, the casualness of which she spoke of open relationships took me by surprise,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 85,
+        "paragraphIndex": 76,
+        "relativeIndex": -2,
+        "text": "If it’s worth anything, I seriously doubt she has any mortals, much less other gods, in mind either, nor will she even bother looking for any. I got out of Nature’s Attendant that she hasn’t had anyone else around for several eras, so my guess is she once more just wanted to be nice and not make you feel bad about things being one-sided, while in reality, she has zero interest in exercising that right. Think about it this way, you’re actually kind of the perfect partner with both the advantages of a mortal and a god at the same time! Besides, let’s not act as if you’d like her finding other partners, mortal or otherwise."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 87,
+        "paragraphIndex": 78,
+        "relativeIndex": -1,
+        "text": "Man, relationships really are complicated and there’s a lot of logic I still don’t understand."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 92,
+        "paragraphIndex": 83,
+        "relativeIndex": 1,
+        "text": "Alright,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 94,
+        "paragraphIndex": 85,
+        "relativeIndex": 2,
+        "text": "Now, enough about that. I don’t wanna become one of those guys who only talk about their relationship all day."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 90, \"text\": \"Life’s complicated, and if you are in doubt, just talk to her. Genuinely. From what I know about Artemis, she’s a very curt and honest woman, and if she’s unhappy about something, she’s sure to let you know. You should do the same. She’s a god who specializes in Perception for fuck’s sake, I reckon she picks up on most things already, so hiding your true feelings on matters won’t do you any good. Not telling you to pour out every thought and feeling unprompted, but when asked, be honest,\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Artemis\", \"sourceCandidates\": [\"Artemis\", \"The Malefic Viper\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.654, \"marginToSecond\": 0.21000000000000002, \"misattributionRisk\": 0.47919999999999996, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Artemis\", \"Life\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Artemis\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.654, \"reasons\": null}, {\"characterId\": null, \"name\": \"The Malefic Viper\", \"confidence\": 0.444, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 81, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Life’s complicated, and if you are in doubt, just talk to her. Genuinely. From what I know about Artemis, she’s a very curt and honest woman, and if she’s unhappy about something, she’s sure to let you know. You should do the same. She’s a god who specializes in Perception for fuck’s sake, I reckon she picks up on most things already, so hiding your true feelings on matters won’t do you any good. Not telling you to pour out every thought and feeling unprompted, but when asked, be honest,”\", \"currentParagraphDialogue\": [{\"lineId\": 90, \"text\": \"Life’s complicated, and if you are in doubt, just talk to her. Genuinely. From what I know about Artemis, she’s a very curt and honest woman, and if she’s unhappy about something, she’s sure to let you know. You should do the same. She’s a god who specializes in Perception for fuck’s sake, I reckon she picks up on most things already, so hiding your true feelings on matters won’t do you any good. Not telling you to pour out every thought and feeling unprompted, but when asked, be honest,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"Because the Viper did have a point... Jake wouldn’t like Artemis coming to him and showing off some S-grade guy she’d taken a fancy to. He just hadn’t said anything because he hoped that wouldn’t happen any time soon, if ever. Objecting to it would also be very hypocritical. Hearing Villy say it had a low chance of happening eased his worries a lot, but if it ever did happen anyway... he’d worry about that bridge when he had to cross it.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Villy gave some more sage advice.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Life’s complicated, and if you are in doubt, just talk to her. Genuinely. From what I know about Artemis, she’s a very curt and honest woman, and if she’s unhappy about something, she’s sure to let you know. You should do the same. She’s a god who specializes in Perception for fuck’s sake, I reckon she picks up on most things already, so hiding your true feelings on matters won’t do you any good. Not telling you to pour out every thought and feeling unprompted, but when asked, be honest,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Artemis\", \"Life\"], \"addressedEntity\": null, \"firstSentence\": \"Life’s complicated, and if you are in doubt, just talk to her.\", \"lastSentence\": \"Not telling you to pour out every thought and feeling unprompted, but when asked, be honest,\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Life’s complicated, and if you are in doubt, just talk to her. Genuinely. From what I know about Artemis, she’s a very curt and honest woman, and if she’s unhappy about something, she’s sure to let you know. You should do the same. She’s a god who specializes in Perception for fuck’s sake, I reckon she picks up on most things already, so hiding your true feelings on matters won’t do you any good. Not telling you to pour out every thought and feeling unprompted, but when asked, be honest,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Artemis\", \"Life\"], \"addressedEntity\": null, \"firstSentence\": \"Life’s complicated, and if you are in doubt, just talk to her.\", \"lastSentence\": \"Not telling you to pour out every thought and feeling unprompted, but when asked, be honest,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 82, \"paragraphIndex\": 73, \"characterId\": \"the_malefic_viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Yet logical. Getting emotionally involved with every partner would be a great way for gods to burn themselves out. You can only fully invest yourself in a mortal partner and have them die on you so many times before you either become apathetic to it or learn how to protect yourself by only investing strong emotions in other immortals. Mortals simply die too fast to even enter emotions into the equation in most cases, which I strongly suspect is also the case for Artemis. I’d bet that if you told her you were interested in another god, she would object harshly and even get a little jealous. Meanwhile, she genuinely doesn’t give a shit about mortals, as chances are they’re either gonna die soon or you and this other mortal will have grown apart by the time you reach godhood.\"}, {\"relativeIndex\": -3, \"lineId\": 83, \"paragraphIndex\": 74, \"characterId\": \"the_malefic_viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"A bit morbid of a mindset to have, but yeah, I guess I can see the logic from an immortal’s point of view. Still, the casualness of which she spoke of open relationships took me by surprise,\"}, {\"relativeIndex\": -2, \"lineId\": 85, \"paragraphIndex\": 76, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"If it’s worth anything, I seriously doubt she has any mortals, much less other gods, in mind either, nor will she even bother looking for any. I got out of Nature’s Attendant that she hasn’t had anyone else around for several eras, so my guess is she once more just wanted to be nice and not make you feel bad about things being one-sided, while in reality, she has zero interest in exercising that right. Think about it this way, you’re actually kind of the perfect partner with both the advantages of a mortal and a god at the same time! Besides, let’s not act as if you’d like her finding other partners, mortal or otherwise.\"}, {\"relativeIndex\": -1, \"lineId\": 87, \"paragraphIndex\": 78, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Man, relationships really are complicated and there’s a lot of logic I still don’t understand.\"}, {\"relativeIndex\": 1, \"lineId\": 92, \"paragraphIndex\": 83, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Alright,\"}, {\"relativeIndex\": 2, \"lineId\": 94, \"paragraphIndex\": 85, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Now, enough about that. I don’t wanna become one of those guys who only talk about their relationship all day.\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\", \"Vilas\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"viper\",\n  \"characterName\": \"The Malefic Viper\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"next_paragraph_attribution\",\n    \"dialogue_continuity\",\n    \"speaker_gives_advice_about_mentioned_character\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

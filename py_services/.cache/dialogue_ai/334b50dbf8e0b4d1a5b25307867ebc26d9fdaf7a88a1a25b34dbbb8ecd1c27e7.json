@@ -1,0 +1,304 @@
+{
+  "cacheKey": "334b50dbf8e0b4d1a5b25307867ebc26d9fdaf7a88a1a25b34dbbb8ecd1c27e7",
+  "createdAt": "2026-04-02T22:44:10.326961+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": {
+      "alias": "the old alchemist",
+      "characterId": "duskleaf",
+      "characterName": "Duskleaf"
+    },
+    "characterId": "duskleaf",
+    "characterName": "Duskleaf",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "recent_addressee_is_speaker"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "sylphie"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "irin",
+        "name": "Irin",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "succubus",
+        "name": "Succubus",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "duskleaf",
+        "name": "Duskleaf",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "meira",
+        "name": "meira",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "the old alchemist responded bluntly.",
+      "cueVerb": "responded",
+      "cueVerbType": "speech",
+      "firstSentence": "Hardly,",
+      "lastSentence": "Hardly,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Hardly,",
+      "speakerNameMatch": null,
+      "speakerSurface": "the old alchemist"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Sylphie",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.7,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.14400000000000002,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Sylphie",
+        "sourceCandidates": [
+          "Sylphie",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.856
+      },
+      "candidates": [
+        {
+          "characterId": "sylphie",
+          "confidence": 0.856,
+          "name": "Sylphie",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "speech_verb"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.496,
+          "name": "Jake",
+          "reasons": [
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "sylphie",
+      "currentCharacterName": "Sylphie",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 88,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Hardly,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "sylphie",
+          "characterName": "Sylphie",
+          "isReturning": false,
+          "lineId": 88,
+          "text": "Hardly,"
+        },
+        {
+          "characterId": "sylphie",
+          "characterName": "Sylphie",
+          "isReturning": true,
+          "lineId": 90,
+          "text": "Let me already inform you now that Meira isn’t in the tower. In fact, she’s not even in the universe."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the old alchemist responded bluntly.",
+          "cueVerb": "responded",
+          "cueVerbType": "speech",
+          "firstSentence": "Hardly,",
+          "lastSentence": "Hardly,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Hardly,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the old alchemist"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "the old alchemist responded bluntly.",
+          "cueVerb": "responded",
+          "cueVerbType": "speech",
+          "firstSentence": "Let me already inform you now that Meira isn’t in the tower.",
+          "lastSentence": "In fact, she’s not even in the universe.",
+          "mentionedEntities": [
+            "meira",
+            "meira"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "Let me already inform you now that Meira isn’t in the tower. In fact, she’s not even in the universe.",
+          "speakerNameMatch": null,
+          "speakerSurface": "the old alchemist"
+        }
+      ],
+      "currentParagraphText": "“Hardly,” the old alchemist responded bluntly. “Let me already inform you now that Meira isn’t in the tower. In fact, she’s not even in the universe.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 42
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 80,
+        "paragraphIndex": 38,
+        "relativeIndex": -4,
+        "text": "Yeah, it’s way too empty,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 82,
+        "paragraphIndex": 38,
+        "relativeIndex": -3,
+        "text": "I suppose this first floor is meant as some common area to welcome guests. Doesn’t look like it’s quite done yet, though."
+      },
+      {
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "lineId": 84,
+        "paragraphIndex": 40,
+        "relativeIndex": -2,
+        "text": "It only works if you’ve been given permission by the tower owner or carry a particular kind of token,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 86,
+        "paragraphIndex": 41,
+        "relativeIndex": -1,
+        "text": "Hey, Duskleaf, been a while,"
+      },
+      {
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "lineId": 90,
+        "paragraphIndex": 42,
+        "relativeIndex": 1,
+        "text": "Let me already inform you now that Meira isn’t in the tower. In fact, she’s not even in the universe."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 91,
+        "paragraphIndex": 43,
+        "relativeIndex": 2,
+        "text": "Oh?"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 88, \"text\": \"Hardly,\", \"currentCharacterId\": \"sylphie\", \"currentCharacterName\": \"Sylphie\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Sylphie\", \"sourceCandidates\": [\"Sylphie\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.856, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.14400000000000002, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Sylphie\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"confidence\": 0.856, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.496, \"reasons\": [\"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 42, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Hardly,” the old alchemist responded bluntly. “Let me already inform you now that Meira isn’t in the tower. In fact, she’s not even in the universe.”\", \"currentParagraphDialogue\": [{\"lineId\": 88, \"text\": \"Hardly,\", \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"isReturning\": false}, {\"lineId\": 90, \"text\": \"Let me already inform you now that Meira isn’t in the tower. In fact, she’s not even in the universe.\", \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Hardly,\", \"cuePosition\": \"after\", \"cueVerb\": \"responded\", \"cueVerbType\": \"speech\", \"cueText\": \"the old alchemist responded bluntly.\", \"speakerSurface\": \"the old alchemist\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Hardly,\", \"lastSentence\": \"Hardly,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Let me already inform you now that Meira isn’t in the tower. In fact, she’s not even in the universe.\", \"cuePosition\": \"before\", \"cueVerb\": \"responded\", \"cueVerbType\": \"speech\", \"cueText\": \"the old alchemist responded bluntly.\", \"speakerSurface\": \"the old alchemist\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"meira\", \"meira\"], \"addressedEntity\": null, \"firstSentence\": \"Let me already inform you now that Meira isn’t in the tower.\", \"lastSentence\": \"In fact, she’s not even in the universe.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Hardly,\", \"cuePosition\": \"after\", \"cueVerb\": \"responded\", \"cueVerbType\": \"speech\", \"cueText\": \"the old alchemist responded bluntly.\", \"speakerSurface\": \"the old alchemist\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Hardly,\", \"lastSentence\": \"Hardly,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [\"sylphie\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 80, \"paragraphIndex\": 38, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Yeah, it’s way too empty,\"}, {\"relativeIndex\": -3, \"lineId\": 82, \"paragraphIndex\": 38, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I suppose this first floor is meant as some common area to welcome guests. Doesn’t look like it’s quite done yet, though.\"}, {\"relativeIndex\": -2, \"lineId\": 84, \"paragraphIndex\": 40, \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"text\": \"It only works if you’ve been given permission by the tower owner or carry a particular kind of token,\"}, {\"relativeIndex\": -1, \"lineId\": 86, \"paragraphIndex\": 41, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Hey, Duskleaf, been a while,\"}, {\"relativeIndex\": 1, \"lineId\": 90, \"paragraphIndex\": 42, \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"text\": \"Let me already inform you now that Meira isn’t in the tower. In fact, she’s not even in the universe.\"}, {\"relativeIndex\": 2, \"lineId\": 91, \"paragraphIndex\": 43, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Oh?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"succubus\", \"name\": \"Succubus\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"duskleaf\", \"name\": \"Duskleaf\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"meira\", \"name\": \"meira\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"duskleaf\",\n  \"characterName\": \"Duskleaf\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"recent_addressee_is_speaker\"\n  ],\n  \"aliasToAdd\": {\n    \"characterId\": \"duskleaf\",\n    \"characterName\": \"Duskleaf\",\n    \"alias\": \"the old alchemist\"\n  },\n  \"newCharacterProposal\": null\n}"
+}

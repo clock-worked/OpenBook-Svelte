@@ -1,0 +1,277 @@
+{
+  "cacheKey": "ca577942bd99a8040ae0f64af4213c080303b1d9452e3ddce039cc32819744e9",
+  "createdAt": "2026-04-02T22:32:10.888602+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "same_paragraph_continuation",
+      "dialogue_turn_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "caleb"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "caleb",
+        "name": "Caleb",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "arnold",
+        "name": "Arnold",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Jake lifted a hand.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "I’m not saying it would be fine, but if a little commission was made...",
+      "lastSentence": "I’m not saying that would be terrible either.",
+      "mentionedEntities": [],
+      "quoteIndex": 1,
+      "quoteText": "I’m not saying it would be fine, but if a little commission was made... I’m not saying that would be terrible either.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Caleb",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.524,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Caleb"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.98,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "same_paragraph_continuation"
+          ]
+        },
+        {
+          "characterId": "caleb",
+          "confidence": 0.456,
+          "name": "Caleb",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Protagonist"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 48,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "I’m not saying it would be fine, but if a little commission was made... I’m not saying that would be terrible either."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 46,
+          "text": "Now, wait a second,"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 48,
+          "text": "I’m not saying it would be fine, but if a little commission was made... I’m not saying that would be terrible either."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Now, wait a second,",
+          "lastSentence": "Now, wait a second,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Now, wait a second,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake lifted a hand.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I’m not saying it would be fine, but if a little commission was made...",
+          "lastSentence": "I’m not saying that would be terrible either.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "I’m not saying it would be fine, but if a little commission was made... I’m not saying that would be terrible either.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Now, wait a second,” Jake lifted a hand. “I’m not saying it would be fine, but if a little commission was made... I’m not saying that would be terrible either.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 22
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 42,
+        "paragraphIndex": 20,
+        "relativeIndex": -4,
+        "text": "When you say they’re lower, that means they still think the chance is above zero percent. That makes you either a lot more competent or a lot worse at risk analysis than I would assume."
+      },
+      {
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "lineId": 43,
+        "paragraphIndex": 21,
+        "relativeIndex": -3,
+        "text": "If we go only by the power available to us in the galaxy, the chance is zero percent, rounded down, but if members from outside the universe get involved?"
+      },
+      {
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "lineId": 45,
+        "paragraphIndex": 21,
+        "relativeIndex": -2,
+        "text": "While the success rate is still considered way too low, it isn’t zero. I wouldn’t really think about it too much, though. I have a hard time seeing them ever accepting a commission to take you out as things are now. If they were willing to do that, then what would have been the purpose of making me a Judge?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 46,
+        "paragraphIndex": 22,
+        "relativeIndex": -1,
+        "text": "Now, wait a second,"
+      },
+      {
+        "characterId": "caleb",
+        "characterName": "Caleb",
+        "lineId": 49,
+        "paragraphIndex": 23,
+        "relativeIndex": 1,
+        "text": "I’m not going to approve sending assassins your way to serve as practice,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 51,
+        "paragraphIndex": 24,
+        "relativeIndex": 2,
+        "text": "It could be fun, though,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 48, \"text\": \"I’m not saying it would be fine, but if a little commission was made... I’m not saying that would be terrible either.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Caleb\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.524, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Caleb\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"same_paragraph_continuation\"]}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 22, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Now, wait a second,” Jake lifted a hand. “I’m not saying it would be fine, but if a little commission was made... I’m not saying that would be terrible either.”\", \"currentParagraphDialogue\": [{\"lineId\": 46, \"text\": \"Now, wait a second,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 48, \"text\": \"I’m not saying it would be fine, but if a little commission was made... I’m not saying that would be terrible either.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Now, wait a second,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Now, wait a second,\", \"lastSentence\": \"Now, wait a second,\"}, {\"quoteIndex\": 1, \"quoteText\": \"I’m not saying it would be fine, but if a little commission was made... I’m not saying that would be terrible either.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake lifted a hand.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’m not saying it would be fine, but if a little commission was made...\", \"lastSentence\": \"I’m not saying that would be terrible either.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"I’m not saying it would be fine, but if a little commission was made... I’m not saying that would be terrible either.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake lifted a hand.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’m not saying it would be fine, but if a little commission was made...\", \"lastSentence\": \"I’m not saying that would be terrible either.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"aliases\": [], \"roleLabels\": [\"caleb\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 42, \"paragraphIndex\": 20, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"When you say they’re lower, that means they still think the chance is above zero percent. That makes you either a lot more competent or a lot worse at risk analysis than I would assume.\"}, {\"relativeIndex\": -3, \"lineId\": 43, \"paragraphIndex\": 21, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"If we go only by the power available to us in the galaxy, the chance is zero percent, rounded down, but if members from outside the universe get involved?\"}, {\"relativeIndex\": -2, \"lineId\": 45, \"paragraphIndex\": 21, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"While the success rate is still considered way too low, it isn’t zero. I wouldn’t really think about it too much, though. I have a hard time seeing them ever accepting a commission to take you out as things are now. If they were willing to do that, then what would have been the purpose of making me a Judge?\"}, {\"relativeIndex\": -1, \"lineId\": 46, \"paragraphIndex\": 22, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Now, wait a second,\"}, {\"relativeIndex\": 1, \"lineId\": 49, \"paragraphIndex\": 23, \"characterId\": \"caleb\", \"characterName\": \"Caleb\", \"text\": \"I’m not going to approve sending assassins your way to serve as practice,\"}, {\"relativeIndex\": 2, \"lineId\": 51, \"paragraphIndex\": 24, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"It could be fun, though,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"caleb\", \"name\": \"Caleb\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"arnold\", \"name\": \"Arnold\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"same_paragraph_continuation\",\n    \"dialogue_turn_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

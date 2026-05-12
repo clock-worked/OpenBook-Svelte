@@ -1,0 +1,407 @@
+{
+  "cacheKey": "86184079a57b37416708ec6a00c83cb139f0580b8794650c90d5251af92146bc",
+  "createdAt": "2026-04-02T22:43:01.288070+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "sylphie",
+    "characterName": "Sylphie",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration",
+      "quote_structure_match"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "characterName": "The Sword Saint",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "the sword saint",
+          "sword saint",
+          "the sword saint 2",
+          "sword saint 2",
+          "miyamoto"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "stormild",
+        "characterName": "stormild",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "stormild"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "sylphie"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "vesperia",
+        "characterName": "Vesperia",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "vesperia"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "stormild",
+        "name": "stormild",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "vesperia",
+        "name": "Vesperia",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "maria",
+        "name": "Maria",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "succubus",
+        "name": "Succubus",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "irin",
+        "name": "Irin",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "Sylphie also confirmed her intent to go, meaning that their Nevermore Party would have a little reunion soon... what was left of it anyway.",
+      "cueVerb": "confirmed",
+      "cueVerbType": "speech",
+      "firstSentence": "Ree,",
+      "lastSentence": "Ree,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Ree,",
+      "speakerNameMatch": null,
+      "speakerSurface": "Sylphie also"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Vesperia",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.7,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.14400000000000002,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "The Sword Saint"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.856
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.856,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "speech_verb"
+          ]
+        },
+        {
+          "characterId": "the-sword-saint",
+          "confidence": 0.496,
+          "name": "The Sword Saint",
+          "reasons": [
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [
+        "Protagonist"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 51,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Ree,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 51,
+          "text": "Ree,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Sylphie also confirmed her intent to go, meaning that their Nevermore Party would have a little reunion soon... what was left of it anyway.",
+          "cueVerb": "confirmed",
+          "cueVerbType": "speech",
+          "firstSentence": "Ree,",
+          "lastSentence": "Ree,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Ree,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Sylphie also"
+        }
+      ],
+      "currentParagraphText": "“Ree,” Sylphie also confirmed her intent to go, meaning that their Nevermore Party would have a little reunion soon... what was left of it anyway.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "vesperia",
+          "characterName": "Vesperia",
+          "isReturning": false,
+          "lineId": 53,
+          "text": "Excuse me, Sire, would it be possible to expedite our return?"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Vesperia spoke up, spotting an opportunity to jump into the conversation.",
+          "cueVerb": "spoke",
+          "cueVerbType": "speech",
+          "firstSentence": "Excuse me, Sire, would it be possible to expedite our return?",
+          "lastSentence": "Excuse me, Sire, would it be possible to expedite our return?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Excuse me, Sire, would it be possible to expedite our return?",
+          "speakerNameMatch": "Vesperia",
+          "speakerSurface": "Vesperia"
+        }
+      ],
+      "nextParagraphText": "“Excuse me, Sire, would it be possible to expedite our return?” Vesperia spoke up, spotting an opportunity to jump into the conversation.",
+      "paragraphIndex": 29,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "the-sword-saint",
+          "characterName": "The Sword Saint",
+          "isReturning": false,
+          "lineId": 49,
+          "text": "Visiting the Pantheon of Life does seem like it could be an idea then,"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the Sword Saint answered, pretty much confirming he was going.",
+          "cueVerb": "answered",
+          "cueVerbType": "speech",
+          "firstSentence": "Visiting the Pantheon of Life does seem like it could be an idea then,",
+          "lastSentence": "Visiting the Pantheon of Life does seem like it could be an idea then,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Visiting the Pantheon of Life does seem like it could be an idea then,",
+          "speakerNameMatch": "The Sword Saint",
+          "speakerSurface": "Sword Saint"
+        }
+      ],
+      "previousParagraphText": "“Visiting the Pantheon of Life does seem like it could be an idea then,” the Sword Saint answered, pretty much confirming he was going."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "stormild",
+        "characterName": "stormild",
+        "lineId": 42,
+        "paragraphIndex": 24,
+        "relativeIndex": -4,
+        "text": "bird friends"
+      },
+      {
+        "characterId": "sylphie",
+        "characterName": "Sylphie",
+        "lineId": 45,
+        "paragraphIndex": 26,
+        "relativeIndex": -3,
+        "text": "I would assume the Pantheon of Life also has hunting grounds available?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 47,
+        "paragraphIndex": 27,
+        "relativeIndex": -2,
+        "text": "Duh,"
+      },
+      {
+        "characterId": "the-sword-saint",
+        "characterName": "The Sword Saint",
+        "lineId": 49,
+        "paragraphIndex": 28,
+        "relativeIndex": -1,
+        "text": "Visiting the Pantheon of Life does seem like it could be an idea then,"
+      },
+      {
+        "characterId": "vesperia",
+        "characterName": "Vesperia",
+        "lineId": 53,
+        "paragraphIndex": 30,
+        "relativeIndex": 1,
+        "text": "Excuse me, Sire, would it be possible to expedite our return?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 56,
+        "paragraphIndex": 32,
+        "relativeIndex": 2,
+        "text": "Oh, of course, let’s get going,"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "sylphie",
+            "characterName": "Sylphie",
+            "evidence": [
+              "token_overlap:sylphie"
+            ],
+            "score": 0.625
+          }
+        ],
+        "surface": "sylphie also"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 51, \"text\": \"Ree,\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"The Sword Saint\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.856, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.14400000000000002, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Vesperia\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.856, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"confidence\": 0.496, \"reasons\": [\"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 29, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Ree,” Sylphie also confirmed her intent to go, meaning that their Nevermore Party would have a little reunion soon... what was left of it anyway.\", \"currentParagraphDialogue\": [{\"lineId\": 51, \"text\": \"Ree,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"previousParagraphText\": \"“Visiting the Pantheon of Life does seem like it could be an idea then,” the Sword Saint answered, pretty much confirming he was going.\", \"previousParagraphDialogue\": [{\"lineId\": 49, \"text\": \"Visiting the Pantheon of Life does seem like it could be an idea then,\", \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"isReturning\": false}], \"nextParagraphText\": \"“Excuse me, Sire, would it be possible to expedite our return?” Vesperia spoke up, spotting an opportunity to jump into the conversation.\", \"nextParagraphDialogue\": [{\"lineId\": 53, \"text\": \"Excuse me, Sire, would it be possible to expedite our return?\", \"characterId\": \"vesperia\", \"characterName\": \"Vesperia\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Ree,\", \"cuePosition\": \"after\", \"cueVerb\": \"confirmed\", \"cueVerbType\": \"speech\", \"cueText\": \"Sylphie also confirmed her intent to go, meaning that their Nevermore Party would have a little reunion soon... what was left of it anyway.\", \"speakerSurface\": \"Sylphie also\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Ree,\", \"lastSentence\": \"Ree,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Visiting the Pantheon of Life does seem like it could be an idea then,\", \"cuePosition\": \"after\", \"cueVerb\": \"answered\", \"cueVerbType\": \"speech\", \"cueText\": \"the Sword Saint answered, pretty much confirming he was going.\", \"speakerSurface\": \"Sword Saint\", \"speakerNameMatch\": \"The Sword Saint\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Visiting the Pantheon of Life does seem like it could be an idea then,\", \"lastSentence\": \"Visiting the Pantheon of Life does seem like it could be an idea then,\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Excuse me, Sire, would it be possible to expedite our return?\", \"cuePosition\": \"after\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"Vesperia spoke up, spotting an opportunity to jump into the conversation.\", \"speakerSurface\": \"Vesperia\", \"speakerNameMatch\": \"Vesperia\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Excuse me, Sire, would it be possible to expedite our return?\", \"lastSentence\": \"Excuse me, Sire, would it be possible to expedite our return?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Ree,\", \"cuePosition\": \"after\", \"cueVerb\": \"confirmed\", \"cueVerbType\": \"speech\", \"cueText\": \"Sylphie also confirmed her intent to go, meaning that their Nevermore Party would have a little reunion soon... what was left of it anyway.\", \"speakerSurface\": \"Sylphie also\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Ree,\", \"lastSentence\": \"Ree,\"}, \"sceneEntities\": [{\"surface\": \"sylphie also\", \"matches\": [{\"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"score\": 0.625, \"evidence\": [\"token_overlap:sylphie\"]}]}], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [\"the sword saint\", \"sword saint\", \"the sword saint 2\", \"sword saint 2\", \"miyamoto\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"stormild\", \"characterName\": \"stormild\", \"aliases\": [], \"roleLabels\": [\"stormild\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [\"sylphie\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"vesperia\", \"characterName\": \"Vesperia\", \"aliases\": [], \"roleLabels\": [\"vesperia\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 42, \"paragraphIndex\": 24, \"characterId\": \"stormild\", \"characterName\": \"stormild\", \"text\": \"bird friends\"}, {\"relativeIndex\": -3, \"lineId\": 45, \"paragraphIndex\": 26, \"characterId\": \"sylphie\", \"characterName\": \"Sylphie\", \"text\": \"I would assume the Pantheon of Life also has hunting grounds available?\"}, {\"relativeIndex\": -2, \"lineId\": 47, \"paragraphIndex\": 27, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Duh,\"}, {\"relativeIndex\": -1, \"lineId\": 49, \"paragraphIndex\": 28, \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Visiting the Pantheon of Life does seem like it could be an idea then,\"}, {\"relativeIndex\": 1, \"lineId\": 53, \"paragraphIndex\": 30, \"characterId\": \"vesperia\", \"characterName\": \"Vesperia\", \"text\": \"Excuse me, Sire, would it be possible to expedite our return?\"}, {\"relativeIndex\": 2, \"lineId\": 56, \"paragraphIndex\": 32, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Oh, of course, let’s get going,\"}], \"chapterCharacters\": [{\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"stormild\", \"name\": \"stormild\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vesperia\", \"name\": \"Vesperia\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"maria\", \"name\": \"Maria\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"succubus\", \"name\": \"Succubus\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"sylphie\",\n  \"characterName\": \"Sylphie\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration\",\n    \"quote_structure_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

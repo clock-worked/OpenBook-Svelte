@@ -1,0 +1,287 @@
+{
+  "cacheKey": "99d6f9095517ca836ce8605c7bd8b19417d6f285cb2dd007e559a43326cb092e",
+  "createdAt": "2026-04-01T18:42:48.750359+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "split_quote_attribution"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jacob"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "name": "Augur",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "the-unique-lifeform",
+        "name": "The Unique Lifeform",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Bullshit excuses,",
+      "lastSentence": "Bullshit excuses,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Bullshit excuses,",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jacob",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.7,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.20399999999999996,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jacob",
+        "sourceCandidates": [
+          "Jacob",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.796
+      },
+      "candidates": [
+        {
+          "characterId": "jacob",
+          "confidence": 0.796,
+          "name": "Jacob",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.436,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "jacob",
+      "currentCharacterName": "Jacob",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 26,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Bullshit excuses,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 26,
+          "text": "Bullshit excuses,"
+        },
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": true,
+          "lineId": 28,
+          "text": "You make it complicated by not having a fucking spine. Without even going into how fucked up it is that you wanted to help the Desolate Child in the first place, you were the one who chose to release him here today. You could have told the head priest to fuck off, but you didn’t."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Bullshit excuses,",
+          "lastSentence": "Bullshit excuses,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Bullshit excuses,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake once more scoffed.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "You make it complicated by not having a fucking spine.",
+          "lastSentence": "You could have told the head priest to fuck off, but you didn’t.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "You make it complicated by not having a fucking spine. Without even going into how fucked up it is that you wanted to help the Desolate Child in the first place, you were the one who chose to release him here today. You could have told the head priest to fuck off, but you didn’t.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Bullshit excuses,” Jake once more scoffed. “You make it complicated by not having a fucking spine. Without even going into how fucked up it is that you wanted to help the Desolate Child in the first place, you were the one who chose to release him here today. You could have told the head priest to fuck off, but you didn’t.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 12
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 20,
+        "paragraphIndex": 8,
+        "relativeIndex": -4,
+        "text": "That leads to my second reason. I’m an Augur. Even before I am a member of the Holy Church, that’s my Path. Before this Desolate Child of Loss, I had never met a creature who needed guidance more. You called him a living calamity, but he is not. He is just a creature with power he’s never learned to control and emotions he cannot comprehend. As the name implies... he is still only a child."
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 22,
+        "paragraphIndex": 10,
+        "relativeIndex": -3,
+        "text": "That answered nothing,"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 24,
+        "paragraphIndex": 10,
+        "relativeIndex": -2,
+        "text": "Have you ever heard of the word no? I didn’t ask what others told you to do but why you did it. Oh, and no matter what, if we at all go by that second explanation that you were just valiantly trying to guide a lost child, then using that child as a soldier to fight right after doesn’t seem very Augury now, does it?"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 25,
+        "paragraphIndex": 11,
+        "relativeIndex": -1,
+        "text": "I told you before, nothing went as I had hoped, and the internal politics of the Holy Church are incredibly complicated, so-"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 28,
+        "paragraphIndex": 12,
+        "relativeIndex": 1,
+        "text": "You make it complicated by not having a fucking spine. Without even going into how fucked up it is that you wanted to help the Desolate Child in the first place, you were the one who chose to release him here today. You could have told the head priest to fuck off, but you didn’t."
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 30,
+        "paragraphIndex": 13,
+        "relativeIndex": 2,
+        "text": "Again... the situation isn’t what I hoped it would be. But please, do at least allow me to try and make you understand while we go where the Runemaiden and the False God are fighting."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 26, \"text\": \"Bullshit excuses,\", \"currentCharacterId\": \"jacob\", \"currentCharacterName\": \"Jacob\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jacob\", \"sourceCandidates\": [\"Jacob\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.20399999999999996, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jacob\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.796, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.436, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 12, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Bullshit excuses,” Jake once more scoffed. “You make it complicated by not having a fucking spine. Without even going into how fucked up it is that you wanted to help the Desolate Child in the first place, you were the one who chose to release him here today. You could have told the head priest to fuck off, but you didn’t.”\", \"currentParagraphDialogue\": [{\"lineId\": 26, \"text\": \"Bullshit excuses,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}, {\"lineId\": 28, \"text\": \"You make it complicated by not having a fucking spine. Without even going into how fucked up it is that you wanted to help the Desolate Child in the first place, you were the one who chose to release him here today. You could have told the head priest to fuck off, but you didn’t.\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Bullshit excuses,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Bullshit excuses,\", \"lastSentence\": \"Bullshit excuses,\"}, {\"quoteIndex\": 1, \"quoteText\": \"You make it complicated by not having a fucking spine. Without even going into how fucked up it is that you wanted to help the Desolate Child in the first place, you were the one who chose to release him here today. You could have told the head priest to fuck off, but you didn’t.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake once more scoffed.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You make it complicated by not having a fucking spine.\", \"lastSentence\": \"You could have told the head priest to fuck off, but you didn’t.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Bullshit excuses,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Bullshit excuses,\", \"lastSentence\": \"Bullshit excuses,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [], \"roleLabels\": [\"jacob\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 20, \"paragraphIndex\": 8, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"That leads to my second reason. I’m an Augur. Even before I am a member of the Holy Church, that’s my Path. Before this Desolate Child of Loss, I had never met a creature who needed guidance more. You called him a living calamity, but he is not. He is just a creature with power he’s never learned to control and emotions he cannot comprehend. As the name implies... he is still only a child.\"}, {\"relativeIndex\": -3, \"lineId\": 22, \"paragraphIndex\": 10, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"That answered nothing,\"}, {\"relativeIndex\": -2, \"lineId\": 24, \"paragraphIndex\": 10, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"Have you ever heard of the word no? I didn’t ask what others told you to do but why you did it. Oh, and no matter what, if we at all go by that second explanation that you were just valiantly trying to guide a lost child, then using that child as a soldier to fight right after doesn’t seem very Augury now, does it?\"}, {\"relativeIndex\": -1, \"lineId\": 25, \"paragraphIndex\": 11, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"I told you before, nothing went as I had hoped, and the internal politics of the Holy Church are incredibly complicated, so-\"}, {\"relativeIndex\": 1, \"lineId\": 28, \"paragraphIndex\": 12, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"You make it complicated by not having a fucking spine. Without even going into how fucked up it is that you wanted to help the Desolate Child in the first place, you were the one who chose to release him here today. You could have told the head priest to fuck off, but you didn’t.\"}, {\"relativeIndex\": 2, \"lineId\": 30, \"paragraphIndex\": 13, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"Again... the situation isn’t what I hoped it would be. But please, do at least allow me to try and make you understand while we go where the Runemaiden and the False God are fighting.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"augur\", \"name\": \"Augur\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-unique-lifeform\", \"name\": \"The Unique Lifeform\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"split_quote_attribution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

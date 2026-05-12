@@ -1,0 +1,289 @@
+{
+  "cacheKey": "411dc8d8558b9f9e92c0cf9748fbf5551eb0547f950e6b14d47963bb7f7a8cd5",
+  "createdAt": "2026-04-04T02:36:50.268182+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "continues_paragraph_dialogue",
+      "previous_speaker_party_leader",
+      "next_paragraph_narration_supports_speaker"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "mage",
+        "name": "Mage",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "New Character"
+        ],
+        "characterId": "ranger",
+        "name": "Ranger",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "rogue",
+        "name": "Rogue",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Regroup, and let’s return and go the long way around.",
+      "lastSentence": "In either case, we'd best stay clear of the area until it calms down again.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Regroup, and let’s return and go the long way around. Chances are, whoever was stupid enough to slay a Rainbowfeather Songbird is already dead, or it’s a B-grade. In either case, we'd best stay clear of the area until it calms down again.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.46,
+        "misattributionRisk": 0.22079999999999997,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Protagonist",
+        "sourceCandidates": [
+          "Protagonist",
+          "Narrator"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.916
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.916,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Narrator",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [
+        "Protagonist"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 26,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Regroup, and let’s return and go the long way around. Chances are, whoever was stupid enough to slay a Rainbowfeather Songbird is already dead, or it’s a B-grade. In either case, we'd best stay clear of the area until it calms down again."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 26,
+          "text": "Regroup, and let’s return and go the long way around. Chances are, whoever was stupid enough to slay a Rainbowfeather Songbird is already dead, or it’s a B-grade. In either case, we'd best stay clear of the area until it calms down again."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Regroup, and let’s return and go the long way around.",
+          "lastSentence": "In either case, we'd best stay clear of the area until it calms down again.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Regroup, and let’s return and go the long way around. Chances are, whoever was stupid enough to slay a Rainbowfeather Songbird is already dead, or it’s a B-grade. In either case, we'd best stay clear of the area until it calms down again.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Regroup, and let’s return and go the long way around. Chances are, whoever was stupid enough to slay a Rainbowfeather Songbird is already dead, or it’s a B-grade. In either case, we'd best stay clear of the area until it calms down again.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "While the rogue would have loved to joke around more and maybe even try to find out who or what had messed up and killed a Rainbowfeather, he knew retreat was the best option. If it were a hunter, he could only hope that it was one with good stealth abilities or some life-saving treasure, as that should at least give them a chance to escape.",
+      "paragraphIndex": 16,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 24,
+          "text": "Enough,"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Enough,",
+          "lastSentence": "Enough,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Enough,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "previousParagraphText": "“Enough,” their party leader shut down the chatter."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 18,
+        "paragraphIndex": 12,
+        "relativeIndex": -4,
+        "text": "B-grade hunters are only allowed here if it’s to restore the balance of the ecosystem, so it can’t be. So, if it were a hunter, they would be C-grade, and thus, we would have already been notified through the manual. So it has to be a monster,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 20,
+        "paragraphIndex": 13,
+        "relativeIndex": -3,
+        "text": "Could still be a hunter. They would only get help if they used the hunter manual to seek assistance,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 22,
+        "paragraphIndex": 14,
+        "relativeIndex": -2,
+        "text": "Yeah, he’s got a point! Maybe someone or some party decided that taking on an entire flock of Rainbowfeathers was a good idea. You know, for the fun of it,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 24,
+        "paragraphIndex": 15,
+        "relativeIndex": -1,
+        "text": "Enough,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 34,
+        "paragraphIndex": 24,
+        "relativeIndex": 1,
+        "text": "There are no B-grades among the Rainbowfeather Flock in Area 1."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 26, \"text\": \"Regroup, and let’s return and go the long way around. Chances are, whoever was stupid enough to slay a Rainbowfeather Songbird is already dead, or it’s a B-grade. In either case, we'd best stay clear of the area until it calms down again.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Protagonist\", \"sourceCandidates\": [\"Protagonist\", \"Narrator\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.916, \"marginToSecond\": 0.46, \"misattributionRisk\": 0.22079999999999997, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.916, \"reasons\": null}, {\"characterId\": null, \"name\": \"Narrator\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 16, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Regroup, and let’s return and go the long way around. Chances are, whoever was stupid enough to slay a Rainbowfeather Songbird is already dead, or it’s a B-grade. In either case, we'd best stay clear of the area until it calms down again.”\", \"currentParagraphDialogue\": [{\"lineId\": 26, \"text\": \"Regroup, and let’s return and go the long way around. Chances are, whoever was stupid enough to slay a Rainbowfeather Songbird is already dead, or it’s a B-grade. In either case, we'd best stay clear of the area until it calms down again.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"“Enough,” their party leader shut down the chatter.\", \"previousParagraphDialogue\": [{\"lineId\": 24, \"text\": \"Enough,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"nextParagraphText\": \"While the rogue would have loved to joke around more and maybe even try to find out who or what had messed up and killed a Rainbowfeather, he knew retreat was the best option. If it were a hunter, he could only hope that it was one with good stealth abilities or some life-saving treasure, as that should at least give them a chance to escape.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Regroup, and let’s return and go the long way around. Chances are, whoever was stupid enough to slay a Rainbowfeather Songbird is already dead, or it’s a B-grade. In either case, we'd best stay clear of the area until it calms down again.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Regroup, and let’s return and go the long way around.\", \"lastSentence\": \"In either case, we'd best stay clear of the area until it calms down again.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Enough,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Enough,\", \"lastSentence\": \"Enough,\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Regroup, and let’s return and go the long way around. Chances are, whoever was stupid enough to slay a Rainbowfeather Songbird is already dead, or it’s a B-grade. In either case, we'd best stay clear of the area until it calms down again.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Regroup, and let’s return and go the long way around.\", \"lastSentence\": \"In either case, we'd best stay clear of the area until it calms down again.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 18, \"paragraphIndex\": 12, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"B-grade hunters are only allowed here if it’s to restore the balance of the ecosystem, so it can’t be. So, if it were a hunter, they would be C-grade, and thus, we would have already been notified through the manual. So it has to be a monster,\"}, {\"relativeIndex\": -3, \"lineId\": 20, \"paragraphIndex\": 13, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Could still be a hunter. They would only get help if they used the hunter manual to seek assistance,\"}, {\"relativeIndex\": -2, \"lineId\": 22, \"paragraphIndex\": 14, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Yeah, he’s got a point! Maybe someone or some party decided that taking on an entire flock of Rainbowfeathers was a good idea. You know, for the fun of it,\"}, {\"relativeIndex\": -1, \"lineId\": 24, \"paragraphIndex\": 15, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Enough,\"}, {\"relativeIndex\": 1, \"lineId\": 34, \"paragraphIndex\": 24, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"There are no B-grades among the Rainbowfeather Flock in Area 1.\"}], \"chapterCharacters\": [{\"characterId\": \"mage\", \"name\": \"Mage\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"ranger\", \"name\": \"Ranger\", \"aliases\": [\"New Character\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"rogue\", \"name\": \"Rogue\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"continues_paragraph_dialogue\",\n    \"previous_speaker_party_leader\",\n    \"next_paragraph_narration_supports_speaker\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

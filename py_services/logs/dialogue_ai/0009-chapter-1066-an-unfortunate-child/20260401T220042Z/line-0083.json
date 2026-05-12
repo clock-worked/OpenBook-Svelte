@@ -1,0 +1,340 @@
+{
+  "calls": [
+    {
+      "cacheHit": true,
+      "cacheKey": "c84ae77203c6fcbe0c1ec22d1d20c4eaa669611d8f1e3460c3e9a1ee67515681",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\c84ae77203c6fcbe0c1ec22d1d20c4eaa669611d8f1e3460c3e9a1ee67515681.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "confidence": 0.9,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "dialogue_flow",
+          "next_paragraph_narration",
+          "pronoun_reference"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Augur",
+              "The Augur"
+            ],
+            "characterId": "jacob",
+            "characterName": "Jacob",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jacob",
+              "augur",
+              "the augur"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "characterName": "Minaga",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "minaga",
+              "unique lifeform",
+              "the unique lifeform",
+              "the unique lifeform 2",
+              "unique lifeform 2"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Augur",
+              "The Augur"
+            ],
+            "characterId": "jacob",
+            "name": "Jacob",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "name": "Minaga",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "carmen",
+            "name": "Carmen",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "A Truesoul cannot truly exist in two places at once within reality.",
+          "lastSentence": "So with the Truesoul of the Unique Lifeform residing within your mask, it cannot also be within that fragment.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "A Truesoul cannot truly exist in two places at once within reality. Not unless they are clones or avatars. So with the Truesoul of the Unique Lifeform residing within your mask, it cannot also be within that fragment.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Minaga",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.18400000000000005,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "Jacob"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": "jake",
+              "confidence": 0.816,
+              "name": "Jake",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "jacob",
+              "confidence": 0.456,
+              "name": "Jacob",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 83,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "A Truesoul cannot truly exist in two places at once within reality. Not unless they are clones or avatars. So with the Truesoul of the Unique Lifeform residing within your mask, it cannot also be within that fragment."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 83,
+              "text": "A Truesoul cannot truly exist in two places at once within reality. Not unless they are clones or avatars. So with the Truesoul of the Unique Lifeform residing within your mask, it cannot also be within that fragment."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "A Truesoul cannot truly exist in two places at once within reality.",
+              "lastSentence": "So with the Truesoul of the Unique Lifeform residing within your mask, it cannot also be within that fragment.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "A Truesoul cannot truly exist in two places at once within reality. Not unless they are clones or avatars. So with the Truesoul of the Unique Lifeform residing within your mask, it cannot also be within that fragment.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“A Truesoul cannot truly exist in two places at once within reality. Not unless they are clones or avatars. So with the Truesoul of the Unique Lifeform residing within your mask, it cannot also be within that fragment.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "Jake got quiet as he slowly sighed internally. Honestly, he wasn’t even sure what he’d hoped to hear. He already knew the Truesoul of the Fallen King still resided within the mask, but that didn’t really help much. Right now, the Truesoul in Jake’s mask felt a lot like the Truesoul of Ell’Hakan that Jacob carried around – something he would definitely need to properly claim later.",
+          "paragraphIndex": 53,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "jacob",
+              "characterName": "Jacob",
+              "isReturning": true,
+              "lineId": 81,
+              "text": "The Truesoul? No, of course not,"
+            }
+          ],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "Jacob answered, sounding genuinely confused."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jacob",
+            "characterName": "Jacob",
+            "lineId": 76,
+            "paragraphIndex": 48,
+            "relativeIndex": -4,
+            "text": "What do you know about the fragment?"
+          },
+          {
+            "characterId": "jacob",
+            "characterName": "Jacob",
+            "lineId": 77,
+            "paragraphIndex": 48,
+            "relativeIndex": -3,
+            "text": "Truthfully? Not much. All I have been able to glean is that it carries some resemblance to the Fallen King,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 79,
+            "paragraphIndex": 49,
+            "relativeIndex": -2,
+            "text": "Are parts of his soul in there? Maybe even his Truesoul or something like that?"
+          },
+          {
+            "characterId": "jacob",
+            "characterName": "Jacob",
+            "lineId": 81,
+            "paragraphIndex": 52,
+            "relativeIndex": -1,
+            "text": "The Truesoul? No, of course not,"
+          },
+          {
+            "characterId": "minaga",
+            "characterName": "Minaga",
+            "lineId": 88,
+            "paragraphIndex": 59,
+            "relativeIndex": 1,
+            "text": "I want to make something clear, by the way,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 90,
+            "paragraphIndex": 60,
+            "relativeIndex": 2,
+            "text": "After this bullshit, the Holy Church is gone from the Milky Way Galaxy. That includes you if you truly wish to stay with such a fucked up faction."
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 83, \"text\": \"A Truesoul cannot truly exist in two places at once within reality. Not unless they are clones or avatars. So with the Truesoul of the Unique Lifeform residing within your mask, it cannot also be within that fragment.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Jacob\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Minaga\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 53, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“A Truesoul cannot truly exist in two places at once within reality. Not unless they are clones or avatars. So with the Truesoul of the Unique Lifeform residing within your mask, it cannot also be within that fragment.”\", \"currentParagraphDialogue\": [{\"lineId\": 83, \"text\": \"A Truesoul cannot truly exist in two places at once within reality. Not unless they are clones or avatars. So with the Truesoul of the Unique Lifeform residing within your mask, it cannot also be within that fragment.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"Jacob answered, sounding genuinely confused.\", \"previousParagraphDialogue\": [{\"lineId\": 81, \"text\": \"The Truesoul? No, of course not,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": true}], \"nextParagraphText\": \"Jake got quiet as he slowly sighed internally. Honestly, he wasn’t even sure what he’d hoped to hear. He already knew the Truesoul of the Fallen King still resided within the mask, but that didn’t really help much. Right now, the Truesoul in Jake’s mask felt a lot like the Truesoul of Ell’Hakan that Jacob carried around – something he would definitely need to properly claim later.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"A Truesoul cannot truly exist in two places at once within reality. Not unless they are clones or avatars. So with the Truesoul of the Unique Lifeform residing within your mask, it cannot also be within that fragment.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"A Truesoul cannot truly exist in two places at once within reality.\", \"lastSentence\": \"So with the Truesoul of the Unique Lifeform residing within your mask, it cannot also be within that fragment.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"A Truesoul cannot truly exist in two places at once within reality. Not unless they are clones or avatars. So with the Truesoul of the Unique Lifeform residing within your mask, it cannot also be within that fragment.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"A Truesoul cannot truly exist in two places at once within reality.\", \"lastSentence\": \"So with the Truesoul of the Unique Lifeform residing within your mask, it cannot also be within that fragment.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [], \"roleLabels\": [\"jake\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [\"jacob\", \"augur\", \"the augur\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [\"minaga\", \"unique lifeform\", \"the unique lifeform\", \"the unique lifeform 2\", \"unique lifeform 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 76, \"paragraphIndex\": 48, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"What do you know about the fragment?\"}, {\"relativeIndex\": -3, \"lineId\": 77, \"paragraphIndex\": 48, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"Truthfully? Not much. All I have been able to glean is that it carries some resemblance to the Fallen King,\"}, {\"relativeIndex\": -2, \"lineId\": 79, \"paragraphIndex\": 49, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Are parts of his soul in there? Maybe even his Truesoul or something like that?\"}, {\"relativeIndex\": -1, \"lineId\": 81, \"paragraphIndex\": 52, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"The Truesoul? No, of course not,\"}, {\"relativeIndex\": 1, \"lineId\": 88, \"paragraphIndex\": 59, \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"text\": \"I want to make something clear, by the way,\"}, {\"relativeIndex\": 2, \"lineId\": 90, \"paragraphIndex\": 60, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"After this bullshit, the Holy Church is gone from the Milky Way Galaxy. That includes you if you truly wish to stay with such a fucked up faction.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jacob\",\n  \"characterName\": \"Jacob\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"dialogue_flow\",\n    \"next_paragraph_narration\",\n    \"pronoun_reference\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0009 - Chapter 1066 - An Unfortunate Child",
+  "currentCharacterId": "jake",
+  "currentCharacterName": "Jake",
+  "currentParagraphText": "“A Truesoul cannot truly exist in two places at once within reality. Not unless they are clones or avatars. So with the Truesoul of the Unique Lifeform residing within your mask, it cannot also be within that fragment.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.9,
+    "currentCharacterId": "jake",
+    "currentCharacterName": "Jake",
+    "currentParagraphText": "“A Truesoul cannot truly exist in two places at once within reality. Not unless they are clones or avatars. So with the Truesoul of the Unique Lifeform residing within your mask, it cannot also be within that fragment.”",
+    "disposition": "review",
+    "error": null,
+    "lineId": 83,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "Jake got quiet as he slowly sighed internally. Honestly, he wasn’t even sure what he’d hoped to hear. He already knew the Truesoul of the Fallen King still resided within the mask, but that didn’t really help much. Right now, the Truesoul in Jake’s mask felt a lot like the Truesoul of Ell’Hakan that Jacob carried around – something he would definitely need to properly claim later.",
+    "paragraphIndex": 53,
+    "previousParagraphText": "Jacob answered, sounding genuinely confused.",
+    "reasonCodes": [
+      "dialogue_flow",
+      "next_paragraph_narration",
+      "pronoun_reference"
+    ],
+    "suggestedCharacterId": "jacob",
+    "suggestedCharacterName": "Jacob",
+    "toolTrace": []
+  },
+  "lineId": 83,
+  "nextParagraphText": "Jake got quiet as he slowly sighed internally. Honestly, he wasn’t even sure what he’d hoped to hear. He already knew the Truesoul of the Fallen King still resided within the mask, but that didn’t really help much. Right now, the Truesoul in Jake’s mask felt a lot like the Truesoul of Ell’Hakan that Jacob carried around – something he would definitely need to properly claim later.",
+  "paragraphIndex": 53,
+  "previousParagraphText": "Jacob answered, sounding genuinely confused."
+}

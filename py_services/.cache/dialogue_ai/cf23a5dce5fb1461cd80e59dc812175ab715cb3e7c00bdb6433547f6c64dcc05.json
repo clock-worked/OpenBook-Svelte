@@ -1,0 +1,323 @@
+{
+  "cacheKey": "cf23a5dce5fb1461cd80e59dc812175ab715cb3e7c00bdb6433547f6c64dcc05",
+  "createdAt": "2026-04-02T22:55:52.014017+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "minaga",
+    "characterName": "Minaga",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "same_paragraph_continuation",
+      "parser_match"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Unique Lifeform",
+          "The Unique Lifeform",
+          "the-unique-lifeform",
+          "the-unique-lifeform-2"
+        ],
+        "characterId": "minaga",
+        "characterName": "Minaga",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "minaga",
+          "unique lifeform",
+          "the unique lifeform",
+          "the unique lifeform 2",
+          "unique lifeform 2"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "linea",
+        "characterName": "Linea",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "linea"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "characterName": "The Sword Saint",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "the sword saint",
+          "sword saint",
+          "the sword saint 2",
+          "sword saint 2",
+          "miyamoto"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "linea",
+        "name": "Linea",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Unique Lifeform",
+          "The Unique Lifeform",
+          "the-unique-lifeform",
+          "the-unique-lifeform-2"
+        ],
+        "characterId": "minaga",
+        "name": "Minaga",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": null,
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.98,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Minaga",
+        "sourceCandidates": [
+          "Minaga"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "minaga",
+          "confidence": 0.98,
+          "name": "Minaga",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "same_paragraph_continuation",
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [
+        "Unique Lifeform",
+        "The Unique Lifeform",
+        "the-unique-lifeform",
+        "the-unique-lifeform-2"
+      ],
+      "currentCharacterId": "minaga",
+      "currentCharacterName": "Minaga",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 103,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Come on, it’s gonna be so much fun! We can tell scary stories into the night, theorize dungeon design, try to do a bit of bug fixing, oh, and I can tell you about this new kind of trap room I’m thinking about making. Imagine this: spikes shooting guns that shoot even more spikes! If I combine that with-"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "minaga",
+          "characterName": "Minaga",
+          "isReturning": false,
+          "lineId": 101,
+          "text": "So, here we are. Two buddies. Hey, seeing as I don’t have an assigned room, wanna be bunkmates?"
+        },
+        {
+          "characterId": "minaga",
+          "characterName": "Minaga",
+          "isReturning": true,
+          "lineId": 103,
+          "text": "Come on, it’s gonna be so much fun! We can tell scary stories into the night, theorize dungeon design, try to do a bit of bug fixing, oh, and I can tell you about this new kind of trap room I’m thinking about making. Imagine this: spikes shooting guns that shoot even more spikes! If I combine that with-"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Minaga asked as he grinned. “Come on, it’s gonna be so much fun! We can tell scary stories into the night, theorize dungeon design, try to do a bit of bug fixing, oh, and I can tell you about this new kind of trap room I’m thinking about making. Imagine this: spikes shooting guns that shoot even more spikes! If I combine that with-“",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "So, here we are.",
+          "lastSentence": "Hey, seeing as I don’t have an assigned room, wanna be bunkmates?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "So, here we are. Two buddies. Hey, seeing as I don’t have an assigned room, wanna be bunkmates?",
+          "speakerNameMatch": "Minaga",
+          "speakerSurface": "Minaga"
+        }
+      ],
+      "currentParagraphText": "“So, here we are. Two buddies. Hey, seeing as I don’t have an assigned room, wanna be bunkmates?” Minaga asked as he grinned. “Come on, it’s gonna be so much fun! We can tell scary stories into the night, theorize dungeon design, try to do a bit of bug fixing, oh, and I can tell you about this new kind of trap room I’m thinking about making. Imagine this: spikes shooting guns that shoot even more spikes! If I combine that with-“",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 65
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "linea",
+        "characterName": "Linea",
+        "lineId": 95,
+        "paragraphIndex": 61,
+        "relativeIndex": -4,
+        "text": "Welcome aboard, everyone,"
+      },
+      {
+        "characterId": "linea",
+        "characterName": "Linea",
+        "lineId": 97,
+        "paragraphIndex": 61,
+        "relativeIndex": -3,
+        "text": "This vessel shall be our home until we arrive at the center of the Pantheon of Life. For those who are wondering, the ship is of Altmar design with staff trained by the Altmar Empire to properly operate it. It’s officially a god-tier vessel, and while an S-grade is capable of powering it, it works best when a god is at the helm. Navigating and powering the vessel will be my job during this time, so I may not be contactable. However, your only job – outside of the diplomats who already know their assignments - is to relax and maybe get a bit of alchemy done. Laboratories have already been prepared."
+      },
+      {
+        "characterId": "the-sword-saint",
+        "characterName": "The Sword Saint",
+        "lineId": 99,
+        "paragraphIndex": 63,
+        "relativeIndex": -2,
+        "text": "Each of you will also be given a token that can be used to contact staff and make use of the different facilities aboard. This token will also function as your room keys to your quarters, all of which have already been assigned."
+      },
+      {
+        "characterId": "minaga",
+        "characterName": "Minaga",
+        "lineId": 101,
+        "paragraphIndex": 65,
+        "relativeIndex": -1,
+        "text": "So, here we are. Two buddies. Hey, seeing as I don’t have an assigned room, wanna be bunkmates?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 105,
+        "paragraphIndex": 66,
+        "relativeIndex": 1,
+        "text": "short"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "minaga",
+            "characterName": "Minaga",
+            "evidence": [
+              "ai_scene_memory"
+            ],
+            "score": 0.99
+          }
+        ],
+        "surface": "minaga"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 103, \"text\": \"Come on, it’s gonna be so much fun! We can tell scary stories into the night, theorize dungeon design, try to do a bit of bug fixing, oh, and I can tell you about this new kind of trap room I’m thinking about making. Imagine this: spikes shooting guns that shoot even more spikes! If I combine that with-\", \"currentCharacterId\": \"minaga\", \"currentCharacterName\": \"Minaga\", \"currentCharacterAliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Minaga\", \"sourceCandidates\": [\"Minaga\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.98, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"minaga\", \"name\": \"Minaga\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"same_paragraph_continuation\", \"speech_verb\"]}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 65, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“So, here we are. Two buddies. Hey, seeing as I don’t have an assigned room, wanna be bunkmates?” Minaga asked as he grinned. “Come on, it’s gonna be so much fun! We can tell scary stories into the night, theorize dungeon design, try to do a bit of bug fixing, oh, and I can tell you about this new kind of trap room I’m thinking about making. Imagine this: spikes shooting guns that shoot even more spikes! If I combine that with-“\", \"currentParagraphDialogue\": [{\"lineId\": 101, \"text\": \"So, here we are. Two buddies. Hey, seeing as I don’t have an assigned room, wanna be bunkmates?\", \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"isReturning\": false}, {\"lineId\": 103, \"text\": \"Come on, it’s gonna be so much fun! We can tell scary stories into the night, theorize dungeon design, try to do a bit of bug fixing, oh, and I can tell you about this new kind of trap room I’m thinking about making. Imagine this: spikes shooting guns that shoot even more spikes! If I combine that with-\", \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"So, here we are. Two buddies. Hey, seeing as I don’t have an assigned room, wanna be bunkmates?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Minaga asked as he grinned. “Come on, it’s gonna be so much fun! We can tell scary stories into the night, theorize dungeon design, try to do a bit of bug fixing, oh, and I can tell you about this new kind of trap room I’m thinking about making. Imagine this: spikes shooting guns that shoot even more spikes! If I combine that with-“\", \"speakerSurface\": \"Minaga\", \"speakerNameMatch\": \"Minaga\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"So, here we are.\", \"lastSentence\": \"Hey, seeing as I don’t have an assigned room, wanna be bunkmates?\"}]}, \"currentQuoteUnit\": null, \"sceneEntities\": [{\"surface\": \"minaga\", \"matches\": [{\"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"score\": 0.99, \"evidence\": [\"ai_scene_memory\"]}]}], \"candidateCards\": [{\"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [\"minaga\", \"unique lifeform\", \"the unique lifeform\", \"the unique lifeform 2\", \"unique lifeform 2\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"linea\", \"characterName\": \"Linea\", \"aliases\": [], \"roleLabels\": [\"linea\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [\"the sword saint\", \"sword saint\", \"the sword saint 2\", \"sword saint 2\", \"miyamoto\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 95, \"paragraphIndex\": 61, \"characterId\": \"linea\", \"characterName\": \"Linea\", \"text\": \"Welcome aboard, everyone,\"}, {\"relativeIndex\": -3, \"lineId\": 97, \"paragraphIndex\": 61, \"characterId\": \"linea\", \"characterName\": \"Linea\", \"text\": \"This vessel shall be our home until we arrive at the center of the Pantheon of Life. For those who are wondering, the ship is of Altmar design with staff trained by the Altmar Empire to properly operate it. It’s officially a god-tier vessel, and while an S-grade is capable of powering it, it works best when a god is at the helm. Navigating and powering the vessel will be my job during this time, so I may not be contactable. However, your only job – outside of the diplomats who already know their assignments - is to relax and maybe get a bit of alchemy done. Laboratories have already been prepared.\"}, {\"relativeIndex\": -2, \"lineId\": 99, \"paragraphIndex\": 63, \"characterId\": \"the-sword-saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Each of you will also be given a token that can be used to contact staff and make use of the different facilities aboard. This token will also function as your room keys to your quarters, all of which have already been assigned.\"}, {\"relativeIndex\": -1, \"lineId\": 101, \"paragraphIndex\": 65, \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"text\": \"So, here we are. Two buddies. Hey, seeing as I don’t have an assigned room, wanna be bunkmates?\"}, {\"relativeIndex\": 1, \"lineId\": 105, \"paragraphIndex\": 66, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"short\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"linea\", \"name\": \"Linea\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"minaga\",\n  \"characterName\": \"Minaga\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"same_paragraph_continuation\",\n    \"parser_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

@@ -1,0 +1,138 @@
+{
+  "cacheKey": "a82590be6e186a88c8b252b45657f702181ce803f7a3ebdf75f50970e5ec0897",
+  "createdAt": "2026-04-01T04:41:39.460384+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_attribution"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "name": "Augur"
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob"
+      },
+      {
+        "aliases": [],
+        "characterId": "the-unique-lifeform",
+        "name": "The Unique Lifeform"
+      },
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.98,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.98,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "post_quote_attribution"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [
+        "Ell'Hakan"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "id": 44,
+      "isReturning": false,
+      "text": "Explain,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 44,
+          "text": "Explain,"
+        }
+      ],
+      "currentParagraphText": "“Explain,” Jake said, genuinely hoping for a bloody good explanation.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 46,
+          "text": "Let me first give you a bit of a backstory on the Desolate Child of Loss. As I suspect you already found out, it was born from a freak accident ritual performed by people entirely brainwashed by Ell’Hakan. People who genuinely believed he was a god. When they were struggling, facing the onslaught of the Prima Guardian they had foolishly released, they performed this ritual to try and summon Ell’Hakan and make him descend to their planet. As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,"
+        }
+      ],
+      "nextParagraphText": "“Let me first give you a bit of a backstory on the Desolate Child of Loss. As I suspect you already found out, it was born from a freak accident ritual performed by people entirely brainwashed by Ell’Hakan. People who genuinely believed he was a god. When they were struggling, facing the onslaught of the Prima Guardian they had foolishly released, they performed this ritual to try and summon Ell’Hakan and make him descend to their planet. As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,” the Augur began, and Jake was actually kind of curious as he had plenty of theories himself.",
+      "paragraphIndex": 22,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 43,
+          "text": "No one in the multiverse can purposefully create a False God. But I will not deny that we – or especially I – saw an opportunity when the Desolate Child of Loss appeared."
+        }
+      ],
+      "previousParagraphText": "“No one in the multiverse can purposefully create a False God. But I will not deny that we – or especially I – saw an opportunity when the Desolate Child of Loss appeared.”"
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 44, \"text\": \"Explain,\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Ell'Hakan\"], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.98, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"post_quote_attribution\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 22, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Explain,” Jake said, genuinely hoping for a bloody good explanation.\", \"currentParagraphDialogue\": [{\"lineId\": 44, \"text\": \"Explain,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"previousParagraphText\": \"“No one in the multiverse can purposefully create a False God. But I will not deny that we – or especially I – saw an opportunity when the Desolate Child of Loss appeared.”\", \"previousParagraphDialogue\": [{\"lineId\": 43, \"text\": \"No one in the multiverse can purposefully create a False God. But I will not deny that we – or especially I – saw an opportunity when the Desolate Child of Loss appeared.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"nextParagraphText\": \"“Let me first give you a bit of a backstory on the Desolate Child of Loss. As I suspect you already found out, it was born from a freak accident ritual performed by people entirely brainwashed by Ell’Hakan. People who genuinely believed he was a god. When they were struggling, facing the onslaught of the Prima Guardian they had foolishly released, they performed this ritual to try and summon Ell’Hakan and make him descend to their planet. As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,” the Augur began, and Jake was actually kind of curious as he had plenty of theories himself.\", \"nextParagraphDialogue\": [{\"lineId\": 46, \"text\": \"Let me first give you a bit of a backstory on the Desolate Child of Loss. As I suspect you already found out, it was born from a freak accident ritual performed by people entirely brainwashed by Ell’Hakan. People who genuinely believed he was a god. When they were struggling, facing the onslaught of the Prima Guardian they had foolishly released, they performed this ritual to try and summon Ell’Hakan and make him descend to their planet. As newly integrated people, they didn’t even fully comprehend how gods worked, and their old religion mixed with new knowledge and delusion, leading to their ritual being somewhat a success,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}]}, \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"augur\", \"name\": \"Augur\", \"aliases\": []}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": []}, {\"characterId\": \"the-unique-lifeform\", \"name\": \"The Unique Lifeform\", \"aliases\": []}, {\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_attribution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

@@ -1,0 +1,171 @@
+{
+  "cacheKey": "185e377b9ad841703ce7648cb431371558e32cbfd3d59ddd0706e19afa7fa863",
+  "createdAt": "2026-04-01T04:20:53.240566+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "kindroth",
+    "characterName": "Kindroth",
+    "confidence": 0.864,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "continuity_with_next_dialogue",
+      "high_confidence_parser"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "protagonist",
+        "name": "Protagonist"
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda"
+      },
+      {
+        "aliases": [],
+        "characterId": "arnold",
+        "name": "Arnold"
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "name": "Bertram"
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "name": "Iludar"
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper"
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "name": "Iludar"
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth"
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob"
+      },
+      {
+        "aliases": [],
+        "characterId": "pulse",
+        "name": "pulse"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.136,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Kindroth",
+        "sourceCandidates": [
+          "Kindroth",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.864
+      },
+      "candidates": [
+        {
+          "characterId": "kindroth",
+          "confidence": 0.864,
+          "name": "Kindroth",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "speech_verb"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.504,
+          "name": "Jake",
+          "reasons": [
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "kindroth",
+      "currentCharacterName": "Kindroth",
+      "id": 48,
+      "isReturning": false,
+      "text": "Chosen of the Malefic One,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": false,
+          "lineId": 48,
+          "text": "Chosen of the Malefic One,"
+        }
+      ],
+      "currentParagraphText": "“Chosen of the Malefic One,” a priest with fancier robes than the others spoke as he flew up to meet Jake. He was probably a head priest or something, but Jake truthfully didn’t care.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": true,
+          "lineId": 50,
+          "text": "Your visit is highly unexpected and irregular."
+        }
+      ],
+      "nextParagraphText": "“Your visit is highly unexpected and irregular.”",
+      "paragraphIndex": 37,
+      "previousParagraphDialogue": [],
+      "previousParagraphText": "Jake floated in the air, his presence blanketing the city as he felt millions of eyes on him at once. Just the sheer scale of the city meant that any form of clash would result in many deaths, something Jake would still like to avoid."
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 48, \"text\": \"Chosen of the Malefic One,\", \"currentCharacterId\": \"kindroth\", \"currentCharacterName\": \"Kindroth\", \"currentCharacterAliases\": [], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Kindroth\", \"sourceCandidates\": [\"Kindroth\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.864, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.136, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"confidence\": 0.864, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.504, \"reasons\": [\"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 37, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Chosen of the Malefic One,” a priest with fancier robes than the others spoke as he flew up to meet Jake. He was probably a head priest or something, but Jake truthfully didn’t care.\", \"currentParagraphDialogue\": [{\"lineId\": 48, \"text\": \"Chosen of the Malefic One,\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": false}], \"previousParagraphText\": \"Jake floated in the air, his presence blanketing the city as he felt millions of eyes on him at once. Just the sheer scale of the city meant that any form of clash would result in many deaths, something Jake would still like to avoid.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“Your visit is highly unexpected and irregular.”\", \"nextParagraphDialogue\": [{\"lineId\": 50, \"text\": \"Your visit is highly unexpected and irregular.\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": true}]}, \"chapterCharacters\": [{\"characterId\": \"protagonist\", \"name\": \"Protagonist\", \"aliases\": []}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": []}, {\"characterId\": \"arnold\", \"name\": \"Arnold\", \"aliases\": []}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"bertram\", \"name\": \"Bertram\", \"aliases\": []}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": []}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"]}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": []}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": []}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": []}, {\"characterId\": \"pulse\", \"name\": \"pulse\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"kindroth\",\n  \"characterName\": \"Kindroth\",\n  \"confidence\": 0.864,\n  \"reasonCodes\": [\n    \"continuity_with_next_dialogue\",\n    \"high_confidence_parser\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

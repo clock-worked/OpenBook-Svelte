@@ -1,0 +1,252 @@
+{
+  "cacheKey": "591922ff385753183d646b48ef172e54cadce0b7408407e8279ef4e9b944219c",
+  "createdAt": "2026-04-13T01:12:10.641669+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "contextual_evidence",
+      "manual_entry_read_by_jake"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Sovereign",
+          "The Sovereign"
+        ],
+        "characterId": "rainbowfeather sovereign",
+        "name": "Rainbowfeather Sovereign",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Darkwood Chimera.",
+      "lastSentence": "No other information shall be provided, and good luck is wished to any who take up the challenge.",
+      "mentionedEntities": [
+        "Monster"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "Darkwood Chimera. A mutated variant of the Darkwood creatures that were wiped out from the planet millennia ago. As one of the oldest B-grades and due to the power of its variant, this monster is considered the strongest B-grade on the planet. Engaging it in combat should be done with absolute caution. Is not known to be aggressive unless its domain is invaded. If successfully hunted, please report your kill to the nearest Outpost. No other information shall be provided, and good luck is wished to any who take up the challenge.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "Monster"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.18400000000000005,
+        "misattributionRisk": 0.0,
+        "parserBackend": "legacy",
+        "resolutionStatus": "user_confirmed",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Monster"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 1.0
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 1.0,
+          "name": "Rainbowfeather Sovereign",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.306,
+          "name": "Monster",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "rainbowfeather_sovereign",
+      "currentCharacterName": "Rainbowfeather Sovereign",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 9,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Darkwood Chimera. A mutated variant of the Darkwood creatures that were wiped out from the planet millennia ago. As one of the oldest B-grades and due to the power of its variant, this monster is considered the strongest B-grade on the planet. Engaging it in combat should be done with absolute caution. Is not known to be aggressive unless its domain is invaded. If successfully hunted, please report your kill to the nearest Outpost. No other information shall be provided, and good luck is wished to any who take up the challenge."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "rainbowfeather_sovereign",
+          "characterName": "Rainbowfeather Sovereign",
+          "isReturning": true,
+          "lineId": 9,
+          "text": "Darkwood Chimera. A mutated variant of the Darkwood creatures that were wiped out from the planet millennia ago. As one of the oldest B-grades and due to the power of its variant, this monster is considered the strongest B-grade on the planet. Engaging it in combat should be done with absolute caution. Is not known to be aggressive unless its domain is invaded. If successfully hunted, please report your kill to the nearest Outpost. No other information shall be provided, and good luck is wished to any who take up the challenge."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Darkwood Chimera.",
+          "lastSentence": "No other information shall be provided, and good luck is wished to any who take up the challenge.",
+          "mentionedEntities": [
+            "Monster"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Darkwood Chimera. A mutated variant of the Darkwood creatures that were wiped out from the planet millennia ago. As one of the oldest B-grades and due to the power of its variant, this monster is considered the strongest B-grade on the planet. Engaging it in combat should be done with absolute caution. Is not known to be aggressive unless its domain is invaded. If successfully hunted, please report your kill to the nearest Outpost. No other information shall be provided, and good luck is wished to any who take up the challenge.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Darkwood Chimera. A mutated variant of the Darkwood creatures that were wiped out from the planet millennia ago. As one of the oldest B-grades and due to the power of its variant, this monster is considered the strongest B-grade on the planet. Engaging it in combat should be done with absolute caution. Is not known to be aggressive unless its domain is invaded. If successfully hunted, please report your kill to the nearest Outpost. No other information shall be provided, and good luck is wished to any who take up the challenge.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "This was one of the shortest entries to a monster that was recognized as likely the strongest B-grade. It wasn’t that surprising, though. Jake had noticed that information was scarce when it came to B-grades, likely because the Pantheon of Life didn’t want to give too much away. Walking into a fight with too much foreknowledge about your opponent when they didn’t know anything about you wasn’t very fair either, so Jake respected the lack of information.",
+      "paragraphIndex": 5,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Jake listened, also hearing the name of the B-grade in question. Jake hadn’t read up on any of the B-grades in Area 5, but seeing as Jake had been put on a direct collision course with this monster, he decided to check the Hunting Grounds Manual entry quickly."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 3,
+        "paragraphIndex": 2,
+        "relativeIndex": -3,
+        "text": "The most powerful B-grade you say... now why would the Forest Fae be in their domain? Are they allies? If so, why is the Forest Fae located in Area 1, and this other B-grade in Area 5?"
+      },
+      {
+        "characterId": "rainbowfeather_sovereign",
+        "characterName": "Rainbowfeather Sovereign",
+        "lineId": 5,
+        "paragraphIndex": 3,
+        "relativeIndex": -2,
+        "text": "To my knowledge, no, the two do not have a friendly relationship,"
+      },
+      {
+        "characterId": "rainbowfeather_sovereign",
+        "characterName": "Rainbowfeather Sovereign",
+        "lineId": 7,
+        "paragraphIndex": 3,
+        "relativeIndex": -1,
+        "text": "The Darkwood Chimera has always been a solitary creature. It’s not known to have formed any alliance or even positive relations with anyone. At the same time, the Chimera doesn’t invade others either, meaning no one dares bother it."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 12,
+        "paragraphIndex": 8,
+        "relativeIndex": 1,
+        "text": "This is annoying,"
+      },
+      {
+        "characterId": "rainbowfeather_sovereign",
+        "characterName": "Rainbowfeather Sovereign",
+        "lineId": 14,
+        "paragraphIndex": 9,
+        "relativeIndex": 2,
+        "text": "It’s certainly outside my expectations,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 9, \"text\": \"Darkwood Chimera. A mutated variant of the Darkwood creatures that were wiped out from the planet millennia ago. As one of the oldest B-grades and due to the power of its variant, this monster is considered the strongest B-grade on the planet. Engaging it in combat should be done with absolute caution. Is not known to be aggressive unless its domain is invaded. If successfully hunted, please report your kill to the nearest Outpost. No other information shall be provided, and good luck is wished to any who take up the challenge.\", \"currentCharacterId\": \"rainbowfeather_sovereign\", \"currentCharacterName\": \"Rainbowfeather Sovereign\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"user_confirmed\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Monster\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 1.0, \"marginToSecond\": 0.18400000000000005, \"misattributionRisk\": 0.0, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Monster\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Rainbowfeather Sovereign\", \"confidence\": 1.0, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Monster\", \"confidence\": 0.306, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 5, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Darkwood Chimera. A mutated variant of the Darkwood creatures that were wiped out from the planet millennia ago. As one of the oldest B-grades and due to the power of its variant, this monster is considered the strongest B-grade on the planet. Engaging it in combat should be done with absolute caution. Is not known to be aggressive unless its domain is invaded. If successfully hunted, please report your kill to the nearest Outpost. No other information shall be provided, and good luck is wished to any who take up the challenge.”\", \"currentParagraphDialogue\": [{\"lineId\": 9, \"text\": \"Darkwood Chimera. A mutated variant of the Darkwood creatures that were wiped out from the planet millennia ago. As one of the oldest B-grades and due to the power of its variant, this monster is considered the strongest B-grade on the planet. Engaging it in combat should be done with absolute caution. Is not known to be aggressive unless its domain is invaded. If successfully hunted, please report your kill to the nearest Outpost. No other information shall be provided, and good luck is wished to any who take up the challenge.\", \"characterId\": \"rainbowfeather_sovereign\", \"characterName\": \"Rainbowfeather Sovereign\", \"isReturning\": true}], \"previousParagraphText\": \"Jake listened, also hearing the name of the B-grade in question. Jake hadn’t read up on any of the B-grades in Area 5, but seeing as Jake had been put on a direct collision course with this monster, he decided to check the Hunting Grounds Manual entry quickly.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"This was one of the shortest entries to a monster that was recognized as likely the strongest B-grade. It wasn’t that surprising, though. Jake had noticed that information was scarce when it came to B-grades, likely because the Pantheon of Life didn’t want to give too much away. Walking into a fight with too much foreknowledge about your opponent when they didn’t know anything about you wasn’t very fair either, so Jake respected the lack of information.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Darkwood Chimera. A mutated variant of the Darkwood creatures that were wiped out from the planet millennia ago. As one of the oldest B-grades and due to the power of its variant, this monster is considered the strongest B-grade on the planet. Engaging it in combat should be done with absolute caution. Is not known to be aggressive unless its domain is invaded. If successfully hunted, please report your kill to the nearest Outpost. No other information shall be provided, and good luck is wished to any who take up the challenge.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Monster\"], \"addressedEntity\": null, \"firstSentence\": \"Darkwood Chimera.\", \"lastSentence\": \"No other information shall be provided, and good luck is wished to any who take up the challenge.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Darkwood Chimera. A mutated variant of the Darkwood creatures that were wiped out from the planet millennia ago. As one of the oldest B-grades and due to the power of its variant, this monster is considered the strongest B-grade on the planet. Engaging it in combat should be done with absolute caution. Is not known to be aggressive unless its domain is invaded. If successfully hunted, please report your kill to the nearest Outpost. No other information shall be provided, and good luck is wished to any who take up the challenge.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Monster\"], \"addressedEntity\": null, \"firstSentence\": \"Darkwood Chimera.\", \"lastSentence\": \"No other information shall be provided, and good luck is wished to any who take up the challenge.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -3, \"lineId\": 3, \"paragraphIndex\": 2, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"The most powerful B-grade you say... now why would the Forest Fae be in their domain? Are they allies? If so, why is the Forest Fae located in Area 1, and this other B-grade in Area 5?\"}, {\"relativeIndex\": -2, \"lineId\": 5, \"paragraphIndex\": 3, \"characterId\": \"rainbowfeather_sovereign\", \"characterName\": \"Rainbowfeather Sovereign\", \"text\": \"To my knowledge, no, the two do not have a friendly relationship,\"}, {\"relativeIndex\": -1, \"lineId\": 7, \"paragraphIndex\": 3, \"characterId\": \"rainbowfeather_sovereign\", \"characterName\": \"Rainbowfeather Sovereign\", \"text\": \"The Darkwood Chimera has always been a solitary creature. It’s not known to have formed any alliance or even positive relations with anyone. At the same time, the Chimera doesn’t invade others either, meaning no one dares bother it.\"}, {\"relativeIndex\": 1, \"lineId\": 12, \"paragraphIndex\": 8, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"This is annoying,\"}, {\"relativeIndex\": 2, \"lineId\": 14, \"paragraphIndex\": 9, \"characterId\": \"rainbowfeather_sovereign\", \"characterName\": \"Rainbowfeather Sovereign\", \"text\": \"It’s certainly outside my expectations,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"rainbowfeather sovereign\", \"name\": \"Rainbowfeather Sovereign\", \"aliases\": [\"Sovereign\", \"The Sovereign\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"contextual_evidence\",\n    \"manual_entry_read_by_jake\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

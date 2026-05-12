@@ -1,0 +1,360 @@
+{
+  "calls": [
+    {
+      "cacheHit": true,
+      "cacheKey": "d30cfdfd5007e2be1a425e9bda0628a92ddde03094ca1c6738a69d2001238746",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\d30cfdfd5007e2be1a425e9bda0628a92ddde03094ca1c6738a69d2001238746.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.9,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "dialogue_continuity",
+          "next_line_response",
+          "parser_top_candidate"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Augur",
+              "The Augur"
+            ],
+            "characterId": "jacob",
+            "characterName": "Jacob",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jacob",
+              "augur",
+              "the augur"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Augur",
+              "The Augur"
+            ],
+            "characterId": "jacob",
+            "name": "Jacob",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "name": "Minaga",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "carmen",
+            "name": "Carmen",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Not that I can see why it would overly matter if anyone had.",
+          "lastSentence": "how is the Holy Church related to the birth of the Desolate Child of Loss?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Not that I can see why it would overly matter if anyone had. Another thought that crossed me was also... how is the Holy Church related to the birth of the Desolate Child of Loss?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": true,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.18,
+            "misattributionRisk": 0.364,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "Jacob"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.636
+          },
+          "candidates": [
+            {
+              "characterId": "jake",
+              "confidence": 0.636,
+              "name": "Jake",
+              "reasons": [
+                "parser_match",
+                "legacy_match",
+                "question_next_speaker_penalty"
+              ]
+            },
+            {
+              "characterId": "jacob",
+              "confidence": 0.456,
+              "name": "Jacob",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 40,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Not that I can see why it would overly matter if anyone had. Another thought that crossed me was also... how is the Holy Church related to the birth of the Desolate Child of Loss?"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 40,
+              "text": "Not that I can see why it would overly matter if anyone had. Another thought that crossed me was also... how is the Holy Church related to the birth of the Desolate Child of Loss?"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Not that I can see why it would overly matter if anyone had.",
+              "lastSentence": "how is the Holy Church related to the birth of the Desolate Child of Loss?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Not that I can see why it would overly matter if anyone had. Another thought that crossed me was also... how is the Holy Church related to the birth of the Desolate Child of Loss?",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Not that I can see why it would overly matter if anyone had. Another thought that crossed me was also... how is the Holy Church related to the birth of the Desolate Child of Loss?”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 41,
+              "text": "Not at all,"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Not at all,",
+              "lastSentence": "Not at all,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Not at all,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "nextParagraphText": "“Not at all,” Jacob quickly shot down that notion.",
+          "paragraphIndex": 19,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 38,
+              "text": "No one was listening in as far as I could tell,"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake simply said, confused about Jacob’s shift in tone.",
+              "cueVerb": "said",
+              "cueVerbType": "speech",
+              "firstSentence": "No one was listening in as far as I could tell,",
+              "lastSentence": "No one was listening in as far as I could tell,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "No one was listening in as far as I could tell,",
+              "speakerNameMatch": null,
+              "speakerSurface": "Jake"
+            }
+          ],
+          "previousParagraphText": "“No one was listening in as far as I could tell,” Jake simply said, confused about Jacob’s shift in tone."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 33,
+            "paragraphIndex": 14,
+            "relativeIndex": -4,
+            "text": "But don’t you try anything."
+          },
+          {
+            "characterId": "jacob",
+            "characterName": "Jacob",
+            "lineId": 34,
+            "paragraphIndex": 15,
+            "relativeIndex": -3,
+            "text": "I won’t,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 37,
+            "paragraphIndex": 17,
+            "relativeIndex": -2,
+            "text": "I apologize for not being entirely straightforward, but I’m not in a position to speak freely these days. Even now, I’m constantly under surveillance, and I couldn’t be sure if anyone was still listening in before."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 38,
+            "paragraphIndex": 18,
+            "relativeIndex": -1,
+            "text": "No one was listening in as far as I could tell,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 41,
+            "paragraphIndex": 20,
+            "relativeIndex": 1,
+            "text": "Not at all,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 43,
+            "paragraphIndex": 21,
+            "relativeIndex": 2,
+            "text": "No one in the multiverse can purposefully create a False God. But I will not deny that we – or especially I – saw an opportunity when the Desolate Child of Loss appeared."
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 40, \"text\": \"Not that I can see why it would overly matter if anyone had. Another thought that crossed me was also... how is the Holy Church related to the birth of the Desolate Child of Loss?\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Jacob\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.636, \"marginToSecond\": 0.18, \"misattributionRisk\": 0.364, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.636, \"reasons\": [\"parser_match\", \"legacy_match\", \"question_next_speaker_penalty\"]}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 19, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Not that I can see why it would overly matter if anyone had. Another thought that crossed me was also... how is the Holy Church related to the birth of the Desolate Child of Loss?”\", \"currentParagraphDialogue\": [{\"lineId\": 40, \"text\": \"Not that I can see why it would overly matter if anyone had. Another thought that crossed me was also... how is the Holy Church related to the birth of the Desolate Child of Loss?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"“No one was listening in as far as I could tell,” Jake simply said, confused about Jacob’s shift in tone.\", \"previousParagraphDialogue\": [{\"lineId\": 38, \"text\": \"No one was listening in as far as I could tell,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"nextParagraphText\": \"“Not at all,” Jacob quickly shot down that notion.\", \"nextParagraphDialogue\": [{\"lineId\": 41, \"text\": \"Not at all,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Not that I can see why it would overly matter if anyone had. Another thought that crossed me was also... how is the Holy Church related to the birth of the Desolate Child of Loss?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Not that I can see why it would overly matter if anyone had.\", \"lastSentence\": \"how is the Holy Church related to the birth of the Desolate Child of Loss?\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"No one was listening in as far as I could tell,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake simply said, confused about Jacob’s shift in tone.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"No one was listening in as far as I could tell,\", \"lastSentence\": \"No one was listening in as far as I could tell,\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Not at all,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Not at all,\", \"lastSentence\": \"Not at all,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Not that I can see why it would overly matter if anyone had. Another thought that crossed me was also... how is the Holy Church related to the birth of the Desolate Child of Loss?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Not that I can see why it would overly matter if anyone had.\", \"lastSentence\": \"how is the Holy Church related to the birth of the Desolate Child of Loss?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [], \"roleLabels\": [\"jake\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [\"jacob\", \"augur\", \"the augur\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 33, \"paragraphIndex\": 14, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"But don’t you try anything.\"}, {\"relativeIndex\": -3, \"lineId\": 34, \"paragraphIndex\": 15, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"I won’t,\"}, {\"relativeIndex\": -2, \"lineId\": 37, \"paragraphIndex\": 17, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I apologize for not being entirely straightforward, but I’m not in a position to speak freely these days. Even now, I’m constantly under surveillance, and I couldn’t be sure if anyone was still listening in before.\"}, {\"relativeIndex\": -1, \"lineId\": 38, \"paragraphIndex\": 18, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"No one was listening in as far as I could tell,\"}, {\"relativeIndex\": 1, \"lineId\": 41, \"paragraphIndex\": 20, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Not at all,\"}, {\"relativeIndex\": 2, \"lineId\": 43, \"paragraphIndex\": 21, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"No one in the multiverse can purposefully create a False God. But I will not deny that we – or especially I – saw an opportunity when the Desolate Child of Loss appeared.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"dialogue_continuity\",\n    \"next_line_response\",\n    \"parser_top_candidate\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0009 - Chapter 1066 - An Unfortunate Child",
+  "currentCharacterId": "jake",
+  "currentCharacterName": "Jake",
+  "currentParagraphText": "“Not that I can see why it would overly matter if anyone had. Another thought that crossed me was also... how is the Holy Church related to the birth of the Desolate Child of Loss?”",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.9,
+    "currentCharacterId": "jake",
+    "currentCharacterName": "Jake",
+    "currentParagraphText": "“Not that I can see why it would overly matter if anyone had. Another thought that crossed me was also... how is the Holy Church related to the birth of the Desolate Child of Loss?”",
+    "disposition": "review",
+    "error": null,
+    "lineId": 40,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Not at all,” Jacob quickly shot down that notion.",
+    "paragraphIndex": 19,
+    "previousParagraphText": "“No one was listening in as far as I could tell,” Jake simply said, confused about Jacob’s shift in tone.",
+    "reasonCodes": [
+      "dialogue_continuity",
+      "next_line_response",
+      "parser_top_candidate"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 40,
+  "nextParagraphText": "“Not at all,” Jacob quickly shot down that notion.",
+  "paragraphIndex": 19,
+  "previousParagraphText": "“No one was listening in as far as I could tell,” Jake simply said, confused about Jacob’s shift in tone."
+}

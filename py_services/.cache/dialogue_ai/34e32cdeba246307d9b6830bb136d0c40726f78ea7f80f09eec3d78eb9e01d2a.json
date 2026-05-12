@@ -1,0 +1,318 @@
+{
+  "cacheKey": "34e32cdeba246307d9b6830bb136d0c40726f78ea7f80f09eec3d78eb9e01d2a",
+  "createdAt": "2026-05-11T23:14:25.917069+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "minaga",
+    "characterName": "Minaga",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "narrative_cue_previous_paragraph",
+      "narrative_cue_next_paragraph",
+      "dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "casper",
+        "characterName": "Casper",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "casper"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God",
+          "Unknown Human (Male)"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "lord thayne",
+          "thayne",
+          "void god",
+          "unknown human male"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God",
+          "Unknown Human (Male)"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "casper",
+        "name": "Casper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Unique Lifeform",
+          "The Unique Lifeform",
+          "the-unique-lifeform",
+          "the-unique-lifeform-2"
+        ],
+        "characterId": "minaga",
+        "name": "Minaga",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Allow me to set the stage.",
+      "lastSentence": "Upon wandering inside and looking to the side, you spot it: a second dungeon entrance.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Allow me to set the stage. Initially, one arrives at the outskirts of the Great Labyrinth itself. One finds it surrounded by monsters in early C-grade, and the closer one gets, the stronger the monsters become. After battling through these many monsters spawned from the Great Labyrinth, one arrives at the entrance, battered but full of vigor to explore. Upon wandering inside and looking to the side, you spot it: a second dungeon entrance.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "alignment": {
+        "confidence": 1.0,
+        "isSpanFallback": false,
+        "method": "quote_unit",
+        "paragraphIndex": 35,
+        "spanDistance": 0.0,
+        "spanParagraphIndex": 35
+      },
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Casper"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Casper",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 69,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Allow me to set the stage. Initially, one arrives at the outskirts of the Great Labyrinth itself. One finds it surrounded by monsters in early C-grade, and the closer one gets, the stronger the monsters become. After battling through these many monsters spawned from the Great Labyrinth, one arrives at the entrance, battered but full of vigor to explore. Upon wandering inside and looking to the side, you spot it: a second dungeon entrance."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 69,
+          "text": "Allow me to set the stage. Initially, one arrives at the outskirts of the Great Labyrinth itself. One finds it surrounded by monsters in early C-grade, and the closer one gets, the stronger the monsters become. After battling through these many monsters spawned from the Great Labyrinth, one arrives at the entrance, battered but full of vigor to explore. Upon wandering inside and looking to the side, you spot it: a second dungeon entrance."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Allow me to set the stage.",
+          "lastSentence": "Upon wandering inside and looking to the side, you spot it: a second dungeon entrance.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Allow me to set the stage. Initially, one arrives at the outskirts of the Great Labyrinth itself. One finds it surrounded by monsters in early C-grade, and the closer one gets, the stronger the monsters become. After battling through these many monsters spawned from the Great Labyrinth, one arrives at the entrance, battered but full of vigor to explore. Upon wandering inside and looking to the side, you spot it: a second dungeon entrance.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Allow me to set the stage. Initially, one arrives at the outskirts of the Great Labyrinth itself. One finds it surrounded by monsters in early C-grade, and the closer one gets, the stronger the monsters become. After battling through these many monsters spawned from the Great Labyrinth, one arrives at the entrance, battered but full of vigor to explore. Upon wandering inside and looking to the side, you spot it: a second dungeon entrance.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "It didn’t sound horrible so far, though definitely a little basic. Jake hadn’t heard much of a story either, only some world-building, and he genuinely hoped that he wouldn’t have to listen to Minaga going on a lore dump.",
+      "paragraphIndex": 35,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Okay, still a lot of useless fluff in the speech, but Jake stayed silent in part because Casper wasn’t saying anything either."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "casper",
+        "characterName": "Casper",
+        "lineId": 61,
+        "paragraphIndex": 30,
+        "relativeIndex": -4,
+        "text": "Miranda already shut it down,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 63,
+        "paragraphIndex": 31,
+        "relativeIndex": -3,
+        "text": "In yet another glorious display of creativity, this dungeon shall make use of the fact that it consists of several cores, which has allowed me to do something truly awesome,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 65,
+        "paragraphIndex": 31,
+        "relativeIndex": -2,
+        "text": "Connected Dungeons."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 67,
+        "paragraphIndex": 33,
+        "relativeIndex": -1,
+        "text": "While the concept isn’t new, I believe this is one of the greatest iterations of it ever. The Labyrinth will have only one main entrance, but from there, several dungeons shall be accessible from within. Each of them with different sizes and complexities, but all sharing the same theme, and perhaps the most important of all: a proper through-line narrative tying them all together!"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 71,
+        "paragraphIndex": 37,
+        "relativeIndex": 1,
+        "text": "However, as you look around more, you realize there is more than one dungeon entrance… that’s right, the Great Labyrinth itself consists of multiple dungeons! Three, in fact, with each being harder than the previous! The first one will have mainly early and mid-tier C-grades, the second one mid and some late-tier C-grades, and the final one exclusively late to peak-tier C-grades."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 73,
+        "paragraphIndex": 39,
+        "relativeIndex": 2,
+        "text": "Each of the three sections of the Labyrinth will be expansive and have many different paths that all lead to a final boss. This final boss will drop a key fragment, and upon collecting all three keys, the special magic circle at the Grand Labyrinth entrance can be activated, granting access to the fifth dungeon."
+      }
+    ],
+    "sceneEntities": [],
+    "sceneRoster": {
+      "paragraphWindow": 6,
+      "presentCharacterIds": [
+        "jake",
+        "casper",
+        "unknown"
+      ],
+      "presentCharacters": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake"
+        },
+        {
+          "characterId": "casper",
+          "characterName": "Casper"
+        },
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown"
+        }
+      ]
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 69, \"text\": \"Allow me to set the stage. Initially, one arrives at the outskirts of the Great Labyrinth itself. One finds it surrounded by monsters in early C-grade, and the closer one gets, the stronger the monsters become. After battling through these many monsters spawned from the Great Labyrinth, one arrives at the entrance, battered but full of vigor to explore. Upon wandering inside and looking to the side, you spot it: a second dungeon entrance.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Casper\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Casper\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true, \"alignment\": {\"paragraphIndex\": 35, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 35, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 35, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Allow me to set the stage. Initially, one arrives at the outskirts of the Great Labyrinth itself. One finds it surrounded by monsters in early C-grade, and the closer one gets, the stronger the monsters become. After battling through these many monsters spawned from the Great Labyrinth, one arrives at the entrance, battered but full of vigor to explore. Upon wandering inside and looking to the side, you spot it: a second dungeon entrance.”\", \"currentParagraphDialogue\": [{\"lineId\": 69, \"text\": \"Allow me to set the stage. Initially, one arrives at the outskirts of the Great Labyrinth itself. One finds it surrounded by monsters in early C-grade, and the closer one gets, the stronger the monsters become. After battling through these many monsters spawned from the Great Labyrinth, one arrives at the entrance, battered but full of vigor to explore. Upon wandering inside and looking to the side, you spot it: a second dungeon entrance.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"Okay, still a lot of useless fluff in the speech, but Jake stayed silent in part because Casper wasn’t saying anything either.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"It didn’t sound horrible so far, though definitely a little basic. Jake hadn’t heard much of a story either, only some world-building, and he genuinely hoped that he wouldn’t have to listen to Minaga going on a lore dump.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Allow me to set the stage. Initially, one arrives at the outskirts of the Great Labyrinth itself. One finds it surrounded by monsters in early C-grade, and the closer one gets, the stronger the monsters become. After battling through these many monsters spawned from the Great Labyrinth, one arrives at the entrance, battered but full of vigor to explore. Upon wandering inside and looking to the side, you spot it: a second dungeon entrance.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Allow me to set the stage.\", \"lastSentence\": \"Upon wandering inside and looking to the side, you spot it: a second dungeon entrance.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Allow me to set the stage. Initially, one arrives at the outskirts of the Great Labyrinth itself. One finds it surrounded by monsters in early C-grade, and the closer one gets, the stronger the monsters become. After battling through these many monsters spawned from the Great Labyrinth, one arrives at the entrance, battered but full of vigor to explore. Upon wandering inside and looking to the side, you spot it: a second dungeon entrance.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Allow me to set the stage.\", \"lastSentence\": \"Upon wandering inside and looking to the side, you spot it: a second dungeon entrance.\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"jake\", \"casper\", \"unknown\"], \"presentCharacters\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\"}, {\"characterId\": \"casper\", \"characterName\": \"Casper\"}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"casper\", \"characterName\": \"Casper\", \"aliases\": [], \"roleLabels\": [\"casper\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\", \"void god\", \"unknown human male\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 61, \"paragraphIndex\": 30, \"characterId\": \"casper\", \"characterName\": \"Casper\", \"text\": \"Miranda already shut it down,\"}, {\"relativeIndex\": -3, \"lineId\": 63, \"paragraphIndex\": 31, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"In yet another glorious display of creativity, this dungeon shall make use of the fact that it consists of several cores, which has allowed me to do something truly awesome,\"}, {\"relativeIndex\": -2, \"lineId\": 65, \"paragraphIndex\": 31, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Connected Dungeons.\"}, {\"relativeIndex\": -1, \"lineId\": 67, \"paragraphIndex\": 33, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"While the concept isn’t new, I believe this is one of the greatest iterations of it ever. The Labyrinth will have only one main entrance, but from there, several dungeons shall be accessible from within. Each of them with different sizes and complexities, but all sharing the same theme, and perhaps the most important of all: a proper through-line narrative tying them all together!\"}, {\"relativeIndex\": 1, \"lineId\": 71, \"paragraphIndex\": 37, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"However, as you look around more, you realize there is more than one dungeon entrance… that’s right, the Great Labyrinth itself consists of multiple dungeons! Three, in fact, with each being harder than the previous! The first one will have mainly early and mid-tier C-grades, the second one mid and some late-tier C-grades, and the final one exclusively late to peak-tier C-grades.\"}, {\"relativeIndex\": 2, \"lineId\": 73, \"paragraphIndex\": 39, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Each of the three sections of the Labyrinth will be expansive and have many different paths that all lead to a final boss. This final boss will drop a key fragment, and upon collecting all three keys, the special magic circle at the Grand Labyrinth entrance can be activated, granting access to the fifth dungeon.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"casper\", \"name\": \"Casper\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"minaga\",\n  \"characterName\": \"Minaga\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"narrative_cue_previous_paragraph\",\n    \"narrative_cue_next_paragraph\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

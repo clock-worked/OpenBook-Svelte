@@ -1,0 +1,134 @@
+{
+  "cacheKey": "a10ffc864b0af95a5084f04980673d386e9f9ab2b0ad5f9b72557aad5f2a7746",
+  "createdAt": "2026-04-01T04:40:29.157128+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jacob",
+    "characterName": "Jacob",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_attribution"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "name": "Augur"
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob"
+      },
+      {
+        "aliases": [],
+        "characterId": "the-unique-lifeform",
+        "name": "The Unique Lifeform"
+      },
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.136,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Augur"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.864
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.864,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "speech_verb"
+          ]
+        },
+        {
+          "characterId": "augur",
+          "confidence": 0.504,
+          "name": "Augur",
+          "reasons": [
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [
+        "Ell'Hakan"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "id": 18,
+      "isReturning": false,
+      "text": "Alright, but as I said, it isn’t simple, and there are two primary reasons. First of all, I was told to try and make the Desolate Child of Loss into an ally. You weren’t the first one who became aware of the creature. The Holy Church had sacrificed people before to know more about what they were dealing with and ultimately decided they wanted to try and use the False God if possible. But to be clear, they don’t view the Desolate Child of Loss as an actual creature but just a tool,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 18,
+          "text": "Alright, but as I said, it isn’t simple, and there are two primary reasons. First of all, I was told to try and make the Desolate Child of Loss into an ally. You weren’t the first one who became aware of the creature. The Holy Church had sacrificed people before to know more about what they were dealing with and ultimately decided they wanted to try and use the False God if possible. But to be clear, they don’t view the Desolate Child of Loss as an actual creature but just a tool,"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 20,
+          "text": "That leads to my second reason. I’m an Augur. Even before I am a member of the Holy Church, that’s my Path. Before this Desolate Child of Loss, I had never met a creature who needed guidance more. You called him a living calamity, but he is not. He is just a creature with power he’s never learned to control and emotions he cannot comprehend. As the name implies... he is still only a child."
+        }
+      ],
+      "currentParagraphText": "“Alright, but as I said, it isn’t simple, and there are two primary reasons. First of all, I was told to try and make the Desolate Child of Loss into an ally. You weren’t the first one who became aware of the creature. The Holy Church had sacrificed people before to know more about what they were dealing with and ultimately decided they wanted to try and use the False God if possible. But to be clear, they don’t view the Desolate Child of Loss as an actual creature but just a tool,” Jacob began. “That leads to my second reason. I’m an Augur. Even before I am a member of the Holy Church, that’s my Path. Before this Desolate Child of Loss, I had never met a creature who needed guidance more. You called him a living calamity, but he is not. He is just a creature with power he’s never learned to control and emotions he cannot comprehend. As the name implies... he is still only a child.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 8
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 18, \"text\": \"Alright, but as I said, it isn’t simple, and there are two primary reasons. First of all, I was told to try and make the Desolate Child of Loss into an ally. You weren’t the first one who became aware of the creature. The Holy Church had sacrificed people before to know more about what they were dealing with and ultimately decided they wanted to try and use the False God if possible. But to be clear, they don’t view the Desolate Child of Loss as an actual creature but just a tool,\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Ell'Hakan\"], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Augur\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.864, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.136, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.864, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"augur\", \"name\": \"Augur\", \"confidence\": 0.504, \"reasons\": [\"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 8, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Alright, but as I said, it isn’t simple, and there are two primary reasons. First of all, I was told to try and make the Desolate Child of Loss into an ally. You weren’t the first one who became aware of the creature. The Holy Church had sacrificed people before to know more about what they were dealing with and ultimately decided they wanted to try and use the False God if possible. But to be clear, they don’t view the Desolate Child of Loss as an actual creature but just a tool,” Jacob began. “That leads to my second reason. I’m an Augur. Even before I am a member of the Holy Church, that’s my Path. Before this Desolate Child of Loss, I had never met a creature who needed guidance more. You called him a living calamity, but he is not. He is just a creature with power he’s never learned to control and emotions he cannot comprehend. As the name implies... he is still only a child.”\", \"currentParagraphDialogue\": [{\"lineId\": 18, \"text\": \"Alright, but as I said, it isn’t simple, and there are two primary reasons. First of all, I was told to try and make the Desolate Child of Loss into an ally. You weren’t the first one who became aware of the creature. The Holy Church had sacrificed people before to know more about what they were dealing with and ultimately decided they wanted to try and use the False God if possible. But to be clear, they don’t view the Desolate Child of Loss as an actual creature but just a tool,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 20, \"text\": \"That leads to my second reason. I’m an Augur. Even before I am a member of the Holy Church, that’s my Path. Before this Desolate Child of Loss, I had never met a creature who needed guidance more. You called him a living calamity, but he is not. He is just a creature with power he’s never learned to control and emotions he cannot comprehend. As the name implies... he is still only a child.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}]}, \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"augur\", \"name\": \"Augur\", \"aliases\": []}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": []}, {\"characterId\": \"the-unique-lifeform\", \"name\": \"The Unique Lifeform\", \"aliases\": []}, {\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jacob\",\n  \"characterName\": \"Jacob\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_attribution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

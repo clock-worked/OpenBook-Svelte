@@ -1,0 +1,140 @@
+{
+  "cacheKey": "0f116d980d8bf34ca03e2faf4b88e694afbff2abea050a53617d97e000b1f96c",
+  "createdAt": "2026-04-01T04:25:19.583409+00:00",
+  "decision": {
+    "action": "propose_new_character",
+    "aliasToAdd": null,
+    "characterId": null,
+    "characterName": "The Head Priest",
+    "confidence": 1.0,
+    "newCharacterProposal": {
+      "alias": null,
+      "name": "The Head Priest",
+      "notes": "Identified as speaker in dialogue tag for this and preceding line."
+    },
+    "reasonCodes": [
+      "explicit_dialogue_tag",
+      "new_character_identified"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob"
+      },
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "name": "Bertram"
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper"
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.524,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Narrator"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.98,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "same_paragraph_continuation"
+          ]
+        },
+        {
+          "characterId": "narrator",
+          "confidence": 0.456,
+          "name": "Narrator",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Ell'Hakan"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "id": 17,
+      "isReturning": true,
+      "text": "Ell’Hakan holds incredible value to the Holy Church. Not just in the minds of us mortals, but even the gods have made it clear they require us to bring his Truesoul to them. They are also the ones who invested so much in him. We, as mere mortals, are merely following the will of the gods. Soldiers on a quest we do not even know the true purpose of... only that failure is not viewed as an acceptable option."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 15,
+          "text": "I know it’s presumptuous, but... yes,"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 17,
+          "text": "Ell’Hakan holds incredible value to the Holy Church. Not just in the minds of us mortals, but even the gods have made it clear they require us to bring his Truesoul to them. They are also the ones who invested so much in him. We, as mere mortals, are merely following the will of the gods. Soldiers on a quest we do not even know the true purpose of... only that failure is not viewed as an acceptable option."
+        }
+      ],
+      "currentParagraphText": "“I know it’s presumptuous, but... yes,” the head priest sighed. “Ell’Hakan holds incredible value to the Holy Church. Not just in the minds of us mortals, but even the gods have made it clear they require us to bring his Truesoul to them. They are also the ones who invested so much in him. We, as mere mortals, are merely following the will of the gods. Soldiers on a quest we do not even know the true purpose of... only that failure is not viewed as an acceptable option.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 7
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 17, \"text\": \"Ell’Hakan holds incredible value to the Holy Church. Not just in the minds of us mortals, but even the gods have made it clear they require us to bring his Truesoul to them. They are also the ones who invested so much in him. We, as mere mortals, are merely following the will of the gods. Soldiers on a quest we do not even know the true purpose of... only that failure is not viewed as an acceptable option.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Ell'Hakan\"], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Narrator\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.524, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"same_paragraph_continuation\"]}, {\"characterId\": \"narrator\", \"name\": \"Narrator\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 7, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“I know it’s presumptuous, but... yes,” the head priest sighed. “Ell’Hakan holds incredible value to the Holy Church. Not just in the minds of us mortals, but even the gods have made it clear they require us to bring his Truesoul to them. They are also the ones who invested so much in him. We, as mere mortals, are merely following the will of the gods. Soldiers on a quest we do not even know the true purpose of... only that failure is not viewed as an acceptable option.”\", \"currentParagraphDialogue\": [{\"lineId\": 15, \"text\": \"I know it’s presumptuous, but... yes,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 17, \"text\": \"Ell’Hakan holds incredible value to the Holy Church. Not just in the minds of us mortals, but even the gods have made it clear they require us to bring his Truesoul to them. They are also the ones who invested so much in him. We, as mere mortals, are merely following the will of the gods. Soldiers on a quest we do not even know the true purpose of... only that failure is not viewed as an acceptable option.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}]}, \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": []}, {\"characterId\": \"bertram\", \"name\": \"Bertram\", \"aliases\": []}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"]}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"propose_new_character\",\n  \"characterId\": null,\n  \"characterName\": \"The Head Priest\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_dialogue_tag\",\n    \"new_character_identified\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": {\n    \"name\": \"The Head Priest\",\n    \"alias\": null,\n    \"notes\": \"Identified as speaker in dialogue tag for this and preceding line.\"\n  }\n}"
+}

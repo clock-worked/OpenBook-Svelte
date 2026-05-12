@@ -1,0 +1,504 @@
+{
+  "alignment": {
+    "confidence": 1.0,
+    "isSpanFallback": false,
+    "method": "quote_unit",
+    "paragraphIndex": 15,
+    "spanDistance": 0.0,
+    "spanParagraphIndex": 15
+  },
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "f18baab63ed6be33e0bf43c99f4a27023076739de6949229fff332a4dae24e18",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\f18baab63ed6be33e0bf43c99f4a27023076739de6949229fff332a4dae24e18.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.9,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "responds_to_previous_speaker",
+          "next_dialogue_confirms_speaker_shift",
+          "dialogue_content_fits_speaker_agenda"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "characterName": "Minaga",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "minaga",
+              "unique lifeform",
+              "the unique lifeform",
+              "the unique lifeform 2",
+              "unique lifeform 2"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "casper",
+            "characterName": "Casper",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "casper"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God",
+              "Unknown Human (Male)"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist",
+              "lord thayne",
+              "thayne",
+              "void god",
+              "unknown human male"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God",
+              "Unknown Human (Male)"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "casper",
+            "name": "Casper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "name": "Minaga",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "You’re the only other person here… why would you even need a union?",
+          "lastSentence": "You’re the only other person here… why would you even need a union?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "You’re the only other person here… why would you even need a union?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "alignment": {
+            "confidence": 1.0,
+            "isSpanFallback": false,
+            "method": "quote_unit",
+            "paragraphIndex": 15,
+            "spanDistance": 0.0,
+            "spanParagraphIndex": 15
+          },
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": true,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.18,
+            "misattributionRisk": 0.5007999999999999,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "Casper"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.636
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.636,
+              "name": "Jake",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.456,
+              "name": "Casper",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 28,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "You’re the only other person here… why would you even need a union?"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 28,
+              "text": "You’re the only other person here… why would you even need a union?"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "You’re the only other person here… why would you even need a union?",
+              "lastSentence": "You’re the only other person here… why would you even need a union?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "You’re the only other person here… why would you even need a union?",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“You’re the only other person here… why would you even need a union?”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 29,
+              "text": "Save that for the judge,"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 31,
+              "text": "Now, seeing as I’m here, could you run me through the facilities and allow me to do an impromptu inspection of your project?"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Save that for the judge,",
+              "lastSentence": "Save that for the judge,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Save that for the judge,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Jake shook his head with extreme disappointment.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Now, seeing as I’m here, could you run me through the facilities and allow me to do an impromptu inspection of your project?",
+              "lastSentence": "Now, seeing as I’m here, could you run me through the facilities and allow me to do an impromptu inspection of your project?",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "Now, seeing as I’m here, could you run me through the facilities and allow me to do an impromptu inspection of your project?",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "nextParagraphText": "“Save that for the judge,” Jake shook his head with extreme disappointment. “Now, seeing as I’m here, could you run me through the facilities and allow me to do an impromptu inspection of your project?”",
+          "paragraphIndex": 15,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "casper",
+              "characterName": "Casper",
+              "isReturning": false,
+              "lineId": 25,
+              "text": "You definitely should,"
+            },
+            {
+              "characterId": "casper",
+              "characterName": "Casper",
+              "isReturning": true,
+              "lineId": 27,
+              "text": "Did you know he also banned unions? I’m pretty sure that’s illegal."
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Casper nodded.",
+              "cueVerb": "nodded",
+              "cueVerbType": "speech",
+              "firstSentence": "You definitely should,",
+              "lastSentence": "You definitely should,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "You definitely should,",
+              "speakerNameMatch": "Casper",
+              "speakerSurface": "Casper"
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Casper nodded.",
+              "cueVerb": "nodded",
+              "cueVerbType": "speech",
+              "firstSentence": "Did you know he also banned unions?",
+              "lastSentence": "I’m pretty sure that’s illegal.",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "Did you know he also banned unions? I’m pretty sure that’s illegal.",
+              "speakerNameMatch": "Casper",
+              "speakerSurface": "Casper"
+            }
+          ],
+          "previousParagraphText": "“You definitely should,” Casper nodded. “Did you know he also banned unions? I’m pretty sure that’s illegal.”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 22,
+            "paragraphIndex": 13,
+            "relativeIndex": -4,
+            "text": "Yeah, that was actually pretty insensitive of you,"
+          },
+          {
+            "characterId": "minaga",
+            "characterName": "Minaga",
+            "lineId": 24,
+            "paragraphIndex": 13,
+            "relativeIndex": -3,
+            "text": "Is this the kind of operation you’re running, huh? Workplace bullying is no joke, and I’m inclined to order an immediate investigation into the clearly toxic culture you’ve created."
+          },
+          {
+            "characterId": "casper",
+            "characterName": "Casper",
+            "lineId": 25,
+            "paragraphIndex": 14,
+            "relativeIndex": -2,
+            "text": "You definitely should,"
+          },
+          {
+            "characterId": "casper",
+            "characterName": "Casper",
+            "lineId": 27,
+            "paragraphIndex": 14,
+            "relativeIndex": -1,
+            "text": "Did you know he also banned unions? I’m pretty sure that’s illegal."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 29,
+            "paragraphIndex": 16,
+            "relativeIndex": 1,
+            "text": "Save that for the judge,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 31,
+            "paragraphIndex": 16,
+            "relativeIndex": 2,
+            "text": "Now, seeing as I’m here, could you run me through the facilities and allow me to do an impromptu inspection of your project?"
+          }
+        ],
+        "sceneEntities": [],
+        "sceneRoster": {
+          "paragraphWindow": 6,
+          "presentCharacterIds": [
+            "unknown",
+            "jake",
+            "minaga",
+            "casper"
+          ],
+          "presentCharacters": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake"
+            },
+            {
+              "characterId": "minaga",
+              "characterName": "Minaga"
+            },
+            {
+              "characterId": "casper",
+              "characterName": "Casper"
+            }
+          ]
+        }
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 28, \"text\": \"You’re the only other person here… why would you even need a union?\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Casper\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.636, \"marginToSecond\": 0.18, \"misattributionRisk\": 0.5007999999999999, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.636, \"reasons\": null}, {\"characterId\": null, \"name\": \"Casper\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true, \"alignment\": {\"paragraphIndex\": 15, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 15, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 15, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“You’re the only other person here… why would you even need a union?”\", \"currentParagraphDialogue\": [{\"lineId\": 28, \"text\": \"You’re the only other person here… why would you even need a union?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“You definitely should,” Casper nodded. “Did you know he also banned unions? I’m pretty sure that’s illegal.”\", \"previousParagraphDialogue\": [{\"lineId\": 25, \"text\": \"You definitely should,\", \"characterId\": \"casper\", \"characterName\": \"Casper\", \"isReturning\": false}, {\"lineId\": 27, \"text\": \"Did you know he also banned unions? I’m pretty sure that’s illegal.\", \"characterId\": \"casper\", \"characterName\": \"Casper\", \"isReturning\": true}], \"nextParagraphText\": \"“Save that for the judge,” Jake shook his head with extreme disappointment. “Now, seeing as I’m here, could you run me through the facilities and allow me to do an impromptu inspection of your project?”\", \"nextParagraphDialogue\": [{\"lineId\": 29, \"text\": \"Save that for the judge,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 31, \"text\": \"Now, seeing as I’m here, could you run me through the facilities and allow me to do an impromptu inspection of your project?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You’re the only other person here… why would you even need a union?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You’re the only other person here… why would you even need a union?\", \"lastSentence\": \"You’re the only other person here… why would you even need a union?\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You definitely should,\", \"cuePosition\": \"after\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Casper nodded.\", \"speakerSurface\": \"Casper\", \"speakerNameMatch\": \"Casper\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You definitely should,\", \"lastSentence\": \"You definitely should,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Did you know he also banned unions? I’m pretty sure that’s illegal.\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Casper nodded.\", \"speakerSurface\": \"Casper\", \"speakerNameMatch\": \"Casper\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Did you know he also banned unions?\", \"lastSentence\": \"I’m pretty sure that’s illegal.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Save that for the judge,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Save that for the judge,\", \"lastSentence\": \"Save that for the judge,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Now, seeing as I’m here, could you run me through the facilities and allow me to do an impromptu inspection of your project?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake shook his head with extreme disappointment.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Now, seeing as I’m here, could you run me through the facilities and allow me to do an impromptu inspection of your project?\", \"lastSentence\": \"Now, seeing as I’m here, could you run me through the facilities and allow me to do an impromptu inspection of your project?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"You’re the only other person here… why would you even need a union?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You’re the only other person here… why would you even need a union?\", \"lastSentence\": \"You’re the only other person here… why would you even need a union?\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"unknown\", \"jake\", \"minaga\", \"casper\"], \"presentCharacters\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}, {\"characterId\": \"jake\", \"characterName\": \"Jake\"}, {\"characterId\": \"minaga\", \"characterName\": \"Minaga\"}, {\"characterId\": \"casper\", \"characterName\": \"Casper\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [\"minaga\", \"unique lifeform\", \"the unique lifeform\", \"the unique lifeform 2\", \"unique lifeform 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"casper\", \"characterName\": \"Casper\", \"aliases\": [], \"roleLabels\": [\"casper\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\", \"void god\", \"unknown human male\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 22, \"paragraphIndex\": 13, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Yeah, that was actually pretty insensitive of you,\"}, {\"relativeIndex\": -3, \"lineId\": 24, \"paragraphIndex\": 13, \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"text\": \"Is this the kind of operation you’re running, huh? Workplace bullying is no joke, and I’m inclined to order an immediate investigation into the clearly toxic culture you’ve created.\"}, {\"relativeIndex\": -2, \"lineId\": 25, \"paragraphIndex\": 14, \"characterId\": \"casper\", \"characterName\": \"Casper\", \"text\": \"You definitely should,\"}, {\"relativeIndex\": -1, \"lineId\": 27, \"paragraphIndex\": 14, \"characterId\": \"casper\", \"characterName\": \"Casper\", \"text\": \"Did you know he also banned unions? I’m pretty sure that’s illegal.\"}, {\"relativeIndex\": 1, \"lineId\": 29, \"paragraphIndex\": 16, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Save that for the judge,\"}, {\"relativeIndex\": 2, \"lineId\": 31, \"paragraphIndex\": 16, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Now, seeing as I’m here, could you run me through the facilities and allow me to do an impromptu inspection of your project?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\", \"Unknown Human (Male)\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"casper\", \"name\": \"Casper\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"responds_to_previous_speaker\",\n    \"next_dialogue_confirms_speaker_shift\",\n    \"dialogue_content_fits_speaker_agenda\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0186 - Chapter 1243 - Too Easily Distracted/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“You’re the only other person here… why would you even need a union?”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.9,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“You’re the only other person here… why would you even need a union?”",
+    "disposition": "review",
+    "error": null,
+    "lineId": 28,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Save that for the judge,” Jake shook his head with extreme disappointment. “Now, seeing as I’m here, could you run me through the facilities and allow me to do an impromptu inspection of your project?”",
+    "paragraphIndex": 15,
+    "previousParagraphText": "“You definitely should,” Casper nodded. “Did you know he also banned unions? I’m pretty sure that’s illegal.”",
+    "reasonCodes": [
+      "responds_to_previous_speaker",
+      "next_dialogue_confirms_speaker_shift",
+      "dialogue_content_fits_speaker_agenda"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 28,
+  "nextParagraphText": "“Save that for the judge,” Jake shook his head with extreme disappointment. “Now, seeing as I’m here, could you run me through the facilities and allow me to do an impromptu inspection of your project?”",
+  "paragraphIndex": 15,
+  "previousParagraphText": "“You definitely should,” Casper nodded. “Did you know he also banned unions? I’m pretty sure that’s illegal.”",
+  "sceneRoster": {
+    "paragraphWindow": 6,
+    "presentCharacterIds": [
+      "unknown",
+      "jake",
+      "minaga",
+      "casper"
+    ],
+    "presentCharacters": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake"
+      },
+      {
+        "characterId": "minaga",
+        "characterName": "Minaga"
+      },
+      {
+        "characterId": "casper",
+        "characterName": "Casper"
+      }
+    ]
+  }
+}

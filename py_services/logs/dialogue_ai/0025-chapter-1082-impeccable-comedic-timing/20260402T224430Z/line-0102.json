@@ -1,0 +1,418 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "c1862796bbad531d68fdd7d128997da969eea85ab2f9833344504427671b9492",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\c1862796bbad531d68fdd7d128997da969eea85ab2f9833344504427671b9492.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "false god",
+        "characterName": "False God",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "parser_contradiction",
+          "same_paragraph_continuation"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": true
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "viper",
+              "the malefic viper",
+              "malefic viper",
+              "villy"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "false god",
+            "characterName": "False God",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "false god"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [],
+            "characterId": "beastkin-god",
+            "characterName": "Beastkin God",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "beastkin god"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [
+              "unknown-god",
+              "unknown-god-2"
+            ],
+            "characterId": "unknown-god",
+            "characterName": "Unknown God",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "unknown god",
+              "unknown god 2"
+            ],
+            "wasRecentSpeaker": false
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "name": "Sylphie",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "primordial",
+            "name": "Primordial",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "the-first-sage",
+              "the-first-sage-2"
+            ],
+            "characterId": "the-first-sage",
+            "name": "the first sage",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "yip",
+            "name": "yip",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "the god nodded in confirmation.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "It will for everyone, I’d reckon.",
+          "lastSentence": "or for you to eat it using the special stomach of Palate to learn more about it in a safe way.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "It will for everyone, I’d reckon. Besides anyone who actually has the Bloodline, that is, but considering the grand total of people like that is zero, no one will be able to see what it does simply through Identify. It will require experimentation... or for you to eat it using the special stomach of Palate to learn more about it in a safe way.",
+          "speakerNameMatch": null,
+          "speakerSurface": "the god"
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": true,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": true,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.46399999999999997,
+            "misattributionRisk": 0.020000000000000018,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "The Malefic Viper",
+            "sourceCandidates": [
+              "The Malefic Viper",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.98
+          },
+          "candidates": [
+            {
+              "characterId": "viper",
+              "confidence": 0.98,
+              "name": "The Malefic Viper",
+              "reasons": [
+                "parser_match",
+                "legacy_match",
+                "same_paragraph_continuation",
+                "speech_verb"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.516,
+              "name": "Jake",
+              "reasons": [
+                "speech_verb"
+              ]
+            }
+          ],
+          "currentCharacterAliases": [
+            "viper",
+            "Villy"
+          ],
+          "currentCharacterId": "viper",
+          "currentCharacterName": "The Malefic Viper",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 102,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "It will for everyone, I’d reckon. Besides anyone who actually has the Bloodline, that is, but considering the grand total of people like that is zero, no one will be able to see what it does simply through Identify. It will require experimentation... or for you to eat it using the special stomach of Palate to learn more about it in a safe way."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 1,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "viper",
+              "characterName": "The Malefic Viper",
+              "isReturning": false,
+              "lineId": 100,
+              "text": "It does,"
+            },
+            {
+              "characterId": "viper",
+              "characterName": "The Malefic Viper",
+              "isReturning": true,
+              "lineId": 102,
+              "text": "It will for everyone, I’d reckon. Besides anyone who actually has the Bloodline, that is, but considering the grand total of people like that is zero, no one will be able to see what it does simply through Identify. It will require experimentation... or for you to eat it using the special stomach of Palate to learn more about it in a safe way."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the god nodded in confirmation.",
+              "cueVerb": "nodded",
+              "cueVerbType": "speech",
+              "firstSentence": "It does,",
+              "lastSentence": "It does,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "It does,",
+              "speakerNameMatch": null,
+              "speakerSurface": "the god"
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "the god nodded in confirmation.",
+              "cueVerb": "nodded",
+              "cueVerbType": "speech",
+              "firstSentence": "It will for everyone, I’d reckon.",
+              "lastSentence": "or for you to eat it using the special stomach of Palate to learn more about it in a safe way.",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "It will for everyone, I’d reckon. Besides anyone who actually has the Bloodline, that is, but considering the grand total of people like that is zero, no one will be able to see what it does simply through Identify. It will require experimentation... or for you to eat it using the special stomach of Palate to learn more about it in a safe way.",
+              "speakerNameMatch": null,
+              "speakerSurface": "the god"
+            }
+          ],
+          "currentParagraphText": "“It does,” the god nodded in confirmation. “It will for everyone, I’d reckon. Besides anyone who actually has the Bloodline, that is, but considering the grand total of people like that is zero, no one will be able to see what it does simply through Identify. It will require experimentation... or for you to eat it using the special stomach of Palate to learn more about it in a safe way.”",
+          "dialogueLineCount": 2,
+          "paragraphIndex": 46
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 96,
+            "paragraphIndex": 44,
+            "relativeIndex": -4,
+            "text": "Bloodlines and Truesouls are bound together intrinsically. This item has no soul power whatsoever. Even if you somehow managed to use the item to give birth to some creature with your Primeval Origins abilities, it won’t have a Bloodline. It may get a skill or have its race be affected by the properties the Bloodline had, but that’s about it."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 97,
+            "paragraphIndex": 45,
+            "relativeIndex": -3,
+            "text": "Alright... good,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 99,
+            "paragraphIndex": 45,
+            "relativeIndex": -2,
+            "text": "Doesn’t mean I have any idea what to use it for, though. I still find it too risky of an object to even experiment with, and there’s definitely no way in hell I’m gonna eat it. When you use Identify on it, does it also have the redacted portions?"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 100,
+            "paragraphIndex": 46,
+            "relativeIndex": -1,
+            "text": "It does,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 103,
+            "paragraphIndex": 47,
+            "relativeIndex": 1,
+            "text": "I could do that... though I’m still considering just getting rid of it for good,"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 105,
+            "paragraphIndex": 48,
+            "relativeIndex": 2,
+            "text": "Understandable in some ways, but I would heavily advise against it. Think about it like this: the Bloodline was powerful, of that, there is no doubt. It only makes sense the item has some powerful function, too, right? If you can identify those functions, I have a little item here you may just be able to use to empower them. Once you do that, you can use the Starlight Heart to create something truly useful."
+          }
+        ],
+        "sceneEntities": [
+          {
+            "matches": [
+              {
+                "characterId": "false god",
+                "characterName": "False God",
+                "evidence": [
+                  "token_overlap:god"
+                ],
+                "score": 0.8
+              },
+              {
+                "characterId": "beastkin-god",
+                "characterName": "Beastkin God",
+                "evidence": [
+                  "token_overlap:god"
+                ],
+                "score": 0.8
+              },
+              {
+                "characterId": "unknown-god",
+                "characterName": "Unknown God",
+                "evidence": [
+                  "token_overlap:god",
+                  "generic_placeholder_penalty"
+                ],
+                "score": 0.56
+              }
+            ],
+            "surface": "the god"
+          }
+        ]
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 102, \"text\": \"It will for everyone, I’d reckon. Besides anyone who actually has the Bloodline, that is, but considering the grand total of people like that is zero, no one will be able to see what it does simply through Identify. It will require experimentation... or for you to eat it using the special stomach of Palate to learn more about it in a safe way.\", \"currentCharacterId\": \"viper\", \"currentCharacterName\": \"The Malefic Viper\", \"currentCharacterAliases\": [\"viper\", \"Villy\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"The Malefic Viper\", \"sourceCandidates\": [\"The Malefic Viper\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.46399999999999997, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"same_paragraph_continuation\", \"speech_verb\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.516, \"reasons\": [\"speech_verb\"]}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 46, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“It does,” the god nodded in confirmation. “It will for everyone, I’d reckon. Besides anyone who actually has the Bloodline, that is, but considering the grand total of people like that is zero, no one will be able to see what it does simply through Identify. It will require experimentation... or for you to eat it using the special stomach of Palate to learn more about it in a safe way.”\", \"currentParagraphDialogue\": [{\"lineId\": 100, \"text\": \"It does,\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": false}, {\"lineId\": 102, \"text\": \"It will for everyone, I’d reckon. Besides anyone who actually has the Bloodline, that is, but considering the grand total of people like that is zero, no one will be able to see what it does simply through Identify. It will require experimentation... or for you to eat it using the special stomach of Palate to learn more about it in a safe way.\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"It does,\", \"cuePosition\": \"after\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"the god nodded in confirmation.\", \"speakerSurface\": \"the god\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"It does,\", \"lastSentence\": \"It does,\"}, {\"quoteIndex\": 1, \"quoteText\": \"It will for everyone, I’d reckon. Besides anyone who actually has the Bloodline, that is, but considering the grand total of people like that is zero, no one will be able to see what it does simply through Identify. It will require experimentation... or for you to eat it using the special stomach of Palate to learn more about it in a safe way.\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"the god nodded in confirmation.\", \"speakerSurface\": \"the god\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"It will for everyone, I’d reckon.\", \"lastSentence\": \"or for you to eat it using the special stomach of Palate to learn more about it in a safe way.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"It will for everyone, I’d reckon. Besides anyone who actually has the Bloodline, that is, but considering the grand total of people like that is zero, no one will be able to see what it does simply through Identify. It will require experimentation... or for you to eat it using the special stomach of Palate to learn more about it in a safe way.\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"the god nodded in confirmation.\", \"speakerSurface\": \"the god\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"It will for everyone, I’d reckon.\", \"lastSentence\": \"or for you to eat it using the special stomach of Palate to learn more about it in a safe way.\"}, \"sceneEntities\": [{\"surface\": \"the god\", \"matches\": [{\"characterId\": \"false god\", \"characterName\": \"False God\", \"score\": 0.8, \"evidence\": [\"token_overlap:god\"]}, {\"characterId\": \"beastkin-god\", \"characterName\": \"Beastkin God\", \"score\": 0.8, \"evidence\": [\"token_overlap:god\"]}, {\"characterId\": \"unknown-god\", \"characterName\": \"Unknown God\", \"score\": 0.56, \"evidence\": [\"token_overlap:god\", \"generic_placeholder_penalty\"]}]}], \"candidateCards\": [{\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"false god\", \"characterName\": \"False God\", \"aliases\": [], \"roleLabels\": [\"false god\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"beastkin-god\", \"characterName\": \"Beastkin God\", \"aliases\": [], \"roleLabels\": [\"beastkin god\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"unknown-god\", \"characterName\": \"Unknown God\", \"aliases\": [\"unknown-god\", \"unknown-god-2\"], \"roleLabels\": [\"unknown god\", \"unknown god 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 96, \"paragraphIndex\": 44, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Bloodlines and Truesouls are bound together intrinsically. This item has no soul power whatsoever. Even if you somehow managed to use the item to give birth to some creature with your Primeval Origins abilities, it won’t have a Bloodline. It may get a skill or have its race be affected by the properties the Bloodline had, but that’s about it.\"}, {\"relativeIndex\": -3, \"lineId\": 97, \"paragraphIndex\": 45, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Alright... good,\"}, {\"relativeIndex\": -2, \"lineId\": 99, \"paragraphIndex\": 45, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Doesn’t mean I have any idea what to use it for, though. I still find it too risky of an object to even experiment with, and there’s definitely no way in hell I’m gonna eat it. When you use Identify on it, does it also have the redacted portions?\"}, {\"relativeIndex\": -1, \"lineId\": 100, \"paragraphIndex\": 46, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"It does,\"}, {\"relativeIndex\": 1, \"lineId\": 103, \"paragraphIndex\": 47, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I could do that... though I’m still considering just getting rid of it for good,\"}, {\"relativeIndex\": 2, \"lineId\": 105, \"paragraphIndex\": 48, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Understandable in some ways, but I would heavily advise against it. Think about it like this: the Bloodline was powerful, of that, there is no doubt. It only makes sense the item has some powerful function, too, right? If you can identify those functions, I have a little item here you may just be able to use to empower them. Once you do that, you can use the Starlight Heart to create something truly useful.\"}], \"chapterCharacters\": [{\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"primordial\", \"name\": \"Primordial\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-first-sage\", \"name\": \"the first sage\", \"aliases\": [\"the-first-sage\", \"the-first-sage-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"yip\", \"name\": \"yip\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"false god\",\n  \"characterName\": \"False God\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"parser_contradiction\",\n    \"same_paragraph_continuation\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0025 - Chapter 1082 - Impeccable Comedic Timing",
+  "currentCharacterId": "viper",
+  "currentCharacterName": "The Malefic Viper",
+  "currentParagraphText": "“It does,” the god nodded in confirmation. “It will for everyone, I’d reckon. Besides anyone who actually has the Bloodline, that is, but considering the grand total of people like that is zero, no one will be able to see what it does simply through Identify. It will require experimentation... or for you to eat it using the special stomach of Palate to learn more about it in a safe way.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "viper",
+    "currentCharacterName": "The Malefic Viper",
+    "currentParagraphText": "“It does,” the god nodded in confirmation. “It will for everyone, I’d reckon. Besides anyone who actually has the Bloodline, that is, but considering the grand total of people like that is zero, no one will be able to see what it does simply through Identify. It will require experimentation... or for you to eat it using the special stomach of Palate to learn more about it in a safe way.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 102,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“I could do that... though I’m still considering just getting rid of it for good,” Jake sighed.",
+    "paragraphIndex": 46,
+    "previousParagraphText": "“Alright... good,” Jake sighed in relief. “Doesn’t mean I have any idea what to use it for, though. I still find it too risky of an object to even experiment with, and there’s definitely no way in hell I’m gonna eat it. When you use Identify on it, does it also have the redacted portions?”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "parser_contradiction",
+      "same_paragraph_continuation"
+    ],
+    "suggestedCharacterId": "false god",
+    "suggestedCharacterName": "False God",
+    "toolTrace": []
+  },
+  "lineId": 102,
+  "nextParagraphText": "“I could do that... though I’m still considering just getting rid of it for good,” Jake sighed.",
+  "paragraphIndex": 46,
+  "previousParagraphText": "“Alright... good,” Jake sighed in relief. “Doesn’t mean I have any idea what to use it for, though. I still find it too risky of an object to even experiment with, and there’s definitely no way in hell I’m gonna eat it. When you use Identify on it, does it also have the redacted portions?”"
+}

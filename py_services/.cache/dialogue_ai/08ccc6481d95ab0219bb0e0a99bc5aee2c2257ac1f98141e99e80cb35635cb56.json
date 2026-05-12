@@ -1,0 +1,292 @@
+{
+  "cacheKey": "08ccc6481d95ab0219bb0e0a99bc5aee2c2257ac1f98141e99e80cb35635cb56",
+  "createdAt": "2026-04-01T18:44:45.990554+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_flow"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jacob"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "characterName": "Carmen",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "carmen"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "characterName": "Augur",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "augur"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "name": "Augur",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "the-unique-lifeform",
+        "name": "The Unique Lifeform",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,",
+      "lastSentence": "But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jacob",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.19599999999999995,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jacob",
+        "sourceCandidates": [
+          "Jacob",
+          "Carmen"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": "jacob",
+          "confidence": 0.804,
+          "name": "Jacob",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "carmen",
+          "confidence": 0.444,
+          "name": "Carmen",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "jacob",
+      "currentCharacterName": "Jacob",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 64,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": true,
+          "lineId": 64,
+          "text": "But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,",
+          "lastSentence": "But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Jake said in a rather cold tone.",
+      "paragraphIndex": 37,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Jake really wasn’t sure how much he trusted Jacob at this point, but his words did make some sense. Something that also made a bit of sense now was why he’d asked Carmen to come along."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 57,
+        "paragraphIndex": 30,
+        "relativeIndex": -4,
+        "text": "I told you already. The closest thing to a purpose the Desolate Child of Loss had was to reclaim whatever Records it could to make it at least somewhat whole."
+      },
+      {
+        "characterId": "augur",
+        "characterName": "Augur",
+        "lineId": 59,
+        "paragraphIndex": 32,
+        "relativeIndex": -3,
+        "text": "You saved it because you wanted to make it fight Ell’Hakan? Seems pretty counterproductive when the same faction is both helping and trying to kill the same person."
+      },
+      {
+        "characterId": "augur",
+        "characterName": "Augur",
+        "lineId": 60,
+        "paragraphIndex": 33,
+        "relativeIndex": -2,
+        "text": "Some parts of the Holy Church view the Usurper’s Bloodline as an invaluable boon that they simply must obtain, while others see the hidden dangers of doing so. As you know, I’m part of the camp that wants his Bloodline dead and gone. I have met Ell’Hakan personally, experienced his Bloodline, and seen what it can do. What he, a mere C-grade, could do with it. I don’t even want to imagine someone of a higher grade, much less a god, with such a Bloodline,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 62,
+        "paragraphIndex": 35,
+        "relativeIndex": -1,
+        "text": "Acting against Ell’Hakan openly wasn’t an option, though. We simply didn’t have the ability to defeat him here in this galaxy... not before the Desolate Child of Loss appeared. You can view the False God as your backup should you have failed to defeat Ell’Hakan. While the head priest believed the Desolate Child was a backup to defeat you, the Holy Mother and I always viewed it as a backup to defeat him."
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 66,
+        "paragraphIndex": 40,
+        "relativeIndex": 1,
+        "text": "That... is not my choice,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 68,
+        "paragraphIndex": 40,
+        "relativeIndex": 2,
+        "text": "Genuinely, I believe the Desolate Child of Loss can be guided toward a proper Path. You’ve seen it today. He has improved his control tremendously in a small amount of time and given enough training and patience, he should one day be able to fully control it. If not in C-grade, his B-grade evolution may even turn the Desolate Child of Loss into something entirely different... perhaps even allowing it to lose its status as a False God."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 64, \"text\": \"But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,\", \"currentCharacterId\": \"jacob\", \"currentCharacterName\": \"Jacob\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jacob\", \"sourceCandidates\": [\"Jacob\", \"Carmen\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jacob\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"carmen\", \"name\": \"Carmen\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 37, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,”\", \"currentParagraphDialogue\": [{\"lineId\": 64, \"text\": \"But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": true}], \"previousParagraphText\": \"Jake really wasn’t sure how much he trusted Jacob at this point, but his words did make some sense. Something that also made a bit of sense now was why he’d asked Carmen to come along.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Jake said in a rather cold tone.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,\", \"lastSentence\": \"But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,\", \"lastSentence\": \"But now that the Desolate Child of Loss has outlived its purpose, you decided to get rid of it,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [], \"roleLabels\": [\"jacob\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"carmen\", \"characterName\": \"Carmen\", \"aliases\": [], \"roleLabels\": [\"carmen\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"augur\", \"characterName\": \"Augur\", \"aliases\": [], \"roleLabels\": [\"augur\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 57, \"paragraphIndex\": 30, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I told you already. The closest thing to a purpose the Desolate Child of Loss had was to reclaim whatever Records it could to make it at least somewhat whole.\"}, {\"relativeIndex\": -3, \"lineId\": 59, \"paragraphIndex\": 32, \"characterId\": \"augur\", \"characterName\": \"Augur\", \"text\": \"You saved it because you wanted to make it fight Ell’Hakan? Seems pretty counterproductive when the same faction is both helping and trying to kill the same person.\"}, {\"relativeIndex\": -2, \"lineId\": 60, \"paragraphIndex\": 33, \"characterId\": \"augur\", \"characterName\": \"Augur\", \"text\": \"Some parts of the Holy Church view the Usurper’s Bloodline as an invaluable boon that they simply must obtain, while others see the hidden dangers of doing so. As you know, I’m part of the camp that wants his Bloodline dead and gone. I have met Ell’Hakan personally, experienced his Bloodline, and seen what it can do. What he, a mere C-grade, could do with it. I don’t even want to imagine someone of a higher grade, much less a god, with such a Bloodline,\"}, {\"relativeIndex\": -1, \"lineId\": 62, \"paragraphIndex\": 35, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Acting against Ell’Hakan openly wasn’t an option, though. We simply didn’t have the ability to defeat him here in this galaxy... not before the Desolate Child of Loss appeared. You can view the False God as your backup should you have failed to defeat Ell’Hakan. While the head priest believed the Desolate Child was a backup to defeat you, the Holy Mother and I always viewed it as a backup to defeat him.\"}, {\"relativeIndex\": 1, \"lineId\": 66, \"paragraphIndex\": 40, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"That... is not my choice,\"}, {\"relativeIndex\": 2, \"lineId\": 68, \"paragraphIndex\": 40, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Genuinely, I believe the Desolate Child of Loss can be guided toward a proper Path. You’ve seen it today. He has improved his control tremendously in a small amount of time and given enough training and patience, he should one day be able to fully control it. If not in C-grade, his B-grade evolution may even turn the Desolate Child of Loss into something entirely different... perhaps even allowing it to lose its status as a False God.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"augur\", \"name\": \"Augur\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-unique-lifeform\", \"name\": \"The Unique Lifeform\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_flow\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

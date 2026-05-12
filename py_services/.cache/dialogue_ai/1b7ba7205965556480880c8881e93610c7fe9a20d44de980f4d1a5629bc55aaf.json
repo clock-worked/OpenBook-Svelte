@@ -1,0 +1,314 @@
+{
+  "cacheKey": "1b7ba7205965556480880c8881e93610c7fe9a20d44de980f4d1a5629bc55aaf",
+  "createdAt": "2026-04-19T03:21:37.367615+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "beastkin",
+    "characterName": "Beastkin",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "character_description_match"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "beastkin",
+        "characterName": "Beastkin",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "beastkin"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "lord thayne",
+          "thayne"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "beastkin",
+        "name": "Beastkin",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Excuse me, then,",
+      "lastSentence": "Excuse me, then,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Excuse me, then,",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Beastkin",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.7,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.33479999999999993,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Beastkin",
+        "sourceCandidates": [
+          "Beastkin",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.796
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.796,
+          "name": "Beastkin",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.436,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 87,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Excuse me, then,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 87,
+          "text": "Excuse me, then,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Excuse me, then,",
+          "lastSentence": "Excuse me, then,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Excuse me, then,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Excuse me, then,” the wood elf bowed and stood up straight again. Jake waited for her to make the first move. From the information crystal, he knew she specialized in a mixture of wind and nature magic; however, her way of utilizing these two common affinities was quite unique.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "The result of her Path was that she had one aspect that far surpassed pretty much everyone else her level:",
+      "paragraphIndex": 58,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 84,
+          "text": "I’m looking forward to finding out,"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 86,
+          "text": "Ready when you are."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake smiled as he waved his hand and summoned his own bow.",
+          "cueVerb": "smiled",
+          "cueVerbType": "reaction",
+          "firstSentence": "I’m looking forward to finding out,",
+          "lastSentence": "I’m looking forward to finding out,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I’m looking forward to finding out,",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jake smiled as he waved his hand and summoned his own bow.",
+          "cueVerb": "smiled",
+          "cueVerbType": "reaction",
+          "firstSentence": "Ready when you are.",
+          "lastSentence": "Ready when you are.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "Ready when you are.",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "previousParagraphText": "“I’m looking forward to finding out,” Jake smiled as he waved his hand and summoned his own bow. “Ready when you are.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "beastkin",
+        "characterName": "Beastkin",
+        "lineId": 81,
+        "paragraphIndex": 56,
+        "relativeIndex": -4,
+        "text": "Your gratitude is entirely unnecessary; it should be me thanking you for allowing me to spar with the Chosen,"
+      },
+      {
+        "characterId": "beastkin",
+        "characterName": "Beastkin",
+        "lineId": 83,
+        "paragraphIndex": 56,
+        "relativeIndex": -3,
+        "text": "I hope my skills are sufficient to serve as inspiration."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 84,
+        "paragraphIndex": 57,
+        "relativeIndex": -2,
+        "text": "I’m looking forward to finding out,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 86,
+        "paragraphIndex": 57,
+        "relativeIndex": -1,
+        "text": "Ready when you are."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 102,
+        "paragraphIndex": 72,
+        "relativeIndex": 1,
+        "text": "I think I forgot to tell you... She recently had an impressive epiphany, and in a surprising turn of events, her first-ever mythical skill turned out to be her archery one!"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 87, \"text\": \"Excuse me, then,\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Beastkin\", \"sourceCandidates\": [\"Beastkin\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.33479999999999993, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Beastkin\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Beastkin\", \"confidence\": 0.796, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.436, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 58, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Excuse me, then,” the wood elf bowed and stood up straight again. Jake waited for her to make the first move. From the information crystal, he knew she specialized in a mixture of wind and nature magic; however, her way of utilizing these two common affinities was quite unique.\", \"currentParagraphDialogue\": [{\"lineId\": 87, \"text\": \"Excuse me, then,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"previousParagraphText\": \"“I’m looking forward to finding out,” Jake smiled as he waved his hand and summoned his own bow. “Ready when you are.”\", \"previousParagraphDialogue\": [{\"lineId\": 84, \"text\": \"I’m looking forward to finding out,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 86, \"text\": \"Ready when you are.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"nextParagraphText\": \"The result of her Path was that she had one aspect that far surpassed pretty much everyone else her level:\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Excuse me, then,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Excuse me, then,\", \"lastSentence\": \"Excuse me, then,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I’m looking forward to finding out,\", \"cuePosition\": \"after\", \"cueVerb\": \"smiled\", \"cueVerbType\": \"reaction\", \"cueText\": \"Jake smiled as he waved his hand and summoned his own bow.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’m looking forward to finding out,\", \"lastSentence\": \"I’m looking forward to finding out,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Ready when you are.\", \"cuePosition\": \"before\", \"cueVerb\": \"smiled\", \"cueVerbType\": \"reaction\", \"cueText\": \"Jake smiled as he waved his hand and summoned his own bow.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Ready when you are.\", \"lastSentence\": \"Ready when you are.\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Excuse me, then,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Excuse me, then,\", \"lastSentence\": \"Excuse me, then,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"beastkin\", \"characterName\": \"Beastkin\", \"aliases\": [], \"roleLabels\": [\"beastkin\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 81, \"paragraphIndex\": 56, \"characterId\": \"beastkin\", \"characterName\": \"Beastkin\", \"text\": \"Your gratitude is entirely unnecessary; it should be me thanking you for allowing me to spar with the Chosen,\"}, {\"relativeIndex\": -3, \"lineId\": 83, \"paragraphIndex\": 56, \"characterId\": \"beastkin\", \"characterName\": \"Beastkin\", \"text\": \"I hope my skills are sufficient to serve as inspiration.\"}, {\"relativeIndex\": -2, \"lineId\": 84, \"paragraphIndex\": 57, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I’m looking forward to finding out,\"}, {\"relativeIndex\": -1, \"lineId\": 86, \"paragraphIndex\": 57, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Ready when you are.\"}, {\"relativeIndex\": 1, \"lineId\": 102, \"paragraphIndex\": 72, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I think I forgot to tell you... She recently had an impressive epiphany, and in a surprising turn of events, her first-ever mythical skill turned out to be her archery one!\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"beastkin\", \"name\": \"Beastkin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"beastkin\",\n  \"characterName\": \"Beastkin\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"character_description_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

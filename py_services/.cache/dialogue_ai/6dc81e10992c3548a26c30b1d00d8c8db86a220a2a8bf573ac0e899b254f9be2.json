@@ -1,0 +1,351 @@
+{
+  "cacheKey": "6dc81e10992c3548a26c30b1d00d8c8db86a220a2a8bf573ac0e899b254f9be2",
+  "createdAt": "2026-04-04T03:13:21.406043+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "keerla",
+    "characterName": "Keerla",
+    "confidence": 0.9,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration",
+      "dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "keerla",
+        "characterName": "Keerla",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "keerla"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "unknown-elf-male",
+          "unknown-elf-male-2",
+          "unknown-elf"
+        ],
+        "characterId": "unknown-elf-male",
+        "characterName": "Unknown Elf (Male)",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown elf male",
+          "unknown elf male 2",
+          "unknown elf"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown-elf-female",
+        "characterName": "Unknown Elf (Female)",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown elf female"
+        ],
+        "wasRecentSpeaker": false
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "having",
+        "name": "Having",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "keerla",
+        "name": "Keerla",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "solana",
+        "name": "Solana",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "the elf said, not trying to pry further.",
+      "cueVerb": "said",
+      "cueVerbType": "speech",
+      "firstSentence": "I see,",
+      "lastSentence": "I see,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "I see,",
+      "speakerNameMatch": null,
+      "speakerSurface": "the elf"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Keerla",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.7,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.33479999999999993,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Keerla",
+        "sourceCandidates": [
+          "Keerla",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.796
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.796,
+          "name": "Keerla",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.436,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 46,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "I see,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 46,
+          "text": "I see,"
+        },
+        {
+          "characterId": "keerla",
+          "characterName": "Keerla",
+          "isReturning": true,
+          "lineId": 48,
+          "text": "I’m not sure you need this warning, but the Rainbowfeathers are very vengeful creatures, and if you killed that many of them, they can likely track you through karma now. While it’s true there are no truly powerful Rainbowfeathers in Area 1, the same is not true elsewhere. It’s likely even a B-grade may make a move against you."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the elf said, not trying to pry further.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "I see,",
+          "lastSentence": "I see,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I see,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the elf"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "the elf said, not trying to pry further.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "I’m not sure you need this warning, but the Rainbowfeathers are very vengeful creatures, and if you killed that many of them, they can likely track you through karma now.",
+          "lastSentence": "It’s likely even a B-grade may make a move against you.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "I’m not sure you need this warning, but the Rainbowfeathers are very vengeful creatures, and if you killed that many of them, they can likely track you through karma now. While it’s true there are no truly powerful Rainbowfeathers in Area 1, the same is not true elsewhere. It’s likely even a B-grade may make a move against you.",
+          "speakerNameMatch": null,
+          "speakerSurface": "the elf"
+        }
+      ],
+      "currentParagraphText": "“I see,” the elf said, not trying to pry further. “I’m not sure you need this warning, but the Rainbowfeathers are very vengeful creatures, and if you killed that many of them, they can likely track you through karma now. While it’s true there are no truly powerful Rainbowfeathers in Area 1, the same is not true elsewhere. It’s likely even a B-grade may make a move against you.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 23
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "keerla",
+        "characterName": "Keerla",
+        "lineId": 40,
+        "paragraphIndex": 21,
+        "relativeIndex": -4,
+        "text": "Are you a member of the Pantheon of Life?"
+      },
+      {
+        "characterId": "keerla",
+        "characterName": "Keerla",
+        "lineId": 42,
+        "paragraphIndex": 21,
+        "relativeIndex": -3,
+        "text": "Because if you are, I seriously wonder why I never heard about someone like you."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 43,
+        "paragraphIndex": 22,
+        "relativeIndex": -2,
+        "text": "I’m not,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 45,
+        "paragraphIndex": 22,
+        "relativeIndex": -1,
+        "text": "Just a visitor here to experience the Hunting Grounds and what else the Pantheon of Life has to offer."
+      },
+      {
+        "characterId": "keerla",
+        "characterName": "Keerla",
+        "lineId": 48,
+        "paragraphIndex": 23,
+        "relativeIndex": 1,
+        "text": "I’m not sure you need this warning, but the Rainbowfeathers are very vengeful creatures, and if you killed that many of them, they can likely track you through karma now. While it’s true there are no truly powerful Rainbowfeathers in Area 1, the same is not true elsewhere. It’s likely even a B-grade may make a move against you."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 49,
+        "paragraphIndex": 24,
+        "relativeIndex": 2,
+        "text": "Thanks for the warning,"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "unknown-elf-male",
+            "characterName": "Unknown Elf (Male)",
+            "evidence": [
+              "token_overlap:elf",
+              "generic_placeholder_penalty"
+            ],
+            "score": 0.56
+          },
+          {
+            "characterId": "unknown-elf-female",
+            "characterName": "Unknown Elf (Female)",
+            "evidence": [
+              "token_overlap:elf",
+              "generic_placeholder_penalty"
+            ],
+            "score": 0.56
+          }
+        ],
+        "surface": "the elf"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 46, \"text\": \"I see,\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Keerla\", \"sourceCandidates\": [\"Keerla\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.33479999999999993, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Keerla\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Keerla\", \"confidence\": 0.796, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.436, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 23, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“I see,” the elf said, not trying to pry further. “I’m not sure you need this warning, but the Rainbowfeathers are very vengeful creatures, and if you killed that many of them, they can likely track you through karma now. While it’s true there are no truly powerful Rainbowfeathers in Area 1, the same is not true elsewhere. It’s likely even a B-grade may make a move against you.”\", \"currentParagraphDialogue\": [{\"lineId\": 46, \"text\": \"I see,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 48, \"text\": \"I’m not sure you need this warning, but the Rainbowfeathers are very vengeful creatures, and if you killed that many of them, they can likely track you through karma now. While it’s true there are no truly powerful Rainbowfeathers in Area 1, the same is not true elsewhere. It’s likely even a B-grade may make a move against you.\", \"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I see,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the elf said, not trying to pry further.\", \"speakerSurface\": \"the elf\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I see,\", \"lastSentence\": \"I see,\"}, {\"quoteIndex\": 1, \"quoteText\": \"I’m not sure you need this warning, but the Rainbowfeathers are very vengeful creatures, and if you killed that many of them, they can likely track you through karma now. While it’s true there are no truly powerful Rainbowfeathers in Area 1, the same is not true elsewhere. It’s likely even a B-grade may make a move against you.\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the elf said, not trying to pry further.\", \"speakerSurface\": \"the elf\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’m not sure you need this warning, but the Rainbowfeathers are very vengeful creatures, and if you killed that many of them, they can likely track you through karma now.\", \"lastSentence\": \"It’s likely even a B-grade may make a move against you.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I see,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the elf said, not trying to pry further.\", \"speakerSurface\": \"the elf\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I see,\", \"lastSentence\": \"I see,\"}, \"sceneEntities\": [{\"surface\": \"the elf\", \"matches\": [{\"characterId\": \"unknown-elf-male\", \"characterName\": \"Unknown Elf (Male)\", \"score\": 0.56, \"evidence\": [\"token_overlap:elf\", \"generic_placeholder_penalty\"]}, {\"characterId\": \"unknown-elf-female\", \"characterName\": \"Unknown Elf (Female)\", \"score\": 0.56, \"evidence\": [\"token_overlap:elf\", \"generic_placeholder_penalty\"]}]}], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"aliases\": [], \"roleLabels\": [\"keerla\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown-elf-male\", \"characterName\": \"Unknown Elf (Male)\", \"aliases\": [\"unknown-elf-male\", \"unknown-elf-male-2\", \"unknown-elf\"], \"roleLabels\": [\"unknown elf male\", \"unknown elf male 2\", \"unknown elf\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"unknown-elf-female\", \"characterName\": \"Unknown Elf (Female)\", \"aliases\": [], \"roleLabels\": [\"unknown elf female\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 40, \"paragraphIndex\": 21, \"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"text\": \"Are you a member of the Pantheon of Life?\"}, {\"relativeIndex\": -3, \"lineId\": 42, \"paragraphIndex\": 21, \"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"text\": \"Because if you are, I seriously wonder why I never heard about someone like you.\"}, {\"relativeIndex\": -2, \"lineId\": 43, \"paragraphIndex\": 22, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I’m not,\"}, {\"relativeIndex\": -1, \"lineId\": 45, \"paragraphIndex\": 22, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Just a visitor here to experience the Hunting Grounds and what else the Pantheon of Life has to offer.\"}, {\"relativeIndex\": 1, \"lineId\": 48, \"paragraphIndex\": 23, \"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"text\": \"I’m not sure you need this warning, but the Rainbowfeathers are very vengeful creatures, and if you killed that many of them, they can likely track you through karma now. While it’s true there are no truly powerful Rainbowfeathers in Area 1, the same is not true elsewhere. It’s likely even a B-grade may make a move against you.\"}, {\"relativeIndex\": 2, \"lineId\": 49, \"paragraphIndex\": 24, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Thanks for the warning,\"}], \"chapterCharacters\": [{\"characterId\": \"having\", \"name\": \"Having\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"keerla\", \"name\": \"Keerla\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"solana\", \"name\": \"Solana\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"keerla\",\n  \"characterName\": \"Keerla\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"explicit_narration\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

@@ -1,0 +1,146 @@
+{
+  "cacheKey": "7a4c4da3b954d964de308823119f20f1d42880f9f74f99ace9d8a53dfc96c27d",
+  "createdAt": "2026-04-01T04:35:38.720040+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "kindroth",
+    "characterName": "Kindroth",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "pronoun_match",
+      "dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob"
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper"
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth"
+      },
+      {
+        "aliases": [],
+        "characterId": "primordial",
+        "name": "primordial"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.19199999999999995,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Kindroth",
+        "sourceCandidates": [
+          "Kindroth",
+          "Iludar"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.808
+      },
+      "candidates": [
+        {
+          "characterId": "kindroth",
+          "confidence": 0.808,
+          "name": "Kindroth",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "iludar",
+          "confidence": 0.448,
+          "name": "Iludar",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "kindroth",
+      "currentCharacterName": "Kindroth",
+      "id": 65,
+      "isReturning": false,
+      "text": "We surrender!"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": false,
+          "lineId": 65,
+          "text": "We surrender!"
+        }
+      ],
+      "currentParagraphText": "“We surrender!” his voice echoed throughout the valley. He was full of regret, but there truly was no other choice.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": true,
+          "lineId": 67,
+          "text": "We surrender unconditionally! Everyone, lay down your arms!"
+        }
+      ],
+      "nextParagraphText": "“We surrender unconditionally! Everyone, lay down your arms!”",
+      "paragraphIndex": 48,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": false,
+          "lineId": 63,
+          "text": "Disengage from combat, gather at my location... and surrender,"
+        }
+      ],
+      "previousParagraphText": "“Disengage from combat, gather at my location... and surrender,” he spoke through the psychic link he’d established with every single fighter. At the same time, he threw down his staff and raised his hands as he yelled:"
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 65, \"text\": \"We surrender!\", \"currentCharacterId\": \"kindroth\", \"currentCharacterName\": \"Kindroth\", \"currentCharacterAliases\": [], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Kindroth\", \"sourceCandidates\": [\"Kindroth\", \"Iludar\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.808, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19199999999999995, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"confidence\": 0.808, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"confidence\": 0.448, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 48, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“We surrender!” his voice echoed throughout the valley. He was full of regret, but there truly was no other choice.\", \"currentParagraphDialogue\": [{\"lineId\": 65, \"text\": \"We surrender!\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": false}], \"previousParagraphText\": \"“Disengage from combat, gather at my location... and surrender,” he spoke through the psychic link he’d established with every single fighter. At the same time, he threw down his staff and raised his hands as he yelled:\", \"previousParagraphDialogue\": [{\"lineId\": 63, \"text\": \"Disengage from combat, gather at my location... and surrender,\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": false}], \"nextParagraphText\": \"“We surrender unconditionally! Everyone, lay down your arms!”\", \"nextParagraphDialogue\": [{\"lineId\": 67, \"text\": \"We surrender unconditionally! Everyone, lay down your arms!\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": true}]}, \"chapterCharacters\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": []}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"]}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": []}, {\"characterId\": \"primordial\", \"name\": \"primordial\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"kindroth\",\n  \"characterName\": \"Kindroth\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"pronoun_match\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

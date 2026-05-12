@@ -1,0 +1,238 @@
+{
+  "cacheKey": "4685b5e198d862fcd60daa624b7c5eec0312568b111509e71c6d033ce69f3cf4",
+  "createdAt": "2026-04-19T03:21:00.856778+00:00",
+  "decision": {
+    "action": "needs_review",
+    "aliasToAdd": null,
+    "characterId": null,
+    "characterName": null,
+    "confidence": 0.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "not_dialogue",
+      "narrative_context"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "beastkin",
+        "characterName": "Beastkin",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "beastkin"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "beastkin",
+        "name": "Beastkin",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Jake had also been a little afraid his opponents would maybe hold back since they were afraid of turning Jake into an enemy by potentially",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "embarrassing",
+      "lastSentence": "embarrassing",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "embarrassing",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.7,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.33479999999999993,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Artemis",
+        "sourceCandidates": [
+          "Artemis",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.796
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.796,
+          "name": "Artemis",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.436,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 20,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "embarrassing"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 20,
+          "text": "embarrassing"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake had also been a little afraid his opponents would maybe hold back since they were afraid of turning Jake into an enemy by potentially",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "embarrassing",
+          "lastSentence": "embarrassing",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "embarrassing",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Jake had also been a little afraid his opponents would maybe hold back since they were afraid of turning Jake into an enemy by potentially “embarrassing” him, but so far, the beastkin hadn’t shown himself to give a single shit about that.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "When it came to the rules of engagement, they were simple. All skills besides defensive and movement skills were banned, including ones for boosting and even bow-related skills like Powershot. Jake and his opponent could rely only on their archery and other passive skills to hopefully get an advantage over the other.",
+      "paragraphIndex": 18,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Instead, things had been way simpler. Jake had just been teleported to the moon, with a quick briefing on the opponent he was about to fight, likely to help Jake know what to look for. A bit later, another person was teleported there. After some polite greetings from which it was clear his opponent already knew why he was there and had also gotten a quick briefing on what Jake could do, the two had just gotten right into it."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 16,
+        "paragraphIndex": 15,
+        "relativeIndex": -1,
+        "text": "It’s well known that I’m one of the people meant to make your stay in the Pantheon of Life comfortable, including my role to assist you in improving your archery, so me helping you like this is the opposite of suspicious."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 34,
+        "paragraphIndex": 31,
+        "relativeIndex": 1,
+        "text": "Enough, we shall stop here. Yljultar, your archery has grown once more, but you remain rigid in both Path and mindset. Expand your approach and be willing to integrate more concepts than simply gravity into your arrows. There are many universal ones that could still..."
+      },
+      {
+        "characterId": "beastkin",
+        "characterName": "Beastkin",
+        "lineId": 39,
+        "paragraphIndex": 35,
+        "relativeIndex": 2,
+        "text": "I thank you for this duel, and I wish the Chosen of the Malefic One success on his Path."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 20, \"text\": \"embarrassing\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Artemis\", \"sourceCandidates\": [\"Artemis\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.33479999999999993, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.796, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.436, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 18, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Jake had also been a little afraid his opponents would maybe hold back since they were afraid of turning Jake into an enemy by potentially “embarrassing” him, but so far, the beastkin hadn’t shown himself to give a single shit about that.\", \"currentParagraphDialogue\": [{\"lineId\": 20, \"text\": \"embarrassing\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"previousParagraphText\": \"Instead, things had been way simpler. Jake had just been teleported to the moon, with a quick briefing on the opponent he was about to fight, likely to help Jake know what to look for. A bit later, another person was teleported there. After some polite greetings from which it was clear his opponent already knew why he was there and had also gotten a quick briefing on what Jake could do, the two had just gotten right into it.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"When it came to the rules of engagement, they were simple. All skills besides defensive and movement skills were banned, including ones for boosting and even bow-related skills like Powershot. Jake and his opponent could rely only on their archery and other passive skills to hopefully get an advantage over the other.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"embarrassing\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake had also been a little afraid his opponents would maybe hold back since they were afraid of turning Jake into an enemy by potentially\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"embarrassing\", \"lastSentence\": \"embarrassing\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"embarrassing\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake had also been a little afraid his opponents would maybe hold back since they were afraid of turning Jake into an enemy by potentially\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"embarrassing\", \"lastSentence\": \"embarrassing\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"beastkin\", \"characterName\": \"Beastkin\", \"aliases\": [], \"roleLabels\": [\"beastkin\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -1, \"lineId\": 16, \"paragraphIndex\": 15, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"It’s well known that I’m one of the people meant to make your stay in the Pantheon of Life comfortable, including my role to assist you in improving your archery, so me helping you like this is the opposite of suspicious.\"}, {\"relativeIndex\": 1, \"lineId\": 34, \"paragraphIndex\": 31, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Enough, we shall stop here. Yljultar, your archery has grown once more, but you remain rigid in both Path and mindset. Expand your approach and be willing to integrate more concepts than simply gravity into your arrows. There are many universal ones that could still...\"}, {\"relativeIndex\": 2, \"lineId\": 39, \"paragraphIndex\": 35, \"characterId\": \"beastkin\", \"characterName\": \"Beastkin\", \"text\": \"I thank you for this duel, and I wish the Chosen of the Malefic One success on his Path.\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"beastkin\", \"name\": \"Beastkin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"needs_review\",\n  \"characterId\": null,\n  \"characterName\": null,\n  \"confidence\": 0.0,\n  \"reasonCodes\": [\n    \"not_dialogue\",\n    \"narrative_context\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

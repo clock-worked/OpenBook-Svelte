@@ -1,0 +1,388 @@
+{
+  "calls": [
+    {
+      "cacheHit": true,
+      "cacheKey": "d37abde8e9bfdbd83fcb9f3881d070aa1a564e64404cfc82bd509e8e37c1dffe",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\d37abde8e9bfdbd83fcb9f3881d070aa1a564e64404cfc82bd509e8e37c1dffe.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "confidence": 0.9,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "answers_previous_question",
+          "sets_up_next_dialogue",
+          "dialogue_continuity"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "kindroth",
+            "characterName": "Kindroth",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "kindroth"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "miranda",
+            "characterName": "Miranda",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "miranda"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "miranda",
+            "name": "Miranda",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "kindroth",
+            "name": "Kindroth",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "lillian",
+            "name": "Lillian",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "lodestar-matron",
+              "lodestar-matron-2"
+            ],
+            "characterId": "lodestar-matron",
+            "name": "Lodestar Matron",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I didn’t really look, but...",
+          "lastSentence": "wait, you’re thinking that...?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I didn’t really look, but... wait, you’re thinking that...?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": true,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Kindroth",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.18,
+            "misattributionRisk": 0.364,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Kindroth",
+            "sourceCandidates": [
+              "Kindroth",
+              "Miranda"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.636
+          },
+          "candidates": [
+            {
+              "characterId": "kindroth",
+              "confidence": 0.636,
+              "name": "Kindroth",
+              "reasons": [
+                "parser_match",
+                "legacy_match",
+                "question_next_speaker_penalty"
+              ]
+            },
+            {
+              "characterId": "miranda",
+              "confidence": 0.456,
+              "name": "Miranda",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "kindroth",
+          "currentCharacterName": "Kindroth",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 17,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "I didn’t really look, but... wait, you’re thinking that...?"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "kindroth",
+              "characterName": "Kindroth",
+              "isReturning": true,
+              "lineId": 17,
+              "text": "I didn’t really look, but... wait, you’re thinking that...?"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "I didn’t really look, but...",
+              "lastSentence": "wait, you’re thinking that...?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "I didn’t really look, but... wait, you’re thinking that...?",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“I didn’t really look, but... wait, you’re thinking that...?”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "kindroth",
+              "characterName": "Kindroth",
+              "isReturning": true,
+              "lineId": 18,
+              "text": "Yeah, it’s entirely possible someone has found it before and merely never disclosed it to anyone. That way, they could not only get the Pioneer title but didn’t have to share anything with anyone else. Perhaps they are even considering selling the information about the dungeon. That, or any party who has found it and entered simply never returned."
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Yeah, it’s entirely possible someone has found it before and merely never disclosed it to anyone.",
+              "lastSentence": "That, or any party who has found it and entered simply never returned.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Yeah, it’s entirely possible someone has found it before and merely never disclosed it to anyone. That way, they could not only get the Pioneer title but didn’t have to share anything with anyone else. Perhaps they are even considering selling the information about the dungeon. That, or any party who has found it and entered simply never returned.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "nextParagraphText": "“Yeah, it’s entirely possible someone has found it before and merely never disclosed it to anyone. That way, they could not only get the Pioneer title but didn’t have to share anything with anyone else. Perhaps they are even considering selling the information about the dungeon. That, or any party who has found it and entered simply never returned.”",
+          "paragraphIndex": 6,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "miranda",
+              "characterName": "Miranda",
+              "isReturning": false,
+              "lineId": 14,
+              "text": "Hm,"
+            },
+            {
+              "characterId": "miranda",
+              "characterName": "Miranda",
+              "isReturning": true,
+              "lineId": 16,
+              "text": "Were there signs of others having entered it before?"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Miranda said, in thought for a moment.",
+              "cueVerb": "said",
+              "cueVerbType": "speech",
+              "firstSentence": "Hm,",
+              "lastSentence": "Hm,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Hm,",
+              "speakerNameMatch": "Miranda",
+              "speakerSurface": "Miranda"
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Miranda said, in thought for a moment.",
+              "cueVerb": "said",
+              "cueVerbType": "speech",
+              "firstSentence": "Were there signs of others having entered it before?",
+              "lastSentence": "Were there signs of others having entered it before?",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "Were there signs of others having entered it before?",
+              "speakerNameMatch": "Miranda",
+              "speakerSurface": "Miranda"
+            }
+          ],
+          "previousParagraphText": "“Hm,” Miranda said, in thought for a moment. “Were there signs of others having entered it before?”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "kindroth",
+            "characterName": "Kindroth",
+            "lineId": 11,
+            "paragraphIndex": 4,
+            "relativeIndex": -4,
+            "text": "The entrance itself is just a tree right in the center of the valley,"
+          },
+          {
+            "characterId": "kindroth",
+            "characterName": "Kindroth",
+            "lineId": 13,
+            "paragraphIndex": 4,
+            "relativeIndex": -3,
+            "text": "Again, I only noticed it because of the formation and the movement of mana. The tree was right there in the middle, and I just had to go inspect it. That’s when the system notification popped up."
+          },
+          {
+            "characterId": "miranda",
+            "characterName": "Miranda",
+            "lineId": 14,
+            "paragraphIndex": 5,
+            "relativeIndex": -2,
+            "text": "Hm,"
+          },
+          {
+            "characterId": "miranda",
+            "characterName": "Miranda",
+            "lineId": 16,
+            "paragraphIndex": 5,
+            "relativeIndex": -1,
+            "text": "Were there signs of others having entered it before?"
+          },
+          {
+            "characterId": "kindroth",
+            "characterName": "Kindroth",
+            "lineId": 18,
+            "paragraphIndex": 7,
+            "relativeIndex": 1,
+            "text": "Yeah, it’s entirely possible someone has found it before and merely never disclosed it to anyone. That way, they could not only get the Pioneer title but didn’t have to share anything with anyone else. Perhaps they are even considering selling the information about the dungeon. That, or any party who has found it and entered simply never returned."
+          },
+          {
+            "characterId": "kindroth",
+            "characterName": "Kindroth",
+            "lineId": 19,
+            "paragraphIndex": 8,
+            "relativeIndex": 2,
+            "text": "Does sound possible, even if the level requirement to enter is only 280,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 17, \"text\": \"I didn’t really look, but... wait, you’re thinking that...?\", \"currentCharacterId\": \"kindroth\", \"currentCharacterName\": \"Kindroth\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Kindroth\", \"sourceCandidates\": [\"Kindroth\", \"Miranda\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.636, \"marginToSecond\": 0.18, \"misattributionRisk\": 0.364, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Kindroth\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"confidence\": 0.636, \"reasons\": [\"parser_match\", \"legacy_match\", \"question_next_speaker_penalty\"]}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 6, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I didn’t really look, but... wait, you’re thinking that...?”\", \"currentParagraphDialogue\": [{\"lineId\": 17, \"text\": \"I didn’t really look, but... wait, you’re thinking that...?\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": true}], \"previousParagraphText\": \"“Hm,” Miranda said, in thought for a moment. “Were there signs of others having entered it before?”\", \"previousParagraphDialogue\": [{\"lineId\": 14, \"text\": \"Hm,\", \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"isReturning\": false}, {\"lineId\": 16, \"text\": \"Were there signs of others having entered it before?\", \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"isReturning\": true}], \"nextParagraphText\": \"“Yeah, it’s entirely possible someone has found it before and merely never disclosed it to anyone. That way, they could not only get the Pioneer title but didn’t have to share anything with anyone else. Perhaps they are even considering selling the information about the dungeon. That, or any party who has found it and entered simply never returned.”\", \"nextParagraphDialogue\": [{\"lineId\": 18, \"text\": \"Yeah, it’s entirely possible someone has found it before and merely never disclosed it to anyone. That way, they could not only get the Pioneer title but didn’t have to share anything with anyone else. Perhaps they are even considering selling the information about the dungeon. That, or any party who has found it and entered simply never returned.\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I didn’t really look, but... wait, you’re thinking that...?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I didn’t really look, but...\", \"lastSentence\": \"wait, you’re thinking that...?\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Hm,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Miranda said, in thought for a moment.\", \"speakerSurface\": \"Miranda\", \"speakerNameMatch\": \"Miranda\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Hm,\", \"lastSentence\": \"Hm,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Were there signs of others having entered it before?\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Miranda said, in thought for a moment.\", \"speakerSurface\": \"Miranda\", \"speakerNameMatch\": \"Miranda\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Were there signs of others having entered it before?\", \"lastSentence\": \"Were there signs of others having entered it before?\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Yeah, it’s entirely possible someone has found it before and merely never disclosed it to anyone. That way, they could not only get the Pioneer title but didn’t have to share anything with anyone else. Perhaps they are even considering selling the information about the dungeon. That, or any party who has found it and entered simply never returned.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yeah, it’s entirely possible someone has found it before and merely never disclosed it to anyone.\", \"lastSentence\": \"That, or any party who has found it and entered simply never returned.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I didn’t really look, but... wait, you’re thinking that...?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I didn’t really look, but...\", \"lastSentence\": \"wait, you’re thinking that...?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [\"kindroth\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"aliases\": [], \"roleLabels\": [\"miranda\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 11, \"paragraphIndex\": 4, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"The entrance itself is just a tree right in the center of the valley,\"}, {\"relativeIndex\": -3, \"lineId\": 13, \"paragraphIndex\": 4, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"Again, I only noticed it because of the formation and the movement of mana. The tree was right there in the middle, and I just had to go inspect it. That’s when the system notification popped up.\"}, {\"relativeIndex\": -2, \"lineId\": 14, \"paragraphIndex\": 5, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"Hm,\"}, {\"relativeIndex\": -1, \"lineId\": 16, \"paragraphIndex\": 5, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"Were there signs of others having entered it before?\"}, {\"relativeIndex\": 1, \"lineId\": 18, \"paragraphIndex\": 7, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"Yeah, it’s entirely possible someone has found it before and merely never disclosed it to anyone. That way, they could not only get the Pioneer title but didn’t have to share anything with anyone else. Perhaps they are even considering selling the information about the dungeon. That, or any party who has found it and entered simply never returned.\"}, {\"relativeIndex\": 2, \"lineId\": 19, \"paragraphIndex\": 8, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"Does sound possible, even if the level requirement to enter is only 280,\"}], \"chapterCharacters\": [{\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"lillian\", \"name\": \"Lillian\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"lodestar-matron\", \"name\": \"Lodestar Matron\", \"aliases\": [\"lodestar-matron\", \"lodestar-matron-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"kindroth\",\n  \"characterName\": \"Kindroth\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"answers_previous_question\",\n    \"sets_up_next_dialogue\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0003 - Chapter 1060 - Question(s) Of Trust",
+  "currentCharacterId": "kindroth",
+  "currentCharacterName": "Kindroth",
+  "currentParagraphText": "“I didn’t really look, but... wait, you’re thinking that...?”",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.9,
+    "currentCharacterId": "kindroth",
+    "currentCharacterName": "Kindroth",
+    "currentParagraphText": "“I didn’t really look, but... wait, you’re thinking that...?”",
+    "disposition": "review",
+    "error": null,
+    "lineId": 17,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Yeah, it’s entirely possible someone has found it before and merely never disclosed it to anyone. That way, they could not only get the Pioneer title but didn’t have to share anything with anyone else. Perhaps they are even considering selling the information about the dungeon. That, or any party who has found it and entered simply never returned.”",
+    "paragraphIndex": 6,
+    "previousParagraphText": "“Hm,” Miranda said, in thought for a moment. “Were there signs of others having entered it before?”",
+    "reasonCodes": [
+      "answers_previous_question",
+      "sets_up_next_dialogue",
+      "dialogue_continuity"
+    ],
+    "suggestedCharacterId": "kindroth",
+    "suggestedCharacterName": "Kindroth",
+    "toolTrace": []
+  },
+  "lineId": 17,
+  "nextParagraphText": "“Yeah, it’s entirely possible someone has found it before and merely never disclosed it to anyone. That way, they could not only get the Pioneer title but didn’t have to share anything with anyone else. Perhaps they are even considering selling the information about the dungeon. That, or any party who has found it and entered simply never returned.”",
+  "paragraphIndex": 6,
+  "previousParagraphText": "“Hm,” Miranda said, in thought for a moment. “Were there signs of others having entered it before?”"
+}

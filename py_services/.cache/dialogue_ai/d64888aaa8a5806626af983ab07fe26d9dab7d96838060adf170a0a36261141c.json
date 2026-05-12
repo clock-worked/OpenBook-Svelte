@@ -1,0 +1,316 @@
+{
+  "cacheKey": "d64888aaa8a5806626af983ab07fe26d9dab7d96838060adf170a0a36261141c",
+  "createdAt": "2026-04-18T21:53:18.742828+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_context_flow"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "chimera",
+          "monster"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "artemis"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "having",
+        "name": "Having",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "before",
+      "cueText": "Jake was a bit disappointed when Artemis instantly clothed herself, but he still followed suit and did the same as he commented on what had just happened.",
+      "cueVerb": "commented",
+      "cueVerbType": "speech",
+      "firstSentence": "Quite the use of time magic.",
+      "lastSentence": "Quite the use of time magic.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Quite the use of time magic.",
+      "speakerNameMatch": null,
+      "speakerSurface": "the same"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Artemis",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.2788,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Artemis"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.876
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.876,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.516,
+          "name": "Artemis",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [
+        "Protagonist",
+        "Chimera",
+        "Monster"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 33,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Quite the use of time magic."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 33,
+          "text": "Quite the use of time magic."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jake was a bit disappointed when Artemis instantly clothed herself, but he still followed suit and did the same as he commented on what had just happened.",
+          "cueVerb": "commented",
+          "cueVerbType": "speech",
+          "firstSentence": "Quite the use of time magic.",
+          "lastSentence": "Quite the use of time magic.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Quite the use of time magic.",
+          "speakerNameMatch": null,
+          "speakerSurface": "the same"
+        }
+      ],
+      "currentParagraphText": "Jake was a bit disappointed when Artemis instantly clothed herself, but he still followed suit and did the same as he commented on what had just happened. “Quite the use of time magic.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": false,
+          "lineId": 34,
+          "text": "Just a little trick,"
+        },
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": true,
+          "lineId": 36,
+          "text": "All gods are proficient in both space and time magic, at least enough to do things like this."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Artemis chuckled as she looked at him.",
+          "cueVerb": "chuckled",
+          "cueVerbType": "speech",
+          "firstSentence": "Just a little trick,",
+          "lastSentence": "Just a little trick,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Just a little trick,",
+          "speakerNameMatch": "Artemis",
+          "speakerSurface": "Artemis"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Artemis chuckled as she looked at him.",
+          "cueVerb": "chuckled",
+          "cueVerbType": "speech",
+          "firstSentence": "All gods are proficient in both space and time magic, at least enough to do things like this.",
+          "lastSentence": "All gods are proficient in both space and time magic, at least enough to do things like this.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "All gods are proficient in both space and time magic, at least enough to do things like this.",
+          "speakerNameMatch": "Artemis",
+          "speakerSurface": "Artemis"
+        }
+      ],
+      "nextParagraphText": "“Just a little trick,” Artemis chuckled as she looked at him. “All gods are proficient in both space and time magic, at least enough to do things like this.”",
+      "paragraphIndex": 17,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Less than three seconds later, the entire room was back in the same condition it had been only a day prior, with not a single sign of anything having happened. With everything fixed, the two floated down once more and landed on the couch."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 24,
+        "paragraphIndex": 12,
+        "relativeIndex": -4,
+        "text": "In other words, unrealistic and absurd situations like this would never appear in them."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 25,
+        "paragraphIndex": 13,
+        "relativeIndex": -3,
+        "text": "Hey, you don’t know the messed-up things my brain can come up with,"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 27,
+        "paragraphIndex": 14,
+        "relativeIndex": -2,
+        "text": "Oh, I think I have a fairly good idea,"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 29,
+        "paragraphIndex": 14,
+        "relativeIndex": -1,
+        "text": "We should clean up, though."
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 34,
+        "paragraphIndex": 18,
+        "relativeIndex": 1,
+        "text": "Just a little trick,"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 36,
+        "paragraphIndex": 18,
+        "relativeIndex": 2,
+        "text": "All gods are proficient in both space and time magic, at least enough to do things like this."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 33, \"text\": \"Quite the use of time magic.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Artemis\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.876, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.2788, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Artemis\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.876, \"reasons\": null}, {\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.516, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 17, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Jake was a bit disappointed when Artemis instantly clothed herself, but he still followed suit and did the same as he commented on what had just happened. “Quite the use of time magic.”\", \"currentParagraphDialogue\": [{\"lineId\": 33, \"text\": \"Quite the use of time magic.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"Less than three seconds later, the entire room was back in the same condition it had been only a day prior, with not a single sign of anything having happened. With everything fixed, the two floated down once more and landed on the couch.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“Just a little trick,” Artemis chuckled as she looked at him. “All gods are proficient in both space and time magic, at least enough to do things like this.”\", \"nextParagraphDialogue\": [{\"lineId\": 34, \"text\": \"Just a little trick,\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": false}, {\"lineId\": 36, \"text\": \"All gods are proficient in both space and time magic, at least enough to do things like this.\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Quite the use of time magic.\", \"cuePosition\": \"before\", \"cueVerb\": \"commented\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake was a bit disappointed when Artemis instantly clothed herself, but he still followed suit and did the same as he commented on what had just happened.\", \"speakerSurface\": \"the same\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Quite the use of time magic.\", \"lastSentence\": \"Quite the use of time magic.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Just a little trick,\", \"cuePosition\": \"after\", \"cueVerb\": \"chuckled\", \"cueVerbType\": \"speech\", \"cueText\": \"Artemis chuckled as she looked at him.\", \"speakerSurface\": \"Artemis\", \"speakerNameMatch\": \"Artemis\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Just a little trick,\", \"lastSentence\": \"Just a little trick,\"}, {\"quoteIndex\": 1, \"quoteText\": \"All gods are proficient in both space and time magic, at least enough to do things like this.\", \"cuePosition\": \"before\", \"cueVerb\": \"chuckled\", \"cueVerbType\": \"speech\", \"cueText\": \"Artemis chuckled as she looked at him.\", \"speakerSurface\": \"Artemis\", \"speakerNameMatch\": \"Artemis\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"All gods are proficient in both space and time magic, at least enough to do things like this.\", \"lastSentence\": \"All gods are proficient in both space and time magic, at least enough to do things like this.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Quite the use of time magic.\", \"cuePosition\": \"before\", \"cueVerb\": \"commented\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake was a bit disappointed when Artemis instantly clothed herself, but he still followed suit and did the same as he commented on what had just happened.\", \"speakerSurface\": \"the same\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Quite the use of time magic.\", \"lastSentence\": \"Quite the use of time magic.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [\"jake\", \"protagonist\", \"chimera\", \"monster\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [], \"roleLabels\": [\"artemis\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 24, \"paragraphIndex\": 12, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"In other words, unrealistic and absurd situations like this would never appear in them.\"}, {\"relativeIndex\": -3, \"lineId\": 25, \"paragraphIndex\": 13, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Hey, you don’t know the messed-up things my brain can come up with,\"}, {\"relativeIndex\": -2, \"lineId\": 27, \"paragraphIndex\": 14, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Oh, I think I have a fairly good idea,\"}, {\"relativeIndex\": -1, \"lineId\": 29, \"paragraphIndex\": 14, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"We should clean up, though.\"}, {\"relativeIndex\": 1, \"lineId\": 34, \"paragraphIndex\": 18, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Just a little trick,\"}, {\"relativeIndex\": 2, \"lineId\": 36, \"paragraphIndex\": 18, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"All gods are proficient in both space and time magic, at least enough to do things like this.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"having\", \"name\": \"Having\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_context_flow\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

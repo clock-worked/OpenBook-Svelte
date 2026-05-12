@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -53,6 +54,57 @@ from scripts.python.asr_validation.transcribe_whisper_small_en_gpu import (
     transcribe_with_openai_whisper,
     transcribe_with_whisperx,
 )
+
+
+_WINDOWS_DLL_HANDLES: list[Any] = []
+
+
+def _ensure_windows_cudnn_runtime() -> None:
+    """Ensure cuDNN DLLs from the active venv are discoverable on Windows.
+
+    WhisperX/ctranslate2 loads CUDA/cuDNN dynamically and can fail with
+    `Could not locate cudnn_ops_infer64_8.dll` when the venv nvidia cudnn bin
+    directory is not in the process DLL search path.
+    """
+    if os.name != "nt":
+        return
+
+    path_env = os.environ.get("PATH", "")
+    existing_paths = {
+        os.path.normcase(os.path.normpath(path))
+        for path in path_env.split(os.pathsep)
+        if path
+    }
+
+    candidate_dirs = [
+        Path(sys.prefix) / "Lib" / "site-packages" / "nvidia" / "cudnn" / "bin",
+        Path(sys.base_prefix) / "Lib" / "site-packages" / "nvidia" / "cudnn" / "bin",
+        Path(__file__).resolve().parents[3]
+        / ".venv"
+        / "Lib"
+        / "site-packages"
+        / "nvidia"
+        / "cudnn"
+        / "bin",
+    ]
+
+    for candidate in candidate_dirs:
+        if not candidate.exists() or not candidate.is_dir():
+            continue
+
+        candidate_str = str(candidate)
+        normalized_candidate = os.path.normcase(os.path.normpath(candidate_str))
+        if normalized_candidate in existing_paths:
+            continue
+
+        if hasattr(os, "add_dll_directory"):
+            try:
+                _WINDOWS_DLL_HANDLES.append(os.add_dll_directory(candidate_str))
+            except (FileNotFoundError, OSError):
+                pass
+
+        os.environ["PATH"] = candidate_str + os.pathsep + os.environ.get("PATH", "")
+        existing_paths.add(normalized_candidate)
 
 
 def parse_args() -> argparse.Namespace:
@@ -662,6 +714,7 @@ def write_character_manifests(
 
 def main() -> None:
     """Execute the chapter audio test pipeline end-to-end."""
+    _ensure_windows_cudnn_runtime()
     args = parse_args()
     if args.readjust_existing_splits and args.no_split_validation:
         raise ValueError(

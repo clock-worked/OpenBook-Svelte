@@ -1,0 +1,420 @@
+{
+  "cacheKey": "d890af258de6b02e496888e353fed73c7333f037f71a7babe393b9ec72312a2b",
+  "createdAt": "2026-04-02T22:54:41.258183+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "linea",
+    "characterName": "Linea",
+    "confidence": 0.98,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_continuity",
+      "character_role_match"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "linea",
+        "characterName": "Linea",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "linea"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "false god",
+        "characterName": "False God",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "false god"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "beastkin-god",
+        "characterName": "Beastkin God",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "beastkin god"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [
+          "unknown-god",
+          "unknown-god-2"
+        ],
+        "characterId": "unknown-god",
+        "characterName": "Unknown God",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown god",
+          "unknown god 2"
+        ],
+        "wasRecentSpeaker": false
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "linea",
+        "name": "Linea",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Unique Lifeform",
+          "The Unique Lifeform",
+          "the-unique-lifeform",
+          "the-unique-lifeform-2"
+        ],
+        "characterId": "minaga",
+        "name": "Minaga",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "before",
+      "cueText": "the god said, crossing his arms and staring down at Jake with all four eyes.",
+      "cueVerb": "said",
+      "cueVerbType": "speech",
+      "firstSentence": "I’ll definitely demand a bonus on account of long-term consequences to my mental health.",
+      "lastSentence": "Hazard pay does not cover this kind of treatment.",
+      "mentionedEntities": [],
+      "quoteIndex": 1,
+      "quoteText": "I’ll definitely demand a bonus on account of long-term consequences to my mental health. Hazard pay does not cover this kind of treatment.",
+      "speakerNameMatch": null,
+      "speakerSurface": "the god"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.524,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Linea",
+        "sourceCandidates": [
+          "Linea",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "linea",
+          "confidence": 0.98,
+          "name": "Linea",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "same_paragraph_continuation"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "linea",
+      "currentCharacterName": "Linea",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 46,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "I’ll definitely demand a bonus on account of long-term consequences to my mental health. Hazard pay does not cover this kind of treatment."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "linea",
+          "characterName": "Linea",
+          "isReturning": false,
+          "lineId": 44,
+          "text": "Okay, you’re just getting ruder by the sentence,"
+        },
+        {
+          "characterId": "linea",
+          "characterName": "Linea",
+          "isReturning": true,
+          "lineId": 46,
+          "text": "I’ll definitely demand a bonus on account of long-term consequences to my mental health. Hazard pay does not cover this kind of treatment."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the god said, crossing his arms and staring down at Jake with all four eyes.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Okay, you’re just getting ruder by the sentence,",
+          "lastSentence": "Okay, you’re just getting ruder by the sentence,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Okay, you’re just getting ruder by the sentence,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the god"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "the god said, crossing his arms and staring down at Jake with all four eyes.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "I’ll definitely demand a bonus on account of long-term consequences to my mental health.",
+          "lastSentence": "Hazard pay does not cover this kind of treatment.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "I’ll definitely demand a bonus on account of long-term consequences to my mental health. Hazard pay does not cover this kind of treatment.",
+          "speakerNameMatch": null,
+          "speakerSurface": "the god"
+        }
+      ],
+      "currentParagraphText": "“Okay, you’re just getting ruder by the sentence,” the god said, crossing his arms and staring down at Jake with all four eyes. “I’ll definitely demand a bonus on account of long-term consequences to my mental health. Hazard pay does not cover this kind of treatment.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 30,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "linea",
+          "characterName": "Linea",
+          "isReturning": false,
+          "lineId": 41,
+          "text": "I wasn’t the one who hired you,"
+        },
+        {
+          "characterId": "linea",
+          "characterName": "Linea",
+          "isReturning": true,
+          "lineId": 43,
+          "text": "And I get the feeling we’re in more danger with you around than without you."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I wasn’t the one who hired you,",
+          "lastSentence": "I wasn’t the one who hired you,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I wasn’t the one who hired you,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake shook his head.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "And I get the feeling we’re in more danger with you around than without you.",
+          "lastSentence": "And I get the feeling we’re in more danger with you around than without you.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "And I get the feeling we’re in more danger with you around than without you.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "previousParagraphText": "“I wasn’t the one who hired you,” Jake shook his head. “And I get the feeling we’re in more danger with you around than without you.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "linea",
+        "characterName": "Linea",
+        "lineId": 38,
+        "paragraphIndex": 27,
+        "relativeIndex": -4,
+        "text": "Hey! That’s, like, super rude. I’m here as a special contractor, having taken on a job I would normally never even consider!"
+      },
+      {
+        "characterId": "linea",
+        "characterName": "Linea",
+        "lineId": 41,
+        "paragraphIndex": 29,
+        "relativeIndex": -3,
+        "text": "I wasn’t the one who hired you,"
+      },
+      {
+        "characterId": "linea",
+        "characterName": "Linea",
+        "lineId": 43,
+        "paragraphIndex": 29,
+        "relativeIndex": -2,
+        "text": "And I get the feeling we’re in more danger with you around than without you."
+      },
+      {
+        "characterId": "linea",
+        "characterName": "Linea",
+        "lineId": 44,
+        "paragraphIndex": 30,
+        "relativeIndex": -1,
+        "text": "Okay, you’re just getting ruder by the sentence,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 47,
+        "paragraphIndex": 31,
+        "relativeIndex": 1,
+        "text": "Getting any pay at all definitely means you outright scammed whoever hired you,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 50,
+        "paragraphIndex": 33,
+        "relativeIndex": 2,
+        "text": "I... this one greets the All-God Legion,"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "false god",
+            "characterName": "False God",
+            "evidence": [
+              "token_overlap:god"
+            ],
+            "score": 0.8
+          },
+          {
+            "characterId": "beastkin-god",
+            "characterName": "Beastkin God",
+            "evidence": [
+              "token_overlap:god"
+            ],
+            "score": 0.8
+          },
+          {
+            "characterId": "unknown-god",
+            "characterName": "Unknown God",
+            "evidence": [
+              "token_overlap:god",
+              "generic_placeholder_penalty"
+            ],
+            "score": 0.56
+          }
+        ],
+        "surface": "the god"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 46, \"text\": \"I’ll definitely demand a bonus on account of long-term consequences to my mental health. Hazard pay does not cover this kind of treatment.\", \"currentCharacterId\": \"linea\", \"currentCharacterName\": \"Linea\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Linea\", \"sourceCandidates\": [\"Linea\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.524, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"linea\", \"name\": \"Linea\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"same_paragraph_continuation\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 30, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Okay, you’re just getting ruder by the sentence,” the god said, crossing his arms and staring down at Jake with all four eyes. “I’ll definitely demand a bonus on account of long-term consequences to my mental health. Hazard pay does not cover this kind of treatment.”\", \"currentParagraphDialogue\": [{\"lineId\": 44, \"text\": \"Okay, you’re just getting ruder by the sentence,\", \"characterId\": \"linea\", \"characterName\": \"Linea\", \"isReturning\": false}, {\"lineId\": 46, \"text\": \"I’ll definitely demand a bonus on account of long-term consequences to my mental health. Hazard pay does not cover this kind of treatment.\", \"characterId\": \"linea\", \"characterName\": \"Linea\", \"isReturning\": true}], \"previousParagraphText\": \"“I wasn’t the one who hired you,” Jake shook his head. “And I get the feeling we’re in more danger with you around than without you.”\", \"previousParagraphDialogue\": [{\"lineId\": 41, \"text\": \"I wasn’t the one who hired you,\", \"characterId\": \"linea\", \"characterName\": \"Linea\", \"isReturning\": false}, {\"lineId\": 43, \"text\": \"And I get the feeling we’re in more danger with you around than without you.\", \"characterId\": \"linea\", \"characterName\": \"Linea\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Okay, you’re just getting ruder by the sentence,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the god said, crossing his arms and staring down at Jake with all four eyes.\", \"speakerSurface\": \"the god\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Okay, you’re just getting ruder by the sentence,\", \"lastSentence\": \"Okay, you’re just getting ruder by the sentence,\"}, {\"quoteIndex\": 1, \"quoteText\": \"I’ll definitely demand a bonus on account of long-term consequences to my mental health. Hazard pay does not cover this kind of treatment.\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the god said, crossing his arms and staring down at Jake with all four eyes.\", \"speakerSurface\": \"the god\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’ll definitely demand a bonus on account of long-term consequences to my mental health.\", \"lastSentence\": \"Hazard pay does not cover this kind of treatment.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I wasn’t the one who hired you,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I wasn’t the one who hired you,\", \"lastSentence\": \"I wasn’t the one who hired you,\"}, {\"quoteIndex\": 1, \"quoteText\": \"And I get the feeling we’re in more danger with you around than without you.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake shook his head.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"And I get the feeling we’re in more danger with you around than without you.\", \"lastSentence\": \"And I get the feeling we’re in more danger with you around than without you.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"I’ll definitely demand a bonus on account of long-term consequences to my mental health. Hazard pay does not cover this kind of treatment.\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the god said, crossing his arms and staring down at Jake with all four eyes.\", \"speakerSurface\": \"the god\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’ll definitely demand a bonus on account of long-term consequences to my mental health.\", \"lastSentence\": \"Hazard pay does not cover this kind of treatment.\"}, \"sceneEntities\": [{\"surface\": \"the god\", \"matches\": [{\"characterId\": \"false god\", \"characterName\": \"False God\", \"score\": 0.8, \"evidence\": [\"token_overlap:god\"]}, {\"characterId\": \"beastkin-god\", \"characterName\": \"Beastkin God\", \"score\": 0.8, \"evidence\": [\"token_overlap:god\"]}, {\"characterId\": \"unknown-god\", \"characterName\": \"Unknown God\", \"score\": 0.56, \"evidence\": [\"token_overlap:god\", \"generic_placeholder_penalty\"]}]}], \"candidateCards\": [{\"characterId\": \"linea\", \"characterName\": \"Linea\", \"aliases\": [], \"roleLabels\": [\"linea\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"false god\", \"characterName\": \"False God\", \"aliases\": [], \"roleLabels\": [\"false god\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"beastkin-god\", \"characterName\": \"Beastkin God\", \"aliases\": [], \"roleLabels\": [\"beastkin god\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"unknown-god\", \"characterName\": \"Unknown God\", \"aliases\": [\"unknown-god\", \"unknown-god-2\"], \"roleLabels\": [\"unknown god\", \"unknown god 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 38, \"paragraphIndex\": 27, \"characterId\": \"linea\", \"characterName\": \"Linea\", \"text\": \"Hey! That’s, like, super rude. I’m here as a special contractor, having taken on a job I would normally never even consider!\"}, {\"relativeIndex\": -3, \"lineId\": 41, \"paragraphIndex\": 29, \"characterId\": \"linea\", \"characterName\": \"Linea\", \"text\": \"I wasn’t the one who hired you,\"}, {\"relativeIndex\": -2, \"lineId\": 43, \"paragraphIndex\": 29, \"characterId\": \"linea\", \"characterName\": \"Linea\", \"text\": \"And I get the feeling we’re in more danger with you around than without you.\"}, {\"relativeIndex\": -1, \"lineId\": 44, \"paragraphIndex\": 30, \"characterId\": \"linea\", \"characterName\": \"Linea\", \"text\": \"Okay, you’re just getting ruder by the sentence,\"}, {\"relativeIndex\": 1, \"lineId\": 47, \"paragraphIndex\": 31, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Getting any pay at all definitely means you outright scammed whoever hired you,\"}, {\"relativeIndex\": 2, \"lineId\": 50, \"paragraphIndex\": 33, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I... this one greets the All-God Legion,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"linea\", \"name\": \"Linea\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"linea\",\n  \"characterName\": \"Linea\",\n  \"confidence\": 0.98,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_continuity\",\n    \"character_role_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

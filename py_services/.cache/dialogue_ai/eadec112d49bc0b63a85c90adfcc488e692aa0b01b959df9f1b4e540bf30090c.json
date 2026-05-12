@@ -1,0 +1,354 @@
+{
+  "cacheKey": "eadec112d49bc0b63a85c90adfcc488e692aa0b01b959df9f1b4e540bf30090c",
+  "createdAt": "2026-05-11T20:58:17.775475+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "the first sage",
+    "characterName": "The First Sage",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_flow_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "First Sage"
+        ],
+        "characterId": "the first sage",
+        "characterName": "The First Sage",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "the first sage",
+          "first sage"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "lord thayne",
+          "thayne",
+          "void god"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "First Sage"
+        ],
+        "characterId": "the first sage",
+        "name": "The First Sage",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Pray tell,",
+      "lastSentence": "Pray tell,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Pray tell,",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "alignment": {
+        "confidence": 1.0,
+        "isSpanFallback": false,
+        "method": "quote_unit",
+        "paragraphIndex": 25,
+        "spanDistance": 0.0,
+        "spanParagraphIndex": 25
+      },
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "The First Sage",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.7,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.0,
+        "parserBackend": "legacy",
+        "resolutionStatus": "user_confirmed",
+        "sourceAlias": "The First Sage",
+        "sourceCandidates": [
+          "The First Sage",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.796
+      },
+      "candidates": [
+        {
+          "characterId": "the first sage",
+          "confidence": 0.796,
+          "name": "The First Sage",
+          "reasons": null
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.436,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [
+        "First Sage"
+      ],
+      "currentCharacterId": "the first sage",
+      "currentCharacterName": "The First Sage",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 39,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Pray tell,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "the first sage",
+          "characterName": "The First Sage",
+          "isReturning": false,
+          "lineId": 39,
+          "text": "Pray tell,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Pray tell,",
+          "lastSentence": "Pray tell,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Pray tell,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Pray tell,” the First Sage motioned for Jake to speak.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 41,
+          "text": "You know… for the longest time studying your tome, I wondered what kind of direction Meditate could even be taken in. I knew the skill had something to do with deepening one’s connection to the system, but I still wasn’t entirely sure what exactly that meant,"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake began as he answered the First Sage’s question while also fully putting his own thoughts into words.",
+          "cueVerb": "answered",
+          "cueVerbType": "speech",
+          "firstSentence": "You know… for the longest time studying your tome, I wondered what kind of direction Meditate could even be taken in.",
+          "lastSentence": "I knew the skill had something to do with deepening one’s connection to the system, but I still wasn’t entirely sure what exactly that meant,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "You know… for the longest time studying your tome, I wondered what kind of direction Meditate could even be taken in. I knew the skill had something to do with deepening one’s connection to the system, but I still wasn’t entirely sure what exactly that meant,",
+          "speakerNameMatch": "The First Sage",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "nextParagraphText": "“You know… for the longest time studying your tome, I wondered what kind of direction Meditate could even be taken in. I knew the skill had something to do with deepening one’s connection to the system, but I still wasn’t entirely sure what exactly that meant,” Jake began as he answered the First Sage’s question while also fully putting his own thoughts into words.",
+      "paragraphIndex": 25,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 36,
+          "text": "That is the question, isn’t it?"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 38,
+          "text": "Though I do believe I have an answer."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake sighed as he leaned forward, cupping his hands.",
+          "cueVerb": "sighed",
+          "cueVerbType": "speech",
+          "firstSentence": "That is the question, isn’t it?",
+          "lastSentence": "That is the question, isn’t it?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "That is the question, isn’t it?",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jake sighed as he leaned forward, cupping his hands.",
+          "cueVerb": "sighed",
+          "cueVerbType": "speech",
+          "firstSentence": "Though I do believe I have an answer.",
+          "lastSentence": "Though I do believe I have an answer.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "Though I do believe I have an answer.",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "previousParagraphText": "“That is the question, isn’t it?” Jake sighed as he leaned forward, cupping his hands. “Though I do believe I have an answer.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "the first sage",
+        "characterName": "The First Sage",
+        "lineId": 33,
+        "paragraphIndex": 22,
+        "relativeIndex": -4,
+        "text": "You would die in an instant, your soul crumbled into nothingness, and your existence erased,"
+      },
+      {
+        "characterId": "the first sage",
+        "characterName": "The First Sage",
+        "lineId": 35,
+        "paragraphIndex": 23,
+        "relativeIndex": -3,
+        "text": "But that still leaves the question… what lies beyond to cause something like that? And if what lies beyond is what you’ve come here in pursuit of, was your journey for naught?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 36,
+        "paragraphIndex": 24,
+        "relativeIndex": -2,
+        "text": "That is the question, isn’t it?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 38,
+        "paragraphIndex": 24,
+        "relativeIndex": -1,
+        "text": "Though I do believe I have an answer."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 41,
+        "paragraphIndex": 26,
+        "relativeIndex": 1,
+        "text": "You know… for the longest time studying your tome, I wondered what kind of direction Meditate could even be taken in. I knew the skill had something to do with deepening one’s connection to the system, but I still wasn’t entirely sure what exactly that meant,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 43,
+        "paragraphIndex": 27,
+        "relativeIndex": 2,
+        "text": "Improving regeneration was the baseline. A natural upgrade to that was helping speed up other kinds of healing, such as a way to heal the soul faster. Meditate doesn’t necessarily provide anything new; it just amplifies and speeds up certain parts of what the system is already doing. At first, I considered another natural extension of this to be the ability to gain experience and even Records from the mere act of meditating, and as technically one earns experience and Records at all times, one should be able to speed that up for the effect to become noticeable and recognized."
+      }
+    ],
+    "sceneEntities": [],
+    "sceneRoster": {
+      "paragraphWindow": 6,
+      "presentCharacterIds": [
+        "the first sage",
+        "jake"
+      ],
+      "presentCharacters": [
+        {
+          "characterId": "the first sage",
+          "characterName": "The First Sage"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake"
+        }
+      ]
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 39, \"text\": \"Pray tell,\", \"currentCharacterId\": \"the first sage\", \"currentCharacterName\": \"The First Sage\", \"currentCharacterAliases\": [\"First Sage\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"user_confirmed\", \"sourceAlias\": \"The First Sage\", \"sourceCandidates\": [\"The First Sage\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.0, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The First Sage\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"the first sage\", \"name\": \"The First Sage\", \"confidence\": 0.796, \"reasons\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.436, \"reasons\": null}], \"isReturning\": false, \"alignment\": {\"paragraphIndex\": 25, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 25, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 25, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Pray tell,” the First Sage motioned for Jake to speak.\", \"currentParagraphDialogue\": [{\"lineId\": 39, \"text\": \"Pray tell,\", \"characterId\": \"the first sage\", \"characterName\": \"The First Sage\", \"isReturning\": false}], \"previousParagraphText\": \"“That is the question, isn’t it?” Jake sighed as he leaned forward, cupping his hands. “Though I do believe I have an answer.”\", \"previousParagraphDialogue\": [{\"lineId\": 36, \"text\": \"That is the question, isn’t it?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 38, \"text\": \"Though I do believe I have an answer.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"nextParagraphText\": \"“You know… for the longest time studying your tome, I wondered what kind of direction Meditate could even be taken in. I knew the skill had something to do with deepening one’s connection to the system, but I still wasn’t entirely sure what exactly that meant,” Jake began as he answered the First Sage’s question while also fully putting his own thoughts into words.\", \"nextParagraphDialogue\": [{\"lineId\": 41, \"text\": \"You know… for the longest time studying your tome, I wondered what kind of direction Meditate could even be taken in. I knew the skill had something to do with deepening one’s connection to the system, but I still wasn’t entirely sure what exactly that meant,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Pray tell,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Pray tell,\", \"lastSentence\": \"Pray tell,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"That is the question, isn’t it?\", \"cuePosition\": \"after\", \"cueVerb\": \"sighed\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake sighed as he leaned forward, cupping his hands.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"That is the question, isn’t it?\", \"lastSentence\": \"That is the question, isn’t it?\"}, {\"quoteIndex\": 1, \"quoteText\": \"Though I do believe I have an answer.\", \"cuePosition\": \"before\", \"cueVerb\": \"sighed\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake sighed as he leaned forward, cupping his hands.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Though I do believe I have an answer.\", \"lastSentence\": \"Though I do believe I have an answer.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You know… for the longest time studying your tome, I wondered what kind of direction Meditate could even be taken in. I knew the skill had something to do with deepening one’s connection to the system, but I still wasn’t entirely sure what exactly that meant,\", \"cuePosition\": \"after\", \"cueVerb\": \"answered\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake began as he answered the First Sage’s question while also fully putting his own thoughts into words.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"The First Sage\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You know… for the longest time studying your tome, I wondered what kind of direction Meditate could even be taken in.\", \"lastSentence\": \"I knew the skill had something to do with deepening one’s connection to the system, but I still wasn’t entirely sure what exactly that meant,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Pray tell,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Pray tell,\", \"lastSentence\": \"Pray tell,\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"the first sage\", \"jake\"], \"presentCharacters\": [{\"characterId\": \"the first sage\", \"characterName\": \"The First Sage\"}, {\"characterId\": \"jake\", \"characterName\": \"Jake\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"the first sage\", \"characterName\": \"The First Sage\", \"aliases\": [\"First Sage\"], \"roleLabels\": [\"the first sage\", \"first sage\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\", \"void god\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 33, \"paragraphIndex\": 22, \"characterId\": \"the first sage\", \"characterName\": \"The First Sage\", \"text\": \"You would die in an instant, your soul crumbled into nothingness, and your existence erased,\"}, {\"relativeIndex\": -3, \"lineId\": 35, \"paragraphIndex\": 23, \"characterId\": \"the first sage\", \"characterName\": \"The First Sage\", \"text\": \"But that still leaves the question… what lies beyond to cause something like that? And if what lies beyond is what you’ve come here in pursuit of, was your journey for naught?\"}, {\"relativeIndex\": -2, \"lineId\": 36, \"paragraphIndex\": 24, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"That is the question, isn’t it?\"}, {\"relativeIndex\": -1, \"lineId\": 38, \"paragraphIndex\": 24, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Though I do believe I have an answer.\"}, {\"relativeIndex\": 1, \"lineId\": 41, \"paragraphIndex\": 26, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You know… for the longest time studying your tome, I wondered what kind of direction Meditate could even be taken in. I knew the skill had something to do with deepening one’s connection to the system, but I still wasn’t entirely sure what exactly that meant,\"}, {\"relativeIndex\": 2, \"lineId\": 43, \"paragraphIndex\": 27, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Improving regeneration was the baseline. A natural upgrade to that was helping speed up other kinds of healing, such as a way to heal the soul faster. Meditate doesn’t necessarily provide anything new; it just amplifies and speeds up certain parts of what the system is already doing. At first, I considered another natural extension of this to be the ability to gain experience and even Records from the mere act of meditating, and as technically one earns experience and Records at all times, one should be able to speed that up for the effect to become noticeable and recognized.\"}], \"chapterCharacters\": [{\"characterId\": \"the first sage\", \"name\": \"The First Sage\", \"aliases\": [\"First Sage\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"the first sage\",\n  \"characterName\": \"The First Sage\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_flow_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

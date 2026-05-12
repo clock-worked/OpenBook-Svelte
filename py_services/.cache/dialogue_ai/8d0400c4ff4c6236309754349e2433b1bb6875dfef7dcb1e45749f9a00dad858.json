@@ -1,0 +1,298 @@
+{
+  "cacheKey": "8d0400c4ff4c6236309754349e2433b1bb6875dfef7dcb1e45749f9a00dad858",
+  "createdAt": "2026-04-18T04:06:28.090971+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "artemis",
+    "characterName": "Artemis",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "next_line_explicitly_attributed_response",
+      "conversational_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "artemis"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "forest-king-2"
+        ],
+        "characterId": "forest-king-2",
+        "name": "forest-king",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Unique Lifeform",
+          "The Unique Lifeform",
+          "the-unique-lifeform",
+          "the-unique-lifeform-2"
+        ],
+        "characterId": "minaga",
+        "name": "Minaga",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "dina",
+        "name": "Dina",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "having",
+        "name": "Having",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Still in a good mood, Jake turned to look at Artemis, who was passively waiting around for their little reunion to end. Jake could also see that despite the avatar’s presence, its mind was clearly somewhere entirely different.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "I also think we’re done here...",
+      "lastSentence": "can you help us get home?",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "I also think we’re done here... can you help us get home?",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": true,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Artemis",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.18,
+        "misattributionRisk": 0.5007999999999999,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Artemis",
+        "sourceCandidates": [
+          "Artemis",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.636
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.636,
+          "name": "Artemis",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 3,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "I also think we’re done here... can you help us get home?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 3,
+          "text": "I also think we’re done here... can you help us get home?"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Still in a good mood, Jake turned to look at Artemis, who was passively waiting around for their little reunion to end. Jake could also see that despite the avatar’s presence, its mind was clearly somewhere entirely different.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I also think we’re done here...",
+          "lastSentence": "can you help us get home?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I also think we’re done here... can you help us get home?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Still in a good mood, Jake turned to look at Artemis, who was passively waiting around for their little reunion to end. Jake could also see that despite the avatar’s presence, its mind was clearly somewhere entirely different. “I also think we’re done here... can you help us get home?”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": false,
+          "lineId": 4,
+          "text": "That’s more or less the only reason I’m here,"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Artemis said in a self-admonishing tone as she snapped her fingers. Space magic enveloped both the King and Jake, and a few teleports later, they found themselves back at Jake’s temporary residence. Artemis promptly took her leave again once there, still busy doing something she wouldn’t tell Jake about.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "That’s more or less the only reason I’m here,",
+          "lastSentence": "That’s more or less the only reason I’m here,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "That’s more or less the only reason I’m here,",
+          "speakerNameMatch": "Artemis",
+          "speakerSurface": "Artemis"
+        }
+      ],
+      "nextParagraphText": "“That’s more or less the only reason I’m here,” Artemis said in a self-admonishing tone as she snapped her fingers. Space magic enveloped both the King and Jake, and a few teleports later, they found themselves back at Jake’s temporary residence. Artemis promptly took her leave again once there, still busy doing something she wouldn’t tell Jake about.",
+      "paragraphIndex": 1,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Chapter 1152 - Nevermore Party Party Invites"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 4,
+        "paragraphIndex": 2,
+        "relativeIndex": 1,
+        "text": "That’s more or less the only reason I’m here,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 7,
+        "paragraphIndex": 4,
+        "relativeIndex": 2,
+        "text": "Did you arrive at the Pantheon of Life alone, or did-"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 3, \"text\": \"I also think we’re done here... can you help us get home?\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Artemis\", \"sourceCandidates\": [\"Artemis\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.636, \"marginToSecond\": 0.18, \"misattributionRisk\": 0.5007999999999999, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Artemis\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.636, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 1, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Still in a good mood, Jake turned to look at Artemis, who was passively waiting around for their little reunion to end. Jake could also see that despite the avatar’s presence, its mind was clearly somewhere entirely different. “I also think we’re done here... can you help us get home?”\", \"currentParagraphDialogue\": [{\"lineId\": 3, \"text\": \"I also think we’re done here... can you help us get home?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"Chapter 1152 - Nevermore Party Party Invites\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“That’s more or less the only reason I’m here,” Artemis said in a self-admonishing tone as she snapped her fingers. Space magic enveloped both the King and Jake, and a few teleports later, they found themselves back at Jake’s temporary residence. Artemis promptly took her leave again once there, still busy doing something she wouldn’t tell Jake about.\", \"nextParagraphDialogue\": [{\"lineId\": 4, \"text\": \"That’s more or less the only reason I’m here,\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I also think we’re done here... can you help us get home?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Still in a good mood, Jake turned to look at Artemis, who was passively waiting around for their little reunion to end. Jake could also see that despite the avatar’s presence, its mind was clearly somewhere entirely different.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I also think we’re done here...\", \"lastSentence\": \"can you help us get home?\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"That’s more or less the only reason I’m here,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Artemis said in a self-admonishing tone as she snapped her fingers. Space magic enveloped both the King and Jake, and a few teleports later, they found themselves back at Jake’s temporary residence. Artemis promptly took her leave again once there, still busy doing something she wouldn’t tell Jake about.\", \"speakerSurface\": \"Artemis\", \"speakerNameMatch\": \"Artemis\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"That’s more or less the only reason I’m here,\", \"lastSentence\": \"That’s more or less the only reason I’m here,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I also think we’re done here... can you help us get home?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Still in a good mood, Jake turned to look at Artemis, who was passively waiting around for their little reunion to end. Jake could also see that despite the avatar’s presence, its mind was clearly somewhere entirely different.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I also think we’re done here...\", \"lastSentence\": \"can you help us get home?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [], \"roleLabels\": [\"artemis\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": 1, \"lineId\": 4, \"paragraphIndex\": 2, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"That’s more or less the only reason I’m here,\"}, {\"relativeIndex\": 2, \"lineId\": 7, \"paragraphIndex\": 4, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Did you arrive at the Pantheon of Life alone, or did-\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"forest-king-2\", \"name\": \"forest-king\", \"aliases\": [\"forest-king-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dina\", \"name\": \"Dina\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"having\", \"name\": \"Having\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"artemis\",\n  \"characterName\": \"Artemis\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"next_line_explicitly_attributed_response\",\n    \"conversational_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

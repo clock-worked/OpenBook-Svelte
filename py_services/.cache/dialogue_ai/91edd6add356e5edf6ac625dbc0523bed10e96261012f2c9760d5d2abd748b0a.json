@@ -1,0 +1,222 @@
+{
+  "cacheKey": "91edd6add356e5edf6ac625dbc0523bed10e96261012f2c9760d5d2abd748b0a",
+  "createdAt": "2026-04-04T03:17:22.551123+00:00",
+  "decision": {
+    "action": "propose_new_character",
+    "aliasToAdd": null,
+    "characterId": null,
+    "characterName": null,
+    "confidence": 1.0,
+    "newCharacterProposal": {
+      "alias": null,
+      "name": "Villy",
+      "notes": "Character who talked about 'planned battles'"
+    },
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "new_character_identified"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "solana",
+        "characterName": "Solana",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "solana"
+        ],
+        "wasRecentSpeaker": false
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "before",
+      "cueText": "Landing on the shore of the island, Jake released a Pulse while keeping stealth active. He immediately spotted several of the apes, and to his surprise, he saw some of them even fighting other monsters. That’s when Jake remembered something else the dryad Solana had mentioned briefly. Sometimes, monsters did travel between the islands, all at the encouragement of the B-grades. They would then bring back anything they killed and even try to steal some of the natural resources from one another. In some ways, it reminded Jake of the",
+      "cueVerb": "mentioned",
+      "cueVerbType": "speech",
+      "firstSentence": "planned",
+      "lastSentence": "planned",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "planned",
+      "speakerNameMatch": null,
+      "speakerSurface": "the dryad Solana had"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": null,
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.7,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.33479999999999993,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Solana",
+        "sourceCandidates": [
+          "Solana",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.796
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.796,
+          "name": "Solana",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.436,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 23,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "planned"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 23,
+          "text": "planned"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Landing on the shore of the island, Jake released a Pulse while keeping stealth active. He immediately spotted several of the apes, and to his surprise, he saw some of them even fighting other monsters. That’s when Jake remembered something else the dryad Solana had mentioned briefly. Sometimes, monsters did travel between the islands, all at the encouragement of the B-grades. They would then bring back anything they killed and even try to steal some of the natural resources from one another. In some ways, it reminded Jake of the",
+          "cueVerb": "mentioned",
+          "cueVerbType": "speech",
+          "firstSentence": "planned",
+          "lastSentence": "planned",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "planned",
+          "speakerNameMatch": null,
+          "speakerSurface": "the dryad Solana had"
+        }
+      ],
+      "currentParagraphText": "Landing on the shore of the island, Jake released a Pulse while keeping stealth active. He immediately spotted several of the apes, and to his surprise, he saw some of them even fighting other monsters. That’s when Jake remembered something else the dryad Solana had mentioned briefly. Sometimes, monsters did travel between the islands, all at the encouragement of the B-grades. They would then bring back anything they killed and even try to steal some of the natural resources from one another. In some ways, it reminded Jake of the “planned” battles Villy talked about, which the Risen and Holy Church used to nurture talent and keep their members on their toes.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "The presence of enemies on the island only helped Jake, as it would make the Simivitas take longer to notice his presence. He also decided that while practicing archery was important, the hunt itself took precedence for now.",
+      "paragraphIndex": 20,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Killing Simivita children and those not even fully grown yet wasn’t something Jake had any interest in whatsoever. Killing those weaker than himself still gave Jake an icky feeling, and he hoped that the tribe would be smart enough to keep those too young to fight properly away from any battlefields, as he really hoped he wouldn’t be forced into a situation where he had to kill a bunch below level 300."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 11,
+        "paragraphIndex": 10,
+        "relativeIndex": -2,
+        "text": "suppression of grade"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 14,
+        "paragraphIndex": 12,
+        "relativeIndex": -1,
+        "text": "As you forever chase the horizon, you have become more accustomed to facing higher-level enemies. Increases the user’s resistance to auras and gives a small increase to..."
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "solana",
+            "characterName": "Solana",
+            "evidence": [
+              "token_overlap:solana"
+            ],
+            "score": 0.5667
+          }
+        ],
+        "surface": "the dryad solana had"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 23, \"text\": \"planned\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Solana\", \"sourceCandidates\": [\"Solana\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.33479999999999993, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": null, \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Solana\", \"confidence\": 0.796, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.436, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 20, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Landing on the shore of the island, Jake released a Pulse while keeping stealth active. He immediately spotted several of the apes, and to his surprise, he saw some of them even fighting other monsters. That’s when Jake remembered something else the dryad Solana had mentioned briefly. Sometimes, monsters did travel between the islands, all at the encouragement of the B-grades. They would then bring back anything they killed and even try to steal some of the natural resources from one another. In some ways, it reminded Jake of the “planned” battles Villy talked about, which the Risen and Holy Church used to nurture talent and keep their members on their toes.\", \"currentParagraphDialogue\": [{\"lineId\": 23, \"text\": \"planned\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"previousParagraphText\": \"Killing Simivita children and those not even fully grown yet wasn’t something Jake had any interest in whatsoever. Killing those weaker than himself still gave Jake an icky feeling, and he hoped that the tribe would be smart enough to keep those too young to fight properly away from any battlefields, as he really hoped he wouldn’t be forced into a situation where he had to kill a bunch below level 300.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"The presence of enemies on the island only helped Jake, as it would make the Simivitas take longer to notice his presence. He also decided that while practicing archery was important, the hunt itself took precedence for now.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"planned\", \"cuePosition\": \"before\", \"cueVerb\": \"mentioned\", \"cueVerbType\": \"speech\", \"cueText\": \"Landing on the shore of the island, Jake released a Pulse while keeping stealth active. He immediately spotted several of the apes, and to his surprise, he saw some of them even fighting other monsters. That’s when Jake remembered something else the dryad Solana had mentioned briefly. Sometimes, monsters did travel between the islands, all at the encouragement of the B-grades. They would then bring back anything they killed and even try to steal some of the natural resources from one another. In some ways, it reminded Jake of the\", \"speakerSurface\": \"the dryad Solana had\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"planned\", \"lastSentence\": \"planned\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"planned\", \"cuePosition\": \"before\", \"cueVerb\": \"mentioned\", \"cueVerbType\": \"speech\", \"cueText\": \"Landing on the shore of the island, Jake released a Pulse while keeping stealth active. He immediately spotted several of the apes, and to his surprise, he saw some of them even fighting other monsters. That’s when Jake remembered something else the dryad Solana had mentioned briefly. Sometimes, monsters did travel between the islands, all at the encouragement of the B-grades. They would then bring back anything they killed and even try to steal some of the natural resources from one another. In some ways, it reminded Jake of the\", \"speakerSurface\": \"the dryad Solana had\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"planned\", \"lastSentence\": \"planned\"}, \"sceneEntities\": [{\"surface\": \"the dryad solana had\", \"matches\": [{\"characterId\": \"solana\", \"characterName\": \"Solana\", \"score\": 0.5667, \"evidence\": [\"token_overlap:solana\"]}]}], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"solana\", \"characterName\": \"Solana\", \"aliases\": [], \"roleLabels\": [\"solana\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -2, \"lineId\": 11, \"paragraphIndex\": 10, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"suppression of grade\"}, {\"relativeIndex\": -1, \"lineId\": 14, \"paragraphIndex\": 12, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"As you forever chase the horizon, you have become more accustomed to facing higher-level enemies. Increases the user’s resistance to auras and gives a small increase to...\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"propose_new_character\",\n  \"characterId\": null,\n  \"characterName\": null,\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"new_character_identified\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": {\n    \"name\": \"Villy\",\n    \"alias\": null,\n    \"notes\": \"Character who talked about 'planned battles'\"\n  }\n}"
+}

@@ -1,0 +1,356 @@
+{
+  "cacheKey": "b96ae125e950d69aa490081815aa481915f15840c3abff92771f1bd69573124b",
+  "createdAt": "2026-04-19T03:51:44.031340+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "warpsnatcher",
+    "characterName": "Warpsnatcher",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "narrative_cue_before_quote",
+      "alias_match_in_quote",
+      "dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "lord thayne",
+          "thayne"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "The Warpsnatcher",
+          "Jasper",
+          "the-warpsnatcher",
+          "the-warpsnatcher-2"
+        ],
+        "characterId": "warpsnatcher",
+        "characterName": "Warpsnatcher",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "warpsnatcher",
+          "the warpsnatcher",
+          "jasper",
+          "the warpsnatcher 2",
+          "warpsnatcher 2"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Unique Lifeform",
+          "The Unique Lifeform",
+          "the-unique-lifeform",
+          "the-unique-lifeform-2"
+        ],
+        "characterId": "minaga",
+        "name": "Minaga",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "The Warpsnatcher",
+          "Jasper",
+          "the-warpsnatcher",
+          "the-warpsnatcher-2"
+        ],
+        "characterId": "warpsnatcher",
+        "name": "Warpsnatcher",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "vampire",
+        "name": "Vampire",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "the seeker",
+        "name": "The Seeker",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "She caught Jasper as the little guy snuggled up to her, rubbing his head against her chest a few times before looking up.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Jasper bye.",
+      "lastSentence": "Jasper bye.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Jasper bye.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Warpsnatcher",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.85,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.3263999999999999,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Warpsnatcher"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.808
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.808,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.448,
+          "name": "Warpsnatcher",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 119,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Jasper bye."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 119,
+          "text": "Jasper bye."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "She caught Jasper as the little guy snuggled up to her, rubbing his head against her chest a few times before looking up.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Jasper bye.",
+          "lastSentence": "Jasper bye.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Jasper bye.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "She caught Jasper as the little guy snuggled up to her, rubbing his head against her chest a few times before looking up. “Jasper bye.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "warpsnatcher",
+          "characterName": "Warpsnatcher",
+          "isReturning": true,
+          "lineId": 121,
+          "text": "I’m sure your new Patron can find places a lot more interesting to explore than what the Pantheon of Life has to offer."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Artemis, who had naturally still been listening to everything going on, knew what the little guy was getting at and nodded with a smile.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "I’m sure your new Patron can find places a lot more interesting to explore than what the Pantheon of Life has to offer.",
+          "lastSentence": "I’m sure your new Patron can find places a lot more interesting to explore than what the Pantheon of Life has to offer.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I’m sure your new Patron can find places a lot more interesting to explore than what the Pantheon of Life has to offer.",
+          "speakerNameMatch": null,
+          "speakerSurface": "the little guy was getting at and"
+        }
+      ],
+      "nextParagraphText": "Artemis, who had naturally still been listening to everything going on, knew what the little guy was getting at and nodded with a smile. “I’m sure your new Patron can find places a lot more interesting to explore than what the Pantheon of Life has to offer.”",
+      "paragraphIndex": 62,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "warpsnatcher",
+          "characterName": "Warpsnatcher",
+          "isReturning": false,
+          "lineId": 116,
+          "text": "Me know,"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jasper nodded, jumping from the coffee table and over to Artemis, who had silently been hanging out with Nature’s Attendant off to the side of the room, trying not to get involved in the chaos created by Jake and the two other gods.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "Me know,",
+          "lastSentence": "Me know,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Me know,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Jasper"
+        }
+      ],
+      "previousParagraphText": "“Me know,” Jasper nodded, jumping from the coffee table and over to Artemis, who had silently been hanging out with Nature’s Attendant off to the side of the room, trying not to get involved in the chaos created by Jake and the two other gods."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 110,
+        "paragraphIndex": 58,
+        "relativeIndex": -4,
+        "text": "Oh,"
+      },
+      {
+        "characterId": "warpsnatcher",
+        "characterName": "Warpsnatcher",
+        "lineId": 112,
+        "paragraphIndex": 59,
+        "relativeIndex": -3,
+        "text": "Cubes!"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 114,
+        "paragraphIndex": 60,
+        "relativeIndex": -2,
+        "text": "Remember, you need to continue infusing small amounts of energy to anchor the cube, or it will be de-summoned,"
+      },
+      {
+        "characterId": "warpsnatcher",
+        "characterName": "Warpsnatcher",
+        "lineId": 116,
+        "paragraphIndex": 61,
+        "relativeIndex": -1,
+        "text": "Me know,"
+      },
+      {
+        "characterId": "warpsnatcher",
+        "characterName": "Warpsnatcher",
+        "lineId": 121,
+        "paragraphIndex": 63,
+        "relativeIndex": 1,
+        "text": "I’m sure your new Patron can find places a lot more interesting to explore than what the Pantheon of Life has to offer."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 124,
+        "paragraphIndex": 66,
+        "relativeIndex": 2,
+        "text": "You go be a real menace to the multiverse now,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 119, \"text\": \"Jasper bye.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Warpsnatcher\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.808, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.3263999999999999, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.85, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Warpsnatcher\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.808, \"reasons\": null}, {\"characterId\": null, \"name\": \"Warpsnatcher\", \"confidence\": 0.448, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 62, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"She caught Jasper as the little guy snuggled up to her, rubbing his head against her chest a few times before looking up. “Jasper bye.”\", \"currentParagraphDialogue\": [{\"lineId\": 119, \"text\": \"Jasper bye.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“Me know,” Jasper nodded, jumping from the coffee table and over to Artemis, who had silently been hanging out with Nature’s Attendant off to the side of the room, trying not to get involved in the chaos created by Jake and the two other gods.\", \"previousParagraphDialogue\": [{\"lineId\": 116, \"text\": \"Me know,\", \"characterId\": \"warpsnatcher\", \"characterName\": \"Warpsnatcher\", \"isReturning\": false}], \"nextParagraphText\": \"Artemis, who had naturally still been listening to everything going on, knew what the little guy was getting at and nodded with a smile. “I’m sure your new Patron can find places a lot more interesting to explore than what the Pantheon of Life has to offer.”\", \"nextParagraphDialogue\": [{\"lineId\": 121, \"text\": \"I’m sure your new Patron can find places a lot more interesting to explore than what the Pantheon of Life has to offer.\", \"characterId\": \"warpsnatcher\", \"characterName\": \"Warpsnatcher\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Jasper bye.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"She caught Jasper as the little guy snuggled up to her, rubbing his head against her chest a few times before looking up.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Jasper bye.\", \"lastSentence\": \"Jasper bye.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Me know,\", \"cuePosition\": \"after\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Jasper nodded, jumping from the coffee table and over to Artemis, who had silently been hanging out with Nature’s Attendant off to the side of the room, trying not to get involved in the chaos created by Jake and the two other gods.\", \"speakerSurface\": \"Jasper\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Me know,\", \"lastSentence\": \"Me know,\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I’m sure your new Patron can find places a lot more interesting to explore than what the Pantheon of Life has to offer.\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Artemis, who had naturally still been listening to everything going on, knew what the little guy was getting at and nodded with a smile.\", \"speakerSurface\": \"the little guy was getting at and\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’m sure your new Patron can find places a lot more interesting to explore than what the Pantheon of Life has to offer.\", \"lastSentence\": \"I’m sure your new Patron can find places a lot more interesting to explore than what the Pantheon of Life has to offer.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Jasper bye.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"She caught Jasper as the little guy snuggled up to her, rubbing his head against her chest a few times before looking up.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Jasper bye.\", \"lastSentence\": \"Jasper bye.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"warpsnatcher\", \"characterName\": \"Warpsnatcher\", \"aliases\": [\"The Warpsnatcher\", \"Jasper\", \"the-warpsnatcher\", \"the-warpsnatcher-2\"], \"roleLabels\": [\"warpsnatcher\", \"the warpsnatcher\", \"jasper\", \"the warpsnatcher 2\", \"warpsnatcher 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 110, \"paragraphIndex\": 58, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Oh,\"}, {\"relativeIndex\": -3, \"lineId\": 112, \"paragraphIndex\": 59, \"characterId\": \"warpsnatcher\", \"characterName\": \"Warpsnatcher\", \"text\": \"Cubes!\"}, {\"relativeIndex\": -2, \"lineId\": 114, \"paragraphIndex\": 60, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Remember, you need to continue infusing small amounts of energy to anchor the cube, or it will be de-summoned,\"}, {\"relativeIndex\": -1, \"lineId\": 116, \"paragraphIndex\": 61, \"characterId\": \"warpsnatcher\", \"characterName\": \"Warpsnatcher\", \"text\": \"Me know,\"}, {\"relativeIndex\": 1, \"lineId\": 121, \"paragraphIndex\": 63, \"characterId\": \"warpsnatcher\", \"characterName\": \"Warpsnatcher\", \"text\": \"I’m sure your new Patron can find places a lot more interesting to explore than what the Pantheon of Life has to offer.\"}, {\"relativeIndex\": 2, \"lineId\": 124, \"paragraphIndex\": 66, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You go be a real menace to the multiverse now,\"}], \"chapterCharacters\": [{\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"warpsnatcher\", \"name\": \"Warpsnatcher\", \"aliases\": [\"The Warpsnatcher\", \"Jasper\", \"the-warpsnatcher\", \"the-warpsnatcher-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vampire\", \"name\": \"Vampire\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the seeker\", \"name\": \"The Seeker\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"warpsnatcher\",\n  \"characterName\": \"Warpsnatcher\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"narrative_cue_before_quote\",\n    \"alias_match_in_quote\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

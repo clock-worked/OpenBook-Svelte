@@ -1,0 +1,342 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "d3c659265db6ebd6cf652d9527be01763278ba5132c9748451876072badc157f",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\d3c659265db6ebd6cf652d9527be01763278ba5132c9748451876072badc157f.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "confidence": 0.99,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "previous_paragraph_explicit_attribution",
+          "next_paragraph_narration_confirms_speaker",
+          "continues_paragraph_dialogue",
+          "recent_speaker_continuity"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "kindroth",
+            "characterName": "Kindroth",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "kindroth"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "King Iludar"
+            ],
+            "characterId": "iludar",
+            "characterName": "Iludar",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "iludar",
+              "king iludar"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [
+              "holy-priest",
+              "holy-priest-2",
+              "head priest",
+              "the head priest"
+            ],
+            "characterId": "holy-priest",
+            "characterName": "Holy Priest",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "holy priest",
+              "priest",
+              "holy priest 2",
+              "priest 2",
+              "head priest",
+              "the head priest",
+              "the priest"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Augur",
+              "The Augur"
+            ],
+            "characterId": "jacob",
+            "name": "Jacob",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "holy-priest",
+              "holy-priest-2",
+              "head priest",
+              "the head priest"
+            ],
+            "characterId": "holy-priest",
+            "name": "Holy Priest",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "kindroth",
+            "name": "Kindroth",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "We surrender unconditionally!",
+          "lastSentence": "Everyone, lay down your arms!",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "We surrender unconditionally! Everyone, lay down your arms!",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Kindroth",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.18400000000000005,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Kindroth",
+            "sourceCandidates": [
+              "Kindroth",
+              "Iludar"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": "kindroth",
+              "confidence": 0.816,
+              "name": "Kindroth",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "iludar",
+              "confidence": 0.456,
+              "name": "Iludar",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "kindroth",
+          "currentCharacterName": "Kindroth",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 67,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "We surrender unconditionally! Everyone, lay down your arms!"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "kindroth",
+              "characterName": "Kindroth",
+              "isReturning": true,
+              "lineId": 67,
+              "text": "We surrender unconditionally! Everyone, lay down your arms!"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "We surrender unconditionally!",
+              "lastSentence": "Everyone, lay down your arms!",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "We surrender unconditionally! Everyone, lay down your arms!",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“We surrender unconditionally! Everyone, lay down your arms!”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "This was his final hope, and all his loyal followers dutifully followed his command. To his relief, the attackers also stopped when their opponents surrendered and disengaged from combat. He knew many of his soldiers likely had doubts even as they threw down their weapons, but they did so nevertheless.",
+          "paragraphIndex": 49,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "kindroth",
+              "characterName": "Kindroth",
+              "isReturning": false,
+              "lineId": 65,
+              "text": "We surrender!"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "We surrender!",
+              "lastSentence": "We surrender!",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "We surrender!",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "previousParagraphText": "“We surrender!” his voice echoed throughout the valley. He was full of regret, but there truly was no other choice."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "holy-priest",
+            "characterName": "Holy Priest",
+            "lineId": 35,
+            "paragraphIndex": 20,
+            "relativeIndex": -4,
+            "text": "This is a direct order in accordance with the divine edict bestowed upon me. Release the creature to fight the Chosen of the Malefic Viper. Now."
+          },
+          {
+            "characterId": "holy-priest",
+            "characterName": "Holy Priest",
+            "lineId": 37,
+            "paragraphIndex": 21,
+            "relativeIndex": -3,
+            "text": "Whatever happens next is your sole responsibility. One I doubt you will be able to bear."
+          },
+          {
+            "characterId": "kindroth",
+            "characterName": "Kindroth",
+            "lineId": 63,
+            "paragraphIndex": 47,
+            "relativeIndex": -2,
+            "text": "Disengage from combat, gather at my location... and surrender,"
+          },
+          {
+            "characterId": "kindroth",
+            "characterName": "Kindroth",
+            "lineId": 65,
+            "paragraphIndex": 48,
+            "relativeIndex": -1,
+            "text": "We surrender!"
+          },
+          {
+            "characterId": "kindroth",
+            "characterName": "Kindroth",
+            "lineId": 71,
+            "paragraphIndex": 53,
+            "relativeIndex": 1,
+            "text": "I plead with you... please show mercy upon those foolish enough to have followed this sorry excuse for a leader."
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 67, \"text\": \"We surrender unconditionally! Everyone, lay down your arms!\", \"currentCharacterId\": \"kindroth\", \"currentCharacterName\": \"Kindroth\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Kindroth\", \"sourceCandidates\": [\"Kindroth\", \"Iludar\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Kindroth\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 49, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“We surrender unconditionally! Everyone, lay down your arms!”\", \"currentParagraphDialogue\": [{\"lineId\": 67, \"text\": \"We surrender unconditionally! Everyone, lay down your arms!\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": true}], \"previousParagraphText\": \"“We surrender!” his voice echoed throughout the valley. He was full of regret, but there truly was no other choice.\", \"previousParagraphDialogue\": [{\"lineId\": 65, \"text\": \"We surrender!\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": false}], \"nextParagraphText\": \"This was his final hope, and all his loyal followers dutifully followed his command. To his relief, the attackers also stopped when their opponents surrendered and disengaged from combat. He knew many of his soldiers likely had doubts even as they threw down their weapons, but they did so nevertheless.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"We surrender unconditionally! Everyone, lay down your arms!\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"We surrender unconditionally!\", \"lastSentence\": \"Everyone, lay down your arms!\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"We surrender!\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"We surrender!\", \"lastSentence\": \"We surrender!\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"We surrender unconditionally! Everyone, lay down your arms!\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"We surrender unconditionally!\", \"lastSentence\": \"Everyone, lay down your arms!\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [\"kindroth\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"iludar\", \"characterName\": \"Iludar\", \"aliases\": [\"King Iludar\"], \"roleLabels\": [\"iludar\", \"king iludar\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"aliases\": [\"holy-priest\", \"holy-priest-2\", \"head priest\", \"the head priest\"], \"roleLabels\": [\"holy priest\", \"priest\", \"holy priest 2\", \"priest 2\", \"head priest\", \"the head priest\", \"the priest\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 35, \"paragraphIndex\": 20, \"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"text\": \"This is a direct order in accordance with the divine edict bestowed upon me. Release the creature to fight the Chosen of the Malefic Viper. Now.\"}, {\"relativeIndex\": -3, \"lineId\": 37, \"paragraphIndex\": 21, \"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"text\": \"Whatever happens next is your sole responsibility. One I doubt you will be able to bear.\"}, {\"relativeIndex\": -2, \"lineId\": 63, \"paragraphIndex\": 47, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"Disengage from combat, gather at my location... and surrender,\"}, {\"relativeIndex\": -1, \"lineId\": 65, \"paragraphIndex\": 48, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"We surrender!\"}, {\"relativeIndex\": 1, \"lineId\": 71, \"paragraphIndex\": 53, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"I plead with you... please show mercy upon those foolish enough to have followed this sorry excuse for a leader.\"}], \"chapterCharacters\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [\"Augur\", \"The Augur\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"holy-priest\", \"name\": \"Holy Priest\", \"aliases\": [\"holy-priest\", \"holy-priest-2\", \"head priest\", \"the head priest\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"kindroth\",\n  \"characterName\": \"Kindroth\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"previous_paragraph_explicit_attribution\",\n    \"next_paragraph_narration_confirms_speaker\",\n    \"continues_paragraph_dialogue\",\n    \"recent_speaker_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0005 - Chapter 1062 - Reluctant Choices",
+  "currentCharacterId": "kindroth",
+  "currentCharacterName": "Kindroth",
+  "currentParagraphText": "“We surrender unconditionally! Everyone, lay down your arms!”",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.99,
+    "currentCharacterId": "kindroth",
+    "currentCharacterName": "Kindroth",
+    "currentParagraphText": "“We surrender unconditionally! Everyone, lay down your arms!”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 67,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "This was his final hope, and all his loyal followers dutifully followed his command. To his relief, the attackers also stopped when their opponents surrendered and disengaged from combat. He knew many of his soldiers likely had doubts even as they threw down their weapons, but they did so nevertheless.",
+    "paragraphIndex": 49,
+    "previousParagraphText": "“We surrender!” his voice echoed throughout the valley. He was full of regret, but there truly was no other choice.",
+    "reasonCodes": [
+      "previous_paragraph_explicit_attribution",
+      "next_paragraph_narration_confirms_speaker",
+      "continues_paragraph_dialogue",
+      "recent_speaker_continuity"
+    ],
+    "suggestedCharacterId": "kindroth",
+    "suggestedCharacterName": "Kindroth",
+    "toolTrace": []
+  },
+  "lineId": 67,
+  "nextParagraphText": "This was his final hope, and all his loyal followers dutifully followed his command. To his relief, the attackers also stopped when their opponents surrendered and disengaged from combat. He knew many of his soldiers likely had doubts even as they threw down their weapons, but they did so nevertheless.",
+  "paragraphIndex": 49,
+  "previousParagraphText": "“We surrender!” his voice echoed throughout the valley. He was full of regret, but there truly was no other choice."
+}

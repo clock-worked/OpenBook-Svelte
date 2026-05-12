@@ -1,0 +1,349 @@
+{
+  "cacheKey": "77b5a71d0f8ecc63c57aba5190b30cb1b3624aaf25e2216a2d2f462f2da3ddb5",
+  "createdAt": "2026-04-01T18:47:58.272400+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jacob",
+    "characterName": "Jacob",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "turn_continuity",
+      "content_matches_previous_speaker",
+      "addressee_confirms_speaker_role",
+      "speaker_refers_to_current_character_in_third_person"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jacob"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "the-unique-lifeform",
+        "name": "The Unique Lifeform",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "augur",
+        "name": "Augur",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "On the other hand, backing Ell’Hakan, there was confidence the Holy Church would one day rule the Milky Way Galaxy.",
+      "lastSentence": "which is where I come in, I guess.",
+      "mentionedEntities": [
+        "yip"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "On the other hand, backing Ell’Hakan, there was confidence the Holy Church would one day rule the Milky Way Galaxy. With Yip of Yore dead, he would turn to the Church and officially become a member, at which point his victory would be our victory. As for you... yeah, no way you would ever give up the Milky Way no matter how much we tried to convince you. Remember that the gods don’t care about short timespans and they view distance as rather relative. The Holy Mother knew that should Ell’Hakan lose and the Milky Way be lost, there still had to be some way for the Holy Church and your faction to coexist... which is where I come in, I guess.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "yip"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Jacob"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.816,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jacob",
+          "confidence": 0.456,
+          "name": "Jacob",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Ell'Hakan"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 53,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "On the other hand, backing Ell’Hakan, there was confidence the Holy Church would one day rule the Milky Way Galaxy. With Yip of Yore dead, he would turn to the Church and officially become a member, at which point his victory would be our victory. As for you... yeah, no way you would ever give up the Milky Way no matter how much we tried to convince you. Remember that the gods don’t care about short timespans and they view distance as rather relative. The Holy Mother knew that should Ell’Hakan lose and the Milky Way be lost, there still had to be some way for the Holy Church and your faction to coexist... which is where I come in, I guess."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 53,
+          "text": "On the other hand, backing Ell’Hakan, there was confidence the Holy Church would one day rule the Milky Way Galaxy. With Yip of Yore dead, he would turn to the Church and officially become a member, at which point his victory would be our victory. As for you... yeah, no way you would ever give up the Milky Way no matter how much we tried to convince you. Remember that the gods don’t care about short timespans and they view distance as rather relative. The Holy Mother knew that should Ell’Hakan lose and the Milky Way be lost, there still had to be some way for the Holy Church and your faction to coexist... which is where I come in, I guess."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "On the other hand, backing Ell’Hakan, there was confidence the Holy Church would one day rule the Milky Way Galaxy.",
+          "lastSentence": "which is where I come in, I guess.",
+          "mentionedEntities": [
+            "yip"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "On the other hand, backing Ell’Hakan, there was confidence the Holy Church would one day rule the Milky Way Galaxy. With Yip of Yore dead, he would turn to the Church and officially become a member, at which point his victory would be our victory. As for you... yeah, no way you would ever give up the Milky Way no matter how much we tried to convince you. Remember that the gods don’t care about short timespans and they view distance as rather relative. The Holy Mother knew that should Ell’Hakan lose and the Milky Way be lost, there still had to be some way for the Holy Church and your faction to coexist... which is where I come in, I guess.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“On the other hand, backing Ell’Hakan, there was confidence the Holy Church would one day rule the Milky Way Galaxy. With Yip of Yore dead, he would turn to the Church and officially become a member, at which point his victory would be our victory. As for you... yeah, no way you would ever give up the Milky Way no matter how much we tried to convince you. Remember that the gods don’t care about short timespans and they view distance as rather relative. The Holy Mother knew that should Ell’Hakan lose and the Milky Way be lost, there still had to be some way for the Holy Church and your faction to coexist... which is where I come in, I guess.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 54,
+          "text": "So you’re the backup, huh?"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 56,
+          "text": "You know, despite your negative outlook, I do think there could have been some kind of compromise if you’d simply been straightforward and not actively worked against me."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake said.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "So you’re the backup, huh?",
+          "lastSentence": "So you’re the backup, huh?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "So you’re the backup, huh?",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jake said.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "You know, despite your negative outlook, I do think there could have been some kind of compromise if you’d simply been straightforward and not actively worked against me.",
+          "lastSentence": "You know, despite your negative outlook, I do think there could have been some kind of compromise if you’d simply been straightforward and not actively worked against me.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "You know, despite your negative outlook, I do think there could have been some kind of compromise if you’d simply been straightforward and not actively worked against me.",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "nextParagraphText": "“So you’re the backup, huh?” Jake said. “You know, despite your negative outlook, I do think there could have been some kind of compromise if you’d simply been straightforward and not actively worked against me.”",
+      "paragraphIndex": 27,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 51,
+          "text": "In the eyes of the Holy Mother, this entire sequence of events would lead to the best final outcome. As I said before, the best end the Holy Church could hope for, assuming you defeated Ell’Hakan, would be a peaceful evacuation. Even if we had approached you as an early ally, what would you have given us? A few planets? The Holy Church desire, no, demands expansion. Even if we tried to limit it, the Church’s influence would create challenges down the lines that would eventually lead to our expulsion or something far worse,"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jacob explained with a sigh.",
+          "cueVerb": "explained",
+          "cueVerbType": "speech",
+          "firstSentence": "In the eyes of the Holy Mother, this entire sequence of events would lead to the best final outcome.",
+          "lastSentence": "Even if we tried to limit it, the Church’s influence would create challenges down the lines that would eventually lead to our expulsion or something far worse,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "In the eyes of the Holy Mother, this entire sequence of events would lead to the best final outcome. As I said before, the best end the Holy Church could hope for, assuming you defeated Ell’Hakan, would be a peaceful evacuation. Even if we had approached you as an early ally, what would you have given us? A few planets? The Holy Church desire, no, demands expansion. Even if we tried to limit it, the Church’s influence would create challenges down the lines that would eventually lead to our expulsion or something far worse,",
+          "speakerNameMatch": "Jacob",
+          "speakerSurface": "Jacob"
+        }
+      ],
+      "previousParagraphText": "“In the eyes of the Holy Mother, this entire sequence of events would lead to the best final outcome. As I said before, the best end the Holy Church could hope for, assuming you defeated Ell’Hakan, would be a peaceful evacuation. Even if we had approached you as an early ally, what would you have given us? A few planets? The Holy Church desire, no, demands expansion. Even if we tried to limit it, the Church’s influence would create challenges down the lines that would eventually lead to our expulsion or something far worse,” Jacob explained with a sigh."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 47,
+        "paragraphIndex": 24,
+        "relativeIndex": -4,
+        "text": "She may complain a bit, but nothing that will ever reach the ears of mortals. In fact, this will likely result in her getting taken down a peg by my Patron as the plans of herself and her allies failed spectacularly. I do find it a bit sad that they lose a war they could have never realistically won, but oh well."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 48,
+        "paragraphIndex": 25,
+        "relativeIndex": -3,
+        "text": "Speaking of your Patron, is she gonna be a problem?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 50,
+        "paragraphIndex": 25,
+        "relativeIndex": -2,
+        "text": "And did she really sign off on all this bullshit? Because I genuinely thought she knew better, and if she did, that she could at least control her own damn faction."
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 51,
+        "paragraphIndex": 26,
+        "relativeIndex": -1,
+        "text": "In the eyes of the Holy Mother, this entire sequence of events would lead to the best final outcome. As I said before, the best end the Holy Church could hope for, assuming you defeated Ell’Hakan, would be a peaceful evacuation. Even if we had approached you as an early ally, what would you have given us? A few planets? The Holy Church desire, no, demands expansion. Even if we tried to limit it, the Church’s influence would create challenges down the lines that would eventually lead to our expulsion or something far worse,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 54,
+        "paragraphIndex": 28,
+        "relativeIndex": 1,
+        "text": "So you’re the backup, huh?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 56,
+        "paragraphIndex": 28,
+        "relativeIndex": 2,
+        "text": "You know, despite your negative outlook, I do think there could have been some kind of compromise if you’d simply been straightforward and not actively worked against me."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 53, \"text\": \"On the other hand, backing Ell’Hakan, there was confidence the Holy Church would one day rule the Milky Way Galaxy. With Yip of Yore dead, he would turn to the Church and officially become a member, at which point his victory would be our victory. As for you... yeah, no way you would ever give up the Milky Way no matter how much we tried to convince you. Remember that the gods don’t care about short timespans and they view distance as rather relative. The Holy Mother knew that should Ell’Hakan lose and the Milky Way be lost, there still had to be some way for the Holy Church and your faction to coexist... which is where I come in, I guess.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Ell'Hakan\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Jacob\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"yip\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 27, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“On the other hand, backing Ell’Hakan, there was confidence the Holy Church would one day rule the Milky Way Galaxy. With Yip of Yore dead, he would turn to the Church and officially become a member, at which point his victory would be our victory. As for you... yeah, no way you would ever give up the Milky Way no matter how much we tried to convince you. Remember that the gods don’t care about short timespans and they view distance as rather relative. The Holy Mother knew that should Ell’Hakan lose and the Milky Way be lost, there still had to be some way for the Holy Church and your faction to coexist... which is where I come in, I guess.”\", \"currentParagraphDialogue\": [{\"lineId\": 53, \"text\": \"On the other hand, backing Ell’Hakan, there was confidence the Holy Church would one day rule the Milky Way Galaxy. With Yip of Yore dead, he would turn to the Church and officially become a member, at which point his victory would be our victory. As for you... yeah, no way you would ever give up the Milky Way no matter how much we tried to convince you. Remember that the gods don’t care about short timespans and they view distance as rather relative. The Holy Mother knew that should Ell’Hakan lose and the Milky Way be lost, there still had to be some way for the Holy Church and your faction to coexist... which is where I come in, I guess.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"“In the eyes of the Holy Mother, this entire sequence of events would lead to the best final outcome. As I said before, the best end the Holy Church could hope for, assuming you defeated Ell’Hakan, would be a peaceful evacuation. Even if we had approached you as an early ally, what would you have given us? A few planets? The Holy Church desire, no, demands expansion. Even if we tried to limit it, the Church’s influence would create challenges down the lines that would eventually lead to our expulsion or something far worse,” Jacob explained with a sigh.\", \"previousParagraphDialogue\": [{\"lineId\": 51, \"text\": \"In the eyes of the Holy Mother, this entire sequence of events would lead to the best final outcome. As I said before, the best end the Holy Church could hope for, assuming you defeated Ell’Hakan, would be a peaceful evacuation. Even if we had approached you as an early ally, what would you have given us? A few planets? The Holy Church desire, no, demands expansion. Even if we tried to limit it, the Church’s influence would create challenges down the lines that would eventually lead to our expulsion or something far worse,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}], \"nextParagraphText\": \"“So you’re the backup, huh?” Jake said. “You know, despite your negative outlook, I do think there could have been some kind of compromise if you’d simply been straightforward and not actively worked against me.”\", \"nextParagraphDialogue\": [{\"lineId\": 54, \"text\": \"So you’re the backup, huh?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 56, \"text\": \"You know, despite your negative outlook, I do think there could have been some kind of compromise if you’d simply been straightforward and not actively worked against me.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"On the other hand, backing Ell’Hakan, there was confidence the Holy Church would one day rule the Milky Way Galaxy. With Yip of Yore dead, he would turn to the Church and officially become a member, at which point his victory would be our victory. As for you... yeah, no way you would ever give up the Milky Way no matter how much we tried to convince you. Remember that the gods don’t care about short timespans and they view distance as rather relative. The Holy Mother knew that should Ell’Hakan lose and the Milky Way be lost, there still had to be some way for the Holy Church and your faction to coexist... which is where I come in, I guess.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"yip\"], \"addressedEntity\": null, \"firstSentence\": \"On the other hand, backing Ell’Hakan, there was confidence the Holy Church would one day rule the Milky Way Galaxy.\", \"lastSentence\": \"which is where I come in, I guess.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"In the eyes of the Holy Mother, this entire sequence of events would lead to the best final outcome. As I said before, the best end the Holy Church could hope for, assuming you defeated Ell’Hakan, would be a peaceful evacuation. Even if we had approached you as an early ally, what would you have given us? A few planets? The Holy Church desire, no, demands expansion. Even if we tried to limit it, the Church’s influence would create challenges down the lines that would eventually lead to our expulsion or something far worse,\", \"cuePosition\": \"after\", \"cueVerb\": \"explained\", \"cueVerbType\": \"speech\", \"cueText\": \"Jacob explained with a sigh.\", \"speakerSurface\": \"Jacob\", \"speakerNameMatch\": \"Jacob\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"In the eyes of the Holy Mother, this entire sequence of events would lead to the best final outcome.\", \"lastSentence\": \"Even if we tried to limit it, the Church’s influence would create challenges down the lines that would eventually lead to our expulsion or something far worse,\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"So you’re the backup, huh?\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake said.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"So you’re the backup, huh?\", \"lastSentence\": \"So you’re the backup, huh?\"}, {\"quoteIndex\": 1, \"quoteText\": \"You know, despite your negative outlook, I do think there could have been some kind of compromise if you’d simply been straightforward and not actively worked against me.\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake said.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You know, despite your negative outlook, I do think there could have been some kind of compromise if you’d simply been straightforward and not actively worked against me.\", \"lastSentence\": \"You know, despite your negative outlook, I do think there could have been some kind of compromise if you’d simply been straightforward and not actively worked against me.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"On the other hand, backing Ell’Hakan, there was confidence the Holy Church would one day rule the Milky Way Galaxy. With Yip of Yore dead, he would turn to the Church and officially become a member, at which point his victory would be our victory. As for you... yeah, no way you would ever give up the Milky Way no matter how much we tried to convince you. Remember that the gods don’t care about short timespans and they view distance as rather relative. The Holy Mother knew that should Ell’Hakan lose and the Milky Way be lost, there still had to be some way for the Holy Church and your faction to coexist... which is where I come in, I guess.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"yip\"], \"addressedEntity\": null, \"firstSentence\": \"On the other hand, backing Ell’Hakan, there was confidence the Holy Church would one day rule the Milky Way Galaxy.\", \"lastSentence\": \"which is where I come in, I guess.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [], \"roleLabels\": [\"jacob\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 47, \"paragraphIndex\": 24, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"She may complain a bit, but nothing that will ever reach the ears of mortals. In fact, this will likely result in her getting taken down a peg by my Patron as the plans of herself and her allies failed spectacularly. I do find it a bit sad that they lose a war they could have never realistically won, but oh well.\"}, {\"relativeIndex\": -3, \"lineId\": 48, \"paragraphIndex\": 25, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Speaking of your Patron, is she gonna be a problem?\"}, {\"relativeIndex\": -2, \"lineId\": 50, \"paragraphIndex\": 25, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"And did she really sign off on all this bullshit? Because I genuinely thought she knew better, and if she did, that she could at least control her own damn faction.\"}, {\"relativeIndex\": -1, \"lineId\": 51, \"paragraphIndex\": 26, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"In the eyes of the Holy Mother, this entire sequence of events would lead to the best final outcome. As I said before, the best end the Holy Church could hope for, assuming you defeated Ell’Hakan, would be a peaceful evacuation. Even if we had approached you as an early ally, what would you have given us? A few planets? The Holy Church desire, no, demands expansion. Even if we tried to limit it, the Church’s influence would create challenges down the lines that would eventually lead to our expulsion or something far worse,\"}, {\"relativeIndex\": 1, \"lineId\": 54, \"paragraphIndex\": 28, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"So you’re the backup, huh?\"}, {\"relativeIndex\": 2, \"lineId\": 56, \"paragraphIndex\": 28, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You know, despite your negative outlook, I do think there could have been some kind of compromise if you’d simply been straightforward and not actively worked against me.\"}], \"chapterCharacters\": [{\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-unique-lifeform\", \"name\": \"The Unique Lifeform\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"augur\", \"name\": \"Augur\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jacob\",\n  \"characterName\": \"Jacob\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"turn_continuity\",\n    \"content_matches_previous_speaker\",\n    \"addressee_confirms_speaker_role\",\n    \"speaker_refers_to_current_character_in_third_person\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

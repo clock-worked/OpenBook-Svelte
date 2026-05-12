@@ -1,0 +1,363 @@
+{
+  "cacheKey": "a1fce8f2e1e156e193f38da3b6c60dd8f853faebc2452c0917b412631de8b1c2",
+  "createdAt": "2026-05-09T02:24:34.344580+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "artemis",
+    "characterName": "Artemis",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "alias_match",
+      "continues_paragraph_dialogue"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "artemis",
+          "godqueen"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "lord thayne",
+          "thayne"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Forest King",
+          "Fallen King",
+          "forest-king",
+          "forest-king-2"
+        ],
+        "characterId": "king",
+        "characterName": "King",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "king",
+          "forest king",
+          "fallen king",
+          "forest king 2"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "godqueen",
+        "characterName": "Godqueen",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "godqueen"
+        ],
+        "wasRecentSpeaker": false
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Forest King",
+          "Fallen King",
+          "forest-king",
+          "forest-king-2"
+        ],
+        "characterId": "king",
+        "name": "King",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "the Godqueen explained to the group.",
+      "cueVerb": "explained",
+      "cueVerbType": "speech",
+      "firstSentence": "And we’re approaching the teleportation hub,",
+      "lastSentence": "And we’re approaching the teleportation hub,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "And we’re approaching the teleportation hub,",
+      "speakerNameMatch": "Godqueen",
+      "speakerSurface": "Godqueen"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Artemis",
+          "nextSentenceAttributedSpeaker": "Godqueen",
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.040000000000000036,
+        "misattributionRisk": 0.0,
+        "parserBackend": "legacy",
+        "resolutionStatus": "user_confirmed",
+        "sourceAlias": "Godqueen",
+        "sourceCandidates": [
+          "Godqueen",
+          "Jake",
+          "Artemis"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.904
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.904,
+          "name": "Artemis",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.864,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [
+        "Godqueen"
+      ],
+      "currentCharacterId": "artemis",
+      "currentCharacterName": "Artemis",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 103,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "And we’re approaching the teleportation hub,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": false,
+          "lineId": 103,
+          "text": "And we’re approaching the teleportation hub,"
+        },
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": true,
+          "lineId": 105,
+          "text": "While it would be entirely possible to teleport without it, using a hub like this is far easier, and there’s already been established a connection with the Order of the Malefic Viper. Finally, seeing as this is the official return of the Chosen of the Malefic Viper and the arrival of the Ambassador from the Pantheon of Life, we should at least keep our transportation to official channels."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the Godqueen explained to the group.",
+          "cueVerb": "explained",
+          "cueVerbType": "speech",
+          "firstSentence": "And we’re approaching the teleportation hub,",
+          "lastSentence": "And we’re approaching the teleportation hub,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "And we’re approaching the teleportation hub,",
+          "speakerNameMatch": "Godqueen",
+          "speakerSurface": "Godqueen"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "the Godqueen explained to the group.",
+          "cueVerb": "explained",
+          "cueVerbType": "speech",
+          "firstSentence": "While it would be entirely possible to teleport without it, using a hub like this is far easier, and there’s already been established a connection with the Order of the Malefic Viper.",
+          "lastSentence": "Finally, seeing as this is the official return of the Chosen of the Malefic Viper and the arrival of the Ambassador from the Pantheon of Life, we should at least keep our transportation to official channels.",
+          "mentionedEntities": [
+            "The Malefic Viper",
+            "Chosen"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "While it would be entirely possible to teleport without it, using a hub like this is far easier, and there’s already been established a connection with the Order of the Malefic Viper. Finally, seeing as this is the official return of the Chosen of the Malefic Viper and the arrival of the Ambassador from the Pantheon of Life, we should at least keep our transportation to official channels.",
+          "speakerNameMatch": "Godqueen",
+          "speakerSurface": "Godqueen"
+        }
+      ],
+      "currentParagraphText": "“And we’re approaching the teleportation hub,” the Godqueen explained to the group. “While it would be entirely possible to teleport without it, using a hub like this is far easier, and there’s already been established a connection with the Order of the Malefic Viper. Finally, seeing as this is the official return of the Chosen of the Malefic Viper and the arrival of the Ambassador from the Pantheon of Life, we should at least keep our transportation to official channels.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 88
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 26,
+        "paragraphIndex": 15,
+        "relativeIndex": -4,
+        "text": "I don’t actually know where the Seeker took Jasper,"
+      },
+      {
+        "characterId": "the_sword_saint",
+        "characterName": "The Sword Saint",
+        "lineId": 28,
+        "paragraphIndex": 16,
+        "relativeIndex": -3,
+        "text": "Seems like we missed quite the event,"
+      },
+      {
+        "characterId": "the_sword_saint",
+        "characterName": "The Sword Saint",
+        "lineId": 30,
+        "paragraphIndex": 16,
+        "relativeIndex": -2,
+        "text": "Since we have some time, let’s hear what everyone has been up to since we met last. Allow me to start..."
+      },
+      {
+        "characterId": "king",
+        "characterName": "King",
+        "lineId": 35,
+        "paragraphIndex": 20,
+        "relativeIndex": -1,
+        "text": "solidifying his foundation to ensure future excellence."
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 105,
+        "paragraphIndex": 88,
+        "relativeIndex": 1,
+        "text": "While it would be entirely possible to teleport without it, using a hub like this is far easier, and there’s already been established a connection with the Order of the Malefic Viper. Finally, seeing as this is the official return of the Chosen of the Malefic Viper and the arrival of the Ambassador from the Pantheon of Life, we should at least keep our transportation to official channels."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 107,
+        "paragraphIndex": 90,
+        "relativeIndex": 2,
+        "text": "We’ll be going through the void now. The vessel will protect you, but be warned that it likely remains an uncomfortable experience."
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "godqueen",
+            "characterName": "Godqueen",
+            "evidence": [
+              "exact_label_match",
+              "stripped_label_match",
+              "token_overlap:godqueen"
+            ],
+            "score": 0.98
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "evidence": [
+              "exact_label_match",
+              "stripped_label_match",
+              "token_overlap:godqueen"
+            ],
+            "score": 0.98
+          }
+        ],
+        "surface": "godqueen"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 103, \"text\": \"And we’re approaching the teleportation hub,\", \"currentCharacterId\": \"artemis\", \"currentCharacterName\": \"Artemis\", \"currentCharacterAliases\": [\"Godqueen\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"user_confirmed\", \"sourceAlias\": \"Godqueen\", \"sourceCandidates\": [\"Godqueen\", \"Jake\", \"Artemis\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.904, \"marginToSecond\": 0.040000000000000036, \"misattributionRisk\": 0.0, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": \"Godqueen\", \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Artemis\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.904, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.864, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 88, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“And we’re approaching the teleportation hub,” the Godqueen explained to the group. “While it would be entirely possible to teleport without it, using a hub like this is far easier, and there’s already been established a connection with the Order of the Malefic Viper. Finally, seeing as this is the official return of the Chosen of the Malefic Viper and the arrival of the Ambassador from the Pantheon of Life, we should at least keep our transportation to official channels.”\", \"currentParagraphDialogue\": [{\"lineId\": 103, \"text\": \"And we’re approaching the teleportation hub,\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": false}, {\"lineId\": 105, \"text\": \"While it would be entirely possible to teleport without it, using a hub like this is far easier, and there’s already been established a connection with the Order of the Malefic Viper. Finally, seeing as this is the official return of the Chosen of the Malefic Viper and the arrival of the Ambassador from the Pantheon of Life, we should at least keep our transportation to official channels.\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"And we’re approaching the teleportation hub,\", \"cuePosition\": \"after\", \"cueVerb\": \"explained\", \"cueVerbType\": \"speech\", \"cueText\": \"the Godqueen explained to the group.\", \"speakerSurface\": \"Godqueen\", \"speakerNameMatch\": \"Godqueen\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"And we’re approaching the teleportation hub,\", \"lastSentence\": \"And we’re approaching the teleportation hub,\"}, {\"quoteIndex\": 1, \"quoteText\": \"While it would be entirely possible to teleport without it, using a hub like this is far easier, and there’s already been established a connection with the Order of the Malefic Viper. Finally, seeing as this is the official return of the Chosen of the Malefic Viper and the arrival of the Ambassador from the Pantheon of Life, we should at least keep our transportation to official channels.\", \"cuePosition\": \"before\", \"cueVerb\": \"explained\", \"cueVerbType\": \"speech\", \"cueText\": \"the Godqueen explained to the group.\", \"speakerSurface\": \"Godqueen\", \"speakerNameMatch\": \"Godqueen\", \"mentionedEntities\": [\"The Malefic Viper\", \"Chosen\"], \"addressedEntity\": null, \"firstSentence\": \"While it would be entirely possible to teleport without it, using a hub like this is far easier, and there’s already been established a connection with the Order of the Malefic Viper.\", \"lastSentence\": \"Finally, seeing as this is the official return of the Chosen of the Malefic Viper and the arrival of the Ambassador from the Pantheon of Life, we should at least keep our transportation to official channels.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"And we’re approaching the teleportation hub,\", \"cuePosition\": \"after\", \"cueVerb\": \"explained\", \"cueVerbType\": \"speech\", \"cueText\": \"the Godqueen explained to the group.\", \"speakerSurface\": \"Godqueen\", \"speakerNameMatch\": \"Godqueen\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"And we’re approaching the teleportation hub,\", \"lastSentence\": \"And we’re approaching the teleportation hub,\"}, \"sceneEntities\": [{\"surface\": \"godqueen\", \"matches\": [{\"characterId\": \"godqueen\", \"characterName\": \"Godqueen\", \"score\": 0.98, \"evidence\": [\"exact_label_match\", \"stripped_label_match\", \"token_overlap:godqueen\"]}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"score\": 0.98, \"evidence\": [\"exact_label_match\", \"stripped_label_match\", \"token_overlap:godqueen\"]}]}], \"candidateCards\": [{\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [\"artemis\", \"godqueen\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"king\", \"characterName\": \"King\", \"aliases\": [\"Forest King\", \"Fallen King\", \"forest-king\", \"forest-king-2\"], \"roleLabels\": [\"king\", \"forest king\", \"fallen king\", \"forest king 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"godqueen\", \"characterName\": \"Godqueen\", \"aliases\": [], \"roleLabels\": [\"godqueen\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 26, \"paragraphIndex\": 15, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I don’t actually know where the Seeker took Jasper,\"}, {\"relativeIndex\": -3, \"lineId\": 28, \"paragraphIndex\": 16, \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Seems like we missed quite the event,\"}, {\"relativeIndex\": -2, \"lineId\": 30, \"paragraphIndex\": 16, \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Since we have some time, let’s hear what everyone has been up to since we met last. Allow me to start...\"}, {\"relativeIndex\": -1, \"lineId\": 35, \"paragraphIndex\": 20, \"characterId\": \"king\", \"characterName\": \"King\", \"text\": \"solidifying his foundation to ensure future excellence.\"}, {\"relativeIndex\": 1, \"lineId\": 105, \"paragraphIndex\": 88, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"While it would be entirely possible to teleport without it, using a hub like this is far easier, and there’s already been established a connection with the Order of the Malefic Viper. Finally, seeing as this is the official return of the Chosen of the Malefic Viper and the arrival of the Ambassador from the Pantheon of Life, we should at least keep our transportation to official channels.\"}, {\"relativeIndex\": 2, \"lineId\": 107, \"paragraphIndex\": 90, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"We’ll be going through the void now. The vessel will protect you, but be warned that it likely remains an uncomfortable experience.\"}], \"chapterCharacters\": [{\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"king\", \"name\": \"King\", \"aliases\": [\"Forest King\", \"Fallen King\", \"forest-king\", \"forest-king-2\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"artemis\",\n  \"characterName\": \"Artemis\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"alias_match\",\n    \"continues_paragraph_dialogue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

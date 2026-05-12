@@ -1,0 +1,342 @@
+{
+  "cacheKey": "ce8d77312374a284badf1b3b32b239586016d28f4f2d7b40c6b21bd8eb212ec6",
+  "createdAt": "2026-04-01T18:35:34.496062+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "lodestar-matron",
+          "lodestar-matron-2"
+        ],
+        "characterId": "lodestar-matron",
+        "characterName": "Lodestar Matron",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "lodestar matron",
+          "lodestar matron 2"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "if_jake",
+        "characterName": "If Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "if jake"
+        ],
+        "wasRecentSpeaker": false
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "if_jake",
+        "name": "If Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "lodestar-matron",
+          "lodestar-matron-2"
+        ],
+        "characterId": "lodestar-matron",
+        "name": "Lodestar Matron",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "pulse",
+        "name": "pulse",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "name": "Iludar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "name": "Blood",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "Jake shook his head and sighed.",
+      "cueVerb": "sighed",
+      "cueVerbType": "speech",
+      "firstSentence": "There really isn’t anything you can offer, no,",
+      "lastSentence": "There really isn’t anything you can offer, no,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "There really isn’t anything you can offer, no,",
+      "speakerNameMatch": null,
+      "speakerSurface": "Jake shook his head and"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.19599999999999995,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Lodestar Matron"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.804,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "lodestar-matron",
+          "confidence": 0.444,
+          "name": "Lodestar Matron",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Ell'Hakan"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 26,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "There really isn’t anything you can offer, no,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 26,
+          "text": "There really isn’t anything you can offer, no,"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 28,
+          "text": "My mind is set. However, I don’t think this meeting is a waste of time, even with that being the case. One thing you said I do fully agree with is that it would be nice for us to leave on good terms today. To leave without unnecessary bloodshed."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake shook his head and sighed.",
+          "cueVerb": "sighed",
+          "cueVerbType": "speech",
+          "firstSentence": "There really isn’t anything you can offer, no,",
+          "lastSentence": "There really isn’t anything you can offer, no,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "There really isn’t anything you can offer, no,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Jake shook his head and"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jake shook his head and sighed.",
+          "cueVerb": "sighed",
+          "cueVerbType": "speech",
+          "firstSentence": "My mind is set.",
+          "lastSentence": "To leave without unnecessary bloodshed.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "My mind is set. However, I don’t think this meeting is a waste of time, even with that being the case. One thing you said I do fully agree with is that it would be nice for us to leave on good terms today. To leave without unnecessary bloodshed.",
+          "speakerNameMatch": null,
+          "speakerSurface": "Jake shook his head and"
+        }
+      ],
+      "currentParagraphText": "“There really isn’t anything you can offer, no,” Jake shook his head and sighed. “My mind is set. However, I don’t think this meeting is a waste of time, even with that being the case. One thing you said I do fully agree with is that it would be nice for us to leave on good terms today. To leave without unnecessary bloodshed.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 17
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 16,
+        "paragraphIndex": 11,
+        "relativeIndex": -4,
+        "text": "No idea, but I’m fairly confident he wouldn’t disagree with whatever choice I make today. Contrary to you guys, he respects when something is not his choice to make,"
+      },
+      {
+        "characterId": "lodestar-matron",
+        "characterName": "Lodestar Matron",
+        "lineId": 18,
+        "paragraphIndex": 12,
+        "relativeIndex": -3,
+        "text": "You are aware that we also can’t simply give up the Truesoul, correct? We already invested far too much to walk away with nothing,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 20,
+        "paragraphIndex": 13,
+        "relativeIndex": -2,
+        "text": "I’m pretty sure that’s called the sunk cost fallacy. It’s a fallacy for a reason. Sometimes, you need to know when to cut your losses. This is one such time,"
+      },
+      {
+        "characterId": "lodestar-matron",
+        "characterName": "Lodestar Matron",
+        "lineId": 23,
+        "paragraphIndex": 15,
+        "relativeIndex": -1,
+        "text": "I fail to understand the source of your stubbornness. Are there guarantees you remain unsatisfied with? Is there truly nothing that could make you compromise? The value of the Truesoul is high, yes, but only to us. There must be something you value that we can offer,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 28,
+        "paragraphIndex": 17,
+        "relativeIndex": 1,
+        "text": "My mind is set. However, I don’t think this meeting is a waste of time, even with that being the case. One thing you said I do fully agree with is that it would be nice for us to leave on good terms today. To leave without unnecessary bloodshed."
+      },
+      {
+        "characterId": "lodestar-matron",
+        "characterName": "Lodestar Matron",
+        "lineId": 30,
+        "paragraphIndex": 19,
+        "relativeIndex": 2,
+        "text": "The Milky Way Galaxy is rapidly coming under my control, and at some point, a final clash is bound to happen between our factions. There is a lot of bad blood between the Holy Church and many of the people in my budding alliance, but I do have the power to allow the Holy Church a peaceful ending in this conflict. I can promise safe passage for all members of the Holy Church out of the Milky Way Galaxy once the universe fully opens back up, and until then, you will be left alone on the planets you currently control. Perhaps we can even discuss the Holy Church being allowed some continued, although minor, presence in the galaxy."
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "evidence": [
+              "token_overlap:jake"
+            ],
+            "score": 0.5375
+          },
+          {
+            "characterId": "if_jake",
+            "characterName": "If Jake",
+            "evidence": [
+              "token_overlap:jake"
+            ],
+            "score": 0.5375
+          }
+        ],
+        "surface": "jake shook his head and"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 26, \"text\": \"There really isn’t anything you can offer, no,\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Ell'Hakan\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Lodestar Matron\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"lodestar-matron\", \"name\": \"Lodestar Matron\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 17, \"currentLinePosition\": 0, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“There really isn’t anything you can offer, no,” Jake shook his head and sighed. “My mind is set. However, I don’t think this meeting is a waste of time, even with that being the case. One thing you said I do fully agree with is that it would be nice for us to leave on good terms today. To leave without unnecessary bloodshed.”\", \"currentParagraphDialogue\": [{\"lineId\": 26, \"text\": \"There really isn’t anything you can offer, no,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 28, \"text\": \"My mind is set. However, I don’t think this meeting is a waste of time, even with that being the case. One thing you said I do fully agree with is that it would be nice for us to leave on good terms today. To leave without unnecessary bloodshed.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"There really isn’t anything you can offer, no,\", \"cuePosition\": \"after\", \"cueVerb\": \"sighed\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake shook his head and sighed.\", \"speakerSurface\": \"Jake shook his head and\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"There really isn’t anything you can offer, no,\", \"lastSentence\": \"There really isn’t anything you can offer, no,\"}, {\"quoteIndex\": 1, \"quoteText\": \"My mind is set. However, I don’t think this meeting is a waste of time, even with that being the case. One thing you said I do fully agree with is that it would be nice for us to leave on good terms today. To leave without unnecessary bloodshed.\", \"cuePosition\": \"before\", \"cueVerb\": \"sighed\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake shook his head and sighed.\", \"speakerSurface\": \"Jake shook his head and\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"My mind is set.\", \"lastSentence\": \"To leave without unnecessary bloodshed.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"There really isn’t anything you can offer, no,\", \"cuePosition\": \"after\", \"cueVerb\": \"sighed\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake shook his head and sighed.\", \"speakerSurface\": \"Jake shook his head and\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"There really isn’t anything you can offer, no,\", \"lastSentence\": \"There really isn’t anything you can offer, no,\"}, \"sceneEntities\": [{\"surface\": \"jake shook his head and\", \"matches\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"score\": 0.5375, \"evidence\": [\"token_overlap:jake\"]}, {\"characterId\": \"if_jake\", \"characterName\": \"If Jake\", \"score\": 0.5375, \"evidence\": [\"token_overlap:jake\"]}]}], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"lodestar-matron\", \"characterName\": \"Lodestar Matron\", \"aliases\": [\"lodestar-matron\", \"lodestar-matron-2\"], \"roleLabels\": [\"lodestar matron\", \"lodestar matron 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"if_jake\", \"characterName\": \"If Jake\", \"aliases\": [], \"roleLabels\": [\"if jake\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 16, \"paragraphIndex\": 11, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"No idea, but I’m fairly confident he wouldn’t disagree with whatever choice I make today. Contrary to you guys, he respects when something is not his choice to make,\"}, {\"relativeIndex\": -3, \"lineId\": 18, \"paragraphIndex\": 12, \"characterId\": \"lodestar-matron\", \"characterName\": \"Lodestar Matron\", \"text\": \"You are aware that we also can’t simply give up the Truesoul, correct? We already invested far too much to walk away with nothing,\"}, {\"relativeIndex\": -2, \"lineId\": 20, \"paragraphIndex\": 13, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I’m pretty sure that’s called the sunk cost fallacy. It’s a fallacy for a reason. Sometimes, you need to know when to cut your losses. This is one such time,\"}, {\"relativeIndex\": -1, \"lineId\": 23, \"paragraphIndex\": 15, \"characterId\": \"lodestar-matron\", \"characterName\": \"Lodestar Matron\", \"text\": \"I fail to understand the source of your stubbornness. Are there guarantees you remain unsatisfied with? Is there truly nothing that could make you compromise? The value of the Truesoul is high, yes, but only to us. There must be something you value that we can offer,\"}, {\"relativeIndex\": 1, \"lineId\": 28, \"paragraphIndex\": 17, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"My mind is set. However, I don’t think this meeting is a waste of time, even with that being the case. One thing you said I do fully agree with is that it would be nice for us to leave on good terms today. To leave without unnecessary bloodshed.\"}, {\"relativeIndex\": 2, \"lineId\": 30, \"paragraphIndex\": 19, \"characterId\": \"lodestar-matron\", \"characterName\": \"Lodestar Matron\", \"text\": \"The Milky Way Galaxy is rapidly coming under my control, and at some point, a final clash is bound to happen between our factions. There is a lot of bad blood between the Holy Church and many of the people in my budding alliance, but I do have the power to allow the Holy Church a peaceful ending in this conflict. I can promise safe passage for all members of the Holy Church out of the Milky Way Galaxy once the universe fully opens back up, and until then, you will be left alone on the planets you currently control. Perhaps we can even discuss the Holy Church being allowed some continued, although minor, presence in the galaxy.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"if_jake\", \"name\": \"If Jake\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"lodestar-matron\", \"name\": \"Lodestar Matron\", \"aliases\": [\"lodestar-matron\", \"lodestar-matron-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"pulse\", \"name\": \"pulse\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"blood\", \"name\": \"Blood\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

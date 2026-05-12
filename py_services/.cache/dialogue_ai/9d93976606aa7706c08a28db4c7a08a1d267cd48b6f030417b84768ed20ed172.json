@@ -1,0 +1,363 @@
+{
+  "cacheKey": "9d93976606aa7706c08a28db4c7a08a1d267cd48b6f030417b84768ed20ed172",
+  "createdAt": "2026-04-01T18:31:13.791229+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "kindroth",
+    "characterName": "Kindroth",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_sequence_inconsistency"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jacob"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "kindroth"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "characterName": "Bertram",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "bertram"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "protagonist",
+        "name": "Protagonist",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "arnold",
+        "name": "Arnold",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "name": "Bertram",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "name": "Iludar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "name": "Iludar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "pulse",
+        "name": "pulse",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Below, he saw Jacob look up at the head priest guy, and a moment later, the man cleared his throat, speaking a lot more softly so none of the citizens below could hear.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Perhaps we can have this discussion elsewhere in private?",
+      "lastSentence": "Perhaps we can have this discussion elsewhere in private?",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Perhaps we can have this discussion elsewhere in private?",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": true,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.18,
+        "misattributionRisk": 0.364,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Jacob"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.636
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.636,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "question_next_speaker_penalty"
+          ]
+        },
+        {
+          "characterId": "jacob",
+          "confidence": 0.456,
+          "name": "Jacob",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Ell'Hakan"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 55,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Perhaps we can have this discussion elsewhere in private?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 55,
+          "text": "Perhaps we can have this discussion elsewhere in private?"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Below, he saw Jacob look up at the head priest guy, and a moment later, the man cleared his throat, speaking a lot more softly so none of the citizens below could hear.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Perhaps we can have this discussion elsewhere in private?",
+          "lastSentence": "Perhaps we can have this discussion elsewhere in private?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Perhaps we can have this discussion elsewhere in private?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Below, he saw Jacob look up at the head priest guy, and a moment later, the man cleared his throat, speaking a lot more softly so none of the citizens below could hear. “Perhaps we can have this discussion elsewhere in private?”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 56,
+          "text": "Very well, lead the way to this private discussion,"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Very well, lead the way to this private discussion,",
+          "lastSentence": "Very well, lead the way to this private discussion,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Very well, lead the way to this private discussion,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "nextParagraphText": "“Very well, lead the way to this private discussion,”",
+      "paragraphIndex": 42,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "He repeated that they had taken something from him to really hammer home the point that this had to be the starting assumption for this entire talk. It needed to be clarified from the get-go that Jake had arrived with justification, and it was very purposeful he said all this in front of so many followers of the Holy Church."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "lineId": 33,
+        "paragraphIndex": 23,
+        "relativeIndex": -4,
+        "text": "Yeah, so let’s just get this over with,"
+      },
+      {
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "lineId": 48,
+        "paragraphIndex": 37,
+        "relativeIndex": -3,
+        "text": "Chosen of the Malefic One,"
+      },
+      {
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "lineId": 50,
+        "paragraphIndex": 38,
+        "relativeIndex": -2,
+        "text": "Your visit is highly unexpected and irregular."
+      },
+      {
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "lineId": 52,
+        "paragraphIndex": 40,
+        "relativeIndex": -1,
+        "text": "You wanted to talk. I came to talk... and take back that which is mine. That which you took from me."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 56,
+        "paragraphIndex": 43,
+        "relativeIndex": 1,
+        "text": "Very well, lead the way to this private discussion,"
+      },
+      {
+        "characterId": "bertram",
+        "characterName": "Bertram",
+        "lineId": 60,
+        "paragraphIndex": 46,
+        "relativeIndex": 2,
+        "text": "escort"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 55, \"text\": \"Perhaps we can have this discussion elsewhere in private?\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Ell'Hakan\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Jacob\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.636, \"marginToSecond\": 0.18, \"misattributionRisk\": 0.364, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.636, \"reasons\": [\"parser_match\", \"legacy_match\", \"question_next_speaker_penalty\"]}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 42, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Below, he saw Jacob look up at the head priest guy, and a moment later, the man cleared his throat, speaking a lot more softly so none of the citizens below could hear. “Perhaps we can have this discussion elsewhere in private?”\", \"currentParagraphDialogue\": [{\"lineId\": 55, \"text\": \"Perhaps we can have this discussion elsewhere in private?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"He repeated that they had taken something from him to really hammer home the point that this had to be the starting assumption for this entire talk. It needed to be clarified from the get-go that Jake had arrived with justification, and it was very purposeful he said all this in front of so many followers of the Holy Church.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“Very well, lead the way to this private discussion,”\", \"nextParagraphDialogue\": [{\"lineId\": 56, \"text\": \"Very well, lead the way to this private discussion,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Perhaps we can have this discussion elsewhere in private?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Below, he saw Jacob look up at the head priest guy, and a moment later, the man cleared his throat, speaking a lot more softly so none of the citizens below could hear.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Perhaps we can have this discussion elsewhere in private?\", \"lastSentence\": \"Perhaps we can have this discussion elsewhere in private?\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Very well, lead the way to this private discussion,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Very well, lead the way to this private discussion,\", \"lastSentence\": \"Very well, lead the way to this private discussion,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Perhaps we can have this discussion elsewhere in private?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Below, he saw Jacob look up at the head priest guy, and a moment later, the man cleared his throat, speaking a lot more softly so none of the citizens below could hear.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Perhaps we can have this discussion elsewhere in private?\", \"lastSentence\": \"Perhaps we can have this discussion elsewhere in private?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [], \"roleLabels\": [\"jacob\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [\"kindroth\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"aliases\": [], \"roleLabels\": [\"bertram\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 33, \"paragraphIndex\": 23, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"Yeah, so let’s just get this over with,\"}, {\"relativeIndex\": -3, \"lineId\": 48, \"paragraphIndex\": 37, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"Chosen of the Malefic One,\"}, {\"relativeIndex\": -2, \"lineId\": 50, \"paragraphIndex\": 38, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"Your visit is highly unexpected and irregular.\"}, {\"relativeIndex\": -1, \"lineId\": 52, \"paragraphIndex\": 40, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"You wanted to talk. I came to talk... and take back that which is mine. That which you took from me.\"}, {\"relativeIndex\": 1, \"lineId\": 56, \"paragraphIndex\": 43, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Very well, lead the way to this private discussion,\"}, {\"relativeIndex\": 2, \"lineId\": 60, \"paragraphIndex\": 46, \"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"text\": \"escort\"}], \"chapterCharacters\": [{\"characterId\": \"protagonist\", \"name\": \"Protagonist\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"arnold\", \"name\": \"Arnold\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"bertram\", \"name\": \"Bertram\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"pulse\", \"name\": \"pulse\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"kindroth\",\n  \"characterName\": \"Kindroth\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_sequence_inconsistency\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

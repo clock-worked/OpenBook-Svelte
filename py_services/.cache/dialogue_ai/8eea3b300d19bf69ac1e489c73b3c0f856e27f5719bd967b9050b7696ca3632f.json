@@ -1,0 +1,292 @@
+{
+  "cacheKey": "8eea3b300d19bf69ac1e489c73b3c0f856e27f5719bd967b9050b7696ca3632f",
+  "createdAt": "2026-04-02T22:51:22.976870+00:00",
+  "decision": {
+    "action": "needs_review",
+    "aliasToAdd": null,
+    "characterId": null,
+    "characterName": null,
+    "confidence": 0.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "not_dialogue",
+      "narrative_description"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "irin",
+        "characterName": "Irin",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "irin"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "True Ancestor",
+          "Vampire Godess",
+          "vampire-godess"
+        ],
+        "characterId": "katherine",
+        "name": "Katherine",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "iskar",
+        "name": "Iskar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "irin",
+        "name": "Irin",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "succubus",
+        "name": "Succubus",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "clothes a few times here and there. When she’d asked him why, Jake had made the excuse he didn’t have anything else to wear, which was a big reason why he had ended up in his current predicament.",
+      "cueVerb": "asked",
+      "cueVerbType": "speech",
+      "firstSentence": "casual",
+      "lastSentence": "casual",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "casual",
+      "speakerNameMatch": null,
+      "speakerSurface": "When she’d"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Irin",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.7,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.14400000000000002,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Irin"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.856
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.856,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "speech_verb"
+          ]
+        },
+        {
+          "characterId": "irin",
+          "confidence": 0.496,
+          "name": "Irin",
+          "reasons": [
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [
+        "Protagonist"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 68,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "casual"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 68,
+          "text": "casual"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "clothes a few times here and there. When she’d asked him why, Jake had made the excuse he didn’t have anything else to wear, which was a big reason why he had ended up in his current predicament.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "casual",
+          "lastSentence": "casual",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "casual",
+          "speakerNameMatch": null,
+          "speakerSurface": "When she’d"
+        }
+      ],
+      "currentParagraphText": "Jake wasn’t really that annoyed at Irin, as he was at least partially to blame. He had been the one to talk about his visit with his parents and let slip that he walked around in full battle getup even back then, only wearing “casual” clothes a few times here and there. When she’d asked him why, Jake had made the excuse he didn’t have anything else to wear, which was a big reason why he had ended up in his current predicament.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Anyway, Irin was soon done shopping as they went to see a few more alchemy stores before it was time to head home again. Jake had considered whether he also wanted some new equipment, but had ended up deciding not to. He knew Arnold was still working on more stuff for him, and with the newly gained ring that granted a fuckload of stats, he wasn’t really feeling the effects of not being fully capped on stats he could get from equipment.",
+      "paragraphIndex": 39,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "All of this is to say that Jake had no real excuse to keep walking around with armor on while at home. Was he still going to walk around with armor on most times anyway? Probably... but now he at least had some stuff to change into if he wanted to."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "irin",
+        "characterName": "Irin",
+        "lineId": 53,
+        "paragraphIndex": 29,
+        "relativeIndex": -4,
+        "text": "And you’re sure you don’t want to come in?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 55,
+        "paragraphIndex": 30,
+        "relativeIndex": -3,
+        "text": "Nah, I’m good,"
+      },
+      {
+        "characterId": "irin",
+        "characterName": "Irin",
+        "lineId": 57,
+        "paragraphIndex": 30,
+        "relativeIndex": -2,
+        "text": "You just go ahead and do your thing... a bit quicker this time if possible."
+      },
+      {
+        "characterId": "irin",
+        "characterName": "Irin",
+        "lineId": 58,
+        "paragraphIndex": 31,
+        "relativeIndex": -1,
+        "text": "Alright, alright,"
+      },
+      {
+        "characterId": "irin",
+        "characterName": "Irin",
+        "lineId": 74,
+        "paragraphIndex": 43,
+        "relativeIndex": 1,
+        "text": "Say, did you find out about Scarlett, by the way?"
+      },
+      {
+        "characterId": "irin",
+        "characterName": "Irin",
+        "lineId": 76,
+        "paragraphIndex": 45,
+        "relativeIndex": 2,
+        "text": "Let me just check,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 68, \"text\": \"casual\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Irin\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.856, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.14400000000000002, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Irin\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.856, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"confidence\": 0.496, \"reasons\": [\"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 39, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Jake wasn’t really that annoyed at Irin, as he was at least partially to blame. He had been the one to talk about his visit with his parents and let slip that he walked around in full battle getup even back then, only wearing “casual” clothes a few times here and there. When she’d asked him why, Jake had made the excuse he didn’t have anything else to wear, which was a big reason why he had ended up in his current predicament.\", \"currentParagraphDialogue\": [{\"lineId\": 68, \"text\": \"casual\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"previousParagraphText\": \"All of this is to say that Jake had no real excuse to keep walking around with armor on while at home. Was he still going to walk around with armor on most times anyway? Probably... but now he at least had some stuff to change into if he wanted to.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Anyway, Irin was soon done shopping as they went to see a few more alchemy stores before it was time to head home again. Jake had considered whether he also wanted some new equipment, but had ended up deciding not to. He knew Arnold was still working on more stuff for him, and with the newly gained ring that granted a fuckload of stats, he wasn’t really feeling the effects of not being fully capped on stats he could get from equipment.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"casual\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"clothes a few times here and there. When she’d asked him why, Jake had made the excuse he didn’t have anything else to wear, which was a big reason why he had ended up in his current predicament.\", \"speakerSurface\": \"When she’d\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"casual\", \"lastSentence\": \"casual\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"casual\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"clothes a few times here and there. When she’d asked him why, Jake had made the excuse he didn’t have anything else to wear, which was a big reason why he had ended up in his current predicament.\", \"speakerSurface\": \"When she’d\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"casual\", \"lastSentence\": \"casual\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"irin\", \"characterName\": \"Irin\", \"aliases\": [], \"roleLabels\": [\"irin\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 53, \"paragraphIndex\": 29, \"characterId\": \"irin\", \"characterName\": \"Irin\", \"text\": \"And you’re sure you don’t want to come in?\"}, {\"relativeIndex\": -3, \"lineId\": 55, \"paragraphIndex\": 30, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Nah, I’m good,\"}, {\"relativeIndex\": -2, \"lineId\": 57, \"paragraphIndex\": 30, \"characterId\": \"irin\", \"characterName\": \"Irin\", \"text\": \"You just go ahead and do your thing... a bit quicker this time if possible.\"}, {\"relativeIndex\": -1, \"lineId\": 58, \"paragraphIndex\": 31, \"characterId\": \"irin\", \"characterName\": \"Irin\", \"text\": \"Alright, alright,\"}, {\"relativeIndex\": 1, \"lineId\": 74, \"paragraphIndex\": 43, \"characterId\": \"irin\", \"characterName\": \"Irin\", \"text\": \"Say, did you find out about Scarlett, by the way?\"}, {\"relativeIndex\": 2, \"lineId\": 76, \"paragraphIndex\": 45, \"characterId\": \"irin\", \"characterName\": \"Irin\", \"text\": \"Let me just check,\"}], \"chapterCharacters\": [{\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"katherine\", \"name\": \"Katherine\", \"aliases\": [\"True Ancestor\", \"Vampire Godess\", \"vampire-godess\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iskar\", \"name\": \"Iskar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"irin\", \"name\": \"Irin\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"succubus\", \"name\": \"Succubus\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"needs_review\",\n  \"characterId\": null,\n  \"characterName\": null,\n  \"confidence\": 0.0,\n  \"reasonCodes\": [\n    \"not_dialogue\",\n    \"narrative_description\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

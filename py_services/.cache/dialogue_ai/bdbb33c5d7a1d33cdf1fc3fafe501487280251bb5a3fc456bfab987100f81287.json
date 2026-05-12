@@ -1,0 +1,347 @@
+{
+  "cacheKey": "bdbb33c5d7a1d33cdf1fc3fafe501487280251bb5a3fc456bfab987100f81287",
+  "createdAt": "2026-05-11T22:28:58.517142+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "viper",
+    "characterName": "The Malefic Viper",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "alias_match"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Viper",
+          "Villy",
+          "Vilas",
+          "Vilastromoz",
+          "The Viper"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "eversmile",
+        "name": "Eversmile",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Jake was about to answer as the Viper cut in quickly.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "The mere fact that he’s about to answer means he succeeded.",
+      "lastSentence": "Not really sure why the system cares about hiding rarities, but oh well.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "The mere fact that he’s about to answer means he succeeded. Because yes, the mere existence of the sacred rarity is also considered Forbidden Knowledge. Not really sure why the system cares about hiding rarities, but oh well.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "alignment": {
+        "confidence": 1.0,
+        "isSpanFallback": false,
+        "method": "quote_unit",
+        "paragraphIndex": 23,
+        "spanDistance": 0.0,
+        "spanParagraphIndex": 23
+      },
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "The Malefic Viper",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "The Malefic Viper"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "The Malefic Viper",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 55,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "The mere fact that he’s about to answer means he succeeded. Because yes, the mere existence of the sacred rarity is also considered Forbidden Knowledge. Not really sure why the system cares about hiding rarities, but oh well."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 55,
+          "text": "The mere fact that he’s about to answer means he succeeded. Because yes, the mere existence of the sacred rarity is also considered Forbidden Knowledge. Not really sure why the system cares about hiding rarities, but oh well."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake was about to answer as the Viper cut in quickly.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "The mere fact that he’s about to answer means he succeeded.",
+          "lastSentence": "Not really sure why the system cares about hiding rarities, but oh well.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "The mere fact that he’s about to answer means he succeeded. Because yes, the mere existence of the sacred rarity is also considered Forbidden Knowledge. Not really sure why the system cares about hiding rarities, but oh well.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Jake was about to answer as the Viper cut in quickly. “The mere fact that he’s about to answer means he succeeded. Because yes, the mere existence of the sacred rarity is also considered Forbidden Knowledge. Not really sure why the system cares about hiding rarities, but oh well.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "the_malefic_viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": true,
+          "lineId": 57,
+          "text": "Yes, I did get a sacred rarity skill."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Now it was Jake’s time to ignore what the Viper said as he also chose to answer Artemis.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Yes, I did get a sacred rarity skill.",
+          "lastSentence": "Yes, I did get a sacred rarity skill.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Yes, I did get a sacred rarity skill.",
+          "speakerNameMatch": null,
+          "speakerSurface": "Now"
+        }
+      ],
+      "nextParagraphText": "Now it was Jake’s time to ignore what the Viper said as he also chose to answer Artemis. “Yes, I did get a sacred rarity skill.”",
+      "paragraphIndex": 23,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 53,
+          "text": "I also have something I want to confirm. We’re right to assume that you gained a sacred rarity skill, correct?"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "The Viper just grinned after having spoken what was clearly Forbidden Knowledge, making Artemis shake her head before she spoke.",
+          "cueVerb": "grinned",
+          "cueVerbType": "reaction",
+          "firstSentence": "I also have something I want to confirm.",
+          "lastSentence": "We’re right to assume that you gained a sacred rarity skill, correct?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I also have something I want to confirm. We’re right to assume that you gained a sacred rarity skill, correct?",
+          "speakerNameMatch": null,
+          "speakerSurface": "The Viper"
+        }
+      ],
+      "previousParagraphText": "The Viper just grinned after having spoken what was clearly Forbidden Knowledge, making Artemis shake her head before she spoke. “I also have something I want to confirm. We’re right to assume that you gained a sacred rarity skill, correct?”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 47,
+        "paragraphIndex": 20,
+        "relativeIndex": -4,
+        "text": "Look at him go; sometimes he can even surprise us with how smart he is!"
+      },
+      {
+        "characterId": "the_malefic_viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 49,
+        "paragraphIndex": 20,
+        "relativeIndex": -3,
+        "text": "And yes, that’s more or less what I mean. I guess I can share that one of the requirements for godhood is indeed to open one’s Gate of Enlightenment; something you’ve already taken the first step towards. Of course, you still need to also…"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 51,
+        "paragraphIndex": 21,
+        "relativeIndex": -2,
+        "text": "Also what? Wait, never mind…"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 53,
+        "paragraphIndex": 22,
+        "relativeIndex": -1,
+        "text": "I also have something I want to confirm. We’re right to assume that you gained a sacred rarity skill, correct?"
+      },
+      {
+        "characterId": "the_malefic_viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 57,
+        "paragraphIndex": 24,
+        "relativeIndex": 1,
+        "text": "Yes, I did get a sacred rarity skill."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 59,
+        "paragraphIndex": 25,
+        "relativeIndex": 2,
+        "text": "With that, I assume a title also followed?"
+      }
+    ],
+    "sceneEntities": [],
+    "sceneRoster": {
+      "paragraphWindow": 6,
+      "presentCharacterIds": [
+        "unknown",
+        "the_malefic_viper",
+        "jake",
+        "artemis"
+      ],
+      "presentCharacters": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown"
+        },
+        {
+          "characterId": "the_malefic_viper",
+          "characterName": "The Malefic Viper"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake"
+        },
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis"
+        }
+      ]
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 55, \"text\": \"The mere fact that he’s about to answer means he succeeded. Because yes, the mere existence of the sacred rarity is also considered Forbidden Knowledge. Not really sure why the system cares about hiding rarities, but oh well.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"The Malefic Viper\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Malefic Viper\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"The Malefic Viper\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true, \"alignment\": {\"paragraphIndex\": 23, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 23, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 23, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Jake was about to answer as the Viper cut in quickly. “The mere fact that he’s about to answer means he succeeded. Because yes, the mere existence of the sacred rarity is also considered Forbidden Knowledge. Not really sure why the system cares about hiding rarities, but oh well.”\", \"currentParagraphDialogue\": [{\"lineId\": 55, \"text\": \"The mere fact that he’s about to answer means he succeeded. Because yes, the mere existence of the sacred rarity is also considered Forbidden Knowledge. Not really sure why the system cares about hiding rarities, but oh well.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"The Viper just grinned after having spoken what was clearly Forbidden Knowledge, making Artemis shake her head before she spoke. “I also have something I want to confirm. We’re right to assume that you gained a sacred rarity skill, correct?”\", \"previousParagraphDialogue\": [{\"lineId\": 53, \"text\": \"I also have something I want to confirm. We’re right to assume that you gained a sacred rarity skill, correct?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"nextParagraphText\": \"Now it was Jake’s time to ignore what the Viper said as he also chose to answer Artemis. “Yes, I did get a sacred rarity skill.”\", \"nextParagraphDialogue\": [{\"lineId\": 57, \"text\": \"Yes, I did get a sacred rarity skill.\", \"characterId\": \"the_malefic_viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"The mere fact that he’s about to answer means he succeeded. Because yes, the mere existence of the sacred rarity is also considered Forbidden Knowledge. Not really sure why the system cares about hiding rarities, but oh well.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake was about to answer as the Viper cut in quickly.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"The mere fact that he’s about to answer means he succeeded.\", \"lastSentence\": \"Not really sure why the system cares about hiding rarities, but oh well.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I also have something I want to confirm. We’re right to assume that you gained a sacred rarity skill, correct?\", \"cuePosition\": \"before\", \"cueVerb\": \"grinned\", \"cueVerbType\": \"reaction\", \"cueText\": \"The Viper just grinned after having spoken what was clearly Forbidden Knowledge, making Artemis shake her head before she spoke.\", \"speakerSurface\": \"The Viper\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I also have something I want to confirm.\", \"lastSentence\": \"We’re right to assume that you gained a sacred rarity skill, correct?\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Yes, I did get a sacred rarity skill.\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Now it was Jake’s time to ignore what the Viper said as he also chose to answer Artemis.\", \"speakerSurface\": \"Now\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yes, I did get a sacred rarity skill.\", \"lastSentence\": \"Yes, I did get a sacred rarity skill.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"The mere fact that he’s about to answer means he succeeded. Because yes, the mere existence of the sacred rarity is also considered Forbidden Knowledge. Not really sure why the system cares about hiding rarities, but oh well.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake was about to answer as the Viper cut in quickly.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"The mere fact that he’s about to answer means he succeeded.\", \"lastSentence\": \"Not really sure why the system cares about hiding rarities, but oh well.\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"unknown\", \"the_malefic_viper\", \"jake\", \"artemis\"], \"presentCharacters\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}, {\"characterId\": \"the_malefic_viper\", \"characterName\": \"The Malefic Viper\"}, {\"characterId\": \"jake\", \"characterName\": \"Jake\"}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 47, \"paragraphIndex\": 20, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Look at him go; sometimes he can even surprise us with how smart he is!\"}, {\"relativeIndex\": -3, \"lineId\": 49, \"paragraphIndex\": 20, \"characterId\": \"the_malefic_viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"And yes, that’s more or less what I mean. I guess I can share that one of the requirements for godhood is indeed to open one’s Gate of Enlightenment; something you’ve already taken the first step towards. Of course, you still need to also…\"}, {\"relativeIndex\": -2, \"lineId\": 51, \"paragraphIndex\": 21, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Also what? Wait, never mind…\"}, {\"relativeIndex\": -1, \"lineId\": 53, \"paragraphIndex\": 22, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I also have something I want to confirm. We’re right to assume that you gained a sacred rarity skill, correct?\"}, {\"relativeIndex\": 1, \"lineId\": 57, \"paragraphIndex\": 24, \"characterId\": \"the_malefic_viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Yes, I did get a sacred rarity skill.\"}, {\"relativeIndex\": 2, \"lineId\": 59, \"paragraphIndex\": 25, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"With that, I assume a title also followed?\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"Viper\", \"Villy\", \"Vilas\", \"Vilastromoz\", \"The Viper\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"eversmile\", \"name\": \"Eversmile\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"viper\",\n  \"characterName\": \"The Malefic Viper\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"alias_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

@@ -1,0 +1,349 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "802d9a5c65547417d0a515aebb1de6c1157c40285b6a83d80908d0ee08328098",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\802d9a5c65547417d0a515aebb1de6c1157c40285b6a83d80908d0ee08328098.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.9,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "dialogue_continuity",
+          "explicit_next_speaker",
+          "content_context"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "artemis"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "If we go by this law, then answer me this: why did my first arrow that hit your thigh barely penetrate, while the one that hit your chest went in deep?",
+          "lastSentence": "The first one was faster, so fast it didn’t make any sense by your own account, and the arrows had the same weight, so shouldn’t the first one have done more damage?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "If we go by this law, then answer me this: why did my first arrow that hit your thigh barely penetrate, while the one that hit your chest went in deep? The first one was faster, so fast it didn’t make any sense by your own account, and the arrows had the same weight, so shouldn’t the first one have done more damage?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": true,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.18,
+            "misattributionRisk": 0.5007999999999999,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "Artemis"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.636
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.636,
+              "name": "Jake",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.456,
+              "name": "Artemis",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 24,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "If we go by this law, then answer me this: why did my first arrow that hit your thigh barely penetrate, while the one that hit your chest went in deep? The first one was faster, so fast it didn’t make any sense by your own account, and the arrows had the same weight, so shouldn’t the first one have done more damage?"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 24,
+              "text": "If we go by this law, then answer me this: why did my first arrow that hit your thigh barely penetrate, while the one that hit your chest went in deep? The first one was faster, so fast it didn’t make any sense by your own account, and the arrows had the same weight, so shouldn’t the first one have done more damage?"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "If we go by this law, then answer me this: why did my first arrow that hit your thigh barely penetrate, while the one that hit your chest went in deep?",
+              "lastSentence": "The first one was faster, so fast it didn’t make any sense by your own account, and the arrows had the same weight, so shouldn’t the first one have done more damage?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "If we go by this law, then answer me this: why did my first arrow that hit your thigh barely penetrate, while the one that hit your chest went in deep? The first one was faster, so fast it didn’t make any sense by your own account, and the arrows had the same weight, so shouldn’t the first one have done more damage?",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“If we go by this law, then answer me this: why did my first arrow that hit your thigh barely penetrate, while the one that hit your chest went in deep? The first one was faster, so fast it didn’t make any sense by your own account, and the arrows had the same weight, so shouldn’t the first one have done more damage?”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 25,
+              "text": "Some other concept or magic was at work,"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 27,
+              "text": "You poured more energy into that second arrow, thus making it stronger."
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Some other concept or magic was at work,",
+              "lastSentence": "Some other concept or magic was at work,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Some other concept or magic was at work,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Jake shook his head.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "You poured more energy into that second arrow, thus making it stronger.",
+              "lastSentence": "You poured more energy into that second arrow, thus making it stronger.",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "You poured more energy into that second arrow, thus making it stronger.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "nextParagraphText": "“Some other concept or magic was at work,” Jake shook his head. “You poured more energy into that second arrow, thus making it stronger.”",
+          "paragraphIndex": 14,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "Jake nodded along, naturally knowing about Newton’s Second Law. Mass times acceleration equaled force. He still wasn’t quite sure where Artemis was going with all this, though."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 16,
+            "paragraphIndex": 9,
+            "relativeIndex": -4,
+            "text": "Alright. What I’m about to talk about next all comes down to you believing things to be facts despite that not necessarily being the case,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 18,
+            "paragraphIndex": 10,
+            "relativeIndex": -3,
+            "text": "What do you mean?"
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 20,
+            "paragraphIndex": 11,
+            "relativeIndex": -2,
+            "text": "I’ve never experienced a pre-integration universe myself, but I have interacted with plenty who had. Having lived without the system gives certain unique insights and viewpoints, but it also births a lot of fundamental misunderstandings of how the world works, in particular when talking about physics,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 22,
+            "paragraphIndex": 12,
+            "relativeIndex": -1,
+            "text": "I’m aware that in the world you grew up in, you had rather simplistic mathematic equations that could accurately tell you most things. It was a simpler world in many ways, and I know one of the most fundamental laws was related to objects in motion and the energy they possessed while being in movement."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 25,
+            "paragraphIndex": 15,
+            "relativeIndex": 1,
+            "text": "Some other concept or magic was at work,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 27,
+            "paragraphIndex": 15,
+            "relativeIndex": 2,
+            "text": "You poured more energy into that second arrow, thus making it stronger."
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 24, \"text\": \"If we go by this law, then answer me this: why did my first arrow that hit your thigh barely penetrate, while the one that hit your chest went in deep? The first one was faster, so fast it didn’t make any sense by your own account, and the arrows had the same weight, so shouldn’t the first one have done more damage?\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Artemis\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.636, \"marginToSecond\": 0.18, \"misattributionRisk\": 0.5007999999999999, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.636, \"reasons\": null}, {\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 14, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“If we go by this law, then answer me this: why did my first arrow that hit your thigh barely penetrate, while the one that hit your chest went in deep? The first one was faster, so fast it didn’t make any sense by your own account, and the arrows had the same weight, so shouldn’t the first one have done more damage?”\", \"currentParagraphDialogue\": [{\"lineId\": 24, \"text\": \"If we go by this law, then answer me this: why did my first arrow that hit your thigh barely penetrate, while the one that hit your chest went in deep? The first one was faster, so fast it didn’t make any sense by your own account, and the arrows had the same weight, so shouldn’t the first one have done more damage?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"Jake nodded along, naturally knowing about Newton’s Second Law. Mass times acceleration equaled force. He still wasn’t quite sure where Artemis was going with all this, though.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“Some other concept or magic was at work,” Jake shook his head. “You poured more energy into that second arrow, thus making it stronger.”\", \"nextParagraphDialogue\": [{\"lineId\": 25, \"text\": \"Some other concept or magic was at work,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 27, \"text\": \"You poured more energy into that second arrow, thus making it stronger.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"If we go by this law, then answer me this: why did my first arrow that hit your thigh barely penetrate, while the one that hit your chest went in deep? The first one was faster, so fast it didn’t make any sense by your own account, and the arrows had the same weight, so shouldn’t the first one have done more damage?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"If we go by this law, then answer me this: why did my first arrow that hit your thigh barely penetrate, while the one that hit your chest went in deep?\", \"lastSentence\": \"The first one was faster, so fast it didn’t make any sense by your own account, and the arrows had the same weight, so shouldn’t the first one have done more damage?\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Some other concept or magic was at work,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Some other concept or magic was at work,\", \"lastSentence\": \"Some other concept or magic was at work,\"}, {\"quoteIndex\": 1, \"quoteText\": \"You poured more energy into that second arrow, thus making it stronger.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake shook his head.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"You poured more energy into that second arrow, thus making it stronger.\", \"lastSentence\": \"You poured more energy into that second arrow, thus making it stronger.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"If we go by this law, then answer me this: why did my first arrow that hit your thigh barely penetrate, while the one that hit your chest went in deep? The first one was faster, so fast it didn’t make any sense by your own account, and the arrows had the same weight, so shouldn’t the first one have done more damage?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"If we go by this law, then answer me this: why did my first arrow that hit your thigh barely penetrate, while the one that hit your chest went in deep?\", \"lastSentence\": \"The first one was faster, so fast it didn’t make any sense by your own account, and the arrows had the same weight, so shouldn’t the first one have done more damage?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [], \"roleLabels\": [\"artemis\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 16, \"paragraphIndex\": 9, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Alright. What I’m about to talk about next all comes down to you believing things to be facts despite that not necessarily being the case,\"}, {\"relativeIndex\": -3, \"lineId\": 18, \"paragraphIndex\": 10, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"What do you mean?\"}, {\"relativeIndex\": -2, \"lineId\": 20, \"paragraphIndex\": 11, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"I’ve never experienced a pre-integration universe myself, but I have interacted with plenty who had. Having lived without the system gives certain unique insights and viewpoints, but it also births a lot of fundamental misunderstandings of how the world works, in particular when talking about physics,\"}, {\"relativeIndex\": -1, \"lineId\": 22, \"paragraphIndex\": 12, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I’m aware that in the world you grew up in, you had rather simplistic mathematic equations that could accurately tell you most things. It was a simpler world in many ways, and I know one of the most fundamental laws was related to objects in motion and the energy they possessed while being in movement.\"}, {\"relativeIndex\": 1, \"lineId\": 25, \"paragraphIndex\": 15, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Some other concept or magic was at work,\"}, {\"relativeIndex\": 2, \"lineId\": 27, \"paragraphIndex\": 15, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You poured more energy into that second arrow, thus making it stronger.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"dialogue_continuity\",\n    \"explicit_next_speaker\",\n    \"content_context\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0044 - Chapter 1101 - Conceptualizing Concepts/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“If we go by this law, then answer me this: why did my first arrow that hit your thigh barely penetrate, while the one that hit your chest went in deep? The first one was faster, so fast it didn’t make any sense by your own account, and the arrows had the same weight, so shouldn’t the first one have done more damage?”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.9,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“If we go by this law, then answer me this: why did my first arrow that hit your thigh barely penetrate, while the one that hit your chest went in deep? The first one was faster, so fast it didn’t make any sense by your own account, and the arrows had the same weight, so shouldn’t the first one have done more damage?”",
+    "disposition": "review",
+    "error": null,
+    "lineId": 24,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Some other concept or magic was at work,” Jake shook his head. “You poured more energy into that second arrow, thus making it stronger.”",
+    "paragraphIndex": 14,
+    "previousParagraphText": "Jake nodded along, naturally knowing about Newton’s Second Law. Mass times acceleration equaled force. He still wasn’t quite sure where Artemis was going with all this, though.",
+    "reasonCodes": [
+      "dialogue_continuity",
+      "explicit_next_speaker",
+      "content_context"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 24,
+  "nextParagraphText": "“Some other concept or magic was at work,” Jake shook his head. “You poured more energy into that second arrow, thus making it stronger.”",
+  "paragraphIndex": 14,
+  "previousParagraphText": "Jake nodded along, naturally knowing about Newton’s Second Law. Mass times acceleration equaled force. He still wasn’t quite sure where Artemis was going with all this, though."
+}

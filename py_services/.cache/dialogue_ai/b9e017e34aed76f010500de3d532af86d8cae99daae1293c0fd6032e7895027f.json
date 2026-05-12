@@ -1,0 +1,300 @@
+{
+  "cacheKey": "b9e017e34aed76f010500de3d532af86d8cae99daae1293c0fd6032e7895027f",
+  "createdAt": "2026-04-01T22:17:30.575139+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "dina",
+    "characterName": "Dina",
+    "confidence": 0.98,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_cue_previous_line",
+      "dialogue_continuation",
+      "parser_high_confidence",
+      "next_speaker_different"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "dina",
+        "characterName": "Dina",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "dina"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "dina",
+        "name": "Dina",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Dina let out a louder sigh.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "I heard what happened with the Fallen King...",
+      "lastSentence": "I understood there was still hope.",
+      "mentionedEntities": [],
+      "quoteIndex": 1,
+      "quoteText": "I heard what happened with the Fallen King... and I really hope a solution can be found. I understood there was still hope.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.524,
+        "misattributionRisk": 0.1568,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Dina",
+        "sourceCandidates": [
+          "Dina",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.98,
+          "name": "Dina",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "dina",
+      "currentCharacterName": "Dina",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 79,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "I heard what happened with the Fallen King... and I really hope a solution can be found. I understood there was still hope."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 77,
+          "text": "We are missing someone, though,"
+        },
+        {
+          "characterId": "dina",
+          "characterName": "Dina",
+          "isReturning": true,
+          "lineId": 79,
+          "text": "I heard what happened with the Fallen King... and I really hope a solution can be found. I understood there was still hope."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "We are missing someone, though,",
+          "lastSentence": "We are missing someone, though,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "We are missing someone, though,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Dina let out a louder sigh.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I heard what happened with the Fallen King...",
+          "lastSentence": "I understood there was still hope.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "I heard what happened with the Fallen King... and I really hope a solution can be found. I understood there was still hope.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“We are missing someone, though,” Dina let out a louder sigh. “I heard what happened with the Fallen King... and I really hope a solution can be found. I understood there was still hope.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 44
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 73,
+        "paragraphIndex": 42,
+        "relativeIndex": -4,
+        "text": "I did miss this... during Nevermore, I admit I found the constant bantering a bit annoying at times, but afterward, it felt weird when it was gone."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 74,
+        "paragraphIndex": 43,
+        "relativeIndex": -3,
+        "text": "That’s why we’re having a reunion!"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 76,
+        "paragraphIndex": 43,
+        "relativeIndex": -2,
+        "text": "To bring us back to the days which really weren’t that long ago."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 77,
+        "paragraphIndex": 44,
+        "relativeIndex": -1,
+        "text": "We are missing someone, though,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 80,
+        "paragraphIndex": 45,
+        "relativeIndex": 1,
+        "text": "Actually, I did want to talk about that,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 82,
+        "paragraphIndex": 45,
+        "relativeIndex": 2,
+        "text": "When I met with Yggdrasil and Nature’s Attendant inside the Primordial’s Divine Realm, I asked Nature’s Attendant to help me find a solution to hopefully heal the Fallen King."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 79, \"text\": \"I heard what happened with the Fallen King... and I really hope a solution can be found. I understood there was still hope.\", \"currentCharacterId\": \"dina\", \"currentCharacterName\": \"Dina\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Dina\", \"sourceCandidates\": [\"Dina\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.524, \"misattributionRisk\": 0.1568, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Dina\", \"confidence\": 0.98, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 44, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“We are missing someone, though,” Dina let out a louder sigh. “I heard what happened with the Fallen King... and I really hope a solution can be found. I understood there was still hope.”\", \"currentParagraphDialogue\": [{\"lineId\": 77, \"text\": \"We are missing someone, though,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 79, \"text\": \"I heard what happened with the Fallen King... and I really hope a solution can be found. I understood there was still hope.\", \"characterId\": \"dina\", \"characterName\": \"Dina\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"We are missing someone, though,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"We are missing someone, though,\", \"lastSentence\": \"We are missing someone, though,\"}, {\"quoteIndex\": 1, \"quoteText\": \"I heard what happened with the Fallen King... and I really hope a solution can be found. I understood there was still hope.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Dina let out a louder sigh.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I heard what happened with the Fallen King...\", \"lastSentence\": \"I understood there was still hope.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"I heard what happened with the Fallen King... and I really hope a solution can be found. I understood there was still hope.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Dina let out a louder sigh.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I heard what happened with the Fallen King...\", \"lastSentence\": \"I understood there was still hope.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"dina\", \"characterName\": \"Dina\", \"aliases\": [], \"roleLabels\": [\"dina\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 73, \"paragraphIndex\": 42, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I did miss this... during Nevermore, I admit I found the constant bantering a bit annoying at times, but afterward, it felt weird when it was gone.\"}, {\"relativeIndex\": -3, \"lineId\": 74, \"paragraphIndex\": 43, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"That’s why we’re having a reunion!\"}, {\"relativeIndex\": -2, \"lineId\": 76, \"paragraphIndex\": 43, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"To bring us back to the days which really weren’t that long ago.\"}, {\"relativeIndex\": -1, \"lineId\": 77, \"paragraphIndex\": 44, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"We are missing someone, though,\"}, {\"relativeIndex\": 1, \"lineId\": 80, \"paragraphIndex\": 45, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Actually, I did want to talk about that,\"}, {\"relativeIndex\": 2, \"lineId\": 82, \"paragraphIndex\": 45, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"When I met with Yggdrasil and Nature’s Attendant inside the Primordial’s Divine Realm, I asked Nature’s Attendant to help me find a solution to hopefully heal the Fallen King.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dina\", \"name\": \"Dina\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"dina\",\n  \"characterName\": \"Dina\",\n  \"confidence\": 0.98,\n  \"reasonCodes\": [\n    \"explicit_cue_previous_line\",\n    \"dialogue_continuation\",\n    \"parser_high_confidence\",\n    \"next_speaker_different\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

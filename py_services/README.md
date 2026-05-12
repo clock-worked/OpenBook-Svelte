@@ -77,6 +77,36 @@ Before and after heuristic changes, run the curated gate and compare dialogue ac
 
 This gate reports dialogue accuracy (overall + per chapter) and exits with code `2` if regression is detected.
 
+## Dialogue AI evaluation against curated chapters
+
+Run parser-only versus parser-plus-AI evaluation against curated `dialogue.json` chapters and save a baseline for future comparisons.
+
+```bash
+.venv/Scripts/python.exe py_services/openbook_parser/evaluate_dialogue_ai_against_curations.py \
+  "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Data/Resources/Primal-Hunter/Book-15+" \
+  --backend booknlp \
+  --chapter-regex "^(000[1-9]|0010) -" \
+  --save-summary "C:/temp/primal_hunter_book15_first10_ai_eval.json"
+```
+
+To compare future changes against that baseline and fail on regression:
+
+```bash
+.venv/Scripts/python.exe py_services/openbook_parser/evaluate_dialogue_ai_against_curations.py \
+  "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Data/Resources/Primal-Hunter/Book-15+" \
+  --backend booknlp \
+  --chapter-regex "^(000[1-9]|0010) -" \
+  --baseline-summary "C:/temp/primal_hunter_book15_first10_ai_eval.json" \
+  --fail-on-regression
+```
+
+Dialogue AI assist now persists per-line request/response logs and caches identical model calls automatically.
+
+- Cache directory: `py_services/.cache/dialogue_ai/`
+- Run log directory: `py_services/logs/dialogue_ai/<chapter>/<timestamp>/`
+
+The desktop AI Assist panel shows the run log directory and each line's log path after a run.
+
 ### Current target: Primal Hunter Book 14 Chapter 1
 
 ```bash

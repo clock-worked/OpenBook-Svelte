@@ -1,0 +1,144 @@
+{
+  "cacheKey": "3fa083562fea31c05cfd0be3f4f17ce5677930b474686368bee399c4841ff753",
+  "createdAt": "2026-04-01T04:26:53.425282+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "direct_attribution",
+      "post_quote_attribution",
+      "speech_verb"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob"
+      },
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "name": "Bertram"
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper"
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.98,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.98,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "post_quote_attribution",
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [
+        "Ell'Hakan"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "id": 64,
+      "isReturning": false,
+      "text": "I can’t say I know much about you considering I don’t know who I’m conversing with,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 64,
+          "text": "I can’t say I know much about you considering I don’t know who I’m conversing with,"
+        }
+      ],
+      "currentParagraphText": "“I can’t say I know much about you considering I don’t know who I’m conversing with,” Jake spoke bluntly, feeling quite a few death stares on him, even from Jacob and Bertram... and this time, he really couldn’t tell if they were genuine or not.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jacob",
+          "characterName": "Jacob",
+          "isReturning": false,
+          "lineId": 66,
+          "text": "You are speaking to the Lodestar Matron, the Fourteenth of the Holy Light,"
+        }
+      ],
+      "nextParagraphText": "“You are speaking to the Lodestar Matron, the Fourteenth of the Holy Light,” she spoke, the name Matron pretty much confirming she was a woman.",
+      "paragraphIndex": 40,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "bertram",
+          "characterName": "Bertram",
+          "isReturning": false,
+          "lineId": 62,
+          "text": "Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,"
+        }
+      ],
+      "previousParagraphText": "“Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,” the god said in a booming voice that Jake couldn’t determine if was male or female."
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 64, \"text\": \"I can’t say I know much about you considering I don’t know who I’m conversing with,\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Ell'Hakan\"], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.98, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"post_quote_attribution\", \"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 40, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I can’t say I know much about you considering I don’t know who I’m conversing with,” Jake spoke bluntly, feeling quite a few death stares on him, even from Jacob and Bertram... and this time, he really couldn’t tell if they were genuine or not.\", \"currentParagraphDialogue\": [{\"lineId\": 64, \"text\": \"I can’t say I know much about you considering I don’t know who I’m conversing with,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"previousParagraphText\": \"“Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,” the god said in a booming voice that Jake couldn’t determine if was male or female.\", \"previousParagraphDialogue\": [{\"lineId\": 62, \"text\": \"Chosen of the Malefic Viper. I’ve heard much of your exploits and peculiar nature,\", \"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"isReturning\": false}], \"nextParagraphText\": \"“You are speaking to the Lodestar Matron, the Fourteenth of the Holy Light,” she spoke, the name Matron pretty much confirming she was a woman.\", \"nextParagraphDialogue\": [{\"lineId\": 66, \"text\": \"You are speaking to the Lodestar Matron, the Fourteenth of the Holy Light,\", \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"isReturning\": false}]}, \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": []}, {\"characterId\": \"bertram\", \"name\": \"Bertram\", \"aliases\": []}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"]}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"direct_attribution\",\n    \"post_quote_attribution\",\n    \"speech_verb\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

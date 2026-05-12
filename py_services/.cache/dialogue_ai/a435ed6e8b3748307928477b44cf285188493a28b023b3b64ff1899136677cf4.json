@@ -1,0 +1,334 @@
+{
+  "cacheKey": "a435ed6e8b3748307928477b44cf285188493a28b023b3b64ff1899136677cf4",
+  "createdAt": "2026-04-18T23:18:07.025678+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "solana",
+    "characterName": "Solana",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "dialogue_continuity",
+      "explicit_narration_previous_turn",
+      "thematic_cohesion",
+      "next_turn_speaker_match"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "chimera",
+          "monster"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "keerla",
+        "characterName": "Keerla",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "keerla"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "solana",
+        "characterName": "Solana",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "solana"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "keerla",
+        "name": "Keerla",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "solana",
+        "name": "Solana",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Wanting to be good hosts, the two of us agreed that we would try to tailor the menu to the taste of the Chosen.",
+      "lastSentence": "Through prayer and what little research we could do, I made this dish, which I hope Lord Thayne will appreciate, even if it certainly isn’t up to his usual standards.",
+      "mentionedEntities": [
+        "Chosen"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "Wanting to be good hosts, the two of us agreed that we would try to tailor the menu to the taste of the Chosen. Through prayer and what little research we could do, I made this dish, which I hope Lord Thayne will appreciate, even if it certainly isn’t up to his usual standards.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "Chosen"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Solana",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.2788,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Solana"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.876
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.876,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.516,
+          "name": "Solana",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [
+        "Protagonist",
+        "Chimera",
+        "Monster"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 79,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Wanting to be good hosts, the two of us agreed that we would try to tailor the menu to the taste of the Chosen. Through prayer and what little research we could do, I made this dish, which I hope Lord Thayne will appreciate, even if it certainly isn’t up to his usual standards."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 79,
+          "text": "Wanting to be good hosts, the two of us agreed that we would try to tailor the menu to the taste of the Chosen. Through prayer and what little research we could do, I made this dish, which I hope Lord Thayne will appreciate, even if it certainly isn’t up to his usual standards."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Wanting to be good hosts, the two of us agreed that we would try to tailor the menu to the taste of the Chosen.",
+          "lastSentence": "Through prayer and what little research we could do, I made this dish, which I hope Lord Thayne will appreciate, even if it certainly isn’t up to his usual standards.",
+          "mentionedEntities": [
+            "Chosen"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Wanting to be good hosts, the two of us agreed that we would try to tailor the menu to the taste of the Chosen. Through prayer and what little research we could do, I made this dish, which I hope Lord Thayne will appreciate, even if it certainly isn’t up to his usual standards.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Wanting to be good hosts, the two of us agreed that we would try to tailor the menu to the taste of the Chosen. Through prayer and what little research we could do, I made this dish, which I hope Lord Thayne will appreciate, even if it certainly isn’t up to his usual standards.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Jake looked down as he saw the bowl of mushroom soup emanating toxic energy.",
+      "paragraphIndex": 44,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 77,
+          "text": "I hope this doesn’t come as a surprise, but this is our first time hosting a member from the Order of the Malefic Viper,"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I hope this doesn’t come as a surprise, but this is our first time hosting a member from the Order of the Malefic Viper,",
+          "lastSentence": "I hope this doesn’t come as a surprise, but this is our first time hosting a member from the Order of the Malefic Viper,",
+          "mentionedEntities": [
+            "The Malefic Viper"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "I hope this doesn’t come as a surprise, but this is our first time hosting a member from the Order of the Malefic Viper,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "previousParagraphText": "“I hope this doesn’t come as a surprise, but this is our first time hosting a member from the Order of the Malefic Viper,” Solana started speaking as the bowls slowly lowered themselves down in front of the four of them."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 66,
+        "paragraphIndex": 34,
+        "relativeIndex": -4,
+        "text": "That makes sense, even if I can’t fully relate. I’m more of the quickly in and out type of guy who, as you said, leaves power vacuums in my wake."
+      },
+      {
+        "characterId": "keerla",
+        "characterName": "Keerla",
+        "lineId": 67,
+        "paragraphIndex": 35,
+        "relativeIndex": -3,
+        "text": "Hey, who hasn’t gone a bit overboard and overdone a hunting trip a little here and there?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 69,
+        "paragraphIndex": 36,
+        "relativeIndex": -2,
+        "text": "It can definitely be hard to avoid, but in my defense, it’s not my fault they give so much experience,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 77,
+        "paragraphIndex": 43,
+        "relativeIndex": -1,
+        "text": "I hope this doesn’t come as a surprise, but this is our first time hosting a member from the Order of the Malefic Viper,"
+      },
+      {
+        "characterId": "solana",
+        "characterName": "Solana",
+        "lineId": 81,
+        "paragraphIndex": 46,
+        "relativeIndex": 1,
+        "text": "Of course, the three of us aren’t as capable as the Chosen, so I prepared these,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 83,
+        "paragraphIndex": 47,
+        "relativeIndex": 2,
+        "text": "Simply add until the toxic energy is entirely eliminated, or keep as much of it as you desire to add a little extra spice,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 79, \"text\": \"Wanting to be good hosts, the two of us agreed that we would try to tailor the menu to the taste of the Chosen. Through prayer and what little research we could do, I made this dish, which I hope Lord Thayne will appreciate, even if it certainly isn’t up to his usual standards.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Solana\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.876, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.2788, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Chosen\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Solana\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.876, \"reasons\": null}, {\"characterId\": null, \"name\": \"Solana\", \"confidence\": 0.516, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 44, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Wanting to be good hosts, the two of us agreed that we would try to tailor the menu to the taste of the Chosen. Through prayer and what little research we could do, I made this dish, which I hope Lord Thayne will appreciate, even if it certainly isn’t up to his usual standards.”\", \"currentParagraphDialogue\": [{\"lineId\": 79, \"text\": \"Wanting to be good hosts, the two of us agreed that we would try to tailor the menu to the taste of the Chosen. Through prayer and what little research we could do, I made this dish, which I hope Lord Thayne will appreciate, even if it certainly isn’t up to his usual standards.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"“I hope this doesn’t come as a surprise, but this is our first time hosting a member from the Order of the Malefic Viper,” Solana started speaking as the bowls slowly lowered themselves down in front of the four of them.\", \"previousParagraphDialogue\": [{\"lineId\": 77, \"text\": \"I hope this doesn’t come as a surprise, but this is our first time hosting a member from the Order of the Malefic Viper,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"nextParagraphText\": \"Jake looked down as he saw the bowl of mushroom soup emanating toxic energy.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Wanting to be good hosts, the two of us agreed that we would try to tailor the menu to the taste of the Chosen. Through prayer and what little research we could do, I made this dish, which I hope Lord Thayne will appreciate, even if it certainly isn’t up to his usual standards.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Chosen\"], \"addressedEntity\": null, \"firstSentence\": \"Wanting to be good hosts, the two of us agreed that we would try to tailor the menu to the taste of the Chosen.\", \"lastSentence\": \"Through prayer and what little research we could do, I made this dish, which I hope Lord Thayne will appreciate, even if it certainly isn’t up to his usual standards.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I hope this doesn’t come as a surprise, but this is our first time hosting a member from the Order of the Malefic Viper,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"The Malefic Viper\"], \"addressedEntity\": null, \"firstSentence\": \"I hope this doesn’t come as a surprise, but this is our first time hosting a member from the Order of the Malefic Viper,\", \"lastSentence\": \"I hope this doesn’t come as a surprise, but this is our first time hosting a member from the Order of the Malefic Viper,\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Wanting to be good hosts, the two of us agreed that we would try to tailor the menu to the taste of the Chosen. Through prayer and what little research we could do, I made this dish, which I hope Lord Thayne will appreciate, even if it certainly isn’t up to his usual standards.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Chosen\"], \"addressedEntity\": null, \"firstSentence\": \"Wanting to be good hosts, the two of us agreed that we would try to tailor the menu to the taste of the Chosen.\", \"lastSentence\": \"Through prayer and what little research we could do, I made this dish, which I hope Lord Thayne will appreciate, even if it certainly isn’t up to his usual standards.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [\"jake\", \"protagonist\", \"chimera\", \"monster\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"aliases\": [], \"roleLabels\": [\"keerla\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"solana\", \"characterName\": \"Solana\", \"aliases\": [], \"roleLabels\": [\"solana\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 66, \"paragraphIndex\": 34, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"That makes sense, even if I can’t fully relate. I’m more of the quickly in and out type of guy who, as you said, leaves power vacuums in my wake.\"}, {\"relativeIndex\": -3, \"lineId\": 67, \"paragraphIndex\": 35, \"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"text\": \"Hey, who hasn’t gone a bit overboard and overdone a hunting trip a little here and there?\"}, {\"relativeIndex\": -2, \"lineId\": 69, \"paragraphIndex\": 36, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"It can definitely be hard to avoid, but in my defense, it’s not my fault they give so much experience,\"}, {\"relativeIndex\": -1, \"lineId\": 77, \"paragraphIndex\": 43, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I hope this doesn’t come as a surprise, but this is our first time hosting a member from the Order of the Malefic Viper,\"}, {\"relativeIndex\": 1, \"lineId\": 81, \"paragraphIndex\": 46, \"characterId\": \"solana\", \"characterName\": \"Solana\", \"text\": \"Of course, the three of us aren’t as capable as the Chosen, so I prepared these,\"}, {\"relativeIndex\": 2, \"lineId\": 83, \"paragraphIndex\": 47, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Simply add until the toxic energy is entirely eliminated, or keep as much of it as you desire to add a little extra spice,\"}], \"chapterCharacters\": [{\"characterId\": \"keerla\", \"name\": \"Keerla\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"solana\", \"name\": \"Solana\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"solana\",\n  \"characterName\": \"Solana\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"dialogue_continuity\",\n    \"explicit_narration_previous_turn\",\n    \"thematic_cohesion\",\n    \"next_turn_speaker_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

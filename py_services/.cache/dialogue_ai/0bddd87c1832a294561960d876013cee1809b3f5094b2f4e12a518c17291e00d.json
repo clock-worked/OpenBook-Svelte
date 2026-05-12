@@ -1,0 +1,380 @@
+{
+  "cacheKey": "0bddd87c1832a294561960d876013cee1809b3f5094b2f4e12a518c17291e00d",
+  "createdAt": "2026-04-01T18:31:34.951904+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "holy-priest",
+    "characterName": "Holy Priest",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "next_turn_confirms_addressee"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "characterName": "Bertram",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "bertram"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jacob"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "holy-priest",
+          "holy-priest-2"
+        ],
+        "characterId": "holy-priest",
+        "characterName": "Holy Priest",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "holy priest",
+          "holy priest 2"
+        ],
+        "wasRecentSpeaker": false
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "protagonist",
+        "name": "Protagonist",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "arnold",
+        "name": "Arnold",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "bertram",
+        "name": "Bertram",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "name": "Iludar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "name": "Iludar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "pulse",
+        "name": "pulse",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "the head priest said, motioning toward it.",
+      "cueVerb": "said",
+      "cueVerbType": "speech",
+      "firstSentence": "Please follow me through the teleporter,",
+      "lastSentence": "Please follow me through the teleporter,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Please follow me through the teleporter,",
+      "speakerNameMatch": null,
+      "speakerSurface": "the head priest"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.19599999999999995,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Bertram",
+        "sourceCandidates": [
+          "Bertram",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": "bertram",
+          "confidence": 0.804,
+          "name": "Bertram",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.444,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "bertram",
+      "currentCharacterName": "Bertram",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 65,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Please follow me through the teleporter,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "bertram",
+          "characterName": "Bertram",
+          "isReturning": true,
+          "lineId": 65,
+          "text": "Please follow me through the teleporter,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the head priest said, motioning toward it.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Please follow me through the teleporter,",
+          "lastSentence": "Please follow me through the teleporter,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Please follow me through the teleporter,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the head priest"
+        }
+      ],
+      "currentParagraphText": "“Please follow me through the teleporter,” the head priest said, motioning toward it.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 67,
+          "text": "Using a teleporter with an unknown destination seems highly unwise, especially when in territory I do not find particularly friendly,"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake said, staring down at the priest. He’d only slightly let off on Presence while he kept unleashing his aura, fully aware of the mental pressure he was putting on everyone present.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Using a teleporter with an unknown destination seems highly unwise, especially when in territory I do not find particularly friendly,",
+          "lastSentence": "Using a teleporter with an unknown destination seems highly unwise, especially when in territory I do not find particularly friendly,",
+          "mentionedEntities": [
+            "Unknown"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Using a teleporter with an unknown destination seems highly unwise, especially when in territory I do not find particularly friendly,",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "nextParagraphText": "“Using a teleporter with an unknown destination seems highly unwise, especially when in territory I do not find particularly friendly,” Jake said, staring down at the priest. He’d only slightly let off on Presence while he kept unleashing his aura, fully aware of the mental pressure he was putting on everyone present.",
+      "paragraphIndex": 49,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Perhaps it was partly true, as they had more likely than expected him to be more injured after the Ell’Hakan fight than he actually was. It was thus highly probable they had wanted to make more preparations before Jake visited that they simply didn’t have time to."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 55,
+        "paragraphIndex": 42,
+        "relativeIndex": -4,
+        "text": "Perhaps we can have this discussion elsewhere in private?"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 56,
+        "paragraphIndex": 43,
+        "relativeIndex": -3,
+        "text": "Very well, lead the way to this private discussion,"
+      },
+      {
+        "characterId": "bertram",
+        "characterName": "Bertram",
+        "lineId": 60,
+        "paragraphIndex": 46,
+        "relativeIndex": -2,
+        "text": "escort"
+      },
+      {
+        "characterId": "bertram",
+        "characterName": "Bertram",
+        "lineId": 62,
+        "paragraphIndex": 47,
+        "relativeIndex": -1,
+        "text": "I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 67,
+        "paragraphIndex": 50,
+        "relativeIndex": 1,
+        "text": "Using a teleporter with an unknown destination seems highly unwise, especially when in territory I do not find particularly friendly,"
+      },
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 69,
+        "paragraphIndex": 51,
+        "relativeIndex": 2,
+        "text": "It will take us to an installation far away from the city, and what awaits on the other side is no trap,"
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "holy-priest",
+            "characterName": "Holy Priest",
+            "evidence": [
+              "token_overlap:priest"
+            ],
+            "score": 0.625
+          }
+        ],
+        "surface": "the head priest"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 65, \"text\": \"Please follow me through the teleporter,\", \"currentCharacterId\": \"bertram\", \"currentCharacterName\": \"Bertram\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Bertram\", \"sourceCandidates\": [\"Bertram\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"bertram\", \"name\": \"Bertram\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 49, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Please follow me through the teleporter,” the head priest said, motioning toward it.\", \"currentParagraphDialogue\": [{\"lineId\": 65, \"text\": \"Please follow me through the teleporter,\", \"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"isReturning\": true}], \"previousParagraphText\": \"Perhaps it was partly true, as they had more likely than expected him to be more injured after the Ell’Hakan fight than he actually was. It was thus highly probable they had wanted to make more preparations before Jake visited that they simply didn’t have time to.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“Using a teleporter with an unknown destination seems highly unwise, especially when in territory I do not find particularly friendly,” Jake said, staring down at the priest. He’d only slightly let off on Presence while he kept unleashing his aura, fully aware of the mental pressure he was putting on everyone present.\", \"nextParagraphDialogue\": [{\"lineId\": 67, \"text\": \"Using a teleporter with an unknown destination seems highly unwise, especially when in territory I do not find particularly friendly,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Please follow me through the teleporter,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the head priest said, motioning toward it.\", \"speakerSurface\": \"the head priest\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Please follow me through the teleporter,\", \"lastSentence\": \"Please follow me through the teleporter,\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Using a teleporter with an unknown destination seems highly unwise, especially when in territory I do not find particularly friendly,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake said, staring down at the priest. He’d only slightly let off on Presence while he kept unleashing his aura, fully aware of the mental pressure he was putting on everyone present.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [\"Unknown\"], \"addressedEntity\": null, \"firstSentence\": \"Using a teleporter with an unknown destination seems highly unwise, especially when in territory I do not find particularly friendly,\", \"lastSentence\": \"Using a teleporter with an unknown destination seems highly unwise, especially when in territory I do not find particularly friendly,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Please follow me through the teleporter,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the head priest said, motioning toward it.\", \"speakerSurface\": \"the head priest\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Please follow me through the teleporter,\", \"lastSentence\": \"Please follow me through the teleporter,\"}, \"sceneEntities\": [{\"surface\": \"the head priest\", \"matches\": [{\"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"score\": 0.625, \"evidence\": [\"token_overlap:priest\"]}]}], \"candidateCards\": [{\"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"aliases\": [], \"roleLabels\": [\"bertram\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [], \"roleLabels\": [\"jacob\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"holy-priest\", \"characterName\": \"Holy Priest\", \"aliases\": [\"holy-priest\", \"holy-priest-2\"], \"roleLabels\": [\"holy priest\", \"holy priest 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 55, \"paragraphIndex\": 42, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Perhaps we can have this discussion elsewhere in private?\"}, {\"relativeIndex\": -3, \"lineId\": 56, \"paragraphIndex\": 43, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Very well, lead the way to this private discussion,\"}, {\"relativeIndex\": -2, \"lineId\": 60, \"paragraphIndex\": 46, \"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"text\": \"escort\"}, {\"relativeIndex\": -1, \"lineId\": 62, \"paragraphIndex\": 47, \"characterId\": \"bertram\", \"characterName\": \"Bertram\", \"text\": \"I apologize for the lack of a proper welcome, but as I said, we truly didn’t expect you to show up without prior notice,\"}, {\"relativeIndex\": 1, \"lineId\": 67, \"paragraphIndex\": 50, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Using a teleporter with an unknown destination seems highly unwise, especially when in territory I do not find particularly friendly,\"}, {\"relativeIndex\": 2, \"lineId\": 69, \"paragraphIndex\": 51, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"It will take us to an installation far away from the city, and what awaits on the other side is no trap,\"}], \"chapterCharacters\": [{\"characterId\": \"protagonist\", \"name\": \"Protagonist\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"arnold\", \"name\": \"Arnold\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"bertram\", \"name\": \"Bertram\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"pulse\", \"name\": \"pulse\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"holy-priest\",\n  \"characterName\": \"Holy Priest\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"next_turn_confirms_addressee\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

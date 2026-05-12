@@ -1,0 +1,351 @@
+{
+  "cacheKey": "082c89aea44e9c1f831f92e1123d283b95bfa13eb10e4f4ce1f164f941351562",
+  "createdAt": "2026-04-18T23:42:00.820510+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "solana",
+    "characterName": "Solana",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "diana",
+        "characterName": "Diana",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "diana"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "solana",
+        "characterName": "Solana",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "solana"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "solana",
+        "name": "Solana",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "diana",
+        "name": "Diana",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "keerla",
+        "name": "Keerla",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "lord thayne",
+        "name": "Lord Thayne",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "The Warpsnatcher",
+          "Jasper",
+          "the-warpsnatcher",
+          "the-warpsnatcher-2"
+        ],
+        "characterId": "warpsnatcher",
+        "name": "Warpsnatcher",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "Solana bowed again, unsure what to say. The Chosen seemed happy with her response as he smiled.",
+      "cueVerb": "smiled",
+      "cueVerbType": "reaction",
+      "firstSentence": "I’ll do my utmost,",
+      "lastSentence": "I’ll do my utmost,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "I’ll do my utmost,",
+      "speakerNameMatch": null,
+      "speakerSurface": "response as he"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Lord Thayne",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.32919999999999994,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Nature's Attendant",
+        "sourceCandidates": [
+          "Nature's Attendant",
+          "Chosen"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.804
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.804,
+          "name": "Nature's Attendant",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.444,
+          "name": "Chosen",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 29,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "I’ll do my utmost,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 29,
+          "text": "I’ll do my utmost,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Solana bowed again, unsure what to say. The Chosen seemed happy with her response as he smiled.",
+          "cueVerb": "smiled",
+          "cueVerbType": "reaction",
+          "firstSentence": "I’ll do my utmost,",
+          "lastSentence": "I’ll do my utmost,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I’ll do my utmost,",
+          "speakerNameMatch": null,
+          "speakerSurface": "response as he"
+        }
+      ],
+      "currentParagraphText": "“I’ll do my utmost,” Solana bowed again, unsure what to say. The Chosen seemed happy with her response as he smiled.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "lord_thayne",
+          "characterName": "Lord Thayne",
+          "isReturning": false,
+          "lineId": 31,
+          "text": "In case I hadn’t said it... Thank you for hosting us. It was indeed a lovely evening, and I hope we meet again. Perhaps in my home next time. I’m not the best chef, but hey, I know how to order catering,"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Lord Thayne said in a tone that made Solana unsure if he was joking or not.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "In case I hadn’t said it...",
+          "lastSentence": "I’m not the best chef, but hey, I know how to order catering,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "In case I hadn’t said it... Thank you for hosting us. It was indeed a lovely evening, and I hope we meet again. Perhaps in my home next time. I’m not the best chef, but hey, I know how to order catering,",
+          "speakerNameMatch": "Lord Thayne",
+          "speakerSurface": "Lord Thayne"
+        }
+      ],
+      "nextParagraphText": "“In case I hadn’t said it... Thank you for hosting us. It was indeed a lovely evening, and I hope we meet again. Perhaps in my home next time. I’m not the best chef, but hey, I know how to order catering,” Lord Thayne said in a tone that made Solana unsure if he was joking or not.",
+      "paragraphIndex": 17,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 27,
+          "text": "If you feel that way, then work towards becoming a person who would be worthy,"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the Chosen said, keeping the same casual tone despite his words.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "If you feel that way, then work towards becoming a person who would be worthy,",
+          "lastSentence": "If you feel that way, then work towards becoming a person who would be worthy,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "If you feel that way, then work towards becoming a person who would be worthy,",
+          "speakerNameMatch": "Chosen",
+          "speakerSurface": "Chosen"
+        }
+      ],
+      "previousParagraphText": "“If you feel that way, then work towards becoming a person who would be worthy,” the Chosen said, keeping the same casual tone despite his words."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "diana",
+        "characterName": "Diana",
+        "lineId": 20,
+        "paragraphIndex": 12,
+        "relativeIndex": -4,
+        "text": "Looking forward to it,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 22,
+        "paragraphIndex": 13,
+        "relativeIndex": -3,
+        "text": "Hey, if it’s worth anything, I’ll also put in a good word with Yggdrasil,"
+      },
+      {
+        "characterId": "solana",
+        "characterName": "Solana",
+        "lineId": 25,
+        "paragraphIndex": 15,
+        "relativeIndex": -2,
+        "text": "I’m unworthy of such praise,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 27,
+        "paragraphIndex": 16,
+        "relativeIndex": -1,
+        "text": "If you feel that way, then work towards becoming a person who would be worthy,"
+      },
+      {
+        "characterId": "lord_thayne",
+        "characterName": "Lord Thayne",
+        "lineId": 31,
+        "paragraphIndex": 18,
+        "relativeIndex": 1,
+        "text": "In case I hadn’t said it... Thank you for hosting us. It was indeed a lovely evening, and I hope we meet again. Perhaps in my home next time. I’m not the best chef, but hey, I know how to order catering,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 33,
+        "paragraphIndex": 19,
+        "relativeIndex": 2,
+        "text": "He’s not joking, in case you’re wondering,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 29, \"text\": \"I’ll do my utmost,\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Nature's Attendant\", \"sourceCandidates\": [\"Nature's Attendant\", \"Chosen\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.32919999999999994, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Lord Thayne\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Nature's Attendant\", \"confidence\": 0.804, \"reasons\": null}, {\"characterId\": null, \"name\": \"Chosen\", \"confidence\": 0.444, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 17, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I’ll do my utmost,” Solana bowed again, unsure what to say. The Chosen seemed happy with her response as he smiled.\", \"currentParagraphDialogue\": [{\"lineId\": 29, \"text\": \"I’ll do my utmost,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"previousParagraphText\": \"“If you feel that way, then work towards becoming a person who would be worthy,” the Chosen said, keeping the same casual tone despite his words.\", \"previousParagraphDialogue\": [{\"lineId\": 27, \"text\": \"If you feel that way, then work towards becoming a person who would be worthy,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"nextParagraphText\": \"“In case I hadn’t said it... Thank you for hosting us. It was indeed a lovely evening, and I hope we meet again. Perhaps in my home next time. I’m not the best chef, but hey, I know how to order catering,” Lord Thayne said in a tone that made Solana unsure if he was joking or not.\", \"nextParagraphDialogue\": [{\"lineId\": 31, \"text\": \"In case I hadn’t said it... Thank you for hosting us. It was indeed a lovely evening, and I hope we meet again. Perhaps in my home next time. I’m not the best chef, but hey, I know how to order catering,\", \"characterId\": \"lord_thayne\", \"characterName\": \"Lord Thayne\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I’ll do my utmost,\", \"cuePosition\": \"after\", \"cueVerb\": \"smiled\", \"cueVerbType\": \"reaction\", \"cueText\": \"Solana bowed again, unsure what to say. The Chosen seemed happy with her response as he smiled.\", \"speakerSurface\": \"response as he\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’ll do my utmost,\", \"lastSentence\": \"I’ll do my utmost,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"If you feel that way, then work towards becoming a person who would be worthy,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the Chosen said, keeping the same casual tone despite his words.\", \"speakerSurface\": \"Chosen\", \"speakerNameMatch\": \"Chosen\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"If you feel that way, then work towards becoming a person who would be worthy,\", \"lastSentence\": \"If you feel that way, then work towards becoming a person who would be worthy,\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"In case I hadn’t said it... Thank you for hosting us. It was indeed a lovely evening, and I hope we meet again. Perhaps in my home next time. I’m not the best chef, but hey, I know how to order catering,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Lord Thayne said in a tone that made Solana unsure if he was joking or not.\", \"speakerSurface\": \"Lord Thayne\", \"speakerNameMatch\": \"Lord Thayne\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"In case I hadn’t said it...\", \"lastSentence\": \"I’m not the best chef, but hey, I know how to order catering,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I’ll do my utmost,\", \"cuePosition\": \"after\", \"cueVerb\": \"smiled\", \"cueVerbType\": \"reaction\", \"cueText\": \"Solana bowed again, unsure what to say. The Chosen seemed happy with her response as he smiled.\", \"speakerSurface\": \"response as he\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’ll do my utmost,\", \"lastSentence\": \"I’ll do my utmost,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"diana\", \"characterName\": \"Diana\", \"aliases\": [], \"roleLabels\": [\"diana\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"solana\", \"characterName\": \"Solana\", \"aliases\": [], \"roleLabels\": [\"solana\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 20, \"paragraphIndex\": 12, \"characterId\": \"diana\", \"characterName\": \"Diana\", \"text\": \"Looking forward to it,\"}, {\"relativeIndex\": -3, \"lineId\": 22, \"paragraphIndex\": 13, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Hey, if it’s worth anything, I’ll also put in a good word with Yggdrasil,\"}, {\"relativeIndex\": -2, \"lineId\": 25, \"paragraphIndex\": 15, \"characterId\": \"solana\", \"characterName\": \"Solana\", \"text\": \"I’m unworthy of such praise,\"}, {\"relativeIndex\": -1, \"lineId\": 27, \"paragraphIndex\": 16, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"If you feel that way, then work towards becoming a person who would be worthy,\"}, {\"relativeIndex\": 1, \"lineId\": 31, \"paragraphIndex\": 18, \"characterId\": \"lord_thayne\", \"characterName\": \"Lord Thayne\", \"text\": \"In case I hadn’t said it... Thank you for hosting us. It was indeed a lovely evening, and I hope we meet again. Perhaps in my home next time. I’m not the best chef, but hey, I know how to order catering,\"}, {\"relativeIndex\": 2, \"lineId\": 33, \"paragraphIndex\": 19, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"He’s not joking, in case you’re wondering,\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"solana\", \"name\": \"Solana\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"diana\", \"name\": \"Diana\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"keerla\", \"name\": \"Keerla\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"lord thayne\", \"name\": \"Lord Thayne\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"warpsnatcher\", \"name\": \"Warpsnatcher\", \"aliases\": [\"The Warpsnatcher\", \"Jasper\", \"the-warpsnatcher\", \"the-warpsnatcher-2\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"solana\",\n  \"characterName\": \"Solana\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

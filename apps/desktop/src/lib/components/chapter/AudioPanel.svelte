@@ -35,7 +35,7 @@
 
   const DISPLAY_ALPHA = 1.0;
   const CHARACTER_BATCH_TARGET = 800;
-  const DEFAULT_ADVANCED_FILLER_TEXT = 'The following lines are all spoken by the same character. Keep the same voice, pacing, and emotional continuity across the batch.';
+  const DEFAULT_ADVANCED_FILLER_TEXT = 'The following lines are all voiced by the same speaker source. Keep the same voice, pacing, and emotional continuity across the batch.';
 
   type VoiceInfo = {
     voiceId: string;
@@ -70,7 +70,7 @@
     generationOptions?: GenerateAudioCharacterOptions;
   };
 
-  type AdvancedGenerationMode = 'character' | 'chapter';
+  type AdvancedGenerationMode = 'character' | 'chapter' | 'speaker-source';
 
   type AdvancedBookChapterBatch = {
     chapterTitle: string;
@@ -91,6 +91,18 @@
     chapterCount: number;
     chapterBatchCount: number;
     underTargetChapterBatchCount: number;
+  };
+
+  type AdvancedSpeakerSourceBatch = {
+    speakerSourceId: string;
+    speakerLabel: string;
+    voiceInfo: VoiceInfo;
+    lines: QueuedDialogueLine[];
+    totalCharacters: number;
+    characterCount: number;
+    chapterCount: number;
+    primaryCharacterId: string;
+    primaryCharacterName: string;
   };
 
   type AdvancedChapterOverview = {
@@ -168,12 +180,94 @@
     lines: DialogueLine[],
     chapterTitle: string,
     sourceFile: string,
+    characterName: string,
   ): QueuedDialogueLine[] {
     return lines.map((line) => ({
       ...(line as any),
       __queueChapterTitle: chapterTitle,
       __queueSourceFile: sourceFile,
+      __queueCharacterName: characterName,
+      ...(typeof (line as any)?.chosenSpeaker === 'string' && String((line as any).chosenSpeaker).trim()
+        ? {}
+        : { chosenSpeaker: characterName }),
     }));
+  }
+
+  function getSpeakerSourceId(voiceInfo: VoiceInfo): string {
+    return `${voiceInfo.provider}::${voiceInfo.voiceId}`;
+  }
+
+  function buildSpeakerSourceBatches(items: AdvancedBookCharacterBatch[]): AdvancedSpeakerSourceBatch[] {
+    const batchesBySource = new Map<
+      string,
+      {
+        speakerSourceId: string;
+        speakerLabel: string;
+        voiceInfo: VoiceInfo;
+        lines: QueuedDialogueLine[];
+        totalCharacters: number;
+        characterIds: Set<string>;
+        chapterTitles: Set<string>;
+        primaryCharacterId: string;
+        primaryCharacterName: string;
+      }
+    >();
+
+    for (const item of items) {
+      const speakerSourceId = getSpeakerSourceId(item.voiceInfo);
+      let batch = batchesBySource.get(speakerSourceId);
+      if (!batch) {
+        batch = {
+          speakerSourceId,
+          speakerLabel: item.voiceInfo.displayName,
+          voiceInfo: item.voiceInfo,
+          lines: [],
+          totalCharacters: 0,
+          characterIds: new Set<string>(),
+          chapterTitles: new Set<string>(),
+          primaryCharacterId: item.characterId,
+          primaryCharacterName: item.characterName,
+        };
+        batchesBySource.set(speakerSourceId, batch);
+      }
+
+      batch.lines.push(...item.lines);
+      batch.totalCharacters += item.totalCharacters;
+      batch.characterIds.add(item.characterId);
+      for (const line of item.lines) {
+        const lineChapterTitle = resolveQueuedLineChapterTitle(line, item.characterName);
+        if (lineChapterTitle) {
+          batch.chapterTitles.add(lineChapterTitle);
+        }
+      }
+    }
+
+    const batches = Array.from(batchesBySource.values()).map((item) => ({
+      speakerSourceId: item.speakerSourceId,
+      speakerLabel: item.speakerLabel,
+      voiceInfo: item.voiceInfo,
+      lines: [...item.lines].sort((left, right) => {
+        const leftChapter = resolveQueuedLineChapterTitle(left, item.primaryCharacterName);
+        const rightChapter = resolveQueuedLineChapterTitle(right, item.primaryCharacterName);
+        const chapterCompare = leftChapter.localeCompare(rightChapter, undefined, { sensitivity: 'base' });
+        if (chapterCompare !== 0) return chapterCompare;
+        return Number((left as any)?.id || 0) - Number((right as any)?.id || 0);
+      }),
+      totalCharacters: item.totalCharacters,
+      characterCount: item.characterIds.size,
+      chapterCount: item.chapterTitles.size,
+      primaryCharacterId: item.primaryCharacterId,
+      primaryCharacterName: item.primaryCharacterName,
+    }));
+
+    batches.sort((left, right) => {
+      if (right.totalCharacters !== left.totalCharacters) {
+        return right.totalCharacters - left.totalCharacters;
+      }
+      return left.speakerLabel.localeCompare(right.speakerLabel, undefined, { sensitivity: 'base' });
+    });
+
+    return batches;
   }
 
   function resolveQueuedLineChapterTitle(line: QueuedDialogueLine | undefined, fallbackChapterTitle: string): string {
@@ -269,16 +363,38 @@
   $: advancedCharacters = advancedPreview?.characters ?? [];
   $: selectedAdvancedCharacters = advancedCharacters.filter((item) => selectedAdvancedCharacterIds.has(item.characterId));
   $: selectedAdvancedChapterBatches = (advancedPreview?.chapterBatches ?? []).filter((item) => selectedAdvancedCharacterIds.has(item.characterId));
+  $: advancedSpeakerSourceBatches = buildSpeakerSourceBatches(advancedCharacters);
+  $: selectedAdvancedSpeakerSourceBatches = buildSpeakerSourceBatches(selectedAdvancedCharacters);
+  $: speakerSourceBatchByCharacterId = (() => {
+    const index = new Map<string, AdvancedSpeakerSourceBatch>();
+    for (const batch of advancedSpeakerSourceBatches) {
+      for (const line of batch.lines) {
+        const lineCharacterId = typeof (line as any)?.characterId === 'string' ? String((line as any).characterId).trim() : '';
+        if (lineCharacterId) {
+          index.set(lineCharacterId, batch);
+        }
+      }
+    }
+    return index;
+  })();
   $: selectedAdvancedLineCount = selectedAdvancedChapterBatches.reduce((sum, item) => sum + item.lines.length, 0);
   $: selectedAdvancedCharacterBatchCount = selectedAdvancedCharacters.length;
   $: selectedAdvancedChapterBatchCount = selectedAdvancedChapterBatches.length;
+  $: selectedAdvancedSpeakerSourceBatchCount = selectedAdvancedSpeakerSourceBatches.length;
   $: selectedAdvancedParsedChapterCount = new Set(selectedAdvancedChapterBatches.map((item) => item.chapterTitle)).size;
   $: selectedAdvancedUnderTargetCharacters = selectedAdvancedCharacters.filter((item) => item.totalCharacters < CHARACTER_BATCH_TARGET);
   $: selectedAdvancedUnderTargetChapterBatchCount = selectedAdvancedChapterBatches.filter((item) => item.totalCharacters < CHARACTER_BATCH_TARGET).length;
+  $: selectedAdvancedUnderTargetSpeakerSourceBatchCount = selectedAdvancedSpeakerSourceBatches.filter((item) => item.totalCharacters < CHARACTER_BATCH_TARGET).length;
   $: selectedAdvancedCharactersNeedingFillerCount = advancedGenerationMode === 'character'
     ? selectedAdvancedUnderTargetCharacters.length
-    : selectedAdvancedCharacters.filter((item) => item.underTargetChapterBatchCount > 0).length;
-  $: selectedAdvancedReadyCharacterCount = Math.max(0, selectedAdvancedCharacterBatchCount - selectedAdvancedCharactersNeedingFillerCount);
+    : advancedGenerationMode === 'chapter'
+      ? selectedAdvancedCharacters.filter((item) => item.underTargetChapterBatchCount > 0).length
+      : selectedAdvancedUnderTargetSpeakerSourceBatchCount;
+  $: selectedAdvancedReadyCharacterCount = Math.max(
+    0,
+    (advancedGenerationMode === 'speaker-source' ? selectedAdvancedSpeakerSourceBatchCount : selectedAdvancedCharacterBatchCount) -
+      selectedAdvancedCharactersNeedingFillerCount,
+  );
   $: advancedAllCharactersSelected = advancedCharacters.length > 0 && selectedAdvancedCharacterIds.size === advancedCharacters.length;
   $: advancedSomeCharactersSelected = selectedAdvancedCharacterIds.size > 0 && !advancedAllCharactersSelected;
   $: if (advancedSelectAllInput) {
@@ -386,7 +502,7 @@
         if (linesToGenerate.length === 0) continue;
 
         const sourceFile = getChapterSourceFile(chapter);
-        const linesWithContext = buildQueuedLinesWithContext(linesToGenerate, chapter.title, sourceFile);
+        const linesWithContext = buildQueuedLinesWithContext(linesToGenerate, chapter.title, sourceFile, characterName);
 
         let payload = jobsByCharacterId.get(characterId);
         if (!payload) {
@@ -539,7 +655,7 @@
           continue;
         }
 
-        const linesWithContext = buildQueuedLinesWithContext(linesToGenerate, chapter.title, sourceFile);
+        const linesWithContext = buildQueuedLinesWithContext(linesToGenerate, chapter.title, sourceFile, characterName);
         const totalCharacters = sumLineCharacters(linesWithContext);
 
         chapterBatches.push({
@@ -769,7 +885,7 @@
           jobsQueued += 1;
           linesQueued += batch.lines.length;
         }
-      } else {
+      } else if (advancedGenerationMode === 'chapter') {
         for (const batch of selectedAdvancedChapterBatches) {
           if (!selectedIds.has(batch.characterId) || batch.lines.length === 0) continue;
 
@@ -802,6 +918,46 @@
           jobsQueued += 1;
           linesQueued += batch.lines.length;
         }
+      } else {
+        for (const batch of selectedAdvancedSpeakerSourceBatches) {
+          if (batch.lines.length === 0) continue;
+
+          const firstLine = batch.lines[0];
+          const chapterTitle = resolveQueuedLineChapterTitle(firstLine, batch.primaryCharacterName);
+          const sourceFile = resolveQueuedLineSourceFile(firstLine, `${chapterTitle}/chapter.txt`);
+          const { cumulative, total } = buildCumulativeCharacterCounts(batch.lines);
+          const jobId = `advanced-speaker-source-${batch.speakerSourceId.replace(/[^a-zA-Z0-9_-]/g, '_')}-${queueRunTimestamp}-${jobCounter++}`;
+
+          queuedJobs.set(jobId, {
+            characterId: batch.primaryCharacterId,
+            characterName: batch.primaryCharacterName,
+            lines: batch.lines,
+            cumulativeCharacterCounts: cumulative,
+            totalCharacters: total,
+            voiceInfo: batch.voiceInfo,
+            chapterTitle,
+            sourceFile,
+            generationOptions,
+          });
+
+          enqueueAudioJob({
+            id: jobId,
+            characterId: batch.primaryCharacterId,
+            characterName: `${batch.speakerLabel} (speaker source)`,
+            chapterTitle,
+            generationMode: 'missing',
+            total: batch.lines.length,
+            totalCharacters: total,
+          });
+
+          for (const line of batch.lines) {
+            const lineChapterTitle = resolveQueuedLineChapterTitle(line, chapterTitle);
+            chapterProcessableTotals.set(lineChapterTitle, (chapterProcessableTotals.get(lineChapterTitle) || 0) + 1);
+          }
+
+          jobsQueued += 1;
+          linesQueued += batch.lines.length;
+        }
       }
 
       if (jobsQueued === 0 || linesQueued === 0) {
@@ -828,7 +984,11 @@
 
       showAdvancedOverlay = false;
 
-      const batchLabel = advancedGenerationMode === 'character' ? 'character batch' : 'chapter batch';
+      const batchLabel = advancedGenerationMode === 'character'
+        ? 'character batch'
+        : advancedGenerationMode === 'chapter'
+          ? 'chapter batch'
+          : 'speaker-source batch';
       const fillerNote = advancedUseFillerForShortBatch ? ' Short batches will use the configured filler/pretext.' : '';
       alert(
         `Queued ${linesQueued} missing line${linesQueued === 1 ? '' : 's'} ` +
@@ -2234,7 +2394,7 @@
           {:else}
             <div class="advanced-section">
               <h4>Batch Mode</h4>
-              <p class="advanced-section-note">Choose whether the queue should stay chapter-scoped or combine missing lines across chapters for each selected character.</p>
+              <p class="advanced-section-note">Choose whether to combine by character, keep chapter boundaries, or combine by speaker source so characters sharing one assigned voice are generated together.</p>
               <div class="advanced-mode-grid">
                 <label class="advanced-mode-card" class:active={advancedGenerationMode === 'character'}>
                   <input type="radio" bind:group={advancedGenerationMode} value="character" />
@@ -2248,6 +2408,13 @@
                   <span>
                     <span class="advanced-mode-title">Generate By Chapter</span>
                     <span class="advanced-mode-description">Keep chapter boundaries intact by queueing a separate batch for each selected character inside each parsed chapter.</span>
+                  </span>
+                </label>
+                <label class="advanced-mode-card" class:active={advancedGenerationMode === 'speaker-source'}>
+                  <input type="radio" bind:group={advancedGenerationMode} value="speaker-source" />
+                  <span>
+                    <span class="advanced-mode-title">Generate By Speaker Source</span>
+                    <span class="advanced-mode-description">Combine selected lines across characters when they share the same assigned voice source, reducing individual generation runs.</span>
                   </span>
                 </label>
               </div>
@@ -2277,6 +2444,10 @@
               <div class="advanced-warning">
                 {selectedAdvancedUnderTargetChapterBatchCount} selected chapter batch{selectedAdvancedUnderTargetChapterBatchCount === 1 ? '' : 'es'} fall below {CHARACTER_BATCH_TARGET} characters. Enable filler/pretext if you want to pad them.
               </div>
+            {:else if advancedGenerationMode === 'speaker-source' && selectedAdvancedUnderTargetSpeakerSourceBatchCount > 0 && !advancedUseFillerForShortBatch}
+              <div class="advanced-warning">
+                {selectedAdvancedUnderTargetSpeakerSourceBatchCount} selected speaker-source batch{selectedAdvancedUnderTargetSpeakerSourceBatchCount === 1 ? '' : 'es'} fall below {CHARACTER_BATCH_TARGET} characters. Enable filler/pretext if you want to pad them.
+              </div>
             {:else if advancedUseFillerForShortBatch}
               <div class="advanced-info">Short batches will be padded with the configured filler/pretext before the real dialogue lines are generated.</div>
             {/if}
@@ -2298,6 +2469,8 @@
                     {selectedAdvancedLineCount} missing line{selectedAdvancedLineCount === 1 ? '' : 's'} across {selectedAdvancedParsedChapterCount} parsed chapter{selectedAdvancedParsedChapterCount === 1 ? '' : 's'}.
                     {#if advancedGenerationMode === 'chapter'}
                       {' '}{selectedAdvancedChapterBatchCount} chapter batch{selectedAdvancedChapterBatchCount === 1 ? '' : 'es'} will be queued.
+                    {:else if advancedGenerationMode === 'speaker-source'}
+                      {' '}{selectedAdvancedSpeakerSourceBatchCount} speaker-source batch{selectedAdvancedSpeakerSourceBatchCount === 1 ? '' : 'es'} will be queued.
                     {/if}
                   </span>
                 </div>
@@ -2339,6 +2512,7 @@
                 {#each advancedCharacters as item (item.characterId)}
                   {@const isSelected = selectedAdvancedCharacterIds.has(item.characterId)}
                   {@const isUnderTarget = item.totalCharacters < CHARACTER_BATCH_TARGET}
+                  {@const speakerSourceBatch = speakerSourceBatchByCharacterId.get(item.characterId)}
                   <label class="advanced-character-row" class:selected={isSelected}>
                     <input
                       type="checkbox"
@@ -2360,10 +2534,18 @@
                                 Ready
                               {/if}
                             </span>
-                          {:else}
+                          {:else if advancedGenerationMode === 'chapter'}
                             <span class="advanced-inline-badge" class:warning={item.underTargetChapterBatchCount > 0} class:ready={item.underTargetChapterBatchCount === 0}>
                               {#if item.underTargetChapterBatchCount > 0}
                                 {item.underTargetChapterBatchCount} short batch{item.underTargetChapterBatchCount === 1 ? '' : 'es'}
+                              {:else}
+                                Ready
+                              {/if}
+                            </span>
+                          {:else}
+                            <span class="advanced-inline-badge" class:warning={Boolean(speakerSourceBatch) && speakerSourceBatch.totalCharacters < CHARACTER_BATCH_TARGET} class:ready={!speakerSourceBatch || speakerSourceBatch.totalCharacters >= CHARACTER_BATCH_TARGET}>
+                              {#if speakerSourceBatch && speakerSourceBatch.totalCharacters < CHARACTER_BATCH_TARGET}
+                                Shared source short batch
                               {:else}
                                 Ready
                               {/if}
@@ -2389,6 +2571,10 @@
                       {:else if advancedGenerationMode === 'chapter' && item.underTargetChapterBatchCount > 0}
                         <p class="advanced-character-warning" class:ready={advancedUseFillerForShortBatch}>
                           {item.underTargetChapterBatchCount} chapter batch{item.underTargetChapterBatchCount === 1 ? '' : 'es'} below {CHARACTER_BATCH_TARGET} characters{advancedUseFillerForShortBatch ? '; filler/pretext will pad them.' : '.'}
+                        </p>
+                      {:else if advancedGenerationMode === 'speaker-source' && speakerSourceBatch && speakerSourceBatch.totalCharacters < CHARACTER_BATCH_TARGET}
+                        <p class="advanced-character-warning" class:ready={advancedUseFillerForShortBatch}>
+                          Shared speaker-source batch is below {CHARACTER_BATCH_TARGET} characters{advancedUseFillerForShortBatch ? '; filler/pretext will pad it.' : '.'}
                         </p>
                       {/if}
                     </div>

@@ -1,0 +1,319 @@
+{
+  "cacheKey": "b8619d80a610458fb41bb9e5e18d3eb8751ae33c86721a4e2b712a365f8ca1ef",
+  "createdAt": "2026-04-01T22:10:17.943018+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "sylphie",
+    "characterName": "Sylphie",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "pronoun_resolution_from_previous_paragraph",
+      "explicit_narration_cue"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "dina",
+        "characterName": "Dina",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "dina"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "the-sword-saint",
+          "the-sword-saint-2",
+          "Miyamoto"
+        ],
+        "characterId": "the-sword-saint",
+        "name": "The Sword Saint",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "dina",
+        "name": "Dina",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "she screeched excitedly.",
+      "cueVerb": "screeched",
+      "cueVerbType": "speech",
+      "firstSentence": "Ree!",
+      "lastSentence": "Ree!",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Ree! Ree!",
+      "speakerNameMatch": null,
+      "speakerSurface": "she"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": "female",
+          "contextGenderCue": "she screeched",
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "The Sword Saint",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.85,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.7,
+        "misattributionRisk": 0.1824,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Dina",
+        "sourceCandidates": [
+          "Dina",
+          "The Sword Saint"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.868
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.868,
+          "name": "Dina",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.168,
+          "name": "The Sword Saint",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "dina",
+      "currentCharacterName": "Dina",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 105,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Ree! Ree!"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "dina",
+          "characterName": "Dina",
+          "isReturning": false,
+          "lineId": 105,
+          "text": "Ree! Ree!"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "she screeched excitedly.",
+          "cueVerb": "screeched",
+          "cueVerbType": "speech",
+          "firstSentence": "Ree!",
+          "lastSentence": "Ree!",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Ree! Ree!",
+          "speakerNameMatch": null,
+          "speakerSurface": "she"
+        }
+      ],
+      "currentParagraphText": "“Ree! Ree!” she screeched excitedly.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "the_sword_saint",
+          "characterName": "The Sword Saint",
+          "isReturning": false,
+          "lineId": 107,
+          "text": "Oh, he is?"
+        },
+        {
+          "characterId": "the_sword_saint",
+          "characterName": "The Sword Saint",
+          "isReturning": true,
+          "lineId": 109,
+          "text": "Well, we'd better get back there soon, then. He did take his time, which makes one wonder what he’s been up to."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the Sword Saint said with surprise.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Oh, he is?",
+          "lastSentence": "Oh, he is?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Oh, he is?",
+          "speakerNameMatch": "The Sword Saint",
+          "speakerSurface": "Sword Saint"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "the Sword Saint said with surprise.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Well, we'd better get back there soon, then.",
+          "lastSentence": "He did take his time, which makes one wonder what he’s been up to.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "Well, we'd better get back there soon, then. He did take his time, which makes one wonder what he’s been up to.",
+          "speakerNameMatch": "The Sword Saint",
+          "speakerSurface": "Sword Saint"
+        }
+      ],
+      "nextParagraphText": "“Oh, he is?” the Sword Saint said with surprise. “Well, we'd better get back there soon, then. He did take his time, which makes one wonder what he’s been up to.”",
+      "paragraphIndex": 65,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "After her snack, Sylphie decided to fly toward himself and Dina as she spotted them. She barreled through the barrier set up for her to fight members of the Pantheon of Life, and after throwing a scornful look toward the young wood elf hunter, that made the poor elf, along with his other party members, leave. Once they were gone, she turned her attention back to Dina and the Sword Saint."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 97,
+        "paragraphIndex": 61,
+        "relativeIndex": -4,
+        "text": "Hm, true,"
+      },
+      {
+        "characterId": "the_sword_saint",
+        "characterName": "The Sword Saint",
+        "lineId": 99,
+        "paragraphIndex": 61,
+        "relativeIndex": -3,
+        "text": "She’s still done, though."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 100,
+        "paragraphIndex": 62,
+        "relativeIndex": -2,
+        "text": "There also aren’t any more challengers,"
+      },
+      {
+        "characterId": "the_sword_saint",
+        "characterName": "The Sword Saint",
+        "lineId": 102,
+        "paragraphIndex": 63,
+        "relativeIndex": -1,
+        "text": "I did think the place looked a bit empty,"
+      },
+      {
+        "characterId": "the_sword_saint",
+        "characterName": "The Sword Saint",
+        "lineId": 107,
+        "paragraphIndex": 66,
+        "relativeIndex": 1,
+        "text": "Oh, he is?"
+      },
+      {
+        "characterId": "the_sword_saint",
+        "characterName": "The Sword Saint",
+        "lineId": 109,
+        "paragraphIndex": 66,
+        "relativeIndex": 2,
+        "text": "Well, we'd better get back there soon, then. He did take his time, which makes one wonder what he’s been up to."
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "dina",
+            "characterName": "Dina",
+            "evidence": [
+              "ai_scene_memory"
+            ],
+            "score": 0.99
+          }
+        ],
+        "surface": "she"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 105, \"text\": \"Ree! Ree!\", \"currentCharacterId\": \"dina\", \"currentCharacterName\": \"Dina\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Dina\", \"sourceCandidates\": [\"Dina\", \"The Sword Saint\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.868, \"marginToSecond\": 0.7, \"misattributionRisk\": 0.1824, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.85, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Sword Saint\", \"contextGender\": \"female\", \"contextGenderCue\": \"she screeched\"}}, \"candidates\": [{\"characterId\": null, \"name\": \"Dina\", \"confidence\": 0.868, \"reasons\": null}, {\"characterId\": null, \"name\": \"The Sword Saint\", \"confidence\": 0.168, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 65, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Ree! Ree!” she screeched excitedly.\", \"currentParagraphDialogue\": [{\"lineId\": 105, \"text\": \"Ree! Ree!\", \"characterId\": \"dina\", \"characterName\": \"Dina\", \"isReturning\": false}], \"previousParagraphText\": \"After her snack, Sylphie decided to fly toward himself and Dina as she spotted them. She barreled through the barrier set up for her to fight members of the Pantheon of Life, and after throwing a scornful look toward the young wood elf hunter, that made the poor elf, along with his other party members, leave. Once they were gone, she turned her attention back to Dina and the Sword Saint.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“Oh, he is?” the Sword Saint said with surprise. “Well, we'd better get back there soon, then. He did take his time, which makes one wonder what he’s been up to.”\", \"nextParagraphDialogue\": [{\"lineId\": 107, \"text\": \"Oh, he is?\", \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"isReturning\": false}, {\"lineId\": 109, \"text\": \"Well, we'd better get back there soon, then. He did take his time, which makes one wonder what he’s been up to.\", \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Ree! Ree!\", \"cuePosition\": \"after\", \"cueVerb\": \"screeched\", \"cueVerbType\": \"speech\", \"cueText\": \"she screeched excitedly.\", \"speakerSurface\": \"she\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Ree!\", \"lastSentence\": \"Ree!\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Oh, he is?\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the Sword Saint said with surprise.\", \"speakerSurface\": \"Sword Saint\", \"speakerNameMatch\": \"The Sword Saint\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Oh, he is?\", \"lastSentence\": \"Oh, he is?\"}, {\"quoteIndex\": 1, \"quoteText\": \"Well, we'd better get back there soon, then. He did take his time, which makes one wonder what he’s been up to.\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the Sword Saint said with surprise.\", \"speakerSurface\": \"Sword Saint\", \"speakerNameMatch\": \"The Sword Saint\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Well, we'd better get back there soon, then.\", \"lastSentence\": \"He did take his time, which makes one wonder what he’s been up to.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Ree! Ree!\", \"cuePosition\": \"after\", \"cueVerb\": \"screeched\", \"cueVerbType\": \"speech\", \"cueText\": \"she screeched excitedly.\", \"speakerSurface\": \"she\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Ree!\", \"lastSentence\": \"Ree!\"}, \"sceneEntities\": [{\"surface\": \"she\", \"matches\": [{\"characterId\": \"dina\", \"characterName\": \"Dina\", \"score\": 0.99, \"evidence\": [\"ai_scene_memory\"]}]}], \"candidateCards\": [{\"characterId\": \"dina\", \"characterName\": \"Dina\", \"aliases\": [], \"roleLabels\": [\"dina\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": false}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 97, \"paragraphIndex\": 61, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Hm, true,\"}, {\"relativeIndex\": -3, \"lineId\": 99, \"paragraphIndex\": 61, \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"text\": \"She’s still done, though.\"}, {\"relativeIndex\": -2, \"lineId\": 100, \"paragraphIndex\": 62, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"There also aren’t any more challengers,\"}, {\"relativeIndex\": -1, \"lineId\": 102, \"paragraphIndex\": 63, \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"text\": \"I did think the place looked a bit empty,\"}, {\"relativeIndex\": 1, \"lineId\": 107, \"paragraphIndex\": 66, \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Oh, he is?\"}, {\"relativeIndex\": 2, \"lineId\": 109, \"paragraphIndex\": 66, \"characterId\": \"the_sword_saint\", \"characterName\": \"The Sword Saint\", \"text\": \"Well, we'd better get back there soon, then. He did take his time, which makes one wonder what he’s been up to.\"}], \"chapterCharacters\": [{\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dina\", \"name\": \"Dina\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"sylphie\",\n  \"characterName\": \"Sylphie\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"pronoun_resolution_from_previous_paragraph\",\n    \"explicit_narration_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

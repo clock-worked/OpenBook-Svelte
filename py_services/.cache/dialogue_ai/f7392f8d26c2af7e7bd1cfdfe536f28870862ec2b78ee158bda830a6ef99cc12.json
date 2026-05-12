@@ -1,0 +1,307 @@
+{
+  "cacheKey": "f7392f8d26c2af7e7bd1cfdfe536f28870862ec2b78ee158bda830a6ef99cc12",
+  "createdAt": "2026-04-01T18:41:24.340563+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "miranda",
+    "characterName": "Miranda",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "previous_speaker_continuity",
+      "explicit_narration_cue_previous_paragraph",
+      "dialogue_content_fits_speaker_and_addressee",
+      "next_paragraph_reaction_confirms_addressee"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "miranda"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "characterName": "Iludar",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "iludar"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "kindroth"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "name": "Blood",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "vesperia",
+        "name": "Vesperia",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sandy",
+        "name": "Sandy",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "name": "Iludar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "william",
+        "name": "William",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "I want to honor your request from earlier.",
+      "lastSentence": "We shall give your loyal soldiers a chance to recompense.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "I want to honor your request from earlier. We shall give your loyal soldiers a chance to recompense.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": null,
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Miranda",
+        "sourceCandidates": [
+          "Miranda",
+          "Iludar"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "miranda",
+          "confidence": 0.816,
+          "name": "Miranda",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "iludar",
+          "confidence": 0.456,
+          "name": "Iludar",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "miranda",
+      "currentCharacterName": "Miranda",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 102,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "I want to honor your request from earlier. We shall give your loyal soldiers a chance to recompense."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "miranda",
+          "characterName": "Miranda",
+          "isReturning": true,
+          "lineId": 102,
+          "text": "I want to honor your request from earlier. We shall give your loyal soldiers a chance to recompense."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I want to honor your request from earlier.",
+          "lastSentence": "We shall give your loyal soldiers a chance to recompense.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I want to honor your request from earlier. We shall give your loyal soldiers a chance to recompense.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“I want to honor your request from earlier. We shall give your loyal soldiers a chance to recompense.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Iludar looked relieved before switching to confusion until he landed on realization. He tried to mobilize the energy in his body again, but it was far too late. The ground below him had already turned into a murky green swamp as several arms shot up and grabbed him before pulling him under, never to be seen again.",
+      "paragraphIndex": 65,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": false,
+          "lineId": 99,
+          "text": "Should I also be kneeling in surrender?"
+        },
+        {
+          "characterId": "miranda",
+          "characterName": "Miranda",
+          "isReturning": false,
+          "lineId": 100,
+          "text": "We’ll find out later if that’s needed,"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Miranda said, not joking at all, before she looked over at Iludar and smiled.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "We’ll find out later if that’s needed,",
+          "lastSentence": "We’ll find out later if that’s needed,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "We’ll find out later if that’s needed,",
+          "speakerNameMatch": "Miranda",
+          "speakerSurface": "Miranda"
+        }
+      ],
+      "previousParagraphText": "“We’ll find out later if that’s needed,” Miranda said, not joking at all, before she looked over at Iludar and smiled."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "lineId": 96,
+        "paragraphIndex": 62,
+        "relativeIndex": -4,
+        "text": "I will need a long talk with you later, though. You say it’s complicated, but do humor me anyway."
+      },
+      {
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "lineId": 97,
+        "paragraphIndex": 63,
+        "relativeIndex": -3,
+        "text": "Alright, that was the plan anyway,"
+      },
+      {
+        "characterId": "kindroth",
+        "characterName": "Kindroth",
+        "lineId": 99,
+        "paragraphIndex": 64,
+        "relativeIndex": -2,
+        "text": "Should I also be kneeling in surrender?"
+      },
+      {
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "lineId": 100,
+        "paragraphIndex": 64,
+        "relativeIndex": -1,
+        "text": "We’ll find out later if that’s needed,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 102, \"text\": \"I want to honor your request from earlier. We shall give your loyal soldiers a chance to recompense.\", \"currentCharacterId\": \"miranda\", \"currentCharacterName\": \"Miranda\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Miranda\", \"sourceCandidates\": [\"Miranda\", \"Iludar\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": null, \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"miranda\", \"name\": \"Miranda\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 65, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I want to honor your request from earlier. We shall give your loyal soldiers a chance to recompense.”\", \"currentParagraphDialogue\": [{\"lineId\": 102, \"text\": \"I want to honor your request from earlier. We shall give your loyal soldiers a chance to recompense.\", \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"isReturning\": true}], \"previousParagraphText\": \"“We’ll find out later if that’s needed,” Miranda said, not joking at all, before she looked over at Iludar and smiled.\", \"previousParagraphDialogue\": [{\"lineId\": 99, \"text\": \"Should I also be kneeling in surrender?\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": false}, {\"lineId\": 100, \"text\": \"We’ll find out later if that’s needed,\", \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"isReturning\": false}], \"nextParagraphText\": \"Iludar looked relieved before switching to confusion until he landed on realization. He tried to mobilize the energy in his body again, but it was far too late. The ground below him had already turned into a murky green swamp as several arms shot up and grabbed him before pulling him under, never to be seen again.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I want to honor your request from earlier. We shall give your loyal soldiers a chance to recompense.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I want to honor your request from earlier.\", \"lastSentence\": \"We shall give your loyal soldiers a chance to recompense.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"We’ll find out later if that’s needed,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Miranda said, not joking at all, before she looked over at Iludar and smiled.\", \"speakerSurface\": \"Miranda\", \"speakerNameMatch\": \"Miranda\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"We’ll find out later if that’s needed,\", \"lastSentence\": \"We’ll find out later if that’s needed,\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I want to honor your request from earlier. We shall give your loyal soldiers a chance to recompense.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I want to honor your request from earlier.\", \"lastSentence\": \"We shall give your loyal soldiers a chance to recompense.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"aliases\": [], \"roleLabels\": [\"miranda\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"iludar\", \"characterName\": \"Iludar\", \"aliases\": [], \"roleLabels\": [\"iludar\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [\"kindroth\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 96, \"paragraphIndex\": 62, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"I will need a long talk with you later, though. You say it’s complicated, but do humor me anyway.\"}, {\"relativeIndex\": -3, \"lineId\": 97, \"paragraphIndex\": 63, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"Alright, that was the plan anyway,\"}, {\"relativeIndex\": -2, \"lineId\": 99, \"paragraphIndex\": 64, \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"text\": \"Should I also be kneeling in surrender?\"}, {\"relativeIndex\": -1, \"lineId\": 100, \"paragraphIndex\": 64, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"We’ll find out later if that’s needed,\"}], \"chapterCharacters\": [{\"characterId\": \"blood\", \"name\": \"Blood\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vesperia\", \"name\": \"Vesperia\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sandy\", \"name\": \"Sandy\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"william\", \"name\": \"William\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"miranda\",\n  \"characterName\": \"Miranda\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"previous_speaker_continuity\",\n    \"explicit_narration_cue_previous_paragraph\",\n    \"dialogue_content_fits_speaker_and_addressee\",\n    \"next_paragraph_reaction_confirms_addressee\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

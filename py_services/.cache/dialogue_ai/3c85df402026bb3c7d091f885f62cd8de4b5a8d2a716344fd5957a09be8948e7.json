@@ -1,0 +1,253 @@
+{
+  "cacheKey": "3c85df402026bb3c7d091f885f62cd8de4b5a8d2a716344fd5957a09be8948e7",
+  "createdAt": "2026-04-02T19:57:15.360192+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "artemis",
+    "characterName": "Artemis",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_pre_quote_cue",
+      "dialogue_continuity",
+      "content_matches_action"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "artemis"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Artemis nocked an arrow as she took aim.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "As I said, time is a powerful concept, and with the stats of a mortal, it’s hard to use.",
+      "lastSentence": "With my limited power, I can do a few things, though.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "As I said, time is a powerful concept, and with the stats of a mortal, it’s hard to use. All concepts still require some level of energy to truly display what they’re capable of. With my limited power, I can do a few things, though.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Artemis",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Artemis"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Artemis",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 25,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "As I said, time is a powerful concept, and with the stats of a mortal, it’s hard to use. All concepts still require some level of energy to truly display what they’re capable of. With my limited power, I can do a few things, though."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 25,
+          "text": "As I said, time is a powerful concept, and with the stats of a mortal, it’s hard to use. All concepts still require some level of energy to truly display what they’re capable of. With my limited power, I can do a few things, though."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Artemis nocked an arrow as she took aim.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "As I said, time is a powerful concept, and with the stats of a mortal, it’s hard to use.",
+          "lastSentence": "With my limited power, I can do a few things, though.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "As I said, time is a powerful concept, and with the stats of a mortal, it’s hard to use. All concepts still require some level of energy to truly display what they’re capable of. With my limited power, I can do a few things, though.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Artemis nocked an arrow as she took aim. “As I said, time is a powerful concept, and with the stats of a mortal, it’s hard to use. All concepts still require some level of energy to truly display what they’re capable of. With my limited power, I can do a few things, though.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "Watching closely, Jake saw the movement of energy he recognized as having the concept of time mixed into it swirl around the arrow. Artemis let go of the string a moment later as the arrow flew forward... and slowed down. Strafing to the side, Artemis shot two more arrows, both of them doing the same as they flew forward about a meter before stopping.",
+      "paragraphIndex": 21,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Jake nodded along, understanding that part. Perhaps the easiest example for Jake was the concept of flying. When in E-grade, Jake needed wings to fly around, while in D-grade, he could easily fly simply by using his mana. Everyone could fly through the use of their energies in one way or another, not because everyone learned the same magic but because everyone understood some of the basic laws of the multiverse, at least enough to fly around a bit."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 7,
+        "paragraphIndex": 6,
+        "relativeIndex": -4,
+        "text": "Concepts aren’t something one easily understands, especially if you’re trying to deepen your comprehension of difficult concepts. The concept of time is notoriously one of the hardest of all, and it’s not at all surprising it takes some time. Also note that often understanding of concepts doesn’t come a little at a time. It comes in floods as one steps over certain boundaries of insight."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 18,
+        "paragraphIndex": 17,
+        "relativeIndex": -3,
+        "text": "These traits aren’t to be viewed in isolation from one another. The Dao Sect has the most people who specialize in mastering concepts above anything else, and according to their teachings, one needs all three. They support one another and create a greater whole, so merely being strong in one is far from enough."
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 20,
+        "paragraphIndex": 19,
+        "relativeIndex": -2,
+        "text": "I also have some understanding of the concept of time, but not because I ever practiced it,"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 22,
+        "paragraphIndex": 19,
+        "relativeIndex": -1,
+        "text": "As you progress through the grades, you innately just get more insight into how the world works. You don’t even feel that you do, but as a C-grade, your unknowing understanding of the world is leaps beyond what they were as, say, an E-grade. Understanding all concepts at a low level becomes elementary once you reach a high enough level. There is a reason why you will have a very hard time coming across any S-grade unable to teleport or any god unable to stop time on a localized scale."
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 29,
+        "paragraphIndex": 25,
+        "relativeIndex": 1,
+        "text": "This body really is pathetic,"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 31,
+        "paragraphIndex": 25,
+        "relativeIndex": 2,
+        "text": "Do you know what I did there?"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 25, \"text\": \"As I said, time is a powerful concept, and with the stats of a mortal, it’s hard to use. All concepts still require some level of energy to truly display what they’re capable of. With my limited power, I can do a few things, though.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Artemis\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Artemis\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 21, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Artemis nocked an arrow as she took aim. “As I said, time is a powerful concept, and with the stats of a mortal, it’s hard to use. All concepts still require some level of energy to truly display what they’re capable of. With my limited power, I can do a few things, though.”\", \"currentParagraphDialogue\": [{\"lineId\": 25, \"text\": \"As I said, time is a powerful concept, and with the stats of a mortal, it’s hard to use. All concepts still require some level of energy to truly display what they’re capable of. With my limited power, I can do a few things, though.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"Jake nodded along, understanding that part. Perhaps the easiest example for Jake was the concept of flying. When in E-grade, Jake needed wings to fly around, while in D-grade, he could easily fly simply by using his mana. Everyone could fly through the use of their energies in one way or another, not because everyone learned the same magic but because everyone understood some of the basic laws of the multiverse, at least enough to fly around a bit.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Watching closely, Jake saw the movement of energy he recognized as having the concept of time mixed into it swirl around the arrow. Artemis let go of the string a moment later as the arrow flew forward... and slowed down. Strafing to the side, Artemis shot two more arrows, both of them doing the same as they flew forward about a meter before stopping.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"As I said, time is a powerful concept, and with the stats of a mortal, it’s hard to use. All concepts still require some level of energy to truly display what they’re capable of. With my limited power, I can do a few things, though.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Artemis nocked an arrow as she took aim.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"As I said, time is a powerful concept, and with the stats of a mortal, it’s hard to use.\", \"lastSentence\": \"With my limited power, I can do a few things, though.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"As I said, time is a powerful concept, and with the stats of a mortal, it’s hard to use. All concepts still require some level of energy to truly display what they’re capable of. With my limited power, I can do a few things, though.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Artemis nocked an arrow as she took aim.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"As I said, time is a powerful concept, and with the stats of a mortal, it’s hard to use.\", \"lastSentence\": \"With my limited power, I can do a few things, though.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [], \"roleLabels\": [\"artemis\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 7, \"paragraphIndex\": 6, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Concepts aren’t something one easily understands, especially if you’re trying to deepen your comprehension of difficult concepts. The concept of time is notoriously one of the hardest of all, and it’s not at all surprising it takes some time. Also note that often understanding of concepts doesn’t come a little at a time. It comes in floods as one steps over certain boundaries of insight.\"}, {\"relativeIndex\": -3, \"lineId\": 18, \"paragraphIndex\": 17, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"These traits aren’t to be viewed in isolation from one another. The Dao Sect has the most people who specialize in mastering concepts above anything else, and according to their teachings, one needs all three. They support one another and create a greater whole, so merely being strong in one is far from enough.\"}, {\"relativeIndex\": -2, \"lineId\": 20, \"paragraphIndex\": 19, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"I also have some understanding of the concept of time, but not because I ever practiced it,\"}, {\"relativeIndex\": -1, \"lineId\": 22, \"paragraphIndex\": 19, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"As you progress through the grades, you innately just get more insight into how the world works. You don’t even feel that you do, but as a C-grade, your unknowing understanding of the world is leaps beyond what they were as, say, an E-grade. Understanding all concepts at a low level becomes elementary once you reach a high enough level. There is a reason why you will have a very hard time coming across any S-grade unable to teleport or any god unable to stop time on a localized scale.\"}, {\"relativeIndex\": 1, \"lineId\": 29, \"paragraphIndex\": 25, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"This body really is pathetic,\"}, {\"relativeIndex\": 2, \"lineId\": 31, \"paragraphIndex\": 25, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Do you know what I did there?\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"artemis\",\n  \"characterName\": \"Artemis\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_pre_quote_cue\",\n    \"dialogue_continuity\",\n    \"content_matches_action\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

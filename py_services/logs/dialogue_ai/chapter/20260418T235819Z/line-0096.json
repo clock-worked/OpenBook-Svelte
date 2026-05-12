@@ -1,0 +1,355 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "312df325f271b4c6d6190966438ffd5bacf363cb67e34c00999efeee24cdca1a",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\312df325f271b4c6d6190966438ffd5bacf363cb67e34c00999efeee24cdca1a.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "confidence": 0.99,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "speaker_mentioned_in_third_person"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake",
+              "protagonist",
+              "lord thayne",
+              "thayne"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "miranda",
+            "characterName": "Miranda",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "miranda"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Godqueen"
+            ],
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "artemis",
+              "godqueen"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "miranda",
+            "name": "Miranda",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Godqueen"
+            ],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Miranda shook her head.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities.",
+          "lastSentence": "I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities.",
+          "mentionedEntities": [
+            "Jake",
+            "Jake"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": true,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [
+                "Jake"
+              ],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Artemis",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.524,
+            "misattributionRisk": 0.1568,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "Artemis"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.98
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.98,
+              "name": "Jake",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.456,
+              "name": "Artemis",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [
+            "Protagonist",
+            "Lord Thayne"
+          ],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 96,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 1,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 94,
+              "text": "No,"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 96,
+              "text": "I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "No,",
+              "lastSentence": "No,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "No,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Miranda shook her head.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities.",
+              "lastSentence": "I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities.",
+              "mentionedEntities": [
+                "Jake",
+                "Jake"
+              ],
+              "quoteIndex": 1,
+              "quoteText": "I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“No,” Miranda shook her head. “I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities.”",
+          "dialogueLineCount": 2,
+          "paragraphIndex": 42
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "miranda",
+            "characterName": "Miranda",
+            "lineId": 88,
+            "paragraphIndex": 39,
+            "relativeIndex": -4,
+            "text": "Alright, and I take it this is something to keep under wraps for now until something more official is communicated?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 90,
+            "paragraphIndex": 40,
+            "relativeIndex": -3,
+            "text": "It is,"
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 92,
+            "paragraphIndex": 41,
+            "relativeIndex": -2,
+            "text": "You seem awfully nonchalant. Did you already know?"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 94,
+            "paragraphIndex": 42,
+            "relativeIndex": -1,
+            "text": "No,"
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 97,
+            "paragraphIndex": 43,
+            "relativeIndex": 1,
+            "text": "Is it just me, or is she an awful lot more casual now than when she greeted me before?"
+          },
+          {
+            "characterId": "miranda",
+            "characterName": "Miranda",
+            "lineId": 99,
+            "paragraphIndex": 44,
+            "relativeIndex": 2,
+            "text": "If you can put up with Jake, you aren’t the type to care much about etiquette,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 96, \"text\": \"I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\", \"Lord Thayne\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Artemis\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.524, \"misattributionRisk\": 0.1568, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Jake\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Artemis\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.98, \"reasons\": null}, {\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 42, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“No,” Miranda shook her head. “I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities.”\", \"currentParagraphDialogue\": [{\"lineId\": 94, \"text\": \"No,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 96, \"text\": \"I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"No,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"No,\", \"lastSentence\": \"No,\"}, {\"quoteIndex\": 1, \"quoteText\": \"I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Miranda shook her head.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Jake\", \"Jake\"], \"addressedEntity\": null, \"firstSentence\": \"I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities.\", \"lastSentence\": \"I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Miranda shook her head.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Jake\", \"Jake\"], \"addressedEntity\": null, \"firstSentence\": \"I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities.\", \"lastSentence\": \"I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"aliases\": [], \"roleLabels\": [\"miranda\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [\"artemis\", \"godqueen\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 88, \"paragraphIndex\": 39, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"Alright, and I take it this is something to keep under wraps for now until something more official is communicated?\"}, {\"relativeIndex\": -3, \"lineId\": 90, \"paragraphIndex\": 40, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"It is,\"}, {\"relativeIndex\": -2, \"lineId\": 92, \"paragraphIndex\": 41, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"You seem awfully nonchalant. Did you already know?\"}, {\"relativeIndex\": -1, \"lineId\": 94, \"paragraphIndex\": 42, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"No,\"}, {\"relativeIndex\": 1, \"lineId\": 97, \"paragraphIndex\": 43, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Is it just me, or is she an awful lot more casual now than when she greeted me before?\"}, {\"relativeIndex\": 2, \"lineId\": 99, \"paragraphIndex\": 44, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"If you can put up with Jake, you aren’t the type to care much about etiquette,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"miranda\",\n  \"characterName\": \"Miranda\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"speaker_mentioned_in_third_person\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0127 - Chapter 1184 - Caught A Good One/chapter.txt",
+  "currentCharacterId": "jake",
+  "currentCharacterName": "Jake",
+  "currentParagraphText": "“No,” Miranda shook her head. “I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.99,
+    "currentCharacterId": "jake",
+    "currentCharacterName": "Jake",
+    "currentParagraphText": "“No,” Miranda shook her head. “I just don’t care about Jake’s personal love life unless it impacts me or my responsibilities.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 96,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Is it just me, or is she an awful lot more casual now than when she greeted me before?” Artemis asked, looking at Jake.",
+    "paragraphIndex": 42,
+    "previousParagraphText": "“You seem awfully nonchalant. Did you already know?” Artemis questioned the Verdant Witch.",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "speaker_mentioned_in_third_person"
+    ],
+    "suggestedCharacterId": "miranda",
+    "suggestedCharacterName": "Miranda",
+    "toolTrace": []
+  },
+  "lineId": 96,
+  "nextParagraphText": "“Is it just me, or is she an awful lot more casual now than when she greeted me before?” Artemis asked, looking at Jake.",
+  "paragraphIndex": 42,
+  "previousParagraphText": "“You seem awfully nonchalant. Did you already know?” Artemis questioned the Verdant Witch."
+}

@@ -1,0 +1,345 @@
+{
+  "cacheKey": "535ddbbf5592b2caffd351d914c1896bb3b11c81856d95318ec055f646cc6279",
+  "createdAt": "2026-05-09T03:03:54.130219+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "aeon",
+    "characterName": "Aeon",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "aeon",
+        "characterName": "Aeon",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "aeon"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "aeon",
+        "name": "Aeon",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "the viper",
+        "name": "The Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy",
+          "Vilas",
+          "Vilastromoz"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Attendant",
+          "natures-attendant",
+          "natures-attendant-2",
+          "Nature Attendant",
+          "Life"
+        ],
+        "characterId": "natures-attendant",
+        "name": "Nature's Attendant",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Void Dweller"
+        ],
+        "characterId": "oras",
+        "name": "Oras",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "gudrun",
+        "name": "Gudrun",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "valdemar",
+        "name": "Valdemar",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "holy mother",
+        "name": "Holy Mother",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Aeon shook his head.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "As you said, they were operating under the assumption that none of them had been identified.",
+      "lastSentence": "It’s only due to the Chosen we have at least some insight to operate from.",
+      "mentionedEntities": [
+        "Chosen"
+      ],
+      "quoteIndex": 1,
+      "quoteText": "As you said, they were operating under the assumption that none of them had been identified. With that in mind, it makes sense for them to reveal nothing, leaving us to wonder and make false assumptions all on our own. It’s only due to the Chosen we have at least some insight to operate from.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "Chosen"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "The Malefic Viper",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.524,
+        "misattributionRisk": 0.1568,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Nature's Attendant",
+        "sourceCandidates": [
+          "Nature's Attendant",
+          "Aeon"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.98,
+          "name": "Nature's Attendant",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Aeon",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "nature's_attendant",
+      "currentCharacterName": "Nature'S Attendant",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 29,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "As you said, they were operating under the assumption that none of them had been identified. With that in mind, it makes sense for them to reveal nothing, leaving us to wonder and make false assumptions all on our own. It’s only due to the Chosen we have at least some insight to operate from."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 27,
+          "text": "Not necessarily,"
+        },
+        {
+          "characterId": "nature's_attendant",
+          "characterName": "Nature'S Attendant",
+          "isReturning": true,
+          "lineId": 29,
+          "text": "As you said, they were operating under the assumption that none of them had been identified. With that in mind, it makes sense for them to reveal nothing, leaving us to wonder and make false assumptions all on our own. It’s only due to the Chosen we have at least some insight to operate from."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Not necessarily,",
+          "lastSentence": "Not necessarily,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Not necessarily,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Aeon shook his head.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "As you said, they were operating under the assumption that none of them had been identified.",
+          "lastSentence": "It’s only due to the Chosen we have at least some insight to operate from.",
+          "mentionedEntities": [
+            "Chosen"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "As you said, they were operating under the assumption that none of them had been identified. With that in mind, it makes sense for them to reveal nothing, leaving us to wonder and make false assumptions all on our own. It’s only due to the Chosen we have at least some insight to operate from.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Not necessarily,” Aeon shook his head. “As you said, they were operating under the assumption that none of them had been identified. With that in mind, it makes sense for them to reveal nothing, leaving us to wonder and make false assumptions all on our own. It’s only due to the Chosen we have at least some insight to operate from.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 14
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "aeon",
+        "characterName": "Aeon",
+        "lineId": 21,
+        "paragraphIndex": 10,
+        "relativeIndex": -4,
+        "text": "Going by the historic actions of Vilas, it’s even likely they expected him to act out revenge on those he believed responsible. If the presumed-dead member of the Holy Church was the only one left behind and blew themselves up using the holy concept, all clues would have pointed toward them being responsible,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 23,
+        "paragraphIndex": 11,
+        "relativeIndex": -3,
+        "text": "If that was the case, why wouldn’t they still have left this one god behind to take the blame?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 25,
+        "paragraphIndex": 12,
+        "relativeIndex": -2,
+        "text": "These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 27,
+        "paragraphIndex": 14,
+        "relativeIndex": -1,
+        "text": "Not necessarily,"
+      },
+      {
+        "characterId": "the_malefic_viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 30,
+        "paragraphIndex": 15,
+        "relativeIndex": 1,
+        "text": "As I said just before you got here, I don’t think any of us think you’re involved,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 32,
+        "paragraphIndex": 16,
+        "relativeIndex": 2,
+        "text": "I didn’t assume you did,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 29, \"text\": \"As you said, they were operating under the assumption that none of them had been identified. With that in mind, it makes sense for them to reveal nothing, leaving us to wonder and make false assumptions all on our own. It’s only due to the Chosen we have at least some insight to operate from.\", \"currentCharacterId\": \"nature's_attendant\", \"currentCharacterName\": \"Nature'S Attendant\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Nature's Attendant\", \"sourceCandidates\": [\"Nature's Attendant\", \"Aeon\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.524, \"misattributionRisk\": 0.1568, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Chosen\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Malefic Viper\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Nature's Attendant\", \"confidence\": 0.98, \"reasons\": null}, {\"characterId\": null, \"name\": \"Aeon\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 14, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Not necessarily,” Aeon shook his head. “As you said, they were operating under the assumption that none of them had been identified. With that in mind, it makes sense for them to reveal nothing, leaving us to wonder and make false assumptions all on our own. It’s only due to the Chosen we have at least some insight to operate from.”\", \"currentParagraphDialogue\": [{\"lineId\": 27, \"text\": \"Not necessarily,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 29, \"text\": \"As you said, they were operating under the assumption that none of them had been identified. With that in mind, it makes sense for them to reveal nothing, leaving us to wonder and make false assumptions all on our own. It’s only due to the Chosen we have at least some insight to operate from.\", \"characterId\": \"nature's_attendant\", \"characterName\": \"Nature'S Attendant\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Not necessarily,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Not necessarily,\", \"lastSentence\": \"Not necessarily,\"}, {\"quoteIndex\": 1, \"quoteText\": \"As you said, they were operating under the assumption that none of them had been identified. With that in mind, it makes sense for them to reveal nothing, leaving us to wonder and make false assumptions all on our own. It’s only due to the Chosen we have at least some insight to operate from.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Aeon shook his head.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Chosen\"], \"addressedEntity\": null, \"firstSentence\": \"As you said, they were operating under the assumption that none of them had been identified.\", \"lastSentence\": \"It’s only due to the Chosen we have at least some insight to operate from.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"As you said, they were operating under the assumption that none of them had been identified. With that in mind, it makes sense for them to reveal nothing, leaving us to wonder and make false assumptions all on our own. It’s only due to the Chosen we have at least some insight to operate from.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Aeon shook his head.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Chosen\"], \"addressedEntity\": null, \"firstSentence\": \"As you said, they were operating under the assumption that none of them had been identified.\", \"lastSentence\": \"It’s only due to the Chosen we have at least some insight to operate from.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"aeon\", \"characterName\": \"Aeon\", \"aliases\": [], \"roleLabels\": [\"aeon\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 21, \"paragraphIndex\": 10, \"characterId\": \"aeon\", \"characterName\": \"Aeon\", \"text\": \"Going by the historic actions of Vilas, it’s even likely they expected him to act out revenge on those he believed responsible. If the presumed-dead member of the Holy Church was the only one left behind and blew themselves up using the holy concept, all clues would have pointed toward them being responsible,\"}, {\"relativeIndex\": -3, \"lineId\": 23, \"paragraphIndex\": 11, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"If that was the case, why wouldn’t they still have left this one god behind to take the blame?\"}, {\"relativeIndex\": -2, \"lineId\": 25, \"paragraphIndex\": 12, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"These would-be kidnappers were operating under the assumption that no one could have identified them, so blowing up one of their members to blame my Church would be reasonable if their desire was indeed to lay blame on me.\"}, {\"relativeIndex\": -1, \"lineId\": 27, \"paragraphIndex\": 14, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Not necessarily,\"}, {\"relativeIndex\": 1, \"lineId\": 30, \"paragraphIndex\": 15, \"characterId\": \"the_malefic_viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"As I said just before you got here, I don’t think any of us think you’re involved,\"}, {\"relativeIndex\": 2, \"lineId\": 32, \"paragraphIndex\": 16, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I didn’t assume you did,\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"aeon\", \"name\": \"Aeon\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the viper\", \"name\": \"The Viper\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\", \"Vilas\", \"Vilastromoz\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"natures-attendant\", \"name\": \"Nature's Attendant\", \"aliases\": [\"Attendant\", \"natures-attendant\", \"natures-attendant-2\", \"Nature Attendant\", \"Life\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"oras\", \"name\": \"Oras\", \"aliases\": [\"Void Dweller\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"gudrun\", \"name\": \"Gudrun\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"valdemar\", \"name\": \"Valdemar\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"holy mother\", \"name\": \"Holy Mother\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"aeon\",\n  \"characterName\": \"Aeon\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

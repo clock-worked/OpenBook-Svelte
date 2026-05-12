@@ -1,0 +1,334 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "bf20bf7998455549b187ac9ef7b219a63292d994a3b071c46333cc444936050a",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\bf20bf7998455549b187ac9ef7b219a63292d994a3b071c46333cc444936050a.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "needs_review",
+        "aliasToAdd": null,
+        "characterId": null,
+        "characterName": null,
+        "confidence": 0.1,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "not_dialogue",
+          "narration_quote"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": true
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "hank",
+            "characterName": "Hank",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "hank"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "hank",
+            "name": "Hank",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "people in Haven who still spoke to Jake like a normal person.",
+          "cueVerb": "spoke",
+          "cueVerbType": "speech",
+          "firstSentence": "normal",
+          "lastSentence": "normal",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "normal",
+          "speakerNameMatch": null,
+          "speakerSurface": "people in Haven who still"
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": true,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": true,
+              "nextDialogueLegacy": "Hank",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.7,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.98,
+            "misattributionRisk": 0.020000000000000018,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Hank",
+            "sourceCandidates": [
+              "Hank"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.98
+          },
+          "candidates": [
+            {
+              "characterId": "hank",
+              "confidence": 0.98,
+              "name": "Hank",
+              "reasons": [
+                "parser_match",
+                "legacy_match",
+                "same_paragraph_continuation",
+                "speech_verb"
+              ]
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "hank",
+          "currentCharacterName": "Hank",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 64,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "normal"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 1,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "hank",
+              "characterName": "Hank",
+              "isReturning": false,
+              "lineId": 62,
+              "text": "Do try to be more mindful,"
+            },
+            {
+              "characterId": "hank",
+              "characterName": "Hank",
+              "isReturning": false,
+              "lineId": 64,
+              "text": "normal"
+            },
+            {
+              "characterId": "hank",
+              "characterName": "Hank",
+              "isReturning": true,
+              "lineId": 66,
+              "text": "This time, you got lucky, but what if the angle had been bad? You could have hit the city, and I hope I don’t need to tell you why that could have been bad."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Hank said in a slightly scolding tone, the construction manager being one of the few",
+              "cueVerb": "said",
+              "cueVerbType": "speech",
+              "firstSentence": "Do try to be more mindful,",
+              "lastSentence": "Do try to be more mindful,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Do try to be more mindful,",
+              "speakerNameMatch": "Hank",
+              "speakerSurface": "Hank"
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "people in Haven who still spoke to Jake like a normal person.",
+              "cueVerb": "spoke",
+              "cueVerbType": "speech",
+              "firstSentence": "normal",
+              "lastSentence": "normal",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "normal",
+              "speakerNameMatch": null,
+              "speakerSurface": "people in Haven who still"
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "people in Haven who still spoke to Jake like a normal person.",
+              "cueVerb": "spoke",
+              "cueVerbType": "speech",
+              "firstSentence": "This time, you got lucky, but what if the angle had been bad?",
+              "lastSentence": "You could have hit the city, and I hope I don’t need to tell you why that could have been bad.",
+              "mentionedEntities": [],
+              "quoteIndex": 2,
+              "quoteText": "This time, you got lucky, but what if the angle had been bad? You could have hit the city, and I hope I don’t need to tell you why that could have been bad.",
+              "speakerNameMatch": null,
+              "speakerSurface": "people in Haven who still"
+            }
+          ],
+          "currentParagraphText": "“Do try to be more mindful,” Hank said in a slightly scolding tone, the construction manager being one of the few “normal” people in Haven who still spoke to Jake like a normal person. “This time, you got lucky, but what if the angle had been bad? You could have hit the city, and I hope I don’t need to tell you why that could have been bad.”",
+          "dialogueLineCount": 3,
+          "paragraphIndex": 57
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 36,
+            "paragraphIndex": 34,
+            "relativeIndex": -4,
+            "text": "That I shouldn’t play with explosives when living in a glass bubble,"
+          },
+          {
+            "characterId": "hank",
+            "characterName": "Hank",
+            "lineId": 38,
+            "paragraphIndex": 35,
+            "relativeIndex": -3,
+            "text": "I really hope you didn’t just learn that today,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 40,
+            "paragraphIndex": 36,
+            "relativeIndex": -2,
+            "text": "Well, I certainly learned what NOT to do today,"
+          },
+          {
+            "characterId": "hank",
+            "characterName": "Hank",
+            "lineId": 62,
+            "paragraphIndex": 57,
+            "relativeIndex": -1,
+            "text": "Do try to be more mindful,"
+          },
+          {
+            "characterId": "hank",
+            "characterName": "Hank",
+            "lineId": 66,
+            "paragraphIndex": 57,
+            "relativeIndex": 1,
+            "text": "This time, you got lucky, but what if the angle had been bad? You could have hit the city, and I hope I don’t need to tell you why that could have been bad."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 67,
+            "paragraphIndex": 58,
+            "relativeIndex": 2,
+            "text": "Yeah, I know,"
+          }
+        ],
+        "sceneEntities": [
+          {
+            "matches": [
+              {
+                "characterId": "hank",
+                "characterName": "Hank",
+                "evidence": [
+                  "ai_scene_memory"
+                ],
+                "score": 0.99
+              }
+            ],
+            "surface": "hank"
+          }
+        ]
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 64, \"text\": \"normal\", \"currentCharacterId\": \"hank\", \"currentCharacterName\": \"Hank\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Hank\", \"sourceCandidates\": [\"Hank\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.98, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Hank\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"hank\", \"name\": \"Hank\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"same_paragraph_continuation\", \"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 57, \"currentLinePosition\": 1, \"dialogueLineCount\": 3, \"currentParagraphText\": \"“Do try to be more mindful,” Hank said in a slightly scolding tone, the construction manager being one of the few “normal” people in Haven who still spoke to Jake like a normal person. “This time, you got lucky, but what if the angle had been bad? You could have hit the city, and I hope I don’t need to tell you why that could have been bad.”\", \"currentParagraphDialogue\": [{\"lineId\": 62, \"text\": \"Do try to be more mindful,\", \"characterId\": \"hank\", \"characterName\": \"Hank\", \"isReturning\": false}, {\"lineId\": 64, \"text\": \"normal\", \"characterId\": \"hank\", \"characterName\": \"Hank\", \"isReturning\": false}, {\"lineId\": 66, \"text\": \"This time, you got lucky, but what if the angle had been bad? You could have hit the city, and I hope I don’t need to tell you why that could have been bad.\", \"characterId\": \"hank\", \"characterName\": \"Hank\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Do try to be more mindful,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Hank said in a slightly scolding tone, the construction manager being one of the few\", \"speakerSurface\": \"Hank\", \"speakerNameMatch\": \"Hank\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Do try to be more mindful,\", \"lastSentence\": \"Do try to be more mindful,\"}, {\"quoteIndex\": 1, \"quoteText\": \"normal\", \"cuePosition\": \"after\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"people in Haven who still spoke to Jake like a normal person.\", \"speakerSurface\": \"people in Haven who still\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"normal\", \"lastSentence\": \"normal\"}, {\"quoteIndex\": 2, \"quoteText\": \"This time, you got lucky, but what if the angle had been bad? You could have hit the city, and I hope I don’t need to tell you why that could have been bad.\", \"cuePosition\": \"before\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"people in Haven who still spoke to Jake like a normal person.\", \"speakerSurface\": \"people in Haven who still\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"This time, you got lucky, but what if the angle had been bad?\", \"lastSentence\": \"You could have hit the city, and I hope I don’t need to tell you why that could have been bad.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"normal\", \"cuePosition\": \"after\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"people in Haven who still spoke to Jake like a normal person.\", \"speakerSurface\": \"people in Haven who still\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"normal\", \"lastSentence\": \"normal\"}, \"sceneEntities\": [{\"surface\": \"hank\", \"matches\": [{\"characterId\": \"hank\", \"characterName\": \"Hank\", \"score\": 0.99, \"evidence\": [\"ai_scene_memory\"]}]}], \"candidateCards\": [{\"characterId\": \"hank\", \"characterName\": \"Hank\", \"aliases\": [], \"roleLabels\": [\"hank\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 36, \"paragraphIndex\": 34, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"That I shouldn’t play with explosives when living in a glass bubble,\"}, {\"relativeIndex\": -3, \"lineId\": 38, \"paragraphIndex\": 35, \"characterId\": \"hank\", \"characterName\": \"Hank\", \"text\": \"I really hope you didn’t just learn that today,\"}, {\"relativeIndex\": -2, \"lineId\": 40, \"paragraphIndex\": 36, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Well, I certainly learned what NOT to do today,\"}, {\"relativeIndex\": -1, \"lineId\": 62, \"paragraphIndex\": 57, \"characterId\": \"hank\", \"characterName\": \"Hank\", \"text\": \"Do try to be more mindful,\"}, {\"relativeIndex\": 1, \"lineId\": 66, \"paragraphIndex\": 57, \"characterId\": \"hank\", \"characterName\": \"Hank\", \"text\": \"This time, you got lucky, but what if the angle had been bad? You could have hit the city, and I hope I don’t need to tell you why that could have been bad.\"}, {\"relativeIndex\": 2, \"lineId\": 67, \"paragraphIndex\": 58, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Yeah, I know,\"}], \"chapterCharacters\": [{\"characterId\": \"hank\", \"name\": \"Hank\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"needs_review\",\n  \"characterId\": null,\n  \"characterName\": null,\n  \"confidence\": 0.1,\n  \"reasonCodes\": [\n    \"not_dialogue\",\n    \"narration_quote\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0013 - Chapter 1070 - Across the 93rd Universe",
+  "currentCharacterId": "hank",
+  "currentCharacterName": "Hank",
+  "currentParagraphText": "“Do try to be more mindful,” Hank said in a slightly scolding tone, the construction manager being one of the few “normal” people in Haven who still spoke to Jake like a normal person. “This time, you got lucky, but what if the angle had been bad? You could have hit the city, and I hope I don’t need to tell you why that could have been bad.”",
+  "finalResult": {
+    "action": "needs_review",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.1,
+    "currentCharacterId": "hank",
+    "currentCharacterName": "Hank",
+    "currentParagraphText": "“Do try to be more mindful,” Hank said in a slightly scolding tone, the construction manager being one of the few “normal” people in Haven who still spoke to Jake like a normal person. “This time, you got lucky, but what if the angle had been bad? You could have hit the city, and I hope I don’t need to tell you why that could have been bad.”",
+    "disposition": "review",
+    "error": null,
+    "lineId": 64,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Yeah, I know,” Jake sighed. “I think I’ll need to look into having some more defensive formations placed around the lab. Maybe we can even discuss strengthening the construction a bit?”",
+    "paragraphIndex": 57,
+    "previousParagraphText": "Granted, it had also resulted in a massive beam of pure destructive arcane energy shooting up from the lid of the cauldron, giving everyone in Haven something to look at when they saw the tall, thin beam of pinkish purple pierce the sky for a few seconds. Jake had even been so smart as to do it in the middle of the night to make more people see. He didn’t really fault himself for that one, though, as who the hell even kept track of day and night anymore?",
+    "reasonCodes": [
+      "not_dialogue",
+      "narration_quote"
+    ],
+    "suggestedCharacterId": "hank",
+    "suggestedCharacterName": "Hank",
+    "toolTrace": []
+  },
+  "lineId": 64,
+  "nextParagraphText": "“Yeah, I know,” Jake sighed. “I think I’ll need to look into having some more defensive formations placed around the lab. Maybe we can even discuss strengthening the construction a bit?”",
+  "paragraphIndex": 57,
+  "previousParagraphText": "Granted, it had also resulted in a massive beam of pure destructive arcane energy shooting up from the lid of the cauldron, giving everyone in Haven something to look at when they saw the tall, thin beam of pinkish purple pierce the sky for a few seconds. Jake had even been so smart as to do it in the middle of the night to make more people see. He didn’t really fault himself for that one, though, as who the hell even kept track of day and night anymore?"
+}

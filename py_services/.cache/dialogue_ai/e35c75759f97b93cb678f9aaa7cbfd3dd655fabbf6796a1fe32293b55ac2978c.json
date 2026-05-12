@@ -1,0 +1,372 @@
+{
+  "cacheKey": "e35c75759f97b93cb678f9aaa7cbfd3dd655fabbf6796a1fe32293b55ac2978c",
+  "createdAt": "2026-04-02T22:30:13.790119+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.9,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "narrative_cue_before_quote",
+      "dialogue_flow_supports_speaker"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "miranda"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "carmen",
+        "name": "Carmen",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "lillian",
+        "name": "Lillian",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "arnold",
+        "name": "Arnold",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "While Jake wasn’t the fastest at political stuff, he did realize what Miranda was getting at pretty quickly.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Kindroth and his planet can function as a compromise.",
+      "lastSentence": "We do need to make sure the benefits aren’t all one-sided, though.",
+      "mentionedEntities": [
+        "Kindroth"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "Kindroth and his planet can function as a compromise. As they’re not actually part of the Church, having them here doesn’t violate their effective ban from the galaxy, yet at the same time, it allows the Church to retain some connection the the Milky Way. We do need to make sure the benefits aren’t all one-sided, though.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "Kindroth"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Miranda",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Miranda"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "jake",
+          "confidence": 0.816,
+          "name": "Jake",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "miranda",
+          "confidence": 0.456,
+          "name": "Miranda",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "Protagonist"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 91,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Kindroth and his planet can function as a compromise. As they’re not actually part of the Church, having them here doesn’t violate their effective ban from the galaxy, yet at the same time, it allows the Church to retain some connection the the Milky Way. We do need to make sure the benefits aren’t all one-sided, though."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 91,
+          "text": "Kindroth and his planet can function as a compromise. As they’re not actually part of the Church, having them here doesn’t violate their effective ban from the galaxy, yet at the same time, it allows the Church to retain some connection the the Milky Way. We do need to make sure the benefits aren’t all one-sided, though."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "While Jake wasn’t the fastest at political stuff, he did realize what Miranda was getting at pretty quickly.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Kindroth and his planet can function as a compromise.",
+          "lastSentence": "We do need to make sure the benefits aren’t all one-sided, though.",
+          "mentionedEntities": [
+            "Kindroth"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Kindroth and his planet can function as a compromise. As they’re not actually part of the Church, having them here doesn’t violate their effective ban from the galaxy, yet at the same time, it allows the Church to retain some connection the the Milky Way. We do need to make sure the benefits aren’t all one-sided, though.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "While Jake wasn’t the fastest at political stuff, he did realize what Miranda was getting at pretty quickly. “Kindroth and his planet can function as a compromise. As they’re not actually part of the Church, having them here doesn’t violate their effective ban from the galaxy, yet at the same time, it allows the Church to retain some connection the the Milky Way. We do need to make sure the benefits aren’t all one-sided, though.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "miranda",
+          "characterName": "Miranda",
+          "isReturning": false,
+          "lineId": 92,
+          "text": "Leave that to me,"
+        },
+        {
+          "characterId": "miranda",
+          "characterName": "Miranda",
+          "isReturning": true,
+          "lineId": 94,
+          "text": "But one headache at a time. For now, I need to deal with all the elite soldiers left by Iludar."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Miranda said with a proud smile that Jake had seen through what she was thinking.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Leave that to me,",
+          "lastSentence": "Leave that to me,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Leave that to me,",
+          "speakerNameMatch": "Miranda",
+          "speakerSurface": "Miranda"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Miranda said with a proud smile that Jake had seen through what she was thinking.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "But one headache at a time.",
+          "lastSentence": "For now, I need to deal with all the elite soldiers left by Iludar.",
+          "mentionedEntities": [
+            "Iludar"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "But one headache at a time. For now, I need to deal with all the elite soldiers left by Iludar.",
+          "speakerNameMatch": "Miranda",
+          "speakerSurface": "Miranda"
+        }
+      ],
+      "nextParagraphText": "“Leave that to me,” Miranda said with a proud smile that Jake had seen through what she was thinking. “But one headache at a time. For now, I need to deal with all the elite soldiers left by Iludar.”",
+      "paragraphIndex": 47,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "miranda",
+          "characterName": "Miranda",
+          "isReturning": false,
+          "lineId": 87,
+          "text": "Before this, I didn’t really have any set plans, but now... I feel like the best approach would be to not do anything but just continue as normal,"
+        },
+        {
+          "characterId": "miranda",
+          "characterName": "Miranda",
+          "isReturning": true,
+          "lineId": 89,
+          "text": "Even with the Holy Church gone from the galaxy, we will no doubt have to deal with them again in the future. Especially with them apparently having quite a presence in the closest galaxy. While we can try to entirely isolate ourselves from them, I don’t see that as realistic, and my guess is that both the Augur and Kindroth also realize this. At least, I suspect that’s part of the reason they chose to work together in this fashion, to have a backup should the Holy Church be thrown out of the galaxy."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Miranda said.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Before this, I didn’t really have any set plans, but now...",
+          "lastSentence": "I feel like the best approach would be to not do anything but just continue as normal,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Before this, I didn’t really have any set plans, but now... I feel like the best approach would be to not do anything but just continue as normal,",
+          "speakerNameMatch": "Miranda",
+          "speakerSurface": "Miranda"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Miranda said.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "Even with the Holy Church gone from the galaxy, we will no doubt have to deal with them again in the future.",
+          "lastSentence": "At least, I suspect that’s part of the reason they chose to work together in this fashion, to have a backup should the Holy Church be thrown out of the galaxy.",
+          "mentionedEntities": [
+            "Kindroth"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "Even with the Holy Church gone from the galaxy, we will no doubt have to deal with them again in the future. Especially with them apparently having quite a presence in the closest galaxy. While we can try to entirely isolate ourselves from them, I don’t see that as realistic, and my guess is that both the Augur and Kindroth also realize this. At least, I suspect that’s part of the reason they chose to work together in this fashion, to have a backup should the Holy Church be thrown out of the galaxy.",
+          "speakerNameMatch": "Miranda",
+          "speakerSurface": "Miranda"
+        }
+      ],
+      "previousParagraphText": "“Before this, I didn’t really have any set plans, but now... I feel like the best approach would be to not do anything but just continue as normal,” Miranda said. “Even with the Holy Church gone from the galaxy, we will no doubt have to deal with them again in the future. Especially with them apparently having quite a presence in the closest galaxy. While we can try to entirely isolate ourselves from them, I don’t see that as realistic, and my guess is that both the Augur and Kindroth also realize this. At least, I suspect that’s part of the reason they chose to work together in this fashion, to have a backup should the Holy Church be thrown out of the galaxy.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 84,
+        "paragraphIndex": 45,
+        "relativeIndex": -4,
+        "text": "Great, just great... I did always think there was something pretty shady about him, so I can’t say I’m overly surprised. I am a bit disappointed, though,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 86,
+        "paragraphIndex": 45,
+        "relativeIndex": -3,
+        "text": "What are your current thoughts on handling him and his planet?"
+      },
+      {
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "lineId": 87,
+        "paragraphIndex": 46,
+        "relativeIndex": -2,
+        "text": "Before this, I didn’t really have any set plans, but now... I feel like the best approach would be to not do anything but just continue as normal,"
+      },
+      {
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "lineId": 89,
+        "paragraphIndex": 46,
+        "relativeIndex": -1,
+        "text": "Even with the Holy Church gone from the galaxy, we will no doubt have to deal with them again in the future. Especially with them apparently having quite a presence in the closest galaxy. While we can try to entirely isolate ourselves from them, I don’t see that as realistic, and my guess is that both the Augur and Kindroth also realize this. At least, I suspect that’s part of the reason they chose to work together in this fashion, to have a backup should the Holy Church be thrown out of the galaxy."
+      },
+      {
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "lineId": 92,
+        "paragraphIndex": 48,
+        "relativeIndex": 1,
+        "text": "Leave that to me,"
+      },
+      {
+        "characterId": "miranda",
+        "characterName": "Miranda",
+        "lineId": 94,
+        "paragraphIndex": 48,
+        "relativeIndex": 2,
+        "text": "But one headache at a time. For now, I need to deal with all the elite soldiers left by Iludar."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 91, \"text\": \"Kindroth and his planet can function as a compromise. As they’re not actually part of the Church, having them here doesn’t violate their effective ban from the galaxy, yet at the same time, it allows the Church to retain some connection the the Milky Way. We do need to make sure the benefits aren’t all one-sided, though.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Miranda\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Kindroth\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Miranda\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 47, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"While Jake wasn’t the fastest at political stuff, he did realize what Miranda was getting at pretty quickly. “Kindroth and his planet can function as a compromise. As they’re not actually part of the Church, having them here doesn’t violate their effective ban from the galaxy, yet at the same time, it allows the Church to retain some connection the the Milky Way. We do need to make sure the benefits aren’t all one-sided, though.”\", \"currentParagraphDialogue\": [{\"lineId\": 91, \"text\": \"Kindroth and his planet can function as a compromise. As they’re not actually part of the Church, having them here doesn’t violate their effective ban from the galaxy, yet at the same time, it allows the Church to retain some connection the the Milky Way. We do need to make sure the benefits aren’t all one-sided, though.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"previousParagraphText\": \"“Before this, I didn’t really have any set plans, but now... I feel like the best approach would be to not do anything but just continue as normal,” Miranda said. “Even with the Holy Church gone from the galaxy, we will no doubt have to deal with them again in the future. Especially with them apparently having quite a presence in the closest galaxy. While we can try to entirely isolate ourselves from them, I don’t see that as realistic, and my guess is that both the Augur and Kindroth also realize this. At least, I suspect that’s part of the reason they chose to work together in this fashion, to have a backup should the Holy Church be thrown out of the galaxy.”\", \"previousParagraphDialogue\": [{\"lineId\": 87, \"text\": \"Before this, I didn’t really have any set plans, but now... I feel like the best approach would be to not do anything but just continue as normal,\", \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"isReturning\": false}, {\"lineId\": 89, \"text\": \"Even with the Holy Church gone from the galaxy, we will no doubt have to deal with them again in the future. Especially with them apparently having quite a presence in the closest galaxy. While we can try to entirely isolate ourselves from them, I don’t see that as realistic, and my guess is that both the Augur and Kindroth also realize this. At least, I suspect that’s part of the reason they chose to work together in this fashion, to have a backup should the Holy Church be thrown out of the galaxy.\", \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"isReturning\": true}], \"nextParagraphText\": \"“Leave that to me,” Miranda said with a proud smile that Jake had seen through what she was thinking. “But one headache at a time. For now, I need to deal with all the elite soldiers left by Iludar.”\", \"nextParagraphDialogue\": [{\"lineId\": 92, \"text\": \"Leave that to me,\", \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"isReturning\": false}, {\"lineId\": 94, \"text\": \"But one headache at a time. For now, I need to deal with all the elite soldiers left by Iludar.\", \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Kindroth and his planet can function as a compromise. As they’re not actually part of the Church, having them here doesn’t violate their effective ban from the galaxy, yet at the same time, it allows the Church to retain some connection the the Milky Way. We do need to make sure the benefits aren’t all one-sided, though.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"While Jake wasn’t the fastest at political stuff, he did realize what Miranda was getting at pretty quickly.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Kindroth\"], \"addressedEntity\": null, \"firstSentence\": \"Kindroth and his planet can function as a compromise.\", \"lastSentence\": \"We do need to make sure the benefits aren’t all one-sided, though.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Before this, I didn’t really have any set plans, but now... I feel like the best approach would be to not do anything but just continue as normal,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Miranda said.\", \"speakerSurface\": \"Miranda\", \"speakerNameMatch\": \"Miranda\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Before this, I didn’t really have any set plans, but now...\", \"lastSentence\": \"I feel like the best approach would be to not do anything but just continue as normal,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Even with the Holy Church gone from the galaxy, we will no doubt have to deal with them again in the future. Especially with them apparently having quite a presence in the closest galaxy. While we can try to entirely isolate ourselves from them, I don’t see that as realistic, and my guess is that both the Augur and Kindroth also realize this. At least, I suspect that’s part of the reason they chose to work together in this fashion, to have a backup should the Holy Church be thrown out of the galaxy.\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Miranda said.\", \"speakerSurface\": \"Miranda\", \"speakerNameMatch\": \"Miranda\", \"mentionedEntities\": [\"Kindroth\"], \"addressedEntity\": null, \"firstSentence\": \"Even with the Holy Church gone from the galaxy, we will no doubt have to deal with them again in the future.\", \"lastSentence\": \"At least, I suspect that’s part of the reason they chose to work together in this fashion, to have a backup should the Holy Church be thrown out of the galaxy.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Leave that to me,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Miranda said with a proud smile that Jake had seen through what she was thinking.\", \"speakerSurface\": \"Miranda\", \"speakerNameMatch\": \"Miranda\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Leave that to me,\", \"lastSentence\": \"Leave that to me,\"}, {\"quoteIndex\": 1, \"quoteText\": \"But one headache at a time. For now, I need to deal with all the elite soldiers left by Iludar.\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Miranda said with a proud smile that Jake had seen through what she was thinking.\", \"speakerSurface\": \"Miranda\", \"speakerNameMatch\": \"Miranda\", \"mentionedEntities\": [\"Iludar\"], \"addressedEntity\": null, \"firstSentence\": \"But one headache at a time.\", \"lastSentence\": \"For now, I need to deal with all the elite soldiers left by Iludar.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Kindroth and his planet can function as a compromise. As they’re not actually part of the Church, having them here doesn’t violate their effective ban from the galaxy, yet at the same time, it allows the Church to retain some connection the the Milky Way. We do need to make sure the benefits aren’t all one-sided, though.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"While Jake wasn’t the fastest at political stuff, he did realize what Miranda was getting at pretty quickly.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Kindroth\"], \"addressedEntity\": null, \"firstSentence\": \"Kindroth and his planet can function as a compromise.\", \"lastSentence\": \"We do need to make sure the benefits aren’t all one-sided, though.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"aliases\": [], \"roleLabels\": [\"miranda\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 84, \"paragraphIndex\": 45, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Great, just great... I did always think there was something pretty shady about him, so I can’t say I’m overly surprised. I am a bit disappointed, though,\"}, {\"relativeIndex\": -3, \"lineId\": 86, \"paragraphIndex\": 45, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"What are your current thoughts on handling him and his planet?\"}, {\"relativeIndex\": -2, \"lineId\": 87, \"paragraphIndex\": 46, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"Before this, I didn’t really have any set plans, but now... I feel like the best approach would be to not do anything but just continue as normal,\"}, {\"relativeIndex\": -1, \"lineId\": 89, \"paragraphIndex\": 46, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"Even with the Holy Church gone from the galaxy, we will no doubt have to deal with them again in the future. Especially with them apparently having quite a presence in the closest galaxy. While we can try to entirely isolate ourselves from them, I don’t see that as realistic, and my guess is that both the Augur and Kindroth also realize this. At least, I suspect that’s part of the reason they chose to work together in this fashion, to have a backup should the Holy Church be thrown out of the galaxy.\"}, {\"relativeIndex\": 1, \"lineId\": 92, \"paragraphIndex\": 48, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"Leave that to me,\"}, {\"relativeIndex\": 2, \"lineId\": 94, \"paragraphIndex\": 48, \"characterId\": \"miranda\", \"characterName\": \"Miranda\", \"text\": \"But one headache at a time. For now, I need to deal with all the elite soldiers left by Iludar.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"carmen\", \"name\": \"Carmen\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"lillian\", \"name\": \"Lillian\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"arnold\", \"name\": \"Arnold\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"narrative_cue_before_quote\",\n    \"dialogue_flow_supports_speaker\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

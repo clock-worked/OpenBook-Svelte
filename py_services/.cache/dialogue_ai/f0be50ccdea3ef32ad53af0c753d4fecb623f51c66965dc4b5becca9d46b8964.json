@@ -1,0 +1,330 @@
+{
+  "cacheKey": "f0be50ccdea3ef32ad53af0c753d4fecb623f51c66965dc4b5becca9d46b8964",
+  "createdAt": "2026-04-01T20:11:36.591179+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "yggdrasil",
+    "characterName": "Yggdrasil",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_previous_paragraph_attribution",
+      "dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Attendant"
+        ],
+        "characterId": "nimera",
+        "characterName": "Nimera",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "nimera",
+          "attendant"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "primordial"
+        ],
+        "characterId": "yggdrasil",
+        "name": "Yggdrasil",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Attendant"
+        ],
+        "characterId": "nimera",
+        "name": "Nimera",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "nature attendant",
+        "name": "Nature Attendant",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "I can still feel his presence within the mask you wear.",
+      "lastSentence": "The energy of life is faint to the level of being near-undetectable, but it’s there.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "I can still feel his presence within the mask you wear. The energy of life is faint to the level of being near-undetectable, but it’s there.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Yggdrasil",
+        "sourceCandidates": [
+          "Yggdrasil",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Yggdrasil",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 133,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "I can still feel his presence within the mask you wear. The energy of life is faint to the level of being near-undetectable, but it’s there."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 133,
+          "text": "I can still feel his presence within the mask you wear. The energy of life is faint to the level of being near-undetectable, but it’s there."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I can still feel his presence within the mask you wear.",
+          "lastSentence": "The energy of life is faint to the level of being near-undetectable, but it’s there.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I can still feel his presence within the mask you wear. The energy of life is faint to the level of being near-undetectable, but it’s there.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“I can still feel his presence within the mask you wear. The energy of life is faint to the level of being near-undetectable, but it’s there.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 134,
+          "text": "Yeah, I did kind of know that,"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 136,
+          "text": "And that’s related to my request. While I could maybe find a solution myself if given enough time, I don’t want to wait. He’s already missing out enough as is."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake nodded.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "Yeah, I did kind of know that,",
+          "lastSentence": "Yeah, I did kind of know that,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Yeah, I did kind of know that,",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jake nodded.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "And that’s related to my request.",
+          "lastSentence": "He’s already missing out enough as is.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "And that’s related to my request. While I could maybe find a solution myself if given enough time, I don’t want to wait. He’s already missing out enough as is.",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "nextParagraphText": "“Yeah, I did kind of know that,” Jake nodded. “And that’s related to my request. While I could maybe find a solution myself if given enough time, I don’t want to wait. He’s already missing out enough as is.”",
+      "paragraphIndex": 76,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Yggdrasil spoke, getting Jake’s attention."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 127,
+        "paragraphIndex": 72,
+        "relativeIndex": -4,
+        "text": "The Fallen King and Sylphie encountered this False God... but the Fallen King didn’t make it."
+      },
+      {
+        "characterId": "nimera",
+        "characterName": "Nimera",
+        "lineId": 128,
+        "paragraphIndex": 73,
+        "relativeIndex": -3,
+        "text": "I... didn’t know that,"
+      },
+      {
+        "characterId": "nimera",
+        "characterName": "Nimera",
+        "lineId": 130,
+        "paragraphIndex": 73,
+        "relativeIndex": -2,
+        "text": "How long ago did it happen, and-"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 131,
+        "paragraphIndex": 74,
+        "relativeIndex": -1,
+        "text": "The Unique Lifeform is not dead,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 134,
+        "paragraphIndex": 77,
+        "relativeIndex": 1,
+        "text": "Yeah, I did kind of know that,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 136,
+        "paragraphIndex": 77,
+        "relativeIndex": 2,
+        "text": "And that’s related to my request. While I could maybe find a solution myself if given enough time, I don’t want to wait. He’s already missing out enough as is."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 133, \"text\": \"I can still feel his presence within the mask you wear. The energy of life is faint to the level of being near-undetectable, but it’s there.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Yggdrasil\", \"sourceCandidates\": [\"Yggdrasil\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Yggdrasil\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 76, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I can still feel his presence within the mask you wear. The energy of life is faint to the level of being near-undetectable, but it’s there.”\", \"currentParagraphDialogue\": [{\"lineId\": 133, \"text\": \"I can still feel his presence within the mask you wear. The energy of life is faint to the level of being near-undetectable, but it’s there.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"Yggdrasil spoke, getting Jake’s attention.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“Yeah, I did kind of know that,” Jake nodded. “And that’s related to my request. While I could maybe find a solution myself if given enough time, I don’t want to wait. He’s already missing out enough as is.”\", \"nextParagraphDialogue\": [{\"lineId\": 134, \"text\": \"Yeah, I did kind of know that,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 136, \"text\": \"And that’s related to my request. While I could maybe find a solution myself if given enough time, I don’t want to wait. He’s already missing out enough as is.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I can still feel his presence within the mask you wear. The energy of life is faint to the level of being near-undetectable, but it’s there.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I can still feel his presence within the mask you wear.\", \"lastSentence\": \"The energy of life is faint to the level of being near-undetectable, but it’s there.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Yeah, I did kind of know that,\", \"cuePosition\": \"after\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake nodded.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Yeah, I did kind of know that,\", \"lastSentence\": \"Yeah, I did kind of know that,\"}, {\"quoteIndex\": 1, \"quoteText\": \"And that’s related to my request. While I could maybe find a solution myself if given enough time, I don’t want to wait. He’s already missing out enough as is.\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake nodded.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"And that’s related to my request.\", \"lastSentence\": \"He’s already missing out enough as is.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I can still feel his presence within the mask you wear. The energy of life is faint to the level of being near-undetectable, but it’s there.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I can still feel his presence within the mask you wear.\", \"lastSentence\": \"The energy of life is faint to the level of being near-undetectable, but it’s there.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"nimera\", \"characterName\": \"Nimera\", \"aliases\": [\"Attendant\"], \"roleLabels\": [\"nimera\", \"attendant\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 127, \"paragraphIndex\": 72, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"The Fallen King and Sylphie encountered this False God... but the Fallen King didn’t make it.\"}, {\"relativeIndex\": -3, \"lineId\": 128, \"paragraphIndex\": 73, \"characterId\": \"nimera\", \"characterName\": \"Nimera\", \"text\": \"I... didn’t know that,\"}, {\"relativeIndex\": -2, \"lineId\": 130, \"paragraphIndex\": 73, \"characterId\": \"nimera\", \"characterName\": \"Nimera\", \"text\": \"How long ago did it happen, and-\"}, {\"relativeIndex\": -1, \"lineId\": 131, \"paragraphIndex\": 74, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"The Unique Lifeform is not dead,\"}, {\"relativeIndex\": 1, \"lineId\": 134, \"paragraphIndex\": 77, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Yeah, I did kind of know that,\"}, {\"relativeIndex\": 2, \"lineId\": 136, \"paragraphIndex\": 77, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"And that’s related to my request. While I could maybe find a solution myself if given enough time, I don’t want to wait. He’s already missing out enough as is.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"yggdrasil\", \"name\": \"Yggdrasil\", \"aliases\": [\"primordial\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"nimera\", \"name\": \"Nimera\", \"aliases\": [\"Attendant\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"nature attendant\", \"name\": \"Nature Attendant\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"yggdrasil\",\n  \"characterName\": \"Yggdrasil\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_previous_paragraph_attribution\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

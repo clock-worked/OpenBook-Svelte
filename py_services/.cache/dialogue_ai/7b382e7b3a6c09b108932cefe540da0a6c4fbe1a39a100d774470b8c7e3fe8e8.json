@@ -1,0 +1,374 @@
+{
+  "cacheKey": "7b382e7b3a6c09b108932cefe540da0a6c4fbe1a39a100d774470b8c7e3fe8e8",
+  "createdAt": "2026-04-04T03:13:15.391994+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "keerla",
+    "characterName": "Keerla",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_flow_context"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "keerla",
+        "characterName": "Keerla",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "keerla"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "having",
+        "name": "Having",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "keerla",
+        "name": "Keerla",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "solana",
+        "name": "Solana",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Keerla looked perplexed at Jake for a moment before she realized.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Did you wipe them out?",
+      "lastSentence": "Did you wipe them out?",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Did you wipe them out?",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": true,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Keerla",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.18,
+        "misattributionRisk": 0.5007999999999999,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Keerla",
+        "sourceCandidates": [
+          "Keerla",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.636
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.636,
+          "name": "Keerla",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 36,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Did you wipe them out?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 36,
+          "text": "Did you wipe them out?"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Keerla looked perplexed at Jake for a moment before she realized.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Did you wipe them out?",
+          "lastSentence": "Did you wipe them out?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Did you wipe them out?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Keerla looked perplexed at Jake for a moment before she realized. “Did you wipe them out?”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 37,
+          "text": "They didn’t leave me much choice,"
+        },
+        {
+          "characterId": "keerla",
+          "characterName": "Keerla",
+          "isReturning": true,
+          "lineId": 39,
+          "text": "I will warn you that the area took some damage during the fight, though, but with how rapidly the jungle recovers, it should be fine."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "he shrugged in response, wondering if such actions were looked upon negatively by members of the Pantheon of Life.",
+          "cueVerb": "shrugged",
+          "cueVerbType": "reaction",
+          "firstSentence": "They didn’t leave me much choice,",
+          "lastSentence": "They didn’t leave me much choice,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "They didn’t leave me much choice,",
+          "speakerNameMatch": null,
+          "speakerSurface": "he"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "he shrugged in response, wondering if such actions were looked upon negatively by members of the Pantheon of Life.",
+          "cueVerb": "shrugged",
+          "cueVerbType": "reaction",
+          "firstSentence": "I will warn you that the area took some damage during the fight, though, but with how rapidly the jungle recovers, it should be fine.",
+          "lastSentence": "I will warn you that the area took some damage during the fight, though, but with how rapidly the jungle recovers, it should be fine.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "I will warn you that the area took some damage during the fight, though, but with how rapidly the jungle recovers, it should be fine.",
+          "speakerNameMatch": null,
+          "speakerSurface": "he"
+        }
+      ],
+      "nextParagraphText": "“They didn’t leave me much choice,” he shrugged in response, wondering if such actions were looked upon negatively by members of the Pantheon of Life. “I will warn you that the area took some damage during the fight, though, but with how rapidly the jungle recovers, it should be fine.”",
+      "paragraphIndex": 19,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 32,
+          "text": "Oh, I did encounter quite a few of those damn birds,"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 34,
+          "text": "Shouldn’t be a problem heading through that place anymore. Maybe it’ll even be safe to settle down there for a while."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake muttered.",
+          "cueVerb": "muttered",
+          "cueVerbType": "speech",
+          "firstSentence": "Oh, I did encounter quite a few of those damn birds,",
+          "lastSentence": "Oh, I did encounter quite a few of those damn birds,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Oh, I did encounter quite a few of those damn birds,",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jake muttered.",
+          "cueVerb": "muttered",
+          "cueVerbType": "speech",
+          "firstSentence": "Shouldn’t be a problem heading through that place anymore.",
+          "lastSentence": "Maybe it’ll even be safe to settle down there for a while.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "Shouldn’t be a problem heading through that place anymore. Maybe it’ll even be safe to settle down there for a while.",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "previousParagraphText": "“Oh, I did encounter quite a few of those damn birds,” Jake muttered. “Shouldn’t be a problem heading through that place anymore. Maybe it’ll even be safe to settle down there for a while.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 28,
+        "paragraphIndex": 16,
+        "relativeIndex": -4,
+        "text": "Rainbowfeather territory? Do you mean the territory in that direction?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 30,
+        "paragraphIndex": 17,
+        "relativeIndex": -3,
+        "text": "Yes... I’m surprised you didn’t encounter any, but from your first attack and ability to remain unnoticed by all of us, I assume your stealth skills are good,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 32,
+        "paragraphIndex": 18,
+        "relativeIndex": -2,
+        "text": "Oh, I did encounter quite a few of those damn birds,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 34,
+        "paragraphIndex": 18,
+        "relativeIndex": -1,
+        "text": "Shouldn’t be a problem heading through that place anymore. Maybe it’ll even be safe to settle down there for a while."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 37,
+        "paragraphIndex": 20,
+        "relativeIndex": 1,
+        "text": "They didn’t leave me much choice,"
+      },
+      {
+        "characterId": "keerla",
+        "characterName": "Keerla",
+        "lineId": 39,
+        "paragraphIndex": 20,
+        "relativeIndex": 2,
+        "text": "I will warn you that the area took some damage during the fight, though, but with how rapidly the jungle recovers, it should be fine."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 36, \"text\": \"Did you wipe them out?\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Keerla\", \"sourceCandidates\": [\"Keerla\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.636, \"marginToSecond\": 0.18, \"misattributionRisk\": 0.5007999999999999, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Keerla\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Keerla\", \"confidence\": 0.636, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 19, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Keerla looked perplexed at Jake for a moment before she realized. “Did you wipe them out?”\", \"currentParagraphDialogue\": [{\"lineId\": 36, \"text\": \"Did you wipe them out?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“Oh, I did encounter quite a few of those damn birds,” Jake muttered. “Shouldn’t be a problem heading through that place anymore. Maybe it’ll even be safe to settle down there for a while.”\", \"previousParagraphDialogue\": [{\"lineId\": 32, \"text\": \"Oh, I did encounter quite a few of those damn birds,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}, {\"lineId\": 34, \"text\": \"Shouldn’t be a problem heading through that place anymore. Maybe it’ll even be safe to settle down there for a while.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"nextParagraphText\": \"“They didn’t leave me much choice,” he shrugged in response, wondering if such actions were looked upon negatively by members of the Pantheon of Life. “I will warn you that the area took some damage during the fight, though, but with how rapidly the jungle recovers, it should be fine.”\", \"nextParagraphDialogue\": [{\"lineId\": 37, \"text\": \"They didn’t leave me much choice,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 39, \"text\": \"I will warn you that the area took some damage during the fight, though, but with how rapidly the jungle recovers, it should be fine.\", \"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Did you wipe them out?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Keerla looked perplexed at Jake for a moment before she realized.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Did you wipe them out?\", \"lastSentence\": \"Did you wipe them out?\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Oh, I did encounter quite a few of those damn birds,\", \"cuePosition\": \"after\", \"cueVerb\": \"muttered\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake muttered.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Oh, I did encounter quite a few of those damn birds,\", \"lastSentence\": \"Oh, I did encounter quite a few of those damn birds,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Shouldn’t be a problem heading through that place anymore. Maybe it’ll even be safe to settle down there for a while.\", \"cuePosition\": \"before\", \"cueVerb\": \"muttered\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake muttered.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Shouldn’t be a problem heading through that place anymore.\", \"lastSentence\": \"Maybe it’ll even be safe to settle down there for a while.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"They didn’t leave me much choice,\", \"cuePosition\": \"after\", \"cueVerb\": \"shrugged\", \"cueVerbType\": \"reaction\", \"cueText\": \"he shrugged in response, wondering if such actions were looked upon negatively by members of the Pantheon of Life.\", \"speakerSurface\": \"he\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"They didn’t leave me much choice,\", \"lastSentence\": \"They didn’t leave me much choice,\"}, {\"quoteIndex\": 1, \"quoteText\": \"I will warn you that the area took some damage during the fight, though, but with how rapidly the jungle recovers, it should be fine.\", \"cuePosition\": \"before\", \"cueVerb\": \"shrugged\", \"cueVerbType\": \"reaction\", \"cueText\": \"he shrugged in response, wondering if such actions were looked upon negatively by members of the Pantheon of Life.\", \"speakerSurface\": \"he\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I will warn you that the area took some damage during the fight, though, but with how rapidly the jungle recovers, it should be fine.\", \"lastSentence\": \"I will warn you that the area took some damage during the fight, though, but with how rapidly the jungle recovers, it should be fine.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Did you wipe them out?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Keerla looked perplexed at Jake for a moment before she realized.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Did you wipe them out?\", \"lastSentence\": \"Did you wipe them out?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"aliases\": [], \"roleLabels\": [\"keerla\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 28, \"paragraphIndex\": 16, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Rainbowfeather territory? Do you mean the territory in that direction?\"}, {\"relativeIndex\": -3, \"lineId\": 30, \"paragraphIndex\": 17, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Yes... I’m surprised you didn’t encounter any, but from your first attack and ability to remain unnoticed by all of us, I assume your stealth skills are good,\"}, {\"relativeIndex\": -2, \"lineId\": 32, \"paragraphIndex\": 18, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Oh, I did encounter quite a few of those damn birds,\"}, {\"relativeIndex\": -1, \"lineId\": 34, \"paragraphIndex\": 18, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Shouldn’t be a problem heading through that place anymore. Maybe it’ll even be safe to settle down there for a while.\"}, {\"relativeIndex\": 1, \"lineId\": 37, \"paragraphIndex\": 20, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"They didn’t leave me much choice,\"}, {\"relativeIndex\": 2, \"lineId\": 39, \"paragraphIndex\": 20, \"characterId\": \"keerla\", \"characterName\": \"Keerla\", \"text\": \"I will warn you that the area took some damage during the fight, though, but with how rapidly the jungle recovers, it should be fine.\"}], \"chapterCharacters\": [{\"characterId\": \"having\", \"name\": \"Having\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"keerla\", \"name\": \"Keerla\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"solana\", \"name\": \"Solana\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"keerla\",\n  \"characterName\": \"Keerla\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_flow_context\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

@@ -1,0 +1,287 @@
+{
+  "cacheKey": "adcb9b2d274d555f38e906234dccb8f4d412203e93f093980c803db1382caaa8",
+  "createdAt": "2026-04-18T22:02:29.917721+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "chimera",
+          "monster"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy",
+          "Vilas"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Chimera",
+          "Monster"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Jake stared at the notifications for several seconds before blurting out loud:",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "What the fuck?",
+      "lastSentence": "What the fuck?",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "What the fuck?",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": true,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "The Malefic Viper",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.85,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.18,
+        "misattributionRisk": 0.5064,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "The Malefic Viper",
+        "sourceCandidates": [
+          "The Malefic Viper",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.628
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.628,
+          "name": "The Malefic Viper",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.448,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 106,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "What the fuck?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 106,
+          "text": "What the fuck?"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake stared at the notifications for several seconds before blurting out loud:",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "What the fuck?",
+          "lastSentence": "What the fuck?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "What the fuck?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Jake stared at the notifications for several seconds before blurting out loud: “What the fuck?”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 107,
+          "text": "Huh? Why are you acting all surprised by getting a few levels for being a Chosen, successfully completing a mission personally entrusted to you by your Patron, all while doing it using your unique Path?"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Huh?",
+          "lastSentence": "Why are you acting all surprised by getting a few levels for being a Chosen, successfully completing a mission personally entrusted to you by your Patron, all while doing it using your unique Path?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Huh? Why are you acting all surprised by getting a few levels for being a Chosen, successfully completing a mission personally entrusted to you by your Patron, all while doing it using your unique Path?",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "nextParagraphText": "“Huh? Why are you acting all surprised by getting a few levels for being a Chosen, successfully completing a mission personally entrusted to you by your Patron, all while doing it using your unique Path?”",
+      "paragraphIndex": 95,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "’DING!’ Race: [Human (C)] has reached level 321 - Stat points allocated, +45 Free Points"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 92,
+        "paragraphIndex": 83,
+        "relativeIndex": -4,
+        "text": "Alright,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 94,
+        "paragraphIndex": 85,
+        "relativeIndex": -3,
+        "text": "Now, enough about that. I don’t wanna become one of those guys who only talk about their relationship all day."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 95,
+        "paragraphIndex": 86,
+        "relativeIndex": -2,
+        "text": "Damn, and I was just about to pry for details I know you aren’t going to give me... oh well, guess we’ll move onto the next order of business,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 97,
+        "paragraphIndex": 87,
+        "relativeIndex": -1,
+        "text": "I’ve just received word from Yggdrasil, and a new declaration of friendship between the Order of the Malefic Viper and Pantheon of Life has been successfully established and shall be announced publicly shortly. Partly because of your banger job as my Chosen on this diplomatic mission. As your Patron, I acknowledge your contributions to the completion of negotiations."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 107,
+        "paragraphIndex": 96,
+        "relativeIndex": 1,
+        "text": "Huh? Why are you acting all surprised by getting a few levels for being a Chosen, successfully completing a mission personally entrusted to you by your Patron, all while doing it using your unique Path?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 109,
+        "paragraphIndex": 98,
+        "relativeIndex": 2,
+        "text": "That’s... bullshit,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 106, \"text\": \"What the fuck?\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"The Malefic Viper\", \"sourceCandidates\": [\"The Malefic Viper\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.628, \"marginToSecond\": 0.18, \"misattributionRisk\": 0.5064, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.85, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"The Malefic Viper\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"The Malefic Viper\", \"confidence\": 0.628, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.448, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 95, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Jake stared at the notifications for several seconds before blurting out loud: “What the fuck?”\", \"currentParagraphDialogue\": [{\"lineId\": 106, \"text\": \"What the fuck?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"’DING!’ Race: [Human (C)] has reached level 321 - Stat points allocated, +45 Free Points\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“Huh? Why are you acting all surprised by getting a few levels for being a Chosen, successfully completing a mission personally entrusted to you by your Patron, all while doing it using your unique Path?”\", \"nextParagraphDialogue\": [{\"lineId\": 107, \"text\": \"Huh? Why are you acting all surprised by getting a few levels for being a Chosen, successfully completing a mission personally entrusted to you by your Patron, all while doing it using your unique Path?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"What the fuck?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake stared at the notifications for several seconds before blurting out loud:\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"What the fuck?\", \"lastSentence\": \"What the fuck?\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Huh? Why are you acting all surprised by getting a few levels for being a Chosen, successfully completing a mission personally entrusted to you by your Patron, all while doing it using your unique Path?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Huh?\", \"lastSentence\": \"Why are you acting all surprised by getting a few levels for being a Chosen, successfully completing a mission personally entrusted to you by your Patron, all while doing it using your unique Path?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"What the fuck?\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake stared at the notifications for several seconds before blurting out loud:\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"What the fuck?\", \"lastSentence\": \"What the fuck?\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [\"jake\", \"protagonist\", \"chimera\", \"monster\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 92, \"paragraphIndex\": 83, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Alright,\"}, {\"relativeIndex\": -3, \"lineId\": 94, \"paragraphIndex\": 85, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Now, enough about that. I don’t wanna become one of those guys who only talk about their relationship all day.\"}, {\"relativeIndex\": -2, \"lineId\": 95, \"paragraphIndex\": 86, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Damn, and I was just about to pry for details I know you aren’t going to give me... oh well, guess we’ll move onto the next order of business,\"}, {\"relativeIndex\": -1, \"lineId\": 97, \"paragraphIndex\": 87, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I’ve just received word from Yggdrasil, and a new declaration of friendship between the Order of the Malefic Viper and Pantheon of Life has been successfully established and shall be announced publicly shortly. Partly because of your banger job as my Chosen on this diplomatic mission. As your Patron, I acknowledge your contributions to the completion of negotiations.\"}, {\"relativeIndex\": 1, \"lineId\": 107, \"paragraphIndex\": 96, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Huh? Why are you acting all surprised by getting a few levels for being a Chosen, successfully completing a mission personally entrusted to you by your Patron, all while doing it using your unique Path?\"}, {\"relativeIndex\": 2, \"lineId\": 109, \"paragraphIndex\": 98, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"That’s... bullshit,\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\", \"Vilas\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

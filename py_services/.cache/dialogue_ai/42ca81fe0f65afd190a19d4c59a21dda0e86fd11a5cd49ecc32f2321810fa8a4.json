@@ -1,0 +1,310 @@
+{
+  "cacheKey": "42ca81fe0f65afd190a19d4c59a21dda0e86fd11a5cd49ecc32f2321810fa8a4",
+  "createdAt": "2026-04-01T20:10:58.112280+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "nimera",
+    "characterName": "Nimera",
+    "confidence": 0.9,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narrative_cue",
+      "alias_match",
+      "next_turn_confirms_addressee"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Attendant"
+        ],
+        "characterId": "nimera",
+        "characterName": "Nimera",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "nimera",
+          "attendant"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "primordial"
+        ],
+        "characterId": "yggdrasil",
+        "name": "Yggdrasil",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Attendant"
+        ],
+        "characterId": "nimera",
+        "name": "Nimera",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "nature attendant",
+        "name": "Nature Attendant",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Jake fell very much in the dark, but once more, Nature’s Attendant came to the rescue.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "I cannot share with you exactly what these flasks contain, but I will share with you the intent behind them.",
+      "lastSentence": "This is a statement, nay, a declaration.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "I cannot share with you exactly what these flasks contain, but I will share with you the intent behind them. This is a statement, nay, a declaration.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Attendant"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Nimera",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 103,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "I cannot share with you exactly what these flasks contain, but I will share with you the intent behind them. This is a statement, nay, a declaration."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 103,
+          "text": "I cannot share with you exactly what these flasks contain, but I will share with you the intent behind them. This is a statement, nay, a declaration."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake fell very much in the dark, but once more, Nature’s Attendant came to the rescue.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I cannot share with you exactly what these flasks contain, but I will share with you the intent behind them.",
+          "lastSentence": "This is a statement, nay, a declaration.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I cannot share with you exactly what these flasks contain, but I will share with you the intent behind them. This is a statement, nay, a declaration.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Jake fell very much in the dark, but once more, Nature’s Attendant came to the rescue. “I cannot share with you exactly what these flasks contain, but I will share with you the intent behind them. This is a statement, nay, a declaration.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 104,
+          "text": "A declaration of what?"
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake asked, confused.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "A declaration of what?",
+          "lastSentence": "A declaration of what?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "A declaration of what?",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "nextParagraphText": "“A declaration of what?” Jake asked, confused.",
+      "paragraphIndex": 58,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Yggdrasil confirmed."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 94,
+        "paragraphIndex": 53,
+        "relativeIndex": -4,
+        "text": "Is there a problem?"
+      },
+      {
+        "characterId": "nimera",
+        "characterName": "Nimera",
+        "lineId": 97,
+        "paragraphIndex": 55,
+        "relativeIndex": -3,
+        "text": "A problem? Quite the opposite,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 99,
+        "paragraphIndex": 55,
+        "relativeIndex": -2,
+        "text": "This was very purposeful, wasn’t it?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 100,
+        "paragraphIndex": 56,
+        "relativeIndex": -1,
+        "text": "Yes,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 104,
+        "paragraphIndex": 59,
+        "relativeIndex": 1,
+        "text": "A declaration of what?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 106,
+        "paragraphIndex": 60,
+        "relativeIndex": 2,
+        "text": "That he’s still the best alchemist in the multiverse,"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 103, \"text\": \"I cannot share with you exactly what these flasks contain, but I will share with you the intent behind them. This is a statement, nay, a declaration.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Attendant\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Nimera\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 58, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Jake fell very much in the dark, but once more, Nature’s Attendant came to the rescue. “I cannot share with you exactly what these flasks contain, but I will share with you the intent behind them. This is a statement, nay, a declaration.”\", \"currentParagraphDialogue\": [{\"lineId\": 103, \"text\": \"I cannot share with you exactly what these flasks contain, but I will share with you the intent behind them. This is a statement, nay, a declaration.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"Yggdrasil confirmed.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"“A declaration of what?” Jake asked, confused.\", \"nextParagraphDialogue\": [{\"lineId\": 104, \"text\": \"A declaration of what?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I cannot share with you exactly what these flasks contain, but I will share with you the intent behind them. This is a statement, nay, a declaration.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake fell very much in the dark, but once more, Nature’s Attendant came to the rescue.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I cannot share with you exactly what these flasks contain, but I will share with you the intent behind them.\", \"lastSentence\": \"This is a statement, nay, a declaration.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"A declaration of what?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake asked, confused.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"A declaration of what?\", \"lastSentence\": \"A declaration of what?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I cannot share with you exactly what these flasks contain, but I will share with you the intent behind them. This is a statement, nay, a declaration.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake fell very much in the dark, but once more, Nature’s Attendant came to the rescue.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I cannot share with you exactly what these flasks contain, but I will share with you the intent behind them.\", \"lastSentence\": \"This is a statement, nay, a declaration.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"nimera\", \"characterName\": \"Nimera\", \"aliases\": [\"Attendant\"], \"roleLabels\": [\"nimera\", \"attendant\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 94, \"paragraphIndex\": 53, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Is there a problem?\"}, {\"relativeIndex\": -3, \"lineId\": 97, \"paragraphIndex\": 55, \"characterId\": \"nimera\", \"characterName\": \"Nimera\", \"text\": \"A problem? Quite the opposite,\"}, {\"relativeIndex\": -2, \"lineId\": 99, \"paragraphIndex\": 55, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"This was very purposeful, wasn’t it?\"}, {\"relativeIndex\": -1, \"lineId\": 100, \"paragraphIndex\": 56, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Yes,\"}, {\"relativeIndex\": 1, \"lineId\": 104, \"paragraphIndex\": 59, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"A declaration of what?\"}, {\"relativeIndex\": 2, \"lineId\": 106, \"paragraphIndex\": 60, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"That he’s still the best alchemist in the multiverse,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"yggdrasil\", \"name\": \"Yggdrasil\", \"aliases\": [\"primordial\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"nimera\", \"name\": \"Nimera\", \"aliases\": [\"Attendant\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"nature attendant\", \"name\": \"Nature Attendant\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"nimera\",\n  \"characterName\": \"Nimera\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"explicit_narrative_cue\",\n    \"alias_match\",\n    \"next_turn_confirms_addressee\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

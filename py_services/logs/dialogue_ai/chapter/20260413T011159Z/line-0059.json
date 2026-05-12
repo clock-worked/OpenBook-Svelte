@@ -1,0 +1,352 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "2382289f431f5f41638002b83f67af3644f150d151d927c70596bc071c7f2067",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\2382289f431f5f41638002b83f67af3644f150d151d927c70596bc071c7f2067.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "rainbowfeather_sovereign",
+        "characterName": "Rainbowfeather Sovereign",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "dialogue_continuity",
+          "role_resolution"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Sovereign",
+              "The Sovereign"
+            ],
+            "characterId": "rainbowfeather sovereign",
+            "name": "Rainbowfeather Sovereign",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the B-grade proposed.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I have voiced my offer.",
+          "lastSentence": "Of course, should the Chimera not be involved with the Forest Fae at all, but just involuntarily involved, I shall leave and allow you to hunt her on your lonesome,",
+          "mentionedEntities": [
+            "Forest Fae"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "I have voiced my offer. I propose that rather than fight one another, we stand side by side to defeat the Chimera and the Forest Fae. Of course, should the Chimera not be involved with the Forest Fae at all, but just involuntarily involved, I shall leave and allow you to hunt her on your lonesome,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the B-grade"
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [
+                "Forest Fae"
+              ],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": true,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36,
+            "misattributionRisk": 0.2872,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Rainbowfeather Sovereign",
+            "sourceCandidates": [
+              "Rainbowfeather Sovereign",
+              "Jake"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.864
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.864,
+              "name": "Rainbowfeather Sovereign",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.504,
+              "name": "Jake",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "rainbowfeather_sovereign",
+          "currentCharacterName": "Rainbowfeather Sovereign",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 59,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "I have voiced my offer. I propose that rather than fight one another, we stand side by side to defeat the Chimera and the Forest Fae. Of course, should the Chimera not be involved with the Forest Fae at all, but just involuntarily involved, I shall leave and allow you to hunt her on your lonesome,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "rainbowfeather_sovereign",
+              "characterName": "Rainbowfeather Sovereign",
+              "isReturning": false,
+              "lineId": 59,
+              "text": "I have voiced my offer. I propose that rather than fight one another, we stand side by side to defeat the Chimera and the Forest Fae. Of course, should the Chimera not be involved with the Forest Fae at all, but just involuntarily involved, I shall leave and allow you to hunt her on your lonesome,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the B-grade proposed.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "I have voiced my offer.",
+              "lastSentence": "Of course, should the Chimera not be involved with the Forest Fae at all, but just involuntarily involved, I shall leave and allow you to hunt her on your lonesome,",
+              "mentionedEntities": [
+                "Forest Fae"
+              ],
+              "quoteIndex": 0,
+              "quoteText": "I have voiced my offer. I propose that rather than fight one another, we stand side by side to defeat the Chimera and the Forest Fae. Of course, should the Chimera not be involved with the Forest Fae at all, but just involuntarily involved, I shall leave and allow you to hunt her on your lonesome,",
+              "speakerNameMatch": null,
+              "speakerSurface": "the B-grade"
+            }
+          ],
+          "currentParagraphText": "“I have voiced my offer. I propose that rather than fight one another, we stand side by side to defeat the Chimera and the Forest Fae. Of course, should the Chimera not be involved with the Forest Fae at all, but just involuntarily involved, I shall leave and allow you to hunt her on your lonesome,” the B-grade proposed.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 61,
+              "text": "Not gonna lie and say I don’t have some serious reservations... but sure,"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake agreed to team up with the bird that had tried to kill him the last time they’d met.",
+              "cueVerb": "agreed",
+              "cueVerbType": "speech",
+              "firstSentence": "Not gonna lie and say I don’t have some serious reservations...",
+              "lastSentence": "but sure,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Not gonna lie and say I don’t have some serious reservations... but sure,",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "nextParagraphText": "“Not gonna lie and say I don’t have some serious reservations... but sure,” Jake agreed to team up with the bird that had tried to kill him the last time they’d met.",
+          "paragraphIndex": 30,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 57,
+              "text": "You must know by now that the Forest Fae was the ringleader. They all followed her lead to slay you and potentially even me."
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the Sovereign shook his head before looking directly at Jake.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "You must know by now that the Forest Fae was the ringleader.",
+              "lastSentence": "They all followed her lead to slay you and potentially even me.",
+              "mentionedEntities": [
+                "Forest Fae"
+              ],
+              "quoteIndex": 0,
+              "quoteText": "You must know by now that the Forest Fae was the ringleader. They all followed her lead to slay you and potentially even me.",
+              "speakerNameMatch": null,
+              "speakerSurface": "the Sovereign shook his head before"
+            }
+          ],
+          "previousParagraphText": "“You must know by now that the Forest Fae was the ringleader. They all followed her lead to slay you and potentially even me.” the Sovereign shook his head before looking directly at Jake."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "rainbowfeather_sovereign",
+            "characterName": "Rainbowfeather Sovereign",
+            "lineId": 53,
+            "paragraphIndex": 27,
+            "relativeIndex": -4,
+            "text": "If the grudge hampers survival, it goes against my Path far more. I already tried and failed to kill you. With that, I fulfilled my obligations and attempted to exact revenge. Moreover, the reason why my attempt failed lies with the Forest Fae, so if I bear any grudge now, it’s towards her."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 54,
+            "paragraphIndex": 28,
+            "relativeIndex": -3,
+            "text": "Just the Forest Fae?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 56,
+            "paragraphIndex": 28,
+            "relativeIndex": -2,
+            "text": "How about all the other B-grades I killed?"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 57,
+            "paragraphIndex": 29,
+            "relativeIndex": -1,
+            "text": "You must know by now that the Forest Fae was the ringleader. They all followed her lead to slay you and potentially even me."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 61,
+            "paragraphIndex": 31,
+            "relativeIndex": 1,
+            "text": "Not gonna lie and say I don’t have some serious reservations... but sure,"
+          },
+          {
+            "characterId": "rainbowfeather_sovereign",
+            "characterName": "Rainbowfeather Sovereign",
+            "lineId": 63,
+            "paragraphIndex": 32,
+            "relativeIndex": 2,
+            "text": "You have my word that I will not attack you,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 59, \"text\": \"I have voiced my offer. I propose that rather than fight one another, we stand side by side to defeat the Chimera and the Forest Fae. Of course, should the Chimera not be involved with the Forest Fae at all, but just involuntarily involved, I shall leave and allow you to hunt her on your lonesome,\", \"currentCharacterId\": \"rainbowfeather_sovereign\", \"currentCharacterName\": \"Rainbowfeather Sovereign\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Rainbowfeather Sovereign\", \"sourceCandidates\": [\"Rainbowfeather Sovereign\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.864, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.2872, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Forest Fae\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Rainbowfeather Sovereign\", \"confidence\": 0.864, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.504, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 30, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I have voiced my offer. I propose that rather than fight one another, we stand side by side to defeat the Chimera and the Forest Fae. Of course, should the Chimera not be involved with the Forest Fae at all, but just involuntarily involved, I shall leave and allow you to hunt her on your lonesome,” the B-grade proposed.\", \"currentParagraphDialogue\": [{\"lineId\": 59, \"text\": \"I have voiced my offer. I propose that rather than fight one another, we stand side by side to defeat the Chimera and the Forest Fae. Of course, should the Chimera not be involved with the Forest Fae at all, but just involuntarily involved, I shall leave and allow you to hunt her on your lonesome,\", \"characterId\": \"rainbowfeather_sovereign\", \"characterName\": \"Rainbowfeather Sovereign\", \"isReturning\": false}], \"previousParagraphText\": \"“You must know by now that the Forest Fae was the ringleader. They all followed her lead to slay you and potentially even me.” the Sovereign shook his head before looking directly at Jake.\", \"previousParagraphDialogue\": [{\"lineId\": 57, \"text\": \"You must know by now that the Forest Fae was the ringleader. They all followed her lead to slay you and potentially even me.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"nextParagraphText\": \"“Not gonna lie and say I don’t have some serious reservations... but sure,” Jake agreed to team up with the bird that had tried to kill him the last time they’d met.\", \"nextParagraphDialogue\": [{\"lineId\": 61, \"text\": \"Not gonna lie and say I don’t have some serious reservations... but sure,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I have voiced my offer. I propose that rather than fight one another, we stand side by side to defeat the Chimera and the Forest Fae. Of course, should the Chimera not be involved with the Forest Fae at all, but just involuntarily involved, I shall leave and allow you to hunt her on your lonesome,\", \"cuePosition\": \"after\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"the B-grade proposed.\", \"speakerSurface\": \"the B-grade\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"Forest Fae\"], \"addressedEntity\": null, \"firstSentence\": \"I have voiced my offer.\", \"lastSentence\": \"Of course, should the Chimera not be involved with the Forest Fae at all, but just involuntarily involved, I shall leave and allow you to hunt her on your lonesome,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"You must know by now that the Forest Fae was the ringleader. They all followed her lead to slay you and potentially even me.\", \"cuePosition\": \"after\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"the Sovereign shook his head before looking directly at Jake.\", \"speakerSurface\": \"the Sovereign shook his head before\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"Forest Fae\"], \"addressedEntity\": null, \"firstSentence\": \"You must know by now that the Forest Fae was the ringleader.\", \"lastSentence\": \"They all followed her lead to slay you and potentially even me.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Not gonna lie and say I don’t have some serious reservations... but sure,\", \"cuePosition\": \"after\", \"cueVerb\": \"agreed\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake agreed to team up with the bird that had tried to kill him the last time they’d met.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Not gonna lie and say I don’t have some serious reservations...\", \"lastSentence\": \"but sure,\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I have voiced my offer. I propose that rather than fight one another, we stand side by side to defeat the Chimera and the Forest Fae. Of course, should the Chimera not be involved with the Forest Fae at all, but just involuntarily involved, I shall leave and allow you to hunt her on your lonesome,\", \"cuePosition\": \"after\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"the B-grade proposed.\", \"speakerSurface\": \"the B-grade\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"Forest Fae\"], \"addressedEntity\": null, \"firstSentence\": \"I have voiced my offer.\", \"lastSentence\": \"Of course, should the Chimera not be involved with the Forest Fae at all, but just involuntarily involved, I shall leave and allow you to hunt her on your lonesome,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 53, \"paragraphIndex\": 27, \"characterId\": \"rainbowfeather_sovereign\", \"characterName\": \"Rainbowfeather Sovereign\", \"text\": \"If the grudge hampers survival, it goes against my Path far more. I already tried and failed to kill you. With that, I fulfilled my obligations and attempted to exact revenge. Moreover, the reason why my attempt failed lies with the Forest Fae, so if I bear any grudge now, it’s towards her.\"}, {\"relativeIndex\": -3, \"lineId\": 54, \"paragraphIndex\": 28, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Just the Forest Fae?\"}, {\"relativeIndex\": -2, \"lineId\": 56, \"paragraphIndex\": 28, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"How about all the other B-grades I killed?\"}, {\"relativeIndex\": -1, \"lineId\": 57, \"paragraphIndex\": 29, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"You must know by now that the Forest Fae was the ringleader. They all followed her lead to slay you and potentially even me.\"}, {\"relativeIndex\": 1, \"lineId\": 61, \"paragraphIndex\": 31, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Not gonna lie and say I don’t have some serious reservations... but sure,\"}, {\"relativeIndex\": 2, \"lineId\": 63, \"paragraphIndex\": 32, \"characterId\": \"rainbowfeather_sovereign\", \"characterName\": \"Rainbowfeather Sovereign\", \"text\": \"You have my word that I will not attack you,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"rainbowfeather sovereign\", \"name\": \"Rainbowfeather Sovereign\", \"aliases\": [\"Sovereign\", \"The Sovereign\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"rainbowfeather_sovereign\",\n  \"characterName\": \"Rainbowfeather Sovereign\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_continuity\",\n    \"role_resolution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0072 - Chapter 1129 - More Complicated Than First Assumed/chapter.txt",
+  "currentCharacterId": "rainbowfeather_sovereign",
+  "currentCharacterName": "Rainbowfeather Sovereign",
+  "currentParagraphText": "“I have voiced my offer. I propose that rather than fight one another, we stand side by side to defeat the Chimera and the Forest Fae. Of course, should the Chimera not be involved with the Forest Fae at all, but just involuntarily involved, I shall leave and allow you to hunt her on your lonesome,” the B-grade proposed.",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "rainbowfeather_sovereign",
+    "currentCharacterName": "Rainbowfeather Sovereign",
+    "currentParagraphText": "“I have voiced my offer. I propose that rather than fight one another, we stand side by side to defeat the Chimera and the Forest Fae. Of course, should the Chimera not be involved with the Forest Fae at all, but just involuntarily involved, I shall leave and allow you to hunt her on your lonesome,” the B-grade proposed.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 59,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Not gonna lie and say I don’t have some serious reservations... but sure,” Jake agreed to team up with the bird that had tried to kill him the last time they’d met.",
+    "paragraphIndex": 30,
+    "previousParagraphText": "“You must know by now that the Forest Fae was the ringleader. They all followed her lead to slay you and potentially even me.” the Sovereign shook his head before looking directly at Jake.",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_continuity",
+      "role_resolution"
+    ],
+    "suggestedCharacterId": "rainbowfeather sovereign",
+    "suggestedCharacterName": "Rainbowfeather Sovereign",
+    "toolTrace": []
+  },
+  "lineId": 59,
+  "nextParagraphText": "“Not gonna lie and say I don’t have some serious reservations... but sure,” Jake agreed to team up with the bird that had tried to kill him the last time they’d met.",
+  "paragraphIndex": 30,
+  "previousParagraphText": "“You must know by now that the Forest Fae was the ringleader. They all followed her lead to slay you and potentially even me.” the Sovereign shook his head before looking directly at Jake."
+}

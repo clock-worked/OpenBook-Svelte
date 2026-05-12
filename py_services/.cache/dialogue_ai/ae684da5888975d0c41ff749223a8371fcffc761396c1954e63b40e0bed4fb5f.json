@@ -1,0 +1,331 @@
+{
+  "cacheKey": "ae684da5888975d0c41ff749223a8371fcffc761396c1954e63b40e0bed4fb5f",
+  "createdAt": "2026-05-11T22:42:01.916617+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "having",
+    "characterName": "having",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "continues_paragraph_dialogue",
+      "pronoun_resolution"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "having",
+        "characterName": "having",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "having"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Yrel"
+        ],
+        "characterId": "yrelstromoz",
+        "characterName": "Yrelstromoz",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "yrelstromoz",
+          "yrel"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown-human-male",
+        "name": "Unknown Human (Male)",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Yrel"
+        ],
+        "characterId": "yrelstromoz",
+        "name": "Yrelstromoz",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "having",
+        "name": "having",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Attendant",
+          "natures-attendant",
+          "natures-attendant-2",
+          "Nature Attendant",
+          "Life"
+        ],
+        "characterId": "natures-attendant",
+        "name": "Nature's Attendant",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "before",
+      "cueText": "he continued after raking in more of his winnings.",
+      "cueVerb": "continued",
+      "cueVerbType": "speech",
+      "firstSentence": "The casino’s got the math down, and they make sure to always come out on top.",
+      "lastSentence": "Hence why I don’t feel too bad when I’m the one ripping them off.",
+      "mentionedEntities": [],
+      "quoteIndex": 1,
+      "quoteText": "The casino’s got the math down, and they make sure to always come out on top. It’s genuinely all a scam that just preys on the psyche of its customers. Hence why I don’t feel too bad when I’m the one ripping them off.",
+      "speakerNameMatch": null,
+      "speakerSurface": "he"
+    },
+    "line": {
+      "alignment": {
+        "confidence": 1.0,
+        "isSpanFallback": false,
+        "method": "quote_unit",
+        "paragraphIndex": 31,
+        "spanDistance": 0.0,
+        "spanParagraphIndex": 31
+      },
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": true,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "having",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.46399999999999997,
+        "misattributionRisk": 0.1748,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "having",
+        "sourceCandidates": [
+          "having",
+          "Yrelstromoz"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.98,
+          "name": "having",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.516,
+          "name": "Yrelstromoz",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "having",
+      "currentCharacterName": "having",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 47,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "The casino’s got the math down, and they make sure to always come out on top. It’s genuinely all a scam that just preys on the psyche of its customers. Hence why I don’t feel too bad when I’m the one ripping them off."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "having",
+          "characterName": "having",
+          "isReturning": false,
+          "lineId": 45,
+          "text": "Not like winning consistently is a viable strategy,"
+        },
+        {
+          "characterId": "having",
+          "characterName": "having",
+          "isReturning": true,
+          "lineId": 47,
+          "text": "The casino’s got the math down, and they make sure to always come out on top. It’s genuinely all a scam that just preys on the psyche of its customers. Hence why I don’t feel too bad when I’m the one ripping them off."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "he continued after raking in more of his winnings.",
+          "cueVerb": "continued",
+          "cueVerbType": "speech",
+          "firstSentence": "Not like winning consistently is a viable strategy,",
+          "lastSentence": "Not like winning consistently is a viable strategy,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Not like winning consistently is a viable strategy,",
+          "speakerNameMatch": null,
+          "speakerSurface": "he"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "he continued after raking in more of his winnings.",
+          "cueVerb": "continued",
+          "cueVerbType": "speech",
+          "firstSentence": "The casino’s got the math down, and they make sure to always come out on top.",
+          "lastSentence": "Hence why I don’t feel too bad when I’m the one ripping them off.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "The casino’s got the math down, and they make sure to always come out on top. It’s genuinely all a scam that just preys on the psyche of its customers. Hence why I don’t feel too bad when I’m the one ripping them off.",
+          "speakerNameMatch": null,
+          "speakerSurface": "he"
+        }
+      ],
+      "currentParagraphText": "“Not like winning consistently is a viable strategy,” he continued after raking in more of his winnings. “The casino’s got the math down, and they make sure to always come out on top. It’s genuinely all a scam that just preys on the psyche of its customers. Hence why I don’t feel too bad when I’m the one ripping them off.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 31
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "having",
+        "characterName": "having",
+        "lineId": 40,
+        "paragraphIndex": 28,
+        "relativeIndex": -4,
+        "text": "How about you? Do you come to these kinds of establishments often?"
+      },
+      {
+        "characterId": "yrelstromoz",
+        "characterName": "Yrelstromoz",
+        "lineId": 41,
+        "paragraphIndex": 29,
+        "relativeIndex": -3,
+        "text": "Yes,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 43,
+        "paragraphIndex": 30,
+        "relativeIndex": -2,
+        "text": "Well, I hope things go better for you, usually. Oh, hit,"
+      },
+      {
+        "characterId": "having",
+        "characterName": "having",
+        "lineId": 45,
+        "paragraphIndex": 31,
+        "relativeIndex": -1,
+        "text": "Not like winning consistently is a viable strategy,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 49,
+        "paragraphIndex": 32,
+        "relativeIndex": 1,
+        "text": "You say it’s a scam, yet here you are, seemingly being the scammer."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 50,
+        "paragraphIndex": 33,
+        "relativeIndex": 2,
+        "text": "Maybe I am,"
+      }
+    ],
+    "sceneEntities": [],
+    "sceneRoster": {
+      "paragraphWindow": 6,
+      "presentCharacterIds": [
+        "having",
+        "yrelstromoz",
+        "unknown"
+      ],
+      "presentCharacters": [
+        {
+          "characterId": "having",
+          "characterName": "having"
+        },
+        {
+          "characterId": "yrelstromoz",
+          "characterName": "Yrelstromoz"
+        },
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown"
+        }
+      ]
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 47, \"text\": \"The casino’s got the math down, and they make sure to always come out on top. It’s genuinely all a scam that just preys on the psyche of its customers. Hence why I don’t feel too bad when I’m the one ripping them off.\", \"currentCharacterId\": \"having\", \"currentCharacterName\": \"having\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"having\", \"sourceCandidates\": [\"having\", \"Yrelstromoz\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.46399999999999997, \"misattributionRisk\": 0.1748, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"having\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"having\", \"confidence\": 0.98, \"reasons\": null}, {\"characterId\": null, \"name\": \"Yrelstromoz\", \"confidence\": 0.516, \"reasons\": null}], \"isReturning\": true, \"alignment\": {\"paragraphIndex\": 31, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 31, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 31, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Not like winning consistently is a viable strategy,” he continued after raking in more of his winnings. “The casino’s got the math down, and they make sure to always come out on top. It’s genuinely all a scam that just preys on the psyche of its customers. Hence why I don’t feel too bad when I’m the one ripping them off.”\", \"currentParagraphDialogue\": [{\"lineId\": 45, \"text\": \"Not like winning consistently is a viable strategy,\", \"characterId\": \"having\", \"characterName\": \"having\", \"isReturning\": false}, {\"lineId\": 47, \"text\": \"The casino’s got the math down, and they make sure to always come out on top. It’s genuinely all a scam that just preys on the psyche of its customers. Hence why I don’t feel too bad when I’m the one ripping them off.\", \"characterId\": \"having\", \"characterName\": \"having\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Not like winning consistently is a viable strategy,\", \"cuePosition\": \"after\", \"cueVerb\": \"continued\", \"cueVerbType\": \"speech\", \"cueText\": \"he continued after raking in more of his winnings.\", \"speakerSurface\": \"he\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Not like winning consistently is a viable strategy,\", \"lastSentence\": \"Not like winning consistently is a viable strategy,\"}, {\"quoteIndex\": 1, \"quoteText\": \"The casino’s got the math down, and they make sure to always come out on top. It’s genuinely all a scam that just preys on the psyche of its customers. Hence why I don’t feel too bad when I’m the one ripping them off.\", \"cuePosition\": \"before\", \"cueVerb\": \"continued\", \"cueVerbType\": \"speech\", \"cueText\": \"he continued after raking in more of his winnings.\", \"speakerSurface\": \"he\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"The casino’s got the math down, and they make sure to always come out on top.\", \"lastSentence\": \"Hence why I don’t feel too bad when I’m the one ripping them off.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"The casino’s got the math down, and they make sure to always come out on top. It’s genuinely all a scam that just preys on the psyche of its customers. Hence why I don’t feel too bad when I’m the one ripping them off.\", \"cuePosition\": \"before\", \"cueVerb\": \"continued\", \"cueVerbType\": \"speech\", \"cueText\": \"he continued after raking in more of his winnings.\", \"speakerSurface\": \"he\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"The casino’s got the math down, and they make sure to always come out on top.\", \"lastSentence\": \"Hence why I don’t feel too bad when I’m the one ripping them off.\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"having\", \"yrelstromoz\", \"unknown\"], \"presentCharacters\": [{\"characterId\": \"having\", \"characterName\": \"having\"}, {\"characterId\": \"yrelstromoz\", \"characterName\": \"Yrelstromoz\"}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"having\", \"characterName\": \"having\", \"aliases\": [], \"roleLabels\": [\"having\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"yrelstromoz\", \"characterName\": \"Yrelstromoz\", \"aliases\": [\"Yrel\"], \"roleLabels\": [\"yrelstromoz\", \"yrel\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 40, \"paragraphIndex\": 28, \"characterId\": \"having\", \"characterName\": \"having\", \"text\": \"How about you? Do you come to these kinds of establishments often?\"}, {\"relativeIndex\": -3, \"lineId\": 41, \"paragraphIndex\": 29, \"characterId\": \"yrelstromoz\", \"characterName\": \"Yrelstromoz\", \"text\": \"Yes,\"}, {\"relativeIndex\": -2, \"lineId\": 43, \"paragraphIndex\": 30, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Well, I hope things go better for you, usually. Oh, hit,\"}, {\"relativeIndex\": -1, \"lineId\": 45, \"paragraphIndex\": 31, \"characterId\": \"having\", \"characterName\": \"having\", \"text\": \"Not like winning consistently is a viable strategy,\"}, {\"relativeIndex\": 1, \"lineId\": 49, \"paragraphIndex\": 32, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"You say it’s a scam, yet here you are, seemingly being the scammer.\"}, {\"relativeIndex\": 2, \"lineId\": 50, \"paragraphIndex\": 33, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Maybe I am,\"}], \"chapterCharacters\": [{\"characterId\": \"unknown-human-male\", \"name\": \"Unknown Human (Male)\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"yrelstromoz\", \"name\": \"Yrelstromoz\", \"aliases\": [\"Yrel\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"having\", \"name\": \"having\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"natures-attendant\", \"name\": \"Nature's Attendant\", \"aliases\": [\"Attendant\", \"natures-attendant\", \"natures-attendant-2\", \"Nature Attendant\", \"Life\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"having\",\n  \"characterName\": \"having\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"continues_paragraph_dialogue\",\n    \"pronoun_resolution\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

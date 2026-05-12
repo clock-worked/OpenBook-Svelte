@@ -1,0 +1,382 @@
+{
+  "cacheKey": "de9c96c3792c520ad921ee573005541f4bfc989fc738021e63c2644ee58f5669",
+  "createdAt": "2026-04-02T22:45:57.152027+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "viper",
+    "characterName": "The Malefic Viper",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_continuity",
+      "alias_match"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "viper",
+          "the malefic viper",
+          "malefic viper",
+          "villy"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "yip",
+        "characterName": "yip",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "yip"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "sylphie",
+        "name": "Sylphie",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "primordial",
+        "name": "Primordial",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "the-first-sage",
+          "the-first-sage-2"
+        ],
+        "characterId": "the-first-sage",
+        "name": "the first sage",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "yip",
+        "name": "yip",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "Jake now finally understood what Villy meant as he looked at the Record Fragment from Yip of Yore.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "I guess because the Records of Ell’Hakan and Yip mixed after he became a Usurper, merging the two items won’t be overly difficult...",
+      "lastSentence": "I guess because the Records of Ell’Hakan and Yip mixed after he became a Usurper, merging the two items won’t be overly difficult...",
+      "mentionedEntities": [
+        "yip",
+        "yip"
+      ],
+      "quoteIndex": 0,
+      "quoteText": "I guess because the Records of Ell’Hakan and Yip mixed after he became a Usurper, merging the two items won’t be overly difficult...",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [
+            "yip"
+          ],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "The Malefic Viper",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.51,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "The Malefic Viper",
+        "sourceCandidates": [
+          "The Malefic Viper",
+          "yip"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "viper",
+          "confidence": 0.816,
+          "name": "The Malefic Viper",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "yip",
+          "confidence": 0.306,
+          "name": "yip",
+          "reasons": [
+            "self_name_mention_penalty"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [
+        "viper",
+        "Villy"
+      ],
+      "currentCharacterId": "viper",
+      "currentCharacterName": "The Malefic Viper",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 107,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "I guess because the Records of Ell’Hakan and Yip mixed after he became a Usurper, merging the two items won’t be overly difficult..."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": true,
+          "lineId": 107,
+          "text": "I guess because the Records of Ell’Hakan and Yip mixed after he became a Usurper, merging the two items won’t be overly difficult..."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake now finally understood what Villy meant as he looked at the Record Fragment from Yip of Yore.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I guess because the Records of Ell’Hakan and Yip mixed after he became a Usurper, merging the two items won’t be overly difficult...",
+          "lastSentence": "I guess because the Records of Ell’Hakan and Yip mixed after he became a Usurper, merging the two items won’t be overly difficult...",
+          "mentionedEntities": [
+            "yip",
+            "yip"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "I guess because the Records of Ell’Hakan and Yip mixed after he became a Usurper, merging the two items won’t be overly difficult...",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "Jake now finally understood what Villy meant as he looked at the Record Fragment from Yip of Yore. “I guess because the Records of Ell’Hakan and Yip mixed after he became a Usurper, merging the two items won’t be overly difficult...”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": false,
+          "lineId": 108,
+          "text": "It won’t be too easy either, and you will need my active participation to make it happen,"
+        },
+        {
+          "characterId": "viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": true,
+          "lineId": 110,
+          "text": "But I can see you craft something truly powerful if you empower and give the Starlight Heart some direction... assuming it has any useful functions at all, that is. If not, you can always just use it as a catalyst for some ritual or maybe just use the Starlight Heart to empower the Record Fragment."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Villy shrugged.",
+          "cueVerb": "shrugged",
+          "cueVerbType": "reaction",
+          "firstSentence": "It won’t be too easy either, and you will need my active participation to make it happen,",
+          "lastSentence": "It won’t be too easy either, and you will need my active participation to make it happen,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "It won’t be too easy either, and you will need my active participation to make it happen,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Villy"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Villy shrugged.",
+          "cueVerb": "shrugged",
+          "cueVerbType": "reaction",
+          "firstSentence": "But I can see you craft something truly powerful if you empower and give the Starlight Heart some direction...",
+          "lastSentence": "If not, you can always just use it as a catalyst for some ritual or maybe just use the Starlight Heart to empower the Record Fragment.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "But I can see you craft something truly powerful if you empower and give the Starlight Heart some direction... assuming it has any useful functions at all, that is. If not, you can always just use it as a catalyst for some ritual or maybe just use the Starlight Heart to empower the Record Fragment.",
+          "speakerNameMatch": null,
+          "speakerSurface": "Villy"
+        }
+      ],
+      "nextParagraphText": "“It won’t be too easy either, and you will need my active participation to make it happen,” Villy shrugged. “But I can see you craft something truly powerful if you empower and give the Starlight Heart some direction... assuming it has any useful functions at all, that is. If not, you can always just use it as a catalyst for some ritual or maybe just use the Starlight Heart to empower the Record Fragment.”",
+      "paragraphIndex": 49,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "viper",
+          "characterName": "The Malefic Viper",
+          "isReturning": true,
+          "lineId": 105,
+          "text": "Understandable in some ways, but I would heavily advise against it. Think about it like this: the Bloodline was powerful, of that, there is no doubt. It only makes sense the item has some powerful function, too, right? If you can identify those functions, I have a little item here you may just be able to use to empower them. Once you do that, you can use the Starlight Heart to create something truly useful."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Understandable in some ways, but I would heavily advise against it.",
+          "lastSentence": "Once you do that, you can use the Starlight Heart to create something truly useful.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Understandable in some ways, but I would heavily advise against it. Think about it like this: the Bloodline was powerful, of that, there is no doubt. It only makes sense the item has some powerful function, too, right? If you can identify those functions, I have a little item here you may just be able to use to empower them. Once you do that, you can use the Starlight Heart to create something truly useful.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "previousParagraphText": "“Understandable in some ways, but I would heavily advise against it. Think about it like this: the Bloodline was powerful, of that, there is no doubt. It only makes sense the item has some powerful function, too, right? If you can identify those functions, I have a little item here you may just be able to use to empower them. Once you do that, you can use the Starlight Heart to create something truly useful.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 100,
+        "paragraphIndex": 46,
+        "relativeIndex": -4,
+        "text": "It does,"
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 102,
+        "paragraphIndex": 46,
+        "relativeIndex": -3,
+        "text": "It will for everyone, I’d reckon. Besides anyone who actually has the Bloodline, that is, but considering the grand total of people like that is zero, no one will be able to see what it does simply through Identify. It will require experimentation... or for you to eat it using the special stomach of Palate to learn more about it in a safe way."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 103,
+        "paragraphIndex": 47,
+        "relativeIndex": -2,
+        "text": "I could do that... though I’m still considering just getting rid of it for good,"
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 105,
+        "paragraphIndex": 48,
+        "relativeIndex": -1,
+        "text": "Understandable in some ways, but I would heavily advise against it. Think about it like this: the Bloodline was powerful, of that, there is no doubt. It only makes sense the item has some powerful function, too, right? If you can identify those functions, I have a little item here you may just be able to use to empower them. Once you do that, you can use the Starlight Heart to create something truly useful."
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 108,
+        "paragraphIndex": 50,
+        "relativeIndex": 1,
+        "text": "It won’t be too easy either, and you will need my active participation to make it happen,"
+      },
+      {
+        "characterId": "viper",
+        "characterName": "The Malefic Viper",
+        "lineId": 110,
+        "paragraphIndex": 50,
+        "relativeIndex": 2,
+        "text": "But I can see you craft something truly powerful if you empower and give the Starlight Heart some direction... assuming it has any useful functions at all, that is. If not, you can always just use it as a catalyst for some ritual or maybe just use the Starlight Heart to empower the Record Fragment."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 107, \"text\": \"I guess because the Records of Ell’Hakan and Yip mixed after he became a Usurper, merging the two items won’t be overly difficult...\", \"currentCharacterId\": \"viper\", \"currentCharacterName\": \"The Malefic Viper\", \"currentCharacterAliases\": [\"viper\", \"Villy\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"The Malefic Viper\", \"sourceCandidates\": [\"The Malefic Viper\", \"yip\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.51, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"yip\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Malefic Viper\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"yip\", \"name\": \"yip\", \"confidence\": 0.306, \"reasons\": [\"self_name_mention_penalty\"]}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 49, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"Jake now finally understood what Villy meant as he looked at the Record Fragment from Yip of Yore. “I guess because the Records of Ell’Hakan and Yip mixed after he became a Usurper, merging the two items won’t be overly difficult...”\", \"currentParagraphDialogue\": [{\"lineId\": 107, \"text\": \"I guess because the Records of Ell’Hakan and Yip mixed after he became a Usurper, merging the two items won’t be overly difficult...\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": true}], \"previousParagraphText\": \"“Understandable in some ways, but I would heavily advise against it. Think about it like this: the Bloodline was powerful, of that, there is no doubt. It only makes sense the item has some powerful function, too, right? If you can identify those functions, I have a little item here you may just be able to use to empower them. Once you do that, you can use the Starlight Heart to create something truly useful.”\", \"previousParagraphDialogue\": [{\"lineId\": 105, \"text\": \"Understandable in some ways, but I would heavily advise against it. Think about it like this: the Bloodline was powerful, of that, there is no doubt. It only makes sense the item has some powerful function, too, right? If you can identify those functions, I have a little item here you may just be able to use to empower them. Once you do that, you can use the Starlight Heart to create something truly useful.\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": true}], \"nextParagraphText\": \"“It won’t be too easy either, and you will need my active participation to make it happen,” Villy shrugged. “But I can see you craft something truly powerful if you empower and give the Starlight Heart some direction... assuming it has any useful functions at all, that is. If not, you can always just use it as a catalyst for some ritual or maybe just use the Starlight Heart to empower the Record Fragment.”\", \"nextParagraphDialogue\": [{\"lineId\": 108, \"text\": \"It won’t be too easy either, and you will need my active participation to make it happen,\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": false}, {\"lineId\": 110, \"text\": \"But I can see you craft something truly powerful if you empower and give the Starlight Heart some direction... assuming it has any useful functions at all, that is. If not, you can always just use it as a catalyst for some ritual or maybe just use the Starlight Heart to empower the Record Fragment.\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I guess because the Records of Ell’Hakan and Yip mixed after he became a Usurper, merging the two items won’t be overly difficult...\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake now finally understood what Villy meant as he looked at the Record Fragment from Yip of Yore.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"yip\", \"yip\"], \"addressedEntity\": null, \"firstSentence\": \"I guess because the Records of Ell’Hakan and Yip mixed after he became a Usurper, merging the two items won’t be overly difficult...\", \"lastSentence\": \"I guess because the Records of Ell’Hakan and Yip mixed after he became a Usurper, merging the two items won’t be overly difficult...\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Understandable in some ways, but I would heavily advise against it. Think about it like this: the Bloodline was powerful, of that, there is no doubt. It only makes sense the item has some powerful function, too, right? If you can identify those functions, I have a little item here you may just be able to use to empower them. Once you do that, you can use the Starlight Heart to create something truly useful.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Understandable in some ways, but I would heavily advise against it.\", \"lastSentence\": \"Once you do that, you can use the Starlight Heart to create something truly useful.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"It won’t be too easy either, and you will need my active participation to make it happen,\", \"cuePosition\": \"after\", \"cueVerb\": \"shrugged\", \"cueVerbType\": \"reaction\", \"cueText\": \"Villy shrugged.\", \"speakerSurface\": \"Villy\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"It won’t be too easy either, and you will need my active participation to make it happen,\", \"lastSentence\": \"It won’t be too easy either, and you will need my active participation to make it happen,\"}, {\"quoteIndex\": 1, \"quoteText\": \"But I can see you craft something truly powerful if you empower and give the Starlight Heart some direction... assuming it has any useful functions at all, that is. If not, you can always just use it as a catalyst for some ritual or maybe just use the Starlight Heart to empower the Record Fragment.\", \"cuePosition\": \"before\", \"cueVerb\": \"shrugged\", \"cueVerbType\": \"reaction\", \"cueText\": \"Villy shrugged.\", \"speakerSurface\": \"Villy\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"But I can see you craft something truly powerful if you empower and give the Starlight Heart some direction...\", \"lastSentence\": \"If not, you can always just use it as a catalyst for some ritual or maybe just use the Starlight Heart to empower the Record Fragment.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I guess because the Records of Ell’Hakan and Yip mixed after he became a Usurper, merging the two items won’t be overly difficult...\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake now finally understood what Villy meant as he looked at the Record Fragment from Yip of Yore.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"yip\", \"yip\"], \"addressedEntity\": null, \"firstSentence\": \"I guess because the Records of Ell’Hakan and Yip mixed after he became a Usurper, merging the two items won’t be overly difficult...\", \"lastSentence\": \"I guess because the Records of Ell’Hakan and Yip mixed after he became a Usurper, merging the two items won’t be overly difficult...\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"yip\", \"characterName\": \"yip\", \"aliases\": [], \"roleLabels\": [\"yip\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 100, \"paragraphIndex\": 46, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"It does,\"}, {\"relativeIndex\": -3, \"lineId\": 102, \"paragraphIndex\": 46, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"It will for everyone, I’d reckon. Besides anyone who actually has the Bloodline, that is, but considering the grand total of people like that is zero, no one will be able to see what it does simply through Identify. It will require experimentation... or for you to eat it using the special stomach of Palate to learn more about it in a safe way.\"}, {\"relativeIndex\": -2, \"lineId\": 103, \"paragraphIndex\": 47, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I could do that... though I’m still considering just getting rid of it for good,\"}, {\"relativeIndex\": -1, \"lineId\": 105, \"paragraphIndex\": 48, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Understandable in some ways, but I would heavily advise against it. Think about it like this: the Bloodline was powerful, of that, there is no doubt. It only makes sense the item has some powerful function, too, right? If you can identify those functions, I have a little item here you may just be able to use to empower them. Once you do that, you can use the Starlight Heart to create something truly useful.\"}, {\"relativeIndex\": 1, \"lineId\": 108, \"paragraphIndex\": 50, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"It won’t be too easy either, and you will need my active participation to make it happen,\"}, {\"relativeIndex\": 2, \"lineId\": 110, \"paragraphIndex\": 50, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"But I can see you craft something truly powerful if you empower and give the Starlight Heart some direction... assuming it has any useful functions at all, that is. If not, you can always just use it as a catalyst for some ritual or maybe just use the Starlight Heart to empower the Record Fragment.\"}], \"chapterCharacters\": [{\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"primordial\", \"name\": \"Primordial\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-first-sage\", \"name\": \"the first sage\", \"aliases\": [\"the-first-sage\", \"the-first-sage-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"yip\", \"name\": \"yip\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"viper\",\n  \"characterName\": \"The Malefic Viper\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_continuity\",\n    \"alias_match\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

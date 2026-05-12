@@ -9,12 +9,17 @@
   // removed generateChapterAudio per UI change
   import { defaultColors } from '$lib/theme/colors';
   import { Plus, ArrowUpDown } from 'lucide-svelte';
+  import ChapterAiAssistPanel from './ChapterAiAssistPanel.svelte';
   import ChapterCharacterList from './ChapterCharacterList.svelte';
   import ChapterCharacterBookList from './ChapterCharacterBookList.svelte';
   import ChapterCharacterDetails from './ChapterCharacterDetails.svelte';
   import Dropdown from '$lib/components/common/Dropdown.svelte';
   import { setBookCharacterColor, setBookCharacterGender, renameBookCharacter, removeBookCharacter, bookCharacters, detachBookCharacterAlias, forceRefreshBookCharacters, mergeBookCharacters, setBookCharacterPrimaryName } from '$lib/stores/bookCharacters';
   import { normalizeCharacterGender } from '$lib/services/characterGender';
+  import {
+    dialogueAiAssistState,
+    dialogueAiAssistVisibleResults,
+  } from '$lib/stores/dialogueAiAssist';
 
   const DISPLAY_ALPHA = 1.0; // Use solid colors for visibility
 
@@ -31,9 +36,19 @@
   const lastScrolledLine = new Map<string, number>();
   
   type SortMode = 'name' | 'lines' | 'color';
+  type ChapterPanelTab = 'characters' | 'ai';
+
   let sortMode: SortMode = 'name';
+  let activeTab: ChapterPanelTab = 'characters';
   let bookListOpen = false;
   let selectedBookCharacterName: string | null = null;
+  let lastAiRunning = false;
+
+  $: if ($dialogueAiAssistState.running && !lastAiRunning) {
+    activeTab = 'ai';
+  }
+
+  $: lastAiRunning = $dialogueAiAssistState.running;
 
   function normalizeCharacterKey(name: string): string {
     return String(name || '').trim().toLowerCase();
@@ -796,13 +811,39 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 4px;
+    gap: 10px;
   }
 
-  .panel-title {
-    margin: 2px 0 6px 0;
-    color: #6b7280;
+  .panel-tabs {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px;
+    border-radius: 12px;
+    background: #f4f7fb;
+    border: 1px solid #e3e8f2;
+  }
+
+  .panel-tab {
+    border: none;
+    background: transparent;
+    color: #5a6577;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
     font-weight: 600;
-    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .panel-tab.active {
+    background: #ffffff;
+    color: #1f2937;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+  }
+
+  .panel-tab.has-alert {
+    color: #0f4cc5;
   }
 
   .header-btn {
@@ -873,122 +914,146 @@
 
 <div class="character-panel">
   <div class="panel-header">
-    <h3 class="panel-title">Characters</h3>
-    <div class="header-actions">
-      <Dropdown
-        items={[
-          { value: 'name', label: 'Sort by Name' },
-          { value: 'lines', label: 'Sort by Lines' },
-          { value: 'color', label: 'Sort by Color' }
-        ]}
-        selected={sortMode}
-        on:select={(e) => sortMode = e.detail.value as SortMode}
-        title="Sort characters"
-        minWidth={150}
-        align="right"
+    <div class="panel-tabs" role="tablist" aria-label="Character panel tabs">
+      <button
+        class="panel-tab"
+        class:active={activeTab === 'characters'}
+        role="tab"
+        aria-selected={activeTab === 'characters'}
+        on:click={() => activeTab = 'characters'}
       >
-        <button class="header-btn" title="Sort characters" aria-label="Sort characters">
-          <ArrowUpDown size={18} color="#6b7280" />
-        </button>
-      </Dropdown>
-      <button class="header-btn" title="Add character" aria-label="Add character" on:click={addCharacter}>
-        <Plus size={18} color="#6b7280" />
+        Characters
+      </button>
+      <button
+        class="panel-tab"
+        class:active={activeTab === 'ai'}
+        class:has-alert={$dialogueAiAssistState.running || $dialogueAiAssistVisibleResults.length > 0}
+        role="tab"
+        aria-selected={activeTab === 'ai'}
+        on:click={() => activeTab = 'ai'}
+      >
+        AI Assist
       </button>
     </div>
+
+    {#if activeTab === 'characters'}
+      <div class="header-actions">
+        <Dropdown
+          items={[
+            { value: 'name', label: 'Sort by Name' },
+            { value: 'lines', label: 'Sort by Lines' },
+            { value: 'color', label: 'Sort by Color' }
+          ]}
+          selected={sortMode}
+          on:select={(e) => sortMode = e.detail.value as SortMode}
+          title="Sort characters"
+          minWidth={150}
+          align="right"
+        >
+          <button class="header-btn" title="Sort characters" aria-label="Sort characters">
+            <ArrowUpDown size={18} color="#6b7280" />
+          </button>
+        </Dropdown>
+        <button class="header-btn" title="Add character" aria-label="Add character" on:click={addCharacter}>
+          <Plus size={18} color="#6b7280" />
+        </button>
+      </div>
+    {/if}
   </div>
   <div class="panel-divider"></div>
 
-  {#if $selectionActive}
-    <div class="new-character-form">
-      <input class="character-input" placeholder="New character name" bind:value={newCharacterName} on:keydown={(e) => { if (e.key==='Enter') createAndApplyNewCharacter(); }} />
-      <button class="color-preview-btn" title="Pick color" on:click={() => newCharacterColor = prompt('Enter hex color (e.g. #2196f3)') || newCharacterColor} style={`background:${newCharacterColor ?? '#ccc'}`}></button>
-      <button class="create-btn" on:click={createAndApplyNewCharacter}>Create & Apply</button>
-    </div>
-  {/if}
+  {#if activeTab === 'ai'}
+    <ChapterAiAssistPanel />
+  {:else}
+    {#if $selectionActive}
+      <div class="new-character-form">
+        <input class="character-input" placeholder="New character name" bind:value={newCharacterName} on:keydown={(e) => { if (e.key==='Enter') createAndApplyNewCharacter(); }} />
+        <button class="color-preview-btn" title="Pick color" on:click={() => newCharacterColor = prompt('Enter hex color (e.g. #2196f3)') || newCharacterColor} style={`background:${newCharacterColor ?? '#ccc'}`}></button>
+        <button class="create-btn" on:click={createAndApplyNewCharacter}>Create & Apply</button>
+      </div>
+    {/if}
 
-  <ChapterCharacterList
-    items={sortedCharacters}
-    {editingIndex}
-    {editingValue}
-    {openColorIndex}
-    selectionActive={$selectionActive}
-    {DISPLAY_ALPHA}
-    lineCounts={chapterLineCounts}
-    jumpLineCounts={chapterLineCounts}
-    onRenameStart={(index: number, name: string) => { editingIndex = index; editingValue = name; }}
-    onRenameCommit={(index: number) => commitRename(index)}
-    onEditingChange={(value: string) => editingValue = value}
-    onToggleColor={(index: number) => openColorIndex = openColorIndex === index ? null : index}
-    onSetColor={(index: number, color: string | null) => setColor(index, color)}
-    onApplyToSelection={(name: string) => applyToSelection(name)}
-    onMerge={(source: number, target: number) => mergeCharacters(source, target)}
-    onDropBookCharacter={(name: string) => addBookCharacterToCurrentChapter(name)}
-    onJumpToNext={(name: string) => jumpToNextCharacter(name)}
-    onDelete={async (index: number) => {
-      const ch: any = $currentChapter;
-      const root = $bookRoot;
-      if (!ch || !root) return;
-      const chars = $characters;
-      const name = chars.characters[index]?.name;
-      if (!name) return;
-      const scr = $currentScript;
-      const hasAssignments = !!scr?.lines.some(l => l.chosenSpeaker === name);
-      if (hasAssignments) {
-        const ok = confirm(`Delete character "${name}"? This will clear ${name}'s assignments in this chapter.`);
-        if (!ok) return;
-      }
-      // Clear assignments if any
-      if (scr) {
-        for (const line of scr.lines) {
-          if (line.chosenSpeaker === name) {
-            line.chosenSpeaker = null;
-            line.isConflict = true;
-          }
+    <ChapterCharacterList
+      items={sortedCharacters}
+      {editingIndex}
+      {editingValue}
+      {openColorIndex}
+      selectionActive={$selectionActive}
+      {DISPLAY_ALPHA}
+      lineCounts={chapterLineCounts}
+      jumpLineCounts={chapterLineCounts}
+      onRenameStart={(index: number, name: string) => { editingIndex = index; editingValue = name; }}
+      onRenameCommit={(index: number) => commitRename(index)}
+      onEditingChange={(value: string) => editingValue = value}
+      onToggleColor={(index: number) => openColorIndex = openColorIndex === index ? null : index}
+      onSetColor={(index: number, color: string | null) => setColor(index, color)}
+      onApplyToSelection={(name: string) => applyToSelection(name)}
+      onMerge={(source: number, target: number) => mergeCharacters(source, target)}
+      onDropBookCharacter={(name: string) => addBookCharacterToCurrentChapter(name)}
+      onJumpToNext={(name: string) => jumpToNextCharacter(name)}
+      onDelete={async (index: number) => {
+        const ch: any = $currentChapter;
+        const root = $bookRoot;
+        if (!ch || !root) return;
+        const chars = $characters;
+        const name = chars.characters[index]?.name;
+        if (!name) return;
+        const scr = $currentScript;
+        const hasAssignments = !!scr?.lines.some(l => l.chosenSpeaker === name);
+        if (hasAssignments) {
+          const ok = confirm(`Delete character "${name}"? This will clear ${name}'s assignments in this chapter.`);
+          if (!ok) return;
         }
-        await writeScript(ch.scriptPath ?? getScriptPath(root, ch.title), scr);
-        currentScript.set(scr);
-      }
-      // Remove from book-level characters.json
-      await removeBookCharacter(name);
-      await updateChapterCharactersFile((existing) => {
-        const list = existing?.characters ?? [];
-        const nextList = list.filter(c => c.name !== name);
-        return { formatVersion: existing?.formatVersion || '2.0', characters: nextList };
-      });
-      characters.set({
-        formatVersion: chars.formatVersion || '2.0',
-        characters: chars.characters.filter((c) => c.name !== name)
-      });
-      // Chapter-level characters will refresh automatically on chapter change
-      if (editingIndex === index) editingIndex = null;
-      if (openColorIndex === index) openColorIndex = null;
-    }}
-  />
-  {#if !$characters.characters.length}
-    <p class="no-characters">No characters detected</p>
-  {/if}
-
-  <ChapterCharacterBookList
-    open={bookListOpen}
-    items={sortedBookCharacters}
-    selectedName={selectedBookCharacterName}
-    onToggle={() => bookListOpen = !bookListOpen}
-    onSelect={(name) => selectedBookCharacterName = name}
-    onDelete={(name, count) => deleteBookCharacter(name, count)}
-    onMerge={(sourceName, targetName) => mergeBookCharactersByName(sourceName, targetName)}
-    resolveColor={resolveCharacterColor}
-  />
-
-  {#if selectedBookCharacter}
-    <ChapterCharacterDetails
-      selectedName={selectedBookCharacter.name}
-      gender={normalizeCharacterGender(selectedBookCharacter.gender)}
-      aliasItems={selectedAliasItems}
-      color={selectedBookColor}
-      onSetGender={(gender) => setBookCharacterGender(selectedBookCharacter.name, gender)}
-      onDetach={(aliasName) => detachBookCharacterAlias(selectedBookCharacter.name, aliasName)}
-      onSetPrimary={(aliasName) => setPrimaryBookCharacterName(aliasName)}
+        if (scr) {
+          for (const line of scr.lines) {
+            if (line.chosenSpeaker === name) {
+              line.chosenSpeaker = null;
+              line.isConflict = true;
+            }
+          }
+          await writeScript(ch.scriptPath ?? getScriptPath(root, ch.title), scr);
+          currentScript.set(scr);
+        }
+        await removeBookCharacter(name);
+        await updateChapterCharactersFile((existing) => {
+          const list = existing?.characters ?? [];
+          const nextList = list.filter(c => c.name !== name);
+          return { formatVersion: existing?.formatVersion || '2.0', characters: nextList };
+        });
+        characters.set({
+          formatVersion: chars.formatVersion || '2.0',
+          characters: chars.characters.filter((c) => c.name !== name)
+        });
+        if (editingIndex === index) editingIndex = null;
+        if (openColorIndex === index) openColorIndex = null;
+      }}
     />
+    {#if !$characters.characters.length}
+      <p class="no-characters">No characters detected</p>
+    {/if}
+
+    <ChapterCharacterBookList
+      open={bookListOpen}
+      items={sortedBookCharacters}
+      selectedName={selectedBookCharacterName}
+      onToggle={() => bookListOpen = !bookListOpen}
+      onSelect={(name) => selectedBookCharacterName = name}
+      onDelete={(name, count) => deleteBookCharacter(name, count)}
+      onMerge={(sourceName, targetName) => mergeBookCharactersByName(sourceName, targetName)}
+      resolveColor={resolveCharacterColor}
+    />
+
+    {#if selectedBookCharacter}
+      <ChapterCharacterDetails
+        selectedName={selectedBookCharacter.name}
+        gender={normalizeCharacterGender(selectedBookCharacter.gender)}
+        aliasItems={selectedAliasItems}
+        color={selectedBookColor}
+        onSetGender={(gender) => setBookCharacterGender(selectedBookCharacter.name, gender)}
+        onDetach={(aliasName) => detachBookCharacterAlias(selectedBookCharacter.name, aliasName)}
+        onSetPrimary={(aliasName) => setPrimaryBookCharacterName(aliasName)}
+      />
+    {/if}
   {/if}
 </div>
 

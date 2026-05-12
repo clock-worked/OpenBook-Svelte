@@ -1,0 +1,335 @@
+{
+  "cacheKey": "0cebe7ed1b96555d6b76a89de0ad911ec2168c4e2c3628585d65face1ef3bae3",
+  "createdAt": "2026-04-19T03:51:20.470421+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "the_seeker",
+    "characterName": "The Seeker",
+    "confidence": 1.0,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "character_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "The Warpsnatcher",
+          "Jasper",
+          "the-warpsnatcher",
+          "the-warpsnatcher-2"
+        ],
+        "characterId": "warpsnatcher",
+        "characterName": "Warpsnatcher",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "warpsnatcher",
+          "the warpsnatcher",
+          "jasper",
+          "the warpsnatcher 2",
+          "warpsnatcher 2"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Unique Lifeform",
+          "The Unique Lifeform",
+          "the-unique-lifeform",
+          "the-unique-lifeform-2"
+        ],
+        "characterId": "minaga",
+        "characterName": "Minaga",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "minaga",
+          "unique lifeform",
+          "the unique lifeform",
+          "the unique lifeform 2",
+          "unique lifeform 2"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Unique Lifeform",
+          "The Unique Lifeform",
+          "the-unique-lifeform",
+          "the-unique-lifeform-2"
+        ],
+        "characterId": "minaga",
+        "name": "Minaga",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "The Warpsnatcher",
+          "Jasper",
+          "the-warpsnatcher",
+          "the-warpsnatcher-2"
+        ],
+        "characterId": "warpsnatcher",
+        "name": "Warpsnatcher",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "vampire",
+        "name": "Vampire",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "the seeker",
+        "name": "The Seeker",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Oh, right,",
+      "lastSentence": "Oh, right,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Oh, right,",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Minaga",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.7,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.33479999999999993,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "The Seeker",
+        "sourceCandidates": [
+          "The Seeker",
+          "Warpsnatcher"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.796
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.796,
+          "name": "The Seeker",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.436,
+          "name": "Warpsnatcher",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 71,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Oh, right,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 71,
+          "text": "Oh, right,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Oh, right,",
+          "lastSentence": "Oh, right,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Oh, right,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Oh, right,” the Seeker looked like he’d entirely forgotten he had to actually give the Blessing. Perhaps to save himself some effort, the god reached over and poked Jasper on the forehead.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "A moment later, Jasper’s aura began to experience a shift, primarily caused by the increase in stats from the title getting a Divine Blessing provided. The Shimmershroud Planeswarper focused on these changes as he also had a new non-combat skill to look at, naturally also provided by the title.",
+      "paragraphIndex": 37,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "the_seeker",
+          "characterName": "The Seeker",
+          "isReturning": true,
+          "lineId": 70,
+          "text": "Blessing!"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jasper nodded in acknowledgement as he stood to be as tall as possible.",
+          "cueVerb": "nodded",
+          "cueVerbType": "speech",
+          "firstSentence": "Blessing!",
+          "lastSentence": "Blessing!",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Blessing!",
+          "speakerNameMatch": null,
+          "speakerSurface": "Jasper"
+        }
+      ],
+      "previousParagraphText": "Jasper nodded in acknowledgement as he stood to be as tall as possible. “Blessing!”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 64,
+        "paragraphIndex": 34,
+        "relativeIndex": -4,
+        "text": "Upgrade Blessing?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 66,
+        "paragraphIndex": 35,
+        "relativeIndex": -3,
+        "text": "The True Blessing is certainly still on the table if an opportunity ever presents itself and you continue to prove yourself worthy of receiving one. I cannot promise when it may become available,"
+      },
+      {
+        "characterId": "warpsnatcher",
+        "characterName": "Warpsnatcher",
+        "lineId": 68,
+        "paragraphIndex": 35,
+        "relativeIndex": -2,
+        "text": "My current Chosen is S-grade and rapidly approaching the peak of their grade, but it’s still hard to make any kind of timeline. You’ll likely have to wait for her to either successfully ascend to godhood or fail and have me relinquish the Blessing, but who knows, you could get lucky and have her die tomorrow."
+      },
+      {
+        "characterId": "the_seeker",
+        "characterName": "The Seeker",
+        "lineId": 70,
+        "paragraphIndex": 36,
+        "relativeIndex": -1,
+        "text": "Blessing!"
+      },
+      {
+        "characterId": "minaga",
+        "characterName": "Minaga",
+        "lineId": 74,
+        "paragraphIndex": 39,
+        "relativeIndex": 1,
+        "text": "In moments like these, I get really jealous I can’t give out Blessings,"
+      },
+      {
+        "characterId": "minaga",
+        "characterName": "Minaga",
+        "lineId": 76,
+        "paragraphIndex": 39,
+        "relativeIndex": 2,
+        "text": "The system is truly unfair, oppressing me like that."
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 71, \"text\": \"Oh, right,\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"The Seeker\", \"sourceCandidates\": [\"The Seeker\", \"Warpsnatcher\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.796, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.33479999999999993, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.7, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Minaga\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"The Seeker\", \"confidence\": 0.796, \"reasons\": null}, {\"characterId\": null, \"name\": \"Warpsnatcher\", \"confidence\": 0.436, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 37, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Oh, right,” the Seeker looked like he’d entirely forgotten he had to actually give the Blessing. Perhaps to save himself some effort, the god reached over and poked Jasper on the forehead.\", \"currentParagraphDialogue\": [{\"lineId\": 71, \"text\": \"Oh, right,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"previousParagraphText\": \"Jasper nodded in acknowledgement as he stood to be as tall as possible. “Blessing!”\", \"previousParagraphDialogue\": [{\"lineId\": 70, \"text\": \"Blessing!\", \"characterId\": \"the_seeker\", \"characterName\": \"The Seeker\", \"isReturning\": true}], \"nextParagraphText\": \"A moment later, Jasper’s aura began to experience a shift, primarily caused by the increase in stats from the title getting a Divine Blessing provided. The Shimmershroud Planeswarper focused on these changes as he also had a new non-combat skill to look at, naturally also provided by the title.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Oh, right,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Oh, right,\", \"lastSentence\": \"Oh, right,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Blessing!\", \"cuePosition\": \"before\", \"cueVerb\": \"nodded\", \"cueVerbType\": \"speech\", \"cueText\": \"Jasper nodded in acknowledgement as he stood to be as tall as possible.\", \"speakerSurface\": \"Jasper\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Blessing!\", \"lastSentence\": \"Blessing!\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Oh, right,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Oh, right,\", \"lastSentence\": \"Oh, right,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"warpsnatcher\", \"characterName\": \"Warpsnatcher\", \"aliases\": [\"The Warpsnatcher\", \"Jasper\", \"the-warpsnatcher\", \"the-warpsnatcher-2\"], \"roleLabels\": [\"warpsnatcher\", \"the warpsnatcher\", \"jasper\", \"the warpsnatcher 2\", \"warpsnatcher 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [\"minaga\", \"unique lifeform\", \"the unique lifeform\", \"the unique lifeform 2\", \"unique lifeform 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 64, \"paragraphIndex\": 34, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Upgrade Blessing?\"}, {\"relativeIndex\": -3, \"lineId\": 66, \"paragraphIndex\": 35, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"The True Blessing is certainly still on the table if an opportunity ever presents itself and you continue to prove yourself worthy of receiving one. I cannot promise when it may become available,\"}, {\"relativeIndex\": -2, \"lineId\": 68, \"paragraphIndex\": 35, \"characterId\": \"warpsnatcher\", \"characterName\": \"Warpsnatcher\", \"text\": \"My current Chosen is S-grade and rapidly approaching the peak of their grade, but it’s still hard to make any kind of timeline. You’ll likely have to wait for her to either successfully ascend to godhood or fail and have me relinquish the Blessing, but who knows, you could get lucky and have her die tomorrow.\"}, {\"relativeIndex\": -1, \"lineId\": 70, \"paragraphIndex\": 36, \"characterId\": \"the_seeker\", \"characterName\": \"The Seeker\", \"text\": \"Blessing!\"}, {\"relativeIndex\": 1, \"lineId\": 74, \"paragraphIndex\": 39, \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"text\": \"In moments like these, I get really jealous I can’t give out Blessings,\"}, {\"relativeIndex\": 2, \"lineId\": 76, \"paragraphIndex\": 39, \"characterId\": \"minaga\", \"characterName\": \"Minaga\", \"text\": \"The system is truly unfair, oppressing me like that.\"}], \"chapterCharacters\": [{\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"warpsnatcher\", \"name\": \"Warpsnatcher\", \"aliases\": [\"The Warpsnatcher\", \"Jasper\", \"the-warpsnatcher\", \"the-warpsnatcher-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"vampire\", \"name\": \"Vampire\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the seeker\", \"name\": \"The Seeker\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"the_seeker\",\n  \"characterName\": \"The Seeker\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"character_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

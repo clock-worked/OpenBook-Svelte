@@ -1,0 +1,155 @@
+{
+  "cacheKey": "931c8793208e52aa64836b5c0f98d2b0c91532f289b972525dac3a2c15c56ac8",
+  "createdAt": "2026-04-01T04:29:43.358338+00:00",
+  "decision": {
+    "action": "propose_new_character",
+    "aliasToAdd": null,
+    "characterId": null,
+    "characterName": "King Iludar",
+    "confidence": 0.95,
+    "newCharacterProposal": {
+      "alias": null,
+      "name": "King Iludar",
+      "notes": "The narration explicitly states 'the man spoke'. The preceding line (40) has Lillian addressing 'King Iludar', strongly suggesting 'the man' is King Iludar."
+    },
+    "reasonCodes": [
+      "explicit_narration",
+      "dialogue_sequence"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda"
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth"
+      },
+      {
+        "aliases": [],
+        "characterId": "lillian",
+        "name": "Lillian"
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [
+          "lodestar-matron",
+          "lodestar-matron-2"
+        ],
+        "characterId": "lodestar-matron",
+        "name": "Lodestar Matron"
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.14400000000000002,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Lillian",
+        "sourceCandidates": [
+          "Lillian",
+          "Miranda"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.856
+      },
+      "candidates": [
+        {
+          "characterId": "lillian",
+          "confidence": 0.856,
+          "name": "Lillian",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "speech_verb"
+          ]
+        },
+        {
+          "characterId": "miranda",
+          "confidence": 0.496,
+          "name": "Miranda",
+          "reasons": [
+            "speech_verb"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "lillian",
+      "currentCharacterName": "Lillian",
+      "id": 41,
+      "isReturning": false,
+      "text": "Witch of Haven,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "lillian",
+          "characterName": "Lillian",
+          "isReturning": false,
+          "lineId": 40,
+          "text": "King Iludar."
+        },
+        {
+          "characterId": "lillian",
+          "characterName": "Lillian",
+          "isReturning": false,
+          "lineId": 41,
+          "text": "Witch of Haven,"
+        },
+        {
+          "characterId": "lillian",
+          "characterName": "Lillian",
+          "isReturning": true,
+          "lineId": 43,
+          "text": "I hope you like the place chosen to be your grave."
+        }
+      ],
+      "currentParagraphText": "“Witch of Haven,” the man spoke with a confident smile. “I hope you like the place chosen to be your grave.”",
+      "dialogueLineCount": 3,
+      "paragraphIndex": 21
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 41, \"text\": \"Witch of Haven,\", \"currentCharacterId\": \"lillian\", \"currentCharacterName\": \"Lillian\", \"currentCharacterAliases\": [], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Lillian\", \"sourceCandidates\": [\"Lillian\", \"Miranda\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.856, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.14400000000000002, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"lillian\", \"name\": \"Lillian\", \"confidence\": 0.856, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"confidence\": 0.496, \"reasons\": [\"speech_verb\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 21, \"currentLinePosition\": 1, \"dialogueLineCount\": 3, \"currentParagraphText\": \"“Witch of Haven,” the man spoke with a confident smile. “I hope you like the place chosen to be your grave.”\", \"currentParagraphDialogue\": [{\"lineId\": 40, \"text\": \"King Iludar.\", \"characterId\": \"lillian\", \"characterName\": \"Lillian\", \"isReturning\": false}, {\"lineId\": 41, \"text\": \"Witch of Haven,\", \"characterId\": \"lillian\", \"characterName\": \"Lillian\", \"isReturning\": false}, {\"lineId\": 43, \"text\": \"I hope you like the place chosen to be your grave.\", \"characterId\": \"lillian\", \"characterName\": \"Lillian\", \"isReturning\": true}]}, \"chapterCharacters\": [{\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": []}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": []}, {\"characterId\": \"lillian\", \"name\": \"Lillian\", \"aliases\": []}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"lodestar-matron\", \"name\": \"Lodestar Matron\", \"aliases\": [\"lodestar-matron\", \"lodestar-matron-2\"]}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"]}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"propose_new_character\",\n  \"characterId\": null,\n  \"characterName\": \"King Iludar\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration\",\n    \"dialogue_sequence\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": {\n    \"name\": \"King Iludar\",\n    \"alias\": null,\n    \"notes\": \"The narration explicitly states 'the man spoke'. The preceding line (40) has Lillian addressing 'King Iludar', strongly suggesting 'the man' is King Iludar.\"\n  }\n}"
+}

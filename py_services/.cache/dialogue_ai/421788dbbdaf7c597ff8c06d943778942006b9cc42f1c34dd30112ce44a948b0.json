@@ -1,0 +1,237 @@
+{
+  "cacheKey": "421788dbbdaf7c597ff8c06d943778942006b9cc42f1c34dd30112ce44a948b0",
+  "createdAt": "2026-04-01T18:38:20.658135+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "false god",
+    "characterName": "False God",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "previous_paragraph_context",
+      "next_paragraph_context",
+      "recent_turn_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "false god",
+        "characterName": "False God",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "false god"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jacob"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "jacob",
+        "name": "Jacob",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "false god",
+        "name": "False God",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "the creature screeched, its aura exploding outwards as Jacob stumbled back, still unaffected but with a sad look on his face. One that Jake didn’t really have much time to study.",
+      "cueVerb": "screeched",
+      "cueVerbType": "speech",
+      "firstSentence": "YOU!",
+      "lastSentence": "Enemy!",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "YOU! Slayer! Enemy!",
+      "speakerNameMatch": null,
+      "speakerSurface": "the creature"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0.0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "False God",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.85,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36000000000000004,
+        "misattributionRisk": 0.19199999999999995,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "False God",
+        "sourceCandidates": [
+          "False God",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.808
+      },
+      "candidates": [
+        {
+          "characterId": "false god",
+          "confidence": 0.808,
+          "name": "False God",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.448,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "false god",
+      "currentCharacterName": "False God",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 26,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "YOU! Slayer! Enemy!"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "false god",
+          "characterName": "False God",
+          "isReturning": false,
+          "lineId": 26,
+          "text": "YOU! Slayer! Enemy!"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the creature screeched, its aura exploding outwards as Jacob stumbled back, still unaffected but with a sad look on his face. One that Jake didn’t really have much time to study.",
+          "cueVerb": "screeched",
+          "cueVerbType": "speech",
+          "firstSentence": "YOU!",
+          "lastSentence": "Enemy!",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "YOU! Slayer! Enemy!",
+          "speakerNameMatch": null,
+          "speakerSurface": "the creature"
+        }
+      ],
+      "currentParagraphText": "“YOU! Slayer! Enemy!” the creature screeched, its aura exploding outwards as Jacob stumbled back, still unaffected but with a sad look on his face. One that Jake didn’t really have much time to study.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "The False God didn’t hesitate even a moment before it went for the kill. In an instant, it flew into the air, pure desolation spreading everywhere as Jake also reacted by making more distance.",
+      "paragraphIndex": 23,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "Jacob didn’t answer but just looked past the Desolate Child of Loss. The False God took a little before it followed his gaze and saw Jake floating in the air. The moment it laid eyes on Jake, its entire demeanor changed in an instant."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jacob",
+        "characterName": "Jacob",
+        "lineId": 20,
+        "paragraphIndex": 19,
+        "relativeIndex": -2,
+        "text": "I’m sorry,"
+      },
+      {
+        "characterId": "false god",
+        "characterName": "False God",
+        "lineId": 23,
+        "paragraphIndex": 21,
+        "relativeIndex": -1,
+        "text": "Why sorry?"
+      },
+      {
+        "characterId": "false god",
+        "characterName": "False God",
+        "lineId": 53,
+        "paragraphIndex": 48,
+        "relativeIndex": 1,
+        "text": "for now"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 26, \"text\": \"YOU! Slayer! Enemy!\", \"currentCharacterId\": \"false god\", \"currentCharacterName\": \"False God\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"False God\", \"sourceCandidates\": [\"False God\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.808, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19199999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.85, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"False God\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"false god\", \"name\": \"False God\", \"confidence\": 0.808, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.448, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 23, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“YOU! Slayer! Enemy!” the creature screeched, its aura exploding outwards as Jacob stumbled back, still unaffected but with a sad look on his face. One that Jake didn’t really have much time to study.\", \"currentParagraphDialogue\": [{\"lineId\": 26, \"text\": \"YOU! Slayer! Enemy!\", \"characterId\": \"false god\", \"characterName\": \"False God\", \"isReturning\": false}], \"previousParagraphText\": \"Jacob didn’t answer but just looked past the Desolate Child of Loss. The False God took a little before it followed his gaze and saw Jake floating in the air. The moment it laid eyes on Jake, its entire demeanor changed in an instant.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"The False God didn’t hesitate even a moment before it went for the kill. In an instant, it flew into the air, pure desolation spreading everywhere as Jake also reacted by making more distance.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"YOU! Slayer! Enemy!\", \"cuePosition\": \"after\", \"cueVerb\": \"screeched\", \"cueVerbType\": \"speech\", \"cueText\": \"the creature screeched, its aura exploding outwards as Jacob stumbled back, still unaffected but with a sad look on his face. One that Jake didn’t really have much time to study.\", \"speakerSurface\": \"the creature\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"YOU!\", \"lastSentence\": \"Enemy!\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"YOU! Slayer! Enemy!\", \"cuePosition\": \"after\", \"cueVerb\": \"screeched\", \"cueVerbType\": \"speech\", \"cueText\": \"the creature screeched, its aura exploding outwards as Jacob stumbled back, still unaffected but with a sad look on his face. One that Jake didn’t really have much time to study.\", \"speakerSurface\": \"the creature\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"YOU!\", \"lastSentence\": \"Enemy!\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"false god\", \"characterName\": \"False God\", \"aliases\": [], \"roleLabels\": [\"false god\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"aliases\": [], \"roleLabels\": [\"jacob\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -2, \"lineId\": 20, \"paragraphIndex\": 19, \"characterId\": \"jacob\", \"characterName\": \"Jacob\", \"text\": \"I’m sorry,\"}, {\"relativeIndex\": -1, \"lineId\": 23, \"paragraphIndex\": 21, \"characterId\": \"false god\", \"characterName\": \"False God\", \"text\": \"Why sorry?\"}, {\"relativeIndex\": 1, \"lineId\": 53, \"paragraphIndex\": 48, \"characterId\": \"false god\", \"characterName\": \"False God\", \"text\": \"for now\"}], \"chapterCharacters\": [{\"characterId\": \"jacob\", \"name\": \"Jacob\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"false god\", \"name\": \"False God\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"false god\",\n  \"characterName\": \"False God\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"previous_paragraph_context\",\n    \"next_paragraph_context\",\n    \"recent_turn_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

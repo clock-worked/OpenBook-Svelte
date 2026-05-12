@@ -1,0 +1,345 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "b2958f85d478f1da0d04003e5c5b7496fe6897c8a462f118bbff5ae2fbf70163",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\b2958f85d478f1da0d04003e5c5b7496fe6897c8a462f118bbff5ae2fbf70163.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "propose_new_character",
+        "aliasToAdd": null,
+        "characterId": null,
+        "characterName": null,
+        "confidence": 0.95,
+        "newCharacterProposal": {
+          "alias": "the figure",
+          "name": "The Contractor",
+          "notes": "A powerful male character, referred to as 'the guy in question' and 'the figure', who is a 'special contractor' and has a Godking-level aura. He is introduced immediately after Linea asks 'do we really need to bring that guy?'"
+        },
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "new_character_introduction",
+          "gender_mismatch_with_provisional",
+          "dialogue_context_contradicts_provisional"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "linea",
+            "characterName": "Linea",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "linea"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": false
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "name": "Sylphie",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "linea",
+            "name": "Linea",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "name": "Minaga",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "name": "The Sword Saint",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the figure spoke as he revealed himself, looking quite annoyed and entirely ignoring that doing so would unleash his aura, smashing the remaining S-grades down on their knees as his presence washed over them.",
+          "cueVerb": "spoke",
+          "cueVerbType": "speech",
+          "firstSentence": "Hey!",
+          "lastSentence": "I’m here as a special contractor, having taken on a job I would normally never even consider!",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Hey! That’s, like, super rude. I’m here as a special contractor, having taken on a job I would normally never even consider!",
+          "speakerNameMatch": null,
+          "speakerSurface": "the figure"
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": "male",
+              "contextGenderCue": "he revealed",
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": true,
+              "nextDialogueLegacy": "Linea",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.18000000000000005,
+            "misattributionRisk": 0.124,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Linea",
+            "sourceCandidates": [
+              "Linea",
+              "Jake"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.876
+          },
+          "candidates": [
+            {
+              "characterId": "linea",
+              "confidence": 0.876,
+              "name": "Linea",
+              "reasons": [
+                "parser_match",
+                "legacy_match",
+                "speech_verb"
+              ]
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.696,
+              "name": "Jake",
+              "reasons": [
+                "speech_verb",
+                "context_gender_match"
+              ]
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "linea",
+          "currentCharacterName": "Linea",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 38,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "Hey! That’s, like, super rude. I’m here as a special contractor, having taken on a job I would normally never even consider!"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "linea",
+              "characterName": "Linea",
+              "isReturning": false,
+              "lineId": 38,
+              "text": "Hey! That’s, like, super rude. I’m here as a special contractor, having taken on a job I would normally never even consider!"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the figure spoke as he revealed himself, looking quite annoyed and entirely ignoring that doing so would unleash his aura, smashing the remaining S-grades down on their knees as his presence washed over them.",
+              "cueVerb": "spoke",
+              "cueVerbType": "speech",
+              "firstSentence": "Hey!",
+              "lastSentence": "I’m here as a special contractor, having taken on a job I would normally never even consider!",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Hey! That’s, like, super rude. I’m here as a special contractor, having taken on a job I would normally never even consider!",
+              "speakerNameMatch": null,
+              "speakerSurface": "the figure"
+            }
+          ],
+          "currentParagraphText": "“Hey! That’s, like, super rude. I’m here as a special contractor, having taken on a job I would normally never even consider!” the figure spoke as he revealed himself, looking quite annoyed and entirely ignoring that doing so would unleash his aura, smashing the remaining S-grades down on their knees as his presence washed over them.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "A presence that didn’t simply reach the Godking level but slightly surpassed it. It was not at the level of the Lord Protector... but it was close.",
+          "paragraphIndex": 27,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "Jake asked as he pointed to a spot in empty air not far from Linea. Everyone followed his finger, but didn’t see anything. Jake guessed only Linea knew what Jake was referring to, but before she even had a chance to answer, the guy in question spoke up."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "linea",
+            "characterName": "Linea",
+            "lineId": 24,
+            "paragraphIndex": 17,
+            "relativeIndex": -4,
+            "text": "The Grand Elder shall naturally follow us without revealing himself, something I’m sure quite a few of you mortals would appreciate,"
+          },
+          {
+            "characterId": "linea",
+            "characterName": "Linea",
+            "lineId": 29,
+            "paragraphIndex": 21,
+            "relativeIndex": -3,
+            "text": "As for who shall escort you, I shall naturally be present, along with seven other deities, including the Grand Elder. We don’t expect anything to happen, and the journey shouldn’t take very long, but better safe than sorry,"
+          },
+          {
+            "characterId": "linea",
+            "characterName": "Linea",
+            "lineId": 32,
+            "paragraphIndex": 23,
+            "relativeIndex": -2,
+            "text": "Now, are there any questions, or is everyone ready to leave?"
+          },
+          {
+            "characterId": "linea",
+            "characterName": "Linea",
+            "lineId": 36,
+            "paragraphIndex": 25,
+            "relativeIndex": -1,
+            "text": "Just one... do we really need to bring that guy?"
+          },
+          {
+            "characterId": "linea",
+            "characterName": "Linea",
+            "lineId": 41,
+            "paragraphIndex": 29,
+            "relativeIndex": 1,
+            "text": "I wasn’t the one who hired you,"
+          },
+          {
+            "characterId": "linea",
+            "characterName": "Linea",
+            "lineId": 43,
+            "paragraphIndex": 29,
+            "relativeIndex": 2,
+            "text": "And I get the feeling we’re in more danger with you around than without you."
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 38, \"text\": \"Hey! That’s, like, super rude. I’m here as a special contractor, having taken on a job I would normally never even consider!\", \"currentCharacterId\": \"linea\", \"currentCharacterName\": \"Linea\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Linea\", \"sourceCandidates\": [\"Linea\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.876, \"marginToSecond\": 0.18000000000000005, \"misattributionRisk\": 0.124, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Linea\", \"contextGender\": \"male\", \"contextGenderCue\": \"he revealed\"}}, \"candidates\": [{\"characterId\": \"linea\", \"name\": \"Linea\", \"confidence\": 0.876, \"reasons\": [\"parser_match\", \"legacy_match\", \"speech_verb\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.696, \"reasons\": [\"speech_verb\", \"context_gender_match\"]}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 27, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Hey! That’s, like, super rude. I’m here as a special contractor, having taken on a job I would normally never even consider!” the figure spoke as he revealed himself, looking quite annoyed and entirely ignoring that doing so would unleash his aura, smashing the remaining S-grades down on their knees as his presence washed over them.\", \"currentParagraphDialogue\": [{\"lineId\": 38, \"text\": \"Hey! That’s, like, super rude. I’m here as a special contractor, having taken on a job I would normally never even consider!\", \"characterId\": \"linea\", \"characterName\": \"Linea\", \"isReturning\": false}], \"previousParagraphText\": \"Jake asked as he pointed to a spot in empty air not far from Linea. Everyone followed his finger, but didn’t see anything. Jake guessed only Linea knew what Jake was referring to, but before she even had a chance to answer, the guy in question spoke up.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"A presence that didn’t simply reach the Godking level but slightly surpassed it. It was not at the level of the Lord Protector... but it was close.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Hey! That’s, like, super rude. I’m here as a special contractor, having taken on a job I would normally never even consider!\", \"cuePosition\": \"after\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"the figure spoke as he revealed himself, looking quite annoyed and entirely ignoring that doing so would unleash his aura, smashing the remaining S-grades down on their knees as his presence washed over them.\", \"speakerSurface\": \"the figure\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Hey!\", \"lastSentence\": \"I’m here as a special contractor, having taken on a job I would normally never even consider!\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Hey! That’s, like, super rude. I’m here as a special contractor, having taken on a job I would normally never even consider!\", \"cuePosition\": \"after\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"the figure spoke as he revealed himself, looking quite annoyed and entirely ignoring that doing so would unleash his aura, smashing the remaining S-grades down on their knees as his presence washed over them.\", \"speakerSurface\": \"the figure\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Hey!\", \"lastSentence\": \"I’m here as a special contractor, having taken on a job I would normally never even consider!\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"linea\", \"characterName\": \"Linea\", \"aliases\": [], \"roleLabels\": [\"linea\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 24, \"paragraphIndex\": 17, \"characterId\": \"linea\", \"characterName\": \"Linea\", \"text\": \"The Grand Elder shall naturally follow us without revealing himself, something I’m sure quite a few of you mortals would appreciate,\"}, {\"relativeIndex\": -3, \"lineId\": 29, \"paragraphIndex\": 21, \"characterId\": \"linea\", \"characterName\": \"Linea\", \"text\": \"As for who shall escort you, I shall naturally be present, along with seven other deities, including the Grand Elder. We don’t expect anything to happen, and the journey shouldn’t take very long, but better safe than sorry,\"}, {\"relativeIndex\": -2, \"lineId\": 32, \"paragraphIndex\": 23, \"characterId\": \"linea\", \"characterName\": \"Linea\", \"text\": \"Now, are there any questions, or is everyone ready to leave?\"}, {\"relativeIndex\": -1, \"lineId\": 36, \"paragraphIndex\": 25, \"characterId\": \"linea\", \"characterName\": \"Linea\", \"text\": \"Just one... do we really need to bring that guy?\"}, {\"relativeIndex\": 1, \"lineId\": 41, \"paragraphIndex\": 29, \"characterId\": \"linea\", \"characterName\": \"Linea\", \"text\": \"I wasn’t the one who hired you,\"}, {\"relativeIndex\": 2, \"lineId\": 43, \"paragraphIndex\": 29, \"characterId\": \"linea\", \"characterName\": \"Linea\", \"text\": \"And I get the feeling we’re in more danger with you around than without you.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"linea\", \"name\": \"Linea\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"propose_new_character\",\n  \"characterId\": null,\n  \"characterName\": null,\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"new_character_introduction\",\n    \"gender_mismatch_with_provisional\",\n    \"dialogue_context_contradicts_provisional\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": {\n    \"name\": \"The Contractor\",\n    \"alias\": \"the figure\",\n    \"notes\": \"A powerful male character, referred to as 'the guy in question' and 'the figure', who is a 'special contractor' and has a Godking-level aura. He is introduced immediately after Linea asks 'do we really need to bring that guy?'\"\n  }\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0030 - Chapter 1087 - ...Do we really need to bring that guy ”",
+  "currentCharacterId": "linea",
+  "currentCharacterName": "Linea",
+  "currentParagraphText": "“Hey! That’s, like, super rude. I’m here as a special contractor, having taken on a job I would normally never even consider!” the figure spoke as he revealed himself, looking quite annoyed and entirely ignoring that doing so would unleash his aura, smashing the remaining S-grades down on their knees as his presence washed over them.",
+  "finalResult": {
+    "action": "propose_new_character",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "linea",
+    "currentCharacterName": "Linea",
+    "currentParagraphText": "“Hey! That’s, like, super rude. I’m here as a special contractor, having taken on a job I would normally never even consider!” the figure spoke as he revealed himself, looking quite annoyed and entirely ignoring that doing so would unleash his aura, smashing the remaining S-grades down on their knees as his presence washed over them.",
+    "disposition": "new_character_approval",
+    "error": null,
+    "lineId": 38,
+    "logPath": null,
+    "newCharacterProposal": {
+      "alias": "the figure",
+      "name": "The Contractor",
+      "notes": "A powerful male character, referred to as 'the guy in question' and 'the figure', who is a 'special contractor' and has a Godking-level aura. He is introduced immediately after Linea asks 'do we really need to bring that guy?'"
+    },
+    "nextParagraphText": "A presence that didn’t simply reach the Godking level but slightly surpassed it. It was not at the level of the Lord Protector... but it was close.",
+    "paragraphIndex": 27,
+    "previousParagraphText": "Jake asked as he pointed to a spot in empty air not far from Linea. Everyone followed his finger, but didn’t see anything. Jake guessed only Linea knew what Jake was referring to, but before she even had a chance to answer, the guy in question spoke up.",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "new_character_introduction",
+      "gender_mismatch_with_provisional",
+      "dialogue_context_contradicts_provisional"
+    ],
+    "suggestedCharacterId": "linea",
+    "suggestedCharacterName": "Linea",
+    "toolTrace": []
+  },
+  "lineId": 38,
+  "nextParagraphText": "A presence that didn’t simply reach the Godking level but slightly surpassed it. It was not at the level of the Lord Protector... but it was close.",
+  "paragraphIndex": 27,
+  "previousParagraphText": "Jake asked as he pointed to a spot in empty air not far from Linea. Everyone followed his finger, but didn’t see anything. Jake guessed only Linea knew what Jake was referring to, but before she even had a chance to answer, the guy in question spoke up."
+}

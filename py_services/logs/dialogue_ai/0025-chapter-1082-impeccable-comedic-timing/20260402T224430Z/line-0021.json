@@ -1,0 +1,425 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "70026ef808b0a06876c010418e26e5b8159b0b4085858c9a662a404bcd60e640",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\70026ef808b0a06876c010418e26e5b8159b0b4085858c9a662a404bcd60e640.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "dialogue_flow_consistent"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": true
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "viper",
+              "the malefic viper",
+              "malefic viper",
+              "villy"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "primordial",
+            "characterName": "Primordial",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "primordial"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "name": "Sylphie",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy"
+            ],
+            "characterId": "viper",
+            "name": "The Malefic Viper",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "primordial",
+            "name": "Primordial",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "the-first-sage",
+              "the-first-sage-2"
+            ],
+            "characterId": "the-first-sage",
+            "name": "the first sage",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "yip",
+            "name": "yip",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake kept the joke going.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Quite a broken legal system if you ask me,",
+          "lastSentence": "Quite a broken legal system if you ask me,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Quite a broken legal system if you ask me,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Jake kept the joke"
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0.0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "The Malefic Viper",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.19599999999999995,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "The Malefic Viper"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 0.804
+          },
+          "candidates": [
+            {
+              "characterId": "jake",
+              "confidence": 0.804,
+              "name": "Jake",
+              "reasons": [
+                "parser_match",
+                "legacy_match"
+              ]
+            },
+            {
+              "characterId": "viper",
+              "confidence": 0.444,
+              "name": "The Malefic Viper",
+              "reasons": []
+            }
+          ],
+          "currentCharacterAliases": [
+            "Protagonist"
+          ],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 21,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "Quite a broken legal system if you ask me,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 21,
+              "text": "Quite a broken legal system if you ask me,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake kept the joke going.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Quite a broken legal system if you ask me,",
+              "lastSentence": "Quite a broken legal system if you ask me,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Quite a broken legal system if you ask me,",
+              "speakerNameMatch": null,
+              "speakerSurface": "Jake kept the joke"
+            }
+          ],
+          "currentParagraphText": "“Quite a broken legal system if you ask me,” Jake kept the joke going.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "primordial",
+              "characterName": "Primordial",
+              "isReturning": false,
+              "lineId": 23,
+              "text": "Only if you’re not part of the in-group. Sure, for everyone else, it sucks, but as the ones in power, we benefit, so who cares?"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the Primordial said, and at this point, the joke was beginning to feel a bit too real.",
+              "cueVerb": "said",
+              "cueVerbType": "speech",
+              "firstSentence": "Only if you’re not part of the in-group.",
+              "lastSentence": "Sure, for everyone else, it sucks, but as the ones in power, we benefit, so who cares?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Only if you’re not part of the in-group. Sure, for everyone else, it sucks, but as the ones in power, we benefit, so who cares?",
+              "speakerNameMatch": "Primordial",
+              "speakerSurface": "Primordial"
+            }
+          ],
+          "nextParagraphText": "“Only if you’re not part of the in-group. Sure, for everyone else, it sucks, but as the ones in power, we benefit, so who cares?” the Primordial said, and at this point, the joke was beginning to feel a bit too real.",
+          "paragraphIndex": 11,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "viper",
+              "characterName": "The Malefic Viper",
+              "isReturning": false,
+              "lineId": 18,
+              "text": "Sue me,"
+            },
+            {
+              "characterId": "viper",
+              "characterName": "The Malefic Viper",
+              "isReturning": true,
+              "lineId": 20,
+              "text": "I’m both the jury, judge, and executioner within the Order of the Malefic Viper."
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Villy shrugged jokingly.",
+              "cueVerb": "shrugged",
+              "cueVerbType": "reaction",
+              "firstSentence": "Sue me,",
+              "lastSentence": "Sue me,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Sue me,",
+              "speakerNameMatch": null,
+              "speakerSurface": "Villy"
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Villy shrugged jokingly.",
+              "cueVerb": "shrugged",
+              "cueVerbType": "reaction",
+              "firstSentence": "I’m both the jury, judge, and executioner within the Order of the Malefic Viper.",
+              "lastSentence": "I’m both the jury, judge, and executioner within the Order of the Malefic Viper.",
+              "mentionedEntities": [
+                "The Malefic Viper",
+                "The Malefic Viper"
+              ],
+              "quoteIndex": 1,
+              "quoteText": "I’m both the jury, judge, and executioner within the Order of the Malefic Viper.",
+              "speakerNameMatch": null,
+              "speakerSurface": "Villy"
+            }
+          ],
+          "previousParagraphText": "“Sue me,” Villy shrugged jokingly. “I’m both the jury, judge, and executioner within the Order of the Malefic Viper.”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 15,
+            "paragraphIndex": 8,
+            "relativeIndex": -4,
+            "text": "Oh, I’ll just add the price of beverages to your rent."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 16,
+            "paragraphIndex": 9,
+            "relativeIndex": -3,
+            "text": "Now that’s definitely illegal,"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 18,
+            "paragraphIndex": 10,
+            "relativeIndex": -2,
+            "text": "Sue me,"
+          },
+          {
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "lineId": 20,
+            "paragraphIndex": 10,
+            "relativeIndex": -1,
+            "text": "I’m both the jury, judge, and executioner within the Order of the Malefic Viper."
+          },
+          {
+            "characterId": "primordial",
+            "characterName": "Primordial",
+            "lineId": 23,
+            "paragraphIndex": 12,
+            "relativeIndex": 1,
+            "text": "Only if you’re not part of the in-group. Sure, for everyone else, it sucks, but as the ones in power, we benefit, so who cares?"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 25,
+            "paragraphIndex": 13,
+            "relativeIndex": 2,
+            "text": "I guess that’s just the terms of living under a tyrant,"
+          }
+        ],
+        "sceneEntities": [
+          {
+            "matches": [
+              {
+                "characterId": "jake",
+                "characterName": "Jake",
+                "evidence": [
+                  "token_overlap:jake"
+                ],
+                "score": 0.5667
+              }
+            ],
+            "surface": "jake kept the joke"
+          }
+        ]
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 21, \"text\": \"Quite a broken legal system if you ask me,\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Protagonist\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"The Malefic Viper\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.19599999999999995, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0.0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Malefic Viper\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.804, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 0.444, \"reasons\": []}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 11, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Quite a broken legal system if you ask me,” Jake kept the joke going.\", \"currentParagraphDialogue\": [{\"lineId\": 21, \"text\": \"Quite a broken legal system if you ask me,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"previousParagraphText\": \"“Sue me,” Villy shrugged jokingly. “I’m both the jury, judge, and executioner within the Order of the Malefic Viper.”\", \"previousParagraphDialogue\": [{\"lineId\": 18, \"text\": \"Sue me,\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": false}, {\"lineId\": 20, \"text\": \"I’m both the jury, judge, and executioner within the Order of the Malefic Viper.\", \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"isReturning\": true}], \"nextParagraphText\": \"“Only if you’re not part of the in-group. Sure, for everyone else, it sucks, but as the ones in power, we benefit, so who cares?” the Primordial said, and at this point, the joke was beginning to feel a bit too real.\", \"nextParagraphDialogue\": [{\"lineId\": 23, \"text\": \"Only if you’re not part of the in-group. Sure, for everyone else, it sucks, but as the ones in power, we benefit, so who cares?\", \"characterId\": \"primordial\", \"characterName\": \"Primordial\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Quite a broken legal system if you ask me,\", \"cuePosition\": \"after\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake kept the joke going.\", \"speakerSurface\": \"Jake kept the joke\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Quite a broken legal system if you ask me,\", \"lastSentence\": \"Quite a broken legal system if you ask me,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Sue me,\", \"cuePosition\": \"after\", \"cueVerb\": \"shrugged\", \"cueVerbType\": \"reaction\", \"cueText\": \"Villy shrugged jokingly.\", \"speakerSurface\": \"Villy\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Sue me,\", \"lastSentence\": \"Sue me,\"}, {\"quoteIndex\": 1, \"quoteText\": \"I’m both the jury, judge, and executioner within the Order of the Malefic Viper.\", \"cuePosition\": \"before\", \"cueVerb\": \"shrugged\", \"cueVerbType\": \"reaction\", \"cueText\": \"Villy shrugged jokingly.\", \"speakerSurface\": \"Villy\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"The Malefic Viper\", \"The Malefic Viper\"], \"addressedEntity\": null, \"firstSentence\": \"I’m both the jury, judge, and executioner within the Order of the Malefic Viper.\", \"lastSentence\": \"I’m both the jury, judge, and executioner within the Order of the Malefic Viper.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Only if you’re not part of the in-group. Sure, for everyone else, it sucks, but as the ones in power, we benefit, so who cares?\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the Primordial said, and at this point, the joke was beginning to feel a bit too real.\", \"speakerSurface\": \"Primordial\", \"speakerNameMatch\": \"Primordial\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Only if you’re not part of the in-group.\", \"lastSentence\": \"Sure, for everyone else, it sucks, but as the ones in power, we benefit, so who cares?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Quite a broken legal system if you ask me,\", \"cuePosition\": \"after\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake kept the joke going.\", \"speakerSurface\": \"Jake kept the joke\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Quite a broken legal system if you ask me,\", \"lastSentence\": \"Quite a broken legal system if you ask me,\"}, \"sceneEntities\": [{\"surface\": \"jake kept the joke\", \"matches\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"score\": 0.5667, \"evidence\": [\"token_overlap:jake\"]}]}], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"primordial\", \"characterName\": \"Primordial\", \"aliases\": [], \"roleLabels\": [\"primordial\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 15, \"paragraphIndex\": 8, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Oh, I’ll just add the price of beverages to your rent.\"}, {\"relativeIndex\": -3, \"lineId\": 16, \"paragraphIndex\": 9, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Now that’s definitely illegal,\"}, {\"relativeIndex\": -2, \"lineId\": 18, \"paragraphIndex\": 10, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"Sue me,\"}, {\"relativeIndex\": -1, \"lineId\": 20, \"paragraphIndex\": 10, \"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"text\": \"I’m both the jury, judge, and executioner within the Order of the Malefic Viper.\"}, {\"relativeIndex\": 1, \"lineId\": 23, \"paragraphIndex\": 12, \"characterId\": \"primordial\", \"characterName\": \"Primordial\", \"text\": \"Only if you’re not part of the in-group. Sure, for everyone else, it sucks, but as the ones in power, we benefit, so who cares?\"}, {\"relativeIndex\": 2, \"lineId\": 25, \"paragraphIndex\": 13, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I guess that’s just the terms of living under a tyrant,\"}], \"chapterCharacters\": [{\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"primordial\", \"name\": \"Primordial\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-first-sage\", \"name\": \"the first sage\", \"aliases\": [\"the-first-sage\", \"the-first-sage-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"yip\", \"name\": \"yip\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"dialogue_flow_consistent\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0025 - Chapter 1082 - Impeccable Comedic Timing",
+  "currentCharacterId": "jake",
+  "currentCharacterName": "Jake",
+  "currentParagraphText": "“Quite a broken legal system if you ask me,” Jake kept the joke going.",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "jake",
+    "currentCharacterName": "Jake",
+    "currentParagraphText": "“Quite a broken legal system if you ask me,” Jake kept the joke going.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 21,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“Only if you’re not part of the in-group. Sure, for everyone else, it sucks, but as the ones in power, we benefit, so who cares?” the Primordial said, and at this point, the joke was beginning to feel a bit too real.",
+    "paragraphIndex": 11,
+    "previousParagraphText": "“Sue me,” Villy shrugged jokingly. “I’m both the jury, judge, and executioner within the Order of the Malefic Viper.”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "dialogue_flow_consistent"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 21,
+  "nextParagraphText": "“Only if you’re not part of the in-group. Sure, for everyone else, it sucks, but as the ones in power, we benefit, so who cares?” the Primordial said, and at this point, the joke was beginning to feel a bit too real.",
+  "paragraphIndex": 11,
+  "previousParagraphText": "“Sue me,” Villy shrugged jokingly. “I’m both the jury, judge, and executioner within the Order of the Malefic Viper.”"
+}

@@ -1,0 +1,408 @@
+{
+  "cacheKey": "eade3d7448412b15f0ab47c08296f5aa3d1a57768f204caa4aaa855061b22abd",
+  "createdAt": "2026-04-01T20:10:16.412956+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "unknown",
+    "characterName": "Unknown",
+    "confidence": 0.9,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "role_title_resolution",
+      "dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "jake",
+          "ell'hakan"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "false god",
+        "characterName": "False God",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "false god"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [],
+        "characterId": "beastkin-god",
+        "characterName": "Beastkin God",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "beastkin god"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [
+          "unknown-god",
+          "unknown-god-2"
+        ],
+        "characterId": "unknown-god",
+        "characterName": "Unknown God",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "unknown god",
+          "unknown god 2"
+        ],
+        "wasRecentSpeaker": false
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "primordial"
+        ],
+        "characterId": "yggdrasil",
+        "name": "Yggdrasil",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Attendant"
+        ],
+        "characterId": "nimera",
+        "name": "Nimera",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "nature attendant",
+        "name": "Nature Attendant",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "after",
+      "cueText": "the old god spoke with a comforting smile.",
+      "cueVerb": "spoke",
+      "cueVerbType": "speech",
+      "firstSentence": "Just be aware we have no ill intentions.",
+      "lastSentence": "I didn’t bring you here for an interrogation but to reward you, after all,",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Just be aware we have no ill intentions. We invited you here, after all. We do not demand anything from you, and if you are uncomfortable with our prying, we will gladly stop. I didn’t bring you here for an interrogation but to reward you, after all,",
+      "speakerNameMatch": null,
+      "speakerSurface": "the old god"
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": false,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": true,
+          "nextDialogueLegacy": "Jake",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.8,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.36,
+        "misattributionRisk": 0.2872,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Jake",
+        "sourceCandidates": [
+          "Jake",
+          "Attendant"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.864
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.864,
+          "name": "Jake",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.504,
+          "name": "Nimera",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [
+        "Ell'Hakan"
+      ],
+      "currentCharacterId": "jake",
+      "currentCharacterName": "Jake",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 65,
+      "isReturning": false,
+      "parserLabelsAreProvisional": true,
+      "text": "Just be aware we have no ill intentions. We invited you here, after all. We do not demand anything from you, and if you are uncomfortable with our prying, we will gladly stop. I didn’t bring you here for an interrogation but to reward you, after all,"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 65,
+          "text": "Just be aware we have no ill intentions. We invited you here, after all. We do not demand anything from you, and if you are uncomfortable with our prying, we will gladly stop. I didn’t bring you here for an interrogation but to reward you, after all,"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the old god spoke with a comforting smile.",
+          "cueVerb": "spoke",
+          "cueVerbType": "speech",
+          "firstSentence": "Just be aware we have no ill intentions.",
+          "lastSentence": "I didn’t bring you here for an interrogation but to reward you, after all,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Just be aware we have no ill intentions. We invited you here, after all. We do not demand anything from you, and if you are uncomfortable with our prying, we will gladly stop. I didn’t bring you here for an interrogation but to reward you, after all,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the old god"
+        }
+      ],
+      "currentParagraphText": "“Just be aware we have no ill intentions. We invited you here, after all. We do not demand anything from you, and if you are uncomfortable with our prying, we will gladly stop. I didn’t bring you here for an interrogation but to reward you, after all,” the old god spoke with a comforting smile.",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 67,
+          "text": "Oh, that reminds me,"
+        },
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": true,
+          "lineId": 69,
+          "text": "The Viper had me bring two personal gifts personally from him for the two of you. I would love to tell you what it is, but I genuinely can’t tell."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake suddenly remembered.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Oh, that reminds me,",
+          "lastSentence": "Oh, that reminds me,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Oh, that reminds me,",
+          "speakerNameMatch": null,
+          "speakerSurface": "Jake suddenly"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "Jake suddenly remembered.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "The Viper had me bring two personal gifts personally from him for the two of you.",
+          "lastSentence": "I would love to tell you what it is, but I genuinely can’t tell.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "The Viper had me bring two personal gifts personally from him for the two of you. I would love to tell you what it is, but I genuinely can’t tell.",
+          "speakerNameMatch": null,
+          "speakerSurface": "Jake suddenly"
+        }
+      ],
+      "nextParagraphText": "“Oh, that reminds me,” Jake suddenly remembered. “The Viper had me bring two personal gifts personally from him for the two of you. I would love to tell you what it is, but I genuinely can’t tell.”",
+      "paragraphIndex": 36,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "jake",
+          "characterName": "Jake",
+          "isReturning": false,
+          "lineId": 63,
+          "text": "I’m not quite sure how to take that,"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "Jake mumbled. Luckily, Nature’s Attendant stepped in quickly.",
+          "cueVerb": "mumbled",
+          "cueVerbType": "speech",
+          "firstSentence": "I’m not quite sure how to take that,",
+          "lastSentence": "I’m not quite sure how to take that,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I’m not quite sure how to take that,",
+          "speakerNameMatch": "Jake",
+          "speakerSurface": "Jake"
+        }
+      ],
+      "previousParagraphText": "“I’m not quite sure how to take that,” Jake mumbled. Luckily, Nature’s Attendant stepped in quickly."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 59,
+        "paragraphIndex": 31,
+        "relativeIndex": -4,
+        "text": "You answer with another question rather than, you know, actually answer. You’re clearly not asking for fun, and I have a hard time seeing why the two of you would care for my opinion on your Divine Realm."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 60,
+        "paragraphIndex": 32,
+        "relativeIndex": -3,
+        "text": "Yet that is exactly why we ask,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 62,
+        "paragraphIndex": 34,
+        "relativeIndex": -2,
+        "text": "Your perspective holds value you do not quite comprehend. You are a mortal who does not experience the suppression of divinity. A man guided by instinct over logic and a type of creature that has never stepped foot within this realm before. This uniqueness makes you intriguing and a curiosity to those who rarely experience the novelty of interacting with anything genuinely new."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 63,
+        "paragraphIndex": 35,
+        "relativeIndex": -1,
+        "text": "I’m not quite sure how to take that,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 67,
+        "paragraphIndex": 37,
+        "relativeIndex": 1,
+        "text": "Oh, that reminds me,"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 69,
+        "paragraphIndex": 37,
+        "relativeIndex": 2,
+        "text": "The Viper had me bring two personal gifts personally from him for the two of you. I would love to tell you what it is, but I genuinely can’t tell."
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "false god",
+            "characterName": "False God",
+            "evidence": [
+              "token_overlap:god"
+            ],
+            "score": 0.625
+          },
+          {
+            "characterId": "beastkin-god",
+            "characterName": "Beastkin God",
+            "evidence": [
+              "token_overlap:god"
+            ],
+            "score": 0.625
+          },
+          {
+            "characterId": "unknown-god",
+            "characterName": "Unknown God",
+            "evidence": [
+              "token_overlap:god",
+              "generic_placeholder_penalty"
+            ],
+            "score": 0.4375
+          }
+        ],
+        "surface": "the old god"
+      }
+    ]
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 65, \"text\": \"Just be aware we have no ill intentions. We invited you here, after all. We do not demand anything from you, and if you are uncomfortable with our prying, we will gladly stop. I didn’t bring you here for an interrogation but to reward you, after all,\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [\"Ell'Hakan\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Attendant\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.864, \"marginToSecond\": 0.36, \"misattributionRisk\": 0.2872, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": true, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.864, \"reasons\": null}, {\"characterId\": null, \"name\": \"Nimera\", \"confidence\": 0.504, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 36, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Just be aware we have no ill intentions. We invited you here, after all. We do not demand anything from you, and if you are uncomfortable with our prying, we will gladly stop. I didn’t bring you here for an interrogation but to reward you, after all,” the old god spoke with a comforting smile.\", \"currentParagraphDialogue\": [{\"lineId\": 65, \"text\": \"Just be aware we have no ill intentions. We invited you here, after all. We do not demand anything from you, and if you are uncomfortable with our prying, we will gladly stop. I didn’t bring you here for an interrogation but to reward you, after all,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"previousParagraphText\": \"“I’m not quite sure how to take that,” Jake mumbled. Luckily, Nature’s Attendant stepped in quickly.\", \"previousParagraphDialogue\": [{\"lineId\": 63, \"text\": \"I’m not quite sure how to take that,\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"nextParagraphText\": \"“Oh, that reminds me,” Jake suddenly remembered. “The Viper had me bring two personal gifts personally from him for the two of you. I would love to tell you what it is, but I genuinely can’t tell.”\", \"nextParagraphDialogue\": [{\"lineId\": 67, \"text\": \"Oh, that reminds me,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 69, \"text\": \"The Viper had me bring two personal gifts personally from him for the two of you. I would love to tell you what it is, but I genuinely can’t tell.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Just be aware we have no ill intentions. We invited you here, after all. We do not demand anything from you, and if you are uncomfortable with our prying, we will gladly stop. I didn’t bring you here for an interrogation but to reward you, after all,\", \"cuePosition\": \"after\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"the old god spoke with a comforting smile.\", \"speakerSurface\": \"the old god\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Just be aware we have no ill intentions.\", \"lastSentence\": \"I didn’t bring you here for an interrogation but to reward you, after all,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I’m not quite sure how to take that,\", \"cuePosition\": \"after\", \"cueVerb\": \"mumbled\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake mumbled. Luckily, Nature’s Attendant stepped in quickly.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I’m not quite sure how to take that,\", \"lastSentence\": \"I’m not quite sure how to take that,\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Oh, that reminds me,\", \"cuePosition\": \"after\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake suddenly remembered.\", \"speakerSurface\": \"Jake suddenly\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Oh, that reminds me,\", \"lastSentence\": \"Oh, that reminds me,\"}, {\"quoteIndex\": 1, \"quoteText\": \"The Viper had me bring two personal gifts personally from him for the two of you. I would love to tell you what it is, but I genuinely can’t tell.\", \"cuePosition\": \"before\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake suddenly remembered.\", \"speakerSurface\": \"Jake suddenly\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"The Viper had me bring two personal gifts personally from him for the two of you.\", \"lastSentence\": \"I would love to tell you what it is, but I genuinely can’t tell.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Just be aware we have no ill intentions. We invited you here, after all. We do not demand anything from you, and if you are uncomfortable with our prying, we will gladly stop. I didn’t bring you here for an interrogation but to reward you, after all,\", \"cuePosition\": \"after\", \"cueVerb\": \"spoke\", \"cueVerbType\": \"speech\", \"cueText\": \"the old god spoke with a comforting smile.\", \"speakerSurface\": \"the old god\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Just be aware we have no ill intentions.\", \"lastSentence\": \"I didn’t bring you here for an interrogation but to reward you, after all,\"}, \"sceneEntities\": [{\"surface\": \"the old god\", \"matches\": [{\"characterId\": \"false god\", \"characterName\": \"False God\", \"score\": 0.625, \"evidence\": [\"token_overlap:god\"]}, {\"characterId\": \"beastkin-god\", \"characterName\": \"Beastkin God\", \"score\": 0.625, \"evidence\": [\"token_overlap:god\"]}, {\"characterId\": \"unknown-god\", \"characterName\": \"Unknown God\", \"score\": 0.4375, \"evidence\": [\"token_overlap:god\", \"generic_placeholder_penalty\"]}]}], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [\"jake\", \"ell'hakan\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"false god\", \"characterName\": \"False God\", \"aliases\": [], \"roleLabels\": [\"false god\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"beastkin-god\", \"characterName\": \"Beastkin God\", \"aliases\": [], \"roleLabels\": [\"beastkin god\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"unknown-god\", \"characterName\": \"Unknown God\", \"aliases\": [\"unknown-god\", \"unknown-god-2\"], \"roleLabels\": [\"unknown god\", \"unknown god 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 59, \"paragraphIndex\": 31, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"You answer with another question rather than, you know, actually answer. You’re clearly not asking for fun, and I have a hard time seeing why the two of you would care for my opinion on your Divine Realm.\"}, {\"relativeIndex\": -3, \"lineId\": 60, \"paragraphIndex\": 32, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Yet that is exactly why we ask,\"}, {\"relativeIndex\": -2, \"lineId\": 62, \"paragraphIndex\": 34, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Your perspective holds value you do not quite comprehend. You are a mortal who does not experience the suppression of divinity. A man guided by instinct over logic and a type of creature that has never stepped foot within this realm before. This uniqueness makes you intriguing and a curiosity to those who rarely experience the novelty of interacting with anything genuinely new.\"}, {\"relativeIndex\": -1, \"lineId\": 63, \"paragraphIndex\": 35, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"I’m not quite sure how to take that,\"}, {\"relativeIndex\": 1, \"lineId\": 67, \"paragraphIndex\": 37, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Oh, that reminds me,\"}, {\"relativeIndex\": 2, \"lineId\": 69, \"paragraphIndex\": 37, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"The Viper had me bring two personal gifts personally from him for the two of you. I would love to tell you what it is, but I genuinely can’t tell.\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"yggdrasil\", \"name\": \"Yggdrasil\", \"aliases\": [\"primordial\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"nimera\", \"name\": \"Nimera\", \"aliases\": [\"Attendant\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"nature attendant\", \"name\": \"Nature Attendant\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"unknown\",\n  \"characterName\": \"Unknown\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"role_title_resolution\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

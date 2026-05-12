@@ -1,0 +1,351 @@
+{
+  "alignment": {
+    "confidence": 1.0,
+    "isSpanFallback": false,
+    "method": "quote_unit",
+    "paragraphIndex": 4,
+    "spanDistance": 0.0,
+    "spanParagraphIndex": 4
+  },
+  "calls": [
+    {
+      "cacheHit": true,
+      "cacheKey": "c0e592c1af61f3058cbb2d04111af5191bbc3bd0de6b4bf41833b98f0e367c1d",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\c0e592c1af61f3058cbb2d04111af5191bbc3bd0de6b4bf41833b98f0e367c1d.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "the first sage",
+        "characterName": "The First Sage",
+        "confidence": 0.9,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "next_paragraph_explicit_attribution",
+          "previous_paragraph_context_match",
+          "implied_character_role"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [
+              "First Sage"
+            ],
+            "characterId": "the first sage",
+            "characterName": "The First Sage",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "the first sage",
+              "first sage"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "viper",
+              "Villy",
+              "Vilas",
+              "Vilastromoz",
+              "The Viper",
+              "the-viper",
+              "the-viper-2"
+            ],
+            "characterId": "viper",
+            "characterName": "The Malefic Viper",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "viper",
+              "the malefic viper",
+              "malefic viper",
+              "villy",
+              "vilas",
+              "vilastromoz",
+              "the viper",
+              "the viper 2"
+            ],
+            "wasRecentSpeaker": false
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist",
+              "lord thayne",
+              "thayne",
+              "void god"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [
+              "First Sage"
+            ],
+            "characterId": "the first sage",
+            "name": "The First Sage",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Lord Thayne",
+              "Void God"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I would really recommend sitting.",
+          "lastSentence": "I would really recommend sitting.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I would really recommend sitting.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "alignment": {
+            "confidence": 1.0,
+            "isSpanFallback": false,
+            "method": "quote_unit",
+            "paragraphIndex": 4,
+            "spanDistance": 0.0,
+            "spanParagraphIndex": 4
+          },
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.18400000000000005,
+            "misattributionRisk": 0.0,
+            "parserBackend": "legacy",
+            "resolutionStatus": "user_confirmed",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "First Sage"
+            ],
+            "sourceDescriptors": [],
+            "topCandidateConfidence": 1.0
+          },
+          "candidates": [
+            {
+              "characterId": "viper",
+              "confidence": 1.0,
+              "name": "The Malefic Viper",
+              "reasons": null
+            },
+            {
+              "characterId": "jake",
+              "confidence": 0.816,
+              "name": "Jake",
+              "reasons": null
+            },
+            {
+              "characterId": "the first sage",
+              "confidence": 0.456,
+              "name": "The First Sage",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [
+            "First Sage"
+          ],
+          "currentCharacterId": "the first sage",
+          "currentCharacterName": "The First Sage",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 5,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "I would really recommend sitting."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "the first sage",
+              "characterName": "The First Sage",
+              "isReturning": true,
+              "lineId": 5,
+              "text": "I would really recommend sitting."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "I would really recommend sitting.",
+              "lastSentence": "I would really recommend sitting.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "I would really recommend sitting.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“I would really recommend sitting.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "Jake didn’t argue but did as the teacher of the Malefic Viper said. With a struggle, he forced himself around the handrest of the bench and took a seat. He leaned on the backrest and let out a loud sigh of pure exhaustion as he finally felt a moment of relaxation.",
+          "paragraphIndex": 4,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "As Jake was thinking, he suddenly felt another rush of exhaustion, making him nearly fall forward. He had to brace himself on the side of the bench, making the First Sage shake his head."
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 9,
+            "paragraphIndex": 8,
+            "relativeIndex": 1,
+            "text": "How are you here?"
+          },
+          {
+            "characterId": "the first sage",
+            "characterName": "The First Sage",
+            "lineId": 11,
+            "paragraphIndex": 9,
+            "relativeIndex": 2,
+            "text": "That’s an interesting question, now isn’t it?"
+          }
+        ],
+        "sceneEntities": [],
+        "sceneRoster": {
+          "paragraphWindow": 6,
+          "presentCharacterIds": [
+            "the first sage",
+            "jake"
+          ],
+          "presentCharacters": [
+            {
+              "characterId": "the first sage",
+              "characterName": "The First Sage"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake"
+            }
+          ]
+        }
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 5, \"text\": \"I would really recommend sitting.\", \"currentCharacterId\": \"the first sage\", \"currentCharacterName\": \"The First Sage\", \"currentCharacterAliases\": [\"First Sage\"], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"user_confirmed\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"First Sage\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 1.0, \"marginToSecond\": 0.18400000000000005, \"misattributionRisk\": 0.0, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"confidence\": 1.0, \"reasons\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": \"the first sage\", \"name\": \"The First Sage\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true, \"alignment\": {\"paragraphIndex\": 4, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 4, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 4, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I would really recommend sitting.”\", \"currentParagraphDialogue\": [{\"lineId\": 5, \"text\": \"I would really recommend sitting.\", \"characterId\": \"the first sage\", \"characterName\": \"The First Sage\", \"isReturning\": true}], \"previousParagraphText\": \"As Jake was thinking, he suddenly felt another rush of exhaustion, making him nearly fall forward. He had to brace himself on the side of the bench, making the First Sage shake his head.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"Jake didn’t argue but did as the teacher of the Malefic Viper said. With a struggle, he forced himself around the handrest of the bench and took a seat. He leaned on the backrest and let out a loud sigh of pure exhaustion as he finally felt a moment of relaxation.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I would really recommend sitting.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I would really recommend sitting.\", \"lastSentence\": \"I would really recommend sitting.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I would really recommend sitting.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I would really recommend sitting.\", \"lastSentence\": \"I would really recommend sitting.\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"the first sage\", \"jake\"], \"presentCharacters\": [{\"characterId\": \"the first sage\", \"characterName\": \"The First Sage\"}, {\"characterId\": \"jake\", \"characterName\": \"Jake\"}]}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"the first sage\", \"characterName\": \"The First Sage\", \"aliases\": [\"First Sage\"], \"roleLabels\": [\"the first sage\", \"first sage\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"viper\", \"characterName\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\", \"Vilas\", \"Vilastromoz\", \"The Viper\", \"the-viper\", \"the-viper-2\"], \"roleLabels\": [\"viper\", \"the malefic viper\", \"malefic viper\", \"villy\", \"vilas\", \"vilastromoz\", \"the viper\", \"the viper 2\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\", \"void god\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": 1, \"lineId\": 9, \"paragraphIndex\": 8, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"How are you here?\"}, {\"relativeIndex\": 2, \"lineId\": 11, \"paragraphIndex\": 9, \"characterId\": \"the first sage\", \"characterName\": \"The First Sage\", \"text\": \"That’s an interesting question, now isn’t it?\"}], \"chapterCharacters\": [{\"characterId\": \"the first sage\", \"name\": \"The First Sage\", \"aliases\": [\"First Sage\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"the first sage\",\n  \"characterName\": \"The First Sage\",\n  \"confidence\": 0.9,\n  \"reasonCodes\": [\n    \"next_paragraph_explicit_attribution\",\n    \"previous_paragraph_context_match\",\n    \"implied_character_role\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\Primal-Hunter\\Book-15+\\0162 - Chapter 1219 - Gate\\dialogue.json",
+  "currentCharacterId": "the first sage",
+  "currentCharacterName": "The First Sage",
+  "currentParagraphText": "“I would really recommend sitting.”",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.9,
+    "currentCharacterId": "the first sage",
+    "currentCharacterName": "The First Sage",
+    "currentParagraphText": "“I would really recommend sitting.”",
+    "disposition": "review",
+    "error": null,
+    "lineId": 5,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "Jake didn’t argue but did as the teacher of the Malefic Viper said. With a struggle, he forced himself around the handrest of the bench and took a seat. He leaned on the backrest and let out a loud sigh of pure exhaustion as he finally felt a moment of relaxation.",
+    "paragraphIndex": 4,
+    "previousParagraphText": "As Jake was thinking, he suddenly felt another rush of exhaustion, making him nearly fall forward. He had to brace himself on the side of the bench, making the First Sage shake his head.",
+    "reasonCodes": [
+      "next_paragraph_explicit_attribution",
+      "previous_paragraph_context_match",
+      "implied_character_role"
+    ],
+    "suggestedCharacterId": "the first sage",
+    "suggestedCharacterName": "The First Sage",
+    "toolTrace": []
+  },
+  "lineId": 5,
+  "nextParagraphText": "Jake didn’t argue but did as the teacher of the Malefic Viper said. With a struggle, he forced himself around the handrest of the bench and took a seat. He leaned on the backrest and let out a loud sigh of pure exhaustion as he finally felt a moment of relaxation.",
+  "paragraphIndex": 4,
+  "previousParagraphText": "As Jake was thinking, he suddenly felt another rush of exhaustion, making him nearly fall forward. He had to brace himself on the side of the bench, making the First Sage shake his head.",
+  "sceneRoster": {
+    "paragraphWindow": 6,
+    "presentCharacterIds": [
+      "the first sage",
+      "jake"
+    ],
+    "presentCharacters": [
+      {
+        "characterId": "the first sage",
+        "characterName": "The First Sage"
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake"
+      }
+    ]
+  }
+}

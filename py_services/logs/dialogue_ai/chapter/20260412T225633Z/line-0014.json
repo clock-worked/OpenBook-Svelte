@@ -1,0 +1,361 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "f596c959a306b761063454018820084923c325416ebc27de7387d9882f0bac8f",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\f596c959a306b761063454018820084923c325416ebc27de7387d9882f0bac8f.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "propose_new_character",
+        "aliasToAdd": null,
+        "characterId": null,
+        "characterName": null,
+        "confidence": 0.95,
+        "newCharacterProposal": {
+          "alias": "the scout",
+          "name": "Scout",
+          "notes": "Character identified by role 'the scout' in narration."
+        },
+        "reasonCodes": [
+          "explicit_narration_cue",
+          "new_role_identified"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "having",
+            "name": "Having",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "warlord",
+            "name": "Warlord",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the scout answered.",
+          "cueVerb": "answered",
+          "cueVerbType": "speech",
+          "firstSentence": "They also seem to have backed off and stopped invading the Simivitas for now,",
+          "lastSentence": "They also seem to have backed off and stopped invading the Simivitas for now,",
+          "mentionedEntities": [
+            "Simivitas"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "They also seem to have backed off and stopped invading the Simivitas for now,",
+          "speakerNameMatch": null,
+          "speakerSurface": "the scout"
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [
+                "Simivitas"
+              ],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Unknown",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.904,
+            "misattributionRisk": 0.15,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "Unknown",
+            "sourceCandidates": [
+              "Unknown"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.904
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.904,
+              "name": "Unknown",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 14,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "They also seem to have backed off and stopped invading the Simivitas for now,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 14,
+              "text": "They also seem to have backed off and stopped invading the Simivitas for now,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the scout answered.",
+              "cueVerb": "answered",
+              "cueVerbType": "speech",
+              "firstSentence": "They also seem to have backed off and stopped invading the Simivitas for now,",
+              "lastSentence": "They also seem to have backed off and stopped invading the Simivitas for now,",
+              "mentionedEntities": [
+                "Simivitas"
+              ],
+              "quoteIndex": 0,
+              "quoteText": "They also seem to have backed off and stopped invading the Simivitas for now,",
+              "speakerNameMatch": null,
+              "speakerSurface": "the scout"
+            }
+          ],
+          "currentParagraphText": "“They also seem to have backed off and stopped invading the Simivitas for now,” the scout answered.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 16,
+              "text": "They sense it, too,"
+            },
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 18,
+              "text": "We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us."
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "the B-grade mantis sighed.",
+              "cueVerb": "sighed",
+              "cueVerbType": "speech",
+              "firstSentence": "They sense it, too,",
+              "lastSentence": "They sense it, too,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "They sense it, too,",
+              "speakerNameMatch": null,
+              "speakerSurface": "the B-grade mantis"
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "the B-grade mantis sighed.",
+              "cueVerb": "sighed",
+              "cueVerbType": "speech",
+              "firstSentence": "We shall focus on defending our home for now.",
+              "lastSentence": "or toward us.",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us.",
+              "speakerNameMatch": null,
+              "speakerSurface": "the B-grade mantis"
+            }
+          ],
+          "nextParagraphText": "“They sense it, too,” the B-grade mantis sighed. “We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us.”",
+          "paragraphIndex": 8,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 13,
+              "text": "Have the other islands had any response yet?"
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "Her senses went to the cave filled with eggs as she steeled herself.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Have the other islands had any response yet?",
+              "lastSentence": "Have the other islands had any response yet?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Have the other islands had any response yet?",
+              "speakerNameMatch": null,
+              "speakerSurface": "Her senses went to the cave"
+            }
+          ],
+          "previousParagraphText": "Her senses went to the cave filled with eggs as she steeled herself. “Have the other islands had any response yet?”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 5,
+            "paragraphIndex": 3,
+            "relativeIndex": -4,
+            "text": "Has the Warlord decided to deal with all invaders personally?"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 7,
+            "paragraphIndex": 4,
+            "relativeIndex": -3,
+            "text": "No... no, there’s something else there. Something has been systematically dismantling the Simivita forces, and from what my scouts and I gathered, it’s an individual. A powerful entity has invaded them,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 9,
+            "paragraphIndex": 5,
+            "relativeIndex": -2,
+            "text": "One of the enlightened hunters?"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 13,
+            "paragraphIndex": 7,
+            "relativeIndex": -1,
+            "text": "Have the other islands had any response yet?"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 16,
+            "paragraphIndex": 9,
+            "relativeIndex": 1,
+            "text": "They sense it, too,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 18,
+            "paragraphIndex": 9,
+            "relativeIndex": 2,
+            "text": "We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us."
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 14, \"text\": \"They also seem to have backed off and stopped invading the Simivitas for now,\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Unknown\", \"sourceCandidates\": [\"Unknown\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.904, \"marginToSecond\": 0.904, \"misattributionRisk\": 0.15, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Simivitas\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Unknown\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Unknown\", \"confidence\": 0.904, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 8, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“They also seem to have backed off and stopped invading the Simivitas for now,” the scout answered.\", \"currentParagraphDialogue\": [{\"lineId\": 14, \"text\": \"They also seem to have backed off and stopped invading the Simivitas for now,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"previousParagraphText\": \"Her senses went to the cave filled with eggs as she steeled herself. “Have the other islands had any response yet?”\", \"previousParagraphDialogue\": [{\"lineId\": 13, \"text\": \"Have the other islands had any response yet?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"nextParagraphText\": \"“They sense it, too,” the B-grade mantis sighed. “We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us.”\", \"nextParagraphDialogue\": [{\"lineId\": 16, \"text\": \"They sense it, too,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 18, \"text\": \"We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"They also seem to have backed off and stopped invading the Simivitas for now,\", \"cuePosition\": \"after\", \"cueVerb\": \"answered\", \"cueVerbType\": \"speech\", \"cueText\": \"the scout answered.\", \"speakerSurface\": \"the scout\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"Simivitas\"], \"addressedEntity\": null, \"firstSentence\": \"They also seem to have backed off and stopped invading the Simivitas for now,\", \"lastSentence\": \"They also seem to have backed off and stopped invading the Simivitas for now,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Have the other islands had any response yet?\", \"cuePosition\": \"before\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Her senses went to the cave filled with eggs as she steeled herself.\", \"speakerSurface\": \"Her senses went to the cave\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Have the other islands had any response yet?\", \"lastSentence\": \"Have the other islands had any response yet?\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"They sense it, too,\", \"cuePosition\": \"after\", \"cueVerb\": \"sighed\", \"cueVerbType\": \"speech\", \"cueText\": \"the B-grade mantis sighed.\", \"speakerSurface\": \"the B-grade mantis\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"They sense it, too,\", \"lastSentence\": \"They sense it, too,\"}, {\"quoteIndex\": 1, \"quoteText\": \"We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us.\", \"cuePosition\": \"before\", \"cueVerb\": \"sighed\", \"cueVerbType\": \"speech\", \"cueText\": \"the B-grade mantis sighed.\", \"speakerSurface\": \"the B-grade mantis\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"We shall focus on defending our home for now.\", \"lastSentence\": \"or toward us.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"They also seem to have backed off and stopped invading the Simivitas for now,\", \"cuePosition\": \"after\", \"cueVerb\": \"answered\", \"cueVerbType\": \"speech\", \"cueText\": \"the scout answered.\", \"speakerSurface\": \"the scout\", \"speakerNameMatch\": null, \"mentionedEntities\": [\"Simivitas\"], \"addressedEntity\": null, \"firstSentence\": \"They also seem to have backed off and stopped invading the Simivitas for now,\", \"lastSentence\": \"They also seem to have backed off and stopped invading the Simivitas for now,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 5, \"paragraphIndex\": 3, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Has the Warlord decided to deal with all invaders personally?\"}, {\"relativeIndex\": -3, \"lineId\": 7, \"paragraphIndex\": 4, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"No... no, there’s something else there. Something has been systematically dismantling the Simivita forces, and from what my scouts and I gathered, it’s an individual. A powerful entity has invaded them,\"}, {\"relativeIndex\": -2, \"lineId\": 9, \"paragraphIndex\": 5, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"One of the enlightened hunters?\"}, {\"relativeIndex\": -1, \"lineId\": 13, \"paragraphIndex\": 7, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Have the other islands had any response yet?\"}, {\"relativeIndex\": 1, \"lineId\": 16, \"paragraphIndex\": 9, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"They sense it, too,\"}, {\"relativeIndex\": 2, \"lineId\": 18, \"paragraphIndex\": 9, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us.\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"having\", \"name\": \"Having\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"warlord\", \"name\": \"Warlord\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"propose_new_character\",\n  \"characterId\": null,\n  \"characterName\": null,\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"new_role_identified\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": {\n    \"name\": \"Scout\",\n    \"alias\": \"the scout\",\n    \"notes\": \"Character identified by role 'the scout' in narration.\"\n  }\n}"
+    }
+  ],
+  "chapterPath": "0058 - Chapter 1115 - Simivita Warlord/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“They also seem to have backed off and stopped invading the Simivitas for now,” the scout answered.",
+  "finalResult": {
+    "action": "propose_new_character",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“They also seem to have backed off and stopped invading the Simivitas for now,” the scout answered.",
+    "disposition": "new_character_approval",
+    "error": null,
+    "lineId": 14,
+    "logPath": null,
+    "newCharacterProposal": {
+      "alias": "the scout",
+      "name": "Scout",
+      "notes": "Character identified by role 'the scout' in narration."
+    },
+    "nextParagraphText": "“They sense it, too,” the B-grade mantis sighed. “We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us.”",
+    "paragraphIndex": 8,
+    "previousParagraphText": "Her senses went to the cave filled with eggs as she steeled herself. “Have the other islands had any response yet?”",
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "new_role_identified"
+    ],
+    "suggestedCharacterId": "unknown",
+    "suggestedCharacterName": "Unknown",
+    "toolTrace": []
+  },
+  "lineId": 14,
+  "nextParagraphText": "“They sense it, too,” the B-grade mantis sighed. “We shall focus on defending our home for now. Recall all invading squads and hunker down until this catastrophe blows over... or toward us.”",
+  "paragraphIndex": 8,
+  "previousParagraphText": "Her senses went to the cave filled with eggs as she steeled herself. “Have the other islands had any response yet?”"
+}

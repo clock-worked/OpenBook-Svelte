@@ -1,0 +1,298 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "1f636730ffa7ec9fc61b2707364bf0721d6f6924ae2ea9a2231c6f34c672e014",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\1f636730ffa7ec9fc61b2707364bf0721d6f6924ae2ea9a2231c6f34c672e014.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "the-chieftain",
+        "characterName": "The Chieftain",
+        "confidence": 0.8,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "parser_top_candidate",
+          "next_dialogue_attribution",
+          "contextual_fit_opponent"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "the-chieftain",
+              "the-chieftain-2"
+            ],
+            "characterId": "the-chieftain",
+            "name": "The Chieftain",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I expected more after that dramatic performance.",
+          "lastSentence": "Turns out it was all theatrics.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I expected more after that dramatic performance. Turns out it was all theatrics.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "The Chieftain",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.35999999999999993,
+            "misattributionRisk": 0.3208000000000001,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "The Chieftain",
+            "sourceCandidates": [
+              "The Chieftain",
+              "Keerla"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.816
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.816,
+              "name": "the-chieftain-2",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.456,
+              "name": "Keerla",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 58,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "I expected more after that dramatic performance. Turns out it was all theatrics."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 58,
+              "text": "I expected more after that dramatic performance. Turns out it was all theatrics."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "I expected more after that dramatic performance.",
+              "lastSentence": "Turns out it was all theatrics.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "I expected more after that dramatic performance. Turns out it was all theatrics.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“I expected more after that dramatic performance. Turns out it was all theatrics.”",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [],
+          "nextParagraphQuoteStructure": [],
+          "nextParagraphText": "A second explosion erupted as all the dust was cleared away in an instant, revealing the form of the hunter. His hand that had blocked the prior attack had some damage on it, but it looked as if scales now covered it. Energy practically radiated off his body, and the odd affinity he’d used throughout the fight filled the atmosphere all around him.",
+          "paragraphIndex": 41,
+          "previousParagraphDialogue": [],
+          "previousParagraphQuoteStructure": [],
+          "previousParagraphText": "An explosion erupted, making several of the trees around him bend and sending soil and plant parts flying everywhere. Keerla stared, confused about what had happened. Did the sight of the Spirit Empowerment scare him somehow? Why had the human acted so irrationally?"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 42,
+            "paragraphIndex": 28,
+            "relativeIndex": -4,
+            "text": "Spirits of Old, Strengthen Mine Arms,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 44,
+            "paragraphIndex": 29,
+            "relativeIndex": -3,
+            "text": "Spirits of Old, Guide Me."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 46,
+            "paragraphIndex": 31,
+            "relativeIndex": -2,
+            "text": "Now fall before the might of the Ancestors!"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 51,
+            "paragraphIndex": 35,
+            "relativeIndex": -1,
+            "text": "keep in contact"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 61,
+            "paragraphIndex": 44,
+            "relativeIndex": 1,
+            "text": "Now it’s your turn to block."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 74,
+            "paragraphIndex": 57,
+            "relativeIndex": 2,
+            "text": "Human... you’re strong... too strong..."
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 58, \"text\": \"I expected more after that dramatic performance. Turns out it was all theatrics.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"The Chieftain\", \"sourceCandidates\": [\"The Chieftain\", \"Keerla\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The Chieftain\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"the-chieftain-2\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Keerla\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 41, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“I expected more after that dramatic performance. Turns out it was all theatrics.”\", \"currentParagraphDialogue\": [{\"lineId\": 58, \"text\": \"I expected more after that dramatic performance. Turns out it was all theatrics.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"An explosion erupted, making several of the trees around him bend and sending soil and plant parts flying everywhere. Keerla stared, confused about what had happened. Did the sight of the Spirit Empowerment scare him somehow? Why had the human acted so irrationally?\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"A second explosion erupted as all the dust was cleared away in an instant, revealing the form of the hunter. His hand that had blocked the prior attack had some damage on it, but it looked as if scales now covered it. Energy practically radiated off his body, and the odd affinity he’d used throughout the fight filled the atmosphere all around him.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I expected more after that dramatic performance. Turns out it was all theatrics.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I expected more after that dramatic performance.\", \"lastSentence\": \"Turns out it was all theatrics.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"I expected more after that dramatic performance. Turns out it was all theatrics.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I expected more after that dramatic performance.\", \"lastSentence\": \"Turns out it was all theatrics.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [\"jake\", \"protagonist\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 42, \"paragraphIndex\": 28, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Spirits of Old, Strengthen Mine Arms,\"}, {\"relativeIndex\": -3, \"lineId\": 44, \"paragraphIndex\": 29, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Spirits of Old, Guide Me.\"}, {\"relativeIndex\": -2, \"lineId\": 46, \"paragraphIndex\": 31, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Now fall before the might of the Ancestors!\"}, {\"relativeIndex\": -1, \"lineId\": 51, \"paragraphIndex\": 35, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"keep in contact\"}, {\"relativeIndex\": 1, \"lineId\": 61, \"paragraphIndex\": 44, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Now it’s your turn to block.\"}, {\"relativeIndex\": 2, \"lineId\": 74, \"paragraphIndex\": 57, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Human... you’re strong... too strong...\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-chieftain\", \"name\": \"The Chieftain\", \"aliases\": [\"the-chieftain\", \"the-chieftain-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"the-chieftain\",\n  \"characterName\": \"The Chieftain\",\n  \"confidence\": 0.8,\n  \"reasonCodes\": [\n    \"parser_top_candidate\",\n    \"next_dialogue_attribution\",\n    \"contextual_fit_opponent\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0053 - Chapter 1110 - Simivita Chieftain/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“I expected more after that dramatic performance. Turns out it was all theatrics.”",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.8,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“I expected more after that dramatic performance. Turns out it was all theatrics.”",
+    "disposition": "review",
+    "error": null,
+    "lineId": 58,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "A second explosion erupted as all the dust was cleared away in an instant, revealing the form of the hunter. His hand that had blocked the prior attack had some damage on it, but it looked as if scales now covered it. Energy practically radiated off his body, and the odd affinity he’d used throughout the fight filled the atmosphere all around him.",
+    "paragraphIndex": 41,
+    "previousParagraphText": "An explosion erupted, making several of the trees around him bend and sending soil and plant parts flying everywhere. Keerla stared, confused about what had happened. Did the sight of the Spirit Empowerment scare him somehow? Why had the human acted so irrationally?",
+    "reasonCodes": [
+      "parser_top_candidate",
+      "next_dialogue_attribution",
+      "contextual_fit_opponent"
+    ],
+    "suggestedCharacterId": "the-chieftain",
+    "suggestedCharacterName": "The Chieftain",
+    "toolTrace": []
+  },
+  "lineId": 58,
+  "nextParagraphText": "A second explosion erupted as all the dust was cleared away in an instant, revealing the form of the hunter. His hand that had blocked the prior attack had some damage on it, but it looked as if scales now covered it. Energy practically radiated off his body, and the odd affinity he’d used throughout the fight filled the atmosphere all around him.",
+  "paragraphIndex": 41,
+  "previousParagraphText": "An explosion erupted, making several of the trees around him bend and sending soil and plant parts flying everywhere. Keerla stared, confused about what had happened. Did the sight of the Spirit Empowerment scare him somehow? Why had the human acted so irrationally?"
+}

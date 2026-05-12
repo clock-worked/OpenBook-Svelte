@@ -1,0 +1,132 @@
+{
+  "cacheKey": "4de52f8a6d860e534852a72b0b5faef637741d928e2f263d8bead70fa649bc32",
+  "createdAt": "2026-04-01T04:38:17.600393+00:00",
+  "decision": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "characterId": "kindroth",
+    "characterName": "Kindroth",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_attribution_in_paragraph",
+      "dialogue_continuation"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "name": "Blood"
+      },
+      {
+        "aliases": [],
+        "characterId": "vesperia",
+        "name": "Vesperia"
+      },
+      {
+        "aliases": [],
+        "characterId": "sandy",
+        "name": "Sandy"
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda"
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "name": "Iludar"
+      },
+      {
+        "aliases": [],
+        "characterId": "kindroth",
+        "name": "Kindroth"
+      },
+      {
+        "aliases": [],
+        "characterId": "william",
+        "name": "William"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.98,
+        "misattributionRisk": 0.020000000000000018,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Kindroth",
+        "sourceCandidates": [
+          "Kindroth"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.98
+      },
+      "candidates": [
+        {
+          "characterId": "kindroth",
+          "confidence": 0.98,
+          "name": "Kindroth",
+          "reasons": [
+            "parser_match",
+            "legacy_match",
+            "same_paragraph_continuation"
+          ]
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "kindroth",
+      "currentCharacterName": "Kindroth",
+      "id": 75,
+      "isReturning": true,
+      "text": "It needed to look real and Ell’Hakan needed to be winning the conflict. At least, that’s how I came to understand why my Patron wanted me to do what I did. I was never on Ell’Hakan’s side but always working for my Patron, who in turn worked with the Holy Church... and the Holy Church expected an outcome that included the death of Yip of Yore and Ell’Hakan. Which is where I come in."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 1,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": false,
+          "lineId": 73,
+          "text": "Yeah, as I said, complicated,"
+        },
+        {
+          "characterId": "kindroth",
+          "characterName": "Kindroth",
+          "isReturning": true,
+          "lineId": 75,
+          "text": "It needed to look real and Ell’Hakan needed to be winning the conflict. At least, that’s how I came to understand why my Patron wanted me to do what I did. I was never on Ell’Hakan’s side but always working for my Patron, who in turn worked with the Holy Church... and the Holy Church expected an outcome that included the death of Yip of Yore and Ell’Hakan. Which is where I come in."
+        }
+      ],
+      "currentParagraphText": "“Yeah, as I said, complicated,” Kindroth sighed. “It needed to look real and Ell’Hakan needed to be winning the conflict. At least, that’s how I came to understand why my Patron wanted me to do what I did. I was never on Ell’Hakan’s side but always working for my Patron, who in turn worked with the Holy Church... and the Holy Church expected an outcome that included the death of Yip of Yore and Ell’Hakan. Which is where I come in.”",
+      "dialogueLineCount": 2,
+      "paragraphIndex": 54
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 75, \"text\": \"It needed to look real and Ell’Hakan needed to be winning the conflict. At least, that’s how I came to understand why my Patron wanted me to do what I did. I was never on Ell’Hakan’s side but always working for my Patron, who in turn worked with the Holy Church... and the Holy Church expected an outcome that included the death of Yip of Yore and Ell’Hakan. Which is where I come in.\", \"currentCharacterId\": \"kindroth\", \"currentCharacterName\": \"Kindroth\", \"currentCharacterAliases\": [], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Kindroth\", \"sourceCandidates\": [\"Kindroth\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.98, \"misattributionRisk\": 0.020000000000000018, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"confidence\": 0.98, \"reasons\": [\"parser_match\", \"legacy_match\", \"same_paragraph_continuation\"]}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 54, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“Yeah, as I said, complicated,” Kindroth sighed. “It needed to look real and Ell’Hakan needed to be winning the conflict. At least, that’s how I came to understand why my Patron wanted me to do what I did. I was never on Ell’Hakan’s side but always working for my Patron, who in turn worked with the Holy Church... and the Holy Church expected an outcome that included the death of Yip of Yore and Ell’Hakan. Which is where I come in.”\", \"currentParagraphDialogue\": [{\"lineId\": 73, \"text\": \"Yeah, as I said, complicated,\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": false}, {\"lineId\": 75, \"text\": \"It needed to look real and Ell’Hakan needed to be winning the conflict. At least, that’s how I came to understand why my Patron wanted me to do what I did. I was never on Ell’Hakan’s side but always working for my Patron, who in turn worked with the Holy Church... and the Holy Church expected an outcome that included the death of Yip of Yore and Ell’Hakan. Which is where I come in.\", \"characterId\": \"kindroth\", \"characterName\": \"Kindroth\", \"isReturning\": true}]}, \"chapterCharacters\": [{\"characterId\": \"blood\", \"name\": \"Blood\", \"aliases\": []}, {\"characterId\": \"vesperia\", \"name\": \"Vesperia\", \"aliases\": []}, {\"characterId\": \"sandy\", \"name\": \"Sandy\", \"aliases\": []}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": []}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": []}, {\"characterId\": \"kindroth\", \"name\": \"Kindroth\", \"aliases\": []}, {\"characterId\": \"william\", \"name\": \"William\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"kindroth\",\n  \"characterName\": \"Kindroth\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_attribution_in_paragraph\",\n    \"dialogue_continuation\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

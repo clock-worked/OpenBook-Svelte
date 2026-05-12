@@ -137,19 +137,19 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #f5f5f5;
+    background-color: var(--app-bg);
   }
 
   .loading-message {
     font-family: serif;
     font-size: 18px;
-    color: #666;
+    color: var(--app-text-muted);
     text-align: center;
     padding: 20px;
   }
 
   .loading-message.error {
-    color: #dc2626;
+    color: var(--app-danger);
   }
 
   .review-page {
@@ -157,6 +157,8 @@
     flex-direction: column;
     height: 100vh;
     overflow: hidden;
+    background: var(--app-bg);
+    color: var(--app-text);
   }
 
   .review-layout {
@@ -169,7 +171,7 @@
   .toc-panel {
     min-width: 200px;
     max-width: 300px;
-    border-right: 1px solid #eee;
+    border-right: 1px solid var(--app-border-subtle);
     overflow: auto;
   }
 
@@ -182,7 +184,7 @@
   .character-panel {
     min-width: 300px;
     max-width: 550px;
-    border-left: 1px solid #eee;
+    border-left: 1px solid var(--app-border-subtle);
     overflow: auto;
   }
 </style>

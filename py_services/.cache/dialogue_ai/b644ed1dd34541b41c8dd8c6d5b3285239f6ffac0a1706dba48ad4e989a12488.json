@@ -1,0 +1,144 @@
+{
+  "cacheKey": "b644ed1dd34541b41c8dd8c6d5b3285239f6ffac0a1706dba48ad4e989a12488",
+  "createdAt": "2026-04-01T04:32:11.982584+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "next_paragraph_context",
+      "dialogue_tone_matches_jake",
+      "previous_paragraph_context"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_book_characters": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true
+    },
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "Ell'Hakan"
+        ],
+        "characterId": "jake",
+        "name": "Jake"
+      },
+      {
+        "aliases": [],
+        "characterId": "if_jake",
+        "name": "If Jake"
+      },
+      {
+        "aliases": [
+          "lodestar-matron",
+          "lodestar-matron-2"
+        ],
+        "characterId": "lodestar-matron",
+        "name": "Lodestar Matron"
+      },
+      {
+        "aliases": [],
+        "characterId": "pulse",
+        "name": "pulse"
+      },
+      {
+        "aliases": [],
+        "characterId": "iludar",
+        "name": "Iludar"
+      },
+      {
+        "aliases": [],
+        "characterId": "miranda",
+        "name": "Miranda"
+      },
+      {
+        "aliases": [],
+        "characterId": "blood",
+        "name": "Blood"
+      }
+    ],
+    "line": {
+      "attribution": {
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.18400000000000005,
+        "parserBackend": "legacy",
+        "resolutionStatus": "auto",
+        "sourceAlias": "Lodestar Matron",
+        "sourceCandidates": [
+          "Lodestar Matron",
+          "Jake"
+        ],
+        "sourceDescriptors": [],
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": "lodestar-matron",
+          "confidence": 0.816,
+          "name": "Lodestar Matron",
+          "reasons": [
+            "parser_match",
+            "legacy_match"
+          ]
+        },
+        {
+          "characterId": "jake",
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": []
+        }
+      ],
+      "currentCharacterAliases": [
+        "lodestar-matron",
+        "lodestar-matron-2"
+      ],
+      "currentCharacterId": "lodestar-matron",
+      "currentCharacterName": "Lodestar Matron",
+      "id": 41,
+      "isReturning": true,
+      "text": "Look, you backed the wrong horse in this race. Put too many eggs in the Ell’Hakan basket. Whatever idiom you wanna use, it’s a fact that you lost, and my side won. The only true choice you have left is if you want to lose with dignity or foolishly struggle until the end, countless people dying meaningless deaths in the process."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "lodestar-matron",
+          "characterName": "Lodestar Matron",
+          "isReturning": true,
+          "lineId": 41,
+          "text": "Look, you backed the wrong horse in this race. Put too many eggs in the Ell’Hakan basket. Whatever idiom you wanna use, it’s a fact that you lost, and my side won. The only true choice you have left is if you want to lose with dignity or foolishly struggle until the end, countless people dying meaningless deaths in the process."
+        }
+      ],
+      "currentParagraphText": "“Look, you backed the wrong horse in this race. Put too many eggs in the Ell’Hakan basket. Whatever idiom you wanna use, it’s a fact that you lost, and my side won. The only true choice you have left is if you want to lose with dignity or foolishly struggle until the end, countless people dying meaningless deaths in the process.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphText": "It was easy to see that Jake had purposefully taken charge of the negotiations now, much to the displeasure of everyone in the room. Jake, having identified not only the army surrounding him but the party of elites in the room also clearly spooked them a bit, making Jake seriously question how little the Holy Church truly knew about him.",
+      "paragraphIndex": 27,
+      "previousParagraphDialogue": [],
+      "previousParagraphText": "The god was silent despite Jake’s shift in tone, making him shake his head before sighing."
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 41, \"text\": \"Look, you backed the wrong horse in this race. Put too many eggs in the Ell’Hakan basket. Whatever idiom you wanna use, it’s a fact that you lost, and my side won. The only true choice you have left is if you want to lose with dignity or foolishly struggle until the end, countless people dying meaningless deaths in the process.\", \"currentCharacterId\": \"lodestar-matron\", \"currentCharacterName\": \"Lodestar Matron\", \"currentCharacterAliases\": [\"lodestar-matron\", \"lodestar-matron-2\"], \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Lodestar Matron\", \"sourceCandidates\": [\"Lodestar Matron\", \"Jake\"], \"sourceDescriptors\": [], \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.18400000000000005, \"parserBackend\": \"legacy\"}, \"candidates\": [{\"characterId\": \"lodestar-matron\", \"name\": \"Lodestar Matron\", \"confidence\": 0.816, \"reasons\": [\"parser_match\", \"legacy_match\"]}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": []}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 27, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Look, you backed the wrong horse in this race. Put too many eggs in the Ell’Hakan basket. Whatever idiom you wanna use, it’s a fact that you lost, and my side won. The only true choice you have left is if you want to lose with dignity or foolishly struggle until the end, countless people dying meaningless deaths in the process.”\", \"currentParagraphDialogue\": [{\"lineId\": 41, \"text\": \"Look, you backed the wrong horse in this race. Put too many eggs in the Ell’Hakan basket. Whatever idiom you wanna use, it’s a fact that you lost, and my side won. The only true choice you have left is if you want to lose with dignity or foolishly struggle until the end, countless people dying meaningless deaths in the process.\", \"characterId\": \"lodestar-matron\", \"characterName\": \"Lodestar Matron\", \"isReturning\": true}], \"previousParagraphText\": \"The god was silent despite Jake’s shift in tone, making him shake his head before sighing.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"It was easy to see that Jake had purposefully taken charge of the negotiations now, much to the displeasure of everyone in the room. Jake, having identified not only the army surrounding him but the party of elites in the room also clearly spooked them a bit, making Jake seriously question how little the Holy Church truly knew about him.\", \"nextParagraphDialogue\": []}, \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Ell'Hakan\"]}, {\"characterId\": \"if_jake\", \"name\": \"If Jake\", \"aliases\": []}, {\"characterId\": \"lodestar-matron\", \"name\": \"Lodestar Matron\", \"aliases\": [\"lodestar-matron\", \"lodestar-matron-2\"]}, {\"characterId\": \"pulse\", \"name\": \"pulse\", \"aliases\": []}, {\"characterId\": \"iludar\", \"name\": \"Iludar\", \"aliases\": []}, {\"characterId\": \"miranda\", \"name\": \"Miranda\", \"aliases\": []}, {\"characterId\": \"blood\", \"name\": \"Blood\", \"aliases\": []}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"next_paragraph_context\",\n    \"dialogue_tone_matches_jake\",\n    \"previous_paragraph_context\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

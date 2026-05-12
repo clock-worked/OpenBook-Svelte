@@ -1,0 +1,470 @@
+{
+  "cacheKey": "42521ebd55ed7ccc49ea82d3bb0f928b6599764d497d7480ee846bad41eb8bf2",
+  "createdAt": "2026-05-11T21:34:06.473876+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "holstred",
+    "characterName": "Holstred",
+    "confidence": 0.99,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "explicit_narration_cue",
+      "alias_match",
+      "dialogue_continuity"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": true
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "Godqueen",
+          "Viper"
+        ],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "artemis",
+          "godqueen",
+          "viper"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "The City Lord"
+        ],
+        "characterId": "holstred",
+        "characterName": "Holstred",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "holstred",
+          "the city lord",
+          "city lord"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [
+          "city-lord-2"
+        ],
+        "characterId": "city-lord-2",
+        "characterName": "city-lord",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "city lord 2",
+          "city lord"
+        ],
+        "wasRecentSpeaker": false
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God"
+        ],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake",
+          "protagonist",
+          "lord thayne",
+          "thayne",
+          "void god"
+        ],
+        "wasRecentSpeaker": false
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Godqueen",
+          "Viper"
+        ],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "The City Lord"
+        ],
+        "characterId": "holstred",
+        "name": "Holstred",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "before",
+      "cueText": "The City Lord looked at the Viper with disgust.",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Referring to enlightened like that… a monster disguising itself as one of us, huh?",
+      "lastSentence": "Referring to enlightened like that… a monster disguising itself as one of us, huh?",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Referring to enlightened like that… a monster disguising itself as one of us, huh?",
+      "speakerNameMatch": null,
+      "speakerSurface": "The City Lord"
+    },
+    "line": {
+      "alignment": {
+        "confidence": 1.0,
+        "isSpanFallback": false,
+        "method": "quote_unit",
+        "paragraphIndex": 17,
+        "spanDistance": 0.0,
+        "spanParagraphIndex": 17
+      },
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": true,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "Holstred",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.18,
+        "misattributionRisk": 0.5007999999999999,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Holstred",
+        "sourceCandidates": [
+          "Holstred",
+          "The Malefic Viper"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.636
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.636,
+          "name": "Holstred",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Artemis",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 30,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Referring to enlightened like that… a monster disguising itself as one of us, huh?"
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 30,
+          "text": "Referring to enlightened like that… a monster disguising itself as one of us, huh?"
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "The City Lord looked at the Viper with disgust.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Referring to enlightened like that… a monster disguising itself as one of us, huh?",
+          "lastSentence": "Referring to enlightened like that… a monster disguising itself as one of us, huh?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Referring to enlightened like that… a monster disguising itself as one of us, huh?",
+          "speakerNameMatch": null,
+          "speakerSurface": "The City Lord"
+        }
+      ],
+      "currentParagraphText": "The City Lord looked at the Viper with disgust. “Referring to enlightened like that… a monster disguising itself as one of us, huh?”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 31,
+          "text": "I was one of you for a little time,"
+        },
+        {
+          "characterId": "holstred",
+          "characterName": "Holstred",
+          "isReturning": true,
+          "lineId": 33,
+          "text": "I can be an exemplary citizen when I need to be, as long as you don’t tempt me to give up that life. Because when I’m tempted, then yes, it’s back to being a monster once more."
+        }
+      ],
+      "nextParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I was one of you for a little time,",
+          "lastSentence": "I was one of you for a little time,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "I was one of you for a little time,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "the Viper shook his head.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "I can be an exemplary citizen when I need to be, as long as you don’t tempt me to give up that life.",
+          "lastSentence": "Because when I’m tempted, then yes, it’s back to being a monster once more.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "I can be an exemplary citizen when I need to be, as long as you don’t tempt me to give up that life. Because when I’m tempted, then yes, it’s back to being a monster once more.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "nextParagraphText": "“I was one of you for a little time,” the Viper shook his head. “I can be an exemplary citizen when I need to be, as long as you don’t tempt me to give up that life. Because when I’m tempted, then yes, it’s back to being a monster once more.”",
+      "paragraphIndex": 17,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": false,
+          "lineId": 26,
+          "text": "No, no, you misunderstand; that was just part of the cover story,"
+        },
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis",
+          "isReturning": true,
+          "lineId": 28,
+          "text": "I decided on this place due to the availability of resources. You so-called enlightened love your trade, and I must admit I also find myself a fan. I had planned on staying here for another few decades more, but after becoming aware of the Eye of the Magus, the temptation to burn this life was simply too much to bear. My choice of the Golden Road Emporium’s director was originally chosen because it would give me easier access to the merchants, but proved highly valuable indeed."
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the Malefic Viper said, shaking his head.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "No, no, you misunderstand; that was just part of the cover story,",
+          "lastSentence": "No, no, you misunderstand; that was just part of the cover story,",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "No, no, you misunderstand; that was just part of the cover story,",
+          "speakerNameMatch": "The Malefic Viper",
+          "speakerSurface": "Malefic Viper"
+        },
+        {
+          "addressedEntity": null,
+          "cuePosition": "before",
+          "cueText": "the Malefic Viper said, shaking his head.",
+          "cueVerb": "said",
+          "cueVerbType": "speech",
+          "firstSentence": "I decided on this place due to the availability of resources.",
+          "lastSentence": "My choice of the Golden Road Emporium’s director was originally chosen because it would give me easier access to the merchants, but proved highly valuable indeed.",
+          "mentionedEntities": [
+            "chosen"
+          ],
+          "quoteIndex": 1,
+          "quoteText": "I decided on this place due to the availability of resources. You so-called enlightened love your trade, and I must admit I also find myself a fan. I had planned on staying here for another few decades more, but after becoming aware of the Eye of the Magus, the temptation to burn this life was simply too much to bear. My choice of the Golden Road Emporium’s director was originally chosen because it would give me easier access to the merchants, but proved highly valuable indeed.",
+          "speakerNameMatch": "The Malefic Viper",
+          "speakerSurface": "Malefic Viper"
+        }
+      ],
+      "previousParagraphText": "“No, no, you misunderstand; that was just part of the cover story,” the Malefic Viper said, shaking his head. “I decided on this place due to the availability of resources. You so-called enlightened love your trade, and I must admit I also find myself a fan. I had planned on staying here for another few decades more, but after becoming aware of the Eye of the Magus, the temptation to burn this life was simply too much to bear. My choice of the Golden Road Emporium’s director was originally chosen because it would give me easier access to the merchants, but proved highly valuable indeed.”"
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 22,
+        "paragraphIndex": 14,
+        "relativeIndex": -4,
+        "text": "We’ve never known each other, oh dear City Lord,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 24,
+        "paragraphIndex": 15,
+        "relativeIndex": -3,
+        "text": "How about that woman of yours? Didn’t you spend over a decade with her? Was it truly all just a ruse for this day?"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 26,
+        "paragraphIndex": 16,
+        "relativeIndex": -2,
+        "text": "No, no, you misunderstand; that was just part of the cover story,"
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 28,
+        "paragraphIndex": 16,
+        "relativeIndex": -1,
+        "text": "I decided on this place due to the availability of resources. You so-called enlightened love your trade, and I must admit I also find myself a fan. I had planned on staying here for another few decades more, but after becoming aware of the Eye of the Magus, the temptation to burn this life was simply too much to bear. My choice of the Golden Road Emporium’s director was originally chosen because it would give me easier access to the merchants, but proved highly valuable indeed."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 31,
+        "paragraphIndex": 18,
+        "relativeIndex": 1,
+        "text": "I was one of you for a little time,"
+      },
+      {
+        "characterId": "holstred",
+        "characterName": "Holstred",
+        "lineId": 33,
+        "paragraphIndex": 18,
+        "relativeIndex": 2,
+        "text": "I can be an exemplary citizen when I need to be, as long as you don’t tempt me to give up that life. Because when I’m tempted, then yes, it’s back to being a monster once more."
+      }
+    ],
+    "sceneEntities": [
+      {
+        "matches": [
+          {
+            "characterId": "holstred",
+            "characterName": "Holstred",
+            "evidence": [
+              "exact_label_match",
+              "stripped_label_match",
+              "token_overlap:city/lord"
+            ],
+            "score": 0.98
+          },
+          {
+            "characterId": "city-lord-2",
+            "characterName": "city-lord",
+            "evidence": [
+              "stripped_label_match",
+              "token_overlap:city/lord"
+            ],
+            "score": 0.94
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "evidence": [
+              "token_overlap:lord"
+            ],
+            "score": 0.625
+          }
+        ],
+        "surface": "the city lord"
+      }
+    ],
+    "sceneRoster": {
+      "paragraphWindow": 6,
+      "presentCharacterIds": [
+        "unknown",
+        "artemis",
+        "holstred"
+      ],
+      "presentCharacters": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown"
+        },
+        {
+          "characterId": "artemis",
+          "characterName": "Artemis"
+        },
+        {
+          "characterId": "holstred",
+          "characterName": "Holstred"
+        }
+      ]
+    }
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- If the speaker remains genuinely ambiguous after available context, return needs_review with characterId null and characterName \"Unknown\"; unknown is better than a likely-wrong named speaker.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 30, \"text\": \"Referring to enlightened like that… a monster disguising itself as one of us, huh?\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Holstred\", \"sourceCandidates\": [\"Holstred\", \"The Malefic Viper\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.636, \"marginToSecond\": 0.18, \"misattributionRisk\": 0.5007999999999999, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": true, \"nextDialogueLegacy\": \"Holstred\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Holstred\", \"confidence\": 0.636, \"reasons\": null}, {\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true, \"alignment\": {\"paragraphIndex\": 17, \"method\": \"quote_unit\", \"confidence\": 1.0, \"spanParagraphIndex\": 17, \"spanDistance\": 0.0, \"isSpanFallback\": false}}, \"paragraphContext\": {\"paragraphIndex\": 17, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"The City Lord looked at the Viper with disgust. “Referring to enlightened like that… a monster disguising itself as one of us, huh?”\", \"currentParagraphDialogue\": [{\"lineId\": 30, \"text\": \"Referring to enlightened like that… a monster disguising itself as one of us, huh?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“No, no, you misunderstand; that was just part of the cover story,” the Malefic Viper said, shaking his head. “I decided on this place due to the availability of resources. You so-called enlightened love your trade, and I must admit I also find myself a fan. I had planned on staying here for another few decades more, but after becoming aware of the Eye of the Magus, the temptation to burn this life was simply too much to bear. My choice of the Golden Road Emporium’s director was originally chosen because it would give me easier access to the merchants, but proved highly valuable indeed.”\", \"previousParagraphDialogue\": [{\"lineId\": 26, \"text\": \"No, no, you misunderstand; that was just part of the cover story,\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": false}, {\"lineId\": 28, \"text\": \"I decided on this place due to the availability of resources. You so-called enlightened love your trade, and I must admit I also find myself a fan. I had planned on staying here for another few decades more, but after becoming aware of the Eye of the Magus, the temptation to burn this life was simply too much to bear. My choice of the Golden Road Emporium’s director was originally chosen because it would give me easier access to the merchants, but proved highly valuable indeed.\", \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"isReturning\": true}], \"nextParagraphText\": \"“I was one of you for a little time,” the Viper shook his head. “I can be an exemplary citizen when I need to be, as long as you don’t tempt me to give up that life. Because when I’m tempted, then yes, it’s back to being a monster once more.”\", \"nextParagraphDialogue\": [{\"lineId\": 31, \"text\": \"I was one of you for a little time,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 33, \"text\": \"I can be an exemplary citizen when I need to be, as long as you don’t tempt me to give up that life. Because when I’m tempted, then yes, it’s back to being a monster once more.\", \"characterId\": \"holstred\", \"characterName\": \"Holstred\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Referring to enlightened like that… a monster disguising itself as one of us, huh?\", \"cuePosition\": \"before\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"The City Lord looked at the Viper with disgust.\", \"speakerSurface\": \"The City Lord\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Referring to enlightened like that… a monster disguising itself as one of us, huh?\", \"lastSentence\": \"Referring to enlightened like that… a monster disguising itself as one of us, huh?\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"No, no, you misunderstand; that was just part of the cover story,\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the Malefic Viper said, shaking his head.\", \"speakerSurface\": \"Malefic Viper\", \"speakerNameMatch\": \"The Malefic Viper\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"No, no, you misunderstand; that was just part of the cover story,\", \"lastSentence\": \"No, no, you misunderstand; that was just part of the cover story,\"}, {\"quoteIndex\": 1, \"quoteText\": \"I decided on this place due to the availability of resources. You so-called enlightened love your trade, and I must admit I also find myself a fan. I had planned on staying here for another few decades more, but after becoming aware of the Eye of the Magus, the temptation to burn this life was simply too much to bear. My choice of the Golden Road Emporium’s director was originally chosen because it would give me easier access to the merchants, but proved highly valuable indeed.\", \"cuePosition\": \"before\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"the Malefic Viper said, shaking his head.\", \"speakerSurface\": \"Malefic Viper\", \"speakerNameMatch\": \"The Malefic Viper\", \"mentionedEntities\": [\"chosen\"], \"addressedEntity\": null, \"firstSentence\": \"I decided on this place due to the availability of resources.\", \"lastSentence\": \"My choice of the Golden Road Emporium’s director was originally chosen because it would give me easier access to the merchants, but proved highly valuable indeed.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I was one of you for a little time,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I was one of you for a little time,\", \"lastSentence\": \"I was one of you for a little time,\"}, {\"quoteIndex\": 1, \"quoteText\": \"I can be an exemplary citizen when I need to be, as long as you don’t tempt me to give up that life. Because when I’m tempted, then yes, it’s back to being a monster once more.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"the Viper shook his head.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I can be an exemplary citizen when I need to be, as long as you don’t tempt me to give up that life.\", \"lastSentence\": \"Because when I’m tempted, then yes, it’s back to being a monster once more.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Referring to enlightened like that… a monster disguising itself as one of us, huh?\", \"cuePosition\": \"before\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"The City Lord looked at the Viper with disgust.\", \"speakerSurface\": \"The City Lord\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Referring to enlightened like that… a monster disguising itself as one of us, huh?\", \"lastSentence\": \"Referring to enlightened like that… a monster disguising itself as one of us, huh?\"}, \"sceneRoster\": {\"paragraphWindow\": 6, \"presentCharacterIds\": [\"unknown\", \"artemis\", \"holstred\"], \"presentCharacters\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\"}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\"}, {\"characterId\": \"holstred\", \"characterName\": \"Holstred\"}]}, \"sceneEntities\": [{\"surface\": \"the city lord\", \"matches\": [{\"characterId\": \"holstred\", \"characterName\": \"Holstred\", \"score\": 0.98, \"evidence\": [\"exact_label_match\", \"stripped_label_match\", \"token_overlap:city/lord\"]}, {\"characterId\": \"city-lord-2\", \"characterName\": \"city-lord\", \"score\": 0.94, \"evidence\": [\"stripped_label_match\", \"token_overlap:city/lord\"]}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"score\": 0.625, \"evidence\": [\"token_overlap:lord\"]}]}], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [\"Godqueen\", \"Viper\"], \"roleLabels\": [\"artemis\", \"godqueen\", \"viper\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"holstred\", \"characterName\": \"Holstred\", \"aliases\": [\"The City Lord\"], \"roleLabels\": [\"holstred\", \"the city lord\", \"city lord\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"city-lord-2\", \"characterName\": \"city-lord\", \"aliases\": [\"city-lord-2\"], \"roleLabels\": [\"city lord 2\", \"city lord\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [\"jake\", \"protagonist\", \"lord thayne\", \"thayne\", \"void god\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": false}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 22, \"paragraphIndex\": 14, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"We’ve never known each other, oh dear City Lord,\"}, {\"relativeIndex\": -3, \"lineId\": 24, \"paragraphIndex\": 15, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"How about that woman of yours? Didn’t you spend over a decade with her? Was it truly all just a ruse for this day?\"}, {\"relativeIndex\": -2, \"lineId\": 26, \"paragraphIndex\": 16, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"No, no, you misunderstand; that was just part of the cover story,\"}, {\"relativeIndex\": -1, \"lineId\": 28, \"paragraphIndex\": 16, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"I decided on this place due to the availability of resources. You so-called enlightened love your trade, and I must admit I also find myself a fan. I had planned on staying here for another few decades more, but after becoming aware of the Eye of the Magus, the temptation to burn this life was simply too much to bear. My choice of the Golden Road Emporium’s director was originally chosen because it would give me easier access to the merchants, but proved highly valuable indeed.\"}, {\"relativeIndex\": 1, \"lineId\": 31, \"paragraphIndex\": 18, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I was one of you for a little time,\"}, {\"relativeIndex\": 2, \"lineId\": 33, \"paragraphIndex\": 18, \"characterId\": \"holstred\", \"characterName\": \"Holstred\", \"text\": \"I can be an exemplary citizen when I need to be, as long as you don’t tempt me to give up that life. Because when I’m tempted, then yes, it’s back to being a monster once more.\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [\"Godqueen\", \"Viper\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"holstred\", \"name\": \"Holstred\", \"aliases\": [\"The City Lord\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": true, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"holstred\",\n  \"characterName\": \"Holstred\",\n  \"confidence\": 0.99,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\",\n    \"alias_match\",\n    \"dialogue_continuity\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

@@ -1,0 +1,315 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "920a8ac68625689b729aa4118d43e0d749eb4a9c64bdde48f0587a913873cc8d",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\920a8ac68625689b729aa4118d43e0d749eb4a9c64bdde48f0587a913873cc8d.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "keep_existing",
+        "aliasToAdd": null,
+        "characterId": "jake",
+        "characterName": "Jake",
+        "confidence": 0.95,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "narration_context",
+          "dialogue_continuity",
+          "addressee_identification"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": false,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "jake"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "artemis"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "Jake shook his head, and now he also understood what Artemis had done in the arena.",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power.",
+          "lastSentence": "Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power.",
+          "mentionedEntities": [],
+          "quoteIndex": 1,
+          "quoteText": "Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": true,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [],
+              "hasCorefName": false,
+              "isReturning": true,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.95,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.524,
+            "misattributionRisk": 0.1568,
+            "parserBackend": "legacy",
+            "resolutionStatus": "auto",
+            "sourceAlias": "Jake",
+            "sourceCandidates": [
+              "Jake",
+              "Artemis"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.98
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.98,
+              "name": "Jake",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.456,
+              "name": "Artemis",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "jake",
+          "currentCharacterName": "Jake",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 83,
+          "isReturning": true,
+          "parserLabelsAreProvisional": true,
+          "text": "Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power."
+        },
+        "paragraphContext": {
+          "currentLinePosition": 1,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 81,
+              "text": "I didn’t feel anything,"
+            },
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": true,
+              "lineId": 83,
+              "text": "Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power."
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "I didn’t feel anything,",
+              "lastSentence": "I didn’t feel anything,",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "I didn’t feel anything,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            },
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "Jake shook his head, and now he also understood what Artemis had done in the arena.",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power.",
+              "lastSentence": "Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power.",
+              "mentionedEntities": [],
+              "quoteIndex": 1,
+              "quoteText": "Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power.",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“I didn’t feel anything,” Jake shook his head, and now he also understood what Artemis had done in the arena. “Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power.”",
+          "dialogueLineCount": 2,
+          "paragraphIndex": 42
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 77,
+            "paragraphIndex": 40,
+            "relativeIndex": -4,
+            "text": "This time, you channeled all the conceptual energy into pure speed, making the ball descend impossibly fast at the level of it nearly being teleportation."
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 78,
+            "paragraphIndex": 41,
+            "relativeIndex": -3,
+            "text": "But did it hurt?"
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 80,
+            "paragraphIndex": 41,
+            "relativeIndex": -2,
+            "text": "Because going by pre-system logic, that cotton ball should have torn off your entire arm. No, actually, seeing as it surpassed the pre-system speed of light, it wouldn’t even have been possible. Yet it was."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 81,
+            "paragraphIndex": 42,
+            "relativeIndex": -1,
+            "text": "I didn’t feel anything,"
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 85,
+            "paragraphIndex": 43,
+            "relativeIndex": 1,
+            "text": "That’s remarkably close. When you normally shoot an arrow, everything is balanced. You unknowingly channel in concepts of what you believe archery is, and the limitations and power of your simplistic understanding of physics affect every shot. Every arrow you shoot is, theoretically, perfect. The balance between damage done and speed of flight is optimal, but what if you can tilt that balance a bit to either side? What if you can make the arrow faster but deal less damage? Or make it slower and deal more? It seems counterintuitive, but it’s not."
+          },
+          {
+            "characterId": "artemis",
+            "characterName": "Artemis",
+            "lineId": 88,
+            "paragraphIndex": 46,
+            "relativeIndex": 2,
+            "text": "Don’t get me wrong, what I’m talking about isn’t easy nor natural to most people,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 83, \"text\": \"Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power.\", \"currentCharacterId\": \"jake\", \"currentCharacterName\": \"Jake\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"auto\", \"sourceAlias\": \"Jake\", \"sourceCandidates\": [\"Jake\", \"Artemis\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.98, \"marginToSecond\": 0.524, \"misattributionRisk\": 0.1568, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": true, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.98, \"reasons\": null}, {\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 42, \"currentLinePosition\": 1, \"dialogueLineCount\": 2, \"currentParagraphText\": \"“I didn’t feel anything,” Jake shook his head, and now he also understood what Artemis had done in the arena. “Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power.”\", \"currentParagraphDialogue\": [{\"lineId\": 81, \"text\": \"I didn’t feel anything,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}, {\"lineId\": 83, \"text\": \"Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power.\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": true}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"I didn’t feel anything,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"I didn’t feel anything,\", \"lastSentence\": \"I didn’t feel anything,\"}, {\"quoteIndex\": 1, \"quoteText\": \"Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake shook his head, and now he also understood what Artemis had done in the arena.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power.\", \"lastSentence\": \"Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power.\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 1, \"quoteText\": \"Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"Jake shook his head, and now he also understood what Artemis had done in the arena.\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power.\", \"lastSentence\": \"Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [], \"roleLabels\": [\"jake\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [], \"roleLabels\": [\"artemis\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 77, \"paragraphIndex\": 40, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"This time, you channeled all the conceptual energy into pure speed, making the ball descend impossibly fast at the level of it nearly being teleportation.\"}, {\"relativeIndex\": -3, \"lineId\": 78, \"paragraphIndex\": 41, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"But did it hurt?\"}, {\"relativeIndex\": -2, \"lineId\": 80, \"paragraphIndex\": 41, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Because going by pre-system logic, that cotton ball should have torn off your entire arm. No, actually, seeing as it surpassed the pre-system speed of light, it wouldn’t even have been possible. Yet it was.\"}, {\"relativeIndex\": -1, \"lineId\": 81, \"paragraphIndex\": 42, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I didn’t feel anything,\"}, {\"relativeIndex\": 1, \"lineId\": 85, \"paragraphIndex\": 43, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"That’s remarkably close. When you normally shoot an arrow, everything is balanced. You unknowingly channel in concepts of what you believe archery is, and the limitations and power of your simplistic understanding of physics affect every shot. Every arrow you shoot is, theoretically, perfect. The balance between damage done and speed of flight is optimal, but what if you can tilt that balance a bit to either side? What if you can make the arrow faster but deal less damage? Or make it slower and deal more? It seems counterintuitive, but it’s not.\"}, {\"relativeIndex\": 2, \"lineId\": 88, \"paragraphIndex\": 46, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Don’t get me wrong, what I’m talking about isn’t easy nor natural to most people,\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": false, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"narration_context\",\n    \"dialogue_continuity\",\n    \"addressee_identification\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0044 - Chapter 1101 - Conceptualizing Concepts/chapter.txt",
+  "currentCharacterId": "jake",
+  "currentCharacterName": "Jake",
+  "currentParagraphText": "“I didn’t feel anything,” Jake shook his head, and now he also understood what Artemis had done in the arena. “Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power.”",
+  "finalResult": {
+    "action": "keep_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 0.95,
+    "currentCharacterId": "jake",
+    "currentCharacterName": "Jake",
+    "currentParagraphText": "“I didn’t feel anything,” Jake shook his head, and now he also understood what Artemis had done in the arena. “Those first arrows you shot in the arena, you dedicated most of the energy you poured in to get more speed at the loss of power.”",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 83,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "Artemis smiled at this answer. “That’s remarkably close. When you normally shoot an arrow, everything is balanced. You unknowingly channel in concepts of what you believe archery is, and the limitations and power of your simplistic understanding of physics affect every shot. Every arrow you shoot is, theoretically, perfect. The balance between damage done and speed of flight is optimal, but what if you can tilt that balance a bit to either side? What if you can make the arrow faster but deal less damage? Or make it slower and deal more? It seems counterintuitive, but it’s not.”",
+    "paragraphIndex": 42,
+    "previousParagraphText": "“But did it hurt?” Artemis asked. “Because going by pre-system logic, that cotton ball should have torn off your entire arm. No, actually, seeing as it surpassed the pre-system speed of light, it wouldn’t even have been possible. Yet it was.”",
+    "reasonCodes": [
+      "narration_context",
+      "dialogue_continuity",
+      "addressee_identification"
+    ],
+    "suggestedCharacterId": "jake",
+    "suggestedCharacterName": "Jake",
+    "toolTrace": []
+  },
+  "lineId": 83,
+  "nextParagraphText": "Artemis smiled at this answer. “That’s remarkably close. When you normally shoot an arrow, everything is balanced. You unknowingly channel in concepts of what you believe archery is, and the limitations and power of your simplistic understanding of physics affect every shot. Every arrow you shoot is, theoretically, perfect. The balance between damage done and speed of flight is optimal, but what if you can tilt that balance a bit to either side? What if you can make the arrow faster but deal less damage? Or make it slower and deal more? It seems counterintuitive, but it’s not.”",
+  "paragraphIndex": 42,
+  "previousParagraphText": "“But did it hurt?” Artemis asked. “Because going by pre-system logic, that cotton ball should have torn off your entire arm. No, actually, seeing as it surpassed the pre-system speed of light, it wouldn’t even have been possible. Yet it was.”"
+}

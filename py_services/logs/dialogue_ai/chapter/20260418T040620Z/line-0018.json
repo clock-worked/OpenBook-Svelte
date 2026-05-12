@@ -1,0 +1,420 @@
+{
+  "calls": [
+    {
+      "cacheHit": false,
+      "cacheKey": "dfb7753c9a381ff7fd2e8534ed3242d2c62ecc3f8d4cef8ea622717dcccb908e",
+      "cachePath": "C:\\Users\\Chad\\Documents\\Code\\JavaScript\\OpenBook-svelte\\py_services\\.cache\\dialogue_ai\\dfb7753c9a381ff7fd2e8534ed3242d2c62ecc3f8d4cef8ea622717dcccb908e.json",
+      "callIndex": 1,
+      "decision": {
+        "action": "reassign_existing",
+        "aliasToAdd": null,
+        "characterId": "forest-king-2",
+        "characterName": "forest-king",
+        "confidence": 1.0,
+        "newCharacterProposal": null,
+        "reasonCodes": [
+          "explicit_narration_cue"
+        ],
+        "responseType": "final"
+      },
+      "modelName": "gemini-2.5-flash",
+      "payload": {
+        "availableTools": {
+          "request_attribution_signals": true,
+          "request_book_characters": true,
+          "request_candidate_cards": true,
+          "request_next_paragraph": true,
+          "request_previous_paragraph": true,
+          "request_quote_structure": true,
+          "request_recent_turn_history": true,
+          "request_scene_entities": false
+        },
+        "candidateCards": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "isCurrentAssignment": true,
+            "roleLabels": [
+              "unknown"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Chimera",
+              "Monster"
+            ],
+            "characterId": "jake",
+            "characterName": "Jake",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "jake",
+              "protagonist",
+              "chimera",
+              "monster"
+            ],
+            "wasRecentSpeaker": true
+          },
+          {
+            "aliases": [
+              "forest-king-2"
+            ],
+            "characterId": "forest-king-2",
+            "characterName": "forest-king",
+            "isCurrentAssignment": false,
+            "roleLabels": [
+              "forest king 2",
+              "forest king"
+            ],
+            "wasRecentSpeaker": true
+          }
+        ],
+        "chapterCharacters": [
+          {
+            "aliases": [],
+            "characterId": "unknown",
+            "name": "Unknown",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "artemis",
+            "name": "Artemis",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Protagonist",
+              "Chimera",
+              "Monster"
+            ],
+            "characterId": "jake",
+            "name": "Jake",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "forest-king-2"
+            ],
+            "characterId": "forest-king-2",
+            "name": "forest-king",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "the-sword-saint",
+              "the-sword-saint-2",
+              "Miyamoto"
+            ],
+            "characterId": "the-sword-saint",
+            "name": "The Sword Saint",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [
+              "Unique Lifeform",
+              "The Unique Lifeform",
+              "the-unique-lifeform",
+              "the-unique-lifeform-2"
+            ],
+            "characterId": "minaga",
+            "name": "Minaga",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "dina",
+            "name": "Dina",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "sylphie",
+            "name": "Sylphie",
+            "notes": null,
+            "roleLabels": []
+          },
+          {
+            "aliases": [],
+            "characterId": "having",
+            "name": "Having",
+            "notes": null,
+            "roleLabels": []
+          }
+        ],
+        "currentQuoteUnit": {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Knowing the ridiculousness someone like you gets up to, all of them may as well be true.",
+          "lastSentence": "As for the rest of them, most of which seem to concern the personal encounters and relationships you’ve formed, I truthfully do not find myself caring overly much, but I assume one of these to be the lie,",
+          "mentionedEntities": [
+            "Having",
+            "yip",
+            "Having"
+          ],
+          "quoteIndex": 0,
+          "quoteText": "Knowing the ridiculousness someone like you gets up to, all of them may as well be true. Though I can assume the factuality of some. In order to resurrect me, you would have had to kill the Desolate Child of Loss. With that in mind, you must have won the war for the galaxy, having killed Ell’Hakan in the process. Yip of Yore also meeting his death is also only to be expected, though that did happen sooner than I would have anticipated. Starting a war with the Holy Church... hm, must have been in extension of the conflict for the Milky Way. As for the rest of them, most of which seem to concern the personal encounters and relationships you’ve formed, I truthfully do not find myself caring overly much, but I assume one of these to be the lie,",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        },
+        "line": {
+          "attribution": {
+            "decisionSignals": {
+              "addressedNamePrevSentence": null,
+              "aliasMatchStrength": 0,
+              "contextGender": null,
+              "contextGenderCue": null,
+              "continuesParagraphDialogue": false,
+              "exactQuoteMatch": true,
+              "explicitQuoteMentions": [
+                "Having",
+                "yip"
+              ],
+              "hasCorefName": false,
+              "isReturning": false,
+              "lineEndsWithQuestion": false,
+              "nearbySpeechVerb": false,
+              "nextDialogueLegacy": "Jake",
+              "nextSentenceAttributedSpeaker": null,
+              "previousParagraphNamedMention": null,
+              "quoteBoundaryQuality": 0.8,
+              "recentNamedMentionBeforeQuote": null,
+              "usedFallbackAlignment": false
+            },
+            "marginToSecond": 0.36000000000000004,
+            "misattributionRisk": 0.32919999999999994,
+            "parserBackend": "legacy",
+            "resolutionStatus": "unknown",
+            "sourceAlias": "King",
+            "sourceCandidates": [
+              "King",
+              "Jake"
+            ],
+            "sourceDescriptors": null,
+            "topCandidateConfidence": 0.804
+          },
+          "candidates": [
+            {
+              "characterId": null,
+              "confidence": 0.804,
+              "name": "King",
+              "reasons": null
+            },
+            {
+              "characterId": null,
+              "confidence": 0.444,
+              "name": "Jake",
+              "reasons": null
+            }
+          ],
+          "currentCharacterAliases": [],
+          "currentCharacterId": "unknown",
+          "currentCharacterName": "Unknown",
+          "currentCharacterNotes": null,
+          "currentCharacterRoleLabels": [],
+          "id": 18,
+          "isReturning": false,
+          "parserLabelsAreProvisional": true,
+          "text": "Knowing the ridiculousness someone like you gets up to, all of them may as well be true. Though I can assume the factuality of some. In order to resurrect me, you would have had to kill the Desolate Child of Loss. With that in mind, you must have won the war for the galaxy, having killed Ell’Hakan in the process. Yip of Yore also meeting his death is also only to be expected, though that did happen sooner than I would have anticipated. Starting a war with the Holy Church... hm, must have been in extension of the conflict for the Milky Way. As for the rest of them, most of which seem to concern the personal encounters and relationships you’ve formed, I truthfully do not find myself caring overly much, but I assume one of these to be the lie,"
+        },
+        "paragraphContext": {
+          "currentLinePosition": 0,
+          "currentParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": false,
+              "lineId": 18,
+              "text": "Knowing the ridiculousness someone like you gets up to, all of them may as well be true. Though I can assume the factuality of some. In order to resurrect me, you would have had to kill the Desolate Child of Loss. With that in mind, you must have won the war for the galaxy, having killed Ell’Hakan in the process. Yip of Yore also meeting his death is also only to be expected, though that did happen sooner than I would have anticipated. Starting a war with the Holy Church... hm, must have been in extension of the conflict for the Milky Way. As for the rest of them, most of which seem to concern the personal encounters and relationships you’ve formed, I truthfully do not find myself caring overly much, but I assume one of these to be the lie,"
+            }
+          ],
+          "currentParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "none",
+              "cueText": "",
+              "cueVerb": null,
+              "cueVerbType": null,
+              "firstSentence": "Knowing the ridiculousness someone like you gets up to, all of them may as well be true.",
+              "lastSentence": "As for the rest of them, most of which seem to concern the personal encounters and relationships you’ve formed, I truthfully do not find myself caring overly much, but I assume one of these to be the lie,",
+              "mentionedEntities": [
+                "Having",
+                "yip",
+                "Having"
+              ],
+              "quoteIndex": 0,
+              "quoteText": "Knowing the ridiculousness someone like you gets up to, all of them may as well be true. Though I can assume the factuality of some. In order to resurrect me, you would have had to kill the Desolate Child of Loss. With that in mind, you must have won the war for the galaxy, having killed Ell’Hakan in the process. Yip of Yore also meeting his death is also only to be expected, though that did happen sooner than I would have anticipated. Starting a war with the Holy Church... hm, must have been in extension of the conflict for the Milky Way. As for the rest of them, most of which seem to concern the personal encounters and relationships you’ve formed, I truthfully do not find myself caring overly much, but I assume one of these to be the lie,",
+              "speakerNameMatch": null,
+              "speakerSurface": null
+            }
+          ],
+          "currentParagraphText": "“Knowing the ridiculousness someone like you gets up to, all of them may as well be true. Though I can assume the factuality of some. In order to resurrect me, you would have had to kill the Desolate Child of Loss. With that in mind, you must have won the war for the galaxy, having killed Ell’Hakan in the process. Yip of Yore also meeting his death is also only to be expected, though that did happen sooner than I would have anticipated. Starting a war with the Holy Church... hm, must have been in extension of the conflict for the Milky Way. As for the rest of them, most of which seem to concern the personal encounters and relationships you’ve formed, I truthfully do not find myself caring overly much, but I assume one of these to be the lie,” the Forest King surprisingly played along with Jake’s little joke.",
+          "dialogueLineCount": 1,
+          "nextParagraphDialogue": [
+            {
+              "characterId": "jake",
+              "characterName": "Jake",
+              "isReturning": false,
+              "lineId": 20,
+              "text": "So that means you give up guessing?"
+            }
+          ],
+          "nextParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "after",
+              "cueText": "Jake said cheekily.",
+              "cueVerb": "said",
+              "cueVerbType": "speech",
+              "firstSentence": "So that means you give up guessing?",
+              "lastSentence": "So that means you give up guessing?",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "So that means you give up guessing?",
+              "speakerNameMatch": "Jake",
+              "speakerSurface": "Jake"
+            }
+          ],
+          "nextParagraphText": "“So that means you give up guessing?” Jake said cheekily.",
+          "paragraphIndex": 10,
+          "previousParagraphDialogue": [
+            {
+              "characterId": "unknown",
+              "characterName": "Unknown",
+              "isReturning": true,
+              "lineId": 17,
+              "text": "Only one of those was a lie. Bonus points if you guess which one."
+            }
+          ],
+          "previousParagraphQuoteStructure": [
+            {
+              "addressedEntity": null,
+              "cuePosition": "before",
+              "cueText": "The King stared at Jake, who just grinned widely.",
+              "cueVerb": "grinned",
+              "cueVerbType": "reaction",
+              "firstSentence": "Only one of those was a lie.",
+              "lastSentence": "Bonus points if you guess which one.",
+              "mentionedEntities": [],
+              "quoteIndex": 0,
+              "quoteText": "Only one of those was a lie. Bonus points if you guess which one.",
+              "speakerNameMatch": null,
+              "speakerSurface": "Jake"
+            }
+          ],
+          "previousParagraphText": "The King stared at Jake, who just grinned widely. “Only one of those was a lie. Bonus points if you guess which one.”"
+        },
+        "recentTurnHistory": [
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 12,
+            "paragraphIndex": 7,
+            "relativeIndex": -4,
+            "text": "Though it doesn’t feel like it has been that long since I fell. You will have to bring me up to speed about what happened since and what you’ve been up to."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 13,
+            "paragraphIndex": 8,
+            "relativeIndex": -3,
+            "text": "Oh, you know, just the usual,"
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 15,
+            "paragraphIndex": 8,
+            "relativeIndex": -2,
+            "text": "Fought and killed Ell’Hakan before blowing up his planet, the Viper ate Yip of Yore and slaughtered an army of gods, I met a being whose influence on the multiverse is so big that this being’s mere existence is considered Forbidden knowledge, meaning I now know secrets of the multiverse not even Primordials are privy to. Also, currently pursuing a romantic relationship with a goddess, created another never-seen-before creature that’s apparently able to extinguish all light in the multiverse. Oh, and recently a contract was put out on my life, leading to me fighting an assassin from the Court of Shadows that forced me into the Shadow Realm where I ended up having a nice little conversation with Umbra that ultimately resulted in her giving me a cool new cloak that’s definitely not just an item that makes it easy for her to track me... Ah, I nearly forgot, I also started a small war with the Holy Church."
+          },
+          {
+            "characterId": "unknown",
+            "characterName": "Unknown",
+            "lineId": 17,
+            "paragraphIndex": 9,
+            "relativeIndex": -1,
+            "text": "Only one of those was a lie. Bonus points if you guess which one."
+          },
+          {
+            "characterId": "jake",
+            "characterName": "Jake",
+            "lineId": 20,
+            "paragraphIndex": 11,
+            "relativeIndex": 1,
+            "text": "So that means you give up guessing?"
+          },
+          {
+            "characterId": "forest-king-2",
+            "characterName": "forest-king",
+            "lineId": 22,
+            "paragraphIndex": 12,
+            "relativeIndex": 2,
+            "text": "... I’ll assume it’s the one about Forbidden Knowledge, as I’m unsure if you would even have been able to share that in the first place. The most obvious truth was about your encounter with the Court of Shadows, as such a thing was only a matter of time, and from what I know of Umbra and the story of the Sin weapon you wield, encountering her personally was also only to be expected,"
+          }
+        ],
+        "sceneEntities": []
+      },
+      "request": {
+        "contents": [
+          {
+            "parts": [
+              {
+                "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 18, \"text\": \"Knowing the ridiculousness someone like you gets up to, all of them may as well be true. Though I can assume the factuality of some. In order to resurrect me, you would have had to kill the Desolate Child of Loss. With that in mind, you must have won the war for the galaxy, having killed Ell’Hakan in the process. Yip of Yore also meeting his death is also only to be expected, though that did happen sooner than I would have anticipated. Starting a war with the Holy Church... hm, must have been in extension of the conflict for the Milky Way. As for the rest of them, most of which seem to concern the personal encounters and relationships you’ve formed, I truthfully do not find myself caring overly much, but I assume one of these to be the lie,\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"King\", \"sourceCandidates\": [\"King\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.804, \"marginToSecond\": 0.36000000000000004, \"misattributionRisk\": 0.32919999999999994, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.8, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [\"Having\", \"yip\"], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": false, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"Jake\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"King\", \"confidence\": 0.804, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.444, \"reasons\": null}], \"isReturning\": false}, \"paragraphContext\": {\"paragraphIndex\": 10, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Knowing the ridiculousness someone like you gets up to, all of them may as well be true. Though I can assume the factuality of some. In order to resurrect me, you would have had to kill the Desolate Child of Loss. With that in mind, you must have won the war for the galaxy, having killed Ell’Hakan in the process. Yip of Yore also meeting his death is also only to be expected, though that did happen sooner than I would have anticipated. Starting a war with the Holy Church... hm, must have been in extension of the conflict for the Milky Way. As for the rest of them, most of which seem to concern the personal encounters and relationships you’ve formed, I truthfully do not find myself caring overly much, but I assume one of these to be the lie,” the Forest King surprisingly played along with Jake’s little joke.\", \"currentParagraphDialogue\": [{\"lineId\": 18, \"text\": \"Knowing the ridiculousness someone like you gets up to, all of them may as well be true. Though I can assume the factuality of some. In order to resurrect me, you would have had to kill the Desolate Child of Loss. With that in mind, you must have won the war for the galaxy, having killed Ell’Hakan in the process. Yip of Yore also meeting his death is also only to be expected, though that did happen sooner than I would have anticipated. Starting a war with the Holy Church... hm, must have been in extension of the conflict for the Milky Way. As for the rest of them, most of which seem to concern the personal encounters and relationships you’ve formed, I truthfully do not find myself caring overly much, but I assume one of these to be the lie,\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"previousParagraphText\": \"The King stared at Jake, who just grinned widely. “Only one of those was a lie. Bonus points if you guess which one.”\", \"previousParagraphDialogue\": [{\"lineId\": 17, \"text\": \"Only one of those was a lie. Bonus points if you guess which one.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"nextParagraphText\": \"“So that means you give up guessing?” Jake said cheekily.\", \"nextParagraphDialogue\": [{\"lineId\": 20, \"text\": \"So that means you give up guessing?\", \"characterId\": \"jake\", \"characterName\": \"Jake\", \"isReturning\": false}], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Knowing the ridiculousness someone like you gets up to, all of them may as well be true. Though I can assume the factuality of some. In order to resurrect me, you would have had to kill the Desolate Child of Loss. With that in mind, you must have won the war for the galaxy, having killed Ell’Hakan in the process. Yip of Yore also meeting his death is also only to be expected, though that did happen sooner than I would have anticipated. Starting a war with the Holy Church... hm, must have been in extension of the conflict for the Milky Way. As for the rest of them, most of which seem to concern the personal encounters and relationships you’ve formed, I truthfully do not find myself caring overly much, but I assume one of these to be the lie,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Having\", \"yip\", \"Having\"], \"addressedEntity\": null, \"firstSentence\": \"Knowing the ridiculousness someone like you gets up to, all of them may as well be true.\", \"lastSentence\": \"As for the rest of them, most of which seem to concern the personal encounters and relationships you’ve formed, I truthfully do not find myself caring overly much, but I assume one of these to be the lie,\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Only one of those was a lie. Bonus points if you guess which one.\", \"cuePosition\": \"before\", \"cueVerb\": \"grinned\", \"cueVerbType\": \"reaction\", \"cueText\": \"The King stared at Jake, who just grinned widely.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Only one of those was a lie.\", \"lastSentence\": \"Bonus points if you guess which one.\"}], \"nextParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"So that means you give up guessing?\", \"cuePosition\": \"after\", \"cueVerb\": \"said\", \"cueVerbType\": \"speech\", \"cueText\": \"Jake said cheekily.\", \"speakerSurface\": \"Jake\", \"speakerNameMatch\": \"Jake\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"So that means you give up guessing?\", \"lastSentence\": \"So that means you give up guessing?\"}]}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Knowing the ridiculousness someone like you gets up to, all of them may as well be true. Though I can assume the factuality of some. In order to resurrect me, you would have had to kill the Desolate Child of Loss. With that in mind, you must have won the war for the galaxy, having killed Ell’Hakan in the process. Yip of Yore also meeting his death is also only to be expected, though that did happen sooner than I would have anticipated. Starting a war with the Holy Church... hm, must have been in extension of the conflict for the Milky Way. As for the rest of them, most of which seem to concern the personal encounters and relationships you’ve formed, I truthfully do not find myself caring overly much, but I assume one of these to be the lie,\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [\"Having\", \"yip\", \"Having\"], \"addressedEntity\": null, \"firstSentence\": \"Knowing the ridiculousness someone like you gets up to, all of them may as well be true.\", \"lastSentence\": \"As for the rest of them, most of which seem to concern the personal encounters and relationships you’ve formed, I truthfully do not find myself caring overly much, but I assume one of these to be the lie,\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [\"jake\", \"protagonist\", \"chimera\", \"monster\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"forest-king-2\", \"characterName\": \"forest-king\", \"aliases\": [\"forest-king-2\"], \"roleLabels\": [\"forest king 2\", \"forest king\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 12, \"paragraphIndex\": 7, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Though it doesn’t feel like it has been that long since I fell. You will have to bring me up to speed about what happened since and what you’ve been up to.\"}, {\"relativeIndex\": -3, \"lineId\": 13, \"paragraphIndex\": 8, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Oh, you know, just the usual,\"}, {\"relativeIndex\": -2, \"lineId\": 15, \"paragraphIndex\": 8, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Fought and killed Ell’Hakan before blowing up his planet, the Viper ate Yip of Yore and slaughtered an army of gods, I met a being whose influence on the multiverse is so big that this being’s mere existence is considered Forbidden knowledge, meaning I now know secrets of the multiverse not even Primordials are privy to. Also, currently pursuing a romantic relationship with a goddess, created another never-seen-before creature that’s apparently able to extinguish all light in the multiverse. Oh, and recently a contract was put out on my life, leading to me fighting an assassin from the Court of Shadows that forced me into the Shadow Realm where I ended up having a nice little conversation with Umbra that ultimately resulted in her giving me a cool new cloak that’s definitely not just an item that makes it easy for her to track me... Ah, I nearly forgot, I also started a small war with the Holy Church.\"}, {\"relativeIndex\": -1, \"lineId\": 17, \"paragraphIndex\": 9, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"Only one of those was a lie. Bonus points if you guess which one.\"}, {\"relativeIndex\": 1, \"lineId\": 20, \"paragraphIndex\": 11, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"So that means you give up guessing?\"}, {\"relativeIndex\": 2, \"lineId\": 22, \"paragraphIndex\": 12, \"characterId\": \"forest-king-2\", \"characterName\": \"forest-king\", \"text\": \"... I’ll assume it’s the one about Forbidden Knowledge, as I’m unsure if you would even have been able to share that in the first place. The most obvious truth was about your encounter with the Court of Shadows, as such a thing was only a matter of time, and from what I know of Umbra and the story of the Sin weapon you wield, encountering her personally was also only to be expected,\"}], \"chapterCharacters\": [{\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Chimera\", \"Monster\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"forest-king-2\", \"name\": \"forest-king\", \"aliases\": [\"forest-king-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"the-sword-saint\", \"name\": \"The Sword Saint\", \"aliases\": [\"the-sword-saint\", \"the-sword-saint-2\", \"Miyamoto\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"minaga\", \"name\": \"Minaga\", \"aliases\": [\"Unique Lifeform\", \"The Unique Lifeform\", \"the-unique-lifeform\", \"the-unique-lifeform-2\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"dina\", \"name\": \"Dina\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"sylphie\", \"name\": \"Sylphie\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"having\", \"name\": \"Having\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+              }
+            ]
+          }
+        ],
+        "generationConfig": {
+          "responseMimeType": "application/json",
+          "temperature": 0.1
+        }
+      },
+      "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"forest-king-2\",\n  \"characterName\": \"forest-king\",\n  \"confidence\": 1.0,\n  \"reasonCodes\": [\n    \"explicit_narration_cue\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+    }
+  ],
+  "chapterPath": "0095 - Chapter 1152 - Nevermore Party Party Invites/chapter.txt",
+  "currentCharacterId": "unknown",
+  "currentCharacterName": "Unknown",
+  "currentParagraphText": "“Knowing the ridiculousness someone like you gets up to, all of them may as well be true. Though I can assume the factuality of some. In order to resurrect me, you would have had to kill the Desolate Child of Loss. With that in mind, you must have won the war for the galaxy, having killed Ell’Hakan in the process. Yip of Yore also meeting his death is also only to be expected, though that did happen sooner than I would have anticipated. Starting a war with the Holy Church... hm, must have been in extension of the conflict for the Milky Way. As for the rest of them, most of which seem to concern the personal encounters and relationships you’ve formed, I truthfully do not find myself caring overly much, but I assume one of these to be the lie,” the Forest King surprisingly played along with Jake’s little joke.",
+  "finalResult": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "cacheHit": false,
+    "confidence": 1.0,
+    "currentCharacterId": "unknown",
+    "currentCharacterName": "Unknown",
+    "currentParagraphText": "“Knowing the ridiculousness someone like you gets up to, all of them may as well be true. Though I can assume the factuality of some. In order to resurrect me, you would have had to kill the Desolate Child of Loss. With that in mind, you must have won the war for the galaxy, having killed Ell’Hakan in the process. Yip of Yore also meeting his death is also only to be expected, though that did happen sooner than I would have anticipated. Starting a war with the Holy Church... hm, must have been in extension of the conflict for the Milky Way. As for the rest of them, most of which seem to concern the personal encounters and relationships you’ve formed, I truthfully do not find myself caring overly much, but I assume one of these to be the lie,” the Forest King surprisingly played along with Jake’s little joke.",
+    "disposition": "auto_apply",
+    "error": null,
+    "lineId": 18,
+    "logPath": null,
+    "newCharacterProposal": null,
+    "nextParagraphText": "“So that means you give up guessing?” Jake said cheekily.",
+    "paragraphIndex": 10,
+    "previousParagraphText": "The King stared at Jake, who just grinned widely. “Only one of those was a lie. Bonus points if you guess which one.”",
+    "reasonCodes": [
+      "explicit_narration_cue"
+    ],
+    "suggestedCharacterId": "forest-king-2",
+    "suggestedCharacterName": "forest-king",
+    "toolTrace": []
+  },
+  "lineId": 18,
+  "nextParagraphText": "“So that means you give up guessing?” Jake said cheekily.",
+  "paragraphIndex": 10,
+  "previousParagraphText": "The King stared at Jake, who just grinned widely. “Only one of those was a lie. Bonus points if you guess which one.”"
+}

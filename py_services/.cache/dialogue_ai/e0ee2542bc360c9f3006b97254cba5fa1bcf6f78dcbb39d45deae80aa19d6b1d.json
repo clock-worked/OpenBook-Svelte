@@ -1,0 +1,285 @@
+{
+  "cacheKey": "e0ee2542bc360c9f3006b97254cba5fa1bcf6f78dcbb39d45deae80aa19d6b1d",
+  "createdAt": "2026-05-11T19:44:39.196654+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "jake",
+    "characterName": "Jake",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "dialogue_answer",
+      "next_paragraph_narration",
+      "previous_speaker_addressed"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": true,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [
+          "First Sage"
+        ],
+        "characterId": "the first sage",
+        "name": "The First Sage",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "Protagonist",
+          "Lord Thayne",
+          "Void God"
+        ],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [
+          "viper",
+          "Villy",
+          "Vilas",
+          "Vilastromoz",
+          "The Viper",
+          "the-viper",
+          "the-viper-2"
+        ],
+        "characterId": "viper",
+        "name": "The Malefic Viper",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Concepts… or perhaps more accurately, a way to comprehend them.",
+      "lastSentence": "Concepts… or perhaps more accurately, a way to comprehend them.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Concepts… or perhaps more accurately, a way to comprehend them.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": "The First Sage",
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "The First Sage",
+        "sourceCandidates": [
+          "The First Sage",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "The First Sage",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 89,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Concepts… or perhaps more accurately, a way to comprehend them."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 89,
+          "text": "Concepts… or perhaps more accurately, a way to comprehend them."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Concepts… or perhaps more accurately, a way to comprehend them.",
+          "lastSentence": "Concepts… or perhaps more accurately, a way to comprehend them.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Concepts… or perhaps more accurately, a way to comprehend them.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Concepts… or perhaps more accurately, a way to comprehend them.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "This was Jake’s answer to what the true purpose of the Meditate skill was.",
+      "paragraphIndex": 57,
+      "previousParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": false,
+          "lineId": 87,
+          "text": "So what is your answer to what lies beyond the gate?"
+        }
+      ],
+      "previousParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "after",
+          "cueText": "the First Sage asked, knowing Jake had reached the end of his speech.",
+          "cueVerb": "asked",
+          "cueVerbType": "speech",
+          "firstSentence": "So what is your answer to what lies beyond the gate?",
+          "lastSentence": "So what is your answer to what lies beyond the gate?",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "So what is your answer to what lies beyond the gate?",
+          "speakerNameMatch": "The First Sage",
+          "speakerSurface": "First Sage"
+        }
+      ],
+      "previousParagraphText": "“So what is your answer to what lies beyond the gate?” the First Sage asked, knowing Jake had reached the end of his speech."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 82,
+        "paragraphIndex": 52,
+        "relativeIndex": -4,
+        "text": "I’m getting there, jeez,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 84,
+        "paragraphIndex": 53,
+        "relativeIndex": -3,
+        "text": "As I was getting to, if the Meditate skill is one originally made for gods to use, I think the one all mortals have is some kind of lesser version. Sure, it’s possible they just share a name, same as how Eversmile gave William a skill with Bloodline in the name just to mess with him, but you seriously don’t strike me as the type to do something like that. Hence why I believe the two are connected."
+      },
+      {
+        "characterId": "the_first_sage",
+        "characterName": "The First Sage",
+        "lineId": 86,
+        "paragraphIndex": 55,
+        "relativeIndex": -2,
+        "text": "Which brings me back to the why. Why do gods need to meditate? How does it progress their Paths? I considered whether it might have just given them experience or Records, but it doesn’t really work like that, now does it? The Records need to pertain to something, and if it only gave experience, wouldn’t it risk harming the gods due to the lack of Records? I’m not even sure if one can get experience without at least some Records in the first place, but I digress. What I concluded was that what the gods are getting out of meditating is indeed something crucial they cannot do without. Something that sets them apart from those weaker than themselves… something with seemingly no limit to how high it can scale, if gods find it worthy of eternal pursuit."
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 87,
+        "paragraphIndex": 56,
+        "relativeIndex": -1,
+        "text": "So what is your answer to what lies beyond the gate?"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 92,
+        "paragraphIndex": 59,
+        "relativeIndex": 1,
+        "text": "true"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 96,
+        "paragraphIndex": 61,
+        "relativeIndex": 2,
+        "text": "had to understand how fire works better"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 89, \"text\": \"Concepts… or perhaps more accurately, a way to comprehend them.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"The First Sage\", \"sourceCandidates\": [\"The First Sage\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": \"The First Sage\", \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"The First Sage\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 57, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Concepts… or perhaps more accurately, a way to comprehend them.”\", \"currentParagraphDialogue\": [{\"lineId\": 89, \"text\": \"Concepts… or perhaps more accurately, a way to comprehend them.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"“So what is your answer to what lies beyond the gate?” the First Sage asked, knowing Jake had reached the end of his speech.\", \"previousParagraphDialogue\": [{\"lineId\": 87, \"text\": \"So what is your answer to what lies beyond the gate?\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": false}], \"nextParagraphText\": \"This was Jake’s answer to what the true purpose of the Meditate skill was.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Concepts… or perhaps more accurately, a way to comprehend them.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Concepts… or perhaps more accurately, a way to comprehend them.\", \"lastSentence\": \"Concepts… or perhaps more accurately, a way to comprehend them.\"}], \"previousParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"So what is your answer to what lies beyond the gate?\", \"cuePosition\": \"after\", \"cueVerb\": \"asked\", \"cueVerbType\": \"speech\", \"cueText\": \"the First Sage asked, knowing Jake had reached the end of his speech.\", \"speakerSurface\": \"First Sage\", \"speakerNameMatch\": \"The First Sage\", \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"So what is your answer to what lies beyond the gate?\", \"lastSentence\": \"So what is your answer to what lies beyond the gate?\"}], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Concepts… or perhaps more accurately, a way to comprehend them.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Concepts… or perhaps more accurately, a way to comprehend them.\", \"lastSentence\": \"Concepts… or perhaps more accurately, a way to comprehend them.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 82, \"paragraphIndex\": 52, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"I’m getting there, jeez,\"}, {\"relativeIndex\": -3, \"lineId\": 84, \"paragraphIndex\": 53, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"As I was getting to, if the Meditate skill is one originally made for gods to use, I think the one all mortals have is some kind of lesser version. Sure, it’s possible they just share a name, same as how Eversmile gave William a skill with Bloodline in the name just to mess with him, but you seriously don’t strike me as the type to do something like that. Hence why I believe the two are connected.\"}, {\"relativeIndex\": -2, \"lineId\": 86, \"paragraphIndex\": 55, \"characterId\": \"the_first_sage\", \"characterName\": \"The First Sage\", \"text\": \"Which brings me back to the why. Why do gods need to meditate? How does it progress their Paths? I considered whether it might have just given them experience or Records, but it doesn’t really work like that, now does it? The Records need to pertain to something, and if it only gave experience, wouldn’t it risk harming the gods due to the lack of Records? I’m not even sure if one can get experience without at least some Records in the first place, but I digress. What I concluded was that what the gods are getting out of meditating is indeed something crucial they cannot do without. Something that sets them apart from those weaker than themselves… something with seemingly no limit to how high it can scale, if gods find it worthy of eternal pursuit.\"}, {\"relativeIndex\": -1, \"lineId\": 87, \"paragraphIndex\": 56, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"So what is your answer to what lies beyond the gate?\"}, {\"relativeIndex\": 1, \"lineId\": 92, \"paragraphIndex\": 59, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"true\"}, {\"relativeIndex\": 2, \"lineId\": 96, \"paragraphIndex\": 61, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"had to understand how fire works better\"}], \"chapterCharacters\": [{\"characterId\": \"the first sage\", \"name\": \"The First Sage\", \"aliases\": [\"First Sage\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [\"Protagonist\", \"Lord Thayne\", \"Void God\"], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"viper\", \"name\": \"The Malefic Viper\", \"aliases\": [\"viper\", \"Villy\", \"Vilas\", \"Vilastromoz\", \"The Viper\", \"the-viper\", \"the-viper-2\"], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": true, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"jake\",\n  \"characterName\": \"Jake\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"dialogue_answer\",\n    \"next_paragraph_narration\",\n    \"previous_speaker_addressed\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}

@@ -1,0 +1,246 @@
+{
+  "cacheKey": "ba534bde47bd059155307b9c517272104bd45f5dba8f33e1ad3701b276da675d",
+  "createdAt": "2026-04-02T19:51:19.690518+00:00",
+  "decision": {
+    "action": "reassign_existing",
+    "aliasToAdd": null,
+    "characterId": "artemis",
+    "characterName": "Artemis",
+    "confidence": 0.95,
+    "newCharacterProposal": null,
+    "reasonCodes": [
+      "dialogue_content_matches_speaker_role",
+      "continuation_of_previous_dialogue_topic",
+      "next_paragraph_shows_addressee_reaction",
+      "parser_high_confidence"
+    ],
+    "responseType": "final"
+  },
+  "modelName": "gemini-2.5-flash",
+  "payload": {
+    "availableTools": {
+      "request_attribution_signals": true,
+      "request_book_characters": false,
+      "request_candidate_cards": true,
+      "request_next_paragraph": true,
+      "request_previous_paragraph": true,
+      "request_quote_structure": true,
+      "request_recent_turn_history": true,
+      "request_scene_entities": false
+    },
+    "candidateCards": [
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "isCurrentAssignment": true,
+        "roleLabels": [
+          "unknown"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "artemis"
+        ],
+        "wasRecentSpeaker": true
+      },
+      {
+        "aliases": [],
+        "characterId": "jake",
+        "characterName": "Jake",
+        "isCurrentAssignment": false,
+        "roleLabels": [
+          "jake"
+        ],
+        "wasRecentSpeaker": true
+      }
+    ],
+    "chapterCharacters": [
+      {
+        "aliases": [],
+        "characterId": "jake",
+        "name": "Jake",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "artemis",
+        "name": "Artemis",
+        "notes": null,
+        "roleLabels": []
+      },
+      {
+        "aliases": [],
+        "characterId": "unknown",
+        "name": "Unknown",
+        "notes": null,
+        "roleLabels": []
+      }
+    ],
+    "currentQuoteUnit": {
+      "addressedEntity": null,
+      "cuePosition": "none",
+      "cueText": "",
+      "cueVerb": null,
+      "cueVerbType": null,
+      "firstSentence": "Few concepts can stand alone.",
+      "lastSentence": "Penetrating through all these can be put under the umbrella of dealing with the concept of friction.",
+      "mentionedEntities": [],
+      "quoteIndex": 0,
+      "quoteText": "Few concepts can stand alone. In nearly all attacks, we use some form of composite with aspects from many different concepts, often far more than we even realize. Every step you take relies on concepts. When your arrow is in flight, consider how many concepts it interacts with during flight. Dependent on the environment, there’s wind, moisture in the air, dust, light, gravity, space, and so many more. Penetrating through all these can be put under the umbrella of dealing with the concept of friction.",
+      "speakerNameMatch": null,
+      "speakerSurface": null
+    },
+    "line": {
+      "attribution": {
+        "decisionSignals": {
+          "addressedNamePrevSentence": null,
+          "aliasMatchStrength": 0,
+          "contextGender": null,
+          "contextGenderCue": null,
+          "continuesParagraphDialogue": false,
+          "exactQuoteMatch": true,
+          "explicitQuoteMentions": [],
+          "hasCorefName": false,
+          "isReturning": true,
+          "lineEndsWithQuestion": false,
+          "nearbySpeechVerb": false,
+          "nextDialogueLegacy": null,
+          "nextSentenceAttributedSpeaker": null,
+          "previousParagraphNamedMention": null,
+          "quoteBoundaryQuality": 0.95,
+          "recentNamedMentionBeforeQuote": null,
+          "usedFallbackAlignment": false
+        },
+        "marginToSecond": 0.35999999999999993,
+        "misattributionRisk": 0.3208000000000001,
+        "parserBackend": "legacy",
+        "resolutionStatus": "unknown",
+        "sourceAlias": "Artemis",
+        "sourceCandidates": [
+          "Artemis",
+          "Jake"
+        ],
+        "sourceDescriptors": null,
+        "topCandidateConfidence": 0.816
+      },
+      "candidates": [
+        {
+          "characterId": null,
+          "confidence": 0.816,
+          "name": "Artemis",
+          "reasons": null
+        },
+        {
+          "characterId": null,
+          "confidence": 0.456,
+          "name": "Jake",
+          "reasons": null
+        }
+      ],
+      "currentCharacterAliases": [],
+      "currentCharacterId": "unknown",
+      "currentCharacterName": "Unknown",
+      "currentCharacterNotes": null,
+      "currentCharacterRoleLabels": [],
+      "id": 106,
+      "isReturning": true,
+      "parserLabelsAreProvisional": true,
+      "text": "Few concepts can stand alone. In nearly all attacks, we use some form of composite with aspects from many different concepts, often far more than we even realize. Every step you take relies on concepts. When your arrow is in flight, consider how many concepts it interacts with during flight. Dependent on the environment, there’s wind, moisture in the air, dust, light, gravity, space, and so many more. Penetrating through all these can be put under the umbrella of dealing with the concept of friction."
+    },
+    "paragraphContext": {
+      "currentLinePosition": 0,
+      "currentParagraphDialogue": [
+        {
+          "characterId": "unknown",
+          "characterName": "Unknown",
+          "isReturning": true,
+          "lineId": 106,
+          "text": "Few concepts can stand alone. In nearly all attacks, we use some form of composite with aspects from many different concepts, often far more than we even realize. Every step you take relies on concepts. When your arrow is in flight, consider how many concepts it interacts with during flight. Dependent on the environment, there’s wind, moisture in the air, dust, light, gravity, space, and so many more. Penetrating through all these can be put under the umbrella of dealing with the concept of friction."
+        }
+      ],
+      "currentParagraphQuoteStructure": [
+        {
+          "addressedEntity": null,
+          "cuePosition": "none",
+          "cueText": "",
+          "cueVerb": null,
+          "cueVerbType": null,
+          "firstSentence": "Few concepts can stand alone.",
+          "lastSentence": "Penetrating through all these can be put under the umbrella of dealing with the concept of friction.",
+          "mentionedEntities": [],
+          "quoteIndex": 0,
+          "quoteText": "Few concepts can stand alone. In nearly all attacks, we use some form of composite with aspects from many different concepts, often far more than we even realize. Every step you take relies on concepts. When your arrow is in flight, consider how many concepts it interacts with during flight. Dependent on the environment, there’s wind, moisture in the air, dust, light, gravity, space, and so many more. Penetrating through all these can be put under the umbrella of dealing with the concept of friction.",
+          "speakerNameMatch": null,
+          "speakerSurface": null
+        }
+      ],
+      "currentParagraphText": "“Few concepts can stand alone. In nearly all attacks, we use some form of composite with aspects from many different concepts, often far more than we even realize. Every step you take relies on concepts. When your arrow is in flight, consider how many concepts it interacts with during flight. Dependent on the environment, there’s wind, moisture in the air, dust, light, gravity, space, and so many more. Penetrating through all these can be put under the umbrella of dealing with the concept of friction.”",
+      "dialogueLineCount": 1,
+      "nextParagraphDialogue": [],
+      "nextParagraphQuoteStructure": [],
+      "nextParagraphText": "It was all getting pretty damn complicated, but despite that, Jake began to form some actual ideas. One of them was related to a concept Jake had some familiarity with and had even incorporated into some of his other skills already.",
+      "paragraphIndex": 59,
+      "previousParagraphDialogue": [],
+      "previousParagraphQuoteStructure": [],
+      "previousParagraphText": "The lesson that had resonated the most with Jake was still the first one about speed. It was the one Jake felt like he was closest to approaching, and further conversations on the topic only strengthened his thinking."
+    },
+    "recentTurnHistory": [
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 90,
+        "paragraphIndex": 46,
+        "relativeIndex": -4,
+        "text": "Your current understanding, even for those who grew up with the system, is the most intuitive. The most powerful arrows of an archer do tend to also be the fastest as they simply have a lot more energy infused into them. Additionally, if you use a powerful skill, trying to change the balance gets magnitudes harder."
+      },
+      {
+        "characterId": "artemis",
+        "characterName": "Artemis",
+        "lineId": 92,
+        "paragraphIndex": 48,
+        "relativeIndex": -3,
+        "text": "I also want to clarify that your understanding isn’t wrong. It has a lot of truth to it, and actively messing with the conceptual energy within each arrow isn’t a feasible method of fighting. In most cases, having a faster arrow does also mean it will do more damage, just be aware that this isn’t due to some law of physics. It happens because that’s what you believe should happen, and the energy you put into the arrow reflects that. The same is true in all other aspects of battle. What I’m talking about right now is a gross oversimplification of the effect of concepts, but nothing I said is definitively wrong, and it should be enough for now."
+      },
+      {
+        "characterId": "jake",
+        "characterName": "Jake",
+        "lineId": 93,
+        "paragraphIndex": 49,
+        "relativeIndex": -2,
+        "text": "Got it,"
+      },
+      {
+        "characterId": "unknown",
+        "characterName": "Unknown",
+        "lineId": 97,
+        "paragraphIndex": 51,
+        "relativeIndex": -1,
+        "text": "deepened his understanding"
+      }
+    ],
+    "sceneEntities": []
+  },
+  "request": {
+    "contents": [
+      {
+        "parts": [
+          {
+            "text": "You validate speaker attribution for dialogue lines in a novel.\n\nReturn JSON only.\n\nYou may either:\n1. ask for one extra context tool using {\"responseType\":\"tool\",\"tool\":...}\n2. return a final decision using {\"responseType\":\"final\",...}\n\nAllowed tool names:\n- request_previous_paragraph\n- request_next_paragraph\n- request_book_characters\n- request_quote_structure\n- request_recent_turn_history\n- request_scene_entities\n- request_candidate_cards\n- request_attribution_signals\n\nFinal response schema:\n{\n  \"responseType\": \"final\",\n  \"action\": \"keep_existing\" | \"reassign_existing\" | \"needs_review\" | \"propose_alias\" | \"propose_new_character\",\n  \"characterId\": string | null,\n  \"characterName\": string | null,\n  \"confidence\": number,\n  \"reasonCodes\": string[],\n  \"aliasToAdd\": {\"characterId\": string, \"characterName\": string, \"alias\": string} | null,\n  \"newCharacterProposal\": {\"name\": string, \"alias\": string | null, \"notes\": string | null} | null\n}\n\nRules:\n- Prefer keep_existing or reassign_existing to an existing chapter or book character.\n- Use propose_alias only when the spoken surface form is clearly an alias for an existing canonical character.\n- Use propose_new_character rarely.\n- Treat parser-provided speaker labels as provisional evidence, not ground truth.\n- Do not confuse the addressee with the speaker. Names or titles used at the start of a quote often identify who is being spoken to, not who is speaking.\n- In negotiations or arguments, prefer continuity across the current paragraph's dialogue sequence before reassigning to a newly mentioned character.\n- Explicit narration cues such as \"X said\", \"the head priest raised his hands\", or \"the Augur nodded\" are strong speaker evidence.\n- Prefer resolving role and title surfaces to an existing character before proposing a new character.\n- If the evidence mainly comes from who is being threatened, addressed, or discussed, that is weak evidence for speaker identity.\n- If multiple plausible speakers remain after reading the current paragraph dialogue sequence, request more context instead of guessing.\n- Do not explain in prose outside JSON.\n- Keep reasonCodes short, snake_case, and few.\n\n\nINPUT_JSON:\n{\"line\": {\"id\": 106, \"text\": \"Few concepts can stand alone. In nearly all attacks, we use some form of composite with aspects from many different concepts, often far more than we even realize. Every step you take relies on concepts. When your arrow is in flight, consider how many concepts it interacts with during flight. Dependent on the environment, there’s wind, moisture in the air, dust, light, gravity, space, and so many more. Penetrating through all these can be put under the umbrella of dealing with the concept of friction.\", \"currentCharacterId\": \"unknown\", \"currentCharacterName\": \"Unknown\", \"currentCharacterAliases\": [], \"currentCharacterRoleLabels\": [], \"currentCharacterNotes\": null, \"parserLabelsAreProvisional\": true, \"attribution\": {\"resolutionStatus\": \"unknown\", \"sourceAlias\": \"Artemis\", \"sourceCandidates\": [\"Artemis\", \"Jake\"], \"sourceDescriptors\": null, \"topCandidateConfidence\": 0.816, \"marginToSecond\": 0.35999999999999993, \"misattributionRisk\": 0.3208000000000001, \"parserBackend\": \"legacy\", \"decisionSignals\": {\"usedFallbackAlignment\": false, \"exactQuoteMatch\": true, \"quoteBoundaryQuality\": 0.95, \"nearbySpeechVerb\": false, \"hasCorefName\": false, \"aliasMatchStrength\": 0, \"addressedNamePrevSentence\": null, \"explicitQuoteMentions\": [], \"nextSentenceAttributedSpeaker\": null, \"recentNamedMentionBeforeQuote\": null, \"previousParagraphNamedMention\": null, \"isReturning\": true, \"continuesParagraphDialogue\": false, \"lineEndsWithQuestion\": false, \"nextDialogueLegacy\": null, \"contextGender\": null, \"contextGenderCue\": null}}, \"candidates\": [{\"characterId\": null, \"name\": \"Artemis\", \"confidence\": 0.816, \"reasons\": null}, {\"characterId\": null, \"name\": \"Jake\", \"confidence\": 0.456, \"reasons\": null}], \"isReturning\": true}, \"paragraphContext\": {\"paragraphIndex\": 59, \"currentLinePosition\": 0, \"dialogueLineCount\": 1, \"currentParagraphText\": \"“Few concepts can stand alone. In nearly all attacks, we use some form of composite with aspects from many different concepts, often far more than we even realize. Every step you take relies on concepts. When your arrow is in flight, consider how many concepts it interacts with during flight. Dependent on the environment, there’s wind, moisture in the air, dust, light, gravity, space, and so many more. Penetrating through all these can be put under the umbrella of dealing with the concept of friction.”\", \"currentParagraphDialogue\": [{\"lineId\": 106, \"text\": \"Few concepts can stand alone. In nearly all attacks, we use some form of composite with aspects from many different concepts, often far more than we even realize. Every step you take relies on concepts. When your arrow is in flight, consider how many concepts it interacts with during flight. Dependent on the environment, there’s wind, moisture in the air, dust, light, gravity, space, and so many more. Penetrating through all these can be put under the umbrella of dealing with the concept of friction.\", \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"isReturning\": true}], \"previousParagraphText\": \"The lesson that had resonated the most with Jake was still the first one about speed. It was the one Jake felt like he was closest to approaching, and further conversations on the topic only strengthened his thinking.\", \"previousParagraphDialogue\": [], \"nextParagraphText\": \"It was all getting pretty damn complicated, but despite that, Jake began to form some actual ideas. One of them was related to a concept Jake had some familiarity with and had even incorporated into some of his other skills already.\", \"nextParagraphDialogue\": [], \"currentParagraphQuoteStructure\": [{\"quoteIndex\": 0, \"quoteText\": \"Few concepts can stand alone. In nearly all attacks, we use some form of composite with aspects from many different concepts, often far more than we even realize. Every step you take relies on concepts. When your arrow is in flight, consider how many concepts it interacts with during flight. Dependent on the environment, there’s wind, moisture in the air, dust, light, gravity, space, and so many more. Penetrating through all these can be put under the umbrella of dealing with the concept of friction.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Few concepts can stand alone.\", \"lastSentence\": \"Penetrating through all these can be put under the umbrella of dealing with the concept of friction.\"}], \"previousParagraphQuoteStructure\": [], \"nextParagraphQuoteStructure\": []}, \"currentQuoteUnit\": {\"quoteIndex\": 0, \"quoteText\": \"Few concepts can stand alone. In nearly all attacks, we use some form of composite with aspects from many different concepts, often far more than we even realize. Every step you take relies on concepts. When your arrow is in flight, consider how many concepts it interacts with during flight. Dependent on the environment, there’s wind, moisture in the air, dust, light, gravity, space, and so many more. Penetrating through all these can be put under the umbrella of dealing with the concept of friction.\", \"cuePosition\": \"none\", \"cueVerb\": null, \"cueVerbType\": null, \"cueText\": \"\", \"speakerSurface\": null, \"speakerNameMatch\": null, \"mentionedEntities\": [], \"addressedEntity\": null, \"firstSentence\": \"Few concepts can stand alone.\", \"lastSentence\": \"Penetrating through all these can be put under the umbrella of dealing with the concept of friction.\"}, \"sceneEntities\": [], \"candidateCards\": [{\"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"aliases\": [], \"roleLabels\": [\"unknown\"], \"isCurrentAssignment\": true, \"wasRecentSpeaker\": true}, {\"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"aliases\": [], \"roleLabels\": [\"artemis\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}, {\"characterId\": \"jake\", \"characterName\": \"Jake\", \"aliases\": [], \"roleLabels\": [\"jake\"], \"isCurrentAssignment\": false, \"wasRecentSpeaker\": true}], \"recentTurnHistory\": [{\"relativeIndex\": -4, \"lineId\": 90, \"paragraphIndex\": 46, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"Your current understanding, even for those who grew up with the system, is the most intuitive. The most powerful arrows of an archer do tend to also be the fastest as they simply have a lot more energy infused into them. Additionally, if you use a powerful skill, trying to change the balance gets magnitudes harder.\"}, {\"relativeIndex\": -3, \"lineId\": 92, \"paragraphIndex\": 48, \"characterId\": \"artemis\", \"characterName\": \"Artemis\", \"text\": \"I also want to clarify that your understanding isn’t wrong. It has a lot of truth to it, and actively messing with the conceptual energy within each arrow isn’t a feasible method of fighting. In most cases, having a faster arrow does also mean it will do more damage, just be aware that this isn’t due to some law of physics. It happens because that’s what you believe should happen, and the energy you put into the arrow reflects that. The same is true in all other aspects of battle. What I’m talking about right now is a gross oversimplification of the effect of concepts, but nothing I said is definitively wrong, and it should be enough for now.\"}, {\"relativeIndex\": -2, \"lineId\": 93, \"paragraphIndex\": 49, \"characterId\": \"jake\", \"characterName\": \"Jake\", \"text\": \"Got it,\"}, {\"relativeIndex\": -1, \"lineId\": 97, \"paragraphIndex\": 51, \"characterId\": \"unknown\", \"characterName\": \"Unknown\", \"text\": \"deepened his understanding\"}], \"chapterCharacters\": [{\"characterId\": \"jake\", \"name\": \"Jake\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"artemis\", \"name\": \"Artemis\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}, {\"characterId\": \"unknown\", \"name\": \"Unknown\", \"aliases\": [], \"roleLabels\": [], \"notes\": null}], \"availableTools\": {\"request_previous_paragraph\": true, \"request_next_paragraph\": true, \"request_book_characters\": false, \"request_quote_structure\": true, \"request_recent_turn_history\": true, \"request_scene_entities\": false, \"request_candidate_cards\": true, \"request_attribution_signals\": true}}"
+          }
+        ]
+      }
+    ],
+    "generationConfig": {
+      "responseMimeType": "application/json",
+      "temperature": 0.1
+    }
+  },
+  "responseText": "{\n  \"responseType\": \"final\",\n  \"action\": \"reassign_existing\",\n  \"characterId\": \"artemis\",\n  \"characterName\": \"Artemis\",\n  \"confidence\": 0.95,\n  \"reasonCodes\": [\n    \"dialogue_content_matches_speaker_role\",\n    \"continuation_of_previous_dialogue_topic\",\n    \"next_paragraph_shows_addressee_reaction\",\n    \"parser_high_confidence\"\n  ],\n  \"aliasToAdd\": null,\n  \"newCharacterProposal\": null\n}"
+}
