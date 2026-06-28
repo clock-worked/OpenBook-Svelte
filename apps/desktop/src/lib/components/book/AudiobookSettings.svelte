@@ -115,26 +115,26 @@
 
 <style>
   .settings-section {
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
+    background: var(--app-surface-raised);
+    border: 1px solid var(--app-border);
     border-radius: 12px;
     padding: 24px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--app-shadow-sm);
   }
   
   .section-title {
     font-size: 18px;
     font-weight: 600;
-    color: #111827;
+    color: var(--app-text);
     margin: 0 0 20px 0;
     padding-bottom: 12px;
-    border-bottom: 2px solid #e5e7eb;
+    border-bottom: 2px solid var(--app-border);
   }
   
   .subsection-title {
     font-size: 16px;
     font-weight: 600;
-    color: #374151;
+    color: var(--app-text);
     margin: 24px 0 16px 0;
   }
   
@@ -163,7 +163,7 @@
   .field-label {
     font-size: 14px;
     font-weight: 500;
-    color: #374151;
+    color: var(--app-text);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -174,7 +174,7 @@
     align-items: center;
     gap: 8px;
     font-size: 14px;
-    color: #4b5563;
+    color: var(--app-text-muted);
     cursor: pointer;
     user-select: none;
     padding: 8px 0;
@@ -184,51 +184,54 @@
     width: 16px;
     height: 16px;
     cursor: pointer;
-    accent-color: #2563eb;
+    accent-color: var(--app-primary);
   }
   
   .checkbox-label:hover {
-    color: #111827;
+    color: var(--app-text);
   }
   
   input[type="text"] {
     padding: 8px 12px;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--app-border);
     border-radius: 6px;
     font-size: 14px;
+    background: var(--app-surface-raised);
+    color: var(--app-text);
     transition: all 0.15s ease;
   }
 
   select {
     padding: 8px 12px;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--app-border);
     border-radius: 6px;
     font-size: 14px;
-    background: #ffffff;
+    background: var(--app-surface-raised);
+    color: var(--app-text);
     transition: all 0.15s ease;
   }
 
   select:focus {
     outline: none;
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    border-color: var(--app-primary);
+    box-shadow: var(--app-focus-ring);
   }
   
   input[type="text"]:focus {
     outline: none;
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    border-color: var(--app-primary);
+    box-shadow: var(--app-focus-ring);
   }
   
   .help-text {
     font-size: 12px;
-    color: #6b7280;
+    color: var(--app-text-muted);
     font-style: italic;
   }
   
   .divider {
     height: 1px;
-    background: #e5e7eb;
+    background: var(--app-border-subtle);
     margin: 8px 0;
   }
 
@@ -244,15 +247,16 @@
 
   .browse-btn {
     padding: 8px 12px;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--app-border);
     border-radius: 6px;
-    background: #fff;
+    background: var(--app-surface-raised);
+    color: var(--app-text);
     font-size: 13px;
     cursor: pointer;
   }
 
   .browse-btn:hover {
-    background: #f3f4f6;
+    background: var(--app-surface-hover);
   }
 </style>
 

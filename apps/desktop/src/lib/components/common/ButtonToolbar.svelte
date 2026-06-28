@@ -43,8 +43,8 @@
 </script>
 
 {#if visible}
-  <div 
-    class="button-toolbar" 
+  <div
+    class="button-toolbar"
     style="left: {x}px; top: {y}px; transform: translate(-50%, 12px);"
     role="toolbar"
     tabindex="0"
@@ -69,11 +69,11 @@
     position: fixed;
     display: flex;
     gap: 4px;
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
     border-radius: 10px;
     padding: 6px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--app-shadow-md);
     z-index: 1000;
     animation: slideDown 0.2s ease;
   }
@@ -97,9 +97,9 @@
     transform: translateX(-50%) rotate(45deg);
     width: 10px;
     height: 10px;
-    background: #ffffff;
-    border-left: 1px solid #e0e0e0;
-    border-top: 1px solid #e0e0e0;
+    background: var(--app-surface);
+    border-left: 1px solid var(--app-border);
+    border-top: 1px solid var(--app-border);
     box-shadow: -2px -2px 2px rgba(0, 0, 0, 0.02);
   }
 
@@ -113,16 +113,16 @@
     background: transparent;
     border-radius: 8px;
     cursor: pointer;
-    color: #5f6368;
+    color: var(--app-text-muted);
     transition: background 0.2s ease;
   }
 
   .toolbar-btn:hover:not(:disabled) {
-    background: #f5f7f8;
+    background: var(--app-surface-hover);
   }
 
   .toolbar-btn:active:not(:disabled) {
-    background: #e8eaed;
+    background: var(--app-surface-active);
   }
 
   .toolbar-btn:disabled {

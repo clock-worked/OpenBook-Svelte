@@ -22,7 +22,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    color: #6b7280;
+    color: var(--app-text-muted);
     font-weight: 600;
     font-size: 13px;
   }
@@ -38,14 +38,17 @@
     align-items: center;
     justify-content: center;
     padding: 0;
+    color: var(--app-text-muted);
   }
 
   .caret-btn:hover {
-    background-color: rgba(0,0,0,0.05);
+    background-color: var(--app-surface-hover);
+    color: var(--app-text);
   }
 
   .book-list-panel {
-    border: 1px solid #eee;
+    border: 1px solid var(--app-border-subtle);
+    background: var(--app-surface-subtle);
     border-radius: 6px;
     padding: 8px;
     box-sizing: border-box;
@@ -64,18 +67,18 @@
   }
 
   .book-pill {
-    border: 1px solid rgba(0,0,0,0.08);
+    border: 1px solid var(--app-border-subtle);
     border-radius: 999px;
     padding: 4px 10px;
     font-size: 12px;
     cursor: pointer;
-    color: #111;
-    background: #f3f4f6;
+    color: var(--app-text);
+    background: var(--app-surface-raised);
     line-height: 1.2;
   }
 
   .book-pill.is-selected {
-    box-shadow: inset 0 0 0 2px rgba(0,0,0,0.2);
+    box-shadow: inset 0 0 0 2px var(--app-primary);
   }
 
   .delete-btn {
@@ -85,9 +88,9 @@
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    border: 1px solid rgba(0,0,0,0.2);
-    background: #fff;
-    color: #6b7280;
+    border: 1px solid var(--app-border);
+    background: var(--app-surface-raised);
+    color: var(--app-text-muted);
     font-size: 11px;
     line-height: 1;
     display: flex;
@@ -104,7 +107,7 @@
   }
 
   .no-characters {
-    color: #777;
+    color: var(--app-text-muted);
     font-size: 14px;
   }
 </style>
@@ -113,9 +116,9 @@
   <div class="section-header-row">
     <button class="caret-btn" on:click={onToggle} aria-label="Toggle book characters">
       {#if open}
-        <ChevronDown size={16} color="#6b7280" />
+        <ChevronDown size={16} />
       {:else}
-        <ChevronRight size={16} color="#6b7280" />
+        <ChevronRight size={16} />
       {/if}
     </button>
     <span>Book Characters</span>

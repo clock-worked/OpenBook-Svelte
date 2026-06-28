@@ -128,6 +128,8 @@ export interface GenerateAudioCharacterRequest {
   source_file: string;
   use_filler_for_short_batch?: boolean;
   filler_text?: string | null;
+  replace_line_final_commas_with_periods?: boolean;
+  replace_numbers_with_words?: boolean;
   voice_sample_root: string | null;
   audio_root: string | null;
 }

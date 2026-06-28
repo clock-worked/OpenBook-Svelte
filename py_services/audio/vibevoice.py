@@ -5,6 +5,7 @@ import importlib
 import json
 import logging
 import os
+import re
 import sys
 import warnings
 from pathlib import Path
@@ -142,6 +143,8 @@ class VibeVoiceCharacterRequest(BaseModel):
     source_file: str
     use_filler_for_short_batch: bool = False
     filler_text: Optional[str] = None
+    replace_line_final_commas_with_periods: bool = True
+    replace_numbers_with_words: bool = False
     voice_sample_root: Optional[str] = None
     audio_root: Optional[str] = None
 
@@ -166,6 +169,100 @@ def _is_vibevoice_provider(provider: str) -> bool:
     return "vibevoice" in str(provider or "").strip().lower()
 
 
+QUOTE_ENDS_WITH_COMMA_RE = re.compile(r",(?=(?:['\"])(?:\s|$))|,(?=\s*$)")
+NUMBER_TOKEN_RE = re.compile(r"(?<![\w.])\d[\d,]*(?![\w.])")
+
+ONES = {
+    0: "zero",
+    1: "one",
+    2: "two",
+    3: "three",
+    4: "four",
+    5: "five",
+    6: "six",
+    7: "seven",
+    8: "eight",
+    9: "nine",
+    10: "ten",
+    11: "eleven",
+    12: "twelve",
+    13: "thirteen",
+    14: "fourteen",
+    15: "fifteen",
+    16: "sixteen",
+    17: "seventeen",
+    18: "eighteen",
+    19: "nineteen",
+}
+
+TENS = {
+    20: "twenty",
+    30: "thirty",
+    40: "forty",
+    50: "fifty",
+    60: "sixty",
+    70: "seventy",
+    80: "eighty",
+    90: "ninety",
+}
+
+
+def _int_to_words(value: int) -> str:
+    if value < 0:
+        raise ValueError("Negative values are not supported.")
+    if value < 20:
+        return ONES[value]
+    if value < 100:
+        tens_value = (value // 10) * 10
+        remainder = value % 10
+        if remainder == 0:
+            return TENS[tens_value]
+        return f"{TENS[tens_value]} {ONES[remainder]}"
+    if value < 1000:
+        hundreds = value // 100
+        remainder = value % 100
+        if remainder == 0:
+            return f"{ONES[hundreds]} hundred"
+        return f"{ONES[hundreds]} hundred and {_int_to_words(remainder)}"
+    if value < 10000:
+        thousands = value // 1000
+        remainder = value % 1000
+        if remainder == 0:
+            return f"{ONES[thousands]} thousand"
+        connector = " and " if remainder < 100 else " "
+        return f"{ONES[thousands]} thousand{connector}{_int_to_words(remainder)}"
+    raise ValueError(f"Unsupported number: {value}")
+
+
+def _replace_numbers_with_words(text: str) -> str:
+    def replace_match(match: re.Match[str]) -> str:
+        raw_value = match.group(0)
+        collapsed = raw_value.replace(",", "")
+        if not collapsed.isdigit():
+            return raw_value
+
+        try:
+            return _int_to_words(int(collapsed))
+        except ValueError:
+            return raw_value
+
+    return NUMBER_TOKEN_RE.sub(replace_match, text)
+
+
+def _normalize_generation_text(
+    text: str,
+    *,
+    replace_line_final_commas_with_periods: bool,
+    replace_numbers_with_words: bool,
+) -> str:
+    normalized_text = normalize_chapter_text(text)
+    if replace_line_final_commas_with_periods:
+        normalized_text = QUOTE_ENDS_WITH_COMMA_RE.sub(".", normalized_text)
+    if replace_numbers_with_words:
+        normalized_text = _replace_numbers_with_words(normalized_text)
+    return normalize_chapter_text(normalized_text)
+
+
 def _normalize_character_lines(
     lines: list[VibeVoiceLineInput],
     *,
@@ -173,10 +270,20 @@ def _normalize_character_lines(
     character_name: str,
     fallback_chapter_title: str,
     fallback_source_file: str,
+    replace_line_final_commas_with_periods: bool,
+    replace_numbers_with_words: bool,
 ) -> list[dict[str, Any]]:
     normalized: list[dict[str, Any]] = []
     for item in lines:
-        text = normalize_chapter_text(str(item.text or ""))
+        source_text = normalize_chapter_text(str(item.text or ""))
+        if not source_text:
+            continue
+
+        text = _normalize_generation_text(
+            source_text,
+            replace_line_final_commas_with_periods=replace_line_final_commas_with_periods,
+            replace_numbers_with_words=replace_numbers_with_words,
+        )
         if not text:
             continue
 
@@ -209,6 +316,7 @@ def _normalize_character_lines(
                 "characterId": line_character_id,
                 "characterFolder": line_character_name,
                 "text": text,
+                "sourceText": source_text,
                 "chapterTitle": chapter_title,
                 "sourceFile": source_file,
             }
@@ -462,7 +570,7 @@ def _upsert_character_manifest(
                 "id": int(item["id"]),
                 "characterId": character_id,
                 "characterName": character_name,
-                "text": str(item["text"]),
+                "text": str(item.get("sourceText") or item["text"]),
                 "audioFile": str(item["audioFile"]),
                 "chapter": chapter_title,
                 "sourceFile": source_file,
@@ -548,6 +656,8 @@ def _run_character_chunk_pipeline(
         character_name=request.character_name,
         fallback_chapter_title=default_chapter_title,
         fallback_source_file=default_source_file,
+        replace_line_final_commas_with_periods=bool(request.replace_line_final_commas_with_periods),
+        replace_numbers_with_words=bool(request.replace_numbers_with_words),
     )
 
     if not lines:

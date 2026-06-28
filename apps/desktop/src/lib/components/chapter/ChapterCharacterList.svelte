@@ -99,7 +99,8 @@
 
   .line-count-badge {
     font-size: 12px;
-    color: var(--app-text);
+    color: #111827 !important;
+    -webkit-text-fill-color: #111827;
     padding: 2px 8px;
     border-radius: 10px;
     white-space: nowrap;
@@ -139,6 +140,7 @@
     height: 24px;
     border: none;
     background: transparent;
+    color: var(--app-text-muted);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -150,6 +152,7 @@
 
   .icon-btn:hover {
     background: var(--app-surface-hover);
+    color: var(--app-primary-text);
   }
 
   .apply-btn {
@@ -236,7 +239,7 @@
           class="line-count-badge" 
           title="Change color" 
           on:click={() => onToggleColor(item.origIndex)} 
-           style={`background:${hexToRgba(getCurrentColor(item.character.name), 0.58)};`}>
+                   style={`background:${hexToRgba(getCurrentColor(item.character.name), 0.58)};`}>
           {#if lineCounts.has(item.character.name)}
             {lineCounts.get(item.character.name)}
           {:else}
@@ -255,18 +258,18 @@
           </div>
         {/if}
         <button class="icon-btn hover-btn" title="Edit name" aria-label="Edit name" on:click={() => onRenameStart(item.origIndex, item.character.name)}>
-          <Pencil size={16} color="#6b7280" />
+          <Pencil size={16} />
         </button>
         {#if (jumpLineCounts.get(item.character.name) || 0) > 0}
           <button class="icon-btn hover-btn" title="Jump to next" aria-label="Jump to next" on:click={() => onJumpToNext(item.character.name)}>
-            <CornerDownRight size={16} color="#6b7280" />
+            <CornerDownRight size={16} />
           </button>
         {/if}
         {#if selectionActive}
           <button class="apply-btn" on:click={() => onApplyToSelection(item.character.name)}>Apply</button>
         {/if}
         <button class="icon-btn hover-btn" title="Delete character" aria-label="Delete character" on:click={() => onDelete(item.origIndex)}>
-          <Trash2 size={16} color="#9ca3af" />
+          <Trash2 size={16} />
         </button>
         {#if openColorIndex === item.origIndex}
           <div class="color-picker-container">

@@ -168,7 +168,7 @@ def update_character_stats(book_root: Path) -> Dict:
         with open(characters_path, 'w', encoding='utf-8') as f:
             json.dump(characters_data, f, indent=2, ensure_ascii=False)
         
-        print(f"  ✓ Updated {updated_count} character entries in {characters_path.name}")
+        print(f"  Updated {updated_count} character entries in {characters_path.name}")
         
         return {
             'success': True,

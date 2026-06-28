@@ -5,7 +5,7 @@
   export let selectedName: string;
   export let gender: Gender = 'Unknown';
   export let aliasItems: Array<{ name: string; isPrimary: boolean; count: number }> = [];
-  export let color: string = '#ccc';
+  export let color: string = 'var(--app-primary-soft)';
   export let onDetach: (aliasName: string) => void;
   export let onSetPrimary: (aliasName: string) => void;
   export let onSetGender: (gender: Gender) => void;
@@ -15,7 +15,8 @@
 
 <style>
   .details-panel {
-    border: 1px solid #eee;
+    border: 1px solid var(--app-border-subtle);
+    background: var(--app-surface-subtle);
     border-radius: 6px;
     padding: 10px;
   }
@@ -23,7 +24,7 @@
   .details-title {
     font-weight: 600;
     font-size: 13px;
-    color: #6b7280;
+    color: var(--app-text-muted);
     margin-bottom: 6px;
   }
 
@@ -34,9 +35,9 @@
   }
 
   .gender-btn {
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    background: #fff;
-    color: #374151;
+    border: 1px solid var(--app-border);
+    background: var(--app-surface-raised);
+    color: var(--app-text-muted);
     border-radius: 999px;
     padding: 6px 12px;
     font-size: 12px;
@@ -46,20 +47,20 @@
   }
 
   .gender-btn.active {
-    color: #111827;
+    color: var(--app-text);
     border-color: transparent;
   }
 
   .gender-btn.male.active {
-    background: rgba(59, 130, 246, 0.18);
+    background: rgba(168, 218, 220, 0.24);
   }
 
   .gender-btn.female.active {
-    background: rgba(236, 72, 153, 0.18);
+    background: rgba(255, 193, 204, 0.24);
   }
 
   .gender-btn.unknown.active {
-    background: rgba(107, 114, 128, 0.16);
+    background: var(--app-primary-soft);
   }
 
   .alias-list {
@@ -78,17 +79,17 @@
   }
 
   .alias-bullet {
-    color: #6b7280;
+    color: var(--app-text-muted);
     font-size: 16px;
     line-height: 1;
   }
 
   .alias-count {
     font-size: 11px;
-    color: #222;
+    color: var(--app-text);
     padding: 2px 8px;
     border-radius: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--app-border-subtle);
     min-width: 26px;
     text-align: center;
   }
@@ -101,13 +102,14 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    color: var(--app-warning);
   }
 
   .alias-action {
     border: none;
     background: transparent;
     cursor: pointer;
-    color: #6b7280;
+    color: var(--app-text-muted);
     font-size: 12px;
     opacity: 0;
     pointer-events: none;
@@ -149,10 +151,10 @@
       <li class="alias-item">
         <span class="alias-bullet">*</span>
         <span class="alias-count" style={`background:${color}`}>{alias.count}</span>
-        <span class="alias-name">{alias.name}</span>
+    <span class="alias-name">{alias.name}</span>
         {#if alias.isPrimary}
           <span class="alias-star" title="Display name">
-            <Star size={14} color="#f59e0b" />
+            <Star size={14} />
           </span>
         {:else}
           <button
@@ -161,7 +163,7 @@
             aria-label={`Set ${alias.name} as display name`}
             on:click={() => onSetPrimary(alias.name)}
           >
-            <Star size={14} color="#9ca3af" />
+            <Star size={14} />
           </button>
           <button
             class="alias-action alias-detach"

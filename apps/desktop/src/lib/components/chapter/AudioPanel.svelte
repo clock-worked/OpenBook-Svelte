@@ -7,6 +7,7 @@
   import {
     checkAudioExistsForCharacter,
     checkAudioExistsForLine,
+    clearAllManifestCache,
     generateAudioForLine,
     generateAudioForCharacter,
     readManifest,
@@ -14,7 +15,7 @@
     reconcileAudioManifestForCharacter,
   } from '$lib/services/audio';
   import type { GenerateAudioCharacterOptions } from '$lib/services/audio';
-  import { Headphones, Loader, Scissors, FileText, BookOpen, X } from 'lucide-svelte';
+  import { Headphones, Loader, RefreshCw, Scissors, FileText, BookOpen, X } from 'lucide-svelte';
   import type { DialogueLine, Character } from '$lib/types';
   import { audioGenerateLineId } from '$lib/stores/selection';
   import { audioUpdateTrigger, triggerAudioUpdate } from '$lib/stores/audioUpdates';
@@ -50,6 +51,7 @@
   let overwriteCharacterId: string | null = null;
   let overwriteClipCount = 0;
   let pruningStale = false;
+  let reloadingManifestData = false;
   let audioClipCounts = new Map<string, number>();
   let queueProcessing = false;
   type QueuedDialogueLine = DialogueLine & {
@@ -131,6 +133,8 @@
   let advancedGenerationMode: AdvancedGenerationMode = 'character';
   let advancedUseFillerForShortBatch = false;
   let advancedFillerText = DEFAULT_ADVANCED_FILLER_TEXT;
+  let advancedReplaceLineFinalCommasWithPeriods = true;
+  let advancedReplaceNumbersWithWords = false;
   let selectedAdvancedCharacterIds = new Set<string>();
   let advancedPreviewRequestId = 0;
   let advancedSelectAllInput: HTMLInputElement | null = null;
@@ -756,6 +760,8 @@
     advancedGenerationMode = 'character';
     advancedUseFillerForShortBatch = false;
     advancedFillerText = DEFAULT_ADVANCED_FILLER_TEXT;
+    advancedReplaceLineFinalCommasWithPeriods = true;
+    advancedReplaceNumbersWithWords = false;
 
     try {
       const preview = await buildAdvancedBookPreview();
@@ -829,6 +835,8 @@
     const generationOptions: GenerateAudioCharacterOptions = {
       useFillerForShortBatch: advancedUseFillerForShortBatch,
       fillerText: advancedUseFillerForShortBatch ? trimmedFillerText : null,
+      replaceLineFinalCommasWithPeriods: advancedReplaceLineFinalCommasWithPeriods,
+      replaceNumbersWithWords: advancedReplaceNumbersWithWords,
     };
 
     advancedSubmitting = true;
@@ -990,11 +998,19 @@
           ? 'chapter batch'
           : 'speaker-source batch';
       const fillerNote = advancedUseFillerForShortBatch ? ' Short batches will use the configured filler/pretext.' : '';
+      const normalizationNotes = [
+        advancedReplaceLineFinalCommasWithPeriods ? ' final commas will be spoken as periods' : '',
+        advancedReplaceNumbersWithWords ? ' numbers will be expanded to words' : '',
+      ].filter(Boolean);
+      const normalizationNote = normalizationNotes.length > 0
+        ? ` Text normalization:${normalizationNotes.join(' and')}.`
+        : '';
       alert(
         `Queued ${linesQueued} missing line${linesQueued === 1 ? '' : 's'} ` +
         `across ${jobsQueued} ${batchLabel}${jobsQueued === 1 ? '' : 'es'} ` +
         `from ${selectedAdvancedParsedChapterCount} parsed chapter${selectedAdvancedParsedChapterCount === 1 ? '' : 's'}.` +
-        fillerNote
+        fillerNote +
+        normalizationNote
       );
     } finally {
       advancedSubmitting = false;
@@ -1031,6 +1047,23 @@
       }
     } finally {
       pruningStale = false;
+    }
+  }
+
+  async function handleReloadManifestData() {
+    const ch = get(currentChapter);
+    if (!ch || reloadingManifestData) return;
+
+    reloadingManifestData = true;
+    try {
+      clearAllManifestCache();
+      for (const item of sortedCharactersById) {
+        const characterName = characterIdToName.get(item.id) || item.name || item.id;
+        await reconcileAudioManifestForCharacter(ch.title, characterName);
+      }
+      await loadAudioClipCounts();
+    } finally {
+      reloadingManifestData = false;
     }
   }
 
@@ -1465,7 +1498,7 @@
 
   .panel-title {
     margin: 2px 0 6px 0;
-    color: #6b7280;
+    color: var(--app-text-muted);
     font-weight: 600;
     font-size: 14px;
   }
@@ -1473,10 +1506,10 @@
   .header-icon-btn {
     width: 28px;
     height: 28px;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--app-border);
     border-radius: 6px;
-    background: #fff;
-    color: #374151;
+    background: var(--app-surface-raised);
+    color: var(--app-text);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1485,7 +1518,7 @@
   }
 
   .header-icon-btn:hover {
-    background: #f3f4f6;
+    background: var(--app-surface-hover);
   }
 
   .header-icon-btn:disabled {
@@ -1494,21 +1527,25 @@
   }
 
   .header-icon-btn.prune-btn {
-    color: #4b5563;
+    color: var(--app-text-muted);
   }
 
   .header-icon-btn.chapter-btn {
-    color: #2563eb;
+    color: var(--app-primary);
   }
 
   .header-icon-btn.book-btn {
-    color: #7c3aed;
+    color: var(--app-accent-lavender);
+  }
+
+  .header-icon-btn.reload-btn {
+    color: var(--app-accent-cyan);
   }
 
   .header-icon-btn.advanced-btn {
     width: auto;
     padding: 0 10px;
-    color: #0f766e;
+    color: var(--app-accent-cyan);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.04em;
@@ -1516,12 +1553,13 @@
 
   .panel-divider {
     height: 1px;
-    background-color: #eee;
+    background-color: var(--app-border-subtle);
     margin: 2px 0 6px 0;
   }
 
   .character-row {
-    border: 1px solid #eee;
+    border: 1px solid var(--app-border-subtle);
+    background: var(--app-surface-raised);
     padding: 8px;
     border-radius: 6px;
     display: flex;
@@ -1532,7 +1570,7 @@
 
   .line-count-badge {
     font-size: 12px;
-    color: #222;
+    color: var(--app-text);
     padding: 2px 8px;
     border-radius: 10px;
     white-space: nowrap;
@@ -1556,7 +1594,7 @@
 
   .voice-name {
     font-size: 12px;
-    color: #6b7280;
+    color: var(--app-text-muted);
     font-style: italic;
   }
 
@@ -1575,14 +1613,14 @@
     border: none;
     border-radius: 6px;
     background: transparent;
-    color: #667eea;
+    color: var(--app-primary);
     cursor: pointer;
     transition: background-color 0.2s ease;
     flex-shrink: 0;
   }
 
   .generate-btn:hover:not(:disabled) {
-    background-color: rgba(0, 0, 0, 0.08);
+    background-color: var(--app-primary-soft);
   }
 
   .generate-btn:disabled {
@@ -1596,16 +1634,16 @@
     gap: 6px;
     padding: 0;
     font-size: 13px;
-    color: #667eea;
+    color: var(--app-primary);
     font-weight: 600;
   }
 
   .generating-indicator .completed {
-    color: #b2b2b2;
+    color: var(--app-text-subtle);
   }
 
   .no-characters {
-    color: #777;
+    color: var(--app-text-muted);
     font-size: 14px;
     padding: 20px;
     text-align: center;
@@ -1626,9 +1664,9 @@
   }
 
   .modal-content {
-    background: white;
+    background: var(--app-surface);
     border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--app-shadow-lg);
     max-width: 400px;
     padding: 24px;
   }
@@ -1636,13 +1674,13 @@
   .modal-title {
     font-size: 18px;
     font-weight: 700;
-    color: #1f2937;
+    color: var(--app-text);
     margin: 0 0 12px 0;
   }
 
   .modal-message {
     font-size: 14px;
-    color: #6b7280;
+    color: var(--app-text-muted);
     margin-bottom: 20px;
     line-height: 1.5;
   }
@@ -1664,27 +1702,27 @@
   }
 
   .cancel-btn {
-    background: #f3f4f6;
-    color: #1f2937;
+    background: var(--app-surface-hover);
+    color: var(--app-text);
   }
 
   .cancel-btn:hover {
-    background: #e5e7eb;
+    background: var(--app-surface-active);
   }
 
   .overwrite-btn {
-    background: #ef4444;
-    color: white;
+    background: var(--app-danger);
+    color: var(--app-text-inverse);
   }
 
   .overwrite-btn:hover {
-    background: #dc2626;
+    background: color-mix(in srgb, var(--app-danger) 85%, black);
   }
 
   .advanced-modal-content {
-    background: white;
+    background: var(--app-surface);
     border-radius: 14px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--app-shadow-lg);
     width: min(760px, calc(100vw - 32px));
     max-height: calc(100vh - 48px);
     overflow: hidden;
@@ -1697,13 +1735,13 @@
     justify-content: space-between;
     gap: 16px;
     padding: 24px 24px 18px;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--app-border);
   }
 
   .advanced-modal-subtitle {
     margin: 6px 0 0 0;
     font-size: 13px;
-    color: #6b7280;
+    color: var(--app-text-muted);
     line-height: 1.5;
   }
 
@@ -1713,7 +1751,7 @@
     border: none;
     border-radius: 8px;
     background: transparent;
-    color: #4b5563;
+    color: var(--app-text-muted);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1733,7 +1771,7 @@
   .advanced-empty,
   .advanced-error-card {
     padding: 24px;
-    color: #4b5563;
+    color: var(--app-text-muted);
     line-height: 1.6;
   }
 
@@ -1744,10 +1782,10 @@
   }
 
   .advanced-summary-card {
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--app-border);
     border-radius: 12px;
     padding: 12px;
-    background: #f9fafb;
+    background: var(--app-surface-subtle);
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -1758,17 +1796,17 @@
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: #6b7280;
+    color: var(--app-text-muted);
   }
 
   .advanced-summary-card strong {
     font-size: 20px;
-    color: #111827;
+    color: var(--app-text);
   }
 
   .advanced-summary-note {
     font-size: 12px;
-    color: #6b7280;
+    color: var(--app-text-muted);
   }
 
   .advanced-section {
@@ -1780,14 +1818,14 @@
   .advanced-section h4 {
     margin: 0;
     font-size: 14px;
-    color: #111827;
+    color: var(--app-text);
   }
 
   .advanced-section-note,
   .advanced-helper {
     margin: 0;
     font-size: 12px;
-    color: #6b7280;
+    color: var(--app-text-muted);
     line-height: 1.5;
   }
 
@@ -1798,21 +1836,21 @@
   }
 
   .advanced-mode-card {
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--app-border);
     border-radius: 12px;
     padding: 12px;
     display: flex;
     gap: 10px;
     align-items: flex-start;
     cursor: pointer;
-    background: #fff;
+    background: var(--app-surface-raised);
     transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   }
 
   .advanced-mode-card.active {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.18);
-    background: #eff6ff;
+    border-color: var(--app-primary);
+    box-shadow: 0 0 0 1px var(--app-primary-soft);
+    background: var(--app-primary-soft);
   }
 
   .advanced-mode-card input {
@@ -1822,14 +1860,14 @@
   .advanced-mode-title {
     display: block;
     font-weight: 600;
-    color: #111827;
+    color: var(--app-text);
     margin-bottom: 4px;
   }
 
   .advanced-mode-description {
     display: block;
     font-size: 12px;
-    color: #6b7280;
+    color: var(--app-text-muted);
     line-height: 1.5;
   }
 
@@ -1838,7 +1876,7 @@
     gap: 10px;
     align-items: flex-start;
     cursor: pointer;
-    color: #111827;
+    color: var(--app-text);
   }
 
   .advanced-checkbox-row input {
@@ -1847,18 +1885,18 @@
 
   .advanced-textarea {
     min-height: 96px;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--app-border);
     border-radius: 10px;
     padding: 10px 12px;
     resize: vertical;
     font: inherit;
-    color: #111827;
-    background: #fff;
+    color: var(--app-text);
+    background: var(--app-surface-raised);
   }
 
   .advanced-textarea:disabled {
-    background: #f3f4f6;
-    color: #9ca3af;
+    background: var(--app-surface-hover);
+    color: var(--app-text-subtle);
   }
 
   .advanced-warning,
@@ -1870,15 +1908,15 @@
   }
 
   .advanced-warning {
-    border: 1px solid #f59e0b;
-    background: #fef3c7;
-    color: #92400e;
+    border: 1px solid var(--app-warning);
+    background: var(--app-warning-soft);
+    color: var(--app-warning);
   }
 
   .advanced-info {
-    border: 1px solid #67e8f9;
-    background: #ecfeff;
-    color: #155e75;
+    border: 1px solid var(--app-accent-cyan);
+    background: var(--app-primary-soft);
+    color: var(--app-accent-cyan);
   }
 
   .advanced-selection-toolbar {
@@ -1906,7 +1944,7 @@
     gap: 8px;
     font-size: 12px;
     font-weight: 600;
-    color: #111827;
+    color: var(--app-text);
     cursor: pointer;
   }
 
@@ -1914,7 +1952,7 @@
   .advanced-character-row input {
     width: 16px;
     height: 16px;
-    accent-color: #2563eb;
+    accent-color: var(--app-primary);
   }
 
   .advanced-badge-row {
@@ -1935,13 +1973,13 @@
   }
 
   .advanced-status-badge.ready {
-    background: #dcfce7;
-    color: #166534;
+    background: var(--app-success-soft);
+    color: var(--app-success);
   }
 
   .advanced-status-badge.warning {
-    background: #fef3c7;
-    color: #92400e;
+    background: var(--app-warning-soft);
+    color: var(--app-warning);
   }
 
   .advanced-selection-actions {
@@ -1953,7 +1991,7 @@
   .advanced-link-btn {
     border: none;
     background: transparent;
-    color: #2563eb;
+    color: var(--app-primary-text);
     font-size: 12px;
     font-weight: 600;
     cursor: pointer;
@@ -1961,17 +1999,17 @@
   }
 
   .advanced-link-btn:disabled {
-    color: #9ca3af;
+    color: var(--app-text-subtle);
     cursor: not-allowed;
   }
 
   .advanced-character-list {
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--app-border);
     border-radius: 12px;
     min-height: 220px;
     max-height: 320px;
     overflow-y: auto;
-    background: #fff;
+    background: var(--app-surface-raised);
   }
 
   .advanced-character-section {
@@ -1991,7 +2029,7 @@
   .advanced-character-section-title {
     font-size: 13px;
     font-weight: 700;
-    color: #111827;
+    color: var(--app-text);
   }
 
   .advanced-character-preview {
@@ -2005,16 +2043,16 @@
     align-items: center;
     padding: 4px 9px;
     border-radius: 999px;
-    background: #eef2ff;
-    color: #3730a3;
+    background: var(--app-primary-soft);
+    color: var(--app-primary-text);
     font-size: 11px;
     font-weight: 600;
     line-height: 1;
   }
 
   .advanced-character-preview-pill.more {
-    background: #f3f4f6;
-    color: #4b5563;
+    background: var(--app-surface-hover);
+    color: var(--app-text-muted);
   }
 
   .advanced-character-row {
@@ -2022,9 +2060,9 @@
     gap: 12px;
     align-items: flex-start;
     padding: 12px 14px;
-    border-top: 1px solid #f3f4f6;
+    border-top: 1px solid var(--app-border-subtle);
     cursor: pointer;
-    background: #fff;
+    background: var(--app-surface-raised);
   }
 
   .advanced-character-row:first-child {
@@ -2032,7 +2070,7 @@
   }
 
   .advanced-character-row.selected {
-    background: #f8fafc;
+    background: var(--app-surface-subtle);
   }
 
   .advanced-character-row input {
@@ -2080,23 +2118,23 @@
   }
 
   .advanced-inline-badge.ready {
-    background: #dcfce7;
-    color: #166534;
+    background: var(--app-success-soft);
+    color: var(--app-success);
   }
 
   .advanced-inline-badge.warning {
-    background: #fef3c7;
-    color: #92400e;
+    background: var(--app-warning-soft);
+    color: var(--app-warning);
   }
 
   .advanced-character-name {
     font-weight: 600;
-    color: #111827;
+    color: var(--app-text);
   }
 
   .advanced-character-voice {
     font-size: 12px;
-    color: #6b7280;
+    color: var(--app-text-muted);
   }
 
   .advanced-character-stats {
@@ -2104,23 +2142,23 @@
     flex-wrap: wrap;
     gap: 8px;
     font-size: 12px;
-    color: #4b5563;
+    color: var(--app-text-muted);
   }
 
   .advanced-stat-pill {
     padding: 2px 8px;
     border-radius: 999px;
-    background: #f3f4f6;
+    background: var(--app-surface-hover);
   }
 
   .advanced-character-warning {
     margin: 0;
     font-size: 12px;
-    color: #b45309;
+    color: var(--app-warning);
   }
 
   .advanced-character-warning.ready {
-    color: #0f766e;
+    color: var(--app-success);
   }
 
   .advanced-actions-row {
@@ -2128,7 +2166,7 @@
     justify-content: flex-end;
     gap: 12px;
     padding-top: 8px;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid var(--app-border);
   }
 
   .advanced-secondary-btn,
@@ -2142,24 +2180,24 @@
   }
 
   .advanced-secondary-btn {
-    border: 1px solid #d1d5db;
-    background: #fff;
-    color: #111827;
+    border: 1px solid var(--app-border);
+    background: var(--app-surface-raised);
+    color: var(--app-text);
   }
 
   .advanced-primary-btn {
     border: none;
-    background: #2563eb;
-    color: #fff;
+    background: var(--app-primary);
+    color: var(--app-text-inverse);
   }
 
   .advanced-secondary-btn:hover:not(:disabled),
   .advanced-close-btn:hover:not(:disabled) {
-    background: #f3f4f6;
+    background: var(--app-surface-hover);
   }
 
   .advanced-primary-btn:hover:not(:disabled) {
-    background: #1d4ed8;
+    background: var(--app-primary-hover);
   }
 
   .advanced-secondary-btn:disabled,
@@ -2198,7 +2236,17 @@
   }
 
   .spinning {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    transform-origin: center center;
     animation: spin 1s linear infinite;
+  }
+
+  .spinning :global(svg) {
+    display: block;
+    transform-origin: center center;
   }
 </style>
 
@@ -2217,6 +2265,19 @@
           <span class="spinning"><Loader size={14} /></span>
         {:else}
           <Scissors size={14} />
+        {/if}
+      </button>
+      <button
+        class="header-icon-btn reload-btn"
+        on:click={handleReloadManifestData}
+        disabled={sortedCharactersById.length === 0 || pruningStale || queueProcessing || reloadingManifestData}
+        title="Reload manifest data and refresh audio counts"
+        aria-label="Reload manifest data"
+      >
+        {#if reloadingManifestData}
+          <span class="spinning"><Loader size={14} /></span>
+        {:else}
+          <RefreshCw size={14} />
         {/if}
       </button>
       <button
@@ -2434,6 +2495,19 @@
                 rows="4"
                 placeholder="Enter reusable filler/pretext text for short batches"
               ></textarea>
+            </div>
+
+            <div class="advanced-section">
+              <h4>Text Normalization</h4>
+              <label class="advanced-checkbox-row">
+                <input type="checkbox" bind:checked={advancedReplaceLineFinalCommasWithPeriods} />
+                <span>Replace line-ending commas with periods before generation.</span>
+              </label>
+              <label class="advanced-checkbox-row">
+                <input type="checkbox" bind:checked={advancedReplaceNumbersWithWords} />
+                <span>Replace standalone numbers with their spoken-word form before generation.</span>
+              </label>
+              <p class="advanced-helper">This only changes the text sent to TTS for advanced batches. The source chapter text stays unchanged.</p>
             </div>
 
             {#if advancedGenerationMode === 'character' && selectedAdvancedUnderTargetCharacters.length > 0 && !advancedUseFillerForShortBatch}

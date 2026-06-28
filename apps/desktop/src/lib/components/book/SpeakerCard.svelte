@@ -70,10 +70,10 @@
     flex-direction: column;
     gap: 10px;
     padding: 12px;
-    background: #ffffff;
-    border: 1px solid #d7dee7;
+    background: var(--app-surface-raised);
+    border: 1px solid var(--app-border);
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05);
+    box-shadow: var(--app-shadow-sm);
   }
 
   .card-head {
@@ -94,7 +94,7 @@
     margin: 0;
     font-size: 13px;
     font-weight: 700;
-    color: #172033;
+    color: var(--app-text);
     line-height: 1.35;
     word-break: break-word;
   }
@@ -102,7 +102,7 @@
   .speaker-file {
     margin: 0;
     font-size: 11px;
-    color: #6a7688;
+    color: var(--app-text-muted);
     line-height: 1.35;
     word-break: break-word;
   }
@@ -113,10 +113,10 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
-    border: 1px solid #d7dee7;
+    border: 1px solid var(--app-border);
     border-radius: 8px;
-    background: #f4f7fb;
-    color: #28405c;
+    background: var(--app-surface-hover);
+    color: var(--app-text);
     cursor: pointer;
     transition: background 0.16s ease, border-color 0.16s ease;
   }
@@ -136,8 +136,8 @@
 
   .icon-btn:hover,
   .edit-btn:hover {
-    background: #e8eef6;
-    border-color: #bed0e4;
+    background: var(--app-surface-active);
+    border-color: var(--app-border-strong);
   }
 
   .meta-block {
@@ -151,7 +151,7 @@
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #6a7688;
+    color: var(--app-text-muted);
   }
 
   .pill-wrap :global(.pill-list-container) {
@@ -162,14 +162,14 @@
     padding: 3px 8px;
     font-size: 11px;
     border-radius: 999px;
-    background: #edf3f9;
-    border-color: #d7dee7;
+    background: var(--app-surface-hover);
+    border-color: var(--app-border);
   }
 
   .empty-copy {
     margin: 0;
     font-size: 12px;
-    color: #7c8898;
+    color: var(--app-text-subtle);
   }
 
   .card-actions {

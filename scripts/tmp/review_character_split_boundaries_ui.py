@@ -5,7 +5,7 @@ import argparse
 import json
 import time
 from copy import deepcopy
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -21,6 +21,7 @@ from tkinter.scrolledtext import ScrolledText
 DEFAULT_BOOK_DIR = Path(
     "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Data/Resources/A-Practical-Guide-To-Evil/Book-1"
 )
+BATCH_CHAPTER_LABEL = "_book_batch"
 
 
 def chapter_sort_key(chapter_name: str) -> tuple[int, str]:
@@ -31,6 +32,32 @@ def chapter_sort_key(chapter_name: str) -> tuple[int, str]:
 
 def read_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def normalize_text_key(value: str) -> str:
+    replacements = str.maketrans(
+        {
+            "’": "'",
+            "‘": "'",
+            '"': '"',
+            "“": '"',
+            "”": '"',
+            "—": "-",
+            "–": "-",
+        }
+    )
+    return " ".join(str(value).translate(replacements).split()).strip().lower()
+
+
+def resolve_existing_audio_path(path_text: str, *, book_dir: Path) -> Path | None:
+    candidate = Path(path_text).resolve()
+    if candidate.exists():
+        return candidate
+    try:
+        candidate.relative_to(book_dir.resolve())
+    except ValueError:
+        return None
+    return None
 
 
 def stop_audio() -> None:
@@ -58,12 +85,17 @@ def play_wav(path: Path | None) -> None:
 
 @dataclass
 class ClipRegion:
+    region_key: str
     line_id: int
     clip_index: int
     text: str
     audio_file: str
     start_sec: float
     end_sec: float
+    source_audio_path: Path | None = None
+    source_chapter_name: str | None = None
+    dialogue_entry: dict[str, Any] = field(default_factory=dict)
+    validation_entry: dict[str, Any] = field(default_factory=dict)
 
     @property
     def duration_sec(self) -> float:
@@ -76,14 +108,15 @@ class CharacterContext:
     chapter_dir: Path
     character_name: str
     character_dir: Path
-    manifest_path: Path
+    manifest_path: Path | None
     full_audio_path: Path
     dialogue_path: Path | None
     split_validation_path: Path | None
-    manifest_payload: dict[str, Any]
+    manifest_payload: dict[str, Any] | None
     regions: list[ClipRegion]
-    dialogue_by_id: dict[int, dict[str, Any]]
-    validation_by_id: dict[int, dict[str, Any]]
+    dialogue_by_id: dict[str, dict[str, Any]]
+    validation_by_id: dict[str, dict[str, Any]]
+    is_batch_mode: bool = False
 
 
 class SplitBoundaryReviewApp:
@@ -96,6 +129,7 @@ class SplitBoundaryReviewApp:
 
         self.chapter_var = tk.StringVar(value="")
         self.character_var = tk.StringVar(value="")
+        self.source_chapter_var = tk.StringVar(value="All Chapters")
         self.status_var = tk.StringVar(value="Select chapter + character, then click Start.")
         self.selection_var = tk.StringVar(value="No clip selected")
         self.autoplay_var = tk.BooleanVar(value=True)
@@ -135,6 +169,7 @@ class SplitBoundaryReviewApp:
         self.wave_scroll_x: tk.Scrollbar | None = None
         self.chapter_combo: ttk.Combobox | None = None
         self.character_combo: ttk.Combobox | None = None
+        self.source_chapter_combo: ttk.Combobox | None = None
         self.info_header_label: tk.Label | None = None
         self.info_expected_text: ScrolledText | None = None
         self.info_dialogue_text: ScrolledText | None = None
@@ -148,6 +183,84 @@ class SplitBoundaryReviewApp:
     def _on_close(self) -> None:
         self._stop_playback(clear_playhead=True)
         self.root.destroy()
+
+    def _source_chapter_spans(self) -> list[tuple[str, int, int, float, float]]:
+        if self.context is None or not self.context.regions:
+            return []
+
+        spans: list[tuple[str, int, int, float, float]] = []
+        current_name: str | None = None
+        start_index = 0
+
+        for index, region in enumerate(self.context.regions):
+            chapter_name = region.source_chapter_name or "(unknown chapter)"
+            if current_name is None:
+                current_name = chapter_name
+                start_index = index
+                continue
+
+            if chapter_name != current_name:
+                start_region = self.context.regions[start_index]
+                end_region = self.context.regions[index - 1]
+                spans.append((current_name, start_index, index - 1, start_region.start_sec, end_region.end_sec))
+                current_name = chapter_name
+                start_index = index
+
+        if current_name is not None:
+            start_region = self.context.regions[start_index]
+            end_region = self.context.regions[-1]
+            spans.append((current_name, start_index, len(self.context.regions) - 1, start_region.start_sec, end_region.end_sec))
+
+        return spans
+
+    def _configure_source_chapter_picker(self) -> None:
+        if self.source_chapter_combo is None:
+            return
+
+        if self.context is None or not self.context.is_batch_mode:
+            self.source_chapter_var.set("All Chapters")
+            self.source_chapter_combo["values"] = ["All Chapters"]
+            self.source_chapter_combo.configure(state="disabled")
+            return
+
+        values = ["All Chapters", *[span[0] for span in self._source_chapter_spans()]]
+        self.source_chapter_combo["values"] = values
+        self.source_chapter_combo.configure(state="readonly")
+        if self.source_chapter_var.get() not in values:
+            self.source_chapter_var.set("All Chapters")
+
+    def _scroll_to_time(self, sec: float) -> None:
+        if self.wave_canvas is None:
+            return
+
+        width = max(1, self._timeline_width_px())
+        viewport_width = max(1, self.wave_canvas.winfo_width())
+        if width <= viewport_width:
+            self.wave_canvas.xview_moveto(0.0)
+            return
+
+        center_x = self._time_to_x(sec)
+        left_x = max(0.0, min(center_x - (viewport_width * 0.25), float(width - viewport_width)))
+        self.wave_canvas.xview_moveto(left_x / float(width))
+
+    def _on_source_chapter_selected(self) -> None:
+        if self.context is None or not self.context.is_batch_mode:
+            return
+
+        selected = self.source_chapter_var.get().strip()
+        if not selected or selected == "All Chapters":
+            self._redraw_waveform()
+            return
+
+        for chapter_name, start_index, _end_index, start_sec, _end_sec in self._source_chapter_spans():
+            if chapter_name != selected:
+                continue
+            self.selected_region_index = start_index
+            self.playback_wave_sec = start_sec
+            self._sync_selection_text()
+            self._redraw_waveform()
+            self._scroll_to_time(start_sec)
+            return
 
     def _build_ui(self) -> None:
         picker = tk.LabelFrame(self.root, text="Start Review", padx=10, pady=10)
@@ -172,12 +285,22 @@ class SplitBoundaryReviewApp:
         )
         self.character_combo.grid(row=1, column=1, sticky="w", padx=(0, 12))
 
-        tk.Button(picker, text="Start", command=self._start_selected).grid(row=1, column=2, padx=(0, 8))
-        tk.Button(picker, text="Reload Choices", command=self._refresh_chapters).grid(row=1, column=3, padx=(0, 8))
-        tk.Button(picker, text="Reload Current", command=self._reload_current).grid(row=1, column=4, padx=(0, 8))
-        tk.Button(picker, text="Save Changes", command=self._save_changes).grid(row=1, column=5)
+        tk.Label(picker, text="Source Chapter").grid(row=0, column=2, sticky="w")
+        self.source_chapter_combo = ttk.Combobox(
+            picker,
+            textvariable=self.source_chapter_var,
+            state="disabled",
+            width=44,
+        )
+        self.source_chapter_combo.grid(row=1, column=2, sticky="w", padx=(0, 12))
+        self.source_chapter_combo.bind("<<ComboboxSelected>>", lambda _evt: self._on_source_chapter_selected())
 
-        for col in range(6):
+        tk.Button(picker, text="Start", command=self._start_selected).grid(row=1, column=3, padx=(0, 8))
+        tk.Button(picker, text="Reload Choices", command=self._refresh_chapters).grid(row=1, column=4, padx=(0, 8))
+        tk.Button(picker, text="Reload Current", command=self._reload_current).grid(row=1, column=5, padx=(0, 8))
+        tk.Button(picker, text="Save Changes", command=self._save_changes).grid(row=1, column=6)
+
+        for col in range(7):
             picker.grid_columnconfigure(col, weight=0)
 
         controls = tk.Frame(self.root)
@@ -298,6 +421,10 @@ class SplitBoundaryReviewApp:
         self.character_dirs = {}
         self.chapter_var.set("")
         self.character_var.set("")
+        self.source_chapter_var.set("All Chapters")
+        if self.source_chapter_combo is not None:
+            self.source_chapter_combo["values"] = ["All Chapters"]
+            self.source_chapter_combo.configure(state="disabled")
 
         if not self.book_dir.exists():
             self.status_var.set(f"Book dir does not exist: {self.book_dir}")
@@ -323,15 +450,27 @@ class SplitBoundaryReviewApp:
                 chapter_names.append(chapter_dir.name)
                 self.chapter_dirs[chapter_dir.name] = chapter_dir
 
+        batch_dir = self.book_dir / BATCH_CHAPTER_LABEL
+        if batch_dir.exists() and batch_dir.is_dir():
+            batch_character_dirs = [
+                item for item in batch_dir.iterdir()
+                if item.is_dir()
+                and (item / "_chunk_pipeline" / "full_character.wav").exists()
+                and (item / "_chunk_pipeline" / "split_validation_report.json").exists()
+            ]
+            if batch_character_dirs:
+                chapter_names.append(BATCH_CHAPTER_LABEL)
+                self.chapter_dirs[BATCH_CHAPTER_LABEL] = batch_dir
+
         if self.chapter_combo is not None:
             self.chapter_combo["values"] = chapter_names
 
         if chapter_names:
             self.chapter_var.set(chapter_names[0])
             self._on_chapter_selected()
-            self.status_var.set(f"Loaded {len(chapter_names)} chapter(s) with _chunk_pipeline audio.")
+            self.status_var.set(f"Loaded {len(chapter_names)} source group(s) with _chunk_pipeline audio.")
         else:
-            self.status_var.set("No chapters found with _chunk_pipeline/full_character.wav outputs.")
+            self.status_var.set("No chapters or _book_batch characters found with _chunk_pipeline/full_character.wav outputs.")
 
     def _on_chapter_selected(self) -> None:
         chapter_name = self.chapter_var.get().strip()
@@ -341,13 +480,21 @@ class SplitBoundaryReviewApp:
         character_names: list[str] = []
 
         if chapter_dir is not None:
-            audio_lines = chapter_dir / "audio_lines"
-            for character_dir in sorted([item for item in audio_lines.iterdir() if item.is_dir()], key=lambda item: item.name.lower()):
-                full_audio = character_dir / "_chunk_pipeline" / "full_character.wav"
-                manifest = character_dir / "manifest.json"
-                if full_audio.exists() and manifest.exists():
-                    character_names.append(character_dir.name)
-                    self.character_dirs[character_dir.name] = character_dir
+            if chapter_name == BATCH_CHAPTER_LABEL:
+                for character_dir in sorted([item for item in chapter_dir.iterdir() if item.is_dir()], key=lambda item: item.name.lower()):
+                    full_audio = character_dir / "_chunk_pipeline" / "full_character.wav"
+                    report = character_dir / "_chunk_pipeline" / "split_validation_report.json"
+                    if full_audio.exists() and report.exists():
+                        character_names.append(character_dir.name)
+                        self.character_dirs[character_dir.name] = character_dir
+            else:
+                audio_lines = chapter_dir / "audio_lines"
+                for character_dir in sorted([item for item in audio_lines.iterdir() if item.is_dir()], key=lambda item: item.name.lower()):
+                    full_audio = character_dir / "_chunk_pipeline" / "full_character.wav"
+                    manifest = character_dir / "manifest.json"
+                    if full_audio.exists() and manifest.exists():
+                        character_names.append(character_dir.name)
+                        self.character_dirs[character_dir.name] = character_dir
 
         if self.character_combo is not None:
             self.character_combo["values"] = character_names
@@ -422,6 +569,7 @@ class SplitBoundaryReviewApp:
             self.playback_wave_sec = None
 
         self.preview_path = context.character_dir / "_chunk_pipeline" / "_manual_split_preview.wav"
+        self._configure_source_chapter_picker()
         self.status_var.set(
             f"Loaded {chapter_name} / {character_name}: {len(context.regions)} clips | {self.audio_duration_sec:.2f}s"
         )
@@ -443,6 +591,14 @@ class SplitBoundaryReviewApp:
         character_name: str,
         character_dir: Path,
     ) -> CharacterContext:
+        if chapter_name == BATCH_CHAPTER_LABEL:
+            return self._load_batch_character_context(
+                chapter_name=chapter_name,
+                chapter_dir=chapter_dir,
+                character_name=character_name,
+                character_dir=character_dir,
+            )
+
         manifest_path = character_dir / "manifest.json"
         full_audio_path = character_dir / "_chunk_pipeline" / "full_character.wav"
         split_validation_path = character_dir / "_chunk_pipeline" / "split_validation_report.json"
@@ -491,12 +647,15 @@ class SplitBoundaryReviewApp:
             text = str(clip.get("text") or "")
             regions.append(
                 ClipRegion(
+                    region_key=f"manifest:{clip_index}:{line_id}",
                     line_id=line_id,
                     clip_index=clip_index,
                     text=text,
                     audio_file=audio_file,
                     start_sec=start_sec,
                     end_sec=end_sec,
+                    source_audio_path=(character_dir / audio_file).resolve(),
+                    source_chapter_name=chapter_name,
                 )
             )
 
@@ -505,7 +664,7 @@ class SplitBoundaryReviewApp:
 
         regions.sort(key=lambda item: (item.start_sec, item.line_id))
 
-        dialogue_by_id: dict[int, dict[str, Any]] = {}
+        dialogue_by_id: dict[str, dict[str, Any]] = {}
         if dialogue_path.exists():
             try:
                 payload = read_json(dialogue_path)
@@ -516,24 +675,28 @@ class SplitBoundaryReviewApp:
                             continue
                         line_id = entry.get("id")
                         if isinstance(line_id, int):
-                            dialogue_by_id[line_id] = entry
+                            dialogue_by_id[f"dialogue:{line_id}"] = entry
             except Exception:
                 dialogue_by_id = {}
 
-        validation_by_id: dict[int, dict[str, Any]] = {}
+        validation_by_id: dict[str, dict[str, Any]] = {}
         if split_validation_path.exists():
             try:
                 payload = read_json(split_validation_path)
                 lines = payload.get("lines") if isinstance(payload, dict) else None
                 if isinstance(lines, list):
-                    for entry in lines:
+                    for entry_index, entry in enumerate(lines):
                         if not isinstance(entry, dict):
                             continue
                         line_id = entry.get("lineId")
                         if isinstance(line_id, int):
-                            validation_by_id[line_id] = entry
+                            validation_by_id[f"manifest:{entry_index}:{line_id}"] = entry
             except Exception:
                 validation_by_id = {}
+
+        for region in regions:
+            region.dialogue_entry = dialogue_by_id.get(f"dialogue:{region.line_id}", {})
+            region.validation_entry = validation_by_id.get(region.region_key, {})
 
         return CharacterContext(
             chapter_name=chapter_name,
@@ -548,6 +711,142 @@ class SplitBoundaryReviewApp:
             regions=regions,
             dialogue_by_id=dialogue_by_id,
             validation_by_id=validation_by_id,
+            is_batch_mode=False,
+        )
+
+    def _load_batch_character_context(
+        self,
+        *,
+        chapter_name: str,
+        chapter_dir: Path,
+        character_name: str,
+        character_dir: Path,
+    ) -> CharacterContext:
+        full_audio_path = character_dir / "_chunk_pipeline" / "full_character.wav"
+        split_validation_path = character_dir / "_chunk_pipeline" / "split_validation_report.json"
+
+        if not full_audio_path.exists():
+            raise FileNotFoundError(f"Missing full audio: {full_audio_path}")
+        if not split_validation_path.exists():
+            raise FileNotFoundError(f"Missing split validation report: {split_validation_path}")
+
+        split_validation_payload = read_json(split_validation_path)
+        raw_lines = split_validation_payload.get("lines")
+        if not isinstance(raw_lines, list):
+            raise ValueError(f"Invalid split validation format (missing lines array): {split_validation_path}")
+
+        dialogue_index: dict[tuple[int, str], tuple[Path, dict[str, Any]]] = {}
+        for candidate_chapter_dir in sorted([item for item in self.book_dir.iterdir() if item.is_dir()], key=lambda item: chapter_sort_key(item.name)):
+            dialogue_path = candidate_chapter_dir / "dialogue.json"
+            if not dialogue_path.exists():
+                continue
+            try:
+                payload = read_json(dialogue_path)
+            except Exception:
+                continue
+            lines = payload.get("lines") if isinstance(payload, dict) else None
+            if not isinstance(lines, list):
+                continue
+            for entry in lines:
+                if not isinstance(entry, dict):
+                    continue
+                line_id = entry.get("id")
+                text = entry.get("text")
+                if not isinstance(line_id, int) or not isinstance(text, str):
+                    continue
+                dialogue_index[(line_id, normalize_text_key(text))] = (candidate_chapter_dir, entry)
+
+        regions: list[ClipRegion] = []
+        dialogue_by_id: dict[str, dict[str, Any]] = {}
+        validation_by_id: dict[str, dict[str, Any]] = {}
+        cursor_sec = 0.0
+        full_duration_sec = float(sf.info(str(full_audio_path)).duration)
+
+        for clip_index, entry in enumerate(raw_lines):
+            if not isinstance(entry, dict):
+                continue
+            line_id = entry.get("lineId")
+            expected_text = str(entry.get("expectedText") or "")
+            if not isinstance(line_id, int):
+                continue
+
+            raw_audio_path = str(entry.get("audioPath") or "")
+            source_audio_path = resolve_existing_audio_path(raw_audio_path, book_dir=self.book_dir)
+            source_chapter_name: str | None = None
+            dialogue_entry: dict[str, Any] = {}
+
+            if source_audio_path is not None:
+                try:
+                    rel = source_audio_path.resolve().relative_to(self.book_dir.resolve())
+                    if len(rel.parts) >= 3 and rel.parts[1] == "audio_lines":
+                        source_chapter_name = rel.parts[0]
+                except ValueError:
+                    source_chapter_name = None
+
+            if source_chapter_name is None:
+                dialogue_match = dialogue_index.get((line_id, normalize_text_key(expected_text)))
+                if dialogue_match is not None:
+                    matched_chapter_dir, dialogue_entry = dialogue_match
+                    source_chapter_name = matched_chapter_dir.name
+                    candidate_audio_path = matched_chapter_dir / "audio_lines" / character_name / f"{line_id}-{character_name}.wav"
+                    if candidate_audio_path.exists():
+                        source_audio_path = candidate_audio_path.resolve()
+
+            if source_audio_path is None:
+                raise FileNotFoundError(
+                    "Could not resolve batch split output audio for "
+                    f"line {line_id} ({expected_text[:80]})"
+                )
+
+            if not dialogue_entry:
+                dialogue_match = dialogue_index.get((line_id, normalize_text_key(expected_text)))
+                if dialogue_match is not None:
+                    _matched_chapter_dir, dialogue_entry = dialogue_match
+
+            clip_duration_sec = float(sf.info(str(source_audio_path)).duration)
+            start_sec = cursor_sec
+            end_sec = min(full_duration_sec, start_sec + clip_duration_sec)
+            cursor_sec = end_sec
+
+            audio_file = source_audio_path.name
+            region_key = f"batch:{clip_index}:{line_id}:{source_chapter_name or 'unknown'}"
+            validation_by_id[region_key] = entry
+            dialogue_by_id[region_key] = dialogue_entry
+            regions.append(
+                ClipRegion(
+                    region_key=region_key,
+                    line_id=line_id,
+                    clip_index=clip_index,
+                    text=expected_text,
+                    audio_file=audio_file,
+                    start_sec=start_sec,
+                    end_sec=end_sec,
+                    source_audio_path=source_audio_path,
+                    source_chapter_name=source_chapter_name,
+                    dialogue_entry=dialogue_entry,
+                    validation_entry=entry,
+                )
+            )
+
+        if not regions:
+            raise ValueError("No editable clips found in _book_batch split validation report.")
+
+        regions[-1].end_sec = full_duration_sec
+
+        return CharacterContext(
+            chapter_name=chapter_name,
+            chapter_dir=chapter_dir,
+            character_name=character_name,
+            character_dir=character_dir,
+            manifest_path=None,
+            full_audio_path=full_audio_path,
+            dialogue_path=None,
+            split_validation_path=split_validation_path,
+            manifest_payload=split_validation_payload,
+            regions=regions,
+            dialogue_by_id=dialogue_by_id,
+            validation_by_id=validation_by_id,
+            is_batch_mode=True,
         )
 
     def _timeline_width_px(self) -> int:
@@ -665,6 +964,26 @@ class SplitBoundaryReviewApp:
             canvas.create_text(width / 2, height / 2, text="Start a chapter + character to load waveform", fill="#9ca3af")
             return
 
+        chapter_spans = self._source_chapter_spans()
+        if chapter_spans:
+            for span_index, (chapter_name, _start_index, _end_index, start_sec, end_sec) in enumerate(chapter_spans):
+                x1 = self._time_to_x(start_sec)
+                x2 = self._time_to_x(end_sec)
+                if x2 <= x1:
+                    continue
+                fill = "#0f172a" if span_index % 2 == 0 else "#111827"
+                canvas.create_rectangle(x1, 0, x2, 18, fill=fill, outline="")
+                canvas.create_text(
+                    x1 + 6,
+                    9,
+                    text=chapter_name,
+                    fill="#e5e7eb",
+                    font=("Segoe UI", 8, "bold"),
+                    anchor="w",
+                )
+                canvas.create_line(x1, 18, x1, height, fill="#374151", width=1)
+            canvas.create_line(self._time_to_x(chapter_spans[-1][4]), 18, self._time_to_x(chapter_spans[-1][4]), height, fill="#374151", width=1)
+
         edge_only_mode = bool(self.selected_clip_edge_only_var.get())
 
         peaks = self._clip_peaks(width)
@@ -686,7 +1005,7 @@ class SplitBoundaryReviewApp:
             if x2 <= x1:
                 continue
 
-            validation = self.context.validation_by_id.get(region.line_id, {})
+            validation = region.validation_entry or {}
             flagged = bool(validation.get("needsBoundaryAdjustment")) or str(validation.get("status") or "").lower() == "flagged"
             is_selected = idx == self.selected_region_index
 
@@ -791,27 +1110,34 @@ class SplitBoundaryReviewApp:
             f"{region.start_sec:.4f}s → {region.end_sec:.4f}s | "
             f"duration={region.duration_sec:.4f}s"
         )
+        if region.source_chapter_name:
+            header += f" | chapter={region.source_chapter_name}"
         self.selection_var.set(header)
         if self.info_header_label is not None:
             self.info_header_label.config(text=header)
 
         self._set_text_widget(self.info_expected_text, region.text or "")
 
-        dialogue_entry = self.context.dialogue_by_id.get(region.line_id, {})
+        dialogue_entry = region.dialogue_entry or {}
         dialogue_text = ""
         if dialogue_entry:
             character = str(dialogue_entry.get("characterId") or "")
             line_text = str(dialogue_entry.get("text") or "")
             dialogue_text = (
                 f"lineId: {region.line_id}\n"
+                f"chapter: {region.source_chapter_name or self.context.chapter_name}\n"
                 f"characterId: {character}\n\n"
                 f"{line_text}"
             ).strip()
         else:
-            dialogue_text = f"lineId: {region.line_id}\n\n(No dialogue entry found)"
+            dialogue_text = (
+                f"lineId: {region.line_id}\n"
+                f"chapter: {region.source_chapter_name or self.context.chapter_name}\n\n"
+                "(No dialogue entry found)"
+            )
         self._set_text_widget(self.info_dialogue_text, dialogue_text)
 
-        validation_entry = self.context.validation_by_id.get(region.line_id)
+        validation_entry = region.validation_entry
         if validation_entry is None:
             self._set_text_widget(self.info_validation_text, "No split validation entry for this line.")
         else:
@@ -823,6 +1149,7 @@ class SplitBoundaryReviewApp:
                 f"status: {status}",
                 f"needsBoundaryAdjustment: {needs_adjust}",
                 f"expectedSimilarity: {similarity}",
+                f"audioPath: {region.source_audio_path or validation_entry.get('audioPath')}",
                 "",
                 transcript,
             ]
@@ -1108,43 +1435,46 @@ class SplitBoundaryReviewApp:
                 return
 
         timestamp = datetime.utcnow().strftime("%Y%m%d-%H%M%S")
-        manifest_backup = self.context.manifest_path.with_name(f"{self.context.manifest_path.name}.bak-{timestamp}")
+        backup_target = self.context.manifest_path or self.context.split_validation_path
+        if backup_target is None:
+            messagebox.showerror("Cannot save", "No manifest or split validation file available to back up.")
+            return
 
-        before_by_line = {item.line_id: {"startSec": item.start_sec, "endSec": item.end_sec} for item in self.original_regions}
+        manifest_backup = backup_target.with_name(f"{backup_target.name}.bak-{timestamp}")
+
+        before_by_line = {item.region_key: {"startSec": item.start_sec, "endSec": item.end_sec} for item in self.original_regions}
         edits_payload = {
             "savedAt": datetime.utcnow().isoformat() + "Z",
             "chapter": self.context.chapter_name,
             "character": self.context.character_name,
             "fullAudio": str(self.context.full_audio_path),
-            "manifest": str(self.context.manifest_path),
+            "manifest": str(self.context.manifest_path) if self.context.manifest_path is not None else None,
+            "splitValidation": str(self.context.split_validation_path) if self.context.split_validation_path is not None else None,
             "changes": [],
         }
 
         try:
-            manifest_backup.write_text(self.context.manifest_path.read_text(encoding="utf-8"), encoding="utf-8")
+            manifest_backup.write_text(backup_target.read_text(encoding="utf-8"), encoding="utf-8")
 
-            clips = self.context.manifest_payload.get("clips")
-            if not isinstance(clips, list):
-                raise ValueError("Manifest clips array is invalid while saving.")
+            clips = None
+            raw_lines = None
+            if self.context.is_batch_mode:
+                raw_lines = self.context.manifest_payload.get("lines") if isinstance(self.context.manifest_payload, dict) else None
+                if not isinstance(raw_lines, list):
+                    raise ValueError("Batch split validation lines array is invalid while saving.")
+            else:
+                clips = self.context.manifest_payload.get("clips") if isinstance(self.context.manifest_payload, dict) else None
+                if not isinstance(clips, list):
+                    raise ValueError("Manifest clips array is invalid while saving.")
 
             for region in regions:
-                clip = clips[region.clip_index]
-                if not isinstance(clip, dict):
-                    continue
-
-                metadata = clip.get("metadata") if isinstance(clip.get("metadata"), dict) else {}
-                clip["metadata"] = metadata
-
                 start_sec = round(float(region.start_sec), 4)
                 end_sec = round(float(region.end_sec), 4)
                 duration_sec = round(max(0.0, end_sec - start_sec), 4)
 
-                metadata["startSec"] = start_sec
-                metadata["endSec"] = end_sec
-                metadata["duration"] = duration_sec
-                metadata["generatedAt"] = datetime.utcnow().isoformat() + "Z"
-
-                out_path = self.context.character_dir / region.audio_file
+                out_path = region.source_audio_path
+                if out_path is None:
+                    raise ValueError(f"Missing target audio path for line {region.line_id}")
                 out_path.parent.mkdir(parents=True, exist_ok=True)
 
                 start_idx = int(max(0, np.floor(start_sec * self.sample_rate)))
@@ -1157,11 +1487,31 @@ class SplitBoundaryReviewApp:
                 clip_audio = self.full_audio_2d[start_idx:end_idx]
                 sf.write(str(out_path), clip_audio, self.sample_rate)
 
-                before = before_by_line.get(region.line_id)
+                if self.context.is_batch_mode:
+                    line_entry = raw_lines[region.clip_index]
+                    if isinstance(line_entry, dict):
+                        line_entry["audioPath"] = str(out_path)
+                        line_entry["manualStartSec"] = start_sec
+                        line_entry["manualEndSec"] = end_sec
+                        line_entry["manualDuration"] = duration_sec
+                        line_entry["manuallyAdjustedAt"] = datetime.utcnow().isoformat() + "Z"
+                else:
+                    clip = clips[region.clip_index]
+                    if isinstance(clip, dict):
+                        metadata = clip.get("metadata") if isinstance(clip.get("metadata"), dict) else {}
+                        clip["metadata"] = metadata
+                        metadata["startSec"] = start_sec
+                        metadata["endSec"] = end_sec
+                        metadata["duration"] = duration_sec
+                        metadata["generatedAt"] = datetime.utcnow().isoformat() + "Z"
+
+                before = before_by_line.get(region.region_key)
                 edits_payload["changes"].append(
                     {
                         "lineId": region.line_id,
+                        "chapter": region.source_chapter_name,
                         "audioFile": region.audio_file,
+                        "audioPath": str(out_path),
                         "before": before,
                         "after": {
                             "startSec": start_sec,
@@ -1171,10 +1521,20 @@ class SplitBoundaryReviewApp:
                     }
                 )
 
-            self.context.manifest_path.write_text(
-                json.dumps(self.context.manifest_payload, indent=2, ensure_ascii=False),
-                encoding="utf-8",
-            )
+            if self.context.is_batch_mode:
+                if self.context.split_validation_path is None:
+                    raise ValueError("Missing split validation report path while saving batch edits.")
+                self.context.split_validation_path.write_text(
+                    json.dumps(self.context.manifest_payload, indent=2, ensure_ascii=False),
+                    encoding="utf-8",
+                )
+            else:
+                if self.context.manifest_path is None:
+                    raise ValueError("Missing manifest path while saving chapter edits.")
+                self.context.manifest_path.write_text(
+                    json.dumps(self.context.manifest_payload, indent=2, ensure_ascii=False),
+                    encoding="utf-8",
+                )
 
             edits_path = self.context.character_dir / "_chunk_pipeline" / f"manual_split_edits_{timestamp}.json"
             edits_path.parent.mkdir(parents=True, exist_ok=True)

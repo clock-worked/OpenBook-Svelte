@@ -1,4 +1,4 @@
-"""Assemble chapter and full-book M4B files from generated line clips."""
+"""Assemble chapter and full-book M4B files from manifest-selected clips."""
 
 from __future__ import annotations
 
@@ -7,6 +7,7 @@ import json
 import re
 import shutil
 import subprocess
+from functools import lru_cache
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -15,7 +16,7 @@ from typing import Any
 import soundfile as sf
 
 
-CHAPTER_FOLDER_PATTERN = re.compile(r"^(?P<number>\d+)-(?P<slug>.+)$")
+CHAPTER_FOLDER_PATTERN = re.compile(r"^(?P<number>\d+)\s*-\s*(?P<slug>.+)$")
 
 
 @dataclass
@@ -52,8 +53,10 @@ class ChapterPlan:
     chapter_number: int
     chapter_name: str
     display_title: str
-    title_audio_path: Path
+    title_audio_path: Path | None
+    source_mode: str
     ordered_segments: list[Path]
+    appended_silence_after_sec: list[float]
     resolved_lines: list[ResolvedLineClip]
     duplicate_resolutions: list[dict[str, Any]]
 
@@ -83,8 +86,8 @@ def parse_args() -> argparse.Namespace:
 
     parser = argparse.ArgumentParser(
         description=(
-            "Assemble per-chapter and full-book M4B files using the chapter title "
-            "clip followed by all line clips in ascending line-number order."
+            "Assemble per-chapter and full-book M4B files from audio_lines "
+            "manifest-selected clips, with optional chapter-full override."
         )
     )
     parser.add_argument("--book-dir", type=Path, required=True)
@@ -118,6 +121,39 @@ def parse_args() -> argparse.Namespace:
         "--bitrate",
         default="96k",
         help="AAC bitrate used for chapter and full-book M4Bs.",
+    )
+    parser.add_argument(
+        "--title-silence-sec",
+        type=float,
+        default=3.0,
+        help="Silence appended after the title clip when assembling from line clips.",
+    )
+    parser.add_argument(
+        "--chapter-end-silence-sec",
+        type=float,
+        default=5.0,
+        help="Silence appended after the last clip in each chapter.",
+    )
+    parser.add_argument(
+        "--source-mode",
+        choices=["auto", "chapter-full", "line-clips"],
+        default="line-clips",
+        help=(
+            "Audio source selection: use manifest-selected line clips by default, "
+            "or explicitly require narrator full-chapter audio."
+        ),
+    )
+    parser.add_argument(
+        "--start-chapter",
+        type=int,
+        default=None,
+        help="Optional numeric chapter-folder prefix to start from (inclusive).",
+    )
+    parser.add_argument(
+        "--end-chapter",
+        type=int,
+        default=None,
+        help="Optional numeric chapter-folder prefix to end at (inclusive).",
     )
     parser.add_argument(
         "--force",
@@ -184,7 +220,23 @@ def derive_display_chapter_title(chapter_name: str) -> tuple[int, str]:
     return chapter_number, slug_title or chapter_name
 
 
-def discover_chapters(book_dir: Path) -> list[Path]:
+def derive_sequential_marker_title(chapter_name: str, sequence_number: int) -> str:
+    """Build a full-book chapter marker title like `01 - Chapter 1219 - Gate`."""
+
+    match = CHAPTER_FOLDER_PATTERN.match(chapter_name)
+    if match is None:
+        raise ValueError(f"Unexpected chapter folder name: {chapter_name}")
+
+    slug = match.group("slug").strip()
+    return f"{int(sequence_number):02d} - {slug}"
+
+
+def discover_chapters(
+    book_dir: Path,
+    *,
+    start_chapter: int | None = None,
+    end_chapter: int | None = None,
+) -> list[Path]:
     """Return sorted chapter directories that have chapter audio manifests."""
 
     chapters: list[tuple[int, Path]] = []
@@ -194,9 +246,14 @@ def discover_chapters(book_dir: Path) -> list[Path]:
         match = CHAPTER_FOLDER_PATTERN.match(child.name)
         if match is None:
             continue
+        chapter_number = int(match.group("number"))
+        if start_chapter is not None and chapter_number < int(start_chapter):
+            continue
+        if end_chapter is not None and chapter_number > int(end_chapter):
+            continue
         if not (child / "audio_lines" / "manifest.json").exists():
             continue
-        chapters.append((int(match.group("number")), child))
+        chapters.append((chapter_number, child))
 
     chapters.sort(key=lambda item: (item[0], item[1].name.lower()))
     return [item[1] for item in chapters]
@@ -208,6 +265,51 @@ def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8", errors="replace"))
 
 
+def resolve_title_audio_path(chapter_dir: Path) -> Path:
+    """Resolve a chapter title clip from local or centralized title-audio layouts."""
+
+    local_path = (chapter_dir / "title_audio" / "chapter-title-stephen-fry.wav").resolve()
+    if local_path.exists():
+        return local_path
+
+    split_dir = (
+        chapter_dir.parent
+        / "_chapter_title_audio_stephen_fry"
+        / "splits"
+        / safe_name(chapter_dir.name)
+    ).resolve()
+    if split_dir.exists():
+        wav_paths = sorted(path.resolve() for path in split_dir.glob("*.wav") if path.is_file())
+        if len(wav_paths) == 1:
+            return wav_paths[0]
+        if len(wav_paths) > 1:
+            raise RuntimeError(f"Multiple title clips found for {chapter_dir.name}: {split_dir}")
+
+    raise FileNotFoundError(f"Missing title clip for {chapter_dir.name}")
+
+
+def resolve_full_chapter_audio_path(chapter_dir: Path) -> Path | None:
+    """Return the existing narrator full-chapter audio path when available."""
+
+    audio_dir = (chapter_dir / "audio_test_narrator").resolve()
+    if not audio_dir.exists():
+        return None
+
+    wav_paths = sorted(
+        path.resolve()
+        for path in audio_dir.glob("*-narrator-full.wav")
+        if path.is_file()
+    )
+    if not wav_paths:
+        return None
+    if len(wav_paths) > 1:
+        raise RuntimeError(
+            f"Multiple narrator full chapter WAVs found for {chapter_dir.name}: "
+            f"{audio_dir}"
+        )
+    return wav_paths[0]
+
+
 def ffmetadata_escape(value: str) -> str:
     """Escape a string for use in an ffmetadata file."""
 
@@ -216,6 +318,34 @@ def ffmetadata_escape(value: str) -> str:
     escaped = escaped.replace("#", "\\#")
     escaped = escaped.replace("=", "\\=")
     return escaped.replace("\n", "\\n")
+
+
+@lru_cache(maxsize=512)
+def measure_trailing_silence_sec(
+    audio_path: Path,
+    *,
+    silence_threshold: float = 1e-4,
+) -> float:
+    """Return trailing silence duration for a clip using a small amplitude threshold."""
+
+    audio, sample_rate = sf.read(str(audio_path), dtype="float32", always_2d=True)
+    if audio.size == 0:
+        return 0.0
+
+    non_silent = (abs(audio) > float(silence_threshold)).any(axis=1)
+    indices = non_silent.nonzero()[0]
+    if len(indices) == 0:
+        return round(float(audio.shape[0]) / float(sample_rate), 4)
+
+    trailing_frames = int(audio.shape[0] - 1 - int(indices[-1]))
+    return round(trailing_frames / float(sample_rate), 4)
+
+
+def additional_silence_needed(audio_path: Path, target_silence_sec: float) -> float:
+    """Return the extra silence needed so the clip ends with at least the target amount."""
+
+    existing_silence_sec = measure_trailing_silence_sec(audio_path)
+    return round(max(0.0, float(target_silence_sec) - existing_silence_sec), 4)
 
 
 def load_clip_candidates(chapter_dir: Path) -> dict[int, list[ClipCandidate]]:
@@ -267,6 +397,7 @@ def score_candidate(candidate: ClipCandidate, line: dict[str, Any]) -> int:
 
     target_id = str(line.get("characterId", "")).strip()
     target_output = str(line.get("output", "")).strip()
+    target_output_name = Path(target_output).name if target_output else ""
     target_folder = ""
     if "/" in target_output:
         target_folder = target_output.split("/", 1)[0].strip()
@@ -298,6 +429,12 @@ def score_candidate(candidate: ClipCandidate, line: dict[str, Any]) -> int:
         score += 10
     if candidate.audio_path.suffix.lower() == ".wav":
         score += 5
+    if target_output_name and candidate.audio_path.name == target_output_name:
+        score += 250
+    if target_folder and candidate.folder_name == target_folder:
+        score += 200
+    if target_output and candidate.audio_path.as_posix().endswith(target_output):
+        score += 300
 
     return score
 
@@ -361,8 +498,34 @@ def resolve_line_clip(
     )
 
 
-def build_chapter_plan(chapter_dir: Path) -> ChapterPlan:
+def build_chapter_plan(
+    chapter_dir: Path,
+    source_mode: str,
+    title_silence_sec: float,
+    chapter_end_silence_sec: float,
+) -> ChapterPlan:
     """Create the ordered audio segment plan for one chapter."""
+
+    chapter_number, display_title = derive_display_chapter_title(chapter_dir.name)
+    if source_mode == "auto":
+        source_mode = "line-clips"
+
+    full_chapter_audio_path = resolve_full_chapter_audio_path(chapter_dir)
+    if source_mode == "chapter-full" and full_chapter_audio_path is not None:
+        return ChapterPlan(
+            chapter_dir=chapter_dir,
+            chapter_number=chapter_number,
+            chapter_name=chapter_dir.name,
+            display_title=display_title,
+            title_audio_path=full_chapter_audio_path,
+            source_mode="chapter-full",
+            ordered_segments=[full_chapter_audio_path],
+            appended_silence_after_sec=[0.0],
+            resolved_lines=[],
+            duplicate_resolutions=[],
+        )
+    if source_mode == "chapter-full":
+        raise FileNotFoundError(f"Missing narrator full chapter WAV for {chapter_dir.name}")
 
     chapter_manifest_path = chapter_dir / "audio_lines" / "manifest.json"
     chapter_manifest = load_json(chapter_manifest_path)
@@ -370,24 +533,27 @@ def build_chapter_plan(chapter_dir: Path) -> ChapterPlan:
     if not isinstance(raw_lines, list):
         raise ValueError(f"Invalid chapter manifest: {chapter_manifest_path}")
 
-    chapter_number, display_title = derive_display_chapter_title(chapter_dir.name)
-    title_audio_path = (chapter_dir / "title_audio" / "chapter-title-stephen-fry.wav").resolve()
-    if not title_audio_path.exists():
-        raise FileNotFoundError(f"Missing title clip: {title_audio_path}")
-
     candidates_by_id = load_clip_candidates(chapter_dir)
     ordered_lines = sorted(
         [
             line
             for line in raw_lines
-            if isinstance(line, dict) and str(line.get("text", "")).strip()
+            if (
+                isinstance(line, dict)
+                and str(line.get("text", "")).strip()
+                and (
+                    not bool(line.get("skipped"))
+                    or int(line.get("id", -1)) in candidates_by_id
+                )
+            )
         ],
         key=lambda item: int(item.get("id", -1)),
     )
 
     resolved_lines: list[ResolvedLineClip] = []
     duplicate_resolutions: list[dict[str, Any]] = []
-    ordered_segments = [title_audio_path]
+    ordered_segments: list[Path] = []
+    appended_silence_after_sec: list[float] = []
 
     for line in ordered_lines:
         line_id = int(line["id"])
@@ -397,6 +563,7 @@ def build_chapter_plan(chapter_dir: Path) -> ChapterPlan:
             candidates=candidates_by_id.get(line_id, []),
         )
         ordered_segments.append(resolved.audio_path)
+        appended_silence_after_sec.append(0.0)
         resolved_lines.append(resolved)
         if resolved.selected_from > 1:
             duplicate_resolutions.append(
@@ -408,13 +575,33 @@ def build_chapter_plan(chapter_dir: Path) -> ChapterPlan:
                 }
             )
 
+    if appended_silence_after_sec:
+        first_text = resolved_lines[0].text.strip().lower()
+        if first_text.startswith("chapter ") or first_text in {"prologue", "epilogue"}:
+            appended_silence_after_sec[0] = max(
+                appended_silence_after_sec[0],
+                additional_silence_needed(
+                    resolved_lines[0].audio_path,
+                    float(title_silence_sec),
+                ),
+            )
+        appended_silence_after_sec[-1] = max(
+            appended_silence_after_sec[-1],
+            additional_silence_needed(
+                resolved_lines[-1].audio_path,
+                float(chapter_end_silence_sec),
+            ),
+        )
+
     return ChapterPlan(
         chapter_dir=chapter_dir,
         chapter_number=chapter_number,
         chapter_name=chapter_dir.name,
         display_title=display_title,
-        title_audio_path=title_audio_path,
+        title_audio_path=None,
+        source_mode="line-clips",
         ordered_segments=ordered_segments,
+        appended_silence_after_sec=appended_silence_after_sec,
         resolved_lines=resolved_lines,
         duplicate_resolutions=duplicate_resolutions,
     )
@@ -441,13 +628,21 @@ def transcode_for_concat(
         str(channels),
         str(output_path),
     ]
-    subprocess.run(command, check=True, capture_output=True, text=True)
+    subprocess.run(
+        command,
+        check=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
     return output_path
 
 
 def render_concat_wav(
     *,
     source_paths: list[Path],
+    appended_silence_after_sec: list[float] | None,
     output_path: Path,
     temp_dir: Path,
 ) -> tuple[float, int, int]:
@@ -463,6 +658,9 @@ def render_concat_wav(
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     total_frames = 0
+    silence_after = appended_silence_after_sec or [0.0] * len(source_paths)
+    if len(silence_after) != len(source_paths):
+        raise ValueError("Silence-per-segment list must match source path count.")
 
     with sf.SoundFile(
         str(output_path),
@@ -472,7 +670,7 @@ def render_concat_wav(
         format="WAV",
         subtype="PCM_16",
     ) as sink:
-        for source_path in source_paths:
+        for index, source_path in enumerate(source_paths):
             source_info = sf.info(str(source_path))
             prepared_path = source_path
             if (
@@ -505,6 +703,16 @@ def render_concat_wav(
                 )
             sink.write(audio)
             total_frames += int(audio.shape[0])
+
+            silence_sec = float(silence_after[index])
+            silence_frames = int(round(max(0.0, silence_sec) * target_rate))
+            if silence_frames > 0:
+                sink.write(
+                    [[0.0] * target_channels] * silence_frames
+                    if target_channels > 1
+                    else [0.0] * silence_frames
+                )
+                total_frames += silence_frames
 
     duration_sec = round(total_frames / float(target_rate), 4)
     return duration_sec, target_rate, target_channels
@@ -573,7 +781,14 @@ def encode_m4b(
         "+faststart",
         str(output_path),
     ]
-    subprocess.run(command, check=True, capture_output=True, text=True)
+    subprocess.run(
+        command,
+        check=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
 
 
 def ensure_clean_output(output_dir: Path, force: bool) -> None:
@@ -607,7 +822,7 @@ def build_chapter_tags(
     narrator: str,
     genre: str,
     chapter_title: str,
-    chapter_number: int,
+    track_number: int,
     chapter_count: int,
 ) -> dict[str, str]:
     """Return embedded metadata tags for one chapter M4B."""
@@ -619,7 +834,7 @@ def build_chapter_tags(
         "album_artist": narrator,
         "composer": author,
         "genre": genre,
-        "track": f"{chapter_number + 1}/{chapter_count}",
+        "track": f"{track_number}/{chapter_count}",
         "comment": f"{chapter_title} from {book_title}",
     }
 
@@ -649,14 +864,14 @@ def build_full_book_chapters(chapter_results: list[ChapterResult]) -> list[dict[
 
     chapters: list[dict[str, Any]] = []
     current_start_ms = 0
-    for result in chapter_results:
+    for index, result in enumerate(chapter_results, start=1):
         duration_ms = int(round(result.duration_sec * 1000.0))
         end_ms = current_start_ms + duration_ms
         chapters.append(
             {
                 "startMs": current_start_ms,
                 "endMs": end_ms,
-                "title": result.display_title,
+                "title": derive_sequential_marker_title(result.chapter_name, index),
             }
         )
         current_start_ms = end_ms
@@ -672,6 +887,9 @@ def assemble_chapters(
     narrator: str,
     genre: str,
     bitrate: str,
+    source_mode: str,
+    title_silence_sec: float,
+    chapter_end_silence_sec: float,
     dry_run: bool,
 ) -> list[ChapterResult]:
     """Render one WAV and one M4B for each chapter."""
@@ -685,8 +903,13 @@ def assemble_chapters(
     chapter_results: list[ChapterResult] = []
     chapter_count = len(chapters)
 
-    for chapter_dir in chapters:
-        plan = build_chapter_plan(chapter_dir)
+    for chapter_index, chapter_dir in enumerate(chapters, start=1):
+        plan = build_chapter_plan(
+            chapter_dir,
+            source_mode,
+            title_silence_sec,
+            chapter_end_silence_sec,
+        )
         chapter_wav_path = intermediate_dir / f"{plan.chapter_name}.wav"
         chapter_m4b_path = chapter_m4b_dir / f"{plan.chapter_name}.m4b"
         chapter_metadata_path = metadata_dir / f"{plan.chapter_name}.ffmetadata"
@@ -697,7 +920,7 @@ def assemble_chapters(
             narrator=narrator,
             genre=genre,
             chapter_title=plan.display_title,
-            chapter_number=plan.chapter_number,
+            track_number=chapter_index,
             chapter_count=chapter_count,
         )
 
@@ -705,6 +928,7 @@ def assemble_chapters(
         if not dry_run:
             duration_sec, _, _ = render_concat_wav(
                 source_paths=plan.ordered_segments,
+                appended_silence_after_sec=plan.appended_silence_after_sec,
                 output_path=chapter_wav_path,
                 temp_dir=temp_dir,
             )
@@ -763,6 +987,7 @@ def assemble_full_book(
     if not dry_run:
         duration_sec, _, _ = render_concat_wav(
             source_paths=[Path(result.wav_path) for result in chapter_results],
+            appended_silence_after_sec=None,
             output_path=full_wav_path,
             temp_dir=output_dir / "intermediate" / "temp",
         )
@@ -834,7 +1059,18 @@ def main() -> None:
     if not book_dir.exists():
         raise FileNotFoundError(f"Book directory not found: {book_dir}")
 
-    chapters = discover_chapters(book_dir)
+    if (
+        args.start_chapter is not None
+        and args.end_chapter is not None
+        and int(args.end_chapter) < int(args.start_chapter)
+    ):
+        raise ValueError("--end-chapter cannot be less than --start-chapter")
+
+    chapters = discover_chapters(
+        book_dir,
+        start_chapter=(int(args.start_chapter) if args.start_chapter is not None else None),
+        end_chapter=(int(args.end_chapter) if args.end_chapter is not None else None),
+    )
     if not chapters:
         raise RuntimeError(f"No chapter directories found in {book_dir}")
 
@@ -855,6 +1091,9 @@ def main() -> None:
         narrator=str(args.narrator),
         genre=str(args.genre),
         bitrate=str(args.bitrate),
+        source_mode=str(args.source_mode),
+        title_silence_sec=float(args.title_silence_sec),
+        chapter_end_silence_sec=float(args.chapter_end_silence_sec),
         dry_run=bool(args.dry_run),
     )
     full_book_wav_path, full_book_m4b_path, full_book_duration_sec = assemble_full_book(

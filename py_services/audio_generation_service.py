@@ -619,7 +619,7 @@ class AudioGenerationService:
         character_dir = self.audio_root / chapter_title / "audio_lines" / character_name
         manifest_path = character_dir / "manifest.json"
 
-        def _bootstrap_manifest_from_files() -> Dict[str, Any]:
+        def _discover_audio_files() -> Dict[int, str]:
             audio_files = [
                 path for path in character_dir.iterdir()
                 if path.is_file() and path.suffix.lower() in {".wav", ".mp3"}
@@ -639,9 +639,15 @@ class AudioGenerationService:
                 elif existing_name.lower().endswith(".mp3") and audio_file.suffix.lower() == ".wav":
                     by_line_id[line_id] = audio_file.name
 
+            return by_line_id
+
+        def _bootstrap_manifest_from_files() -> Dict[str, Any]:
+            by_line_id = _discover_audio_files()
+
             if not by_line_id:
                 return {
                     "updated": False,
+                    "added_count": 0,
                     "removed_count": 0,
                     "clip_count": 0,
                     "manifest": None,
@@ -689,6 +695,7 @@ class AudioGenerationService:
 
             return {
                 "updated": True,
+                "added_count": len(clips),
                 "removed_count": 0,
                 "clip_count": len(clips),
                 "manifest": manifest,
@@ -697,6 +704,7 @@ class AudioGenerationService:
         if not character_dir.exists() or not character_dir.is_dir():
             return {
                 "updated": False,
+                "added_count": 0,
                 "removed_count": 0,
                 "clip_count": 0,
                 "manifest": None,
@@ -717,10 +725,16 @@ class AudioGenerationService:
             clips = []
             manifest["clips"] = clips
 
-        kept_clips = []
+        discovered_audio = _discover_audio_files()
+        kept_clips_by_id: Dict[int, Dict[str, Any]] = {}
         removed_count = 0
         for clip in clips:
             if not isinstance(clip, dict):
+                removed_count += 1
+                continue
+
+            line_id = clip.get("id")
+            if not isinstance(line_id, int):
                 removed_count += 1
                 continue
 
@@ -734,9 +748,38 @@ class AudioGenerationService:
                 removed_count += 1
                 continue
 
-            kept_clips.append(clip)
+            kept_clips_by_id[line_id] = clip
 
-        updated = removed_count > 0
+        added_count = 0
+        generated_at = datetime.utcnow().isoformat() + "Z"
+        for line_id, file_name in discovered_audio.items():
+            existing_clip = kept_clips_by_id.get(line_id)
+            if existing_clip is None:
+                kept_clips_by_id[line_id] = {
+                    "id": line_id,
+                    "characterId": character_name.lower().replace(" ", "_"),
+                    "characterName": character_name,
+                    "text": "",
+                    "audioFile": file_name,
+                    "chapter": chapter_title,
+                    "sourceFile": chapter_title,
+                    "voiceId": "",
+                    "provider": "vibevoice_local",
+                    "emotion": None,
+                    "metadata": {
+                        "generatedAt": generated_at,
+                        "duration": 0.0,
+                    },
+                }
+                added_count += 1
+                continue
+
+            if existing_clip.get("audioFile") != file_name:
+                existing_clip["audioFile"] = file_name
+
+        kept_clips = [kept_clips_by_id[line_id] for line_id in sorted(kept_clips_by_id)]
+
+        updated = removed_count > 0 or added_count > 0
         manifest["clips"] = kept_clips
 
         metadata = manifest.get("metadata")
@@ -778,6 +821,7 @@ class AudioGenerationService:
 
         return {
             "updated": updated,
+            "added_count": added_count,
             "removed_count": removed_count,
             "clip_count": len(kept_clips),
             "manifest": manifest,

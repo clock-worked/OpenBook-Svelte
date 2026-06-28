@@ -1,5 +1,7 @@
 import { invoke } from '@tauri-apps/api/core';
+import { get } from 'svelte/store';
 import type { CharacterManifestStats } from '$lib/types';
+import { chapters } from '$lib/stores/bookState';
 
 interface ManifestLoadOptions {
   totalLines?: number;
@@ -29,6 +31,15 @@ function buildManifestPath(root: string, character: string): string {
   const cleanedCharacter = normalizeSegment(character);
   const separator = /\\/.test(trimmedRoot) ? '\\' : '/';
   return [trimmedRoot, 'audio_lines', cleanedCharacter, 'manifest.json'].join(separator);
+}
+
+function buildChapterManifestPath(root: string, chapterTitle: string, character: string): string {
+  if (!root) return '';
+  const trimmedRoot = root.replace(/[/\\]+$/, '');
+  const cleanedChapter = normalizeSegment(chapterTitle);
+  const cleanedCharacter = normalizeSegment(character);
+  const separator = /\\/.test(trimmedRoot) ? '\\' : '/';
+  return [trimmedRoot, cleanedChapter, 'audio_lines', cleanedCharacter, 'manifest.json'].join(separator);
 }
 
 function computeVoiceCounts(entries: any[]): Record<string, number> {
@@ -90,21 +101,50 @@ async function ensureManifestPathExists(path: string): Promise<void> {
   }
 }
 
+async function pathExists(path: string): Promise<boolean> {
+  try {
+    return await invoke<boolean>('path_exists', { path });
+  } catch (error) {
+    throw new Error(`Unable to verify manifest path ${path}: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
 async function readManifestFile(path: string): Promise<any[]> {
   const raw = await invoke<string>('read_json_file', { path });
   const parsed = JSON.parse(raw);
-  
+
   // v2 format: { formatVersion: "2.0", clips: [...], metadata: {...} }
   if (parsed?.formatVersion === '2.0' && Array.isArray(parsed.clips)) {
     return parsed.clips;
   }
-  
+
   // Legacy formats
   if (Array.isArray(parsed)) return parsed;
   if (Array.isArray((parsed as any)?.clips)) return (parsed as any).clips;
   if (parsed && typeof parsed === 'object') return Object.values(parsed);
-  
+
   return [];
+}
+
+async function loadChapterScopedManifestEntries(root: string, character: string): Promise<{ entries: any[]; paths: string[] }> {
+  const chapterList = get(chapters);
+  const chapterPaths = chapterList
+    .map((chapter) => String(chapter?.title || '').trim())
+    .filter((title): title is string => title.length > 0)
+    .map((title) => buildChapterManifestPath(root, title, character));
+
+  const entries: any[] = [];
+  const paths: string[] = [];
+
+  for (const manifestPath of chapterPaths) {
+    if (!(await pathExists(manifestPath))) continue;
+    const manifestEntries = await readManifestFile(manifestPath);
+    if (!manifestEntries.length) continue;
+    entries.push(...manifestEntries);
+    paths.push(manifestPath);
+  }
+
+  return { entries, paths };
 }
 
 export async function loadCharacterManifestSummary(
@@ -122,13 +162,24 @@ export async function loadCharacterManifestSummary(
   }
 
   const manifestPath = await resolveManifestPath(root, character, options?.manifestPathHint);
-  await ensureManifestPathExists(manifestPath);
 
-  let entries: any[];
-  try {
-    entries = await readManifestFile(manifestPath);
-  } catch (error) {
-    throw new Error(`Failed to read manifest at ${manifestPath}: ${error instanceof Error ? error.message : String(error)}`);
+  let entries: any[] = [];
+  let resolvedPath = manifestPath;
+
+  if (await pathExists(manifestPath)) {
+    try {
+      entries = await readManifestFile(manifestPath);
+    } catch (error) {
+      throw new Error(`Failed to read manifest at ${manifestPath}: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  } else if (!options?.manifestPathHint) {
+    const chapterScoped = await loadChapterScopedManifestEntries(root, character);
+    entries = chapterScoped.entries;
+    if (chapterScoped.paths.length > 0) {
+      resolvedPath = chapterScoped.paths.join('; ');
+    }
+  } else {
+    await ensureManifestPathExists(manifestPath);
   }
 
   if (!entries.length) {
@@ -137,7 +188,7 @@ export async function loadCharacterManifestSummary(
 
   const stats = buildStats(entries, options?.totalLines);
   manifestCache.set(key, stats);
-  return { stats, entries, path: manifestPath };
+  return { stats, entries, path: resolvedPath };
 }
 
 export function clearManifestCache(root?: string, character?: string): void {

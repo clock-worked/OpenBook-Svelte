@@ -99,9 +99,9 @@
   .playback-bar {
     width: 100%;
     height: 60px;
-    background: #ffffff;
-    border-top: 1px solid #e5e7eb;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    background: var(--app-surface);
+    border-top: 1px solid var(--app-border);
+    box-shadow: var(--app-shadow-md);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -126,7 +126,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: #1f2937;
+    background: var(--app-primary);
     border: none;
     cursor: pointer;
     display: flex;
@@ -137,7 +137,7 @@
   }
 
   .play-pause-btn:hover {
-    background: #111827;
+    background: var(--app-primary-hover);
     transform: scale(1.05);
   }
 
@@ -146,7 +146,7 @@
   }
 
   .play-pause-btn:disabled {
-    background: #9ca3af;
+    background: var(--app-border-strong);
     cursor: not-allowed;
     opacity: 0.6;
   }
@@ -165,29 +165,29 @@
     align-items: center;
     justify-content: center;
     border-radius: 6px;
-    color: #6b7280;
+    color: var(--app-text-muted);
     transition: all 0.2s ease;
     flex-shrink: 0;
   }
 
   .skip-btn:hover {
-    background: rgba(0, 0, 0, 0.05);
-    color: #1f2937;
+    background: var(--app-surface-hover);
+    color: var(--app-text);
   }
 
   .skip-btn:active {
-    background: rgba(0, 0, 0, 0.1);
+    background: var(--app-surface-active);
   }
 
   .skip-btn:disabled {
-    color: #d1d5db;
+    color: var(--app-text-subtle);
     cursor: not-allowed;
     opacity: 0.5;
   }
 
   .skip-btn:disabled:hover {
     background: transparent;
-    color: #d1d5db;
+    color: var(--app-text-subtle);
   }
 
   .speaker-btn {
@@ -200,7 +200,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 6px;
-    color: #6b7280;
+    color: var(--app-text-muted);
     transition: all 0.2s ease;
     flex-shrink: 0;
     padding: 0;
@@ -211,29 +211,29 @@
     height: 18px;
     object-fit: contain;
     display: block;
-    /* Convert to gray color matching skip buttons (#6b7280) */
+    /* Match the muted control tone used by the transport buttons. */
     filter: brightness(0) saturate(100%) invert(42%) sepia(5%) saturate(502%) hue-rotate(177deg) brightness(96%) contrast(89%);
     opacity: 1;
   }
   
   .speaker-btn:hover img {
-    /* Convert to darker gray on hover (#1f2937) */
+    /* Darken slightly on hover for parity with the button state. */
     filter: brightness(0) saturate(100%) invert(13%) sepia(5%) saturate(1016%) hue-rotate(177deg) brightness(96%) contrast(87%);
   }
   
   .speaker-btn:disabled img {
-    /* Convert to light gray when disabled (#d1d5db) */
+    /* Fade to a softer disabled tone. */
     filter: brightness(0) saturate(100%) invert(84%) sepia(4%) saturate(313%) hue-rotate(177deg) brightness(90%) contrast(89%);
     opacity: 0.5;
   }
 
   .speaker-btn:hover {
-    background: rgba(0, 0, 0, 0.05);
-    color: #1f2937;
+    background: var(--app-surface-hover);
+    color: var(--app-text);
   }
 
   .speaker-btn:active {
-    background: rgba(0, 0, 0, 0.1);
+    background: var(--app-surface-active);
   }
 
   .speaker-btn:disabled {

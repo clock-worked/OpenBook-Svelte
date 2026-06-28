@@ -22,7 +22,7 @@
 
 <style>
   .color-picker {
-    background: #fff;
+    background: var(--app-surface);
     border: none;
     border-radius: 8px;
     padding: 12px;
@@ -38,16 +38,16 @@
     width: 24px;
     height: 24px;
     border-radius: 6px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid var(--app-border);
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   }
 
   .color-swatch:hover {
     transform: scale(1.15);
-    border-color: #4285f4;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    border-color: var(--app-primary);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   }
 
   .color-swatch:active {
@@ -61,13 +61,13 @@
     width: 100%;
     margin-top: 6px;
     padding-top: 8px;
-    border-top: 1px solid #f0f0f0;
+    border-top: 1px solid var(--app-border-subtle);
   }
 
   .color-input {
     width: 36px;
     height: 28px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid var(--app-border);
     border-radius: 6px;
     background: transparent;
     padding: 2px;
@@ -76,7 +76,7 @@
   }
 
   .color-input:hover {
-    border-color: #4285f4;
+    border-color: var(--app-primary);
   }
 </style>
 

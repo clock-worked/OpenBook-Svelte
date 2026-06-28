@@ -1,7 +1,16 @@
-"""Generate one full-book chapter-title WAV, split it, and optionally distribute clips."""
+"""Generate batch chapter-title WAV files, split them, and distribute clips.
+
+Workflow:
+1. Discover chapter directories and derive chapter titles
+2. Split titles into batches
+3. Generate batch TTS audio for each batch with run_chapter_audio_test.py
+4. Split batch audio with ASR and copy resulting clips into destination chapters
+"""
 
 from __future__ import annotations
 
+# pylint: disable=C0115,C0116
+# ruff: noqa: D101, D103, E402, E501
 import argparse
 import json
 import os
@@ -79,16 +88,21 @@ class TitleEntry:
 
 
 def parse_args() -> argparse.Namespace:
-    """Parse command-line arguments for the book title audio workflow."""
+    """Parse command-line arguments for the batched chapter title audio workflow."""
 
     this_file = Path(__file__).resolve()
     default_runner = this_file.parent / "run_chapter_audio_test.py"
+    
+    # Try to use the repo's venv python if available, otherwise use system python
+    default_python = this_file.parents[3] / ".venv" / "Scripts" / "python.exe"
+    if not default_python.exists():
+        default_python = Path(sys.executable)
 
     parser = argparse.ArgumentParser(
         description=(
-            "Create one combined chapter-title narration file for a book, run the "
-            "existing ASR-backed splitter, and optionally copy the resulting title "
-            "clips into each chapter folder."
+            "Create chapter-title narration files for a book in batches, run the "
+            "existing ASR-backed splitter on each batch, and optionally copy the "
+            "resulting title clips into each chapter folder."
         )
     )
     parser.add_argument("--book-dir", type=Path, required=True)
@@ -97,7 +111,7 @@ def parse_args() -> argparse.Namespace:
         "--output-dir",
         type=Path,
         default=None,
-        help="Directory for the combined full WAV, manifests, and split clips.",
+        help="Directory for batch artifacts and chapter clip destinations.",
     )
     parser.add_argument(
         "--runner-script",
@@ -108,7 +122,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--python-bin",
         type=Path,
-        default=Path(sys.executable),
+        default=default_python,
         help="Python executable used to run the chapter audio test script.",
     )
     parser.add_argument(
@@ -139,27 +153,13 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help=(
             "Resolve each chapter destination from its existing title line, "
-            "preferring audio_lines/manifest.json and falling back to "
+            "preferring audio_lines manifests and falling back to "
             "audio_test_narrator/audio_test_manifest.json, instead of using the "
             "static subdir/filename destination."
         ),
     )
-    parser.add_argument(
-        "--engine",
-        choices=["openai", "whisperx"],
-        default="whisperx",
-    )
-    parser.add_argument(
-        "--device",
-        choices=["auto", "cuda", "cpu"],
-        default="cuda",
-    )
-    parser.add_argument(
-        "--compute-type",
-        choices=["auto", "float16", "int8", "int8_float16", "float32"],
-        default="float16",
-    )
-    parser.add_argument("--batch-size", type=int, default=0)
+    parser.add_argument("--batch-size", type=int, default=30)
+    parser.add_argument("--engine", choices=["openai", "whisperx"], default="whisperx")
     parser.add_argument(
         "--split-validation-engine",
         choices=["same", "openai", "whisperx"],
@@ -185,7 +185,28 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=1,
     )
+    parser.add_argument("--device", choices=["auto", "cuda", "cpu"], default="cuda")
+    parser.add_argument(
+        "--compute-type",
+        choices=["auto", "float16", "int8", "int8_float16", "float32"],
+        default="float16",
+    )
+    parser.add_argument("--batch-size-asr", type=int, default=0)
+    parser.add_argument("--max-chapters", type=int, default=0)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument(
+        "--reuse-existing-batches",
+        action="store_true",
+        help="Reuse existing batch_*/audio_test_manifest.json artifacts when present.",
+    )
+    parser.add_argument(
+        "--skip-clip-copy",
+        action="store_true",
+        help=(
+            "Only generate/split batch artifacts; do not copy clips into the "
+            "chapter directories."
+        ),
+    )
     return parser.parse_args()
 
 
@@ -399,7 +420,23 @@ def build_title_entries(
     return entries
 
 
-def write_source_files(
+def chunk_entries(entries: list[TitleEntry], batch_size: int) -> list[list[TitleEntry]]:
+    if batch_size <= 0:
+        raise ValueError("--batch-size must be > 0")
+    return [entries[index : index + batch_size] for index in range(0, len(entries), batch_size)]
+
+
+def build_runtime_env(workspace_root: Path) -> dict[str, str]:
+    """Prepare PATH so WhisperX CUDA dependencies resolve on Windows."""
+
+    env = os.environ.copy()
+    cudnn_bin = workspace_root / ".venv" / "Lib" / "site-packages" / "nvidia" / "cudnn" / "bin"
+    if cudnn_bin.exists():
+        env["PATH"] = str(cudnn_bin) + os.pathsep + env.get("PATH", "")
+    return env
+
+
+def write_batch_source_files(
     source_dir: Path,
     book_dir: Path,
     entries: list[TitleEntry],
@@ -441,8 +478,9 @@ def write_source_files(
     titles_index_path.write_text(
         json.dumps(
             {
-                "formatVersion": "chapter-title-index/v1",
+                "formatVersion": "chapter-title-batch-index/v1",
                 "bookDir": str(book_dir.resolve()),
+                "lineCount": len(entries),
                 "entries": [asdict(entry) for entry in entries],
             },
             indent=2,
@@ -458,32 +496,6 @@ def write_source_files(
     }
 
 
-def clean_generated_outputs(output_dir: Path, full_audio_path: Path) -> None:
-    """Remove previous generated artifacts in the dedicated title output folder."""
-
-    output_dir.mkdir(parents=True, exist_ok=True)
-
-    removable_dirs = [
-        output_dir / "splits",
-        output_dir / "generation_chunks",
-    ]
-    removable_files = [
-        full_audio_path,
-        output_dir / "audio_test_manifest.json",
-        output_dir / "transcription_result.json",
-        output_dir / "split_validation_report.json",
-        output_dir / "distribution_manifest.json",
-    ]
-
-    for path in removable_dirs:
-        if path.exists():
-            shutil.rmtree(path)
-
-    for path in removable_files:
-        if path.exists():
-            path.unlink()
-
-
 def build_runner_command(
     *,
     args: argparse.Namespace,
@@ -492,7 +504,7 @@ def build_runner_command(
     output_dir: Path,
     full_audio_path: Path,
 ) -> list[str]:
-    """Build the existing chapter audio runner command for the title source."""
+    """Build the chapter audio runner command for the title batch."""
 
     command = [
         str(args.python_bin.resolve()),
@@ -528,75 +540,130 @@ def build_runner_command(
         "--no-line-chunk-generate",
     ]
 
-    if args.batch_size > 0:
-        command.extend(["--batch-size", str(args.batch_size)])
+    if args.batch_size_asr > 0:
+        command.extend(["--batch-size", str(args.batch_size_asr)])
 
     return command
 
 
-def build_runtime_env(workspace_root: Path) -> dict[str, str]:
-    """Prepare PATH so WhisperX CUDA dependencies resolve on Windows."""
+def clear_generated_outputs(output_dir: Path) -> None:
+    """Remove previous generated artifacts in the batches folder."""
 
-    env = os.environ.copy()
-    cudnn_bin = workspace_root / ".venv" / "Lib" / "site-packages" / "nvidia" / "cudnn" / "bin"
-    if cudnn_bin.exists():
-        current_path = env.get("PATH", "")
-        env["PATH"] = str(cudnn_bin) + os.pathsep + current_path
-    return env
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    removable_files = [
+        output_dir / "chapter_title_batches.json",
+        output_dir / "chapter_title_clips.json",
+        output_dir / "chapter_title_clips.txt",
+    ]
+
+    for path in removable_files:
+        if path.exists():
+            path.unlink()
+
+    for batch_dir in output_dir.glob("batch_*"):
+        if batch_dir.is_dir():
+            shutil.rmtree(batch_dir)
 
 
-def distribute_split_clips(*, book_dir: Path, output_dir: Path) -> Path:
-    """Copy generated split clips into their intended chapter destinations."""
+def load_batch_index(index_path: Path) -> dict[int, dict[str, Any]]:
+    """Load batch index mapping line IDs to title entries."""
 
-    result_manifest_path = output_dir / "audio_test_manifest.json"
+    payload = json.loads(index_path.read_text(encoding="utf-8"))
+    raw_entries = payload.get("entries")
+    if not isinstance(raw_entries, list):
+        raise ValueError(f"Invalid batch index format: {index_path}")
+
+    by_line_id: dict[int, dict[str, Any]] = {}
+    for entry in raw_entries:
+        if not isinstance(entry, dict):
+            continue
+        line_id = entry.get("line_id")
+        if isinstance(line_id, int):
+            by_line_id[line_id] = entry
+    return by_line_id
+
+
+def copy_batch_clips(
+    *,
+    batch_dir: Path,
+    book_dir: Path,
+) -> list[dict[str, Any]]:
+    """Copy generated split title clips into their chapter destinations."""
+
+    result_manifest_path = batch_dir / "audio_test_manifest.json"
+    index_path = batch_dir / "source" / "titles_index.json"
     if not result_manifest_path.exists():
         raise FileNotFoundError(f"Split manifest not found: {result_manifest_path}")
+    if not index_path.exists():
+        raise FileNotFoundError(f"Batch index not found: {index_path}")
 
-    payload = json.loads(result_manifest_path.read_text(encoding="utf-8"))
-    raw_lines = payload.get("lines")
+    manifest_payload = json.loads(result_manifest_path.read_text(encoding="utf-8"))
+    raw_lines = manifest_payload.get("lines")
     if not isinstance(raw_lines, list):
         raise ValueError(f"Invalid split manifest format: {result_manifest_path}")
 
-    distribution_records: list[dict[str, Any]] = []
+    entries_by_line_id = load_batch_index(index_path)
+
+    copied: list[dict[str, Any]] = []
     for line in raw_lines:
         if not isinstance(line, dict):
             continue
+        try:
+            line_id = int(line.get("id"))
+        except (TypeError, ValueError):
+            continue
+
+        batch_entry = entries_by_line_id.get(line_id)
+        if not isinstance(batch_entry, dict):
+            continue
+
         audio_path = Path(str(line.get("audioPath", "")).strip())
         source_output = str(line.get("sourceOutput", "")).strip()
-        if not source_output:
-            continue
         if not audio_path.exists():
             raise FileNotFoundError(f"Split audio file not found: {audio_path}")
+        if not source_output:
+            continue
 
         destination_path = (book_dir / Path(source_output)).resolve()
         destination_path.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(audio_path, destination_path)
 
-        distribution_records.append(
+        chapter_dir_name = batch_entry.get("chapter_dir_name", "")
+        copied.append(
             {
-                "id": line.get("id"),
-                "text": line.get("text"),
-                "chapterDir": Path(source_output).parts[0] if Path(source_output).parts else None,
+                "lineId": line_id,
+                "chapterDir": chapter_dir_name,
+                "text": str(batch_entry.get("spoken_text", "")),
                 "sourceAudioPath": str(audio_path),
                 "destinationPath": str(destination_path),
             }
         )
 
-    distribution_manifest_path = output_dir / "distribution_manifest.json"
-    distribution_manifest_path.write_text(
+    return copied
+
+
+def write_clip_reports(output_dir: Path, copied_clips: list[dict[str, Any]]) -> None:
+    """Write aggregated clip index files."""
+
+    (output_dir / "chapter_title_clips.json").write_text(
         json.dumps(
             {
-                "formatVersion": "chapter-title-distribution/v1",
-                "bookDir": str(book_dir.resolve()),
-                "clipCount": len(distribution_records),
-                "clips": distribution_records,
+                "formatVersion": "chapter-title-audio-clips/v1",
+                "count": len(copied_clips),
+                "clips": copied_clips,
             },
             indent=2,
             ensure_ascii=False,
         ),
         encoding="utf-8",
     )
-    return distribution_manifest_path
+
+    lines = [f"{clip['chapterDir']}: {clip['text']}" for clip in copied_clips]
+    (output_dir / "chapter_title_clips.txt").write_text(
+        "\n".join(lines) + ("\n" if lines else ""),
+        encoding="utf-8",
+    )
 
 
 def refresh_audio_test_metadata(*, entries: list[TitleEntry]) -> list[Path]:
@@ -671,8 +738,8 @@ def refresh_audio_test_metadata(*, entries: list[TitleEntry]) -> list[Path]:
     return updated_paths
 
 
-def main() -> None:
-    """Prepare, generate, split, and optionally distribute chapter title audio."""
+def main() -> int:
+    """Prepare, generate, split, and optionally distribute chapter title audio in batches."""
 
     args = parse_args()
 
@@ -680,10 +747,11 @@ def main() -> None:
     sample_path = args.sample_path.resolve()
     runner_script = args.runner_script.resolve()
     python_bin = args.python_bin.resolve()
+
     output_dir = (
         args.output_dir.resolve()
         if args.output_dir is not None
-        else (book_dir / f"_chapter_title_audio_{sanitize_voice_label(sample_path)}").resolve()
+        else (book_dir / f"_chapter_title_audio_batches_{sanitize_voice_label(sample_path)}").resolve()
     )
 
     if not book_dir.exists():
@@ -699,6 +767,9 @@ def main() -> None:
     if not chapters:
         raise RuntimeError(f"No chapter folders found in: {book_dir}")
 
+    if args.max_chapters > 0:
+        chapters = chapters[: args.max_chapters]
+
     entries = build_title_entries(
         chapters=chapters,
         chapter_title_subdir=args.chapter_title_subdir,
@@ -706,49 +777,98 @@ def main() -> None:
         copy_to_existing_audio_test_title_lines=bool(args.copy_to_existing_audio_test_title_lines),
     )
 
-    source_dir = output_dir / "source"
-    source_paths = write_source_files(source_dir, book_dir, entries)
-    voice_label = sanitize_voice_label(sample_path)
-    full_audio_path = output_dir / f"{book_dir.name}-chapter-titles-{voice_label}-full.wav"
-    clean_generated_outputs(output_dir, full_audio_path)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    if not args.reuse_existing_batches and not args.dry_run:
+        clear_generated_outputs(output_dir)
 
-    command = build_runner_command(
-        args=args,
-        source_dir=source_dir,
-        source_paths=source_paths,
-        output_dir=output_dir,
-        full_audio_path=full_audio_path,
-    )
+    batches = chunk_entries(entries, args.batch_size) if entries else []
 
-    print(f"Prepared {len(entries)} chapter titles.")
-    print(f"Source chapter text: {source_paths['chapterText']}")
-    print(f"Source manifest: {source_paths['manifest']}")
-    print(f"Output directory: {output_dir}")
-    print(f"Full title audio: {full_audio_path}")
-    print("Command:")
-    print(" ".join(command))
+    print(f"Book dir: {book_dir}")
+    print(f"Sample: {sample_path}")
+    print(f"Total chapters: {len(entries)}")
+    print(f"Batch count: {len(batches)}")
+    print(f"Batch size: {args.batch_size}")
 
-    if args.dry_run:
-        return
+    if args.dry_run or not entries:
+        return 0
 
     workspace_root = PATHS["repoRoot"]
-    subprocess.run(
-        command,
-        cwd=str(workspace_root),
-        env=build_runtime_env(workspace_root),
-        check=True,
-    )
+    env = build_runtime_env(workspace_root)
+    all_clips: list[dict[str, Any]] = []
+    batch_records: list[dict[str, Any]] = []
 
-    if args.copy_to_chapters:
-        distribution_manifest_path = distribute_split_clips(
-            book_dir=book_dir,
-            output_dir=output_dir,
+    for batch_index, batch_entries in enumerate(batches, start=1):
+        batch_id = f"batch_{batch_index:04d}"
+        batch_dir = output_dir / batch_id
+        batch_manifest_path = batch_dir / "audio_test_manifest.json"
+        source_dir = batch_dir / "source"
+        voice_label = sanitize_voice_label(sample_path)
+        full_audio_path = batch_dir / f"{book_dir.name}-chapter-titles-{batch_id}-{voice_label}-full.wav"
+
+        should_reuse = args.reuse_existing_batches and batch_manifest_path.exists()
+
+        if not should_reuse:
+            if batch_dir.exists():
+                shutil.rmtree(batch_dir)
+            source_paths = write_batch_source_files(source_dir, book_dir, batch_entries)
+            command = build_runner_command(
+                args=args,
+                source_dir=source_dir,
+                source_paths=source_paths,
+                output_dir=batch_dir,
+                full_audio_path=full_audio_path,
+            )
+
+            print(f"Running {batch_id} ({len(batch_entries)} titles)")
+            subprocess.run(command, cwd=str(workspace_root), env=env, check=True)
+        else:
+            print(f"Reusing existing generated artifacts for {batch_id}: {batch_manifest_path}")
+
+        copied_clips: list[dict[str, Any]] = []
+        if not args.skip_clip_copy:
+            copied_clips = copy_batch_clips(batch_dir=batch_dir, book_dir=book_dir)
+            all_clips.extend(copied_clips)
+            print(f"Copied clips for {batch_id}: {len(copied_clips)}")
+
+        batch_records.append(
+            {
+                "batchId": batch_id,
+                "lineCount": len(batch_entries),
+                "batchDir": str(batch_dir),
+                "manifestPath": str(batch_manifest_path),
+                "clipCount": len(copied_clips),
+            }
         )
-        print(f"Copied split title clips into chapter folders: {distribution_manifest_path}")
+
+    (output_dir / "chapter_title_batches.json").write_text(
+        json.dumps(
+            {
+                "formatVersion": "chapter-title-batches/v1",
+                "bookDir": str(book_dir),
+                "samplePath": str(sample_path),
+                "chapterCount": len(entries),
+                "batchCount": len(batches),
+                "clipCount": len(all_clips),
+                "batches": batch_records,
+            },
+            indent=2,
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+    print(f"Wrote batch summary: {output_dir / 'chapter_title_batches.json'}")
+
+    if not args.skip_clip_copy:
+        write_clip_reports(output_dir, all_clips)
+        print(f"Wrote clip index: {output_dir / 'chapter_title_clips.json'}")
+
         if args.refresh_audio_test_metadata:
             updated_paths = refresh_audio_test_metadata(entries=entries)
             print(f"Updated narrator title metadata files: {len(updated_paths)}")
 
+    print(f"Total clips: {len(all_clips)}")
+    return 0
+
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

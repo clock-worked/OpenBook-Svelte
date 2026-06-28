@@ -1106,8 +1106,8 @@
     align-items: center;
     gap: 10px;
     padding: 12px 14px;
-    background:  #ffffff;
-    border: 1px;
+    background: var(--app-surface-raised);
+    border: 1px solid var(--app-border);
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -1117,14 +1117,14 @@
 
   .chapter-header:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--app-shadow-md);
   }
 
   .chapter-caret {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #000000;
+    color: var(--app-text);
     flex-shrink: 0;
   }
 
@@ -1138,13 +1138,13 @@
   .chapter-name {
     font-size: 15px;
     font-weight: 600;
-    color: #000000;
+    color: var(--app-text);
     letter-spacing: 0.01em;
   }
 
   .chapter-count {
     font-size: 12px;
-    color: rgba(0, 0, 0, 0.85);
+    color: var(--app-text-muted);
   }
 
   .chapter-characters {
@@ -1155,10 +1155,10 @@
   }
 
   .character-card {
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--app-border);
     border-radius: 8px;
-    background: #fff;
-    box-shadow: 0 2px 4px rgba(15, 23, 42, 0.04);
+    background: var(--app-surface-raised);
+    box-shadow: var(--app-shadow-sm);
     overflow: hidden;
   }
 
@@ -1167,7 +1167,7 @@
     align-items: center;
     gap: 12px;
     padding: 10px 12px;
-    border-bottom: 1px solid #f3f4f6;
+    border-bottom: 1px solid var(--app-border-subtle);
   }
 
   .caret-btn {
@@ -1179,13 +1179,14 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    color: #6b7280;
+    color: var(--app-text-muted);
   }
 
   .line-count-badge {
     font-size: 12px;
     font-weight: 600;
-    color: #222;
+    color: #111827 !important;
+    -webkit-text-fill-color: #111827;
     padding: 3px 8px;
     border-radius: 8px;
     white-space: nowrap;
@@ -1227,12 +1228,12 @@
   .character-name {
     font-weight: 600;
     font-size: 15px;
-    color: #1f2937;
+    color: var(--app-text);
   }
 
   .character-stats {
     font-size: 12px;
-    color: #6b7280;
+    color: var(--app-text-muted);
   }
 
   .character-body {
@@ -1240,12 +1241,12 @@
     flex-direction: column;
     gap: 12px;
     padding: 12px;
-    background: #f9fafb;
+    background: var(--app-surface-subtle);
   }
 
   .character-section {
-    background: #fff;
-    border: 1px solid #e5e7eb;
+    background: var(--app-surface-raised);
+    border: 1px solid var(--app-border);
     border-radius: 6px;
     padding: 12px;
     display: flex;
@@ -1259,7 +1260,7 @@
     justify-content: space-between;
     gap: 8px;
     font-weight: 600;
-    color: #1f2937;
+    color: var(--app-text);
   }
 
   .section-content {
@@ -1279,11 +1280,11 @@
     padding: 6px 10px;
     transition: background-color 0.15s ease;
     background: transparent;
-    color: #2563eb;
+    color: var(--app-primary-text);
   }
 
   .ghost-btn:hover {
-    background: rgba(37, 99, 235, 0.08);
+    background: var(--app-primary-soft);
   }
 
   .ghost-btn:disabled {
@@ -1294,23 +1295,23 @@
   .field-label {
     font-size: 12px;
     font-weight: 600;
-    color: #4b5563;
+    color: var(--app-text-muted);
   }
 
   .provider-select {
     width: 100%;
     padding: 6px 8px;
     border-radius: 6px;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--app-border);
     font-size: 13px;
-    color: #111827;
-    background: #fff;
+    color: var(--app-text);
+    background: var(--app-surface-raised);
   }
 
   .provider-select:focus {
     outline: none;
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    border-color: var(--app-primary);
+    box-shadow: var(--app-focus-ring);
   }
 
   .voice-meta {
@@ -1318,7 +1319,7 @@
     flex-direction: column;
     gap: 2px;
     font-size: 12px;
-    color: #374151;
+    color: var(--app-text);
   }
 
   .meta-name {
@@ -1326,7 +1327,7 @@
   }
 
   .meta-updated {
-    color: #6b7280;
+    color: var(--app-text-muted);
   }
 
   :global(.spin) {
@@ -1350,16 +1351,16 @@
     gap: 6px;
     padding: 6px 12px;
     border-radius: 6px;
-    border: 1px solid #e5e7eb;
-    background: #fff;
+    border: 1px solid var(--app-border);
+    background: var(--app-surface-raised);
     cursor: pointer;
     font-size: 14px;
-    color: #1f2937;
+    color: var(--app-text);
     transition: background-color 0.15s ease;
   }
 
   .toolbar-btn:hover:not(:disabled) {
-    background: #f9fafb;
+    background: var(--app-surface-hover);
   }
 
   .toolbar-btn:disabled {
@@ -1376,29 +1377,29 @@
 
   .toolbar-label {
     font-size: 13px;
-    color: #6b7280;
+    color: var(--app-text-muted);
     font-weight: 500;
   }
 
   .audio-path-input {
     padding: 4px 10px;
     border-radius: 4px;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--app-border);
     font-size: 12px;
-    color: #111827;
-    background: #fff;
+    color: var(--app-text);
+    background: var(--app-surface-raised);
     font-family: 'Courier New', monospace;
     min-width: 350px;
   }
 
   .audio-path-input:focus {
     outline: none;
-    border-color: #2563eb;
-    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+    border-color: var(--app-primary);
+    box-shadow: var(--app-focus-ring);
   }
 
   .audio-path-input::placeholder {
-    color: #9ca3af;
+    color: var(--app-text-subtle);
     font-style: italic;
   }
 
@@ -1414,18 +1415,18 @@
     flex: 1;
     padding: 4px 8px;
     border-radius: 4px;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--app-border);
     font-size: 12px;
-    color: #111827;
-    background: #fff;
+    color: var(--app-text);
+    background: var(--app-surface-raised);
     cursor: pointer;
     min-width: 200px;
   }
 
   .inline-voice-select:focus {
     outline: none;
-    border-color: #2563eb;
-    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+    border-color: var(--app-primary);
+    box-shadow: var(--app-focus-ring);
   }
 
   .character-name-with-badge {
@@ -1470,13 +1471,13 @@
   .info-label {
     font-size: 13px;
     font-weight: 600;
-    color: #4b5563;
+    color: var(--app-text-muted);
     min-width: 80px;
   }
 
   .info-value {
     font-size: 13px;
-    color: #111827;
+    color: var(--app-text);
   }
 
 </style>

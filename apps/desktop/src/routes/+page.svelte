@@ -2,13 +2,15 @@
   import { goto } from '$app/navigation';
   import { bookRoot, chapters, bookRootAbsolutePath, audioRoot } from '$lib/stores/bookState';
   import { selectBookDirectory } from '$lib/services/fs';
-  import { loadProjectFromHandle, loadProjectFromAbsolutePath } from '$lib/services/landingProject';
+  import { loadProjectFromAbsolutePath } from '$lib/services/landingProject';
   import { onMount } from 'svelte';
+  import { tick } from 'svelte';
   import { get } from 'svelte/store';
   import { isFileSystemAccessApiSupported } from '$lib/utils/feature-detection';
   import { clearStoredProjectHandle } from '$lib/services/persistence';
   import { applyProjectHandle, getStoredProjectAvailability, restoreStoredProject } from '$lib/services/projectSession';
   import { beginLandingAction, clearFlagAfterDelay } from '$lib/services/landingInteraction';
+  import { syncBookRootFromHandle } from '$lib/services/fs';
 
   // Dev mode detection
   const isDev = import.meta.env.DEV;
@@ -46,6 +48,10 @@
   let hyperspaceCallback: (() => void) | null = null;
   let lastClickTime = 0;
   const DEBOUNCE_MS = 500; // Prevent rapid clicks
+  const TARGET_FRAME_MS = 1000 / 30;
+  const MAX_RENDER_DPR = 1.25;
+  const MIN_STAR_COUNT = 500;
+  const MAX_STAR_COUNT = 1200;
   
   // Stored project state
   let hasStoredProject = false;
@@ -102,6 +108,7 @@
 
     try {
       isLoadingStoredProject = true;
+      await tick();
       
       console.log('[Landing] Attempting to continue with stored project...');
       const restored = await restoreStoredProject({ requestPermission: true, touchLastAccessed: true });
@@ -115,20 +122,22 @@
       }
 
       console.log('[Landing] Found stored project:', restored.name);
-      console.log('[Landing] Scanning chapters...');
-      const loadResult = await loadProjectFromHandle({
+      chapters.set([]);
+      void syncBookRootFromHandle({
         handle: restored.handle,
         audioRootPath: get(audioRoot) || null,
+      }).then((rootSync) => {
+        bookRootAbsolutePath.set(rootSync.resolvedBookRoot);
+      }).catch((error) => {
+        console.warn('[Landing] Background root sync failed:', error);
       });
-      bookRootAbsolutePath.set(loadResult.resolvedBookRoot);
-      const chapterList = loadResult.chapters;
-      console.log('[Landing] Found', chapterList.length, 'chapters');
-      chapters.set(chapterList);
       
       // Trigger hyperspace animation before navigation
       if (hyperspaceCallback) {
         console.log('[Landing] Triggering hyperspace animation...');
         hyperspaceCallback();
+      } else {
+        goto('/chapter');
       }
     } catch (error) {
       console.error('[Landing] Error loading stored project:', error);
@@ -160,6 +169,7 @@
 
     try {
       isPickingFolder = true;
+      await tick();
       
       // Small delay to ensure the click event is fully processed
       // and the browser recognizes it as a user gesture
@@ -176,17 +186,15 @@
       console.log('[Landing] Selected folder:', dirHandle.name);
       // Store the handle for use in other pages
       applyProjectHandle(dirHandle);
-
-      // Scan and sync backend roots
-      console.log('[Landing] Scanning chapters...');
-      const loadResult = await loadProjectFromHandle({
+      chapters.set([]);
+      void syncBookRootFromHandle({
         handle: dirHandle,
         audioRootPath: get(audioRoot) || null,
+      }).then((rootSync) => {
+        bookRootAbsolutePath.set(rootSync.resolvedBookRoot);
+      }).catch((error) => {
+        console.warn('[Landing] Background root sync failed:', error);
       });
-      bookRootAbsolutePath.set(loadResult.resolvedBookRoot);
-      const chapterList = loadResult.chapters;
-      console.log('[Landing] Found', chapterList.length, 'chapters');
-      chapters.set(chapterList);
       
       // Update stored project state
       hasStoredProject = true;
@@ -196,6 +204,8 @@
       if (hyperspaceCallback) {
         console.log('[Landing] Triggering hyperspace animation...');
         hyperspaceCallback();
+      } else {
+        goto('/chapter');
       }
     } catch (error) {
       // Log the error for debugging
@@ -289,8 +299,9 @@
     const centery = ch / 2;
     const centerx = cw / 2;
 
-    const startTime = new Date().getTime();
+    const startTime = performance.now();
     let currentTime = 0;
+    let lastFrameTime = 0;
 
     const stars: Star[] = [];
     let collapse = false; // if hovered
@@ -305,8 +316,6 @@
 
     // Create canvas
     canvas = document.createElement('canvas');
-    canvas.width = cw;
-    canvas.height = ch;
     blackholeContainer.appendChild(canvas);
     const context = canvas.getContext("2d");
 
@@ -314,20 +323,24 @@
 
     context.globalCompositeOperation = "multiply";
 
-    function setDPI(canvas: HTMLCanvasElement, dpi: number) {
-      // Set up CSS size if it's not set up already
-      if (!canvas.style.width)
-        canvas.style.width = canvas.width + 'px';
-      if (!canvas.style.height)
-        canvas.style.height = canvas.height + 'px';
+    function getRenderDpr() {
+      return Math.min(window.devicePixelRatio || 1, MAX_RENDER_DPR);
+    }
 
-      const scaleFactor = dpi / 96;
-      canvas.width = Math.ceil(canvas.width * scaleFactor);
-      canvas.height = Math.ceil(canvas.height * scaleFactor);
-      const ctx = canvas.getContext('2d');
-      if (ctx) {
-        ctx.scale(scaleFactor, scaleFactor);
-      }
+    function setCanvasResolution(targetCanvas: HTMLCanvasElement, width: number, height: number) {
+      if (!context) return;
+      const renderDpr = getRenderDpr();
+      targetCanvas.style.width = `${width}px`;
+      targetCanvas.style.height = `${height}px`;
+      targetCanvas.width = Math.max(1, Math.floor(width * renderDpr));
+      targetCanvas.height = Math.max(1, Math.floor(height * renderDpr));
+      context.setTransform(renderDpr, 0, 0, renderDpr, 0, 0);
+    }
+
+    function getStarCount(width: number, height: number) {
+      const viewportArea = width * height;
+      const scaledCount = Math.round(viewportArea / 1600);
+      return Math.max(MIN_STAR_COUNT, Math.min(MAX_STAR_COUNT, scaledCount));
     }
 
     function rotate(cx: number, cy: number, x: number, y: number, angle: number) {
@@ -339,7 +352,8 @@
       return [nx, ny];
     }
 
-    setDPI(canvas, 192);
+    setCanvasResolution(canvas, cw, ch);
+    const starCount = getStarCount(cw, ch);
 
     function createStar(): Star {
       // Get a weighted random number, so that the majority of stars will form in the center of the orbit
@@ -576,9 +590,20 @@
     }
 
     // Animation loop
-    function loop() {
-      const now = new Date().getTime();
-      currentTime = (now - startTime) / 50;
+    function loop(frameTime: number) {
+      if (document.hidden) {
+        animationId = requestAnimationFrame(loop);
+        return;
+      }
+
+      if (lastFrameTime !== 0 && frameTime - lastFrameTime < TARGET_FRAME_MS) {
+        animationId = requestAnimationFrame(loop);
+        return;
+      }
+
+      lastFrameTime = frameTime;
+
+      currentTime = (frameTime - startTime) / 50;
 
       if (!context) return;
 
@@ -676,10 +701,10 @@
       if (!context) return;
       context.fillStyle = 'rgba(25,25,25,1)'; // Initial clear of the canvas
       context.fillRect(0, 0, cw, ch);
-      for (let i = 0; i < 2500; i++) { // create 2500 stars
+      for (let i = 0; i < starCount; i++) {
         createStar();
       }
-      loop();
+      animationId = requestAnimationFrame(loop);
     }
 
     // Set up implosion callback

@@ -461,7 +461,7 @@
 
   .folder-btn:hover:not(:disabled) {
     background: var(--app-surface-hover);
-    color: var(--app-primary-text);
+    color: var(--app-primary);
   }
 
   .folder-btn:active:not(:disabled) {
@@ -489,7 +489,7 @@
 
   .reload-btn:hover:not(:disabled) {
     background: var(--app-surface-hover);
-    color: var(--app-primary-text);
+    color: var(--app-primary);
   }
 
   .reload-btn:active:not(:disabled) {
@@ -522,7 +522,7 @@
   .icon-btn:hover:not(:disabled) {
     background: var(--app-surface-hover);
     border-color: var(--app-primary);
-    color: var(--app-primary-text);
+    color: var(--app-primary);
   }
 
   .icon-btn:active:not(:disabled) {
@@ -685,7 +685,7 @@
 
   .mode-btn:hover:not(:disabled) {
     background: var(--app-surface-hover);
-    color: var(--app-primary-text);
+    color: var(--app-primary);
   }
 
   .mode-btn:active:not(:disabled) {
@@ -694,8 +694,8 @@
   }
 
   .mode-btn.active {
-    background: var(--app-primary-soft);
-    color: var(--app-primary-text);
+    background: var(--app-primary);
+    color: var(--app-text-inverse);
   }
 
   .mode-btn:disabled {

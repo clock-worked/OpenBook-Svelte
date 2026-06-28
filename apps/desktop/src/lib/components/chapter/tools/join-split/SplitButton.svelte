@@ -37,11 +37,11 @@
 <style>
   .split-button {
     position: fixed;
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
     border-radius: 10px;
     padding: 6px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--app-shadow-md);
     z-index: 1000;
   }
 
@@ -53,9 +53,9 @@
     transform: translateX(-50%) rotate(45deg);
     width: 10px;
     height: 10px;
-    background: #ffffff;
-    border-left: 1px solid #e0e0e0;
-    border-top: 1px solid #e0e0e0;
+    background: var(--app-surface);
+    border-left: 1px solid var(--app-border);
+    border-top: 1px solid var(--app-border);
     box-shadow: -2px -2px 2px rgba(0, 0, 0, 0.02);
   }
 
@@ -65,8 +65,8 @@
     gap: 6px;
     padding: 6px 12px;
     border: none;
-    background: #1a73e8;
-    color: #ffffff;
+    background: var(--app-primary);
+    color: var(--app-text-inverse);
     border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
@@ -75,16 +75,17 @@
   }
 
   .btn:hover {
-    background: #1557b0;
+    background: var(--app-primary-hover);
   }
 
   .btn:active {
-    background: #0d47a1;
+    background: var(--app-primary-active);
   }
 
   .btn svg {
     flex-shrink: 0;
   }
+
 </style>
 
 

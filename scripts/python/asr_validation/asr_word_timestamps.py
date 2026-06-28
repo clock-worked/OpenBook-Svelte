@@ -11,10 +11,22 @@ from pathlib import Path
 from typing import Any
 
 import torch
+from torch.utils.data import Dataset
 
 
 WORD_RE = re.compile(r"[a-z0-9']+")
 CLIP_NAME_RE = re.compile(r"^(?P<line_id>\d+)-(?P<character>.+)$")
+
+
+class AudioPathDataset(Dataset):
+    def __init__(self, audio_paths: list[Path]):
+        self._audio_paths = [str(audio_path) for audio_path in audio_paths]
+
+    def __len__(self) -> int:
+        return len(self._audio_paths)
+
+    def __getitem__(self, index: int) -> str:
+        return self._audio_paths[index]
 
 
 def utc_now_iso() -> str:
@@ -294,6 +306,83 @@ def transcribe_with_words(asr_pipeline, audio_path: Path, chunk_length_s: int, b
         pass
 
     return asr_pipeline(str(audio_path), **base_kwargs)
+
+
+def transcribe_many_with_words(
+    asr_pipeline,
+    audio_paths: list[Path],
+    chunk_length_s: int,
+    batch_size: int,
+) -> list[dict[str, Any]]:
+    if not audio_paths:
+        return []
+
+    if hasattr(asr_pipeline, "transcribe"):
+        results: list[dict[str, Any]] = []
+        for audio_path in audio_paths:
+            try:
+                results.append(
+                    transcribe_with_words(
+                        asr_pipeline=asr_pipeline,
+                        audio_path=audio_path,
+                        chunk_length_s=chunk_length_s,
+                        batch_size=batch_size,
+                    )
+                )
+            except Exception as exc:
+                results.append({"_asr_error": str(exc), "text": ""})
+        return results
+
+    model_type = ""
+    try:
+        model_type = str(getattr(asr_pipeline.model.config, "model_type", "")).lower()
+    except (AttributeError, TypeError):
+        model_type = ""
+
+    base_kwargs: dict[str, Any] = {
+        "batch_size": batch_size,
+    }
+    if model_type != "whisper":
+        base_kwargs["chunk_length_s"] = chunk_length_s
+
+    batch_inputs = AudioPathDataset(audio_paths)
+
+    def _normalize_batch_result(result: Any) -> list[dict[str, Any]]:
+        if isinstance(result, list):
+            return [item if isinstance(item, dict) else {"text": str(item)} for item in result]
+        if isinstance(result, dict):
+            return [result]
+        return [{"text": str(result)}]
+
+    try:
+        results = _normalize_batch_result(
+            list(asr_pipeline(batch_inputs, return_timestamps="word", **base_kwargs))
+        )
+    except (TypeError, ValueError, RuntimeError, IndexError):
+        try:
+            results = _normalize_batch_result(
+                list(asr_pipeline(batch_inputs, return_timestamps=True, **base_kwargs))
+            )
+        except (TypeError, ValueError, RuntimeError, IndexError):
+            results = []
+
+    if len(results) == len(audio_paths):
+        return results
+
+    fallback_results: list[dict[str, Any]] = []
+    for audio_path in audio_paths:
+        try:
+            fallback_results.append(
+                transcribe_with_words(
+                    asr_pipeline=asr_pipeline,
+                    audio_path=audio_path,
+                    chunk_length_s=chunk_length_s,
+                    batch_size=batch_size,
+                )
+            )
+        except Exception as exc:
+            fallback_results.append({"_asr_error": str(exc), "text": ""})
+    return fallback_results
 
 
 def build_word_entries(chunks: list[dict[str, Any]]) -> list[dict[str, Any]]:

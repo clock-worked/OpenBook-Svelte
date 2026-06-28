@@ -200,6 +200,16 @@ def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8", errors="replace"))
 
 
+def safe_name(value: str) -> str:
+    """Convert a value into a filesystem-safe slug."""
+
+    cleaned = "".join(char if char.isalnum() or char in {"_", "-"} else "-" for char in value.strip())
+    while "--" in cleaned:
+        cleaned = cleaned.replace("--", "-")
+    cleaned = cleaned.strip("-")
+    return cleaned or "unknown"
+
+
 def write_json(path: Path, payload: dict[str, Any]) -> None:
     """Write JSON to disk with stable formatting."""
 
@@ -276,9 +286,26 @@ def detect_proverb_end_id(chapter_name: str, lines: list[dict[str, Any]]) -> int
 
 
 def resolve_title_path(chapter_dir: Path) -> Path:
-    """Return the expected title clip path for a chapter."""
+    """Resolve a title clip from local or centralized title-audio layouts."""
 
-    return (chapter_dir / "title_audio" / "chapter-title-stephen-fry.wav").resolve()
+    local_path = (chapter_dir / "title_audio" / "chapter-title-stephen-fry.wav").resolve()
+    if local_path.exists():
+        return local_path
+
+    split_dir = (
+        chapter_dir.parent
+        / "_chapter_title_audio_stephen_fry"
+        / "splits"
+        / safe_name(chapter_dir.name)
+    ).resolve()
+    if split_dir.exists():
+        wav_paths = sorted(path.resolve() for path in split_dir.glob("*.wav") if path.is_file())
+        if len(wav_paths) == 1:
+            return wav_paths[0]
+        if len(wav_paths) > 1:
+            raise RuntimeError(f"Multiple title clips found for {chapter_dir.name}: {split_dir}")
+
+    return local_path
 
 
 def ensure_report_paths(book_dir: Path, report_dir: Path | None) -> tuple[Path, Path]:

@@ -24,6 +24,8 @@
   --app-primary-active: #1e40af;
   --app-primary-soft: rgba(37, 99, 235, 0.1);
   --app-primary-text: #1d4ed8;
+  --app-selection-bg: rgba(37, 99, 235, 0.22);
+  --app-selection-text: #111827;
   --app-accent-cyan: #0f766e;
   --app-accent-pink: #be185d;
   --app-accent-lavender: #7c3aed;
@@ -71,6 +73,8 @@
   --app-primary-active: #9b83bc;
   --app-primary-soft: rgba(179, 156, 208, 0.22);
   --app-primary-text: #a8dadc;
+  --app-selection-bg: rgba(179, 156, 208, 0.38);
+  --app-selection-text: #f4f1f8;
   --app-accent-cyan: #a8dadc;
   --app-accent-pink: #ffc1cc;
   --app-accent-lavender: #b39cd0;
@@ -128,7 +132,13 @@ a {
 }
 
 ::selection {
-  background: var(--app-primary-soft);
+  background: var(--app-selection-bg);
+  color: var(--app-selection-text);
+}
+
+::-moz-selection {
+  background: var(--app-selection-bg);
+  color: var(--app-selection-text);
 }
 
 :root[data-theme='dark'] .toolbar,

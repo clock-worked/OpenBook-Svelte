@@ -259,7 +259,7 @@
 
   $: selectedBookColor = selectedBookCharacter
     ? resolveCharacterColor(selectedBookCharacter.name, selectedBookCharacter.color ?? null)
-    : '#ccc';
+    : 'var(--app-primary-soft)';
 
   function resolveCharacterColor(name: string, colorOverride?: string | null): string {
     return rgbaToOpaqueHex(colorOverride ?? colorForCharacter(name), DISPLAY_ALPHA);
@@ -804,6 +804,7 @@
     font-size: 14px;
     width: 100%;
     box-sizing: border-box;
+    color: var(--app-text);
   }
 
   .panel-header {
@@ -820,14 +821,14 @@
     gap: 6px;
     padding: 4px;
     border-radius: 12px;
-    background: #f4f7fb;
-    border: 1px solid #e3e8f2;
+    background: var(--app-surface-subtle);
+    border: 1px solid var(--app-border);
   }
 
   .panel-tab {
     border: none;
     background: transparent;
-    color: #5a6577;
+    color: var(--app-text-muted);
     border-radius: 8px;
     padding: 8px 12px;
     font-size: 13px;
@@ -836,14 +837,19 @@
     white-space: nowrap;
   }
 
+  .panel-tab:hover {
+    background: var(--app-surface-hover);
+    color: var(--app-text);
+  }
+
   .panel-tab.active {
-    background: #ffffff;
-    color: #1f2937;
-    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+    background: var(--app-surface-raised);
+    color: var(--app-text);
+    box-shadow: var(--app-shadow-sm);
   }
 
   .panel-tab.has-alert {
-    color: #0f4cc5;
+    color: var(--app-primary-text);
   }
 
   .header-btn {
@@ -852,6 +858,7 @@
     border: none;
     border-radius: 6px;
     background: transparent;
+    color: var(--app-text-muted);
     cursor: pointer;
     outline: none;
     display: flex;
@@ -861,7 +868,8 @@
   }
 
   .header-btn:hover {
-    background-color: rgba(0,0,0,0.05);
+    background-color: var(--app-surface-hover);
+    color: var(--app-primary-text);
   }
   
   .header-actions {
@@ -872,7 +880,7 @@
 
   .panel-divider {
     height: 1px;
-    background-color: #eee;
+    background-color: var(--app-border-subtle);
     margin: 2px 0 6px 0;
   }
 
@@ -880,25 +888,28 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    border: 1px dashed #ddd;
+    border: 1px dashed var(--app-border);
     padding: 6px;
     border-radius: 6px;
     box-sizing: border-box;
+    background: var(--app-surface-subtle);
   }
 
   .character-input {
     flex: 1;
     padding: 4px 6px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--app-border);
     border-radius: 4px;
     font-size: 14px;
+    background: var(--app-surface-raised);
+    color: var(--app-text);
   }
 
   .color-preview-btn {
     width: 20px;
     height: 20px;
     border-radius: 6px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--app-border);
   }
 
   .create-btn {
@@ -906,7 +917,7 @@
   }
 
   .no-characters {
-    color: #777;
+    color: var(--app-text-muted);
     font-size: 14px;
   }
 
@@ -951,11 +962,11 @@
           align="right"
         >
           <button class="header-btn" title="Sort characters" aria-label="Sort characters">
-            <ArrowUpDown size={18} color="#6b7280" />
+            <ArrowUpDown size={18} />
           </button>
         </Dropdown>
         <button class="header-btn" title="Add character" aria-label="Add character" on:click={addCharacter}>
-          <Plus size={18} color="#6b7280" />
+          <Plus size={18} />
         </button>
       </div>
     {/if}
@@ -968,7 +979,7 @@
     {#if $selectionActive}
       <div class="new-character-form">
         <input class="character-input" placeholder="New character name" bind:value={newCharacterName} on:keydown={(e) => { if (e.key==='Enter') createAndApplyNewCharacter(); }} />
-        <button class="color-preview-btn" title="Pick color" on:click={() => newCharacterColor = prompt('Enter hex color (e.g. #2196f3)') || newCharacterColor} style={`background:${newCharacterColor ?? '#ccc'}`}></button>
+        <button class="color-preview-btn" title="Pick color" on:click={() => newCharacterColor = prompt('Enter hex color (e.g. #2196f3)') || newCharacterColor} style={`background:${newCharacterColor ?? 'var(--app-primary-soft)'}`}></button>
         <button class="create-btn" on:click={createAndApplyNewCharacter}>Create & Apply</button>
       </div>
     {/if}

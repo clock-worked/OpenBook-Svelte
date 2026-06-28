@@ -75,11 +75,11 @@
     align-items: center;
     gap: 4px;
     padding: 4px 10px;
-    background: #e5e7eb;
-    border: 1px solid #d1d5db;
+    background: var(--app-surface-hover);
+    border: 1px solid var(--app-border);
     border-radius: 16px;
     font-size: 13px;
-    color: #000000;
+    color: var(--app-text);
     transition: all 0.15s ease;
     position: relative;
     font-weight: 500;
@@ -103,7 +103,7 @@
     border: none;
     background: transparent;
     cursor: pointer;
-    color: #6b7280;
+    color: var(--app-text-muted);
     align-items: center;
     justify-content: center;
     border-radius: 50%;
@@ -115,15 +115,15 @@
   }
 
   .remove-btn:hover {
-    background: rgba(0, 0, 0, 0.1);
-    color: #374151;
+    background: var(--app-surface-active);
+    color: var(--app-text);
   }
 
   .plus-btn {
     width: 28px;
     height: 28px;
     padding: 0;
-    border: 1px dashed #9ca3af;
+    border: 1px dashed var(--app-text-subtle);
     background: transparent;
     border-radius: 50%;
     cursor: pointer;
@@ -135,8 +135,8 @@
   }
 
   .plus-btn:hover:not(:disabled) {
-    background: #f3f4f6;
-    border-color: #6b7280;
+    background: var(--app-surface-hover);
+    border-color: var(--app-text-muted);
   }
 
   .plus-btn:disabled {
@@ -152,16 +152,18 @@
 
   .search-input {
     padding: 4px 8px;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--app-border);
     border-radius: 6px;
     font-size: 13px;
     outline: none;
     min-width: 180px;
+    background: var(--app-surface-raised);
+    color: var(--app-text);
   }
 
   .search-input:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    border-color: var(--app-primary);
+    box-shadow: var(--app-focus-ring);
   }
 
   .dropdown {
@@ -171,8 +173,8 @@
     right: 0;
     max-height: 200px;
     overflow-y: auto;
-    background: white;
-    border: 1px solid #d1d5db;
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
     border-radius: 6px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     z-index: 1000;
@@ -182,18 +184,18 @@
     padding: 8px 12px;
     cursor: pointer;
     font-size: 13px;
-    color: #1f2937;
+    color: var(--app-text);
     transition: background-color 0.15s ease;
   }
 
   .dropdown-item:hover {
-    background: #f3f4f6;
+    background: var(--app-surface-hover);
   }
 
   .no-results {
     padding: 8px 12px;
     font-size: 13px;
-    color: #6b7280;
+    color: var(--app-text-muted);
     text-align: center;
   }
 </style>
@@ -201,12 +203,12 @@
 <div class="pill-list-container">
   {#each selected as item, index (`${item}-${index}`)}
     {@const color = getColorForItem ? getColorForItem(item) : null}
-    {@const bgColor = color ? color : (item === 'Narrator' ? '#9ca3af' : '#e5e7eb')}
-    {@const borderColor = color ? color : (item === 'Narrator' ? '#6b7280' : '#d1d5db')}
+    {@const bgColor = color ? color : (item === 'Narrator' ? 'var(--app-text-subtle)' : 'var(--app-surface-hover)')}
+    {@const borderColor = color ? color : (item === 'Narrator' ? 'var(--app-text-muted)' : 'var(--app-border)')}
     <div
       class="pill"
       role="listitem"
-      style={`background: ${bgColor}; border-color: ${borderColor}; color: #000000;`}
+      style={`background: ${bgColor}; border-color: ${borderColor}; color: var(--app-text);`}
       on:mouseenter={() => (hoveredPill = item)}
       on:mouseleave={() => (hoveredPill = null)}
     >
@@ -265,7 +267,7 @@
         on:click={toggleInput}
         disabled={!canAddMore}
       >
-        <Plus size={16} color={canAddMore ? '#6b7280' : '#9ca3af'} />
+        <Plus size={16} color={canAddMore ? 'var(--app-text-muted)' : 'var(--app-text-subtle)'} />
       </button>
     {/if}
   {/if}

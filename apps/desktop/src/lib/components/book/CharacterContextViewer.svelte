@@ -236,7 +236,7 @@
     gap: 8px;
     padding: 8px 0;
   }
-  
+
   .context-loading,
   .context-error {
     display: flex;
@@ -244,100 +244,100 @@
     justify-content: center;
     gap: 8px;
     padding: 16px;
-    color: #6b7280;
+    color: var(--app-text-muted);
     font-size: 13px;
   }
-  
+
   .context-error {
-    color: #dc2626;
+    color: var(--app-danger);
   }
-  
+
   .spinner {
     width: 16px;
     height: 16px;
-    border: 2px solid #e5e7eb;
-    border-top-color: #3b82f6;
+    border: 2px solid var(--app-border);
+    border-top-color: var(--app-primary);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
   }
-  
+
   @keyframes spin {
     to { transform: rotate(360deg); }
   }
-  
+
   .context-controls {
     display: flex;
     align-items: center;
     gap: 8px;
     padding: 4px 0;
   }
-  
+
   .context-label {
     flex: 1;
     font-size: 12px;
     font-weight: 600;
-    color: #4b5563;
+    color: var(--app-text-muted);
     text-align: center;
   }
-  
+
   .nav-btn {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 4px;
-    border: 1px solid #d1d5db;
-    background: #ffffff;
+    border: 1px solid var(--app-border);
+    background: var(--app-surface-raised);
     border-radius: 4px;
     cursor: pointer;
-    color: #374151;
+    color: var(--app-text);
     transition: all 0.15s ease;
   }
-  
+
   .nav-btn:hover:not(:disabled) {
-    background: #f9fafb;
-    border-color: #9ca3af;
+    background: var(--app-surface-hover);
+    border-color: var(--app-text-subtle);
   }
-  
+
   .nav-btn:disabled {
     opacity: 0.4;
     cursor: not-allowed;
   }
-  
+
   .context-text {
     position: relative;
     padding: 12px;
-    background: #f9fafb;
-    border: 1px solid #e5e7eb;
+    background: var(--app-surface-subtle);
+    border: 1px solid var(--app-border);
     border-radius: 6px;
     font-size: 13px;
     line-height: 1.6;
-    color: #374151;
+    color: var(--app-text);
     white-space: pre-wrap;
     max-height: 300px;
     overflow-y: auto;
   }
-  
+
   .character-dialogue {
-    background: #dbeafe;
-    color: #1e40af;
+    background: var(--app-primary-soft);
+    color: var(--app-primary-text);
     padding: 1px 2px;
     border-radius: 2px;
     font-weight: 500;
   }
-  
+
   .scroll-indicator {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     font-size: 18px;
-    color: #9ca3af;
+    color: var(--app-text-subtle);
     pointer-events: none;
   }
-  
+
   .scroll-indicator.start {
     top: 0;
   }
-  
+
   .scroll-indicator.end {
     bottom: 0;
   }

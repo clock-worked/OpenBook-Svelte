@@ -327,13 +327,13 @@
   .section-title {
     margin: 0;
     font-size: 19px;
-    color: #152033;
+    color: var(--app-text);
   }
 
   .section-copy {
     margin: 4px 0 0;
     font-size: 13px;
-    color: #637082;
+    color: var(--app-text-muted);
     max-width: 520px;
   }
 
@@ -360,27 +360,27 @@
   .header-btn,
   .secondary-btn {
     padding: 9px 12px;
-    border: 1px solid #d7dee7;
-    background: #f4f7fb;
-    color: #203551;
+    border: 1px solid var(--app-border);
+    background: var(--app-surface-hover);
+    color: var(--app-text);
   }
 
   .header-btn:hover:not(:disabled),
   .secondary-btn:hover:not(:disabled),
   .close-btn:hover {
-    background: #e8eef6;
-    border-color: #c2cfdf;
+    background: var(--app-surface-active);
+    border-color: var(--app-border-strong);
   }
 
   .primary-btn {
     padding: 9px 12px;
-    border: 1px solid #1c5fd1;
-    background: #1f6feb;
-    color: #ffffff;
+    border: 1px solid var(--app-primary);
+    background: var(--app-primary);
+    color: var(--app-text-inverse);
   }
 
   .primary-btn:hover:not(:disabled) {
-    background: #165dc9;
+    background: var(--app-primary-hover);
   }
 
   .header-btn:disabled,
@@ -401,8 +401,8 @@
     flex-direction: column;
     gap: 4px;
     padding: 10px 12px;
-    background: #f8fafc;
-    border: 1px solid #d7dee7;
+    background: var(--app-surface-subtle);
+    border: 1px solid var(--app-border);
     border-radius: 10px;
   }
 
@@ -412,18 +412,18 @@
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #6a7688;
+    color: var(--app-text-muted);
   }
 
   .samples-root-value {
     font-size: 13px;
-    color: #203551;
+    color: var(--app-text);
     word-break: break-all;
   }
 
   .sync-error {
     margin: 0;
-    color: #b42318;
+    color: var(--app-danger);
     font-size: 12px;
   }
 
@@ -436,11 +436,11 @@
   .empty-state {
     grid-column: 1 / -1;
     padding: 40px 16px;
-    border: 1px dashed #c5d0de;
+    border: 1px dashed var(--app-border-strong);
     border-radius: 12px;
     text-align: center;
-    color: #637082;
-    background: #fbfcfe;
+    color: var(--app-text-muted);
+    background: var(--app-surface-subtle);
   }
 
   .modal-backdrop {
@@ -456,10 +456,10 @@
 
   .modal-content {
     width: min(560px, 100%);
-    background: #ffffff;
+    background: var(--app-surface);
     border-radius: 14px;
-    box-shadow: 0 24px 60px rgba(10, 18, 28, 0.24);
-    border: 1px solid #d7dee7;
+    box-shadow: var(--app-shadow-lg);
+    border: 1px solid var(--app-border);
   }
 
   .modal-header,
@@ -472,27 +472,27 @@
   }
 
   .modal-header {
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--app-border);
   }
 
   .modal-header h3 {
     margin: 0;
     font-size: 16px;
-    color: #152033;
+    color: var(--app-text);
   }
 
   .modal-header p {
     margin: 4px 0 0;
     font-size: 12px;
-    color: #6a7688;
+    color: var(--app-text-muted);
   }
 
   .close-btn {
     width: 32px;
     height: 32px;
-    border: 1px solid #d7dee7;
-    background: #f4f7fb;
-    color: #203551;
+    border: 1px solid var(--app-border);
+    background: var(--app-surface-hover);
+    color: var(--app-text);
   }
 
   .modal-body {
@@ -506,24 +506,24 @@
   .modal-help {
     margin: 0;
     font-size: 12px;
-    color: #6a7688;
+    color: var(--app-text-muted);
   }
 
   .modal-input {
     width: 100%;
     padding: 9px 11px;
-    border: 1px solid #d7dee7;
+    border: 1px solid var(--app-border);
     border-radius: 9px;
-    background: #ffffff;
-    color: #152033;
+    background: var(--app-surface-raised);
+    color: var(--app-text);
     font: inherit;
     box-sizing: border-box;
   }
 
   .modal-input:focus {
     outline: none;
-    border-color: #5d8fd8;
-    box-shadow: 0 0 0 3px rgba(93, 143, 216, 0.16);
+    border-color: var(--app-primary);
+    box-shadow: var(--app-focus-ring);
   }
 
   .modal-row {
@@ -552,21 +552,21 @@
     align-items: center;
     gap: 6px;
     padding: 5px 9px;
-    border: 1px solid #d7dee7;
+    border: 1px solid var(--app-border);
     border-radius: 999px;
-    background: #edf3f9;
-    color: #203551;
+    background: var(--app-surface-hover);
+    color: var(--app-text);
     font-size: 12px;
     cursor: pointer;
   }
 
   .tag-chip:hover {
-    background: #e2ebf6;
+    background: var(--app-surface-active);
   }
 
   .modal-actions {
     justify-content: flex-end;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid var(--app-border);
   }
 
   .is-spinning {

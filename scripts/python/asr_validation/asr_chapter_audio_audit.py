@@ -23,6 +23,7 @@ from asr_word_timestamps import (
     collect_audio_files,
     create_pipeline,
     parse_clip_name,
+    transcribe_many_with_words,
     transcribe_with_words,
 )
 
@@ -111,6 +112,39 @@ def analyze_clip(
     min_wrong_line_delta: float,
     top_k: int,
 ) -> dict[str, Any]:
+    try:
+        asr_result = transcribe_with_words(
+            asr_pipeline=asr_pipeline,
+            audio_path=audio_path,
+            chunk_length_s=chunk_length_s,
+            batch_size=batch_size,
+        )
+    except Exception as exc:
+        asr_result = {"_asr_error": str(exc), "text": ""}
+
+    return analyze_clip_result(
+        audio_path=audio_path,
+        line_id=line_id,
+        dialogue_by_id=dialogue_by_id,
+        dialogue_lines=dialogue_lines,
+        mismatch_threshold=mismatch_threshold,
+        min_wrong_line_delta=min_wrong_line_delta,
+        top_k=top_k,
+        asr_result=asr_result,
+    )
+
+
+def analyze_clip_result(
+    *,
+    audio_path: Path,
+    line_id: int,
+    dialogue_by_id: dict[int, dict[str, Any]],
+    dialogue_lines: list[dict[str, Any]],
+    mismatch_threshold: float,
+    min_wrong_line_delta: float,
+    top_k: int,
+    asr_result: dict[str, Any],
+) -> dict[str, Any]:
     expected_line = dialogue_by_id.get(line_id)
     if expected_line is None:
         return {
@@ -121,12 +155,28 @@ def analyze_clip(
             "markForRegenerate": True,
         }
 
-    asr_result = transcribe_with_words(
-        asr_pipeline=asr_pipeline,
-        audio_path=audio_path,
-        chunk_length_s=chunk_length_s,
-        batch_size=batch_size,
-    )
+    asr_error = asr_result.get("_asr_error")
+    if asr_error:
+        return {
+            "audioPath": str(audio_path),
+            "audioFile": audio_path.name,
+            "lineIdFromFile": line_id,
+            "expected": {
+                "lineId": line_id,
+                "characterId": expected_line.get("characterId"),
+                "text": str(expected_line.get("text", "")),
+            },
+            "asr": {
+                "text": "",
+            },
+            "candidates": [],
+            "status": "audio_read_error",
+            "markForRegenerate": True,
+            "reasons": [f"ASR failed to read audio: {asr_error}"],
+            "bestNonExpected": None,
+            "bestOverall": None,
+        }
+
     transcript_text = str(asr_result.get("text", "")).strip()
     expected_text = str(expected_line.get("text", ""))
     expected_similarity = similarity_ratio(expected_text, transcript_text)
@@ -442,25 +492,9 @@ def is_direct_character_line_audio(audio_path: Path, audio_dir: Path) -> bool:
     return True
 
 
-def run_chapter_audit(
-    *,
-    chapter_dir: Path,
-    output_dir: Path,
-    model: str,
-    device: str,
-    torch_dtype: str,
-    chunk_length_s: int,
-    batch_size: int,
-    mismatch_threshold: float,
-    min_wrong_line_delta: float,
-    top_k: int,
-    dry_run: bool,
-    asr_pipeline: Any,
-) -> dict[str, Any]:
+def collect_chapter_audit_inputs(chapter_dir: Path) -> dict[str, Any]:
     dialogue_path = (chapter_dir / "dialogue.json").resolve()
     audio_dir = (chapter_dir / "audio_lines").resolve()
-
-    output_dir.mkdir(parents=True, exist_ok=True)
 
     dialogue_by_id, dialogue_lines = load_dialogue_lines(dialogue_path)
     raw_audio_files = collect_audio_files([], audio_dir)
@@ -482,7 +516,54 @@ def run_chapter_audit(
 
     present_ids = {line_id for _, line_id in parsed_audio}
     missing_line_ids = sorted(
-        [line_id for line_id in dialogue_by_id.keys() if line_id not in present_ids])
+        [line_id for line_id in dialogue_by_id.keys() if line_id not in present_ids]
+    )
+
+    return {
+        "dialoguePath": dialogue_path,
+        "audioDir": audio_dir,
+        "dialogueById": dialogue_by_id,
+        "dialogueLines": dialogue_lines,
+        "rawAudioFiles": raw_audio_files,
+        "audioFiles": audio_files,
+        "excludedAudioFiles": excluded_audio_files,
+        "parsedAudio": parsed_audio,
+        "unparseableFiles": unparsable_files,
+        "missingLineIds": missing_line_ids,
+    }
+
+
+def run_chapter_audit(
+    *,
+    chapter_dir: Path,
+    output_dir: Path,
+    model: str,
+    device: str,
+    torch_dtype: str,
+    chunk_length_s: int,
+    batch_size: int,
+    mismatch_threshold: float,
+    min_wrong_line_delta: float,
+    top_k: int,
+    dry_run: bool,
+    asr_pipeline: Any,
+    chapter_inputs: dict[str, Any] | None = None,
+    precomputed_asr_by_audio_path: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    audit_inputs = chapter_inputs or collect_chapter_audit_inputs(chapter_dir)
+
+    dialogue_path = audit_inputs["dialoguePath"]
+    audio_dir = audit_inputs["audioDir"]
+    dialogue_by_id = audit_inputs["dialogueById"]
+    dialogue_lines = audit_inputs["dialogueLines"]
+    raw_audio_files = audit_inputs["rawAudioFiles"]
+    audio_files = audit_inputs["audioFiles"]
+    excluded_audio_files = audit_inputs["excludedAudioFiles"]
+    parsed_audio = audit_inputs["parsedAudio"]
+    unparsable_files = audit_inputs["unparseableFiles"]
+    missing_line_ids = audit_inputs["missingLineIds"]
+
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     print(f"[{chapter_dir.name}] dialogue lines: {len(dialogue_by_id)}")
     print(f"[{chapter_dir.name}] audio clips discovered: {len(raw_audio_files)}")
@@ -552,34 +633,37 @@ def run_chapter_audit(
 
     clip_reports: list[dict[str, Any]] = []
 
-    clip_iterator = tqdm(
-        parsed_audio,
-        total=len(parsed_audio),
-        desc=f"[{chapter_dir.name}] clips",
-        unit="clip",
-        dynamic_ncols=True,
-        leave=True,
-    )
-
-    for index, (audio_path, line_id) in enumerate(clip_iterator, start=1):
-        if HAS_TQDM:
-            clip_iterator.set_postfix_str(audio_path.name)
-        else:
-            print(
-                f"[{chapter_dir.name}] [{index}/{len(parsed_audio)}] Transcribing {audio_path.name}")
-        clip_report = analyze_clip(
-            audio_path=audio_path,
-            line_id=line_id,
-            dialogue_by_id=dialogue_by_id,
-            dialogue_lines=dialogue_lines,
+    if precomputed_asr_by_audio_path is None:
+        print(f"[{chapter_dir.name}] Transcribing {len(parsed_audio)} clips with pipeline batch size {batch_size}")
+        all_asr_results = transcribe_many_with_words(
             asr_pipeline=asr_pipeline,
+            audio_paths=[audio_path for audio_path, _line_id in parsed_audio],
             chunk_length_s=chunk_length_s,
             batch_size=batch_size,
-            mismatch_threshold=mismatch_threshold,
-            min_wrong_line_delta=min_wrong_line_delta,
-            top_k=top_k,
         )
-        clip_reports.append(clip_report)
+    else:
+        print(f"[{chapter_dir.name}] Reusing precomputed ASR for {len(parsed_audio)} clips")
+        all_asr_results = [
+            precomputed_asr_by_audio_path.get(
+                str(audio_path),
+                {"_asr_error": "Missing precomputed ASR result", "text": ""},
+            )
+            for audio_path, _line_id in parsed_audio
+        ]
+
+    for (audio_path, line_id), asr_result in zip(parsed_audio, all_asr_results):
+        clip_reports.append(
+            analyze_clip_result(
+                audio_path=audio_path,
+                line_id=line_id,
+                dialogue_by_id=dialogue_by_id,
+                dialogue_lines=dialogue_lines,
+                mismatch_threshold=mismatch_threshold,
+                min_wrong_line_delta=min_wrong_line_delta,
+                top_k=top_k,
+                asr_result=asr_result,
+            )
+        )
 
     auto_detection = apply_auto_conflict_detection(clip_reports)
 
@@ -743,6 +827,63 @@ def main() -> None:
         asr_pipeline = create_pipeline(
             args.model, args.device, args.torch_dtype)
 
+    chapter_inputs_by_dir: dict[str, dict[str, Any]] = {}
+    precomputed_asr_by_audio_path: dict[str, dict[str, Any]] | None = None
+    if not args.dry_run and len(chapter_dirs) > 1:
+        flattened_audio_paths: list[Path] = []
+        for chapter_dir in chapter_dirs:
+            chapter_inputs = collect_chapter_audit_inputs(chapter_dir)
+            chapter_inputs_by_dir[str(chapter_dir)] = chapter_inputs
+            flattened_audio_paths.extend(
+                [audio_path for audio_path, _line_id in chapter_inputs["parsedAudio"]]
+            )
+
+        if flattened_audio_paths:
+            book_chunk_size = max(args.batch_size * 32, 128)
+            book_chunk_count = (len(flattened_audio_paths) + book_chunk_size - 1) // book_chunk_size
+            print(
+                (
+                    f"[book] Transcribing {len(flattened_audio_paths)} clips across {len(chapter_dirs)} chapters "
+                    f"in {book_chunk_count} ASR batches of up to {book_chunk_size} clips "
+                    f"with pipeline batch size {args.batch_size}"
+                )
+            )
+            flattened_results: list[dict[str, Any]] = []
+            book_batch_iterator = tqdm(
+                range(0, len(flattened_audio_paths), book_chunk_size),
+                total=book_chunk_count,
+                desc="Book ASR",
+                unit="batch",
+                dynamic_ncols=True,
+                leave=True,
+            )
+            for batch_index, batch_start in enumerate(book_batch_iterator, start=1):
+                audio_batch = flattened_audio_paths[batch_start: batch_start + book_chunk_size]
+                batch_end = batch_start + len(audio_batch)
+                if HAS_TQDM:
+                    book_batch_iterator.set_postfix_str(
+                        f"clips {batch_start + 1}-{batch_end}/{len(flattened_audio_paths)}"
+                    )
+                else:
+                    print(
+                        (
+                            f"[book] ASR batch {batch_index}/{book_chunk_count}: "
+                            f"clips {batch_start + 1}-{batch_end}/{len(flattened_audio_paths)}"
+                        )
+                    )
+                flattened_results.extend(
+                    transcribe_many_with_words(
+                        asr_pipeline=asr_pipeline,
+                        audio_paths=audio_batch,
+                        chunk_length_s=args.chunk_length_s,
+                        batch_size=args.batch_size,
+                    )
+                )
+            precomputed_asr_by_audio_path = {
+                str(audio_path): result
+                for audio_path, result in zip(flattened_audio_paths, flattened_results)
+            }
+
     all_results: list[dict[str, Any]] = []
     all_regenerate: list[dict[str, Any]] = []
 
@@ -776,6 +917,8 @@ def main() -> None:
             top_k=args.top_k,
             dry_run=args.dry_run,
             asr_pipeline=asr_pipeline,
+            chapter_inputs=chapter_inputs_by_dir.get(str(chapter_dir)),
+            precomputed_asr_by_audio_path=precomputed_asr_by_audio_path,
         )
         all_results.append(chapter_result)
         for item in chapter_result.get("regenerate", []):

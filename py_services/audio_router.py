@@ -264,7 +264,13 @@ def create_audio_router(
 
             error_msg = result.get("error", "Unknown error")
             print(f"  [FAILED] Generation failed: {error_msg}")
-            raise HTTPException(status_code=500, detail=error_msg)
+            error_text = str(error_msg).lower()
+            status = 500
+            if "not found" in error_text or "could not be found" in error_text:
+                status = 400
+            elif "required" in error_text or "invalid" in error_text:
+                status = 400
+            raise HTTPException(status_code=status, detail=error_msg)
         except HTTPException as http_exc:
             raise http_exc
         except Exception as exc:

@@ -95,12 +95,13 @@
   }
 
   .dialog {
-    background: #ffffff;
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
     border-radius: 12px;
     padding: 24px;
     width: 90%;
     max-width: 600px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--app-shadow-lg);
     animation: slideUp 0.2s ease;
   }
 
@@ -119,16 +120,17 @@
     margin: 0 0 16px 0;
     font-size: 18px;
     font-weight: 600;
-    color: #202124;
+    color: var(--app-text);
   }
 
   .textarea {
     width: 100%;
     min-height: 120px;
     padding: 12px;
-    border: 2px solid #dadce0;
+    border: 2px solid var(--app-border);
     border-radius: 8px;
-    background: #ffffff;
+    background: var(--app-surface-raised);
+    color: var(--app-text);
     font-family: inherit;
     font-size: 14px;
     line-height: 1.5;
@@ -138,7 +140,7 @@
   }
 
   .textarea:focus {
-    border-color: #1a73e8;
+    border-color: var(--app-primary);
   }
 
   .actions {
@@ -159,25 +161,25 @@
   }
 
   .cancel-btn {
-    background: #f1f3f4;
-    color: #5f6368;
+    background: var(--app-surface-hover);
+    color: var(--app-text-muted);
   }
 
   .cancel-btn:hover {
-    background: #e8eaed;
+    background: var(--app-surface-active);
   }
 
   .save-btn {
-    background: #1a73e8;
-    color: #ffffff;
+    background: var(--app-primary);
+    color: var(--app-text-inverse);
   }
 
   .save-btn:hover {
-    background: #1557b0;
+    background: var(--app-primary-hover);
   }
 
   .save-btn:active {
-    background: #0d47a1;
+    background: var(--app-primary-active);
   }
 </style>
 

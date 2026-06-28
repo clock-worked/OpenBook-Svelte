@@ -331,6 +331,103 @@ async function chapterHasAudio(chapterDirHandle: FileSystemDirectoryHandle): Pro
   return false;
 }
 
+async function readJsonFromFileHandle<T>(fileHandle: FileSystemFileHandle | null): Promise<T | null> {
+  if (!fileHandle) return null;
+
+  try {
+    const file = await fileHandle.getFile();
+    return JSON.parse(await file.text()) as T;
+  } catch {
+    return null;
+  }
+}
+
+async function chapterHasCompleteAudio(chapterDirHandle: FileSystemDirectoryHandle): Promise<boolean> {
+  const dialogueHandle = await chapterDirHandle.getFileHandle('dialogue.json', { create: false }).catch(() => null);
+  const dialogue = await readJsonFromFileHandle<DialogueJson>(dialogueHandle);
+  const lines = Array.isArray(dialogue?.lines) ? dialogue.lines : [];
+  if (lines.length === 0) return false;
+
+  const audioDirHandle = await chapterDirHandle.getDirectoryHandle('audio_lines', { create: false }).catch(() => null);
+  if (!audioDirHandle) return false;
+
+  const expectedLineIdsByCharacter = new Map<string, Set<number>>();
+  for (const line of lines) {
+    const characterId = typeof line?.characterId === 'string' && line.characterId.trim()
+      ? line.characterId.trim()
+      : 'narrator';
+    const lineId = typeof line?.id === 'number' ? line.id : Number(line?.id);
+    if (!Number.isFinite(lineId)) continue;
+
+    let lineIds = expectedLineIdsByCharacter.get(characterId);
+    if (!lineIds) {
+      lineIds = new Set<number>();
+      expectedLineIdsByCharacter.set(characterId, lineIds);
+    }
+    lineIds.add(lineId);
+  }
+
+  if (expectedLineIdsByCharacter.size === 0) return false;
+
+  for await (const characterEntry of audioDirHandle.values()) {
+    if (characterEntry.kind !== 'directory' || characterEntry.name.startsWith('.')) continue;
+
+    const characterDirHandle = characterEntry as FileSystemDirectoryHandle;
+    const manifestHandle = await characterDirHandle.getFileHandle('manifest.json', { create: false }).catch(() => null);
+    const manifest = await readJsonFromFileHandle<{
+      characterId?: unknown;
+      characterName?: unknown;
+      clips?: Array<{ id?: unknown; chapter?: unknown }>;
+    }>(manifestHandle);
+
+    if (!manifest || !Array.isArray(manifest.clips)) continue;
+
+    const manifestKeys = [manifest.characterId, manifest.characterName, characterEntry.name]
+      .map((value) => String(value ?? '').trim())
+      .filter(Boolean);
+
+    let expectedLineIds: Set<number> | null = null;
+    for (const key of manifestKeys) {
+      expectedLineIds = expectedLineIdsByCharacter.get(key) || null;
+      if (expectedLineIds) break;
+    }
+    if (!expectedLineIds || expectedLineIds.size === 0) continue;
+
+    const presentLineIds = new Set<number>();
+    for (const clip of manifest.clips) {
+      const clipChapter = String(clip?.chapter ?? '').trim();
+      if (clipChapter && clipChapter !== chapterDirHandle.name) continue;
+
+      const clipId = typeof clip?.id === 'number' ? clip.id : Number(clip?.id);
+      if (Number.isFinite(clipId)) {
+        presentLineIds.add(clipId);
+      }
+    }
+
+    if (presentLineIds.size === 0) continue;
+
+    for (const lineId of expectedLineIds) {
+      if (presentLineIds.has(lineId)) {
+        expectedLineIds.delete(lineId);
+      }
+    }
+
+    if (expectedLineIds.size === 0) {
+      for (const key of manifestKeys) {
+        if (expectedLineIdsByCharacter.get(key) === expectedLineIds) {
+          expectedLineIdsByCharacter.delete(key);
+        }
+      }
+    }
+  }
+
+  for (const remainingLineIds of expectedLineIdsByCharacter.values()) {
+    if (remainingLineIds.size > 0) return false;
+  }
+
+  return true;
+}
+
 export async function scanChapters(root: FileSystemDirectoryHandle): Promise<ChapterStatus[]> {
   const chapters: ChapterStatus[] = [];
   for await (const entry of root.values()) {
@@ -350,20 +447,24 @@ export async function scanChapters(root: FileSystemDirectoryHandle): Promise<Cha
 
       let parsed = false;
       let scriptPath: string | undefined = undefined;
+      let complete = false;
 
       // Try v2.0 dialogue.json first
       let dialogueFileHandle = await chapterDirHandle.getFileHandle('dialogue.json', { create: false }).catch(() => null);
       if (dialogueFileHandle) {
         parsed = true;
         scriptPath = `${title}/dialogue.json`;
+        complete = await chapterHasCompleteAudio(chapterDirHandle);
       }
+
+      const audio = await chapterHasAudio(chapterDirHandle);
 
       chapters.push({
         path: `${title}/chapter.txt`,
         title: title,
         parsed: parsed,
-        complete: false, // This will need to be updated based on metadata file
-        audio: await chapterHasAudio(chapterDirHandle),
+        complete,
+        audio,
         scriptPath: scriptPath,
       });
     }

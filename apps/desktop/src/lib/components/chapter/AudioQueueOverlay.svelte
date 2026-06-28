@@ -102,7 +102,7 @@
       if (shouldReset) {
         etaCompletionAtMs = nextCompletionAtMs;
       } else if (signature !== etaSignature) {
-        etaCompletionAtMs = Math.min(etaCompletionAtMs, nextCompletionAtMs);
+        etaCompletionAtMs = Math.min(etaCompletionAtMs ?? nextCompletionAtMs, nextCompletionAtMs);
       }
 
       etaSignature = signature;
@@ -365,10 +365,10 @@
     right: 16px;
     width: 420px;
     max-height: 70vh;
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
     border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--app-shadow-md);
     z-index: 1100;
     padding: 10px;
     display: flex;
@@ -390,12 +390,12 @@
   .overlay-header h4 {
     margin: 0;
     font-size: 14px;
-    color: #111827;
+    color: var(--app-text);
   }
 
   .header-subtitle {
     font-size: 12px;
-    color: #6b7280;
+    color: var(--app-text-muted);
     margin-top: 2px;
   }
 
@@ -406,9 +406,9 @@
   }
 
   .btn {
-    border: 1px solid #d1d5db;
-    background: #fff;
-    color: #111827;
+    border: 1px solid var(--app-border);
+    background: var(--app-surface-raised);
+    color: var(--app-text);
     font-size: 12px;
     padding: 4px 8px;
     border-radius: 6px;
@@ -425,34 +425,34 @@
   }
 
   .btn.ghost:hover {
-    background: #f3f4f6;
+    background: var(--app-surface-hover);
   }
 
   .btn.danger {
-    border-color: #ef4444;
-    color: #ef4444;
+    border-color: var(--app-danger);
+    color: var(--app-danger);
   }
 
   .btn.danger:hover {
-    background: #fef2f2;
+    background: var(--app-danger-soft);
   }
 
   .running-card {
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--app-border);
     border-radius: 8px;
     padding: 8px;
-    background: #fafafa;
+    background: var(--app-surface-subtle);
   }
 
   .running-title {
     font-size: 13px;
     font-weight: 600;
-    color: #1f2937;
+    color: var(--app-text);
   }
 
   .running-meta {
     font-size: 12px;
-    color: #6b7280;
+    color: var(--app-text-muted);
     margin-top: 2px;
     margin-bottom: 6px;
   }
@@ -463,19 +463,19 @@
   }
 
   .tab {
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--app-border);
     border-radius: 999px;
-    background: #fff;
-    color: #4b5563;
+    background: var(--app-surface-raised);
+    color: var(--app-text-muted);
     padding: 4px 10px;
     font-size: 12px;
     cursor: pointer;
   }
 
   .tab.active {
-    background: #eef2ff;
-    color: #4338ca;
-    border-color: #c7d2fe;
+    background: var(--app-primary-soft);
+    color: var(--app-primary-text);
+    border-color: var(--app-primary);
   }
 
   .queue-scroll {
@@ -489,23 +489,23 @@
 
   .chapter-group,
   .overview-card {
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--app-border);
     border-radius: 8px;
-    background: #fff;
+    background: var(--app-surface-raised);
   }
 
   .chapter-header {
     width: 100%;
     border: none;
-    background: #f9fafb;
-    border-bottom: 1px solid #e5e7eb;
+    background: var(--app-surface-subtle);
+    border-bottom: 1px solid var(--app-border);
     border-radius: 8px 8px 0 0;
     padding: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 12px;
-    color: #374151;
+    color: var(--app-text);
     cursor: pointer;
   }
 
@@ -521,9 +521,10 @@
     align-items: center;
     justify-content: space-between;
     gap: 8px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--app-border);
     border-radius: 8px;
     padding: 6px 8px;
+    background: var(--app-surface);
   }
 
   .queue-row-main {
@@ -534,19 +535,19 @@
 
   .queue-name {
     font-size: 13px;
-    color: #111827;
+    color: var(--app-text);
     font-weight: 500;
   }
 
   .queue-count {
     font-size: 12px;
-    color: #6b7280;
+    color: var(--app-text-muted);
   }
 
   .remove-btn {
     border: none;
     background: transparent;
-    color: #9ca3af;
+    color: var(--app-text-subtle);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -556,8 +557,8 @@
   }
 
   .remove-btn:hover {
-    color: #ef4444;
-    background: #fef2f2;
+    color: var(--app-danger);
+    background: var(--app-danger-soft);
   }
 
   .overview-card {
@@ -574,12 +575,12 @@
   .overview-title {
     font-size: 13px;
     font-weight: 600;
-    color: #111827;
+    color: var(--app-text);
   }
 
   .overview-percent {
     font-size: 12px;
-    color: #4f46e5;
+    color: var(--app-primary-text);
     font-weight: 600;
   }
 
@@ -587,7 +588,7 @@
     margin-top: 2px;
     margin-bottom: 6px;
     font-size: 12px;
-    color: #6b7280;
+    color: var(--app-text-muted);
   }
 
   .dual-bars {
@@ -599,30 +600,30 @@
 
   .progress-track {
     height: 8px;
-    background: #e5e7eb;
+    background: var(--app-border-subtle);
     border-radius: 999px;
     overflow: hidden;
   }
 
   .progress-fill {
     height: 100%;
-    background: #667eea;
+    background: var(--app-primary);
     transition: width 0.2s ease;
   }
 
   .missing-track {
     height: 8px;
     border-radius: 999px;
-    border: 1px dashed #fca5a5;
-    background: #fee2e2;
+    border: 1px dashed var(--app-danger);
+    background: var(--app-danger-soft);
   }
 
   .empty-state {
-    border: 1px dashed #d1d5db;
+    border: 1px dashed var(--app-border-strong);
     border-radius: 8px;
     padding: 10px;
     font-size: 12px;
-    color: #6b7280;
+    color: var(--app-text-muted);
     text-align: center;
   }
 
@@ -635,8 +636,8 @@
     justify-content: space-between;
     gap: 8px;
     font-size: 12px;
-    color: #6b7280;
-    border-top: 1px solid #f3f4f6;
+    color: var(--app-text-muted);
+    border-top: 1px solid var(--app-border-subtle);
     padding-top: 6px;
   }
 </style>

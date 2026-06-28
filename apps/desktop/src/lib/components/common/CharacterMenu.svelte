@@ -64,10 +64,10 @@
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <!-- svelte-ignore a11y-no-static-element-interactions -->
   <div class="backdrop" on:click={handleBackdropClick}></div>
-  
-  <div 
+
+  <div
     bind:this={menuEl}
-    class="character-menu" 
+    class="character-menu"
     class:open-upward={openUpward}
     style="left: {x}px; top: {menuTop}px;"
     role="menu"
@@ -101,10 +101,10 @@
 
   .character-menu {
     position: fixed;
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
     border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: var(--app-shadow-md);
     padding: 6px;
     z-index: 20;
     min-width: 200px;
@@ -131,9 +131,9 @@
     left: 16px;
     width: 10px;
     height: 10px;
-    background: #ffffff;
-    border-left: 1px solid #e0e0e0;
-    border-top: 1px solid #e0e0e0;
+    background: var(--app-surface);
+    border-left: 1px solid var(--app-border);
+    border-top: 1px solid var(--app-border);
     transform: rotate(45deg);
     box-shadow: -2px -2px 2px rgba(0, 0, 0, 0.02);
   }
@@ -143,8 +143,8 @@
     bottom: -6px;
     border-left: none;
     border-top: none;
-    border-right: 1px solid #e0e0e0;
-    border-bottom: 1px solid #e0e0e0;
+    border-right: 1px solid var(--app-border);
+    border-bottom: 1px solid var(--app-border);
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.02);
   }
 
@@ -159,12 +159,12 @@
     padding: 8px 10px;
     border-radius: 8px;
     cursor: pointer;
-    color: #202124;
+    color: var(--app-text);
     transition: background 0.15s ease;
   }
 
   .menu-item:hover {
-    background: #f5f7f8;
+    background: var(--app-surface-hover);
   }
 
   .check-spacer {

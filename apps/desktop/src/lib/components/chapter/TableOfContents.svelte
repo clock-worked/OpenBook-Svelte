@@ -84,7 +84,11 @@
         <span class="toc-title">{displayTitle(ch.title)}</span>
         <div class="toc-icons">
           {#if ch.audio}
-            <span class="audio-badge" title="Has audio">♪</span>
+            <span
+              class:audio-badge-complete={ch.complete}
+              class="audio-badge"
+              title={ch.complete ? 'Audio complete' : 'Has audio'}
+            >♪</span>
           {/if}
         </div>
       </button>
@@ -106,38 +110,37 @@
   .toc-item { padding:0; }
   .toc-divider { 
     height: 1px; 
-    background: #e5e7eb; 
+    background: var(--app-border-subtle); 
     margin: 4px 10px; 
     list-style: none;
   }
-  .toc-button { width:100%; padding:8px 10px; cursor:pointer; display:flex; align-items:center; gap:8px; border:none; background:transparent; border-radius:10px; text-align:left; }
+  .toc-button { width:100%; padding:8px 10px; cursor:pointer; display:flex; align-items:center; gap:8px; border:none; background:transparent; border-radius:10px; text-align:left; color:var(--app-text); }
+  .toc-button:hover { background:var(--app-surface-hover); }
   .toc-button .toc-title { font-style: italic; }
-  .toc-button.is-active { background:#e0f2ff; }
+  .toc-button.is-active { background:var(--app-primary-soft); color:var(--app-text); }
   .toc-button.is-active .toc-title { font-style: normal; font-weight: bold; }
   .toc-icons-left { display:flex; align-items:center; width:20px; }
-  .doc-icon { font-size:16px; line-height:1; }
+  .doc-icon { font-size:16px; line-height:1; color:var(--app-text-subtle); }
   .toc-title { flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .toc-icons { display:flex; gap:8px; margin-left:auto; align-items:center; }
-  /* .status-dot { width:8px; height:8px; border-radius:50%; }
-  .status-dot.green { background:#4caf50; }
-  .status-dot.red { background:#f44336; } */
-  .audio-badge { display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:4px; background:#e0f2ff; color:#111; }
-  .toc-empty { padding:8px; color:#777; }
+  .audio-badge { display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:4px; background:var(--app-primary-soft); color:var(--app-primary-text); }
+  .audio-badge.audio-badge-complete { background:color-mix(in srgb, #2e8b57 22%, var(--app-surface-raised)); color:#1f5136; }
+  .toc-empty { padding:8px; color:var(--app-text-muted); }
 
   /* Fade overlay to hint more content */
-  .fade-bottom { position:absolute; left:0; right:0; bottom:0; height:14px; pointer-events:none; background:linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1)); border-bottom-left-radius:10px; border-bottom-right-radius:10px; }
+  .fade-bottom { position:absolute; left:0; right:0; bottom:0; height:14px; pointer-events:none; background:linear-gradient(to bottom, transparent, var(--app-bg)); border-bottom-left-radius:10px; border-bottom-right-radius:10px; }
 
   /* Modern thin scrollbar */
   /* Firefox */
   .toc-list { scrollbar-width: none; }
-  .toc-wrap:hover .toc-list, .toc-list.scrolling { scrollbar-width: thin; scrollbar-color: #cbd5e1 #f1f5f9; }
+  .toc-wrap:hover .toc-list, .toc-list.scrolling { scrollbar-width: thin; scrollbar-color: var(--app-border-strong) var(--app-surface-subtle); }
   /* WebKit */
   .toc-list::-webkit-scrollbar { width:8px; }
   .toc-list::-webkit-scrollbar-track { background:transparent; border-radius:8px; }
   .toc-list::-webkit-scrollbar-thumb { background:transparent; border-radius:8px; border:2px solid transparent; }
-  .toc-wrap:hover .toc-list::-webkit-scrollbar-track, .toc-list.scrolling::-webkit-scrollbar-track { background:#f1f5f9; }
-  .toc-wrap:hover .toc-list::-webkit-scrollbar-thumb, .toc-list.scrolling::-webkit-scrollbar-thumb { background:#cbd5e1; border:2px solid #f1f5f9; }
-  .toc-wrap:hover .toc-list::-webkit-scrollbar-thumb:hover, .toc-list.scrolling::-webkit-scrollbar-thumb:hover { background:#94a3b8; }
+  .toc-wrap:hover .toc-list::-webkit-scrollbar-track, .toc-list.scrolling::-webkit-scrollbar-track { background:var(--app-surface-subtle); }
+  .toc-wrap:hover .toc-list::-webkit-scrollbar-thumb, .toc-list.scrolling::-webkit-scrollbar-thumb { background:var(--app-border-strong); border:2px solid var(--app-surface-subtle); }
+  .toc-wrap:hover .toc-list::-webkit-scrollbar-thumb:hover, .toc-list.scrolling::-webkit-scrollbar-thumb:hover { background:var(--app-primary); }
 </style>
 
 

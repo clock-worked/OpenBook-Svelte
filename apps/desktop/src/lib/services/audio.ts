@@ -50,6 +50,8 @@ export interface AudioClip {
 export interface GenerateAudioCharacterOptions {
   useFillerForShortBatch?: boolean;
   fillerText?: string | null;
+  replaceLineFinalCommasWithPeriods?: boolean;
+  replaceNumbersWithWords?: boolean;
 }
 
 const manifestCache = new Map<string, AudioManifest | null>();
@@ -484,6 +486,8 @@ export async function generateAudioForCharacter(
       filler_text: Boolean(options.useFillerForShortBatch)
         ? (String(options.fillerText ?? '').trim() || null)
         : null,
+      replace_line_final_commas_with_periods: options.replaceLineFinalCommasWithPeriods !== false,
+      replace_numbers_with_words: Boolean(options.replaceNumbersWithWords),
       voice_sample_root: samplesRoot || null,
       audio_root: resolvedAudioRoot || null,
     };
