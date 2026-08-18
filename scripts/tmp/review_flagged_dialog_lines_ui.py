@@ -136,11 +136,21 @@ class FlaggedReviewApp:
 
         self.candidate_rows: list[dict[str, Any]] = []
         self.current_selected_candidate_path: Path | None = None
+        self.audio_is_playing = False
 
         self._build_ui()
         self._load_resume_state()
         self._render_current()
         self.root.protocol("WM_DELETE_WINDOW", self._on_close)
+        self.root.bind("<Left>", self._go_back)
+        self.root.bind("<Right>", self._go_forward)
+        self.root.bind("<BackSpace>", self._toggle_audio)
+        self.root.bind("<Key-BackSpace>", self._toggle_audio)
+        self.root.bind("<space>", self._toggle_audio)
+        self.root.bind("<Key-space>", self._toggle_audio)
+        self.root.bind("<Key-f>", self._toggle_regen)
+        self.root.bind("<Key-F>", self._toggle_regen)
+        self.root.focus_set()
 
     def _on_close(self) -> None:
         self._save_resume_state()
@@ -269,6 +279,45 @@ class FlaggedReviewApp:
             return None
         return self.items[self.index]
 
+    def _stop_audio(self) -> None:
+        stop_audio()
+        self.audio_is_playing = False
+
+    def _go_back(self, _event: tk.Event | None = None) -> None:
+        if self.index <= 0:
+            return
+        self._stop_audio()
+        self.index -= 1
+        self._render_current()
+
+    def _go_forward(self, _event: tk.Event | None = None) -> None:
+        if self.index >= len(self.items) - 1:
+            return
+        self._stop_audio()
+        self.index += 1
+        self._render_current()
+
+    def _toggle_audio(self, _event: tk.Event | None = None) -> None:
+        item = self._current_item()
+        if item is None:
+            return
+        if self.audio_is_playing:
+            self._stop_audio()
+            return
+        if item.target_wav is None:
+            return
+        play_wav(item.target_wav)
+        self.audio_is_playing = True
+
+    def _toggle_regen(self, _event: tk.Event | None = None) -> None:
+        item = self._current_item()
+        if item is None:
+            return
+        if item.target_regen is not None and item.target_regen.exists():
+            self._unmark_regen()
+        else:
+            self._mark_regen()
+
     def _render_current(self) -> None:
         item = self._current_item()
         self.tree.delete(*self.tree.get_children())
@@ -358,6 +407,7 @@ class FlaggedReviewApp:
         if item is None:
             return
         play_wav(item.target_wav)
+        self.audio_is_playing = True
 
     def _play_target_regen(self) -> None:
         item = self._current_item()
@@ -385,6 +435,7 @@ class FlaggedReviewApp:
         item = self._current_item()
         if item is None:
             return
+        self._stop_audio()
         if item.target_wav is None or item.target_regen is None:
             messagebox.showwarning(
                 "Missing target", "No target path available for this item.")
@@ -414,6 +465,7 @@ class FlaggedReviewApp:
         item = self._current_item()
         if item is None:
             return
+        self._stop_audio()
         if item.target_wav is None or item.target_regen is None:
             messagebox.showwarning(
                 "Missing target", "No target path available for this item.")
@@ -493,6 +545,7 @@ class FlaggedReviewApp:
         item = self._current_item()
         if item is None:
             return
+        self._stop_audio()
         self._write_decision(
             {
                 "action": "skip",
@@ -504,10 +557,7 @@ class FlaggedReviewApp:
         self._render_current()
 
     def _back(self) -> None:
-        if self.index <= 0:
-            return
-        self.index -= 1
-        self._render_current()
+        self._go_back()
 
     def _write_decision(self, payload: dict[str, Any]) -> None:
         self.decisions_log.parent.mkdir(parents=True, exist_ok=True)

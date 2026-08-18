@@ -37,6 +37,7 @@ Move a file into `scripts/python/` when all of these are true:
 | `asr_validation/` | ASR timestamps, drift audits, validation experiments, regenerate manifests | Offline analysis and repair helpers |
 | `audio_batch/` | Manual batch generation flows built around the shared VibeVoice/chapter split pipeline | Not frontend-invoked |
 | `publishing/` | Finishing pass and M4B assembly tools | Post-generation packaging |
+| `finishing/` | One-off chapter/book cleanup and replacement utilities | Offline finishing edits |
 | `dev_smoke/` | Lightweight backend and model smoke checks | Regression checks, not runtime code |
 | `setup/` | Environment/bootstrap helpers for external repos or models | Installation/setup only |
 

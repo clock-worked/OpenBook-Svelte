@@ -56,13 +56,15 @@ Example:
 {
   "formatVersion": "2.0",
   "characters": [
-    { "name": "New Character", "color": null, "voice": null }
+    { "id": "catherine" },
+    { "id": "narrator" }
   ]
 }
 ```
 
-This file is optional and does not replace the centralized `characters.json`. It is
-used to retain chapter-specific lists in the editor UI.
+This file is optional and does not replace the centralized `characters.json`. It
+retains the chapter roster as canonical character ID references. Display names and
+all character metadata are hydrated from the centralized `characters.json`.
 
 ## Schema Definitions
 

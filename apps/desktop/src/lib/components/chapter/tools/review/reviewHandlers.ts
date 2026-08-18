@@ -2,7 +2,8 @@ import { get, type Writable } from 'svelte/store';
 import type { UnifiedLine, MenuContext } from '../types';
 import { characters } from '$lib/stores/characters';
 import { currentChapter, bookRoot } from '$lib/stores/bookState';
-import { getCharactersPath, writeCharacters } from '$lib/services/fs';
+import { getCharactersPath } from '$lib/services/fs';
+import { persistChapterCharactersData } from '$lib/services/chapterCharacterRepository';
 import { bookCharacters } from '$lib/stores/bookCharacters';
 import type { Character } from '$lib/types';
 import { recomputeStats } from '../shared/toolUtils';
@@ -120,7 +121,7 @@ export function syncCharactersWithUsage(
   };
 
   const path = getCharactersPath(root, ch.title);
-  writeCharacters(path, updated);
+  void persistChapterCharactersData(root, path, updated);
   characters.set(updated);
 }
 
@@ -205,7 +206,7 @@ export function assignCharacterToLines(
           } as Character]
         };
         const path = getCharactersPath(root, ch.title);
-        writeCharacters(path, updated);
+        void persistChapterCharactersData(root, path, updated);
         characters.set(updated);
       }
     }

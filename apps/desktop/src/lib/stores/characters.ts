@@ -1,7 +1,8 @@
 import { writable, get } from 'svelte/store';
 import type { CharacterConfig, CharactersJson, Character } from '$lib/types';
 import { currentScript, bookRoot, currentChapter } from '$lib/stores/bookState';
-import { readCentralCharacters, readCharacters, getCharactersPath } from '$lib/services/fs';
+import { readCentralCharacters, getCharactersPath } from '$lib/services/fs';
+import { loadChapterCharactersData } from '$lib/services/chapterCharacterRepository';
 import { defaultColors } from '$lib/theme/colors';
 import { bookCharacters } from '$lib/stores/bookCharacters';
 import { normalizeCharacterGender } from '$lib/services/characterGender';
@@ -60,9 +61,12 @@ function updateDerivedFromScript(scr: any): void {
   const globalChars = get(bookCharacters);
   const aliasToCanonical = new Map<string, string>();
   const nameToCanonical = new Map<string, string>();
+  const idToCanonical = new Map<string, string>();
   for (const character of globalChars.characters) {
     const canonicalKey = normalizeCharacterKey(character.name);
     if (canonicalKey) nameToCanonical.set(canonicalKey, character.name);
+    const idKey = normalizeCharacterKey(character.id);
+    if (idKey) idToCanonical.set(idKey, character.name);
     const aliases = Array.isArray(character.aliases) ? character.aliases : [];
     for (const alias of aliases) {
       const key = normalizeCharacterKey(alias);
@@ -75,7 +79,7 @@ function updateDerivedFromScript(scr: any): void {
     .filter((n: string) => n.length > 0)
     .map((n: string) => {
       const key = normalizeCharacterKey(n);
-      return aliasToCanonical.get(key) || nameToCanonical.get(key) || n;
+      return idToCanonical.get(key) || aliasToCanonical.get(key) || nameToCanonical.get(key) || n;
     })
   )).sort();
 
@@ -96,7 +100,7 @@ async function loadChapterExtras(ch: any, root: string | null): Promise<void> {
 
   try {
     const path = getCharactersPath(root, ch.title);
-    const data = await readCharacters(path);
+    const data = await loadChapterCharactersData(root, path);
     if (token !== _chapterLoadToken) return;
     const next = new Map<string, CharacterConfig>();
     if (data?.characters) {

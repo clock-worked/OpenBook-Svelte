@@ -303,3 +303,49 @@ export interface DialogueAiAssistResponse {
   results: DialogueAiAssistLineResult[];
   errors?: string[];
 }
+
+export type LocalDialogueAiOutcome =
+  | 'keep_existing'
+  | 'suggestion'
+  | 'unresolved'
+  | 'error';
+
+export interface LocalDialogueAiLineResult {
+  lineId: number;
+  paragraphIndex: number | null;
+  currentCharacterId?: string | null;
+  currentCharacterName?: string | null;
+  suggestedCharacterId?: string | null;
+  suggestedCharacterName?: string | null;
+  outcome: LocalDialogueAiOutcome;
+  currentParagraphText: string;
+  rawOutput?: string | null;
+  error?: string | null;
+}
+
+export interface LocalDialogueAiSummary {
+  scannedLines: number;
+  unchangedCount: number;
+  suggestionCount: number;
+  unresolvedCount: number;
+  errorCount: number;
+  skippedNarratorLines: number;
+  modelCalls: number;
+}
+
+export interface LocalDialogueAiRequest {
+  request_id?: string | null;
+  chapter_path: string;
+  chapter_text: string;
+  dialogue: import('$lib/types').DialogueJson;
+  context_window: number;
+  include_previous_speaker: boolean;
+  include_speaker_context: boolean;
+  max_lines?: number | null;
+}
+
+export interface LocalDialogueAiResponse {
+  summary: LocalDialogueAiSummary;
+  results: LocalDialogueAiLineResult[];
+  errors?: string[];
+}

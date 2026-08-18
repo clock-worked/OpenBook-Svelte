@@ -4,12 +4,14 @@
   import { currentChapter, bookRoot, bookRootAbsolutePath, currentScript, chapters } from '$lib/stores/bookState';
   import { selection, conflictCursor } from '$lib/stores/selection';
   import { characters, colorForCharacter, rgbaToOpaqueHex, opaqueHexToRgba, refreshChapterCharactersFromFile } from '$lib/stores/characters';
-  import { getScriptPath, readScript, writeScript, writeCentralCharacters, readCentralCharacters, readCharacters, writeCharacters, getCharactersPath } from '$lib/services/fs';
+  import { getScriptPath, readScript, writeScript, writeCentralCharacters, readCentralCharacters, getCharactersPath } from '$lib/services/fs';
+  import { loadChapterCharactersData, persistChapterCharactersData } from '$lib/services/chapterCharacterRepository';
   import { API_ENDPOINTS, apiFetch } from '$lib/services/apiClient';
   // removed generateChapterAudio per UI change
   import { defaultColors } from '$lib/theme/colors';
   import { Plus, ArrowUpDown } from 'lucide-svelte';
   import ChapterAiAssistPanel from './ChapterAiAssistPanel.svelte';
+  import ChapterLocalAiPanel from './ChapterLocalAiPanel.svelte';
   import ChapterCharacterList from './ChapterCharacterList.svelte';
   import ChapterCharacterBookList from './ChapterCharacterBookList.svelte';
   import ChapterCharacterDetails from './ChapterCharacterDetails.svelte';
@@ -20,6 +22,10 @@
     dialogueAiAssistState,
     dialogueAiAssistVisibleResults,
   } from '$lib/stores/dialogueAiAssist';
+  import {
+    localDialogueAiState,
+    localDialogueAiVisibleResults,
+  } from '$lib/stores/localDialogueAi';
 
   const DISPLAY_ALPHA = 1.0; // Use solid colors for visibility
 
@@ -36,19 +42,26 @@
   const lastScrolledLine = new Map<string, number>();
   
   type SortMode = 'name' | 'lines' | 'color';
-  type ChapterPanelTab = 'characters' | 'ai';
+  type ChapterPanelTab = 'characters' | 'ai' | 'local-ai';
 
   let sortMode: SortMode = 'name';
   let activeTab: ChapterPanelTab = 'characters';
   let bookListOpen = false;
   let selectedBookCharacterName: string | null = null;
   let lastAiRunning = false;
+  let lastLocalAiRunning = false;
 
   $: if ($dialogueAiAssistState.running && !lastAiRunning) {
     activeTab = 'ai';
   }
 
   $: lastAiRunning = $dialogueAiAssistState.running;
+
+  $: if ($localDialogueAiState.running && !lastLocalAiRunning) {
+    activeTab = 'local-ai';
+  }
+
+  $: lastLocalAiRunning = $localDialogueAiState.running;
 
   function normalizeCharacterKey(name: string): string {
     return String(name || '').trim().toLowerCase();
@@ -289,10 +302,10 @@
     const root = get(bookRoot);
     if (!root) return;
     const path = getCharactersPath(root, chapterTitle);
-    const existing = await readCharacters(path);
+    const existing = await loadChapterCharactersData(root, path);
     const next = updater(existing);
     if (!next) return;
-    await writeCharacters(path, next);
+    await persistChapterCharactersData(root, path, next);
     if (get(currentChapter)?.title === chapterTitle) {
       await refreshChapterCharactersFromFile();
     }
@@ -452,10 +465,10 @@
     const root = get(bookRoot);
     if (!ch || !root) return;
     const path = getCharactersPath(root, ch.title);
-    const existing = await readCharacters(path);
+    const existing = await loadChapterCharactersData(root, path);
     const next = updater(existing);
     if (!next) return;
-    await writeCharacters(path, next);
+    await persistChapterCharactersData(root, path, next);
     await refreshChapterCharactersFromFile();
   }
 
@@ -945,6 +958,16 @@
       >
         AI Assist
       </button>
+      <button
+        class="panel-tab"
+        class:active={activeTab === 'local-ai'}
+        class:has-alert={$localDialogueAiState.running || $localDialogueAiVisibleResults.length > 0}
+        role="tab"
+        aria-selected={activeTab === 'local-ai'}
+        on:click={() => activeTab = 'local-ai'}
+      >
+        Local AI
+      </button>
     </div>
 
     {#if activeTab === 'characters'}
@@ -975,6 +998,8 @@
 
   {#if activeTab === 'ai'}
     <ChapterAiAssistPanel />
+  {:else if activeTab === 'local-ai'}
+    <ChapterLocalAiPanel />
   {:else}
     {#if $selectionActive}
       <div class="new-character-form">

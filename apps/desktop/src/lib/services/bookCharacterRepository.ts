@@ -2,14 +2,17 @@ import type { Character, CharacterConfig, CharactersJson } from '$lib/types';
 import {
     getBookCharactersPath,
     getCharactersPath,
+    getDialoguePath,
     getScriptPath,
     readCharacters,
+    readDialogue,
     readScript,
     writeCharacters,
     writeCentralCharacters,
 } from '$lib/services/fs';
 import { normalizeCharacterGender } from '$lib/services/characterGender';
 import { normalizeCharacterKey } from '$lib/services/characterDomain';
+import { loadChapterCharactersData } from '$lib/services/chapterCharacterRepository';
 
 export interface ChapterCharacterContext {
     title: string;
@@ -48,7 +51,7 @@ export async function deriveCharactersFromChapters(
 
     for (const chapter of chapterList) {
         try {
-            const chars = await readCharacters(getCharactersPath(root, chapter.title));
+            const chars = await loadChapterCharactersData(root, getCharactersPath(root, chapter.title));
             if (chars && Array.isArray(chars.characters)) {
                 for (const character of chars.characters) {
                     const normalized = normalizeCharacterConfig(character as any);
@@ -165,46 +168,50 @@ export async function syncMissingBookCharacterDefaults(
     rawData: CharactersJson,
     chapterList: ChapterCharacterContext[],
 ): Promise<CharactersJson | null> {
-    const missingDefaults = rawData.characters.some((char: any) =>
-        !char.firstAppearance ||
-        typeof char.stats?.totalLines !== 'number' ||
-        typeof char.stats?.chapterCount !== 'number',
-    );
+    if (!chapterList.length) return null;
 
-    if (!missingDefaults || !chapterList.length) return null;
-
+    const idLookup = new Map<string, string>();
     const nameLookup = new Map<string, string>();
     for (const character of rawData.characters) {
+        const characterId = String((character as any).id || '').trim();
+        if (!characterId) continue;
+        idLookup.set(normalizeCharacterKey(characterId), characterId);
         const key = normalizeCharacterKey((character as any).name);
-        if (key) nameLookup.set(key, (character as any).name);
+        if (key) nameLookup.set(key, characterId);
         const aliases = Array.isArray((character as any).aliases) ? (character as any).aliases : [];
         for (const alias of aliases) {
             const aliasKey = normalizeCharacterKey(alias);
-            if (aliasKey) nameLookup.set(aliasKey, (character as any).name);
+            if (aliasKey) nameLookup.set(aliasKey, characterId);
         }
     }
 
     const derivedStats = new Map<string, { totalLines: number; chapters: Set<string>; firstAppearance: string | null }>();
 
+    const recordUsage = (rawIdentity: unknown, chapterTitle: string): void => {
+        const key = normalizeCharacterKey(String(rawIdentity || ''));
+        if (!key) return;
+        const characterId = idLookup.get(key) ?? nameLookup.get(key);
+        if (!characterId) return;
+
+        const entry = derivedStats.get(characterId) ?? { totalLines: 0, chapters: new Set<string>(), firstAppearance: null };
+        entry.totalLines += 1;
+        entry.chapters.add(chapterTitle);
+        if (!entry.firstAppearance) entry.firstAppearance = chapterTitle;
+        derivedStats.set(characterId, entry);
+    };
+
     for (const chapter of chapterList) {
         try {
-            if (!chapter.parsed) continue;
+            const dialogue = await readDialogue(getDialoguePath(root, chapter.title));
+            if (dialogue?.lines) {
+                for (const line of dialogue.lines) recordUsage((line as any).characterId, chapter.title);
+                continue;
+            }
+
+            // Legacy fallback for books that have not yet migrated to dialogue.json.
             const scriptPath: string = chapter.scriptPath ?? getScriptPath(root, chapter.title);
             const script = await readScript(scriptPath);
-            if (!script) continue;
-
-            for (const line of script.lines) {
-                const rawName = (line as any).chosenSpeaker ?? '';
-                if (!rawName) continue;
-                const canonical = nameLookup.get(normalizeCharacterKey(rawName));
-                if (!canonical) continue;
-
-                const entry = derivedStats.get(canonical) ?? { totalLines: 0, chapters: new Set<string>(), firstAppearance: null };
-                entry.totalLines += 1;
-                entry.chapters.add(chapter.title);
-                if (!entry.firstAppearance) entry.firstAppearance = chapter.title;
-                derivedStats.set(canonical, entry);
-            }
+            for (const line of script?.lines ?? []) recordUsage((line as any).chosenSpeaker, chapter.title);
         } catch {
         }
     }
@@ -214,11 +221,13 @@ export async function syncMissingBookCharacterDefaults(
         ...rawData,
         formatVersion: rawData.formatVersion || '2.0',
         characters: rawData.characters.map((char: any) => {
-            const derived = derivedStats.get(char.name);
-            if (!derived) return char;
+            const characterId = String(char.id || '').trim();
+            const derived = derivedStats.get(characterId);
+            const totalLines = derived?.totalLines ?? 0;
+            const chapterCount = derived?.chapters.size ?? 0;
 
             let nextChar = { ...char };
-            if (!nextChar.firstAppearance && derived.firstAppearance) {
+            if (!nextChar.firstAppearance && derived?.firstAppearance) {
                 nextChar.firstAppearance = derived.firstAppearance;
                 updated = true;
             }
@@ -226,12 +235,12 @@ export async function syncMissingBookCharacterDefaults(
             const stats = { ...(nextChar.stats ?? {}) } as { totalLines?: number; chapterCount?: number };
             let statsUpdated = false;
 
-            if (typeof stats.totalLines !== 'number') {
-                stats.totalLines = derived.totalLines;
+            if (stats.totalLines !== totalLines) {
+                stats.totalLines = totalLines;
                 statsUpdated = true;
             }
-            if (typeof stats.chapterCount !== 'number') {
-                stats.chapterCount = derived.chapters.size;
+            if (stats.chapterCount !== chapterCount) {
+                stats.chapterCount = chapterCount;
                 statsUpdated = true;
             }
             if (statsUpdated) {
@@ -239,12 +248,12 @@ export async function syncMissingBookCharacterDefaults(
                 updated = true;
             }
 
-            if (typeof nextChar.count !== 'number') {
-                nextChar.count = derived.totalLines;
+            if (nextChar.count !== totalLines) {
+                nextChar.count = totalLines;
                 updated = true;
             }
-            if (typeof nextChar.chapterCount !== 'number') {
-                nextChar.chapterCount = derived.chapters.size;
+            if (nextChar.chapterCount !== chapterCount) {
+                nextChar.chapterCount = chapterCount;
                 updated = true;
             }
 

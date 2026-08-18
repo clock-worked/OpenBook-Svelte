@@ -21,14 +21,14 @@ type DialogueAiAssistDisplayResult = DialogueAiAssistLineResult & {
 
 type DialogueAiAssistTone = 'info' | 'success' | 'error';
 
-type DialogueAiAssistChapterInput = {
+export type DialogueAiAssistChapterInput = {
   chapterPath: string;
   chapterTitle: string;
   rawText: string;
   normalizedScript: { lines: UnifiedLine[]; stats: any };
 };
 
-type DialogueAiAssistController = {
+export type DialogueAiAssistController = {
   getChapterInput: () => DialogueAiAssistChapterInput | null;
   ensureAndAssignCharacters: (lineIds: number[], characterName: string) => Promise<void>;
 };
@@ -114,7 +114,7 @@ function summarizeAiRun(args: {
   return `AI assist complete. ${parts.join(', ')}.`;
 }
 
-function buildDialogueAiPayload(input: DialogueAiAssistChapterInput) {
+export function buildDialogueAiPayload(input: DialogueAiAssistChapterInput) {
   return {
     formatVersion: '2.0' as const,
     chapterId: input.chapterTitle,
@@ -174,7 +174,7 @@ function buildDialogueAiPayload(input: DialogueAiAssistChapterInput) {
   };
 }
 
-function countReviewableDialogueLines(input: DialogueAiAssistChapterInput): number {
+export function countReviewableDialogueLines(input: DialogueAiAssistChapterInput): number {
   return input.normalizedScript.lines.filter((line) => {
     const characterName = String(line.characterName ?? '').trim().toLowerCase();
     return characterName.length > 0 && characterName !== 'narrator';

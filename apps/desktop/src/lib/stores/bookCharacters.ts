@@ -1,7 +1,8 @@
 import { writable, get } from 'svelte/store';
 import type { CharacterManifestStats, CharacterVoiceMeta, CharactersJson, TtsProvider, Character, Gender } from '$lib/types';
 import { audioRoot, bookRoot, chapters } from '$lib/stores/bookState';
-import { getCharactersPath, readCharacters, writeCharacters, readCentralCharacters } from '$lib/services/fs';
+import { getCharactersPath, readCentralCharacters } from '$lib/services/fs';
+import { loadChapterCharactersData, persistChapterCharactersData } from '$lib/services/chapterCharacterRepository';
 import { loadCharacterManifestSummary } from '$lib/services/manifests';
 import {
   loadBookCharactersData,
@@ -288,7 +289,7 @@ export async function syncAllChapterColorsFromBook(): Promise<{ updated: number;
   for (const ch of chapterList) {
     try {
       const charsPath = getCharactersPath(root, ch.title);
-      const chapterChars = await readCharacters(charsPath);
+      const chapterChars = await loadChapterCharactersData(root, charsPath);
 
       if (chapterChars && chapterChars.characters) {
         // Update chapter characters with book-level colors
@@ -308,7 +309,7 @@ export async function syncAllChapterColorsFromBook(): Promise<{ updated: number;
           })
         };
 
-        await writeCharacters(charsPath, synced);
+        await persistChapterCharactersData(root, charsPath, synced);
         updated++;
       }
     } catch (e) {

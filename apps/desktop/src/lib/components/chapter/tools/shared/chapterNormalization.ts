@@ -232,27 +232,20 @@ export async function normalizeScriptData(
     let aliasToCanonical = new Map<string, string>();
     let nameToCanonical = new Map<string, string>();
 
-    if ('formatVersion' in data && data.formatVersion === '2.0') {
-        if (options.root) {
-            try {
-                const centralChars = await options.readCentralCharacters(options.root);
-                if (centralChars?.characters) {
-                    charactersMap = options.buildIdToNameMap(centralChars.characters);
-                    const aliasMaps = buildAliasMaps(centralChars.characters);
-                    aliasToCanonical = aliasMaps.aliasToCanonical;
-                    nameToCanonical = aliasMaps.nameToCanonical;
-                }
-            } catch {
-                // fallback handled below
+    // Dialogue v2 and every v3 revision store canonical character IDs. Resolve
+    // them for presentation regardless of the exact formatVersion value.
+    if (options.root) {
+        try {
+            const centralChars = await options.readCentralCharacters(options.root);
+            if (centralChars?.characters) {
+                charactersMap = options.buildIdToNameMap(centralChars.characters);
             }
+            const aliasMaps = buildAliasMaps(centralChars?.characters);
+            aliasToCanonical = aliasMaps.aliasToCanonical;
+            nameToCanonical = aliasMaps.nameToCanonical;
+        } catch {
+            // Individual IDs remain visible if the central catalog cannot load.
         }
-    }
-
-    if ((aliasToCanonical.size === 0 || nameToCanonical.size === 0) && options.root) {
-        const centralChars = await options.readCentralCharacters(options.root);
-        const aliasMaps = buildAliasMaps(centralChars?.characters);
-        aliasToCanonical = aliasMaps.aliasToCanonical;
-        nameToCanonical = aliasMaps.nameToCanonical;
     }
 
     let hadAliasChanges = false;

@@ -288,9 +288,13 @@ def detect_proverb_end_id(chapter_name: str, lines: list[dict[str, Any]]) -> int
 def resolve_title_path(chapter_dir: Path) -> Path:
     """Resolve a title clip from local or centralized title-audio layouts."""
 
-    local_path = (chapter_dir / "title_audio" / "chapter-title-stephen-fry.wav").resolve()
-    if local_path.exists():
-        return local_path
+    local_candidates = [
+        (chapter_dir / "title_audio" / "chapter-title-stephen-fry.wav").resolve(),
+        (chapter_dir / "title_audio" / "chapter-title.wav").resolve(),
+    ]
+    for local_path in local_candidates:
+        if local_path.exists():
+            return local_path
 
     split_dir = (
         chapter_dir.parent
@@ -305,7 +309,7 @@ def resolve_title_path(chapter_dir: Path) -> Path:
         if len(wav_paths) > 1:
             raise RuntimeError(f"Multiple title clips found for {chapter_dir.name}: {split_dir}")
 
-    return local_path
+    return local_candidates[0]
 
 
 def ensure_report_paths(book_dir: Path, report_dir: Path | None) -> tuple[Path, Path]:

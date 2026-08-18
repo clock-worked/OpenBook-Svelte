@@ -3,15 +3,14 @@ import {
     getCharactersPath,
     getDialoguePath,
     getScriptPath,
-    readCharacters,
     readDialogue,
     readScript,
     readVoices,
-    writeCharacters,
     writeDialogue,
     writeScript,
     writeVoices,
 } from '$lib/services/fs';
+import { loadChapterCharactersData, persistChapterCharactersData } from '$lib/services/chapterCharacterRepository';
 
 export interface ChapterRemapTarget {
     title: string;
@@ -334,7 +333,7 @@ export async function remapCharacterNameInChapterCharacterFiles(
     for (const chapter of chapterList) {
         try {
             const charactersPath = getCharactersPath(root, chapter.title);
-            const charactersData: any = await readCharacters(charactersPath);
+            const charactersData: any = await loadChapterCharactersData(root, charactersPath);
             if (!charactersData || !Array.isArray(charactersData.characters)) continue;
 
             let changed = false;
@@ -382,7 +381,7 @@ export async function remapCharacterNameInChapterCharacterFiles(
                 };
             }
 
-            await writeCharacters(charactersPath, {
+            await persistChapterCharactersData(root, charactersPath, {
                 formatVersion: charactersData.formatVersion || '2.0',
                 characters: deduped,
             });

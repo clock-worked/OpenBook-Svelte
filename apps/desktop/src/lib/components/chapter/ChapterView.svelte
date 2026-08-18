@@ -68,6 +68,10 @@
     registerDialogueAiAssistController,
     resetDialogueAiAssistState,
   } from '$lib/stores/dialogueAiAssist';
+  import {
+    registerLocalDialogueAiController,
+    resetLocalDialogueAiState,
+  } from '$lib/stores/localDialogueAi';
 
   const UNKNOWN_SPEAKER_LABEL = 'Unknown';
 
@@ -214,6 +218,7 @@
   onDestroy(() => {
     chapterAnimationPlanSeq += 1;
     unregisterDialogueAiAssistController();
+    unregisterLocalDialogueAiController();
   });
 
   // Review tool state
@@ -409,23 +414,27 @@
     void ensureAndAssignCharacters(lineIds, characterName);
   }
 
-  const unregisterDialogueAiAssistController = registerDialogueAiAssistController({
-    getChapterInput: () => {
-      const chapter = get(currentChapter);
-      const normalized = get(normalizedScript);
-      const text = get(rawText);
+  function getDialogueAiChapterInput() {
+    const chapter = get(currentChapter);
+    const normalized = get(normalizedScript);
+    const text = get(rawText);
 
-      if (!chapter || !normalized || !text) return null;
+    if (!chapter || !normalized || !text) return null;
 
-      return {
-        chapterPath: chapter.path || chapter.title,
-        chapterTitle: chapter.title,
-        rawText: text,
-        normalizedScript: normalized,
-      };
-    },
+    return {
+      chapterPath: chapter.path || chapter.title,
+      chapterTitle: chapter.title,
+      rawText: text,
+      normalizedScript: normalized,
+    };
+  }
+
+  const dialogueAiController = {
+    getChapterInput: getDialogueAiChapterInput,
     ensureAndAssignCharacters,
-  });
+  };
+  const unregisterDialogueAiAssistController = registerDialogueAiAssistController(dialogueAiController);
+  const unregisterLocalDialogueAiController = registerLocalDialogueAiController(dialogueAiController);
 
   // Audio tool handlers
   async function handleLineAudioClick(lineId: number, characterName: string, event?: MouseEvent) {
@@ -629,6 +638,7 @@
       rawText.set(null);
       paragraphRuns.set([]);
       resetDialogueAiAssistState();
+      resetLocalDialogueAiState();
       isV2Format = false;
       const ch: any = $currentChapter;
       console.log('[ChapterView] Chapter path:', ch.path);

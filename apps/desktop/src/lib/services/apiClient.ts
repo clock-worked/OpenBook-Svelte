@@ -27,6 +27,9 @@ export const API_ENDPOINTS = {
     dialogueAiAssist: '/api/dialogue-ai-assist',
     dialogueAiAssistStatus: (requestId: string) =>
         `/api/dialogue-ai-assist-status/${encodeURIComponent(requestId)}`,
+    localDialogueAi: '/api/local-dialogue-ai',
+    localDialogueAiStatus: (requestId: string) =>
+        `/api/local-dialogue-ai-status/${encodeURIComponent(requestId)}`,
     setBookRoot: '/api/set-book-root',
     setAudioRoot: '/api/set-audio-root',
     listChapters: '/api/list-chapters',

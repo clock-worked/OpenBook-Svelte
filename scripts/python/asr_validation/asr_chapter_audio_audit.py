@@ -756,6 +756,35 @@ def run_chapter_audit(
     return summary
 
 
+def load_existing_asr_results(output_dir: Path) -> dict[str, dict[str, Any]]:
+    audit_path = output_dir / "chapter_asr_audit.json"
+    if not audit_path.exists():
+        return {}
+
+    try:
+        payload = json.loads(audit_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+
+    clips = payload.get("clips")
+    if not isinstance(clips, list):
+        return {}
+
+    results: dict[str, dict[str, Any]] = {}
+    for clip in clips:
+        if not isinstance(clip, dict):
+            continue
+        audio_path = clip.get("audioPath")
+        asr_result = clip.get("asr")
+        status = clip.get("status")
+        if not isinstance(audio_path, str) or not isinstance(asr_result, dict):
+            continue
+        if status == "audio_read_error" or "text" not in asr_result:
+            continue
+        results[audio_path] = asr_result
+    return results
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Audit chapter audio lines with ASR and produce regenerate lists for missing/mismatched clips."
@@ -801,6 +830,11 @@ def main() -> None:
     )
     parser.add_argument("--top-k", type=int, default=3,
                         help="How many candidate matching lines to keep in report.")
+    parser.add_argument(
+        "--resume-existing",
+        action="store_true",
+        help="Reuse clip ASR results from existing chapter_asr_audit.json files and only transcribe missing clips.",
+    )
     parser.add_argument("--dry-run", action="store_true",
                         help="Validate inputs and print summary without ASR inference.")
     args = parser.parse_args()
@@ -822,6 +856,19 @@ def main() -> None:
 
     base_output_dir = args.output_dir.resolve() if args.output_dir else None
 
+    existing_asr_by_audio_path: dict[str, dict[str, Any]] = {}
+    if args.resume_existing and not args.dry_run:
+        for chapter_dir in chapter_dirs:
+            chapter_output_dir = (
+                (base_output_dir / chapter_dir.name).resolve()
+                if base_output_dir
+                else (chapter_dir / "audio_lines" / "asr_audit").resolve()
+            )
+            existing_asr_by_audio_path.update(
+                load_existing_asr_results(chapter_output_dir))
+        print(
+            f"[resume] Reusing {len(existing_asr_by_audio_path)} existing clip ASR results")
+
     asr_pipeline = None
     if not args.dry_run:
         asr_pipeline = create_pipeline(
@@ -835,7 +882,11 @@ def main() -> None:
             chapter_inputs = collect_chapter_audit_inputs(chapter_dir)
             chapter_inputs_by_dir[str(chapter_dir)] = chapter_inputs
             flattened_audio_paths.extend(
-                [audio_path for audio_path, _line_id in chapter_inputs["parsedAudio"]]
+                    [
+                        audio_path
+                        for audio_path, _line_id in chapter_inputs["parsedAudio"]
+                        if str(audio_path) not in existing_asr_by_audio_path
+                    ]
             )
 
         if flattened_audio_paths:
@@ -883,6 +934,9 @@ def main() -> None:
                 str(audio_path): result
                 for audio_path, result in zip(flattened_audio_paths, flattened_results)
             }
+            precomputed_asr_by_audio_path.update(existing_asr_by_audio_path)
+        elif existing_asr_by_audio_path:
+            precomputed_asr_by_audio_path = existing_asr_by_audio_path
 
     all_results: list[dict[str, Any]] = []
     all_regenerate: list[dict[str, Any]] = []

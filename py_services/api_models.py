@@ -261,3 +261,43 @@ class DialogueAiAssistResponse(BaseModel):
     summary: DialogueAiAssistSummary
     results: List[DialogueAiLineResult] = Field(default_factory=list)
     errors: List[str] = Field(default_factory=list)
+
+
+class LocalDialogueAiLineResult(BaseModel):
+    lineId: int
+    paragraphIndex: Optional[int] = None
+    currentCharacterId: Optional[str] = None
+    currentCharacterName: Optional[str] = None
+    suggestedCharacterId: Optional[str] = None
+    suggestedCharacterName: Optional[str] = None
+    outcome: Literal["keep_existing", "suggestion", "unresolved", "error"]
+    currentParagraphText: str
+    rawOutput: Optional[str] = None
+    error: Optional[str] = None
+
+
+class LocalDialogueAiSummary(BaseModel):
+    scannedLines: int
+    unchangedCount: int
+    suggestionCount: int
+    unresolvedCount: int
+    errorCount: int
+    skippedNarratorLines: int
+    modelCalls: int = 0
+
+
+class LocalDialogueAiRequest(BaseModel):
+    request_id: Optional[str] = None
+    chapter_path: str
+    chapter_text: str
+    dialogue: DialogueJson
+    context_window: int = Field(default=600, ge=0, le=8000)
+    include_previous_speaker: bool = True
+    include_speaker_context: bool = True
+    max_lines: Optional[int] = None
+
+
+class LocalDialogueAiResponse(BaseModel):
+    summary: LocalDialogueAiSummary
+    results: List[LocalDialogueAiLineResult] = Field(default_factory=list)
+    errors: List[str] = Field(default_factory=list)

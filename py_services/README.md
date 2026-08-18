@@ -107,6 +107,22 @@ Dialogue AI assist now persists per-line request/response logs and caches identi
 
 The desktop AI Assist panel shows the run log directory and each line's log path after a run.
 
+## Local dialogue AI
+
+The desktop **Local AI** tab sends dialogue-attribution prompts to LM Studio. Its defaults match the fine-tuned Primal Hunter model:
+
+- Endpoint: `http://127.0.0.1:1234/api/v1/chat`
+- Model: `primal-hunter-llama-3-8b-instruct`
+
+Both can be overridden in `py_services/.env`:
+
+```dotenv
+OPENBOOK_LOCAL_AI_ENDPOINT=http://127.0.0.1:1234/api/v1/chat
+OPENBOOK_LOCAL_AI_MODEL=primal-hunter-llama-3-8b-instruct
+```
+
+The service expects the model to return only a character ID or `None`. Recognized character suggestions are applied automatically; `None` and unknown IDs remain unresolved.
+
 ### Current target: Primal Hunter Book 14 Chapter 1
 
 ```bash
