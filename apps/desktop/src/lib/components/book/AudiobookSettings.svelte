@@ -350,6 +350,15 @@
   <h3 class="subsection-title">Parser Hints</h3>
   <div class="settings-group">
     <div class="form-row">
+      <label for="parser-backend" class="field-label">Attribution Backend</label>
+      <select id="parser-backend" bind:value={parserHints.parserBackend} on:change={notifyUpdate}>
+        <option value="legacy">OpenBook rules</option>
+        <option value="modernbooknlp">ModernBookNLP joint model</option>
+      </select>
+      <span class="help-text">ModernBookNLP keeps OpenBook dialogue spans and replaces aligned speaker labels</span>
+    </div>
+
+    <div class="form-row">
       <label for="pov-mode" class="field-label">POV Mode</label>
       <select id="pov-mode" bind:value={parserHints.povMode} on:change={notifyUpdate}>
         <option value="first_person">First person (I said, I asked)</option>

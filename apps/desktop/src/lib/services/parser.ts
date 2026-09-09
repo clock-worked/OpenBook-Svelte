@@ -4,7 +4,8 @@ import type { Line, DialogueJson, DialogueLine, Character, LineCandidate, Parser
 import { readTextFile, getRootDirHandle, readCentralCharacters, writeCentralCharacters } from '$lib/services/fs';
 import { computeReturningFlags } from '$lib/services/dialogueReturning';
 import { buildIdToNameMap, buildNameToIdMap } from '$lib/stores/characters';
-import { API_ENDPOINTS, apiPostJson, apiRequestJson, toApiClientError } from '$lib/services/apiClient';
+import { API_ENDPOINTS, apiPostJson, apiPostVoid, apiRequestJson, toApiClientError } from '$lib/services/apiClient';
+import { buildClosedWorldParserOptions } from '$lib/services/parserCatalog';
 
 const ALWAYS_BLOCKED_CHARACTER_NAMES = new Set(['he', 'she', 'as', 'it', 'that', 'they', 'them', 'the', 'this', 'these', 'those']);
 
@@ -225,8 +226,15 @@ function convertLineToDialogueLine(
   const baseConfidence = collapsedCandidates[0]?.confidence ?? estimatedConfidence;
 
   const hasNamedCandidates = collapsedCandidates.some((candidate) => !!candidate.characterId);
+  const resolvedSpeakerId = speakerKey ? (nameToCharIdMap.get(speakerKey) || null) : null;
+  const selectedReasons = parserAttribution?.decisionTrace?.selectedReasons;
+  const hasDeterministicFirstPersonAttribution = !!resolvedSpeakerId
+    && Array.isArray(selectedReasons)
+    && selectedReasons.some((reason) =>
+      reason === '0p_protagonist_first_person' || reason === 'first_person_override'
+    );
 
-  const shouldAbstain = !isNarration && (
+  const shouldAbstain = !isNarration && !hasDeterministicFirstPersonAttribution && (
     line.is_suggestion === true
     || baseConfidence < 0.74
     || (collapsedCandidates.length > 1 && baseConfidence < 0.86)
@@ -234,7 +242,6 @@ function convertLineToDialogueLine(
     || speakerIsBlocked
   );
 
-  const resolvedSpeakerId = speakerKey ? (nameToCharIdMap.get(speakerKey) || null) : null;
   const characterId = isNarration
     ? 'narrator'
     : (shouldAbstain
@@ -322,24 +329,32 @@ function convertLineToDialogueLine(
  */
 async function writeDialogue(path: string, data: DialogueJson): Promise<boolean> {
   const rootHandle = getRootDirHandle();
-  if (!rootHandle) return false;
-  try {
-    const pathParts = path.split('/').filter(p => p);
-    let currentHandle: FileSystemDirectoryHandle | FileSystemFileHandle = rootHandle;
-    for (let i = 0; i < pathParts.length; i++) {
-      const part = pathParts[i];
-      if (i < pathParts.length - 1) {
-        currentHandle = await (currentHandle as FileSystemDirectoryHandle).getDirectoryHandle(part, { create: true });
-      } else {
-        const fileHandle = await (currentHandle as FileSystemDirectoryHandle).getFileHandle(part, { create: true });
-        const writable = await fileHandle.createWritable();
-        await writable.write(JSON.stringify(data, null, 2));
-        await writable.close();
+  if (rootHandle) {
+    try {
+      const pathParts = path.split('/').filter(p => p);
+      let currentHandle: FileSystemDirectoryHandle | FileSystemFileHandle = rootHandle;
+      for (let i = 0; i < pathParts.length; i++) {
+        const part = pathParts[i];
+        if (i < pathParts.length - 1) {
+          currentHandle = await (currentHandle as FileSystemDirectoryHandle).getDirectoryHandle(part, { create: true });
+        } else {
+          const fileHandle = await (currentHandle as FileSystemDirectoryHandle).getFileHandle(part, { create: true });
+          const writable = await fileHandle.createWritable();
+          await writable.write(JSON.stringify(data, null, 2));
+          await writable.close();
+        }
       }
+      return true;
+    } catch (error) {
+      console.warn(`[parser] File System API write failed for ${path}; trying backend`, error);
     }
+  }
+
+  try {
+    await apiPostVoid(API_ENDPOINTS.save, { file_path: path, content: data });
     return true;
-  } catch (e) {
-    console.error(`Failed to write dialogue to ${path}`, e);
+  } catch (error) {
+    console.error(`Failed to write dialogue to ${path}`, error);
     return false;
   }
 }
@@ -350,12 +365,13 @@ export async function runParserForChapter(args: {
 }): Promise<{ ok: boolean; chapter?: string; numLines?: number; numConflicts?: number; scriptPath?: string; error?: string }> {
 
   try {
-    const rootHandle = getRootDirHandle();
-    if (!rootHandle) {
-      throw new Error("No root directory selected");
+    let fileContent = await readTextFile(args.input);
+    if (fileContent === null) {
+      const response = await apiPostJson<{ content: string }>(API_ENDPOINTS.readText, {
+        file_path: args.input,
+      });
+      fileContent = response.content;
     }
-
-    const fileContent = await readTextFile(args.input);
     if (fileContent === null) {
       throw new Error(`Could not read file content from ${args.input}`);
     }
@@ -364,7 +380,8 @@ export async function runParserForChapter(args: {
     const manualBlockList = Array.from(
       new Set([...(hints.manualBlockList || []), ...ALWAYS_BLOCKED_CHARACTER_NAMES])
     );
-    const parserOptions = buildParserOptions(hints);
+    const existingBookCharacters = await readCentralCharacters('') || { formatVersion: '2.0', characters: [] };
+    const parserOptions = buildClosedWorldParserOptions(buildParserOptions(hints), existingBookCharacters);
 
     const parsed = await apiPostJson<ParserOutput>(API_ENDPOINTS.parse, {
       text: fileContent,
@@ -392,7 +409,7 @@ export async function runParserForChapter(args: {
 
     // Update the central characters.json file FIRST (single source of truth)
     const root = ''; // Not used in v2.0 but required by function signature
-    const existingBookChars = await readCentralCharacters(root) || { formatVersion: '2.0', characters: [] };
+    const existingBookChars = existingBookCharacters;
     const allBookChars = existingBookChars.characters.filter((character) => {
       return !isBlockedCharacterToken(character.id) && !isBlockedCharacterToken(character.name);
     });
@@ -411,7 +428,10 @@ export async function runParserForChapter(args: {
     // Use centralized helper to build the map from existing characters
     const nameToCharIdMap = buildNameToIdMap(allBookChars);
 
-    // Add new characters with proper IDs
+    const closedWorldEnabled = existingBookChars.characters.length > 0;
+
+    // Bootstrap empty projects as before. Once a catalogue exists, unknown parser
+    // surfaces stay provisional and are resolved explicitly during review.
     for (const name of parsedCharacters) {
       const normalizedName = String(name || '').toLowerCase().trim();
       if (!normalizedName) continue;
@@ -419,6 +439,7 @@ export async function runParserForChapter(args: {
       if (nameToCharIdMap.has(normalizedName) || existingBookCharNames.has(normalizedName)) {
         continue;
       }
+      if (closedWorldEnabled) continue;
 
       const baseNormalizedName = stripNumericSlugSuffix(normalizedName);
       if (baseNormalizedName && baseNormalizedName !== normalizedName && existingBookCharNames.has(baseNormalizedName)) {
@@ -511,7 +532,10 @@ export async function runParserForChapter(args: {
     const dialoguePath = `${chapterName}/dialogue.json`;
 
     // Write the chapter dialogue.json file.
-    await writeDialogue(dialoguePath, dialogueJson);
+    const saved = await writeDialogue(dialoguePath, dialogueJson);
+    if (!saved) {
+      throw new Error(`Could not save parser output to ${dialoguePath}`);
+    }
 
     return {
       ok: true,
@@ -548,6 +572,7 @@ function buildParserOptions(hints: ParserHints) {
   };
 
   return {
+    parser_backend: hints.parserBackend || 'legacy',
     pov_mode: hints.povMode || 'first_person',
     protagonists: protagonistNames,
     learn_verbs: hints.learnVerbs ?? false,

@@ -55,6 +55,7 @@ export const audiobookSettings = writable<AudiobookSettings>({
 });
 
 export const parserHints = writable<ParserHints>({
+  parserBackend: 'legacy',
   protagonistName: '',
   protagonistNames: [],
   povMode: 'first_person',

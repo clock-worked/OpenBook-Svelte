@@ -21,7 +21,9 @@ from .attribution_passes import (
     rank_candidates,
 )
 from .dialogue_parser_service import DialogueLine, DialogueParserService
+from .episode_decoder import decode_dialogue_episodes
 from .knowledge_store import load_knowledge_for_file
+from .modernbooknlp_service import ModernBookNLPService, align_dialogue_lines
 
 
 BLOCKED_CHARACTER_TOKENS = {
@@ -63,6 +65,31 @@ def _normalize_gender_label(value: Optional[str]) -> Optional[str]:
     if lowered.startswith("they/"):
         return "neutral"
     return None
+
+
+def build_closed_world_catalog(rows) -> Dict[str, object]:
+    surface_to_name: Dict[str, str] = {}
+    gender_by_name: Dict[str, str] = {}
+    names: set[str] = set()
+    for row in rows or []:
+        if not isinstance(row, dict):
+            continue
+        name = str(row.get("name") or "").strip()
+        if not name:
+            continue
+        names.add(name)
+        for value in [row.get("characterId"), name, *(row.get("aliases") or [])]:
+            key = _normalize_text(str(value or ""))
+            if key:
+                surface_to_name[key] = name
+        gender = _normalize_gender_label(row.get("gender"))
+        if gender:
+            gender_by_name[name] = gender
+    return {"surface_to_name": surface_to_name, "gender_by_name": gender_by_name, "names": names}
+
+
+def canonicalize_closed_world_name(value: Optional[str], catalog: Dict[str, object]) -> Optional[str]:
+    return catalog.get("surface_to_name", {}).get(_normalize_text(str(value or "")))
 
 
 def _read_text_with_fallback(file_path: str) -> str:
@@ -183,6 +210,7 @@ class BookNLPParserService:
 
     def __init__(self) -> None:
         self.legacy_service = DialogueParserService()
+        self.modernbooknlp_service = ModernBookNLPService()
 
     def parse_file(
         self,
@@ -208,6 +236,13 @@ class BookNLPParserService:
         knowledge_store = load_knowledge_for_file(source_path or legacy_input_path)
         display_name_by_key: Dict[str, str] = {}
         known_gender_by_key: Dict[str, str] = {}
+        closed_world = bool((options or {}).get("closed_world_characters"))
+        closed_world_catalog = build_closed_world_catalog((options or {}).get("character_catalog") or [])
+
+        if closed_world:
+            display_name_by_key.update(closed_world_catalog["surface_to_name"])
+            for canonical, gender in closed_world_catalog["gender_by_name"].items():
+                known_gender_by_key[_normalize_text(canonical)] = gender
 
         if knowledge_store:
             for canonical in knowledge_store.genders.keys():
@@ -227,14 +262,15 @@ class BookNLPParserService:
                 if canonical_key in known_gender_by_key:
                     known_gender_by_key[alias_key] = known_gender_by_key[canonical_key]
 
-        for line in base_lines:
-            speaker = str(line.speaker or "").strip()
-            if speaker:
-                display_name_by_key.setdefault(_normalize_text(speaker), speaker)
-            for suggestion in line.suggestions or []:
-                suggestion_name = str(suggestion or "").strip()
-                if suggestion_name:
-                    display_name_by_key.setdefault(_normalize_text(suggestion_name), suggestion_name)
+        if not closed_world:
+            for line in base_lines:
+                speaker = str(line.speaker or "").strip()
+                if speaker:
+                    display_name_by_key.setdefault(_normalize_text(speaker), speaker)
+                for suggestion in line.suggestions or []:
+                    suggestion_name = str(suggestion or "").strip()
+                    if suggestion_name:
+                        display_name_by_key.setdefault(_normalize_text(suggestion_name), suggestion_name)
 
         known_names = sorted(set(display_name_by_key.values()))
         original_text = _read_text_with_fallback(legacy_input_path)
@@ -252,6 +288,7 @@ class BookNLPParserService:
                 base_line.span_start,
             )
             line_paragraph_index[idx] = paragraph_index
+            base_line.paragraph_index = paragraph_index
             if paragraph_index < 0:
                 continue
             last_entry_by_paragraph[paragraph_index] = idx
@@ -289,6 +326,11 @@ class BookNLPParserService:
                 continue
 
             legacy_name = str(line.speaker or "").strip()
+            legacy_rule = (
+                line.attribution.get("legacyRule")
+                if isinstance(line.attribution, dict)
+                else None
+            )
             paragraph_index = line_paragraph_index.get(line_idx, -1)
             paragraph_range = (
                 paragraph_ranges[paragraph_index]
@@ -369,6 +411,30 @@ class BookNLPParserService:
                     previous_paragraph_named_mention if context_gender else None,
                 )
 
+            if closed_world:
+                canonical_candidates: List[str] = []
+                for candidate_name in dialogue_candidates:
+                    canonical = canonicalize_closed_world_name(candidate_name, closed_world_catalog)
+                    if canonical:
+                        canonical_candidates.append(canonical)
+                dialogue_candidates = _unique_suggestions(*canonical_candidates)
+
+            if not dialogue_candidates:
+                line.speaker = legacy_name
+                line.is_suggestion = True
+                line.suggestions = _unique_suggestions(legacy_name)
+                line.attribution = {
+                    "parserBackend": "legacy",
+                    "candidates": [],
+                    "decisionTrace": {
+                        "selectedCandidate": None,
+                        "selectedReasons": ["closed_world_unresolved"],
+                        "signals": {"sourceCandidate": legacy_name},
+                    },
+                }
+                uncertain_lines += 1
+                continue
+
             candidate_genders: Dict[str, str] = {}
             for candidate_name in dialogue_candidates:
                 candidate_key = _normalize_text(candidate_name)
@@ -405,7 +471,21 @@ class BookNLPParserService:
             line.is_suggestion = decision.is_suggestion
             line.suggestions = [entry.name for entry in decision.ranked]
             line.attribution = _build_line_attribution(signals, decision)
-            if decision.is_suggestion:
+            if legacy_rule in {"0p_protagonist_first_person", "first_person_override"}:
+                protagonist_name = (
+                    canonicalize_closed_world_name(legacy_name, closed_world_catalog)
+                    if closed_world
+                    else legacy_name
+                )
+                if protagonist_name:
+                    line.speaker = protagonist_name
+                    line.is_suggestion = False
+                    line.suggestions = _unique_suggestions(
+                        protagonist_name,
+                        *line.suggestions,
+                    )
+                    _apply_attribution_override(line, protagonist_name, legacy_rule)
+            if line.is_suggestion:
                 uncertain_lines += 1
             elif paragraph_index >= 0 and line.speaker:
                 resolved_dialogue_by_paragraph[paragraph_index] = line.speaker
@@ -459,7 +539,70 @@ class BookNLPParserService:
                     )
                     break
 
-        names = sorted(
+        episode_decoder_enabled = bool((options or {}).get("episode_joint_decode", True))
+        episode_decoder_changes = (
+            decode_dialogue_episodes(base_lines) if episode_decoder_enabled else 0
+        )
+        requested_backend = str((options or {}).get("parser_backend") or "legacy").strip().lower()
+        backend = "legacy"
+        fallback_reason = None
+        modernbooknlp_quotes = 0
+        modernbooknlp_aligned = 0
+        if requested_backend == "modernbooknlp":
+            try:
+                predictions = self.modernbooknlp_service.attribute_file(
+                    legacy_input_path,
+                    (options or {}).get("character_catalog") or [],
+                )
+                aligned = align_dialogue_lines(base_lines, predictions)
+                modernbooknlp_quotes = len(predictions)
+                modernbooknlp_aligned = len(aligned)
+                for line_index, prediction in aligned.items():
+                    line = base_lines[line_index]
+                    previous_speaker = str(line.speaker or "").strip() or None
+                    line.speaker = prediction.speaker
+                    line.is_suggestion = False
+                    line.suggestions = _unique_suggestions(prediction.speaker, *line.suggestions)
+                    attribution = line.attribution if isinstance(line.attribution, dict) else {}
+                    attribution["parserBackend"] = "modernbooknlp"
+                    attribution["candidates"] = [
+                        {
+                            "name": prediction.speaker,
+                            "confidence": 0.9,
+                            "reasons": ["modernbooknlp_joint_attribution"],
+                        },
+                        *[
+                            candidate
+                            for candidate in attribution.get("candidates", [])
+                            if _normalize_text((candidate or {}).get("name"))
+                            != _normalize_text(prediction.speaker)
+                        ],
+                    ]
+                    trace = attribution.setdefault("decisionTrace", {})
+                    trace.update({
+                        "selectedCandidate": prediction.speaker,
+                        "selectedReasons": ["modernbooknlp_joint_attribution"],
+                        "overrideReason": "modernbooknlp_joint_attribution",
+                        "modernBookNLP": {
+                            "corefId": prediction.coref_id,
+                            "quoteSpan": {"start": prediction.start, "end": prediction.end},
+                            "previousSpeaker": previous_speaker,
+                        },
+                    })
+                    line.attribution = attribution
+                backend = "modernbooknlp"
+            except Exception as exc:
+                fallback_reason = f"modernbooknlp_failed: {exc}"
+        elif requested_backend != "legacy":
+            fallback_reason = f"unsupported_parser_backend: {requested_backend}"
+
+        uncertain_lines = sum(
+            1
+            for line in base_lines
+            if line.line_type == "dialogue" and line.is_suggestion
+        )
+
+        names = sorted(closed_world_catalog["names"]) if closed_world else sorted(
             {
                 line.speaker
                 for line in base_lines
@@ -467,7 +610,11 @@ class BookNLPParserService:
             }
         )
         return base_lines, names, {
-            "backend": "legacy",
-            "fallback_reason": "booknlp_disabled_on_legacy_extraction_branch",
+            "backend": backend,
+            "fallback_reason": fallback_reason,
+            "quotes": modernbooknlp_quotes,
+            "aligned_quotes": modernbooknlp_aligned,
             "uncertain_lines": uncertain_lines,
+            "episode_decoder_enabled": episode_decoder_enabled,
+            "episode_decoder_changes": episode_decoder_changes,
         }

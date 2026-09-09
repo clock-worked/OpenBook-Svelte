@@ -285,6 +285,7 @@ export interface AudiobookSettings {
 }
 
 export interface ParserHints {
+  parserBackend?: 'legacy' | 'modernbooknlp';
   protagonistName?: string;
   protagonistNames?: string[];
   povMode?: 'first_person' | 'third_person';
