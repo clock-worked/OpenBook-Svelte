@@ -1,5 +1,6 @@
-import type { Character, CharactersJson } from '$lib/types';
+import type { Character, CharactersJson, Gender } from '$lib/types';
 import { readCentralCharacters, writeCentralCharacters } from '$lib/services/fs';
+import { createClosedWorldCharacter } from '$lib/services/closedWorldCharacterWorkflow';
 import {
     buildUniqueCharacterId,
     normalizeAliasList,
@@ -260,4 +261,17 @@ export async function addCentralCharacterAlias(
 
     await writeCentralCharacters(root, data);
     return true;
+}
+
+export async function addCentralCharacter(
+    root: string,
+    displayName: string,
+    gender: Gender,
+): Promise<Character | null> {
+    const data = await readCentralCharacters(root);
+    if (!data?.characters) return null;
+
+    const { characters, character } = createClosedWorldCharacter(data, { displayName, gender });
+    const persisted = await writeCentralCharacters(root, characters);
+    return persisted ? character : null;
 }

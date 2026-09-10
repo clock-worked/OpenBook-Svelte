@@ -525,16 +525,24 @@ export function getBookCharactersPath(root: string): string {
 }
 
 async function readFileAsJson<T>(path: string): Promise<T | null> {
-  if (!rootDirHandle) return null;
+  if (rootDirHandle) {
+    try {
+      const pathParts = path.split('/').filter(p => p);
+      const fileHandle = await getFileHandle(rootDirHandle, pathParts);
+      if (fileHandle) {
+        const file = await fileHandle.getFile();
+        return JSON.parse(await file.text()) as T;
+      }
+    } catch (error) {
+      console.warn(`[fs] File System API read failed for ${path}; trying backend`, error);
+    }
+  }
+
   try {
-    const pathParts = path.split('/').filter(p => p);
-    const fileHandle = await getFileHandle(rootDirHandle, pathParts);
-    if (!fileHandle) return null;
-    const file = await fileHandle.getFile();
-    const contents = await file.text();
-    return JSON.parse(contents) as T;
-  } catch (e) {
-    console.error(`Failed to read or parse JSON from ${path}`, e);
+    const response = await apiPostJson<{ content: string }>(API_ENDPOINTS.readText, { file_path: path });
+    return JSON.parse(response.content) as T;
+  } catch (error) {
+    console.error(`Failed to read or parse JSON from ${path}`, error);
     return null;
   }
 }
@@ -675,24 +683,27 @@ export async function writeCharacters(path: string, data: CharactersJson): Promi
 }
 
 export async function readTextFile(path: string): Promise<string | null> {
-  if (!rootDirHandle) {
-    console.error('[readTextFile] No rootDirHandle available');
-    return null;
-  }
-  try {
-    const pathParts = path.split('/').filter(p => p);
-    console.log('[readTextFile] Reading file at path:', path, 'split into parts:', pathParts);
-    const fileHandle = await getFileHandle(rootDirHandle, pathParts);
-    if (!fileHandle) {
-      console.error('[readTextFile] Could not get file handle for path:', path);
-      return null;
+  if (rootDirHandle) {
+    try {
+      const pathParts = path.split('/').filter(p => p);
+      console.log('[readTextFile] Reading file at path:', path, 'split into parts:', pathParts);
+      const fileHandle = await getFileHandle(rootDirHandle, pathParts);
+      if (fileHandle) {
+        const file = await fileHandle.getFile();
+        const text = await file.text();
+        console.log('[readTextFile] Successfully read', text.length, 'characters from', path);
+        return text;
+      }
+    } catch (error) {
+      console.warn(`[readTextFile] File System API read failed for ${path}; trying backend`, error);
     }
-    const file = await fileHandle.getFile();
-    const text = await file.text();
-    console.log('[readTextFile] Successfully read', text.length, 'characters from', path);
-    return text;
-  } catch (e) {
-    console.error(`[readTextFile] Failed to read text from ${path}:`, e);
+  }
+
+  try {
+    const response = await apiPostJson<{ content: string }>(API_ENDPOINTS.readText, { file_path: path });
+    return response.content;
+  } catch (error) {
+    console.error(`[readTextFile] Failed to read text from ${path}:`, error);
     return null;
   }
 }
@@ -701,27 +712,8 @@ export async function readTextFile(path: string): Promise<string | null> {
  * Read dialogue for a chapter, trying v2.0 format first, falling back to v1.0
  */
 export async function readDialogueForChapter(chapterTitle: string): Promise<DialogueJson | ScriptJson | null> {
-  if (!rootDirHandle) return null;
-
-  async function tryReadJsonFromChapterFile(
-    chapterDirHandle: FileSystemDirectoryHandle,
-    fileName: string,
-  ): Promise<DialogueJson | ScriptJson | null> {
-    try {
-      const fileHandle = await chapterDirHandle.getFileHandle(fileName, { create: false });
-      const file = await fileHandle.getFile();
-      const contents = await file.text();
-      return JSON.parse(contents) as DialogueJson | ScriptJson;
-    } catch {
-      return null;
-    }
-  }
-
   try {
-    const chapterDirHandle = await rootDirHandle.getDirectoryHandle(chapterTitle, { create: false });
-
-    // Try v2.0 dialogue.json first
-    const dialogueParsed = await tryReadJsonFromChapterFile(chapterDirHandle, 'dialogue.json');
+    const dialogueParsed = await readFileAsJson<DialogueJson | ScriptJson>(`${chapterTitle}/dialogue.json`);
     if (
       dialogueParsed &&
       typeof dialogueParsed === 'object' &&
@@ -737,7 +729,7 @@ export async function readDialogueForChapter(chapterTitle: string): Promise<Dial
     }
 
     // Fall back to v1.0 script.json
-    const scriptParsed = await tryReadJsonFromChapterFile(chapterDirHandle, `${chapterTitle}.script.json`);
+  const scriptParsed = await readFileAsJson<ScriptJson>(`${chapterTitle}/${chapterTitle}.script.json`);
     if (scriptParsed) {
       return scriptParsed as ScriptJson;
     }
@@ -748,7 +740,7 @@ export async function readDialogueForChapter(chapterTitle: string): Promise<Dial
     }
 
     // Compatibility fallback used in some migrated chapters
-    const dialogueOldParsed = await tryReadJsonFromChapterFile(chapterDirHandle, 'dialogue-old.json');
+    const dialogueOldParsed = await readFileAsJson<ScriptJson>(`${chapterTitle}/dialogue-old.json`);
     if (dialogueOldParsed) {
       return dialogueOldParsed as ScriptJson;
     }

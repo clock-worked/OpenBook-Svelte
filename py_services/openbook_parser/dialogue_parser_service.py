@@ -173,6 +173,29 @@ class CharacterManager:
         return False
 
 
+def apply_character_catalog(char_manager, options):
+    """Seed canonical names and aliases supplied by closed-world review."""
+    if not options.get("closed_world_characters"):
+        return
+
+    catalog = options.get("character_catalog") or []
+    for row in catalog:
+        if not isinstance(row, dict):
+            continue
+        canonical_name = str(row.get("name") or "").strip()
+        if not canonical_name:
+            continue
+        gender = str(row.get("gender") or "Unknown").strip() or "Unknown"
+        char_manager.ensure_name(canonical_name, gender)
+        surfaces = [row.get("characterId"), *(row.get("aliases") or [])]
+        for surface in surfaces:
+            alias = str(surface or "").strip()
+            if alias and alias.casefold() != canonical_name.casefold():
+                char_manager.aliases[alias] = canonical_name
+
+    char_manager.reload_views()
+
+
 class DialogueLine:
     """ Represents a single line of dialogue or narration in the script. """
     def __init__(
@@ -324,6 +347,7 @@ class HybridDialogueParser:
         self.speech_verbs_path = speech_verbs_path
         # Rule instrumentation
         self.rule_hits = {}
+        self._last_rule_hit = None
 
     def _verbs_to_regex(self, verbs):
         if not verbs:
@@ -434,6 +458,7 @@ class HybridDialogueParser:
 
             if chunk["type"] == "dialogue":
                 # Run full inference passes
+                self._last_rule_hit = None
                 speaker = None
                 if self.pov_mode == "first_person" and self._heuristic_enabled(
                     "protagonist_first_person_tag"
@@ -506,6 +531,7 @@ class HybridDialogueParser:
                     if self._is_first_person_text(chunk['text']) and self.primary_protagonist:
                         if final_speaker in [self.narrator_persona, "Unknown", None]:
                             final_speaker = self.primary_protagonist
+                            self._last_rule_hit = "first_person_override"
                 if self.pov_mode == "first_person" and self._heuristic_enabled("narrator_fallback"):
                     if isinstance(final_speaker, str) and not final_speaker.startswith('['):
                         if (
@@ -538,6 +564,7 @@ class HybridDialogueParser:
                             final_speaker = self.primary_protagonist
 
                 chunk["speaker"] = final_speaker
+                chunk["attribution_rule"] = self._last_rule_hit
                 if final_speaker and not str(final_speaker).startswith('['):
                     self._update_context(final_speaker)
 
@@ -566,6 +593,8 @@ class HybridDialogueParser:
     def _rule(self, name, value):
         if value:
             self.rule_hits[name] = self.rule_hits.get(name, 0) + 1
+            if self._last_rule_hit is None:
+                self._last_rule_hit = name
         return value
 
     def _pass_0p_protagonist_first_person(self, index, chunks):
@@ -877,6 +906,7 @@ class HybridDialogueParser:
                         suggestions=suggestions,
                         span_start=span_start,
                         span_end=span_end,
+                        attribution={"legacyRule": chunk.get("attribution_rule")},
                     ))
         return output_lines
 
@@ -969,6 +999,7 @@ class DialogueParserService:
                 merged_options,
                 protagonist_name=self.protagonist_name,
             )
+            apply_character_catalog(self.char_manager, options)
             # Load knowledge store for this book and merge into character manager
             self.knowledge_store = load_knowledge_for_file(file_path)
             if self.knowledge_store:

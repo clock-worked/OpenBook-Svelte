@@ -14,7 +14,7 @@
 
   // Dev mode detection
   const isDev = import.meta.env.DEV;
-  const DEV_TEST_FOLDER_PATH = 'C:\\Users\\CJDJ\\Documents\\PythonScripts\\assets\\data\\Resources\\A-Practical-Guide-To-Evil\\Book-1';
+  const DEV_TEST_FOLDER_PATH = 'C:\\Users\\Chad\\Documents\\Code\\Python\\Useful-Scripts\\Data\\Resources\\A-Practical-Guide-To-Evil\\Book-2';
 
   interface Star {
     orbital: number;

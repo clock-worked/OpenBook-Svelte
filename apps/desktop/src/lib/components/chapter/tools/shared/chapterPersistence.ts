@@ -269,12 +269,6 @@ export async function saveDialogueFromNormalized(params: {
         return;
     }
 
-    const backendRoot = params.getBackendRootAbsolutePath();
-    if (!backendRoot) {
-        console.warn('[ChapterView] ✗ Save failed: no backend root path available');
-        return;
-    }
-
     try {
         const response = await params.apiSave(relativePath, dialoguePayload);
         if (response.ok) {

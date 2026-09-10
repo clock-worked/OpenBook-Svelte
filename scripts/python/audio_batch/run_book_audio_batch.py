@@ -448,6 +448,46 @@ def build_manifest_from_dialogue(chapter_dir: Path) -> Path:
     return manifest_path
 
 
+def build_manifest_from_chapter_text(chapter_dir: Path) -> Path:
+    chapter_text_path = chapter_dir / "chapter.txt"
+    if not chapter_text_path.exists():
+        raise FileNotFoundError(f"Chapter text not found: {chapter_text_path}")
+
+    manifest_path = chapter_dir / "audio_lines" / "manifest.json"
+    chapter_lines = [
+        line.strip()
+        for line in chapter_text_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    if not chapter_lines:
+        raise ValueError(f"No usable chapter lines found: {chapter_text_path}")
+
+    manifest_lines = [
+        {
+            "id": index,
+            "characterId": "narrator",
+            "text": text,
+            "output": f"{index:04d}_narrator.wav",
+        }
+        for index, text in enumerate(chapter_lines, start=1)
+    ]
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
+    manifest_path.write_text(
+        json.dumps(
+            {
+                "chapterText": str(chapter_text_path),
+                "output_dir": str(manifest_path.parent),
+                "lines": manifest_lines,
+            },
+            indent=2,
+            ensure_ascii=False,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    return manifest_path
+
+
 def _open_log(log_path: Path | None) -> TextIO | None:
     if log_path is None:
         return None
@@ -529,44 +569,6 @@ def main() -> None:
             report_path = output_dir / "split_validation_report.json"
             dialogue_path = chapter_dir / "dialogue.json"
 
-            if not dialogue_path.exists():
-                skipped_result = ChapterResult(
-                    chapter=chapter_name,
-                    status=0,
-                    runtime_sec=0.0,
-                    flagged_count=None,
-                    flagged_line_ids=None,
-                    report_path=str(report_path) if report_path.exists() else None,
-                    output_dir=str(output_dir),
-                )
-                append_summary_row(summary_tsv, skipped_result)
-                results.append(skipped_result)
-                if log_handle is not None:
-                    log_handle.write(
-                        f"Skipping {chapter_name} because dialogue.json is missing: {dialogue_path}\n"
-                    )
-                    log_handle.flush()
-                current_chunk_line = (
-                    "Chunk   [############################] "
-                    f"skipped {chapter_name} (missing dialogue.json)"
-                )
-                progress_renderer.update(
-                    build_overall_progress_line(
-                        completed=len(results),
-                        total=total_chapters,
-                        run_started_at=run_started_at,
-                        average_chapter_sec=(
-                            sum(completed_durations) / len(completed_durations)
-                            if completed_durations
-                            else None
-                        ),
-                        current_chapter=None,
-                        current_chapter_elapsed_sec=None,
-                    ),
-                    current_chunk_line,
-                )
-                continue
-
             if args.skip_generate and not full_audio_path.exists():
                 skipped_result = ChapterResult(
                     chapter=chapter_name,
@@ -605,7 +607,11 @@ def main() -> None:
                 )
                 continue
 
-            manifest_path = build_manifest_from_dialogue(chapter_dir)
+            manifest_path = (
+                build_manifest_from_dialogue(chapter_dir)
+                if dialogue_path.exists()
+                else build_manifest_from_chapter_text(chapter_dir)
+            )
 
             if args.skip_chapters_with_report and report_path.exists():
                 skipped_ids = load_flagged_line_ids(report_path)

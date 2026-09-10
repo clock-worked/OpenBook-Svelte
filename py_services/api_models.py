@@ -102,6 +102,10 @@ class SaveRequest(BaseModel):
     content: DialogueJson
 
 
+class RelativeFileRequest(BaseModel):
+    file_path: str
+
+
 class ScanManifestsRequest(BaseModel):
     audioRoot: str
 

@@ -33,6 +33,7 @@ export const API_ENDPOINTS = {
     setBookRoot: '/api/set-book-root',
     setAudioRoot: '/api/set-audio-root',
     listChapters: '/api/list-chapters',
+    readText: '/api/read-text',
     updateCharacterStats: '/api/update-character-stats',
     scanVoiceManifests: '/api/scan-voice-manifests',
     listVoiceSamples: '/api/list-voice-samples',

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import re
 import time
 from typing import Any
 
@@ -8,6 +9,39 @@ import numpy as np
 import soundfile as sf
 
 from .text_utils import normalize_chapter_text
+
+
+def _split_text_to_max_chars(text: str, max_chars: int) -> list[str]:
+    if len(text) <= max_chars:
+        return [text]
+
+    sentences = re.split(r"(?<=[.!?])\s+", text)
+    pieces: list[str] = []
+    for sentence in sentences:
+        if len(sentence) <= max_chars:
+            pieces.append(sentence)
+            continue
+
+        words = sentence.split()
+        current: list[str] = []
+        for word in words:
+            candidate = " ".join([*current, word])
+            if current and len(candidate) > max_chars:
+                pieces.append(" ".join(current))
+                current = [word]
+            else:
+                current.append(word)
+        if current:
+            pieces.append(" ".join(current))
+
+    packed: list[str] = []
+    for piece in pieces:
+        candidate = " ".join([*packed[-1:], piece]) if packed else piece
+        if packed and len(candidate) <= max_chars:
+            packed[-1] = candidate
+        else:
+            packed.append(piece)
+    return packed
 
 
 def _format_hms(total_seconds: float | None) -> str:
@@ -30,15 +64,26 @@ def build_line_chunk_generation_plan(
     *,
     chapter_text: str,
     min_chunk_chars: int,
+    max_chunk_chars: int | None = None,
 ) -> list[dict[str, Any]]:
     if min_chunk_chars < 1:
         raise ValueError("--line-chunk-min-chars must be >= 1")
+    if max_chunk_chars is not None and max_chunk_chars < min_chunk_chars:
+        raise ValueError(
+            "--line-chunk-max-chars must be greater than or equal to "
+            "--line-chunk-min-chars"
+        )
 
     normalized_lines: list[tuple[int, str]] = []
     for line_number, raw_line in enumerate(chapter_text.splitlines(), start=1):
         normalized_line = normalize_chapter_text(raw_line)
         if normalized_line:
-            normalized_lines.append((line_number, normalized_line))
+            pieces = (
+                _split_text_to_max_chars(normalized_line, max_chunk_chars)
+                if max_chunk_chars is not None
+                else [normalized_line]
+            )
+            normalized_lines.extend((line_number, piece) for piece in pieces)
 
     if not normalized_lines:
         raise ValueError(
@@ -77,6 +122,14 @@ def build_line_chunk_generation_plan(
         pending_char_count = 0
 
     for line_number, line_text in normalized_lines:
+        next_char_count = pending_char_count + len(line_text) + (1 if pending_lines else 0)
+        if (
+            max_chunk_chars is not None
+            and pending_lines
+            and next_char_count > max_chunk_chars
+        ):
+            flush_pending_lines()
+
         if pending_start_line is None:
             pending_start_line = line_number
         pending_end_line = line_number
@@ -91,7 +144,14 @@ def build_line_chunk_generation_plan(
         tail_text = " ".join(pending_lines)
         tail_char_count = len(tail_text)
 
-        if plan and tail_char_count < min_chunk_chars:
+        merged_char_count = (
+            int(plan[-1]["charCount"]) + 1 + tail_char_count if plan else 0
+        )
+        if (
+            plan
+            and tail_char_count < min_chunk_chars
+            and (max_chunk_chars is None or merged_char_count <= max_chunk_chars)
+        ):
             previous_chunk = plan[-1]
             merged_text = f"{previous_chunk['text']} {tail_text}".strip()
             previous_chunk["text"] = merged_text
@@ -186,18 +246,21 @@ def generate_line_chunked_chapter_audio(
     min_chunk_chars: int,
     seed: int | None,
     join_pause_ms: int,
+    resume_existing_chunks: bool = False,
 ) -> dict[str, Any]:
     if not chunk_plan:
         raise ValueError("Chunk generation plan is empty.")
 
     chunks_dir.mkdir(parents=True, exist_ok=True)
-    for stale_file in chunks_dir.glob("*.wav"):
-        if stale_file.is_file():
-            stale_file.unlink()
+    if not resume_existing_chunks:
+        for stale_file in chunks_dir.glob("*.wav"):
+            if stale_file.is_file():
+                stale_file.unlink()
 
     chunk_audio_paths: list[Path] = []
     chunk_reports: list[dict[str, Any]] = []
     total_chunks = len(chunk_plan)
+    reused_chunk_count = 0
     generation_started_at = time.perf_counter()
 
     for chunk in chunk_plan:
@@ -208,6 +271,35 @@ def generate_line_chunked_chapter_audio(
             f"{chunk_index:04d}-line-{start_line}-to-{end_line}.wav"
         chunk_seed = seed
         chunk_started_at = time.perf_counter()
+
+        if resume_existing_chunks and chunk_output_path.exists():
+            chunk_info = sf.info(str(chunk_output_path))
+            if chunk_info.frames <= 0 or chunk_info.samplerate <= 0:
+                raise ValueError(
+                    f"Existing chunk audio is invalid and cannot be resumed: {chunk_output_path}"
+                )
+            reused_chunk_count += 1
+            chunk_duration_sec = float(chunk_info.duration)
+            chunk_audio_paths.append(chunk_output_path)
+            chunk_reports.append(
+                {
+                    "chunkIndex": chunk_index,
+                    "startLine": start_line,
+                    "endLine": end_line,
+                    "lineCount": int(chunk["lineCount"]),
+                    "charCount": int(chunk["charCount"]),
+                    "durationSec": round(chunk_duration_sec, 4),
+                    "audioPath": str(chunk_output_path),
+                    "seed": chunk_seed,
+                    "reused": True,
+                }
+            )
+            print(
+                "Reusing chunk "
+                f"{chunk_index}/{total_chunks} "
+                f"(lines {start_line}-{end_line}, {int(chunk['charCount'])} chars)"
+            )
+            continue
 
         print(
             "Generating chunk "
@@ -263,6 +355,7 @@ def generate_line_chunked_chapter_audio(
         "mode": "line-chunked",
         "minChunkChars": int(min_chunk_chars),
         "chunkCount": total_chunks,
+        "reusedChunkCount": reused_chunk_count,
         "chunksDir": str(chunks_dir.resolve()),
         "chunks": chunk_reports,
         "stitch": stitch_report,

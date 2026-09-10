@@ -9,6 +9,21 @@
   export let onDelete: (name: string, count: number) => void;
   export let onMerge: (sourceName: string, targetName: string) => void;
   export let resolveColor: (name: string, colorOverride?: string | null) => string;
+
+  function textColorForBackground(background: string): string {
+    const hex = background.match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i)?.[1];
+    if (!hex) return 'var(--app-text)';
+
+    const expanded = hex.length === 3
+      ? hex.split('').map((character) => character + character).join('')
+      : hex;
+    const red = Number.parseInt(expanded.slice(0, 2), 16);
+    const green = Number.parseInt(expanded.slice(2, 4), 16);
+    const blue = Number.parseInt(expanded.slice(4, 6), 16);
+    const luminance = (red * 299 + green * 587 + blue * 114) / 1000;
+
+    return luminance > 155 ? '#1f1f1f' : '#f4f1f8';
+  }
 </script>
 
 <style>
@@ -128,6 +143,7 @@
       {#if items.length}
         <div class="book-pill-list">
           {#each items as item (item.index)}
+            {@const background = resolveColor(item.character.name, item.character.color ?? null)}
             <div
               class="pill-wrapper"
               draggable="true"
@@ -154,7 +170,7 @@
             >
               <button
                 class={`book-pill ${selectedName === item.character.name ? 'is-selected' : ''}`}
-                style={`background:${resolveColor(item.character.name, item.character.color ?? null)};`}
+                style={`background:${background};color:${textColorForBackground(background)};`}
                 draggable="true"
                 on:dragstart={(e) => {
                   if (!e.dataTransfer) return;

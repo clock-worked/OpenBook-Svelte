@@ -6,7 +6,14 @@ from typing import Callable, List
 
 from fastapi import APIRouter, HTTPException
 
-from api_models import CorefTestRequest, DialogueAiAssistRequest, LocalDialogueAiRequest, ParseRequest, SaveRequest
+from api_models import (
+    CorefTestRequest,
+    DialogueAiAssistRequest,
+    LocalDialogueAiRequest,
+    ParseRequest,
+    RelativeFileRequest,
+    SaveRequest,
+)
 from chapter_service import get_chapter_stats, list_chapters as list_chapters_service
 from dialogue_ai_service import DialogueAiAssistService
 from local_dialogue_ai_service import LocalDialogueAiService
@@ -88,6 +95,24 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
             import traceback
 
             traceback.print_exc()
+            raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+    @router.post("/api/read-text")
+    async def read_text_file(request: RelativeFileRequest):
+        book_root = Path(get_book_root()).resolve()
+        requested_path = (book_root / request.file_path).resolve()
+        if requested_path != book_root and book_root not in requested_path.parents:
+            raise HTTPException(status_code=400, detail="Invalid file path")
+        if not requested_path.is_file():
+            raise HTTPException(status_code=404, detail=f"File not found: {request.file_path}")
+        try:
+            raw_bytes = requested_path.read_bytes()
+            try:
+                content = raw_bytes.decode("utf-8")
+            except UnicodeDecodeError:
+                content = raw_bytes.decode("cp1252", errors="replace")
+            return {"content": content}
+        except OSError as exc:
             raise HTTPException(status_code=500, detail=str(exc)) from exc
 
     @router.post("/api/update-character-stats")

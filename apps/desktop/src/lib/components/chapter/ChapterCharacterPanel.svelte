@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { CharactersJson, Character } from '$lib/types';
+  import type { CharactersJson, Character, Gender } from '$lib/types';
   import { writable, get } from 'svelte/store';
   import { currentChapter, bookRoot, bookRootAbsolutePath, currentScript, chapters } from '$lib/stores/bookState';
   import { selection, conflictCursor } from '$lib/stores/selection';
@@ -15,8 +15,10 @@
   import ChapterCharacterList from './ChapterCharacterList.svelte';
   import ChapterCharacterBookList from './ChapterCharacterBookList.svelte';
   import ChapterCharacterDetails from './ChapterCharacterDetails.svelte';
+  import ClosedWorldCharacterReview from './ClosedWorldCharacterReview.svelte';
   import Dropdown from '$lib/components/common/Dropdown.svelte';
-  import { setBookCharacterColor, setBookCharacterGender, renameBookCharacter, removeBookCharacter, bookCharacters, detachBookCharacterAlias, forceRefreshBookCharacters, mergeBookCharacters, setBookCharacterPrimaryName } from '$lib/stores/bookCharacters';
+  import { addBookCharacter, addBookCharacterAlias, setBookCharacterColor, setBookCharacterGender, renameBookCharacter, removeBookCharacter, bookCharacters, detachBookCharacterAlias, forceRefreshBookCharacters, mergeBookCharacters, setBookCharacterPrimaryName } from '$lib/stores/bookCharacters';
+  import { buildClosedWorldReviewItems, type ClosedWorldReviewItem } from '$lib/services/closedWorldCharacterWorkflow';
   import { normalizeCharacterGender } from '$lib/services/characterGender';
   import {
     dialogueAiAssistState,
@@ -62,6 +64,39 @@
   }
 
   $: lastLocalAiRunning = $localDialogueAiState.running;
+
+  $: closedWorldReviewItems = buildClosedWorldReviewItems(
+    (($currentScript?.lines ?? []) as any),
+    $bookCharacters,
+  );
+
+  async function addReviewedCharacter(item: ClosedWorldReviewItem, name: string, gender: Gender): Promise<void> {
+    const created = await addBookCharacter(name, gender);
+    if (!created) return;
+    await applyReviewedCharacter(item, created.id, created.name);
+  }
+
+  async function mergeReviewedAlias(item: ClosedWorldReviewItem, targetCharacterId: string): Promise<void> {
+    const target = $bookCharacters.characters.find((character) => character.id === targetCharacterId);
+    if (!target) return;
+    await addBookCharacterAlias(target.name, item.candidateName);
+    await applyReviewedCharacter(item, target.id, target.name);
+  }
+
+  async function applyReviewedCharacter(item: ClosedWorldReviewItem, characterId: string, characterName: string): Promise<void> {
+    const scr = get(currentScript);
+    const ch: any = get(currentChapter);
+    const root = get(bookRoot);
+    if (!scr || !ch || !root) return;
+    const line = scr.lines.find((candidate: any) => candidate.id === item.lineId);
+    if (!line) return;
+    (line as any).characterId = characterId;
+    line.chosenSpeaker = characterName;
+    line.isConflict = false;
+    await writeScript(ch.scriptPath ?? getScriptPath(root, ch.title), scr);
+    currentScript.set({ ...scr, lines: [...scr.lines] });
+    await forceRefreshBookCharacters();
+  }
 
   function normalizeCharacterKey(name: string): string {
     return String(name || '').trim().toLowerCase();
@@ -1001,6 +1036,12 @@
   {:else if activeTab === 'local-ai'}
     <ChapterLocalAiPanel />
   {:else}
+    <ClosedWorldCharacterReview
+      items={closedWorldReviewItems}
+      characters={$bookCharacters.characters}
+      onAdd={addReviewedCharacter}
+      onAlias={mergeReviewedAlias}
+    />
     {#if $selectionActive}
       <div class="new-character-form">
         <input class="character-input" placeholder="New character name" bind:value={newCharacterName} on:keydown={(e) => { if (e.key==='Enter') createAndApplyNewCharacter(); }} />

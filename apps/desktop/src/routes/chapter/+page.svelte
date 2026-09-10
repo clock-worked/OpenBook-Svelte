@@ -9,16 +9,40 @@
   import PlaybackBar from '$lib/components/chapter/PlaybackBar.svelte';
   import Toolbar from '$lib/components/chapter/Toolbar.svelte';
   import { bookRoot, chapters, autoSelectChapter } from '$lib/stores/bookState';
-  import { scanChapters } from '$lib/services/fs';
+  import { readSettings, scanChapters } from '$lib/services/fs';
   import { initRouteProjectContext } from '$lib/services/projectSession';
   import { getProjectInitFailurePolicy } from '$lib/services/routePolicy';
   import { get } from 'svelte/store';
   import { toolMode } from '$lib/stores/selection';
   import { isAudioActive, audioState } from '$lib/stores/audio';
+  import { parserHints } from '$lib/stores/settings';
 
   let layout = { left: 20, center: 60, right: 20 };
   let isLoading = true;
   let loadError = '';
+
+  async function loadParserHints() {
+    const settings = await readSettings(get(bookRoot));
+    if (!settings?.parserHints) return;
+
+    const defaults = get(parserHints);
+    const storedHints = settings.parserHints;
+    const protagonistNames = storedHints.protagonistNames?.length
+      ? storedHints.protagonistNames
+      : (storedHints.protagonistName ? [storedHints.protagonistName] : defaults.protagonistNames);
+    parserHints.set({
+      ...defaults,
+      ...storedHints,
+      protagonistNames,
+      povMode: storedHints.povMode || defaults.povMode || 'first_person',
+      learnVerbs: storedHints.learnVerbs ?? defaults.learnVerbs ?? false,
+      heuristics: {
+        ...(defaults.heuristics || {}),
+        ...(storedHints.heuristics || {}),
+      },
+      manualBlockList: storedHints.manualBlockList || [],
+    });
+  }
   
   $: console.log('[Review] isAudioActive:', $isAudioActive, 'audioState:', {
     isPlaying: $audioState.isPlaying,
@@ -83,6 +107,8 @@
           console.log('[Review] Dev mode: No chapters in store, they need to be loaded via backend');
         }
       }
+
+      await loadParserHints();
       
       isLoading = false;
     } catch (error) {

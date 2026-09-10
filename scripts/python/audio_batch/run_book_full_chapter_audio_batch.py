@@ -46,6 +46,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--start-chapter", type=int, default=0)
     parser.add_argument("--end-chapter", type=int, default=None)
     parser.add_argument("--line-chunk-min-chars", type=int, default=800)
+    parser.add_argument(
+        "--line-chunk-max-chars",
+        type=int,
+        default=None,
+        help="Split oversized lines at sentence or word boundaries to enforce this ceiling.",
+    )
     parser.add_argument("--line-chunk-join-ms", type=int, default=0)
     parser.add_argument("--seed", type=int, default=None)
     parser.add_argument(
@@ -74,6 +80,11 @@ def parse_args() -> argparse.Namespace:
         "--overwrite-existing",
         action="store_true",
         help="Regenerate chapters even if the final WAV already exists.",
+    )
+    parser.add_argument(
+        "--resume-existing-chunks",
+        action="store_true",
+        help="Reuse valid chunk WAVs whose filenames match the current chunk plan.",
     )
     parser.add_argument(
         "--continue-on-error",
@@ -218,6 +229,7 @@ def main() -> int:
             chunk_plan = build_line_chunk_generation_plan(
                 chapter_text=chapter_text,
                 min_chunk_chars=args.line_chunk_min_chars,
+                max_chunk_chars=args.line_chunk_max_chars,
             )
             start_message = (
                 f"Starting {chapter_dir.name} ({index}/{total}): "
@@ -236,6 +248,7 @@ def main() -> int:
                 min_chunk_chars=args.line_chunk_min_chars,
                 seed=args.seed,
                 join_pause_ms=args.line_chunk_join_ms,
+                resume_existing_chunks=args.resume_existing_chunks,
             )
             runtime_sec = round(time.monotonic() - started_at, 1)
             audio_duration_sec = round(float(report["stitch"]["durationSec"]), 4)

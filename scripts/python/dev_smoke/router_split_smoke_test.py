@@ -105,7 +105,12 @@ def run_smoke() -> None:
 
                 response = client.post("/api/list-voice-samples", json={"samples_root": str(sample_root)})
                 assert_status(response, 200, "list-voice-samples")
-                if "narrator.wav" not in (response.json().get("samples") or []):
+                samples = response.json().get("samples") or []
+                sample_files = {
+                    row.get("sample_file") if isinstance(row, dict) else row
+                    for row in samples
+                }
+                if "narrator.wav" not in sample_files:
                     raise AssertionError(f"Expected narrator.wav in samples, got payload={response.json()}")
 
                 response = client.post("/api/read_file_absolute", json={"file_path": str(manifest_path)})

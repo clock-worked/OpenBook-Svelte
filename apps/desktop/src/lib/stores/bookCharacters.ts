@@ -9,6 +9,7 @@ import {
   persistBookCharactersData,
 } from '$lib/services/bookCharacterRepository';
 import {
+  addCentralCharacter,
   addCentralCharacterAlias,
   detachCentralCharacterAlias,
   mergeCentralCharacters,
@@ -68,6 +69,14 @@ if (import.meta.hot) {
 
 export async function forceRefreshBookCharacters(): Promise<void> {
   await _loadBookCharactersImpl();
+}
+
+export async function addBookCharacter(name: string, gender: Gender): Promise<Character | null> {
+  const root = get(bookRoot);
+  if (!root) return null;
+  const character = await addCentralCharacter(root, name, gender);
+  if (character) await forceRefreshBookCharacters();
+  return character;
 }
 
 export async function persistBookCharacters(): Promise<void> {
