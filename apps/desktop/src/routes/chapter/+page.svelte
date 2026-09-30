@@ -9,7 +9,7 @@
   import PlaybackBar from '$lib/components/chapter/PlaybackBar.svelte';
   import Toolbar from '$lib/components/chapter/Toolbar.svelte';
   import { bookRoot, chapters, autoSelectChapter } from '$lib/stores/bookState';
-  import { readSettings, scanChapters } from '$lib/services/fs';
+  import { listChaptersFromBackend, readSettings, scanChapters } from '$lib/services/fs';
   import { initRouteProjectContext } from '$lib/services/projectSession';
   import { getProjectInitFailurePolicy } from '$lib/services/routePolicy';
   import { get } from 'svelte/store';
@@ -97,15 +97,9 @@
           console.warn('[Review] No chapters found in the scanned directory');
         }
       } else if (isDevMode) {
-        // In dev mode, check if chapters are already in the store
-        const existingChapters = get(chapters);
-        console.log('[Review] Dev mode: Using chapters from store, count:', existingChapters.length);
-        
-        if (existingChapters.length > 0) {
-          autoSelectChapter(existingChapters);
-        } else {
-          console.log('[Review] Dev mode: No chapters in store, they need to be loaded via backend');
-        }
+        const backendChapters = await listChaptersFromBackend();
+        chapters.set(backendChapters);
+        if (backendChapters.length > 0) autoSelectChapter(backendChapters);
       }
 
       await loadParserHints();

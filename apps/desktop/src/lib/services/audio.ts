@@ -2,7 +2,7 @@ import { get } from 'svelte/store';
 import { audioRoot, bookRoot, bookRootAbsolutePath, voiceSamplesRoot } from '$lib/stores/bookState';
 import { bookRootPathOverride } from '$lib/stores/settings';
 import type { DialogueLine, CharactersJson } from '$lib/types';
-import { readCentralCharacters, readJsonRelative } from '$lib/services/fs';
+import { readCentralCharacters, readOptionalJsonRelative } from '$lib/services/fs';
 import { API_ENDPOINTS, ApiClientError, apiFetch, apiPostJson, apiPostVoid, toApiUrl } from '$lib/services/apiClient';
 import type {
   BackendErrorPayload,
@@ -199,7 +199,7 @@ export async function readManifest(
       const relativePath = `${chapterTitle}/audio_lines/${characterName}/manifest.json`;
       const root = get(audioRoot) || get(bookRootAbsolutePath);
       if (!root) {
-        const relativeManifest = await readJsonRelative<AudioManifest>(relativePath);
+        const relativeManifest = await readOptionalJsonRelative<AudioManifest>(relativePath);
         if (relativeManifest) {
           return relativeManifest;
         }
@@ -211,7 +211,7 @@ export async function readManifest(
       }
 
       if (absoluteReadApiAvailable === false) {
-        return await readJsonRelative<AudioManifest>(relativePath);
+        return await readOptionalJsonRelative<AudioManifest>(relativePath);
       }
 
       if (reconcileManifestApiAvailable !== false) {
@@ -260,7 +260,7 @@ export async function readManifest(
       } else if (response.status === 404) {
         absoluteReadApiAvailable = false;
         console.warn('[audio] /api/read_file_absolute returned 404; disabling absolute manifest reads for this session');
-        return await readJsonRelative<AudioManifest>(relativePath);
+        return await readOptionalJsonRelative<AudioManifest>(relativePath);
       } else {
         console.log('[audio] Manifest not found for', characterName, '- status:', response.status);
       }

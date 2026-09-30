@@ -1,16 +1,18 @@
 <script lang="ts">
   import { onDestroy, onMount, tick } from 'svelte';
-  import { currentChapter, currentScript, bookRoot, bookRootAbsolutePath } from '$lib/stores/bookState';
+  import { chapters, currentChapter, currentScript, bookRoot, bookRootAbsolutePath } from '$lib/stores/bookState';
   import type { ScriptJson, DialogueJson } from '$lib/types';
   import { writable } from 'svelte/store';
   import { conflictCursor, toolMode, audioGenerateLineId } from '$lib/stores/selection';
   import { get } from 'svelte/store';
-  import { readTextFile, readDialogueForChapter, readScript, readCentralCharacters, writeCentralCharacters, getRootDirInfo, writeDialogue, writeScript, readJsonRelative } from '$lib/services/fs';
+  import { readTextFile, readDialogueForChapter, readScript, readCentralCharacters, writeCentralCharacters, getRootDirInfo, writeDialogue, writeScript, readOptionalJsonRelative } from '$lib/services/fs';
   import { readManifest } from '$lib/services/audio';
-  import { API_ENDPOINTS, apiFetch } from '$lib/services/apiClient';
+  import { API_ENDPOINTS, apiFetch, apiPostJson } from '$lib/services/apiClient';
+  import type { ReviewChapterRequest, ReviewChapterResponse } from '$lib/services/apiContracts';
   import { mapRawBookCharacters } from '$lib/services/bookCharacterRepository';
   import { characters, buildIdToNameMap } from '$lib/stores/characters';
-  import { addBookCharacterAlias, bookCharacters } from '$lib/stores/bookCharacters';
+  import { addBookCharacterAlias, bookCharacters, forceRefreshBookCharacters } from '$lib/stores/bookCharacters';
+  import { CheckCircle2 } from 'lucide-svelte';
   import ParagraphRow from '$lib/components/chapter/ParagraphRow.svelte';
   import RawTextBlock from '$lib/components/chapter/RawTextBlock.svelte';
   import Dropdown from '$lib/components/common/Dropdown.svelte';
@@ -264,6 +266,10 @@
   let splitButtonPosition: number | null = null;
 
   let saveTimer: any = null;
+  let chapterReviewed = false;
+  let chapterReviewedAt: string | null = null;
+  let markingReviewed = false;
+  let reviewMessage = '';
   let chapterLoadSeq = 0; // cancellation token for chapter loads
 
   let syncingFromNormalized = false;
@@ -318,7 +324,7 @@
       chapterTitle,
       lines: scr.lines,
       root: get(bookRoot),
-      readJsonRelative,
+      readJsonRelative: readOptionalJsonRelative,
       readManifest,
       readCentralCharacters,
     });
@@ -585,40 +591,139 @@
     splitButtonPosition = null;
   }
 
+  async function saveCurrentChapter(
+    reviewed = chapterReviewed,
+    reviewedAt: string | null = chapterReviewedAt,
+  ) {
+    const scr = get(normalizedScript);
+    const ch = get(currentChapter);
+    const root = get(bookRoot);
+    if (!scr || !ch || !root) {
+      console.warn('[ChapterView] save: Missing required data', { hasScript: !!scr, hasChapter: !!ch, hasRoot: !!root });
+      return;
+    }
+
+    await saveDialogueFromNormalized({
+      normalized: scr,
+      chapter: { title: ch.title, path: ch.path },
+      root,
+      rawText: get(rawText),
+      unknownThreshold: getUnknownThreshold(),
+      unknownSpeakerLabel: UNKNOWN_SPEAKER_LABEL,
+      ensureCentralCharactersForNames,
+      ensureCharacterNameToIdMap,
+      normalizeAttribution,
+      writeDialogue,
+      getRootDirInfo,
+      getBackendRootAbsolutePath: () => get(bookRootAbsolutePath),
+      apiSave: (relativePath, content) =>
+        apiFetch(API_ENDPOINTS.save, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ file_path: relativePath, content }),
+        }),
+      reviewed,
+      reviewedAt,
+    });
+  }
+
+  function setReviewedState(reviewed: boolean) {
+    chapterReviewed = reviewed;
+    const title = get(currentChapter)?.title;
+    if (!title) return;
+    chapters.update((items) => {
+      const chapter = items.find((item) => item.title === title);
+      if (!chapter || Boolean(chapter.reviewed) === reviewed) return items;
+      return items.map((item) => item.title === title ? { ...item, reviewed } : item);
+    });
+    currentChapter.update((chapter) => {
+      if (!chapter || chapter.title !== title || Boolean(chapter.reviewed) === reviewed) return chapter;
+      return { ...chapter, reviewed };
+    });
+  }
+
   function scheduleSave() {
     console.log('[ChapterView] scheduleSave called, will execute in 350ms');
+    reviewMessage = '';
     clearTimeout(saveTimer);
+    const scheduledChapterTitle = get(currentChapter)?.title;
     saveTimer = setTimeout(async () => {
+      if (!scheduledChapterTitle || get(currentChapter)?.title !== scheduledChapterTitle) return;
       console.log('[ChapterView] scheduleSave timer fired, reading from store...');
-      const scr = get(normalizedScript);
-      const ch = get(currentChapter);
-      const root = get(bookRoot);
-      if (!scr || !ch || !root) {
-        console.warn('[ChapterView] scheduleSave: Missing required data', { hasScript: !!scr, hasChapter: !!ch, hasRoot: !!root });
-        return;
-      }
-
-      await saveDialogueFromNormalized({
-        normalized: scr,
-        chapter: { title: ch.title, path: ch.path },
-        root,
-        rawText: get(rawText),
-        unknownThreshold: getUnknownThreshold(),
-        unknownSpeakerLabel: UNKNOWN_SPEAKER_LABEL,
-        ensureCentralCharactersForNames,
-        ensureCharacterNameToIdMap,
-        normalizeAttribution,
-        writeDialogue,
-        getRootDirInfo,
-        getBackendRootAbsolutePath: () => get(bookRootAbsolutePath),
-        apiSave: (relativePath, content) =>
-          apiFetch(API_ENDPOINTS.save, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ file_path: relativePath, content }),
-          }),
-      });
+      await saveCurrentChapter();
     }, 350);
+  }
+
+  async function markChapterReviewed() {
+    const chapter = get(currentChapter);
+    const script = get(normalizedScript);
+    if (!chapter || !script || markingReviewed) return;
+
+    const unresolved = script.lines.filter((line) => {
+      if (line.isNonSpeaker) return false;
+      const name = String(line.characterName || '').trim().toLowerCase();
+      return !name || name === UNKNOWN_SPEAKER_LABEL.toLowerCase() || line.isConflict;
+    }).length;
+    if (unresolved > 0) {
+      reviewMessage = `${unresolved} assignment${unresolved === 1 ? '' : 's'} still need review.`;
+      return;
+    }
+
+    markingReviewed = true;
+    reviewMessage = '';
+    clearTimeout(saveTimer);
+    try {
+      await saveCurrentChapter();
+      const result = await apiPostJson<ReviewChapterResponse, ReviewChapterRequest>(
+        API_ENDPOINTS.reviewChapter,
+        { chapter_name: chapter.title },
+      );
+      const root = get(bookRoot);
+      if (root && get(currentChapter)?.title === chapter.title) {
+        const loaded = await loadChapterContent({
+          chapter: { title: chapter.title, path: chapter.path, parsed: chapter.parsed },
+          root,
+          unknownThreshold: getUnknownThreshold(),
+          unknownSpeakerLabel: UNKNOWN_SPEAKER_LABEL,
+          readDialogueForChapter,
+          normalizeScriptData,
+          readCentralCharacters,
+          buildIdToNameMap,
+          readTextFile,
+        });
+        if (loaded.normalized) {
+          normalizedScript.set({ lines: loaded.normalized.lines, stats: loaded.normalized.stats });
+          if (loaded.currentScript) currentScript.set(loaded.currentScript as ScriptJson);
+          rawText.set(loaded.rawText);
+          rebuildParagraphRuns();
+        }
+      }
+      chapterReviewedAt = result.reviewedAt;
+      setReviewedState(true);
+      await forceRefreshBookCharacters();
+      reviewMessage = `Reviewed. Found ${result.descriptorObservations} descriptor${result.descriptorObservations === 1 ? '' : 's'}; learned ${result.descriptorsAdded} new.`;
+    } catch (error) {
+      reviewMessage = error instanceof Error ? error.message : 'Could not mark chapter reviewed.';
+    } finally {
+      markingReviewed = false;
+    }
+  }
+
+  async function markChapterUnreviewed() {
+    if (markingReviewed) return;
+    markingReviewed = true;
+    reviewMessage = '';
+    clearTimeout(saveTimer);
+    try {
+      chapterReviewedAt = null;
+      setReviewedState(false);
+      await saveCurrentChapter(false, null);
+      reviewMessage = 'Chapter marked unreviewed.';
+    } catch (error) {
+      reviewMessage = error instanceof Error ? error.message : 'Could not mark chapter unreviewed.';
+    } finally {
+      markingReviewed = false;
+    }
   }
 
   function rebuildParagraphRuns() {
@@ -629,10 +734,15 @@
     paragraphRuns.set(buildParagraphRuns(scr.lines, txt));
   }
 
-  $: if ($currentChapter) {
+  let loadedChapterKey: string | null = null;
+  $: if (!$currentChapter) loadedChapterKey = null;
+  $: if ($currentChapter && `${$currentChapter.title}\0${$currentChapter.path}\0${$currentChapter.scriptPath ?? ''}\0${$currentChapter.parsed}` !== loadedChapterKey) {
+    loadedChapterKey = `${$currentChapter.title}\0${$currentChapter.path}\0${$currentChapter.scriptPath ?? ''}\0${$currentChapter.parsed}`;
     const seq = ++chapterLoadSeq;
     (async () => {
       console.log('[ChapterView] Reactive block triggered - loading chapter:', $currentChapter.title);
+      clearTimeout(saveTimer);
+      saveTimer = null;
       loading.set(true);
       normalizedScript.set(null);
       rawText.set(null);
@@ -641,12 +751,15 @@
       resetLocalDialogueAiState();
       isV2Format = false;
       const ch: any = $currentChapter;
+      chapterReviewed = Boolean(ch.reviewed);
+      chapterReviewedAt = null;
+      reviewMessage = '';
       console.log('[ChapterView] Chapter path:', ch.path);
       try {
         const root = get(bookRoot);
         if (ch && root) {
           const loaded = await loadChapterContent({
-            chapter: { title: ch.title, path: ch.path },
+            chapter: { title: ch.title, path: ch.path, parsed: ch.parsed },
             root,
             unknownThreshold: getUnknownThreshold(),
             unknownSpeakerLabel: UNKNOWN_SPEAKER_LABEL,
@@ -659,6 +772,8 @@
 
           if (seq !== chapterLoadSeq) return; // superseded by newer chapter switch
           isV2Format = loaded.isV2Format;
+          chapterReviewedAt = loaded.reviewedAt;
+          setReviewedState(loaded.reviewed);
 
           if (loaded.normalized) {
             normalizedScript.set({ lines: loaded.normalized.lines, stats: loaded.normalized.stats });
@@ -755,6 +870,23 @@
     {:else}
       <p class="placeholder">No content. Use Regenerate to parse script.</p>
     {/if}
+
+    {#if $normalizedScript && $rawText}
+      <div class="review-completion">
+        <button
+          type="button"
+          class:reviewed={chapterReviewed}
+          disabled={markingReviewed}
+          on:click={() => chapterReviewed ? markChapterUnreviewed() : markChapterReviewed()}
+        >
+          <CheckCircle2 size={18} />
+          {markingReviewed ? 'Saving review state...' : chapterReviewed ? 'Mark chapter unreviewed' : 'Mark chapter reviewed'}
+        </button>
+        {#if reviewMessage}
+          <span class="review-message">{reviewMessage}</span>
+        {/if}
+      </div>
+    {/if}
   </div>
 </div>
 
@@ -823,6 +955,12 @@
   .center-wrap { display:flex; justify-content:center; width:100%; }
   .content { width:80%; max-width:1400px; padding:16px 24px 160px; }
   .chapter-title { margin-top:0; text-align:center; }
+  .review-completion { display:flex; flex-direction:column; align-items:center; gap:10px; margin:48px 0 0; padding:24px 0; border-top:1px solid var(--app-border-subtle); }
+  .review-completion button { display:inline-flex; align-items:center; gap:8px; min-height:38px; padding:8px 14px; border:1px solid var(--app-border-strong); border-radius:6px; background:var(--app-surface-raised); color:var(--app-text); cursor:pointer; }
+  .review-completion button:hover:not(:disabled) { background:var(--app-surface-hover); }
+  .review-completion button.reviewed { border-color:#2e8b57; color:#237a4b; }
+  .review-completion button:disabled { cursor:default; opacity:0.8; }
+  .review-message { color:var(--app-text-muted); font-size:13px; }
 
   .line-row { display:flex; gap:12px; align-items:stretch; margin:6px 0; }
   .line-bubble { 

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { bookRoot, chapters, bookRootAbsolutePath, audioRoot } from '$lib/stores/bookState';
-  import { selectBookDirectory } from '$lib/services/fs';
+  import { requiresBackendDirectoryPicker, selectBookDirectory, selectBookDirectoryPath } from '$lib/services/fs';
   import { loadProjectFromAbsolutePath } from '$lib/services/landingProject';
   import { onMount } from 'svelte';
   import { tick } from 'svelte';
@@ -11,6 +11,7 @@
   import { applyProjectHandle, getStoredProjectAvailability, restoreStoredProject } from '$lib/services/projectSession';
   import { beginLandingAction, clearFlagAfterDelay } from '$lib/services/landingInteraction';
   import { syncBookRootFromHandle } from '$lib/services/fs';
+  import { bookRootPathOverride } from '$lib/stores/settings';
 
   // Dev mode detection
   const isDev = import.meta.env.DEV;
@@ -109,15 +110,28 @@
     try {
       isLoadingStoredProject = true;
       await tick();
+
+      const storedPath = get(bookRootPathOverride);
+      if (storedPath) {
+        const loadResult = await loadProjectFromAbsolutePath({
+          rootPath: storedPath,
+          audioRootPath: get(audioRoot) || null,
+        });
+        if (!loadResult.bookRootSynced) {
+          throw new Error('Stored project path is unavailable');
+        }
+        bookRoot.set(storedProjectName || storedPath.split(/[\\/]/).filter(Boolean).at(-1) || storedPath);
+        bookRootAbsolutePath.set(storedPath);
+        chapters.set(loadResult.chapters);
+        goto('/chapter');
+        return;
+      }
       
       console.log('[Landing] Attempting to continue with stored project...');
       const restored = await restoreStoredProject({ requestPermission: true, touchLastAccessed: true });
       if (!restored.ok) {
         console.error('[Landing] No stored project found');
         hasStoredProject = false;
-        if ('reason' in restored && restored.reason === 'permission_denied') {
-          await clearStoredProjectHandle();
-        }
         return;
       }
 
@@ -155,27 +169,41 @@
   }
 
   async function selectNewProject(event?: MouseEvent) {
-    const gate = beginLandingAction({
-      event,
-      lastClickTime,
-      debounceMs: DEBOUNCE_MS,
-      isBusy: isPickingFolder,
-      busyLogMessage: 'Folder picker already open',
-    });
-    lastClickTime = gate.nextLastClickTime;
-    if (!gate.proceed) {
-      return;
-    }
+    event?.stopPropagation();
+    if (isPickingFolder) return;
 
     try {
       isPickingFolder = true;
-      await tick();
-      
-      // Small delay to ensure the click event is fully processed
-      // and the browser recognizes it as a user gesture
-      await new Promise(resolve => setTimeout(resolve, 50));
-      
+
       console.log('[Landing] Opening folder picker...');
+      if (requiresBackendDirectoryPicker()) {
+        const rootPath = await selectBookDirectoryPath();
+        if (!rootPath) {
+          console.log('[Landing] Folder selection cancelled by user');
+          return;
+        }
+
+        const folderName = rootPath.split(/[\\/]/).filter(Boolean).at(-1) || rootPath;
+        bookRoot.set(folderName);
+        bookRootAbsolutePath.set(rootPath);
+        bookRootPathOverride.set(rootPath);
+
+        const loadResult = await loadProjectFromAbsolutePath({
+          rootPath,
+          audioRootPath: get(audioRoot) || null,
+        });
+        chapters.set(loadResult.chapters);
+        hasStoredProject = false;
+        storedProjectName = folderName;
+
+        if (hyperspaceCallback) {
+          hyperspaceCallback();
+        } else {
+          goto('/chapter');
+        }
+        return;
+      }
+
       const dirHandle = await selectBookDirectory();
       
       if (!dirHandle) {
@@ -224,9 +252,7 @@
         // Consider implementing a toast notification system for better UX
       }
     } finally {
-      clearFlagAfterDelay((value) => {
-        isPickingFolder = value;
-      });
+      isPickingFolder = false;
     }
   }
 

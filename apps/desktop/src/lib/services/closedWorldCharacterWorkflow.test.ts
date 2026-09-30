@@ -79,3 +79,29 @@ test('known aliases do not enter the review queue', () => {
 
   assert.deepEqual(items, []);
 });
+
+test('groups repeated candidates into one review item', () => {
+  const items = buildClosedWorldReviewItems([
+    { id: 7, characterId: null, text: 'first', attribution: { sourceAlias: 'Masked Warrior' } },
+    { id: 12, characterId: 'temporary-id', text: 'second', attribution: { sourceAlias: 'masked warrior' } },
+  ] as any, characters as any);
+
+  assert.equal(items.length, 1);
+  assert.deepEqual(items[0].lineIds, [7, 12]);
+});
+
+test('does not queue standalone articles as character candidates', () => {
+  const items = buildClosedWorldReviewItems([
+    { id: 7, characterId: null, text: 'unexpected pleasure', attribution: { sourceAlias: 'The' } },
+  ] as any, characters as any);
+
+  assert.deepEqual(items, []);
+});
+
+test('does not requeue an explicitly dismissed non-speaker', () => {
+  const items = buildClosedWorldReviewItems([
+    { id: 7, characterId: null, isNonSpeaker: true, text: 'For Procer to be ready...', attribution: { sourceAlias: 'Procer' } },
+  ] as any, characters as any);
+
+  assert.deepEqual(items, []);
+});

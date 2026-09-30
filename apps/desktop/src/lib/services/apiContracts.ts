@@ -53,10 +53,15 @@ export interface BackendChapterEntry {
   parsed?: boolean;
   scriptPath?: string;
   audio?: boolean;
+  reviewed?: boolean;
 }
 
 export interface ListChaptersResponse {
   chapters?: BackendChapterEntry[];
+}
+
+export interface PickBookDirectoryResponse {
+  path: string | null;
 }
 
 export interface SetBookRootRequest {
@@ -67,8 +72,35 @@ export interface SetAudioRootRequest {
   audio_root: string;
 }
 
+export interface ReadTextRequest {
+  file_path: string;
+  optional?: boolean;
+}
+
+export interface ReadTextResponse {
+  content: string | null;
+}
+
+export interface SaveFileRequest {
+  file_path: string;
+  content: unknown;
+}
+
 export interface UpdateCharacterStatsResponse {
   stats?: unknown;
+}
+
+export interface ReviewChapterRequest {
+  chapter_name: string;
+}
+
+export interface ReviewChapterResponse {
+  chapter: string;
+  reviewed: boolean;
+  reviewedAt: string;
+  reviewedLineCount: number;
+  descriptorObservations: number;
+  descriptorsAdded: number;
 }
 
 export interface ReadFileAbsoluteRequest {

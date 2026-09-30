@@ -3,8 +3,8 @@ import {
     getCharactersPath,
     getDialoguePath,
     getScriptPath,
-    readDialogue,
-    readScript,
+    readOptionalDialogue,
+    readOptionalScript,
     readVoices,
     writeDialogue,
     writeScript,
@@ -93,7 +93,7 @@ export async function remapCharacterIdInDialogueFiles(
     for (const chapter of chapterList) {
         try {
             const dialoguePath = getDialoguePath(root, chapter.title);
-            const dialogueData: any = await readDialogue(dialoguePath);
+            const dialogueData: any = await readOptionalDialogue(dialoguePath);
             if (!dialogueData || !Array.isArray(dialogueData.lines)) continue;
 
             let changed = false;
@@ -176,7 +176,7 @@ export async function remapCharacterIdPrefixInDialogueFiles(
     for (const chapter of chapterList) {
         try {
             const dialoguePath = getDialoguePath(root, chapter.title);
-            const dialogueData: any = await readDialogue(dialoguePath);
+            const dialogueData: any = await readOptionalDialogue(dialoguePath);
             if (!dialogueData || !Array.isArray(dialogueData.lines)) continue;
 
             let changed = false;
@@ -275,7 +275,7 @@ export async function remapCharacterNameInScriptFiles(
     for (const chapter of chapterList) {
         try {
             const scriptPath = chapter.scriptPath ?? getScriptPath(root, chapter.title);
-            const scriptData: any = await readScript(scriptPath);
+            const scriptData: any = await readOptionalScript(scriptPath);
             if (!scriptData || !Array.isArray(scriptData.lines)) continue;
 
             let changed = false;
@@ -333,7 +333,7 @@ export async function remapCharacterNameInChapterCharacterFiles(
     for (const chapter of chapterList) {
         try {
             const charactersPath = getCharactersPath(root, chapter.title);
-            const charactersData: any = await loadChapterCharactersData(root, charactersPath);
+            const charactersData: any = await loadChapterCharactersData(root, charactersPath, true);
             if (!charactersData || !Array.isArray(charactersData.characters)) continue;
 
             let changed = false;

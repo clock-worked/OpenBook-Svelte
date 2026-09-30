@@ -33,10 +33,15 @@ Owned by `py_services/parser_router.py`:
 - `POST /api/save`
 - `POST /api/update-character-stats`
 - `POST /api/coref-health`
+- `GET /api/modernbooknlp/cache`
+- `POST /api/modernbooknlp/cache`
 
 Behavior notes:
 
 - Parse requests accept raw chapter text and parser options.
+- ModernBookNLP runs once over the concatenated book and stores its output in
+	`.modernbooknlp/`. Chapter parses reuse that cache with chapter-local offsets.
+	Changed, added, or removed chapter sources require rebuilding the cache.
 - Save writes normalized dialogue payloads under the active backend book root.
 - Character stats update can be triggered after dialogue writes.
 

@@ -15,6 +15,7 @@ export function buildLegacyScriptFromNormalized(
             chosenSpeaker: line.characterName,
             candidates: line.candidates,
             isConflict: line.isConflict,
+            isNonSpeaker: line.isNonSpeaker,
             isReturning: line.isReturning,
             attribution: line.attribution,
         })),
@@ -59,8 +60,9 @@ export function mergeNormalizedFromLegacy(params: {
         if (!source) return line;
 
         const nextName = source.chosenSpeaker ?? null;
+        const nextIsNonSpeaker = source.isNonSpeaker === true;
         const nextCandidates = Array.isArray(source.candidates) ? source.candidates : [];
-        const nextConflict = !!source.isConflict;
+        const nextConflict = nextIsNonSpeaker ? false : !!source.isConflict;
         const nextAttribution = params.normalizeAttribution(
             source.attribution || line.attribution || null,
             nextCandidates.map((candidate) => ({
@@ -68,7 +70,7 @@ export function mergeNormalizedFromLegacy(params: {
                 confidence: candidate.confidence,
                 characterId: null,
             })),
-            nextName,
+            nextIsNonSpeaker ? null : nextName,
             params.unknownThreshold
         );
 
@@ -77,6 +79,7 @@ export function mergeNormalizedFromLegacy(params: {
 
         if (
             line.characterName !== nextName ||
+            line.isNonSpeaker !== nextIsNonSpeaker ||
             line.isConflict !== nextConflict ||
             !sameCandidates ||
             !sameAttribution
@@ -84,7 +87,8 @@ export function mergeNormalizedFromLegacy(params: {
             changed = true;
             return {
                 ...line,
-                characterName: nextName,
+                characterName: nextIsNonSpeaker ? null : nextName,
+                isNonSpeaker: nextIsNonSpeaker,
                 candidates: nextCandidates,
                 isConflict: nextConflict,
                 attribution: nextAttribution,
@@ -148,31 +152,18 @@ export async function buildGeneratedAudioMarkerState(params: {
         if (line.characterName) namesToCheck.add(line.characterName);
     }
 
-    if (params.root) {
-        try {
-            const central = await params.readCentralCharacters(params.root);
-            for (const character of central?.characters ?? []) {
-                if (character?.name) namesToCheck.add(String(character.name));
-            }
-        } catch (error) {
-            console.warn('[ChapterView] Failed to load central characters for audio marker refresh:', error);
-        }
-    }
-
     if (generatedLineIds.size === 0) {
-        await Promise.all(
-            Array.from(namesToCheck).map(async (characterName) => {
-                const manifest = await params.readManifest(params.chapterTitle, characterName);
-                if (!manifest?.clips) return;
-                for (const clip of manifest.clips) {
-                    const clipChapter = String((clip as any).chapter ?? '').trim();
-                    const normalizedLineId = Number((clip as any).id);
-                    if (clipChapter === params.chapterTitle && Number.isFinite(normalizedLineId)) {
-                        generatedLineIds.add(normalizedLineId);
-                    }
+        for (const characterName of namesToCheck) {
+            const manifest = await params.readManifest(params.chapterTitle, characterName);
+            if (!manifest?.clips) continue;
+            for (const clip of manifest.clips) {
+                const clipChapter = String((clip as any).chapter ?? '').trim();
+                const normalizedLineId = Number((clip as any).id);
+                if (clipChapter === params.chapterTitle && Number.isFinite(normalizedLineId)) {
+                    generatedLineIds.add(normalizedLineId);
                 }
-            })
-        );
+            }
+        }
     }
 
     const audioExistsCache = new Map<string, boolean>();

@@ -17,8 +17,8 @@
   import ChapterCharacterDetails from './ChapterCharacterDetails.svelte';
   import ClosedWorldCharacterReview from './ClosedWorldCharacterReview.svelte';
   import Dropdown from '$lib/components/common/Dropdown.svelte';
-  import { addBookCharacter, addBookCharacterAlias, setBookCharacterColor, setBookCharacterGender, renameBookCharacter, removeBookCharacter, bookCharacters, detachBookCharacterAlias, forceRefreshBookCharacters, mergeBookCharacters, setBookCharacterPrimaryName } from '$lib/stores/bookCharacters';
-  import { buildClosedWorldReviewItems, type ClosedWorldReviewItem } from '$lib/services/closedWorldCharacterWorkflow';
+  import { addBookCharacter, setBookCharacterColor, setBookCharacterGender, renameBookCharacter, removeBookCharacter, bookCharacters, detachBookCharacterAlias, forceRefreshBookCharacters, mergeBookCharacters, setBookCharacterPrimaryName } from '$lib/stores/bookCharacters';
+  import { buildClosedWorldReviewItems, resolveClosedWorldCandidateAsAlias, type ClosedWorldReviewItem } from '$lib/services/closedWorldCharacterWorkflow';
   import { normalizeCharacterGender } from '$lib/services/characterGender';
   import {
     dialogueAiAssistState,
@@ -79,21 +79,56 @@
   async function mergeReviewedAlias(item: ClosedWorldReviewItem, targetCharacterId: string): Promise<void> {
     const target = $bookCharacters.characters.find((character) => character.id === targetCharacterId);
     if (!target) return;
-    await addBookCharacterAlias(target.name, item.candidateName);
+    const root = get(bookRoot);
+    if (!root) return;
+    const resolved = resolveClosedWorldCandidateAsAlias($bookCharacters, item.candidateName, targetCharacterId);
+    if (resolved.changed) {
+      const saved = await persistCentralCharacters(root, resolved.characters);
+      if (!saved) throw new Error(`Failed to add ${item.candidateName} as an alias of ${target.name}`);
+    }
     await applyReviewedCharacter(item, target.id, target.name);
   }
 
-  async function applyReviewedCharacter(item: ClosedWorldReviewItem, characterId: string, characterName: string): Promise<void> {
+  async function markReviewedAsNonSpeaker(item: ClosedWorldReviewItem): Promise<void> {
+    await applyReviewedCharacter(item, null, null, true);
+  }
+
+  async function applyReviewedCharacter(item: ClosedWorldReviewItem, characterId: string | null, characterName: string | null, nonSpeaker = false): Promise<void> {
     const scr = get(currentScript);
     const ch: any = get(currentChapter);
     const root = get(bookRoot);
     if (!scr || !ch || !root) return;
-    const line = scr.lines.find((candidate: any) => candidate.id === item.lineId);
-    if (!line) return;
-    (line as any).characterId = characterId;
-    line.chosenSpeaker = characterName;
-    line.isConflict = false;
-    await writeScript(ch.scriptPath ?? getScriptPath(root, ch.title), scr);
+    const lineIds = new Set(item.lineIds);
+    let changed = false;
+    for (const line of scr.lines) {
+      if (!lineIds.has(line.id)) continue;
+      (line as any).characterId = nonSpeaker ? null : characterId;
+      line.chosenSpeaker = characterName;
+      line.isConflict = false;
+      (line as any).isNonSpeaker = nonSpeaker;
+      if (line.attribution) {
+        line.attribution.resolutionStatus = 'user_confirmed';
+        line.attribution.candidates = nonSpeaker ? [] : [{
+          characterId,
+          name: characterName as string,
+          confidence: 1,
+          reasons: ['user_confirmed_review']
+        }];
+      }
+      changed = true;
+    }
+    if (!changed) return;
+    const scriptPath = ch.scriptPath ?? getScriptPath(root, ch.title);
+    let saved = await writeScript(scriptPath, scr);
+    if (!saved && get(bookRootAbsolutePath)) {
+      const response = await apiFetch(API_ENDPOINTS.save, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ file_path: scriptPath, content: scr }),
+      });
+      saved = response.ok;
+    }
+    if (!saved) throw new Error(`Failed to save reviewed character lines for ${characterName}`);
     currentScript.set({ ...scr, lines: [...scr.lines] });
     await forceRefreshBookCharacters();
   }
@@ -810,14 +845,14 @@
     newCharacterColor = null;
   }
 
-  async function persistCentralCharacters(root: string, data: CharactersJson): Promise<void> {
+  async function persistCentralCharacters(root: string, data: CharactersJson): Promise<boolean> {
     const savedLocally = await writeCentralCharacters(root, data);
-    if (savedLocally) return;
+    if (savedLocally) return true;
 
     const backendRoot = get(bookRootAbsolutePath);
     if (!backendRoot) {
       console.warn('[ChapterCharacterPanel] Failed to save characters.json: no backend root path available');
-      return;
+      return false;
     }
 
     try {
@@ -833,12 +868,15 @@
 
       if (response.ok) {
         console.log('[ChapterCharacterPanel] Successfully saved characters.json via API');
+        return true;
       } else {
         const errorData = await response.json();
         console.error('[ChapterCharacterPanel] Failed to save characters.json via API:', errorData.detail || response.statusText);
+        return false;
       }
     } catch (error) {
       console.error('[ChapterCharacterPanel] Network error saving characters.json via API:', error);
+      return false;
     }
   }
 </script>
@@ -1041,6 +1079,7 @@
       characters={$bookCharacters.characters}
       onAdd={addReviewedCharacter}
       onAlias={mergeReviewedAlias}
+      onNonSpeaker={markReviewedAsNonSpeaker}
     />
     {#if $selectionActive}
       <div class="new-character-form">

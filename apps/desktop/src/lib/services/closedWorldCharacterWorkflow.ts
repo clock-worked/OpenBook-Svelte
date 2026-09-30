@@ -34,6 +34,7 @@ function normalizeGender(value: Gender): Gender {
 
 export interface ClosedWorldReviewItem {
   lineId: number;
+  lineIds: number[];
   candidateName: string;
   candidateCharacterId: string | null;
   text: string;
@@ -46,6 +47,10 @@ export interface NewClosedWorldCharacterInput {
 
 function normalizeKey(value: unknown): string {
   return String(value ?? '').trim().toLowerCase();
+}
+
+function isCharacterCandidate(value: string): boolean {
+  return !/^(?:a|an|the)$/i.test(value.trim());
 }
 
 function createCharacterRecord(id: string, name: string, gender: Gender): Character {
@@ -151,24 +156,30 @@ export function buildClosedWorldReviewItems(
 ): ClosedWorldReviewItem[] {
   const known = catalogueKeys(data);
   const items: ClosedWorldReviewItem[] = [];
-  const seen = new Set<string>();
+  const itemByCandidate = new Map<string, ClosedWorldReviewItem>();
   for (const line of lines) {
+    if (line.isNonSpeaker) continue;
     if (normalizeKey(line.characterId) === 'narrator') continue;
     const candidateName = candidateSurface(line);
     const candidateId = String(line.characterId ?? '').trim();
     const candidateKey = normalizeKey(candidateName);
     const idKey = normalizeKey(candidateId);
     if ((idKey && known.has(idKey)) || (candidateKey && known.has(candidateKey))) continue;
-    if (!candidateName || normalizeKey(candidateName) === 'narrator') continue;
-    const dedupeKey = `${line.id}:${candidateKey}:${idKey}`;
-    if (seen.has(dedupeKey)) continue;
-    seen.add(dedupeKey);
-    items.push({
+    if (!candidateName || candidateKey === 'narrator' || !isCharacterCandidate(candidateName)) continue;
+    const existing = itemByCandidate.get(candidateKey);
+    if (existing) {
+      existing.lineIds.push(line.id);
+      continue;
+    }
+    const item = {
       lineId: line.id,
+      lineIds: [line.id],
       candidateName,
       candidateCharacterId: candidateId || null,
       text: line.text,
-    });
+    };
+    itemByCandidate.set(candidateKey, item);
+    items.push(item);
   }
   return items;
 }

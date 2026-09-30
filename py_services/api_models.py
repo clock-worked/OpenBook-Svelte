@@ -93,17 +93,25 @@ class Stats(BaseModel):
 class DialogueJson(BaseModel):
     formatVersion: str
     chapterId: str
+    reviewed: bool = False
+    reviewedAt: Optional[str] = None
+    reviewedLineCount: Optional[int] = None
     lines: List[DialogueLine]
     stats: Stats
 
 
 class SaveRequest(BaseModel):
     file_path: str
-    content: DialogueJson
+    content: Dict[str, Any]
 
 
 class RelativeFileRequest(BaseModel):
     file_path: str
+    optional: bool = False
+
+
+class ReviewChapterRequest(BaseModel):
+    chapter_name: str
 
 
 class ScanManifestsRequest(BaseModel):
@@ -278,6 +286,7 @@ class LocalDialogueAiLineResult(BaseModel):
     currentParagraphText: str
     rawOutput: Optional[str] = None
     error: Optional[str] = None
+    confidence: Optional[float] = None
 
 
 class LocalDialogueAiSummary(BaseModel):

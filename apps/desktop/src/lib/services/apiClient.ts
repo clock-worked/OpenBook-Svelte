@@ -14,7 +14,7 @@ export class ApiClientError extends Error {
     }
 }
 
-const DEFAULT_API_BASE_URL = 'http://127.0.0.1:8010';
+const DEFAULT_API_BASE_URL = 'http://127.0.0.1:8011';
 const configuredApiBaseUrl = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.trim();
 
 export const API_BASE_URL = (configuredApiBaseUrl && configuredApiBaseUrl.length > 0
@@ -30,11 +30,14 @@ export const API_ENDPOINTS = {
     localDialogueAi: '/api/local-dialogue-ai',
     localDialogueAiStatus: (requestId: string) =>
         `/api/local-dialogue-ai-status/${encodeURIComponent(requestId)}`,
+    pickBookDirectory: '/api/pick-book-directory',
     setBookRoot: '/api/set-book-root',
     setAudioRoot: '/api/set-audio-root',
     listChapters: '/api/list-chapters',
     readText: '/api/read-text',
     updateCharacterStats: '/api/update-character-stats',
+    reviewChapter: '/api/review-chapter',
+    modernBookNlpCache: '/api/modernbooknlp/cache',
     scanVoiceManifests: '/api/scan-voice-manifests',
     listVoiceSamples: '/api/list-voice-samples',
     saveVoiceSampleMetadata: '/api/save-voice-sample-metadata',

@@ -1,4 +1,7 @@
 import os
+import threading
+import tkinter as tk
+from tkinter import filedialog
 
 from fastapi import APIRouter, HTTPException
 
@@ -6,8 +9,32 @@ from api_models import SetAudioRootRequest, SetRootRequest
 from api_runtime_state import ApiRuntimeState
 
 
+_directory_picker_lock = threading.Lock()
+
+
+def _pick_book_directory() -> str | None:
+    with _directory_picker_lock:
+        root = tk.Tk()
+        root.withdraw()
+        root.attributes("-topmost", True)
+        root.update()
+        try:
+            selected = filedialog.askdirectory(
+                parent=root,
+                title="Select an OpenBook folder",
+                mustexist=True,
+            )
+            return os.path.normpath(selected) if selected else None
+        finally:
+            root.destroy()
+
+
 def create_root_config_router(runtime_state: ApiRuntimeState) -> APIRouter:
     router = APIRouter(tags=["root-config"])
+
+    @router.post("/api/pick-book-directory")
+    def pick_book_directory():
+        return {"path": _pick_book_directory()}
 
     @router.post("/api/set-book-root")
     async def set_book_root(request: SetRootRequest):

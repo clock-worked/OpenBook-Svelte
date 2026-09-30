@@ -21,7 +21,7 @@ from .attribution_passes import (
     rank_candidates,
 )
 from .dialogue_parser_service import DialogueLine, DialogueParserService
-from .episode_decoder import decode_dialogue_episodes
+from .episode_decoder import HARD_REASONS, decode_dialogue_episodes
 from .knowledge_store import load_knowledge_for_file
 from .modernbooknlp_service import ModernBookNLPService, align_dialogue_lines
 
@@ -70,6 +70,7 @@ def _normalize_gender_label(value: Optional[str]) -> Optional[str]:
 def build_closed_world_catalog(rows) -> Dict[str, object]:
     surface_to_name: Dict[str, str] = {}
     gender_by_name: Dict[str, str] = {}
+    descriptor_owners: Dict[str, set[str]] = {}
     names: set[str] = set()
     for row in rows or []:
         if not isinstance(row, dict):
@@ -85,11 +86,35 @@ def build_closed_world_catalog(rows) -> Dict[str, object]:
         gender = _normalize_gender_label(row.get("gender"))
         if gender:
             gender_by_name[name] = gender
-    return {"surface_to_name": surface_to_name, "gender_by_name": gender_by_name, "names": names}
+        for value in row.get("descriptors") or []:
+            descriptor = _normalize_text(str(value or ""))
+            if descriptor:
+                descriptor_owners.setdefault(descriptor, set()).add(name)
+    descriptor_to_name = {
+        descriptor: next(iter(owners))
+        for descriptor, owners in descriptor_owners.items()
+        if len(owners) == 1
+    }
+    return {
+        "surface_to_name": surface_to_name,
+        "gender_by_name": gender_by_name,
+        "descriptor_to_name": descriptor_to_name,
+        "names": names,
+    }
 
 
 def canonicalize_closed_world_name(value: Optional[str], catalog: Dict[str, object]) -> Optional[str]:
     return catalog.get("surface_to_name", {}).get(_normalize_text(str(value or "")))
+
+
+def infer_unique_descriptor_speaker(text: str, catalog: Dict[str, object]) -> Optional[str]:
+    normalized_text = f" {_normalize_text(text)} "
+    matched_names = {
+        name
+        for descriptor, name in catalog.get("descriptor_to_name", {}).items()
+        if descriptor and f" {descriptor} " in normalized_text
+    }
+    return next(iter(matched_names)) if len(matched_names) == 1 else None
 
 
 def _read_text_with_fallback(file_path: str) -> str:
@@ -157,6 +182,7 @@ def _build_line_attribution(signals: LineSignals, decision) -> Dict[str, object]
                 "nextSentenceAttributedSpeaker": signals.next_sentence_attributed_speaker,
                 "recentNamedMentionBeforeQuote": signals.recent_named_mention_before_quote,
                 "previousParagraphNamedMention": signals.previous_paragraph_named_mention,
+                "descriptorMatch": signals.descriptor_match,
                 "isReturning": signals.is_returning,
                 "continuesParagraphDialogue": signals.continues_paragraph_dialogue,
                 "lineEndsWithQuestion": signals.line_ends_with_question,
@@ -203,6 +229,18 @@ def _apply_attribution_override(line: DialogueLine, chosen_name: str, override_r
     trace["selectedCandidate"] = chosen_name
     trace["selectedReasons"] = selected_reasons
     trace["overrideReason"] = override_reason
+
+
+def _has_explicit_local_attribution(line: DialogueLine) -> bool:
+    attribution = line.attribution if isinstance(line.attribution, dict) else {}
+    trace = attribution.get("decisionTrace")
+    if not isinstance(trace, dict):
+        return False
+    reasons = {str(reason) for reason in trace.get("selectedReasons") or []}
+    return bool(reasons & (HARD_REASONS | {
+        "0p_protagonist_first_person",
+        "first_person_override",
+    }))
 
 
 class BookNLPParserService:
@@ -311,15 +349,19 @@ class BookNLPParserService:
         resolved_dialogue_by_paragraph: Dict[int, str] = {}
 
         next_legacy_by_line: Dict[int, Optional[str]] = {}
+        next_dialogue_by_line: Dict[int, Optional[int]] = {}
         next_dialogue_legacy: Optional[str] = None
+        next_dialogue_index: Optional[int] = None
         for idx in range(len(base_lines) - 1, -1, -1):
             base_line = base_lines[idx]
             if base_line.line_type != "dialogue":
                 continue
             next_legacy_by_line[idx] = next_dialogue_legacy
+            next_dialogue_by_line[idx] = next_dialogue_index
             current = str(base_line.speaker or "").strip()
             if current:
                 next_dialogue_legacy = current
+            next_dialogue_index = idx
 
         for line_idx, line in enumerate(base_lines):
             if line.line_type != "dialogue":
@@ -346,6 +388,19 @@ class BookNLPParserService:
                     right = min(paragraph_range.end, line.span_end + 120)
                     pre_left = paragraph_range.start
                     post_right = paragraph_range.end
+                    previous_dialogue_index = previous_dialogue_by_line.get(line_idx)
+                    if previous_dialogue_index is not None:
+                        previous_dialogue = base_lines[previous_dialogue_index]
+                        if isinstance(previous_dialogue.span_end, int):
+                            pre_left = max(pre_left, previous_dialogue.span_end)
+                    next_dialogue_index = next_dialogue_by_line.get(line_idx)
+                    if (
+                        next_dialogue_index is not None
+                        and line_paragraph_index.get(next_dialogue_index) == paragraph_index
+                    ):
+                        next_dialogue = base_lines[next_dialogue_index]
+                        if isinstance(next_dialogue.span_start, int):
+                            post_right = min(post_right, next_dialogue.span_start)
                 else:
                     left = max(0, line.span_start - 120)
                     right = min(len(original_text), line.span_end + 120)
@@ -360,6 +415,10 @@ class BookNLPParserService:
             addressed_name = infer_addressed_name(last_sentence, known_names)
             explicit_mentions = extract_explicit_mentions(line.text, known_names)
             next_sentence_speaker = infer_sentence_attributed_speaker(next_sentence, known_names)
+            descriptor_speaker = infer_unique_descriptor_speaker(
+                f"{pre_quote_context[-160:]} {next_sentence}",
+                closed_world_catalog,
+            ) if closed_world else None
             recent_named_mention = infer_recent_named_mention(pre_quote_context, known_names)
             previous_paragraph_named_mention = None
             context_gender = None
@@ -401,6 +460,7 @@ class BookNLPParserService:
                 next_sentence_speaker,
                 recent_named_mention if context_gender else None,
                 previous_paragraph_named_mention if context_gender else None,
+                descriptor_speaker,
             )
             if not dialogue_candidates:
                 dialogue_candidates = _unique_suggestions(
@@ -409,6 +469,7 @@ class BookNLPParserService:
                     next_sentence_speaker,
                     recent_named_mention if context_gender else None,
                     previous_paragraph_named_mention if context_gender else None,
+                    descriptor_speaker,
                 )
 
             if closed_world:
@@ -465,6 +526,7 @@ class BookNLPParserService:
                 continues_paragraph_dialogue=continues_paragraph_dialogue,
                 line_ends_with_question=str(line.text or "").strip().endswith("?"),
                 next_dialogue_legacy=next_legacy,
+                descriptor_match=descriptor_speaker,
             )
             decision = rank_candidates(dialogue_candidates, signals)
             line.speaker = decision.chosen_name
@@ -498,6 +560,8 @@ class BookNLPParserService:
         for idx_pos, line_idx in enumerate(dialogue_indices):
             line = base_lines[line_idx]
             if not line.is_suggestion or not line.suggestions or len(line.suggestions) < 2:
+                continue
+            if _has_explicit_local_attribution(line):
                 continue
 
             current_paragraph = line_paragraph_index.get(line_idx, -1)
@@ -560,10 +624,25 @@ class BookNLPParserService:
                 for line_index, prediction in aligned.items():
                     line = base_lines[line_index]
                     previous_speaker = str(line.speaker or "").strip() or None
+                    attribution = line.attribution if isinstance(line.attribution, dict) else {}
+                    trace = attribution.setdefault("decisionTrace", {})
+                    modernbooknlp_metadata = {
+                        "corefId": prediction.coref_id,
+                        "nominalMentions": list(prediction.nominal_mentions),
+                        "quoteSpan": {"start": prediction.start, "end": prediction.end},
+                        "previousSpeaker": previous_speaker,
+                        "proposedSpeaker": prediction.speaker,
+                    }
+                    trace["modernBookNLP"] = modernbooknlp_metadata
+                    if _has_explicit_local_attribution(line):
+                        trace["modernBookNLPDecision"] = (
+                            "rejected_explicit_local_attribution"
+                        )
+                        line.attribution = attribution
+                        continue
                     line.speaker = prediction.speaker
                     line.is_suggestion = False
                     line.suggestions = _unique_suggestions(prediction.speaker, *line.suggestions)
-                    attribution = line.attribution if isinstance(line.attribution, dict) else {}
                     attribution["parserBackend"] = "modernbooknlp"
                     attribution["candidates"] = [
                         {
@@ -578,16 +657,11 @@ class BookNLPParserService:
                             != _normalize_text(prediction.speaker)
                         ],
                     ]
-                    trace = attribution.setdefault("decisionTrace", {})
                     trace.update({
                         "selectedCandidate": prediction.speaker,
                         "selectedReasons": ["modernbooknlp_joint_attribution"],
                         "overrideReason": "modernbooknlp_joint_attribution",
-                        "modernBookNLP": {
-                            "corefId": prediction.coref_id,
-                            "quoteSpan": {"start": prediction.start, "end": prediction.end},
-                            "previousSpeaker": previous_speaker,
-                        },
+                        "modernBookNLPDecision": "accepted",
                     })
                     line.attribution = attribution
                 backend = "modernbooknlp"

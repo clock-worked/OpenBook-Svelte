@@ -6,7 +6,7 @@ import { buildClosedWorldParserOptions } from './parserCatalog.ts';
 const characters = {
   formatVersion: '2.0',
   characters: [
-    { id: 'jake', name: 'Jake Thayne', aliases: ['Jake', 'Chosen'], gender: 'Male' },
+    { id: 'jake', name: 'Jake Thayne', aliases: ['Jake', 'Chosen'], descriptors: ['scarred man'], gender: 'Male' },
     { id: 'miranda', name: 'Miranda', aliases: [], gender: 'Female' },
   ],
 };
@@ -16,8 +16,8 @@ test('adds the canonical catalogue to parser options', () => {
 
   assert.equal(options.closed_world_characters, true);
   assert.deepEqual(options.character_catalog, [
-    { characterId: 'jake', name: 'Jake Thayne', aliases: ['Jake', 'Chosen'], gender: 'Male' },
-    { characterId: 'miranda', name: 'Miranda', aliases: [], gender: 'Female' },
+    { characterId: 'jake', name: 'Jake Thayne', aliases: ['Jake', 'Chosen'], descriptors: ['scarred man'], gender: 'Male' },
+    { characterId: 'miranda', name: 'Miranda', aliases: [], descriptors: [], gender: 'Female' },
   ]);
 });
 

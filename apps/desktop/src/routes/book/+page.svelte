@@ -3,7 +3,7 @@
   import { goto } from '$app/navigation';
   import { get } from 'svelte/store';
   import { bookRoot, chapters, audioRoot, bookRootAbsolutePath, voiceSamplesRoot } from '$lib/stores/bookState';
-  import { scanChapters, getRootDirHandle, readSettings, writeSettings, readSpeakerBlocklist, resolveBookRootPath, setBackendAudioRoot, triggerStatsUpdate } from '$lib/services/fs';
+  import { scanChapters, listChaptersFromBackend, getRootDirHandle, readSettings, writeSettings, readSpeakerBlocklist, resolveBookRootPath, setBackendAudioRoot, triggerStatsUpdate } from '$lib/services/fs';
   import { pickDirectoryAbsolutePath } from '$lib/services/directoryPicker';
   import { initRouteProjectContext } from '$lib/services/projectSession';
   import { getProjectInitFailurePolicy } from '$lib/services/routePolicy';
@@ -179,12 +179,12 @@
 
   onMount(async () => {
     const context = await initRouteProjectContext({
-      allowDevModeWithoutHandle: false,
+      allowDevModeWithoutHandle: true,
       requestPermission: true,
       touchLastAccessed: true,
     });
 
-    if (!context.ok || !context.rootHandle) {
+    if (!context.ok) {
       if (!context.ok && 'reason' in context && context.reason === 'permission_denied') {
         console.error('Permission denied for stored project');
       } else if (!context.ok && 'reason' in context && context.reason === 'error') {
@@ -205,6 +205,8 @@
       } catch {
         // ignore chapter loading errors
       }
+    } else if (context.isDevMode) {
+      chapters.set(await listChaptersFromBackend());
     }
 
     // Load settings after setting up the book root

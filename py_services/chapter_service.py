@@ -18,12 +18,14 @@ class ChapterInfo:
         parsed: bool = False,
         script_path: Optional[str] = None,
         audio: bool = False,
+        reviewed: bool = False,
     ):
         self.name = name
         self.path = path
         self.parsed = parsed
         self.script_path = script_path
         self.audio = audio
+        self.reviewed = reviewed
     
     def to_dict(self) -> Dict:
         """Convert to dictionary for JSON serialization."""
@@ -33,6 +35,7 @@ class ChapterInfo:
             "parsed": self.parsed,
             "scriptPath": self.script_path,
             "audio": self.audio,
+            "reviewed": self.reviewed,
         }
 
 
@@ -114,6 +117,7 @@ def list_chapters(book_root_path: str) -> List[ChapterInfo]:
         title = entry
         
         parsed = False
+        reviewed = False
         script_path = None
         
         # Check if chapter has been parsed (has dialogue.json or script.json)
@@ -122,6 +126,11 @@ def list_chapters(book_root_path: str) -> List[ChapterInfo]:
         if os.path.isfile(dialogue_path):
             parsed = True
             script_path = f"{title}/dialogue.json"
+            try:
+                with open(dialogue_path, "r", encoding="utf-8") as handle:
+                    reviewed = bool(json.load(handle).get("reviewed"))
+            except (json.JSONDecodeError, OSError, TypeError):
+                reviewed = False
         
         chapters.append(ChapterInfo(
             name=title,
@@ -129,6 +138,7 @@ def list_chapters(book_root_path: str) -> List[ChapterInfo]:
             parsed=parsed,
             script_path=script_path,
             audio=chapter_has_audio(full_path),
+            reviewed=reviewed,
         ))
     
     # Sort chapters by name

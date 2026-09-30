@@ -1,8 +1,9 @@
 import { get } from 'svelte/store';
 import { bookRoot, bookRootHandle } from '$lib/stores/bookState';
 import { bookRootAbsolutePath } from '$lib/stores/bookState';
-import { setRootDirHandle } from '$lib/services/fs';
+import { setBackendBookRoot, setRootDirHandle } from '$lib/services/fs';
 import { getStoredProjectHandle, updateLastAccessed, verifyHandlePermission } from '$lib/services/persistence';
+import { bookRootPathOverride } from '$lib/stores/settings';
 
 export type RestoreStoredProjectResult =
   | { ok: true; handle: FileSystemDirectoryHandle; name: string }
@@ -18,19 +19,30 @@ export function getActiveProjectHandle(): FileSystemDirectoryHandle | null {
   return get(bookRootHandle);
 }
 
+async function restoreBackendProject(rootPath: string): Promise<boolean> {
+  for (const delayMs of [0, 250, 500, 1000]) {
+    if (delayMs) await new Promise((resolve) => setTimeout(resolve, delayMs));
+    if (await setBackendBookRoot(rootPath)) return true;
+  }
+  return false;
+}
+
 export async function getStoredProjectAvailability(): Promise<
   { available: true; name: string } |
   { available: false; shouldClear: boolean }
 > {
   try {
+    const storedPath = get(bookRootPathOverride);
+    if (storedPath) {
+      return {
+        available: true,
+        name: storedPath.split(/[\\/]/).filter(Boolean).at(-1) || storedPath,
+      };
+    }
+
     const stored = await getStoredProjectHandle();
     if (!stored?.handle) {
       return { available: false, shouldClear: false };
-    }
-
-    const hasPermission = await verifyHandlePermission(stored.handle, false);
-    if (!hasPermission) {
-      return { available: false, shouldClear: true };
     }
 
     return { available: true, name: stored.name };
@@ -63,7 +75,7 @@ export async function initRouteProjectContext(options?: {
   const touchLastAccessed = options?.touchLastAccessed ?? true;
 
   const inMemoryHandle = get(bookRootHandle);
-  const devModePath = get(bookRootAbsolutePath) || null;
+  const devModePath = get(bookRootAbsolutePath) || get(bookRootPathOverride) || null;
 
   if (inMemoryHandle) {
     return {
@@ -77,6 +89,13 @@ export async function initRouteProjectContext(options?: {
 
   const isDevMode = !!devModePath;
   if (allowDevModeWithoutHandle && isDevMode) {
+    const synced = await restoreBackendProject(devModePath);
+    if (!synced) {
+      return { ok: false, reason: 'error', error: new Error('Stored project path is unavailable') };
+    }
+    bookRootAbsolutePath.set(devModePath);
+    bookRootPathOverride.set(devModePath);
+    bookRoot.set(devModePath.split(/[\\/]/).filter(Boolean).at(-1) || devModePath);
     return {
       ok: true,
       rootHandle: null,

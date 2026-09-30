@@ -12,6 +12,7 @@ export interface Character {
   name: string;  // Display name
   gender: Gender;
   aliases: string[];
+  descriptors?: string[];
   race?: string;  // Character race/species (optional)
   color: string | null;
   notes: string;
@@ -132,6 +133,7 @@ export interface ParserLineAttribution {
 export interface DialogueLine {
   id: number;
   characterId: string | null;  // Reference to character.id (null defaults to narrator)
+  isNonSpeaker?: boolean;  // Explicitly dismissed as not spoken dialogue
   text: string;
   span: { start: number; end: number } | null;
   metadata: LineMetadata;
@@ -144,6 +146,9 @@ export interface DialogueLine {
 export interface DialogueJson {
   formatVersion: string;
   chapterId: string;
+  reviewed?: boolean;
+  reviewedAt?: string | null;
+  reviewedLineCount?: number;
   lines: DialogueLine[];
   stats: {
     totalLines: number;
@@ -170,6 +175,7 @@ export interface LineItem {
   text: string;
   span: { start: number; end: number } | null;
   chosenSpeaker: string | null;  // v1: character name (not ID)
+  isNonSpeaker?: boolean;
   candidates: { name: string; confidence: number }[];  // v1: uses name
   isConflict: boolean;
   isReturning?: boolean;
@@ -206,6 +212,7 @@ export interface CharacterConfig {
   name: string;
   gender?: Gender;
   aliases?: string[];
+  descriptors?: string[];
   color: string | null;
   voice: string | null;
   notes?: string;

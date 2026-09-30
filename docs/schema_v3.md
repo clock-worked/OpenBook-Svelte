@@ -106,6 +106,9 @@ This is a **dialogue format evolution**. `characters.json` and `voices.json` rem
       }
     }
   ],
+  "reviewed": true,
+  "reviewedAt": "2026-09-10T04:02:04.243754+00:00",
+  "reviewedLineCount": 128,
   "stats": {
     "totalLines": 128,
     "conflicts": 19,
@@ -152,6 +155,15 @@ This is a **dialogue format evolution**. `characters.json` and `voices.json` rem
 - When a paragraph is split into dialogue plus narration tail, the narration tail may carry `isReturning: true`.
 - Narration-only paragraphs should write `false` for all entries.
 - This field is intended for parser and downstream flow decisions that need to know when a spoken exchange has finished within the source paragraph.
+
+## Chapter Review Semantics
+
+- `reviewed = true` means every persisted line assignment has been accepted as gold.
+- `reviewedAt` records when the chapter was finalized.
+- `reviewedLineCount` records the number of lines covered by that review.
+- Marking a chapter reviewed dynamically extracts conservative descriptive references from narration adjacent to assigned dialogue and stores them in each character's optional `descriptors` list.
+- Descriptors are soft attribution evidence, not aliases. A descriptor associated with multiple characters is ignored during attribution.
+- Any later chapter edit clears reviewed state until the chapter is reviewed again.
 
 ## Unknown Resolution Semantics
 

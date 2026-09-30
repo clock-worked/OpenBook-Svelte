@@ -1,7 +1,15 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
   import PillList from '$lib/components/common/PillList.svelte';
+  import { API_ENDPOINTS, ApiClientError, apiPostJson, apiRequestJson } from '$lib/services/apiClient';
   import type { AudiobookSettings, ParserHints } from '$lib/types';
+
+  type ModernBookNlpCacheStatus = {
+    available: boolean;
+    createdAt?: string;
+    chapterCount?: number;
+    staleChapters?: string[];
+  };
   
   export let audiobookSettings: AudiobookSettings;
   export let parserHints: ParserHints;
@@ -10,6 +18,9 @@
   export let voiceSamplesPath: string = '';
   export let onVoiceSamplesPathChange: (path: string) => void = () => {};
   export let onPickVoiceSamplesFolder: () => void = () => {};
+    let modernBookNlpCache: ModernBookNlpCacheStatus | null = null;
+    let modernBookNlpCacheError = '';
+    let buildingModernBookNlpCache = false;
     const defaultHeuristics = {
       protagonistFirstPersonTag: true,
       narratorIdentity: true,
@@ -53,6 +64,34 @@
   
   function notifyUpdate() {
     dispatch('update');
+  }
+
+  async function loadModernBookNlpCacheStatus() {
+    try {
+      modernBookNlpCache = await apiRequestJson<ModernBookNlpCacheStatus>(API_ENDPOINTS.modernBookNlpCache);
+      modernBookNlpCacheError = '';
+    } catch (error) {
+      modernBookNlpCacheError = error instanceof ApiClientError && error.status === 404
+        ? 'Restart the backend to enable book caching.'
+        : error instanceof Error ? error.message : String(error);
+    }
+  }
+
+  async function buildModernBookNlpCache() {
+    buildingModernBookNlpCache = true;
+    modernBookNlpCacheError = '';
+    try {
+      await apiPostJson(API_ENDPOINTS.modernBookNlpCache);
+      await loadModernBookNlpCacheStatus();
+    } catch (error) {
+      modernBookNlpCacheError = error instanceof Error ? error.message : String(error);
+    } finally {
+      buildingModernBookNlpCache = false;
+    }
+  }
+
+  $: if (parserHints.parserBackend === 'modernbooknlp' && modernBookNlpCache === null && !modernBookNlpCacheError) {
+    void loadModernBookNlpCacheStatus();
   }
   
   function handleNarratorAdd(event: CustomEvent<string>) {
@@ -258,6 +297,20 @@
   .browse-btn:hover {
     background: var(--app-surface-hover);
   }
+
+  .browse-btn:disabled {
+    cursor: wait;
+    opacity: 0.6;
+  }
+
+  .cache-status {
+    font-size: 12px;
+    color: var(--app-text-muted);
+  }
+
+  .cache-status.error {
+    color: var(--app-danger, #b42318);
+  }
 </style>
 
 <div class="settings-section">
@@ -355,7 +408,32 @@
         <option value="legacy">OpenBook rules</option>
         <option value="modernbooknlp">ModernBookNLP joint model</option>
       </select>
-      <span class="help-text">ModernBookNLP keeps OpenBook dialogue spans and replaces aligned speaker labels</span>
+      <div class="inline-row">
+        <button
+          class="browse-btn"
+          disabled={buildingModernBookNlpCache}
+          on:click={buildModernBookNlpCache}
+        >
+          {buildingModernBookNlpCache
+            ? 'Building book cache...'
+            : modernBookNlpCache?.available
+              ? 'Rebuild book cache'
+              : 'Build book cache'}
+        </button>
+        {#if modernBookNlpCache?.available}
+          <span class="cache-status">
+            {modernBookNlpCache.chapterCount ?? 0} chapters
+            {modernBookNlpCache.staleChapters?.length
+              ? `, ${modernBookNlpCache.staleChapters.length} stale`
+              : ', ready'}
+          </span>
+        {:else if modernBookNlpCacheError}
+          <span class="cache-status error">{modernBookNlpCacheError}</span>
+        {:else}
+          <span class="cache-status">Not built</span>
+        {/if}
+      </div>
+      <span class="help-text">Builds one book-wide coreference model used by every chapter parse.</span>
     </div>
 
     <div class="form-row">

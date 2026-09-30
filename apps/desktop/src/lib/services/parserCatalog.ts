@@ -4,6 +4,7 @@ export interface ParserCharacterCatalogEntry {
   characterId: string;
   name: string;
   aliases: string[];
+  descriptors: string[];
   gender: string;
 }
 
@@ -17,6 +18,7 @@ export function buildClosedWorldParserOptions(
       characterId: character.id,
       name: character.name,
       aliases: Array.isArray(character.aliases) ? character.aliases : [],
+      descriptors: Array.isArray(character.descriptors) ? character.descriptors : [],
       gender: character.gender || 'Unknown',
     }));
   if (!characterCatalog.length) return baseOptions;

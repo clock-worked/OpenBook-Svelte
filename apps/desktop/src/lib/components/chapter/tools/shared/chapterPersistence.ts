@@ -5,6 +5,7 @@ import { computeReturningFlags, isDialogueSpan } from '$lib/services/dialogueRet
 type ChapterLike = {
     title: string;
     path?: string;
+    parsed?: boolean;
 };
 
 type NormalizedScriptPayload = {
@@ -67,10 +68,14 @@ export async function loadChapterContent(params: {
     normalized: NormalizedScriptPayload | null;
     currentScript: ScriptJson | null;
     rawText: string | null;
+    reviewed: boolean;
+    reviewedAt: string | null;
 }> {
     const { chapter, root } = params;
 
-    const dialogue = await params.readDialogueForChapter(chapter.title);
+    const dialogue = chapter.parsed === false
+        ? null
+        : await params.readDialogueForChapter(chapter.title);
     let isV2Format = false;
     let normalized: NormalizedScriptPayload | null = null;
     let currentScript: ScriptJson | null = null;
@@ -115,6 +120,7 @@ export async function loadChapterContent(params: {
                 chosenSpeaker: line.characterName,
                 candidates: line.candidates,
                 isConflict: line.isConflict,
+                isNonSpeaker: line.isNonSpeaker,
                 isReturning: line.isReturning,
                 attribution: line.attribution,
             })),
@@ -127,6 +133,8 @@ export async function loadChapterContent(params: {
         normalized,
         currentScript,
         rawText,
+        reviewed: Boolean((dialogue as DialogueJson | null)?.reviewed),
+        reviewedAt: (dialogue as DialogueJson | null)?.reviewedAt ?? null,
     };
 }
 
@@ -144,6 +152,8 @@ export async function saveDialogueFromNormalized(params: {
     getRootDirInfo: () => { name: string; hasHandle: boolean };
     getBackendRootAbsolutePath: () => string | null;
     apiSave: (relativePath: string, content: DialogueJson) => Promise<Response>;
+    reviewed?: boolean;
+    reviewedAt?: string | null;
 }): Promise<void> {
     const scr = params.normalized;
     const ch = params.chapter;
@@ -185,7 +195,11 @@ export async function saveDialogueFromNormalized(params: {
     const dialoguePayload: DialogueJson = {
         formatVersion: '3.2',
         chapterId: ch.title,
+        reviewed: params.reviewed ?? false,
+        reviewedAt: params.reviewed ? (params.reviewedAt ?? null) : null,
+        reviewedLineCount: params.reviewed ? linesWithReturning.length : undefined,
         lines: linesWithReturning.map((line) => {
+            const isNonSpeaker = line.isNonSpeaker === true;
             const attribution = params.normalizeAttribution(
                 line.attribution || null,
                 (line.candidates || []).map((candidate) => ({
@@ -193,7 +207,7 @@ export async function saveDialogueFromNormalized(params: {
                     characterId: candidate.name ? (nameToIdMap.get(candidate.name.toLowerCase()) || null) : null,
                     confidence: candidate.confidence,
                 })),
-                line.characterName,
+                isNonSpeaker ? null : line.characterName,
                 params.unknownThreshold,
                 null,
                 [],
@@ -202,7 +216,7 @@ export async function saveDialogueFromNormalized(params: {
 
             const nameLower = String(line.characterName || '').trim().toLowerCase();
             let characterId: string | null = null;
-            if (attribution.resolutionStatus === 'unknown' || nameLower === params.unknownSpeakerLabel.toLowerCase()) {
+            if (isNonSpeaker || attribution.resolutionStatus === 'unknown' || nameLower === params.unknownSpeakerLabel.toLowerCase()) {
                 characterId = null;
             } else if (line.characterName) {
                 characterId = nameToIdMap.get(line.characterName.toLowerCase()) || null;
@@ -230,7 +244,7 @@ export async function saveDialogueFromNormalized(params: {
                         sourceCandidates: attribution.sourceCandidates,
                     },
                 },
-                candidates: Array.from(
+                candidates: isNonSpeaker ? [] : Array.from(
                     (line.candidates || []).reduce((acc, candidate) => {
                         const candidateId = candidate.name ? (nameToIdMap.get(candidate.name.toLowerCase()) || null) : null;
                         if (candidate.name && !candidateId) {
@@ -248,7 +262,8 @@ export async function saveDialogueFromNormalized(params: {
                         return acc;
                     }, new Map<string, { characterId: string; confidence: number }>()).values()
                 ).sort((left, right) => right.confidence - left.confidence),
-                isConflict: line.isConflict || attribution.resolutionStatus === 'unknown',
+                isConflict: isNonSpeaker ? false : line.isConflict || attribution.resolutionStatus === 'unknown',
+                isNonSpeaker,
                 isReturning: line.isReturning,
                 attribution,
             };

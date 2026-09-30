@@ -17,6 +17,7 @@ from api_models import (
 from chapter_service import get_chapter_stats, list_chapters as list_chapters_service
 from dialogue_ai_service import DialogueAiAssistService
 from local_dialogue_ai_service import LocalDialogueAiService
+from jev_service import JevService
 from openbook_parser.booknlp_parser_service import BookNLPParserService
 from openbook_parser.dialogue_parser_service import DialogueParserService, script_to_dict_list
 from update_character_stats import update_character_stats
@@ -29,6 +30,7 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
     router = APIRouter(tags=["parser"])
     dialogue_ai_service = DialogueAiAssistService(get_book_root=get_book_root)
     local_dialogue_ai_service = LocalDialogueAiService(get_book_root=get_book_root)
+    jev_service = JevService(get_book_root=get_book_root)
 
     @router.get("/api/list-chapters")
     async def list_chapters():
@@ -230,6 +232,22 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
         status = local_dialogue_ai_service.get_status(request_id)
         if status is None:
             raise HTTPException(status_code=404, detail="Local dialogue AI request not found.")
+        return status.model_dump()
+
+    @router.post("/api/jev-dialogue-ai")
+    async def jev_dialogue_ai(request: LocalDialogueAiRequest):
+        try:
+            jev_service.prepare_status(request)
+            response = await asyncio.to_thread(jev_service.run, request)
+            return response.model_dump()
+        except (ValueError, ConnectionError) as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @router.get("/api/jev-dialogue-ai-status/{request_id}")
+    async def jev_dialogue_ai_status(request_id: str):
+        status = jev_service.get_status(request_id)
+        if status is None:
+            raise HTTPException(status_code=404, detail="Jev dialogue AI request not found.")
         return status.model_dump()
 
     return router

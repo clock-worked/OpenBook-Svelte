@@ -1,5 +1,10 @@
 import type { Character, CharactersJson } from '$lib/types';
-import { readCentralCharacters, readCharacters, writeCharacters } from '$lib/services/fs';
+import {
+    readCentralCharacters,
+    readCharacters,
+    readOptionalCharacters,
+    writeCharacters,
+} from '$lib/services/fs';
 
 interface ChapterCharacterReference {
     id: string;
@@ -43,8 +48,9 @@ function buildCentralLookups(central: CharactersJson | null): {
 export async function loadChapterCharactersData(
     root: string,
     path: string,
+    optional = false,
 ): Promise<CharactersJson | null> {
-    const raw: any = await readCharacters(path);
+    const raw: any = await (optional ? readOptionalCharacters(path) : readCharacters(path));
     if (!raw || !Array.isArray(raw.characters)) return null;
 
     const central = await readCentralCharacters(root);

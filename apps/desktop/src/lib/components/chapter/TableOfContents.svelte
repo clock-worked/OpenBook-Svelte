@@ -3,7 +3,6 @@
   import { onMount } from 'svelte';
   import { get } from 'svelte/store';
   import { writable } from 'svelte/store';
-  import { chapterStats } from '$lib/stores/stats';
 
   function openChapter(idx: number) {
     const list = get(chapters);
@@ -77,6 +76,9 @@
         on:click={() => openChapter(i)}
       >
         <div class="toc-icons-left">
+          {#if ch.reviewed}
+            <span class="reviewed-icon" title="Chapter reviewed">✓</span>
+          {/if}
           {#if ch.parsed}
             <span class="doc-icon" title="Script available">🗎</span>
           {/if}
@@ -119,8 +121,9 @@
   .toc-button .toc-title { font-style: italic; }
   .toc-button.is-active { background:var(--app-primary-soft); color:var(--app-text); }
   .toc-button.is-active .toc-title { font-style: normal; font-weight: bold; }
-  .toc-icons-left { display:flex; align-items:center; width:20px; }
+  .toc-icons-left { display:flex; align-items:center; gap:3px; min-width:20px; }
   .doc-icon { font-size:16px; line-height:1; color:var(--app-text-subtle); }
+  .reviewed-icon { font-size:14px; line-height:1; color:#237a4b; font-weight:700; }
   .toc-title { flex:1; min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .toc-icons { display:flex; gap:8px; margin-left:auto; align-items:center; }
   .audio-badge { display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:4px; background:var(--app-primary-soft); color:var(--app-primary-text); }

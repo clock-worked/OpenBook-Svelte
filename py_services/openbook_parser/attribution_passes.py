@@ -73,7 +73,12 @@ ATTRIBUTION_GENDER_CUE_VERB_TOKENS = sorted(
     key=len,
     reverse=True,
 )
-ATTRIBUTION_VERB_PHRASES = sorted(ATTRIBUTION_VERBS, key=len, reverse=True)
+ATTRIBUTION_VERB_PHRASES = sorted(
+    ATTRIBUTION_VERBS - REACTION_VERBS,
+    key=len,
+    reverse=True,
+)
+SPEECH_PHASE_VERBS = {"began", "started", "finished"}
 
 
 @dataclass
@@ -113,6 +118,7 @@ class LineSignals:
     continues_paragraph_dialogue: bool = False
     line_ends_with_question: bool = False
     next_dialogue_legacy: Optional[str] = None
+    descriptor_match: Optional[str] = None
 
 
 @dataclass
@@ -310,8 +316,11 @@ def infer_sentence_attributed_speaker(sentence: str, known_names: Sequence[str])
     if not normalized_sentence:
         return None
     padded_sentence = f" {normalized_sentence} "
+    direct_matches: set[str] = set()
+    reverse_matches: set[str] = set()
+    phase_matches: set[str] = set()
 
-    for name in known_names:
+    for name in sorted(known_names, key=lambda value: len(str(value or "")), reverse=True):
         candidate = str(name or "").strip()
         if not candidate:
             continue
@@ -320,9 +329,20 @@ def infer_sentence_attributed_speaker(sentence: str, known_names: Sequence[str])
             continue
         for verb in ATTRIBUTION_VERB_PHRASES:
             if f" {lowered} {verb} " in padded_sentence:
-                return candidate
+                direct_matches.add(candidate)
             if f" {verb} {lowered} " in padded_sentence:
-                return candidate
+                reverse_matches.add(candidate)
+        phase_pattern = rf"\b{re.escape(lowered)}\s+(?:{'|'.join(SPEECH_PHASE_VERBS)})(?=\s*[,.;:!?]|\s*$)"
+        if re.search(phase_pattern, str(sentence or ""), re.I):
+            phase_matches.add(candidate)
+
+    subject_matches = direct_matches | phase_matches
+    if len(subject_matches) == 1:
+        return next(iter(subject_matches))
+    if subject_matches:
+        return None
+    if len(reverse_matches) == 1:
+        return next(iter(reverse_matches))
     return None
 
 
@@ -464,6 +484,10 @@ def rank_candidates(candidates: Sequence[str], signals: LineSignals) -> RankedDe
             if signals.alias_match_strength > 0:
                 reasons.append("alias_strength")
 
+        if key == _norm(signals.descriptor_match) and key != "narrator":
+            score += 0.4
+            reasons.append("learned_descriptor_match")
+
         if next_sentence_speaker and key == next_sentence_speaker and key != "narrator":
             score += 0.4
             reasons.append("post_quote_attribution")
@@ -540,6 +564,7 @@ def rank_candidates(candidates: Sequence[str], signals: LineSignals) -> RankedDe
         "same_paragraph_continuation",
         "speech_verb",
         "alias_strength",
+        "learned_descriptor_match",
         "context_gender_match",
     }
     hard_reason_count = len(top_reasons & hard_reasons)

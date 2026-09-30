@@ -8,7 +8,6 @@ export function beginLandingAction(opts: {
 }): { proceed: boolean; nextLastClickTime: number } {
   if (opts.event) {
     opts.event.stopPropagation();
-    opts.event.preventDefault();
   }
 
   const now = Date.now();

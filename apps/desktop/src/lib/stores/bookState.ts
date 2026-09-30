@@ -7,6 +7,7 @@ export interface ChapterStatus {
   parsed: boolean;
   complete: boolean;
   audio: boolean;
+  reviewed?: boolean;
   scriptPath?: string;
 }
 

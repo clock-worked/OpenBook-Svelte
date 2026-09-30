@@ -26,6 +26,7 @@ function normalizeCharacterConfig(input: CharacterConfig | null | undefined): Ch
         name: input?.name ?? '',
         gender: normalizeCharacterGender((input as any)?.gender),
         aliases: Array.isArray((input as any)?.aliases) ? (input as any).aliases : [],
+        descriptors: Array.isArray((input as any)?.descriptors) ? (input as any).descriptors : [],
         color: input?.color ?? null,
         voice: input?.voice ?? null,
         notes: typeof (input as any)?.notes === 'string' ? (input as any).notes : '',
@@ -50,6 +51,7 @@ export async function deriveCharactersFromChapters(
     const accMap = new Map<string, CharacterConfig>();
 
     for (const chapter of chapterList) {
+        if (chapter.parsed === false) continue;
         try {
             const chars = await loadChapterCharactersData(root, getCharactersPath(root, chapter.title));
             if (chars && Array.isArray(chars.characters)) {
@@ -61,6 +63,7 @@ export async function deriveCharactersFromChapters(
                         name: normalized.name,
                         gender: prev?.gender ?? normalized.gender ?? 'Unknown',
                         aliases: prev?.aliases ?? normalized.aliases ?? [],
+                        descriptors: prev?.descriptors ?? normalized.descriptors ?? [],
                         color: prev?.color ?? normalized.color ?? null,
                         voice: prev?.voice ?? normalized.voice ?? null,
                         provider: prev?.provider ?? normalized.provider ?? null,
@@ -144,6 +147,7 @@ export function mapRawBookCharacters(rawData: CharactersJson): CharactersJson {
                 name: char.name,
                 gender: normalizeCharacterGender(char.gender),
                 aliases: Array.isArray(char.aliases) ? char.aliases : [],
+                descriptors: Array.isArray(char.descriptors) ? char.descriptors : [],
                 color: char.color ?? null,
                 voice: char.voice ?? null,
                 provider: char.provider ?? null,
@@ -201,6 +205,7 @@ export async function syncMissingBookCharacterDefaults(
     };
 
     for (const chapter of chapterList) {
+        if (chapter.parsed === false) continue;
         try {
             const dialogue = await readDialogue(getDialoguePath(root, chapter.title));
             if (dialogue?.lines) {
@@ -329,6 +334,7 @@ export async function persistBookCharactersData(root: string, data: CharactersJs
                         voiceId: updated.voiceId,
                         voiceMeta: updated.voiceMeta,
                         aliases: Array.isArray(updated.aliases) ? updated.aliases : char.aliases,
+                        descriptors: Array.isArray(updated.descriptors) ? updated.descriptors : char.descriptors,
                         notes: typeof updated.notes === 'string' ? updated.notes : char.notes,
                         stats: char.stats,
                         firstAppearance: char.firstAppearance,

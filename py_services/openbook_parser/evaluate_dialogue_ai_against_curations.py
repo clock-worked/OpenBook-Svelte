@@ -10,7 +10,7 @@ import re
 import sys
 from collections import defaultdict
 from dataclasses import dataclass
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PARENT_DIR = os.path.dirname(SCRIPT_DIR)
@@ -22,8 +22,12 @@ from api_models import (  # noqa: E402
     AttributionCandidate,
     Candidate,
     DialogueAiAssistRequest,
+    DialogueAiAssistResponse,
+    DialogueAiAssistSummary,
+    DialogueAiLineResult,
     DialogueJson,
     DialogueLine as ApiDialogueLine,
+    LocalDialogueAiRequest,
     Metadata,
     Span,
     Stats,
@@ -376,9 +380,74 @@ def _load_parser(backend: str):
     return DialogueParserService()
 
 
+def _build_service(provider: str, get_book_root: Callable[[], str]):
+    if provider == "gemini":
+        # Already imported
+        return DialogueAiAssistService(get_book_root=get_book_root)
+    if provider == "local":
+        from local_dialogue_ai_service import LocalDialogueAiService
+
+        return LocalDialogueAiService(get_book_root=get_book_root)
+    if provider == "jev":
+        from jev_service import JevService
+
+        return JevService(get_book_root=get_book_root)
+    raise ValueError(f"Unknown provider: {provider}")
+
+
+def _adapt_local_response(response: Any, auto_apply_threshold: float) -> DialogueAiAssistResponse:
+    """Convert a LocalDialogueAiResponse to the DialogueAiAssistResponse format."""
+    results = []
+    for local_result in response.results:
+        action: str = "needs_review"
+        disposition: str = "review"
+        confidence = 0.5  # Default confidence for unresolved
+
+        if local_result.outcome == "keep_existing":
+            action = "keep_existing"
+            confidence = getattr(local_result, "confidence", None) or 1.0
+        elif local_result.outcome == "suggestion":
+            action = "reassign_existing"
+            confidence = getattr(local_result, "confidence", None) or 0.95
+        elif local_result.outcome == "error":
+            action = "error"
+            disposition = "error"
+
+        if confidence >= auto_apply_threshold and disposition == "review":
+            disposition = "auto_apply"
+
+        results.append(
+            DialogueAiLineResult(
+                lineId=local_result.lineId,
+                paragraphIndex=local_result.paragraphIndex,
+                currentCharacterId=local_result.currentCharacterId,
+                currentCharacterName=local_result.currentCharacterName,
+                suggestedCharacterId=local_result.suggestedCharacterId,
+                suggestedCharacterName=local_result.suggestedCharacterName,
+                action=action,
+                disposition=disposition,
+                confidence=confidence,
+                currentParagraphText=local_result.currentParagraphText,
+                error=local_result.error,
+            )
+        )
+
+    summary = DialogueAiAssistSummary(
+        scannedLines=response.summary.scannedLines,
+        autoApplyCount=sum(1 for r in results if r.disposition == "auto_apply"),
+        reviewCount=sum(1 for r in results if r.disposition == "review"),
+        errorCount=response.summary.errorCount,
+        skippedNarratorLines=response.summary.skippedNarratorLines,
+        modelCalls=response.summary.modelCalls,
+        aliasReviewCount=0,
+        newCharacterCount=0,
+    )
+    return DialogueAiAssistResponse(summary=summary, results=results, errors=response.errors)
+
+
 def _evaluate_chapter(
-    parser_service,
-    ai_service: DialogueAiAssistService,
+    provider_name: str,
+    ai_service: Any,
     chapter_name: str,
     chapter_dir: str,
     txt_path: str,
@@ -386,6 +455,7 @@ def _evaluate_chapter(
     name_lookup: Dict[str, str],
     max_mismatches: int,
     auto_apply_threshold: float,
+    parser_service,
 ) -> ChapterEvaluation:
     gold_payload = _load_json(dialogue_path)
     gold_lines = list(gold_payload.get("lines", []))
@@ -404,15 +474,29 @@ def _evaluate_chapter(
         max_mismatches=max_mismatches,
     )
 
-    ai_response = ai_service.run(
-        DialogueAiAssistRequest(
-            chapter_path=chapter_dir,
-            chapter_text=raw_text,
-            dialogue=parser_dialogue,
-            auto_apply_threshold=auto_apply_threshold,
-            dry_run=False,
+    if provider_name == "gemini":
+        ai_response = ai_service.run(
+            DialogueAiAssistRequest(
+                chapter_path=chapter_dir,
+                chapter_text=raw_text,
+                dialogue=parser_dialogue,
+                auto_apply_threshold=auto_apply_threshold,
+                dry_run=False,
+            )
         )
-    )
+    else:  # local or jev
+        local_response = ai_service.run(
+            LocalDialogueAiRequest(
+                chapter_path=chapter_dir,
+                chapter_text=raw_text,
+                dialogue=parser_dialogue,
+                context_window=3000,
+                include_speaker_context=True,
+                include_previous_speaker=True,
+            )
+        )
+        ai_response = _adapt_local_response(local_response, auto_apply_threshold)
+
 
     ai_assisted_lines = [line.model_copy(deep=True) for line in parser_dialogue.lines]
     ai_auto_apply_lines = [line.model_copy(deep=True) for line in parser_dialogue.lines]
@@ -572,8 +656,9 @@ def _print_summary(summary: Dict[str, object]) -> None:
         parser_acc = chapter_row["parser_only"]["dialogue_accuracy"]
         ai_acc = chapter_row["ai_assisted"]["dialogue_accuracy"]
         auto_acc = chapter_row["ai_auto_apply"]["dialogue_accuracy"]
+        safe_name = chapter_name.encode('ascii', 'replace').decode()
         print(
-            f"- {chapter_name}: parser={parser_acc:.4f} ai={ai_acc:.4f} auto={auto_acc:.4f}"
+            f"- {safe_name}: parser={parser_acc:.4f} ai={ai_acc:.4f} auto={auto_acc:.4f}"
         )
 
 
@@ -604,6 +689,12 @@ def main() -> None:
         choices=["booknlp", "legacy"],
         default="booknlp",
         help="Parser backend to evaluate (default: booknlp)",
+    )
+    parser.add_argument(
+        "--provider",
+        choices=["gemini", "local", "jev"],
+        default="gemini",
+        help="The dialogue AI provider to use for evaluation.",
     )
     parser.add_argument("--chapter-regex", default=None, help="Regex filter applied to chapter directory names")
     parser.add_argument("--limit", type=int, default=0, help="Evaluate only the first N matching chapters")
@@ -639,14 +730,14 @@ def main() -> None:
 
     name_lookup, _id_to_name = _load_character_lookup(book_root)
     parser_service = _load_parser(args.backend)
-    ai_service = DialogueAiAssistService(get_book_root=lambda: book_root)
+    ai_service = _build_service(args.provider, lambda: book_root)
 
     chapter_results: List[ChapterEvaluation] = []
     for chapter_name, chapter_dir, txt_path, dialogue_path in chapter_items:
-        print(f"Evaluating {chapter_name}...")
+        print(f"Evaluating {chapter_name.encode('ascii', 'replace').decode()}...")
         chapter_results.append(
             _evaluate_chapter(
-                parser_service=parser_service,
+                provider_name=args.provider,
                 ai_service=ai_service,
                 chapter_name=chapter_name,
                 chapter_dir=chapter_dir,
@@ -655,6 +746,7 @@ def main() -> None:
                 name_lookup=name_lookup,
                 max_mismatches=args.max_mismatches_per_chapter,
                 auto_apply_threshold=args.auto_apply_threshold,
+                parser_service=parser_service,
             )
         )
 

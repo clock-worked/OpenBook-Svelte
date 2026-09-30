@@ -6,6 +6,7 @@
   export let characters: Character[] = [];
   export let onAdd: (item: ClosedWorldReviewItem, name: string, gender: Gender) => Promise<void>;
   export let onAlias: (item: ClosedWorldReviewItem, targetCharacterId: string) => Promise<void>;
+  export let onNonSpeaker: (item: ClosedWorldReviewItem) => Promise<void>;
 
   let names: Record<number, string> = {};
   let genders: Record<number, Gender> = {};
@@ -35,6 +36,15 @@
       busyLineId = null;
     }
   }
+
+  async function markAsNonSpeaker(item: ClosedWorldReviewItem): Promise<void> {
+    busyLineId = item.lineId;
+    try {
+      await onNonSpeaker(item);
+    } finally {
+      busyLineId = null;
+    }
+  }
 </script>
 
 {#if items.length}
@@ -47,7 +57,7 @@
       <article>
         <div class="candidate">
           <strong>{item.candidateName}</strong>
-          <span>Line {item.lineId}: {item.text}</span>
+          <span>{item.lineIds.length === 1 ? `Line ${item.lineId}` : `${item.lineIds.length} lines`}: {item.text}</span>
         </div>
         <div class="actions">
           <input
@@ -70,11 +80,12 @@
             on:change={(event) => targets[item.lineId] = event.currentTarget.value}
           >
             <option value="">Choose existing…</option>
-            {#each characters.filter((character) => character.id !== 'narrator') as character}
+            {#each characters.filter((character) => character.id !== 'narrator').sort((left, right) => left.name.localeCompare(right.name)) as character}
               <option value={character.id}>{character.name}</option>
             {/each}
           </select>
           <button disabled={!targets[item.lineId] || busyLineId === item.lineId} on:click={() => alias(item)}>Merge as Alias</button>
+          <button disabled={busyLineId === item.lineId} on:click={() => markAsNonSpeaker(item)}>Not a Speaker</button>
         </div>
       </article>
     {/each}

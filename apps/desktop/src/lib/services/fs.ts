@@ -14,12 +14,25 @@ import { storeProjectHandle } from './persistence';
 import { API_ENDPOINTS, apiPostJson, apiPostVoid, apiRequestJson, toApiClientError } from './apiClient';
 import type {
   ListChaptersResponse,
+  PickBookDirectoryResponse,
+  ReadTextRequest,
+  ReadTextResponse,
+  SaveFileRequest,
   SetAudioRootRequest,
   SetBookRootRequest,
   UpdateCharacterStatsResponse,
 } from './apiContracts';
 
 let rootDirHandle: FileSystemDirectoryHandle | null = null;
+
+export function requiresBackendDirectoryPicker(): boolean {
+  return /\bCode\/\d/i.test(navigator.userAgent);
+}
+
+export async function selectBookDirectoryPath(): Promise<string | null> {
+  const result = await apiPostJson<PickBookDirectoryResponse>(API_ENDPOINTS.pickBookDirectory);
+  return result.path || null;
+}
 
 /**
  * Timeout wrapper for promises to prevent indefinite hanging
@@ -40,11 +53,11 @@ export async function selectBookDirectory(): Promise<FileSystemDirectoryHandle |
       throw new Error('File System Access API is not supported in this browser');
     }
 
-    // Request directory with specific options for better stability
-    // Wrapped in timeout to prevent hanging (30 seconds should be plenty)
+    // Let Chromium choose its last-used location. Some browser policies reject
+    // an unavailable well-known `startIn` directory with AbortError.
     const pickerPromise = window.showDirectoryPicker({
-      mode: 'readwrite',
-      startIn: 'documents' // Start in documents folder by default
+      id: 'openbook-book-directory',
+      mode: 'readwrite'
     });
 
     rootDirHandle = await withTimeout(
@@ -53,16 +66,23 @@ export async function selectBookDirectory(): Promise<FileSystemDirectoryHandle |
       'File picker timed out. Please try again.'
     );
 
-    // Store the handle for persistence
+    // Persistence is optional for opening the project. Browsers can reject
+    // serializing a handle even though the selected handle remains usable.
     if (rootDirHandle) {
-      await storeProjectHandle(rootDirHandle);
+      try {
+        await storeProjectHandle(rootDirHandle);
+      } catch (error) {
+        console.warn('Selected directory will not be remembered after reload:', error);
+      }
     }
 
     return rootDirHandle;
   } catch (err) {
     // User cancelled the picker - this is normal, not an error
     if (err instanceof Error && err.name === 'AbortError') {
-      console.log('Directory picker cancelled by user');
+      console.info('Directory picker closed or rejected by the browser', {
+        message: err.message,
+      });
       return null;
     }
 
@@ -248,6 +268,7 @@ export async function listChaptersFromBackend(): Promise<ChapterStatus[]> {
         parsed: !!ch?.parsed,
         complete: false,
         audio: !!ch?.audio,
+        reviewed: !!ch?.reviewed,
         scriptPath: ch?.scriptPath,
       } as ChapterStatus;
     });
@@ -448,12 +469,15 @@ export async function scanChapters(root: FileSystemDirectoryHandle): Promise<Cha
       let parsed = false;
       let scriptPath: string | undefined = undefined;
       let complete = false;
+      let reviewed = false;
 
       // Try v2.0 dialogue.json first
       let dialogueFileHandle = await chapterDirHandle.getFileHandle('dialogue.json', { create: false }).catch(() => null);
       if (dialogueFileHandle) {
         parsed = true;
         scriptPath = `${title}/dialogue.json`;
+        const dialogue = await readJsonFromFileHandle<DialogueJson>(dialogueFileHandle);
+        reviewed = !!dialogue?.reviewed;
         complete = await chapterHasCompleteAudio(chapterDirHandle);
       }
 
@@ -465,6 +489,7 @@ export async function scanChapters(root: FileSystemDirectoryHandle): Promise<Cha
         parsed: parsed,
         complete,
         audio,
+        reviewed,
         scriptPath: scriptPath,
       });
     }
@@ -524,7 +549,7 @@ export function getBookCharactersPath(root: string): string {
   return `characters.json`;
 }
 
-async function readFileAsJson<T>(path: string): Promise<T | null> {
+async function readFileAsJson<T>(path: string, logError = true): Promise<T | null> {
   if (rootDirHandle) {
     try {
       const pathParts = path.split('/').filter(p => p);
@@ -533,16 +558,21 @@ async function readFileAsJson<T>(path: string): Promise<T | null> {
         const file = await fileHandle.getFile();
         return JSON.parse(await file.text()) as T;
       }
+      if (!logError) return null;
     } catch (error) {
       console.warn(`[fs] File System API read failed for ${path}; trying backend`, error);
     }
   }
 
   try {
-    const response = await apiPostJson<{ content: string }>(API_ENDPOINTS.readText, { file_path: path });
+    const response = await apiPostJson<ReadTextResponse, ReadTextRequest>(API_ENDPOINTS.readText, {
+      file_path: path,
+      optional: !logError,
+    });
+    if (response.content == null) return null;
     return JSON.parse(response.content) as T;
   } catch (error) {
-    console.error(`Failed to read or parse JSON from ${path}`, error);
+    if (logError) console.error(`Failed to read or parse JSON from ${path}`, error);
     return null;
   }
 }
@@ -551,18 +581,34 @@ export async function readJsonRelative<T>(path: string): Promise<T | null> {
   return readFileAsJson<T>(path);
 }
 
+export async function readOptionalJsonRelative<T>(path: string): Promise<T | null> {
+  return readFileAsJson<T>(path, false);
+}
+
 async function writeFile(path: string, contents: string): Promise<boolean> {
-  if (!rootDirHandle) return false;
+  if (rootDirHandle) {
+    try {
+      const pathParts = path.split('/').filter(p => p);
+      const fileHandle = await getFileHandle(rootDirHandle, pathParts, true);
+      if (fileHandle) {
+        const writable = await fileHandle.createWritable();
+        await writable.write(contents);
+        await writable.close();
+        return true;
+      }
+    } catch (error) {
+      console.warn(`[fs] File System API write failed for ${path}; trying backend`, error);
+    }
+  }
+
   try {
-    const pathParts = path.split('/').filter(p => p);
-    const fileHandle = await getFileHandle(rootDirHandle, pathParts, true);
-    if (!fileHandle) return false;
-    const writable = await fileHandle.createWritable();
-    await writable.write(contents);
-    await writable.close();
+    await apiPostVoid<SaveFileRequest>(API_ENDPOINTS.save, {
+      file_path: path,
+      content: JSON.parse(contents) as unknown,
+    });
     return true;
-  } catch (e) {
-    console.error(`Failed to write to ${path}`, e);
+  } catch (error) {
+    console.error(`Failed to write to ${path}`, error);
     return false;
   }
 }
@@ -571,6 +617,10 @@ async function writeFile(path: string, contents: string): Promise<boolean> {
 
 export async function readDialogue(path: string): Promise<DialogueJson | null> {
   return readFileAsJson<DialogueJson>(path);
+}
+
+export async function readOptionalDialogue(path: string): Promise<DialogueJson | null> {
+  return readFileAsJson<DialogueJson>(path, false);
 }
 
 export async function writeDialogue(path: string, data: DialogueJson): Promise<boolean> {
@@ -616,6 +666,10 @@ export async function readSpeakerBlocklist(root: string): Promise<any | null> {
 /** @deprecated Use readDialogue instead */
 export async function readScript(path: string): Promise<ScriptJson | null> {
   return readFileAsJson<ScriptJson>(path);
+}
+
+export async function readOptionalScript(path: string): Promise<ScriptJson | null> {
+  return readFileAsJson<ScriptJson>(path, false);
 }
 
 /**
@@ -677,6 +731,10 @@ export async function readCharacters(path: string): Promise<CharactersJson | nul
   return readFileAsJson<CharactersJson>(path);
 }
 
+export async function readOptionalCharacters(path: string): Promise<CharactersJson | null> {
+  return readFileAsJson<CharactersJson>(path, false);
+}
+
 /** @deprecated Use writeCentralCharacters instead */
 export async function writeCharacters(path: string, data: CharactersJson): Promise<boolean> {
   return writeFile(path, JSON.stringify(data, null, 2));
@@ -729,7 +787,7 @@ export async function readDialogueForChapter(chapterTitle: string): Promise<Dial
     }
 
     // Fall back to v1.0 script.json
-  const scriptParsed = await readFileAsJson<ScriptJson>(`${chapterTitle}/${chapterTitle}.script.json`);
+    const scriptParsed = await readFileAsJson<ScriptJson>(`${chapterTitle}/${chapterTitle}.script.json`);
     if (scriptParsed) {
       return scriptParsed as ScriptJson;
     }

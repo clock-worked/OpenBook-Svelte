@@ -111,6 +111,7 @@ function normalizeLine(
     charactersMap?: Map<string, string>
 ): UnifiedLine {
     if ('characterId' in line) {
+        const isNonSpeaker = line.isNonSpeaker === true;
         const metadataTags = (line.metadata?.customTags || {}) as Record<string, any>;
         const fallbackSourceAlias = typeof metadataTags.sourceAlias === 'string' ? metadataTags.sourceAlias : null;
         const fallbackSourceCandidates = Array.isArray(metadataTags.sourceCandidates)
@@ -119,7 +120,7 @@ function normalizeLine(
         const rawAttribution = (line as any).attribution || metadataTags.attribution || null;
 
         let charName: string | null = null;
-        if (line.characterId) {
+        if (line.characterId && !isNonSpeaker) {
             charName = charactersMap?.get(line.characterId) || line.characterId;
         }
 
@@ -144,7 +145,7 @@ function normalizeLine(
         );
         const isReturning = typeof line.isReturning === 'boolean' ? line.isReturning : false;
 
-        if (normalizedAttribution.resolutionStatus === 'unknown') {
+        if (normalizedAttribution.resolutionStatus === 'unknown' && !isNonSpeaker) {
             charName = unknownSpeakerLabel;
         }
 
@@ -154,7 +155,8 @@ function normalizeLine(
             span: normalizedSpan,
             characterName: charName,
             candidates: normalizedCandidates.map((candidate) => ({ name: candidate.name, confidence: candidate.confidence })),
-            isConflict: line.isConflict || normalizedAttribution.resolutionStatus === 'unknown',
+            isConflict: isNonSpeaker ? false : line.isConflict || normalizedAttribution.resolutionStatus === 'unknown',
+            isNonSpeaker,
             isReturning,
             attribution: normalizedAttribution
         };
@@ -174,9 +176,11 @@ function normalizeLine(
         [],
         unknownSpeakerLabel
     );
-    const normalizedSpeaker = normalizedAttribution.resolutionStatus === 'unknown'
-        ? unknownSpeakerLabel
-        : line.chosenSpeaker;
+    const normalizedSpeaker = line.isNonSpeaker
+        ? null
+        : normalizedAttribution.resolutionStatus === 'unknown'
+            ? unknownSpeakerLabel
+            : line.chosenSpeaker;
 
     return {
         id: line.id,
@@ -184,7 +188,8 @@ function normalizeLine(
         span: normalizedSpan,
         characterName: normalizedSpeaker,
         candidates: normalizedCandidates,
-        isConflict: line.isConflict || normalizedAttribution.resolutionStatus === 'unknown',
+        isConflict: line.isNonSpeaker ? false : line.isConflict || normalizedAttribution.resolutionStatus === 'unknown',
+        isNonSpeaker: line.isNonSpeaker === true,
         isReturning: typeof (line as any).isReturning === 'boolean' ? Boolean((line as any).isReturning) : false,
         attribution: normalizedAttribution
     };

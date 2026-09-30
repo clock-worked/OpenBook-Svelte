@@ -10,7 +10,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "dev:backend": "node ./scripts/dev-backend.mjs",
-    "dev:all": "kill-port 5173 8010 && concurrently -k -n \"frontend,backend\" -c \"blue,green\" \"npm run dev\" \"npm run dev:backend\""
+    "dev:all": "kill-port 5173 8011 && concurrently -k -n \"frontend,backend\" -c \"blue,green\" \"npm run dev\" \"npm run dev:backend\""
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.2.1",
