@@ -6,8 +6,8 @@ These entrypoints run manual or offline generation flows that reuse the same Vib
 
 | File | Role | Notes |
 | --- | --- | --- |
-| `run_chapter_audio_test.py` | Full end-to-end harness for chapter generation, ASR alignment, splitting, and validation | Main manual testbed for the chapter pipeline |
-| `run_book_audio_batch.py` | Multi-chapter wrapper around `run_chapter_audio_test.py` | Batch progress and summary reporting |
+| `generate_and_split_chapter_narrator.py` | Full end-to-end harness for chapter generation, ASR alignment, splitting, and validation | Main manual testbed for the chapter pipeline |
+| `run_book_audio_batch.py` | Multi-chapter wrapper around `generate_and_split_chapter_narrator.py` | Batch progress and summary reporting |
 | `run_book_full_chapter_audio_batch.py` | Generate whole-chapter audio directly from `chapter.txt` using the chunk pipeline | Skips completed outputs by default |
 | `run_book_title_audio.py` | Generate one combined chapter-title narration file, split it, and optionally copy clips back into chapter folders | Title-audio specific workflow |
 | `generate_chapter_audio.py` | Older direct per-line generation workflow | Kept for manual fallback/legacy experimentation |

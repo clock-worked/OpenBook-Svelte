@@ -2,6 +2,8 @@
 VibeVoice local inference wrapper for generating audio from text with a voice sample.
 """
 
+from __future__ import annotations
+
 import os
 import re
 import sys
@@ -34,6 +36,7 @@ def ensure_transformers_flash_attention_compat() -> None:
     """
     try:
         import transformers.modeling_flash_attention_utils  # noqa: F401,WPS433
+
         return
     except Exception:
         pass
@@ -166,7 +169,10 @@ def load_vibevoice_backend(
                 raise ie
         else:
             # Fallback to repo root if not embedded?
-            if os.path.exists(comfy_vibevoice_path) and comfy_vibevoice_path not in sys.path:
+            if (
+                os.path.exists(comfy_vibevoice_path)
+                and comfy_vibevoice_path not in sys.path
+            ):
                 sys.path.append(comfy_vibevoice_path)
 
             from vibevoice.modular.modeling_vibevoice_inference import (
@@ -283,9 +289,10 @@ class VibeVoiceLocalService:
         # Check for sample existence, trying common audio extensions if specific file not found
         # Also try exact path first (in case extension is already provided)
         search_paths = [sample_path]
-        if not sample_path.lower().endswith(('.wav', '.mp3', '.flac', '.m4a', '.ogg')):
+        if not sample_path.lower().endswith((".wav", ".mp3", ".flac", ".m4a", ".ogg")):
             search_paths.extend(
-                [sample_path + ext for ext in ['.wav', '.mp3', '.flac', '.m4a', '.ogg']])
+                [sample_path + ext for ext in [".wav", ".mp3", ".flac", ".m4a", ".ogg"]]
+            )
 
         final_path = None
         for path in search_paths:
@@ -300,8 +307,9 @@ class VibeVoiceLocalService:
             candidates = []
             if os.path.exists(parent_dir):
                 try:
-                    candidates = [f for f in os.listdir(
-                        parent_dir) if f.startswith(filename)]
+                    candidates = [
+                        f for f in os.listdir(parent_dir) if f.startswith(filename)
+                    ]
                 except:
                     pass
 
@@ -351,3 +359,23 @@ class VibeVoiceLocalService:
             outputs.speech_outputs[0],
             output_path=output_path,
         )
+
+    def close(self) -> None:
+        """Release model and processor from memory to free GPU VRAM."""
+        self._model = None
+        self._processor = None
+        try:
+            import gc
+            import torch
+
+            gc.collect()
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+        except Exception:
+            pass
+
+    def __enter__(self) -> VibeVoiceLocalService:
+        return self
+
+    def __exit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> None:
+        self.close()

@@ -297,14 +297,16 @@ def generate_line_chunked_chapter_audio(
             print(
                 "Reusing chunk "
                 f"{chunk_index}/{total_chunks} "
-                f"(lines {start_line}-{end_line}, {int(chunk['charCount'])} chars)"
+                f"(lines {start_line}-{end_line}, {int(chunk['charCount'])} chars)",
+                flush=True,
             )
             continue
 
         print(
             "Generating chunk "
             f"{chunk_index}/{total_chunks} "
-            f"(lines {start_line}-{end_line}, {int(chunk['charCount'])} chars)"
+            f"(lines {start_line}-{end_line}, {int(chunk['charCount'])} chars)",
+            flush=True,
         )
         service.generate_audio(
             text=str(chunk["text"]),
@@ -327,7 +329,8 @@ def generate_line_chunked_chapter_audio(
             f"{chunk_bar} {chunk_index}/{total_chunks} "
             f"| chunk {chunk_elapsed_sec:.1f}s "
             f"| elapsed {_format_hms(total_elapsed_sec)} "
-            f"| ETA {_format_hms(eta_sec)}"
+            f"| ETA {_format_hms(eta_sec)}",
+            flush=True,
         )
 
         chunk_duration_sec = float(sf.info(str(chunk_output_path)).duration)

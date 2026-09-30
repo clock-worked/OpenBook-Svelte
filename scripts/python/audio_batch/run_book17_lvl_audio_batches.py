@@ -2,7 +2,7 @@
 
 Workflow:
 1. Read the reusable segment library written by run_book17_lvl_audio.py.
-2. Generate batch TTS audio for the segment library with run_chapter_audio_test.py.
+2. Generate batch TTS audio with generate_and_split_chapter_narrator.py.
 3. Split the batch audio with ASR and copy the resulting clips into a stable clip
     directory for reuse.
 """
@@ -54,7 +54,7 @@ class SegmentEntry:
 
 def parse_args() -> argparse.Namespace:
     this_file = Path(__file__).resolve()
-    default_runner = this_file.parent / "run_chapter_audio_test.py"
+    default_runner = this_file.parent / "generate_and_split_chapter_narrator.py"
 
     parser = argparse.ArgumentParser(
         description=(

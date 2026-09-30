@@ -6,7 +6,7 @@
 Workflow:
 1. Scan Primal-Hunter Book-17 dialogue.json files for DING stat lines.
 2. Normalize those lines into TTS-friendly phrasing.
-3. Generate batch full-audio files and split by ASR with run_chapter_audio_test.py.
+3. Generate full-audio files with generate_and_split_chapter_narrator.py and split by ASR.
 4. Prefix each split clip with ding.wav + 1 second silence.
 5. Replace destination chapter WAVs (with backups).
 """
@@ -101,7 +101,7 @@ class DingEntry:
 
 def parse_args() -> argparse.Namespace:
     this_file = Path(__file__).resolve()
-    default_runner = this_file.parent / "run_chapter_audio_test.py"
+    default_runner = this_file.parent / "generate_and_split_chapter_narrator.py"
     default_book_dir = (
         Path("C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Data/Resources")
         / "Primal-Hunter"

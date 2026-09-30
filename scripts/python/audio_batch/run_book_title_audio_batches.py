@@ -3,7 +3,7 @@
 Workflow:
 1. Discover chapter directories and derive chapter titles
 2. Split titles into batches
-3. Generate batch TTS audio for each batch with run_chapter_audio_test.py
+3. Generate batch TTS audio with generate_and_split_chapter_narrator.py
 4. Split batch audio with ASR and copy resulting clips into destination chapters
 """
 
@@ -91,7 +91,7 @@ def parse_args() -> argparse.Namespace:
     """Parse command-line arguments for the batched chapter title audio workflow."""
 
     this_file = Path(__file__).resolve()
-    default_runner = this_file.parent / "run_chapter_audio_test.py"
+    default_runner = this_file.parent / "generate_and_split_chapter_narrator.py"
     
     # Try to use the repo's venv python if available, otherwise use system python
     default_python = this_file.parents[3] / ".venv" / "Scripts" / "python.exe"
@@ -117,7 +117,7 @@ def parse_args() -> argparse.Namespace:
         "--runner-script",
         type=Path,
         default=default_runner,
-        help="Path to run_chapter_audio_test.py.",
+        help="Path to generate_and_split_chapter_narrator.py.",
     )
     parser.add_argument(
         "--python-bin",

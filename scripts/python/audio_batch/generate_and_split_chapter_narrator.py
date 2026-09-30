@@ -125,7 +125,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--readjust-existing-splits", action="store_true")
     parser.add_argument("--no-line-chunk-generate", action="store_true")
     parser.add_argument("--line-chunk-min-chars", type=int, default=800)
+    parser.add_argument("--line-chunk-max-chars", type=int, default=None, help="Maximum characters per chunk before splitting at sentence boundary.")
     parser.add_argument("--line-chunk-join-ms", type=int, default=0)
+    parser.add_argument("--resume-chunks", action="store_true", help="Resume existing generated audio chunks if present.")
     parser.add_argument(
         "--character-filter",
         default=None,
@@ -185,6 +187,48 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--vibevoice-ddpm-steps", type=int, default=20)
     parser.add_argument("--vibevoice-cfg-scale", type=float, default=1.3)
     parser.add_argument("--vibevoice-seed", type=int, default=None)
+
+    parser.add_argument(
+        "--tts-engine",
+        choices=["vibevoice", "chatterbox"],
+        default="vibevoice",
+        help="TTS engine to use for chapter audio generation.",
+    )
+    parser.add_argument(
+        "--chatterbox-variant",
+        choices=["turbo", "base"],
+        default="turbo",
+        help="Chatterbox model variant: 'turbo' (1-step fast) or 'base' (multi-step expressive).",
+    )
+    parser.add_argument(
+        "--chatterbox-device",
+        default="cuda",
+        help="Device for Chatterbox model (cuda or cpu).",
+    )
+    parser.add_argument(
+        "--chatterbox-python",
+        type=Path,
+        default=None,
+        help="Path to Python interpreter with chatterbox installed.",
+    )
+    parser.add_argument(
+        "--chatterbox-temperature",
+        type=float,
+        default=0.8,
+        help="Sampling temperature for Chatterbox.",
+    )
+    parser.add_argument(
+        "--chatterbox-repetition-penalty",
+        type=float,
+        default=1.2,
+        help="Repetition penalty for Chatterbox.",
+    )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=None,
+        help="Random seed for audio generation (applies to both VibeVoice and Chatterbox).",
+    )
     return parser.parse_args()
 
 
@@ -193,12 +237,22 @@ def resolve_paths(args: argparse.Namespace) -> dict[str, Path]:
     chapter_dir = args.chapter_dir.resolve()
     chapter_text_path = (args.chapter_text or (
         chapter_dir / "chapter.txt")).resolve()
-    manifest_path = (args.manifest or (
-        chapter_dir / "audio_lines" / "manifest.json")).resolve()
+
+    candidate_manifest = args.manifest
+    if candidate_manifest is None:
+        if (chapter_dir / "audio_lines" / "manifest.json").exists():
+            candidate_manifest = chapter_dir / "audio_lines" / "manifest.json"
+        elif (chapter_dir / "dialogue.json").exists():
+            candidate_manifest = chapter_dir / "dialogue.json"
+        else:
+            candidate_manifest = chapter_dir / "audio_lines" / "manifest.json"
+    manifest_path = candidate_manifest.resolve()
+
     output_dir = (args.output_dir or (chapter_dir / "audio_test")).resolve()
+    tts_engine = getattr(args, "tts_engine", "vibevoice")
+    default_audio_name = f"{chapter_dir.name}-{tts_engine}-full.wav"
     full_audio_path = (
-        args.full_audio or (
-            output_dir / f"{chapter_dir.name}-stephen-fry-full.wav")
+        args.full_audio or (output_dir / default_audio_name)
     ).resolve()
 
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -400,22 +454,38 @@ def run_generation_alignment_mode(
         )
 
     if not args.skip_generate:
-        service = VibeVoiceLocalService(
-            model_path=args.vibevoice_model_path,
-            repo_path=args.vibevoice_repo_path,
-            device=args.vibevoice_device,
-            ddpm_steps=args.vibevoice_ddpm_steps,
-            cfg_scale=args.vibevoice_cfg_scale,
-        )
+        tts_engine = getattr(args, "tts_engine", "vibevoice")
+        effective_seed = args.seed if args.seed is not None else args.vibevoice_seed
+
+        if tts_engine == "chatterbox":
+            from py_services.chatterbox_local_service import ChatterboxLocalService
+
+            service = ChatterboxLocalService(
+                variant=getattr(args, "chatterbox_variant", "turbo"),
+                device=args.chatterbox_device,
+                temperature=args.chatterbox_temperature,
+                repetition_penalty=args.chatterbox_repetition_penalty,
+                python_executable=args.chatterbox_python,
+            )
+        else:
+            service = VibeVoiceLocalService(
+                model_path=args.vibevoice_model_path,
+                repo_path=args.vibevoice_repo_path,
+                device=args.vibevoice_device,
+                ddpm_steps=args.vibevoice_ddpm_steps,
+                cfg_scale=args.vibevoice_cfg_scale,
+            )
+
         if args.no_line_chunk_generate:
-            print(f"Generating full chapter audio: {full_audio_path}")
+            print(f"Generating full chapter audio ({tts_engine}): {full_audio_path}")
             service.generate_audio(
                 text=chapter_text,
                 sample_path=str(args.sample_path.resolve()),
                 output_path=str(full_audio_path),
-                seed=args.vibevoice_seed,
+                seed=effective_seed,
             )
             generation_report = {
+                "engine": tts_engine,
                 "mode": "single-pass",
                 "chunkCount": 1,
                 "minChunkChars": None,
@@ -427,10 +497,12 @@ def run_generation_alignment_mode(
             chunk_plan = build_line_chunk_generation_plan(
                 chapter_text=chapter_raw_text,
                 min_chunk_chars=args.line_chunk_min_chars,
+                max_chunk_chars=args.line_chunk_max_chars,
             )
+            max_chars_desc = f", max {args.line_chunk_max_chars} chars" if args.line_chunk_max_chars else ""
             print(
-                "Generating chapter audio with line chunking "
-                f"({len(chunk_plan)} chunks, min {args.line_chunk_min_chars} chars): "
+                f"Generating chapter audio with line chunking ({tts_engine}) "
+                f"({len(chunk_plan)} chunks, min {args.line_chunk_min_chars}{max_chars_desc}): "
                 f"{full_audio_path}"
             )
             generation_report = generate_line_chunked_chapter_audio(
@@ -440,9 +512,16 @@ def run_generation_alignment_mode(
                 output_path=full_audio_path,
                 chunks_dir=output_dir / "generation_chunks",
                 min_chunk_chars=args.line_chunk_min_chars,
-                seed=args.vibevoice_seed,
+                seed=effective_seed,
                 join_pause_ms=args.line_chunk_join_ms,
+                resume_existing_chunks=getattr(args, "resume_chunks", False),
             )
+            generation_report["engine"] = tts_engine
+
+        if hasattr(service, "close"):
+            service.close()
+        del service
+        release_accelerator_cache()
     elif not full_audio_path.exists():
         raise FileNotFoundError(
             "--skip-generate was set but full audio does not exist: "
@@ -830,6 +909,7 @@ def main() -> None:
             "characterFilter": args.character_filter,
             "voiceSample": str(args.sample_path.resolve()),
             "fullAudio": str(full_audio_path),
+            "ttsEngine": getattr(args, "tts_engine", "vibevoice"),
             "engine": args.engine,
         },
         "summary": {
