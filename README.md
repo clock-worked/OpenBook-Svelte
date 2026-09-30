@@ -22,6 +22,38 @@ OpenBook is a desktop-first workflow for chapter parsing, dialogue review, chara
 - API contract: `docs/api_contract.md`
 - Refactor tracker: `docs/refactor_plan.md`
 - Schema references: `docs/schema_v2.md`, `docs/schema_v3.md`
+- Quote-attribution experiments and benchmark ledger: `docs/quote_attribution_experiments.md`
+
+## Fresh Clone Setup
+
+Prerequisites: Git, Node.js 20+, and Python 3.11. From the repository root:
+
+```bash
+python scripts/bootstrap.py
+```
+
+This initializes the VibeVoice-ComfyUI submodule, creates `.venv`, installs the
+backend dependencies, and runs `npm ci` for the desktop app. Large model downloads
+are opt-in:
+
+Copy `py_services/.env.example` to `py_services/.env` when using Gemini,
+ElevenLabs, Vercel JEV, or custom local-model settings. The real `.env` remains
+ignored.
+
+```bash
+# VibeVoice Q8 model used by the local audio backend (about 11.6 GB)
+python scripts/bootstrap.py --skip-node --skip-python --with-vibevoice
+
+# Isolated Chatterbox environment; use the CUDA 12.4 PyTorch wheels
+python scripts/bootstrap.py --skip-node --skip-python --with-chatterbox --torch-index-url https://download.pytorch.org/whl/cu124
+
+# Pinned OpenJEV adapter, base model, and loader under .models/openjev
+python scripts/bootstrap.py --skip-node --skip-python --with-openjev
+```
+
+Run `python scripts/bootstrap.py --dry-run --with-vibevoice` to inspect setup
+actions without installing or downloading anything. Model and environment folders
+are intentionally ignored by Git.
 
 ## Backend Smoke Check
 
