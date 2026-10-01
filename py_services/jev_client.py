@@ -1,10 +1,13 @@
 import httpx
 
-VERCEL_JEV_ENDPOINT = "https://ai-gateway.vercel.sh/typesafe/v1/systemone"
+# Direct TypeSafe endpoint (the old Vercel AI Gateway route is retired).
+# See docs/typesafe_jev_api.md for the full API reference.
+JEV_ENDPOINT = "https://api.typesafe.ai/v1/systemone"
+JEV_MODEL = "jev-latest"
 
 
 class JevClient:
-    def __init__(self, api_key: str, endpoint: str = VERCEL_JEV_ENDPOINT):
+    def __init__(self, api_key: str, endpoint: str = JEV_ENDPOINT):
         self._endpoint = endpoint
         self._api_key = api_key
 
@@ -16,7 +19,7 @@ class JevClient:
                     "Content-Type": "application/json",
                     "Authorization": f"Bearer {self._api_key}",
                 },
-                json={"state": state, "questions": questions, "model": "typesafe-ai/jev"},
+                json={"state": state, "questions": questions, "model": JEV_MODEL},
                 timeout=httpx.Timeout(60.0, connect=10.0),
             )
             response.raise_for_status()

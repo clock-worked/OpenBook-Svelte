@@ -141,7 +141,11 @@ def _unique_suggestions(*names: Optional[str]) -> List[str]:
     return ordered
 
 
-def _build_line_attribution(signals: LineSignals, decision) -> Dict[str, object]:
+def _build_line_attribution(
+    signals: LineSignals,
+    decision,
+    legacy_rule: Optional[str] = None,
+) -> Dict[str, object]:
     selected_entry = next(
         (
             entry
@@ -154,6 +158,7 @@ def _build_line_attribution(signals: LineSignals, decision) -> Dict[str, object]
 
     return {
         "parserBackend": "legacy",
+        "legacyRule": legacy_rule,
         "contextGender": signals.context_gender,
         "contextGenderCue": signals.context_gender_cue,
         "genderConflict": bool(
@@ -532,7 +537,7 @@ class BookNLPParserService:
             line.speaker = decision.chosen_name
             line.is_suggestion = decision.is_suggestion
             line.suggestions = [entry.name for entry in decision.ranked]
-            line.attribution = _build_line_attribution(signals, decision)
+            line.attribution = _build_line_attribution(signals, decision, legacy_rule=legacy_rule)
             if legacy_rule in {"0p_protagonist_first_person", "first_person_override"}:
                 protagonist_name = (
                     canonicalize_closed_world_name(legacy_name, closed_world_catalog)
