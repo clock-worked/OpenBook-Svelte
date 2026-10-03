@@ -10,7 +10,7 @@ const repoRoot = path.resolve(desktopDir, "..", "..");
 const pyServicesDir = path.join(repoRoot, "py_services");
 const pythonExe = path.join(repoRoot, ".venv", "Scripts", "python.exe");
 
-const args = ["-m", "uvicorn", "api_server:app", "--port", "8011"];
+const args = ["-m", "uvicorn", "api_server:app", "--port", "8011", "--reload"];
 
 const child = spawn(pythonExe, args, {
   cwd: pyServicesDir,
