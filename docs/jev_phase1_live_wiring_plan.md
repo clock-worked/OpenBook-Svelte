@@ -146,11 +146,19 @@ File: `apps/desktop/src/lib/components/chapter/tools/audio/audioHandlers.ts`
 
 ## Status
 
-- [ ] Branch `feat/jev-live-wiring` created
-- [ ] A1–A4 + tests green (`pytest` in `py_services`)
-- [ ] B: JEV panel + verify-summary UI, typecheck/build green
-- [ ] C: audio note, typecheck/build green
-- [ ] Committed to branch
+- [x] Branch `feat/jev-live-wiring` created
+- [x] A1–A4 + tests green — 46/46 in `openbook_parser/test_jev_verify.py` (incl. new router
+      wiring tests). Full `py_services` suite: 85 passed; the only 2 failures are pre-existing
+      environment issues in files this branch does not touch (`booknlp` module not installed;
+      `test_chapter_review_service` descriptor case).
+- [x] B: JEV panel + verify-summary UI, build green (`npm run build` in `apps/desktop`)
+- [x] C: audio note, build green (same run)
+- [x] Committed to branch
+
+**Known sharp edge (accepted for Phase 1):** when the JEV API hangs mid-response, in-flight
+runs (≤4 concurrent) finish uncollected after the budget deadline and `pool.shutdown` waits
+for them — a bounded extra latency on the parse response (worst case ≈ one retry cycle of a
+60 s call). Queued runs are cancelled; no verdict is ever applied from a skipped run.
 
 ## Next (Phase 2 — out of scope for this plan)
 

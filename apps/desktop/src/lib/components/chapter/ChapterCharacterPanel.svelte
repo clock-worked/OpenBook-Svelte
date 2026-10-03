@@ -12,6 +12,7 @@
   import { Plus, ArrowUpDown } from 'lucide-svelte';
   import ChapterAiAssistPanel from './ChapterAiAssistPanel.svelte';
   import ChapterLocalAiPanel from './ChapterLocalAiPanel.svelte';
+  import ChapterJevPanel from './ChapterJevPanel.svelte';
   import ChapterCharacterList from './ChapterCharacterList.svelte';
   import ChapterCharacterBookList from './ChapterCharacterBookList.svelte';
   import ChapterCharacterDetails from './ChapterCharacterDetails.svelte';
@@ -28,6 +29,10 @@
     localDialogueAiState,
     localDialogueAiVisibleResults,
   } from '$lib/stores/localDialogueAi';
+  import {
+    jevDialogueAiState,
+    jevDialogueAiVisibleResults,
+  } from '$lib/stores/jevDialogueAi';
 
   const DISPLAY_ALPHA = 1.0; // Use solid colors for visibility
 
@@ -44,7 +49,7 @@
   const lastScrolledLine = new Map<string, number>();
   
   type SortMode = 'name' | 'lines' | 'color';
-  type ChapterPanelTab = 'characters' | 'ai' | 'local-ai';
+  type ChapterPanelTab = 'characters' | 'ai' | 'local-ai' | 'jev';
 
   let sortMode: SortMode = 'name';
   let activeTab: ChapterPanelTab = 'characters';
@@ -52,6 +57,7 @@
   let selectedBookCharacterName: string | null = null;
   let lastAiRunning = false;
   let lastLocalAiRunning = false;
+  let lastJevAiRunning = false;
 
   $: if ($dialogueAiAssistState.running && !lastAiRunning) {
     activeTab = 'ai';
@@ -64,6 +70,12 @@
   }
 
   $: lastLocalAiRunning = $localDialogueAiState.running;
+
+  $: if ($jevDialogueAiState.running && !lastJevAiRunning) {
+    activeTab = 'jev';
+  }
+
+  $: lastJevAiRunning = $jevDialogueAiState.running;
 
   $: closedWorldReviewItems = buildClosedWorldReviewItems(
     (($currentScript?.lines ?? []) as any),
@@ -1041,6 +1053,16 @@
       >
         Local AI
       </button>
+      <button
+        class="panel-tab"
+        class:active={activeTab === 'jev'}
+        class:has-alert={$jevDialogueAiState.running || $jevDialogueAiVisibleResults.length > 0}
+        role="tab"
+        aria-selected={activeTab === 'jev'}
+        on:click={() => activeTab = 'jev'}
+      >
+        JEV
+      </button>
     </div>
 
     {#if activeTab === 'characters'}
@@ -1073,6 +1095,8 @@
     <ChapterAiAssistPanel />
   {:else if activeTab === 'local-ai'}
     <ChapterLocalAiPanel />
+  {:else if activeTab === 'jev'}
+    <ChapterJevPanel />
   {:else}
     <ClosedWorldCharacterReview
       items={closedWorldReviewItems}

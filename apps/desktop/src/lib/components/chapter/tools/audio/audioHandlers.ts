@@ -136,7 +136,16 @@ export async function handleGenerateLineAudio(
   // Get voice assignment
   const assignment = get(voices).assignments.find(a => a.characterId === characterId);
   if (!assignment) {
-    alert(`No voice assigned to ${line.characterName}`);
+    // Count dialogue lines that will fall back to the Unknown voice
+    // (unknown / unassigned speaker). Non-speaker lines are excluded
+    // because their characterName is null.
+    const unknownLineCount = scr.lines.filter(
+      l => l.characterName?.trim().toLowerCase() === 'unknown'
+    ).length;
+    const unknownVoiceNote = unknownLineCount > 0
+      ? `\n${unknownLineCount} unknown lines will use the Unknown voice.`
+      : '';
+    alert(`No voice assigned to ${line.characterName}${unknownVoiceNote}`);
     return;
   }
 

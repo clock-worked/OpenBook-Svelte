@@ -5,6 +5,8 @@ import { readTextFile, getRootDirHandle, readCentralCharacters, writeCentralChar
 import { computeReturningFlags } from '$lib/services/dialogueReturning';
 import { buildIdToNameMap, buildNameToIdMap } from '$lib/stores/characters';
 import { API_ENDPOINTS, apiPostJson, apiPostVoid, apiRequestJson, toApiClientError } from '$lib/services/apiClient';
+import type { JevVerifySummary } from '$lib/services/apiContracts';
+import { setJevVerifySummary } from '$lib/stores/jevDialogueAi';
 import { buildClosedWorldParserOptions } from '$lib/services/parserCatalog';
 
 const ALWAYS_BLOCKED_CHARACTER_NAMES = new Set(['he', 'she', 'as', 'it', 'that', 'they', 'them', 'the', 'this', 'these', 'those']);
@@ -12,7 +14,7 @@ const ALWAYS_BLOCKED_CHARACTER_NAMES = new Set(['he', 'she', 'as', 'it', 'that',
 interface ParserOutput {
   script: Line[];
   characters: string[];
-  meta: { version: string };
+  meta: { version: string; jevVerify?: JevVerifySummary | null };
 }
 
 /**
@@ -393,6 +395,10 @@ export async function runParserForChapter(args: {
     if (!Array.isArray(parsed.characters)) {
       console.warn('[parser] Missing or invalid characters list in parser response');
     }
+
+    // Surface the JEV verification summary (meta.jevVerify) to the chapter UI.
+    // Defensive: older parses may not include it.
+    setJevVerifySummary(parsed.meta?.jevVerify ?? null);
 
     // Extract chapter name from path: "{chapterId}/chapter.txt" -> "{chapterId}"
     // Handle both old format ("chapter.txt") and new format ("{chapterId}/chapter.txt")

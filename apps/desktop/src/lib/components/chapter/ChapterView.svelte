@@ -74,6 +74,11 @@
     registerLocalDialogueAiController,
     resetLocalDialogueAiState,
   } from '$lib/stores/localDialogueAi';
+  import {
+    registerJevDialogueAiController,
+    resetJevDialogueAiState,
+    resetJevVerifySummary,
+  } from '$lib/stores/jevDialogueAi';
 
   const UNKNOWN_SPEAKER_LABEL = 'Unknown';
 
@@ -221,6 +226,7 @@
     chapterAnimationPlanSeq += 1;
     unregisterDialogueAiAssistController();
     unregisterLocalDialogueAiController();
+    unregisterJevDialogueAiController();
   });
 
   // Review tool state
@@ -441,6 +447,7 @@
   };
   const unregisterDialogueAiAssistController = registerDialogueAiAssistController(dialogueAiController);
   const unregisterLocalDialogueAiController = registerLocalDialogueAiController(dialogueAiController);
+  const unregisterJevDialogueAiController = registerJevDialogueAiController(dialogueAiController);
 
   // Audio tool handlers
   async function handleLineAudioClick(lineId: number, characterName: string, event?: MouseEvent) {
@@ -749,6 +756,8 @@
       paragraphRuns.set([]);
       resetDialogueAiAssistState();
       resetLocalDialogueAiState();
+      resetJevDialogueAiState();
+      resetJevVerifySummary();
       isV2Format = false;
       const ch: any = $currentChapter;
       chapterReviewed = Boolean(ch.reviewed);

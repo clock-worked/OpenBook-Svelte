@@ -381,3 +381,23 @@ export interface LocalDialogueAiResponse {
   results: LocalDialogueAiLineResult[];
   errors?: string[];
 }
+
+/**
+ * JEV cross-verification summary carried in the parse response `meta.jevVerify`.
+ * May be absent on older parses — always read defensively.
+ */
+export interface JevVerifySummary {
+  enabled?: boolean;
+  targets?: number;
+  runs?: number;
+  modelCalls?: number;
+  cacheHits?: number;
+  errors?: number;
+  actions?: Record<string, number> | null;
+  downgradedLineIds?: number[];
+  promotedLineIds?: number[];
+  elapsedMs?: number;
+  skipped?: string | null;
+  budgetExhausted?: boolean;
+  skippedRuns?: number;
+}

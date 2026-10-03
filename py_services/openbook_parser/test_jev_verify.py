@@ -4,7 +4,12 @@ exp2: run queries. Gated targets are grouped into contiguous dialogue runs
 and verified with one batched call per run.
 """
 
+import json
+import os
+import tempfile
+import time
 import unittest
+from unittest import mock
 
 from .dialogue_parser_service import DialogueLine
 from .jev_verify_service import (
@@ -18,11 +23,26 @@ from .jev_verify_service import (
     cache_key,
     decide_verdict,
     group_runs,
+    load_character_lookup,
     parse_answer,
     parse_run_answer,
+    parse_run_noul,
     select_targets,
     verify_chapter,
 )
+
+try:  # package context (pytest from the repo root)
+    from .. import parser_router as parser_router_module
+except ImportError:
+    # Flat context (unittest from py_services) — or package context, where
+    # parser_router's own flat imports (api_models, ...) need py_services
+    # itself on sys.path.
+    import sys
+
+    _py_services_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if _py_services_dir not in sys.path:
+        sys.path.insert(0, _py_services_dir)
+    import parser_router as parser_router_module
 
 
 CHAPTER_TEXT = (
@@ -73,6 +93,17 @@ def jev_run_response(mapping):
     }
 
 
+def jev_run_noul_response(mapping, noul_by_position):
+    """Run response with per-line noul (is_dialogue_<pos>) answers added."""
+    answers = {
+        question_id: {"choice": choice, "confidence": confidence}
+        for question_id, (choice, confidence) in mapping.items()
+    }
+    for position, probability in noul_by_position.items():
+        answers[f"is_dialogue_{position}"] = {"type": "noul", "noul": probability}
+    return {"answers": answers}
+
+
 class FakeClient:
     def __init__(self, responses):
         self.responses = list(responses)
@@ -84,6 +115,18 @@ class FakeClient:
         if isinstance(item, Exception):
             raise item
         return item
+
+
+class SlowClient(FakeClient):
+    """Client that sleeps before answering, to outrun the wall-clock budget."""
+
+    def __init__(self, responses, delay):
+        super().__init__(responses)
+        self.delay = delay
+
+    def ask(self, state, questions):
+        time.sleep(self.delay)
+        return super().ask(state, questions)
 
 
 NAME_LOOKUP = {"carmen": "Carmen", "dorian": "Dorian"}
@@ -418,6 +461,278 @@ class EndToEndTests(unittest.TestCase):
         key_c = cache_key("state ", {"speaker": {"criteria": {"A": "A"}}})
         self.assertEqual(key_a, key_b)
         self.assertNotEqual(key_a, key_c)
+
+
+class LoadCharacterLookupTests(unittest.TestCase):
+    def test_missing_characters_file_falls_back_to_minimal(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertEqual(load_character_lookup(tmp), {"narrator": "narrator"})
+
+    def test_reads_names_ids_and_aliases(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            with open(os.path.join(tmp, "characters.json"), "w", encoding="utf-8") as handle:
+                json.dump(
+                    {
+                        "characters": [
+                            {"id": "kate", "name": "Kate", "aliases": ["Katherine"]},
+                            {"id": "dorian", "name": "Dorian"},
+                        ]
+                    },
+                    handle,
+                )
+            lookup = load_character_lookup(tmp)
+            self.assertEqual(lookup["katherine"], "Kate")
+            self.assertEqual(lookup["kate"], "Kate")
+            self.assertEqual(lookup["dorian"], "Dorian")
+            self.assertEqual(lookup["narrator"], "narrator")
+
+
+class LivePolicyTests(unittest.TestCase):
+    """A2: downgrade_only and noul_gate over the full verify_chapter path."""
+
+    def _two_line_run(self):
+        return [
+            make_line("Carmen", [("Carmen", 0.6), ("Dorian", 0.55)], suggestion=True,
+                      rule="4_contiguous_dialogue", reasons=["same_paragraph_continuation"],
+                      span=(26, 37), text="Stay sharp."),
+            make_line("Dorian", [("Dorian", 0.8), ("Carmen", 0.55)],
+                      rule="4_contiguous_dialogue", reasons=["same_paragraph_continuation"],
+                      span=(86, 102), text="I never stopped."),
+        ]
+
+    def test_downgrade_only_demotes_confirm_on_suggestion(self):
+        lines = self._two_line_run()
+        client = FakeClient([jev_run_response({"q0": ("Carmen", 0.9), "q1": ("Carmen", 0.85)})])
+        summary = verify_chapter(
+            lines, CHAPTER_TEXT, NAME_LOOKUP,
+            policy=VerifyPolicy(gate="full", downgrade_only=True, budget_seconds=0),
+            client=client, cache=JevVerifyCache(enabled=False), log=lambda _m: None,
+        )
+        # agree with a suggestion line: confirm demoted to note, stays a suggestion
+        self.assertTrue(lines[0].is_suggestion)
+        self.assertNotIn(
+            "jev_verification_confirmed", lines[0].attribution["candidates"][0]["reasons"]
+        )
+        # disagree on an asserted line: downgrade still applies
+        self.assertTrue(lines[1].is_suggestion)
+        self.assertEqual(summary["actions"], {"note": 1, "downgrade": 1})
+        self.assertEqual(summary["promotedLineIds"], [])
+
+    def test_downgrade_only_off_still_promotes(self):
+        lines = self._two_line_run()
+        client = FakeClient([jev_run_response({"q0": ("Carmen", 0.9), "q1": ("Dorian", 0.9)})])
+        summary = verify_chapter(
+            lines, CHAPTER_TEXT, NAME_LOOKUP,
+            policy=VerifyPolicy(gate="full", downgrade_only=False, budget_seconds=0),
+            client=client, cache=JevVerifyCache(enabled=False), log=lambda _m: None,
+        )
+        self.assertFalse(lines[0].is_suggestion)  # CLI/experiment behavior unchanged
+        self.assertEqual(summary["actions"], {"confirm": 2})
+
+
+class NoulGateTests(unittest.TestCase):
+    def _carryover_line(self):
+        return [
+            make_line("Carmen", [("Carmen", 0.8), ("Dorian", 0.5)],
+                      rule="4_contiguous_dialogue", reasons=["same_paragraph_continuation"],
+                      span=(26, 37), text="Stay sharp."),
+        ]
+
+    def test_run_query_adds_is_dialogue_noul_question(self):
+        lines = self._carryover_line()
+        state, questions = build_run_query(
+            CHAPTER_TEXT, lines, {"Carmen": "Carmen"}, 1500, noul_gate=True
+        )
+        question = questions["is_dialogue_0"]
+        self.assertEqual(question["type"], "noul")
+        self.assertIn("Is the text in <q0> actually spoken dialogue", question["instructions"])
+        self.assertIn("q0", questions)
+
+    def test_run_query_omits_noul_by_default(self):
+        lines = self._carryover_line()
+        _state, questions = build_run_query(CHAPTER_TEXT, lines, {"Carmen": "Carmen"}, 1500)
+        self.assertEqual(set(questions), {"q0"})
+
+    def test_low_dialogue_probability_forces_downgrade_on_agreement(self):
+        lines = self._carryover_line()
+        client = FakeClient([jev_run_noul_response({"q0": ("Carmen", 0.9)}, {0: 0.3})])
+        summary = verify_chapter(
+            lines, CHAPTER_TEXT, NAME_LOOKUP,
+            policy=VerifyPolicy(noul_gate=True, budget_seconds=0),
+            client=client, cache=JevVerifyCache(enabled=False), log=lambda _m: None,
+        )
+        self.assertEqual(summary["actions"], {"downgrade": 1})
+        self.assertTrue(lines[0].is_suggestion)
+        self.assertEqual(lines[0].attribution["jevVerification"]["isDialogue"], 0.3)
+
+    def test_high_dialogue_probability_keeps_choice_verdict(self):
+        lines = self._carryover_line()
+        client = FakeClient([jev_run_noul_response({"q0": ("Carmen", 0.9)}, {0: 0.9})])
+        summary = verify_chapter(
+            lines, CHAPTER_TEXT, NAME_LOOKUP,
+            policy=VerifyPolicy(noul_gate=True, budget_seconds=0),
+            client=client, cache=JevVerifyCache(enabled=False), log=lambda _m: None,
+        )
+        self.assertEqual(summary["actions"], {"confirm": 1})
+        self.assertFalse(lines[0].is_suggestion)
+
+    def test_parse_run_noul_tolerates_missing_fields(self):
+        self.assertIsNone(parse_run_noul(None, "is_dialogue_0"))
+        self.assertIsNone(parse_run_noul({"answers": {}}, "is_dialogue_0"))
+        self.assertEqual(
+            parse_run_noul(jev_run_noul_response({}, {0: 0.42}), "is_dialogue_0"), 0.42
+        )
+        self.assertIsNone(
+            parse_run_noul(jev_run_noul_response({}, {0: 0.42}), "is_dialogue_1")
+        )
+
+
+class BudgetTests(unittest.TestCase):
+    def _two_run_chapter(self):
+        return [
+            make_line("Carmen", [("Carmen", 0.8)], rule="4_contiguous_dialogue",
+                      reasons=["same_paragraph_continuation"], span=(26, 37), text="Stay sharp."),
+            make_line("narrator", [], line_type="narration", span=(40, 50)),
+            make_line("Dorian", [("Dorian", 0.8)], rule="4_contiguous_dialogue",
+                      reasons=["same_paragraph_continuation"], span=(105, 118), text="Then we move."),
+        ]
+
+    def test_budget_exhaustion_skips_remaining_runs_fail_open(self):
+        lines = self._two_run_chapter()
+        client = SlowClient([jev_run_response({})], delay=0.6)
+        summary = verify_chapter(
+            lines, CHAPTER_TEXT, NAME_LOOKUP,
+            policy=VerifyPolicy(concurrency=1, max_calls=10, retries=0, budget_seconds=0.2),
+            client=client, cache=JevVerifyCache(enabled=False), log=lambda _m: None,
+        )
+        self.assertTrue(summary["budgetExhausted"])
+        self.assertGreaterEqual(summary["skippedRuns"], 1)
+        # unverified lines keep their heuristic values
+        self.assertFalse(lines[0].is_suggestion)
+        self.assertEqual(lines[0].speaker, "Carmen")
+        self.assertFalse(lines[2].is_suggestion)
+        self.assertEqual(lines[2].speaker, "Dorian")
+        # the in-flight run finishes; queued runs are cancelled, not fired
+        self.assertLessEqual(client.calls, 1)
+
+    def test_no_budget_runs_everything(self):
+        lines = self._two_run_chapter()
+        client = FakeClient([jev_run_response({})])
+        summary = verify_chapter(
+            lines, CHAPTER_TEXT, NAME_LOOKUP,
+            policy=VerifyPolicy(concurrency=1, max_calls=10, budget_seconds=0),
+            client=client, cache=JevVerifyCache(enabled=False), log=lambda _m: None,
+        )
+        self.assertNotIn("budgetExhausted", summary)
+        self.assertEqual(client.calls, 2)
+
+
+class NoClientTests(unittest.TestCase):
+    def test_no_client_records_error_and_touches_nothing(self):
+        lines = [
+            make_line("Carmen", [("Carmen", 0.8), ("Dorian", 0.5)],
+                      rule="4_contiguous_dialogue", reasons=["same_paragraph_continuation"],
+                      span=(26, 37), text="Stay sharp."),
+        ]
+        summary = verify_chapter(
+            lines, CHAPTER_TEXT, NAME_LOOKUP,
+            policy=VerifyPolicy(), client=None,
+            cache=JevVerifyCache(enabled=False), log=lambda _m: None,
+        )
+        self.assertEqual(summary["error"], "no JEV client provided")
+        self.assertFalse(lines[0].is_suggestion)
+        self.assertEqual(lines[0].speaker, "Carmen")
+        self.assertNotIn("jevVerification", lines[0].attribution)
+
+
+class RouterVerifyWiringTests(unittest.TestCase):
+    """A3: /api/parse wiring, mocked key/client, no network."""
+
+    CHAPTER = (
+        '"Stay sharp," Carmen muttered.\n'
+        '"I never stopped."\n'
+    )
+
+    @classmethod
+    def setUpClass(cls):
+        # fastapi's TestClient is only needed by this class
+        from fastapi import FastAPI
+        from fastapi.testclient import TestClient
+
+        cls._FastAPI = FastAPI
+        cls._TestClient = TestClient
+
+    @staticmethod
+    def _write_book(book_root):
+        with open(os.path.join(book_root, "characters.json"), "w", encoding="utf-8") as handle:
+            json.dump(
+                {
+                    "characters": [
+                        {"id": "carmen", "name": "Carmen"},
+                        {"id": "dorian", "name": "Dorian"},
+                    ]
+                },
+                handle,
+            )
+
+    def _make_client(self, book_root):
+        app = self._FastAPI()
+        app.include_router(parser_router_module.create_parser_router(lambda: book_root))
+        return self._TestClient(app)
+
+    def _parse(self, client, parser_options=None):
+        return client.post(
+            "/api/parse",
+            json={
+                "text": self.CHAPTER,
+                "filename": "0001 - Test/chapter.txt",
+                "parser_options": parser_options or {},
+            },
+        )
+
+    def test_parse_with_key_reports_jev_verify_summary(self):
+        with tempfile.TemporaryDirectory() as book_root:
+            self._write_book(book_root)
+            fake = FakeClient([jev_run_response({"q0": ("Carmen", 0.9), "q1": ("Carmen", 0.9)})])
+            with mock.patch.dict(os.environ, {"VERCEL_JEV_API_KEY": "test-key"}), \
+                    mock.patch.object(parser_router_module, "JevClient", lambda api_key: fake):
+                client = self._make_client(book_root)
+                # gate=full (a documented live option) so the untagged line is a
+                # deterministic target even when the coref model is unavailable
+                # and it lands on 5_suggest_alternatives instead of a carryover.
+                response = self._parse(client, parser_options={"jev_verify": {"gate": "full"}})
+        self.assertEqual(response.status_code, 200)
+        body = response.json()
+        self.assertTrue(body["script"])
+        jev = body["meta"]["jevVerify"]
+        self.assertTrue(jev["enabled"])
+        self.assertGreaterEqual(jev["targets"], 1)
+        self.assertGreaterEqual(jev["runs"], 1)
+        self.assertIn("actions", jev)
+
+    def test_parse_without_key_skips_and_script_untouched(self):
+        with tempfile.TemporaryDirectory() as book_root:
+            self._write_book(book_root)
+            environ_patch = mock.patch.dict(os.environ)
+            environ_patch.start()
+            try:
+                # Block the .env fallback: _load_local_env_file uses setdefault.
+                os.environ["VERCEL_JEV_API_KEY"] = ""
+                with mock.patch.object(
+                    parser_router_module, "JevService", lambda get_book_root: mock.Mock()
+                ):
+                    client = self._make_client(book_root)
+                    response = self._parse(client)
+            finally:
+                environ_patch.stop()
+        self.assertEqual(response.status_code, 200)
+        body = response.json()
+        self.assertEqual(
+            body["meta"]["jevVerify"], {"enabled": False, "skipped": "no_api_key"}
+        )
+        self.assertTrue(body["script"])
+        for line in body["script"]:
+            self.assertNotIn("jevVerification", line.get("attribution") or {})
 
 
 if __name__ == "__main__":

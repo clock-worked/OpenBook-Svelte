@@ -25,8 +25,9 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 import time
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, wait
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
@@ -74,6 +75,41 @@ class VerifyPolicy:
     max_calls: int = 60
     concurrency: int = 4
     retries: int = 2
+    downgrade_only: bool = False  # live path: never promote a suggestion to an assert
+    noul_gate: bool = False  # live path: is_dialogue noul<0.5 forces downgrade
+    budget_seconds: float = 90.0  # wall-clock budget; <= 0 means no budget
+
+
+# ---------------------------------------------------------------------------
+# Character lookup
+# ---------------------------------------------------------------------------
+
+
+def _slugify(value: str) -> str:
+    text = re.sub(r"[^a-z0-9]+", "_", str(value or "").strip().lower())
+    return re.sub(r"_+", "_", text).strip("_")
+
+
+def load_character_lookup(book_root: str) -> Dict[str, str]:
+    """normalized name/alias -> canonical display name (mirrors eval scripts)."""
+    characters_path = os.path.join(book_root, "characters.json")
+    name_lookup: Dict[str, str] = {"narrator": "narrator"}
+    if not os.path.exists(characters_path):
+        return name_lookup
+    with open(characters_path, "r", encoding="utf-8") as handle:
+        payload = json.load(handle)
+    for entry in payload.get("characters", []):
+        if not isinstance(entry, dict):
+            continue
+        name = str(entry.get("name") or "").strip()
+        if not name:
+            continue
+        character_id = str(entry.get("id") or _slugify(name)).strip()
+        for candidate in [name, character_id, *(entry.get("aliases") or [])]:
+            key = str(candidate or "").strip().lower()
+            if key:
+                name_lookup[key] = name
+    return name_lookup
 
 
 # ---------------------------------------------------------------------------
@@ -309,13 +345,17 @@ def build_run_query(
     run_lines: Sequence[DialogueLine],
     roster: "Dict[str, str]",
     window_chars: int,
+    *,
+    noul_gate: bool = False,
 ) -> Tuple[str, dict]:
     """One batched query for a whole contiguous dialogue run.
 
     Every line's quote span is marked <q0>..<qN> in the state and one
     Choice question is asked per line. The instruction states the
     continuation rule literally: an untagged quote continuing the same
-    speech as a nearby tagged quote belongs to that speaker.
+    speech as a nearby tagged quote belongs to that speaker. With
+    noul_gate, a second per-line Noul question (is_dialogue_<pos>) asks
+    whether the span is spoken dialogue at all.
     """
     if not run_lines:
         raise ValueError("Run query requires at least one line")
@@ -368,6 +408,15 @@ def build_run_query(
         }
         for position in range(len(run_lines))
     }
+    if noul_gate:
+        for position in range(len(run_lines)):
+            questions[f"is_dialogue_{position}"] = {
+                "type": "noul",
+                "instructions": (
+                    f"Is the text in <q{position}> actually spoken dialogue "
+                    "(not thought, narration, or stage direction)?"
+                ),
+            }
     return state, questions
 
 
@@ -438,6 +487,24 @@ def parse_run_answer(response: Optional[dict], question_id: str) -> Tuple[Option
     except (TypeError, ValueError):
         confidence = 0.0
     return (str(choice) if choice is not None else None), confidence
+
+
+def parse_run_noul(response: Optional[dict], question_id: str) -> Optional[float]:
+    """P(yes) for a Noul answer; None when the answer is missing/invalid.
+
+    Noul answers carry no confidence field — the noul value IS the
+    probability (see docs/typesafe_jev_api.md).
+    """
+    if not isinstance(response, dict):
+        return None
+    answers = response.get("answers")
+    answer = answers.get(question_id) if isinstance(answers, dict) else None
+    if not isinstance(answer, dict):
+        return None
+    try:
+        return float(answer.get("noul"))
+    except (TypeError, ValueError):
+        return None
 
 
 def parse_answer(response: Optional[dict]) -> Tuple[Optional[str], float]:
@@ -565,7 +632,10 @@ def verify_chapter(
     """Verify risky lines with JEV and apply verdicts in place.
 
     Returns a summary: gate, targets, modelCalls, cacheHits, errors,
-    per-action counts, and the ids of downgraded/promoted lines.
+    per-action counts, and the ids of downgraded/promoted lines. When a
+    budget_seconds deadline is set, runs not finished in time are left
+    unverified (fail-open) and the summary carries budgetExhausted and
+    skippedRuns.
     """
     policy = policy or VerifyPolicy()
     started = time.monotonic()
@@ -639,12 +709,20 @@ def verify_chapter(
             ):
                 roster.setdefault(name, name)
         roster = dict(list(roster.items())[: policy.roster_size])
-        state, questions = build_run_query(chapter_text, run_lines, roster, policy.window_chars)
+        state, questions = build_run_query(
+            chapter_text, run_lines, roster, policy.window_chars, noul_gate=policy.noul_gate
+        )
         jobs.append({"run": run, "state": state, "questions": questions})
 
     def run_job(
         job: Dict[str, object],
-    ) -> Tuple[List[int], Dict[int, Tuple[Optional[str], float]], bool, Optional[str]]:
+    ) -> Tuple[
+        List[int],
+        Dict[int, Tuple[Optional[str], float]],
+        Dict[int, Optional[float]],
+        bool,
+        Optional[str],
+    ]:
         run = [int(index) for index in job["run"]]
         key = cache_key(str(job["state"]), job["questions"])
         try:
@@ -660,19 +738,46 @@ def verify_chapter(
                 index: parse_run_answer(response, f"q{position}")
                 for position, index in enumerate(run)
             }
-            return run, per_line, cache_hit, None
+            per_noul = {
+                index: parse_run_noul(response, f"is_dialogue_{position}")
+                for position, index in enumerate(run)
+            }
+            return run, per_line, per_noul, cache_hit, None
         except Exception as exc:  # noqa: BLE001 - fail-open per run
-            return run, {index: (None, 0.0) for index in run}, False, str(exc)
+            return (
+                run,
+                {index: (None, 0.0) for index in run},
+                {index: None for index in run},
+                False,
+                str(exc),
+            )
 
-    outcomes: Dict[int, Tuple[Optional[str], float, bool, Optional[str]]] = {}
+    outcomes: Dict[int, Tuple[Optional[str], float, Optional[float], bool, Optional[str]]] = {}
     workers = max(1, int(policy.concurrency))
-    with ThreadPoolExecutor(max_workers=workers) as pool:
+    # Manual pool management (instead of `with`) so a budget overrun can
+    # cancel QUEUED runs via cancel_futures; in-flight runs simply finish
+    # uncollected. No exception may escape this stage.
+    pool = ThreadPoolExecutor(max_workers=workers)
+    try:
         futures = [pool.submit(run_job, job) for job in jobs]
-        for future in futures:
-            run, per_line, cache_hit, error = future.result()
+        if policy.budget_seconds > 0:
+            deadline = time.monotonic() + float(policy.budget_seconds)
+            remaining = max(0.0, deadline - time.monotonic())
+            done, _not_done = wait(futures, timeout=remaining)
+            # Runs not finished by the deadline are left unverified
+            # (fail-open, same as a per-run error).
+            skipped = len(futures) - len(done)
+            if skipped:
+                summary["budgetExhausted"] = True
+                summary["skippedRuns"] = skipped
+            pending = list(done)
+        else:
+            pending = futures
+        for future in pending:
+            run, per_line, per_noul, cache_hit, error = future.result()
             for index in run:
                 choice, confidence = per_line[index]
-                outcomes[index] = (choice, confidence, cache_hit, error)
+                outcomes[index] = (choice, confidence, per_noul[index], cache_hit, error)
             # Call accounting is per run (one model call per run).
             if error is not None:
                 summary["errors"] = int(summary["errors"]) + 1
@@ -680,12 +785,14 @@ def verify_chapter(
                 summary["cacheHits"] = int(summary["cacheHits"]) + 1
             else:
                 summary["modelCalls"] = int(summary["modelCalls"]) + 1
+    finally:
+        pool.shutdown(wait=True, cancel_futures=True)
 
     action_counts: Dict[str, int] = {}
     for index, gate_reasons in targets:
         if index not in outcomes:
             continue
-        choice, confidence, cache_hit, error = outcomes[index]
+        choice, confidence, noul, cache_hit, error = outcomes[index]
         line = lines[index]
         block: Dict[str, object] = {
             "called": error is None,
@@ -696,11 +803,23 @@ def verify_chapter(
             "heuristicSpeaker": str(getattr(line, "speaker", None) or "").strip(),
             "ts": datetime.now(timezone.utc).isoformat(),
         }
+        if noul is not None:
+            block["isDialogue"] = round(float(noul), 4)
         if error is not None:
             action = "skip"
             block["error"] = error
         else:
             action = decide_verdict(line, choice, confidence, name_lookup, policy)
+            # Upstream dialogue gate: not spoken dialogue -> unknown-with-guess.
+            if policy.noul_gate and noul is not None and noul < 0.5:
+                action = "downgrade"
+            # Live path never promotes a suggestion to an assert.
+            if (
+                policy.downgrade_only
+                and action == "confirm"
+                and getattr(line, "is_suggestion", False)
+            ):
+                action = "note"
         action_counts[action] = action_counts.get(action, 0) + 1
         line_id = index + 1
         if action == "downgrade":

@@ -27,6 +27,7 @@ from openbook_parser.booknlp_parser_service import BookNLPParserService  # noqa:
 from openbook_parser.jev_verify_service import (  # noqa: E402
     JevVerifyCache,
     VerifyPolicy,
+    load_character_lookup,
     verify_chapter,
 )
 
@@ -37,37 +38,6 @@ def _read_text(path: str) -> str:
     # every offset after the first line break.
     with open(path, "r", encoding="utf-8", newline="") as handle:
         return handle.read()
-
-
-def _load_json(path: str) -> dict:
-    with open(path, "r", encoding="utf-8") as handle:
-        return json.load(handle)
-
-
-def _slugify(value: str) -> str:
-    text = re.sub(r"[^a-z0-9]+", "_", str(value or "").strip().lower())
-    return re.sub(r"_+", "_", text).strip("_")
-
-
-def _load_character_lookup(book_root: str):
-    """normalized name/alias -> canonical display name (mirrors eval scripts)."""
-    characters_path = os.path.join(book_root, "characters.json")
-    name_lookup = {"narrator": "narrator"}
-    if not os.path.exists(characters_path):
-        return name_lookup
-    payload = _load_json(characters_path)
-    for entry in payload.get("characters", []):
-        if not isinstance(entry, dict):
-            continue
-        name = str(entry.get("name") or "").strip()
-        if not name:
-            continue
-        character_id = str(entry.get("id") or _slugify(name)).strip()
-        for candidate in [name, character_id, *(entry.get("aliases") or [])]:
-            key = str(candidate or "").strip().lower()
-            if key:
-                name_lookup[key] = name
-    return name_lookup
 
 
 def _iter_chapter_dirs(book_root: str, chapter: str, chapter_regex: str, limit: int):
@@ -141,15 +111,17 @@ def main() -> None:
 
         client = JevClient(api_key=os.environ["VERCEL_JEV_API_KEY"])
 
+    # budget_seconds=0 = no budget: the offline experiments run to completion.
     policy = VerifyPolicy(
         gate=args.gate,
         max_calls=args.max_calls,
         concurrency=args.concurrency,
         downgrade_conf=args.downgrade_conf,
         promote_conf=args.promote_conf,
+        budget_seconds=0,
     )
     cache = JevVerifyCache(enabled=not args.no_cache)
-    name_lookup = _load_character_lookup(book_root)
+    name_lookup = load_character_lookup(book_root)
     parser_service = BookNLPParserService()
 
     chapters: dict = {}

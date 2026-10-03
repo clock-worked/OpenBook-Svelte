@@ -30,6 +30,9 @@ export const API_ENDPOINTS = {
     localDialogueAi: '/api/local-dialogue-ai',
     localDialogueAiStatus: (requestId: string) =>
         `/api/local-dialogue-ai-status/${encodeURIComponent(requestId)}`,
+    jevDialogueAi: '/api/jev-dialogue-ai',
+    jevDialogueAiStatus: (requestId: string) =>
+        `/api/jev-dialogue-ai-status/${encodeURIComponent(requestId)}`,
     pickBookDirectory: '/api/pick-book-directory',
     setBookRoot: '/api/set-book-root',
     setAudioRoot: '/api/set-audio-root',

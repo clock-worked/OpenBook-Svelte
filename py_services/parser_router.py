@@ -2,7 +2,7 @@ import asyncio
 import os
 import tempfile
 from pathlib import Path
-from typing import Callable, List
+from typing import Callable, Dict, List
 
 from fastapi import APIRouter, HTTPException
 
@@ -17,9 +17,20 @@ from api_models import (
 from chapter_service import get_chapter_stats, list_chapters as list_chapters_service
 from dialogue_ai_service import DialogueAiAssistService
 from local_dialogue_ai_service import LocalDialogueAiService
+from jev_client import JevClient
 from jev_service import JevService
 from openbook_parser.booknlp_parser_service import BookNLPParserService
-from openbook_parser.dialogue_parser_service import DialogueParserService, script_to_dict_list
+from openbook_parser.dialogue_parser_service import (
+    DialogueLine,
+    DialogueParserService,
+    script_to_dict_list,
+)
+from openbook_parser.jev_verify_service import (
+    JevVerifyCache,
+    VerifyPolicy,
+    load_character_lookup,
+    verify_chapter,
+)
 from update_character_stats import update_character_stats
 
 
@@ -31,6 +42,53 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
     dialogue_ai_service = DialogueAiAssistService(get_book_root=get_book_root)
     local_dialogue_ai_service = LocalDialogueAiService(get_book_root=get_book_root)
     jev_service = JevService(get_book_root=get_book_root)
+
+    def run_jev_verify(request: ParseRequest, script_lines: List[DialogueLine]) -> dict:
+        """JEV cross-verification stage over a freshly parsed chapter.
+
+        On by default when VERCEL_JEV_API_KEY is present (the .env is
+        already loaded at router-creation time). The live policy always
+        keeps downgrade_only and noul_gate on: the live path never
+        promotes a suggestion to an assert. Fail-open: any problem here
+        must be handled by the caller, never fail the parse.
+        """
+        jev_options = (request.parser_options or {}).get("jev_verify")
+        if not isinstance(jev_options, dict):
+            jev_options = {}
+        api_key = os.getenv("VERCEL_JEV_API_KEY")
+        if not api_key:
+            return {"enabled": False, "skipped": "no_api_key"}
+        if jev_options.get("enabled") is False:
+            return {"enabled": False, "skipped": "disabled"}
+
+        policy = VerifyPolicy(downgrade_only=True, noul_gate=True)
+        if jev_options.get("gate") in ("carryover", "full"):
+            policy.gate = str(jev_options["gate"])
+        for field in ("downgrade_conf", "promote_conf", "budget_seconds"):
+            value = jev_options.get(field)
+            if isinstance(value, (int, float)) and not isinstance(value, bool):
+                setattr(policy, field, float(value))
+
+        book_root = get_book_root()
+        name_lookup: Dict[str, str] = {"narrator": "narrator"}
+        if book_root:
+            try:
+                name_lookup = load_character_lookup(book_root)
+            except Exception:  # noqa: BLE001 - a bad roster must not fail the parse
+                pass
+
+        client = JevClient(api_key=api_key)
+        summary = verify_chapter(
+            script_lines,
+            request.text,
+            name_lookup,
+            policy=policy,
+            client=client,
+            cache=JevVerifyCache(),
+            log=lambda message: print(message),
+        )
+        summary["enabled"] = True
+        return summary
 
     @router.get("/api/list-chapters")
     async def list_chapters():
@@ -173,6 +231,15 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
                 source_path=source_path,
             )
 
+            # JEV cross-verification (offline experiment, now live). Runs in a
+            # worker thread (the router's established pattern for long work)
+            # and fails open: the parse result is returned either way.
+            try:
+                jev_verify_meta = await asyncio.to_thread(run_jev_verify, request, script_lines)
+            except Exception as exc:  # noqa: BLE001 - verify must never fail the parse
+                print(f"JEV verify stage failed: {exc}")
+                jev_verify_meta = {"enabled": True, "error": str(exc)}
+
             return {
                 "script": script_to_dict_list(script_lines),
                 "characters": character_names,
@@ -186,6 +253,7 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
                     "fallbackAlignedQuotes": parse_meta.get("fallback_aligned_quotes"),
                     "agreementHits": parse_meta.get("agreement_hits"),
                     "uncertainLines": parse_meta.get("uncertain_lines"),
+                    "jevVerify": jev_verify_meta,
                 },
             }
         except Exception as exc:
