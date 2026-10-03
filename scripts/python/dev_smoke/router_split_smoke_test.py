@@ -56,10 +56,24 @@ def assert_status(response, expected: int, context: str) -> None:
         )
 
 
+def _iter_app_routes(routes):
+    """Yield route objects, flattening starlette's _IncludedRouter wrappers.
+
+    Newer starlette versions wrap `include_router` output in `_IncludedRouter`
+    objects that expose the wrapped router via `original_router` instead of
+    appearing in `app.routes` as plain `Route` entries.
+    """
+    for route in routes:
+        if hasattr(route, "methods"):
+            yield route
+        elif hasattr(route, "original_router"):
+            yield from _iter_app_routes(route.original_router.routes)
+
+
 def assert_has_routes() -> None:
     actual = {
         (method, route.path)
-        for route in app.routes
+        for route in _iter_app_routes(app.routes)
         for method in (route.methods or set())
         if method in {"GET", "POST"}
     }
