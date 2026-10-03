@@ -1,4 +1,5 @@
 import asyncio
+import json
 import os
 import tempfile
 from pathlib import Path
@@ -125,7 +126,8 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
             if ".." in normalized_path:
                 raise HTTPException(status_code=400, detail="Invalid file path")
 
-            content_str = request.content.model_dump_json(indent=2)
+            # request.content is a plain dict (SaveRequest.content: Dict[str, Any]).
+            content_str = json.dumps(request.content, indent=2, ensure_ascii=False)
             dir_name = os.path.dirname(normalized_path)
             if not os.path.exists(dir_name):
                 os.makedirs(dir_name)
