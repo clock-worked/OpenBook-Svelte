@@ -95,6 +95,12 @@
   let characterNameToIdMap: Map<string, string> | null = null;
   
   async function ensureCharacterNameToIdMap() {
+    // Always rebuild from the current characters.json: the roster can change
+    // outside this save's ensure step (e.g. via the character panel). A stale
+    // cached map makes the dialogue save silently fall back to 'narrator'
+    // for a name that is actually valid. One extra small file read per save
+    // is the price of never clobbering a user's explicit assignment.
+    characterNameToIdMap = null;
     return ensureCharacterNameToIdMapCached({
       cachedMap: characterNameToIdMap,
       setCachedMap: (map) => {
