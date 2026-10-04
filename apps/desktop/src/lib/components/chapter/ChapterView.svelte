@@ -685,12 +685,35 @@
     markingReviewed = true;
     reviewMessage = '';
     clearTimeout(saveTimer);
+
+    // Flip local state FIRST: saveCurrentChapter serializes `chapterReviewed`,
+    // so the reviewed flag lands in dialogue.json from this save. The
+    // /api/review-chapter call below is auxiliary (descriptor learning) and
+    // older sidecars may not implement it — its failure must not block the
+    // reviewed flag from persisting.
+    setReviewedState(true);
+    chapterReviewedAt = new Date().toISOString();
     try {
       await saveCurrentChapter();
+    } catch (error) {
+      reviewMessage = error instanceof Error ? error.message : 'Could not save chapter.';
+      markingReviewed = false;
+      return;
+    }
+
+    let apiNote = '';
+    try {
       const result = await apiPostJson<ReviewChapterResponse, ReviewChapterRequest>(
         API_ENDPOINTS.reviewChapter,
         { chapter_name: chapter.title },
       );
+      chapterReviewedAt = result.reviewedAt;
+      apiNote = ` Found ${result.descriptorObservations} descriptor${result.descriptorObservations === 1 ? '' : 's'}; learned ${result.descriptorsAdded} new.`;
+    } catch (error) {
+      apiNote = ` (descriptor sync unavailable: ${error instanceof Error ? error.message : 'error'})`;
+    }
+
+    try {
       const root = get(bookRoot);
       if (root && get(currentChapter)?.title === chapter.title) {
         const loaded = await loadChapterContent({
@@ -711,13 +734,10 @@
           rebuildParagraphRuns();
         }
       }
-      chapterReviewedAt = result.reviewedAt;
-      setReviewedState(true);
-      await forceRefreshBookCharacters();
-      reviewMessage = `Reviewed. Found ${result.descriptorObservations} descriptor${result.descriptorObservations === 1 ? '' : 's'}; learned ${result.descriptorsAdded} new.`;
-    } catch (error) {
-      reviewMessage = error instanceof Error ? error.message : 'Could not mark chapter reviewed.';
     } finally {
+      // Even if the post-save refresh throws, the flag is already persisted.
+      await forceRefreshBookCharacters();
+      reviewMessage = `Reviewed.${apiNote}`;
       markingReviewed = false;
     }
   }

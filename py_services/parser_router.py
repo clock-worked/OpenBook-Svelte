@@ -13,8 +13,10 @@ from api_models import (
     LocalDialogueAiRequest,
     ParseRequest,
     RelativeFileRequest,
+    ReviewChapterRequest,
     SaveRequest,
 )
+from chapter_review_service import review_chapter
 from chapter_service import get_chapter_stats, list_chapters as list_chapters_service
 from dialogue_ai_service import DialogueAiAssistService
 from local_dialogue_ai_service import LocalDialogueAiService
@@ -205,6 +207,24 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
 
             traceback.print_exc()
             raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+    @router.post("/api/review-chapter")
+    async def review_chapter_route(request: ReviewChapterRequest):
+        try:
+            book_root = get_book_root()
+            if not book_root:
+                raise HTTPException(status_code=400, detail="Book root path not set.")
+            # Loads the shared English parser lazily and rewrites two JSON
+            # files, so keep it off the event loop (router's standard pattern).
+            result = await asyncio.to_thread(
+                review_chapter, book_root, request.chapter_name
+            )
+            return result
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        except Exception as exc:
+            print(f"Error reviewing chapter: {exc}")
+            raise HTTPException(status_code=500, detail=f"Failed to review chapter: {str(exc)}") from exc
 
     @router.post("/api/parse")
     async def parse_text(request: ParseRequest):
