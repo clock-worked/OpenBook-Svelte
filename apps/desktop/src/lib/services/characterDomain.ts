@@ -2,15 +2,13 @@ import type { CharactersJson } from '$lib/types';
 import {
     getCharactersPath,
     getDialoguePath,
-    getScriptPath,
+    readOptionalCharacters,
     readOptionalDialogue,
-    readOptionalScript,
     readVoices,
+    writeCharacters,
     writeDialogue,
-    writeScript,
     writeVoices,
 } from '$lib/services/fs';
-import { loadChapterCharactersData, persistChapterCharactersData } from '$lib/services/chapterCharacterRepository';
 
 export interface ChapterRemapTarget {
     title: string;
@@ -19,31 +17,6 @@ export interface ChapterRemapTarget {
 
 export function normalizeCharacterKey(name: string): string {
     return String(name || '').trim().toLowerCase();
-}
-
-function normalizeNameKey(name: string): string {
-    return String(name || '').trim().toLowerCase();
-}
-
-export function slugifyCharacterId(name: string): string {
-    const cleaned = String(name || '')
-        .trim()
-        .toLowerCase()
-        .replace(/[^a-z0-9\s-]/g, '')
-        .replace(/\s+/g, ' ')
-        .trim();
-    return cleaned.length ? cleaned.replace(/\s/g, '-') : 'character';
-}
-
-export function buildUniqueCharacterId(name: string, existingIds: Set<string>): string {
-    const base = slugifyCharacterId(name);
-    let id = base;
-    let suffix = 2;
-    while (existingIds.has(id)) {
-        id = `${base}-${suffix}`;
-        suffix += 1;
-    }
-    return id;
 }
 
 export function normalizeAliasList(names: string[]): string[] {
@@ -81,6 +54,75 @@ export function resolveCanonicalCharacterName(data: CharactersJson, inputName: s
 
     return null;
 }
+
+// === v3 GUID identity (docs/schema_characters_v3.md §GUID spec) ===
+
+/** Crockford base32 alphabet: 0-9 + A-Z minus I, L, O, U (32 symbols). Local to this file by design. */
+const CROCKFORD_BASE32_ALPHABET = '0123456789BHJKMNPQRSTVWXYZ';
+
+function encodeCrockfordBase32(bytes: Uint8Array): string {
+    let bits = 0;
+    for (let i = 0; i < bytes.length; i++) {
+        bits = (bits << 8) | bytes[i];
+    }
+    const charCount = (bytes.length * 8) / 5;
+    const chars: string[] = [];
+    for (let i = charCount - 1; i >= 0; i--) {
+        chars.push(CROCKFORD_BASE32_ALPHABET[(bits >>> (5 * i)) & 0b11111]);
+    }
+    return chars.join('');
+}
+
+/**
+ * Mint a new v3 character GUID: 5 random bytes → 40 bits → 8-char uppercase
+ * Crockford base32 (big-endian, `crypto.getRandomValues`).
+ *
+ * Uniqueness against `existing` (the book's `characters/` folder GUIDs) is
+ * mandatory: re-mints up to 5×, then throws.
+ */
+export function mintCharacterGuid(existing: Iterable<string>): string {
+    const taken = new Set(
+        Array.from(existing, (value) => String(value ?? '').trim()).filter(Boolean),
+    );
+    const bytes = new Uint8Array(5);
+    let candidate = '';
+    for (let attempt = 0; attempt < 5; attempt++) {
+        crypto.getRandomValues(bytes);
+        candidate = encodeCrockfordBase32(bytes);
+        if (!taken.has(candidate)) return candidate;
+    }
+    throw new Error(`mintCharacterGuid: no unique GUID after 5 attempts (last: ${candidate})`);
+}
+
+// === v3 filename rules (docs/schema_characters_v3.md §Filename rules) ===
+
+const WINDOWS_RESERVED_FILE_NAMES = new Set([
+    'CON', 'PRN', 'AUX', 'NUL',
+    'COM1', 'COM2', 'COM3', 'COM4', 'COM5', 'COM6', 'COM7', 'COM8', 'COM9',
+    'LPT1', 'LPT2', 'LPT3', 'LPT4', 'LPT5', 'LPT6', 'LPT7', 'LPT8', 'LPT9',
+]);
+
+/**
+ * Derive the `characters/` basename for a title:
+ * replace `\/:*?"<>|` + control chars with `-`, collapse repeats, trim, cap
+ * 80 chars, guard Windows reserved names. The filename is a cache of the
+ * title, not identity — the caller resolves case-collisions (GUID fallback).
+ */
+export function sanitizeCharacterFileName(title: string): string {
+    let name = String(title || '')
+        .trim()
+        .replace(/[/\\:*?"<>|\u0000-\u001F]/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-+|-+$/g, '');
+    if (name.length > 80) {
+        name = name.slice(0, 80).replace(/-+$/g, '');
+    }
+    if (!name) name = 'character';
+    if (WINDOWS_RESERVED_FILE_NAMES.has(name.toUpperCase())) name = `-${name}`;
+    return `${name}.json`;
+}
+
+// === Reference remaps (exact-string GUID substitution, invariant IN-5) ===
 
 export async function remapCharacterIdInDialogueFiles(
     root: string,
@@ -164,227 +206,44 @@ export async function remapCharacterIdInVoicesAssignments(
     }
 }
 
-export async function remapCharacterIdPrefixInDialogueFiles(
+/**
+ * Remap a character GUID in chapter roster files (`<Ch>/<Ch>.characters.json`,
+ * `characters[].id` exact-match) and re-persist.
+ *
+ * v3 rosters are plain reference files (id = GUID), so this is a pure
+ * exact-string substitution. It persists through the same raw
+ * `readOptionalCharacters`/`writeCharacters` pair the chapter repository
+ * uses — deliberately NOT through `persistChapterCharactersData`, whose v2
+ * canonicalization resolves references against the root `characters.json`
+ * (absent in v3 books) and would drop every entry.
+ */
+export async function remapCharacterGuidInChapterRosters(
     root: string,
-    chapterList: ChapterRemapTarget[],
-    oldPrefix: string,
-    newCharacterId: string,
+    chapterTitles: string[],
+    oldGuid: string,
+    newGuid: string,
 ): Promise<void> {
-    const prefix = String(oldPrefix || '').trim();
-    if (!prefix || !newCharacterId) return;
+    if (!oldGuid || !newGuid || oldGuid === newGuid) return;
 
-    for (const chapter of chapterList) {
+    for (const title of chapterTitles) {
+        if (!title) continue;
         try {
-            const dialoguePath = getDialoguePath(root, chapter.title);
-            const dialogueData: any = await readOptionalDialogue(dialoguePath);
-            if (!dialogueData || !Array.isArray(dialogueData.lines)) continue;
+            const charactersPath = getCharactersPath(root, title);
+            const raw: any = await readOptionalCharacters(charactersPath);
+            if (!raw || !Array.isArray(raw.characters)) continue;
 
             let changed = false;
-            const shouldRemapId = (value: any): boolean => {
-                const id = typeof value === 'string' ? value : '';
-                if (!id || id === newCharacterId) return false;
-                return id === prefix || id.startsWith(`${prefix}-`);
-            };
-
-            for (const line of dialogueData.lines) {
-                if (shouldRemapId(line?.characterId)) {
-                    line.characterId = newCharacterId;
+            const characters = raw.characters.map((entry: any) => {
+                if (entry && typeof entry === 'object' && entry.id === oldGuid) {
                     changed = true;
+                    return { ...entry, id: newGuid };
                 }
-
-                if (Array.isArray(line?.candidates)) {
-                    for (const candidate of line.candidates) {
-                        if (shouldRemapId(candidate?.characterId)) {
-                            candidate.characterId = newCharacterId;
-                            changed = true;
-                        }
-                    }
-                }
-
-                if (Array.isArray(line?.attribution?.candidates)) {
-                    for (const candidate of line.attribution.candidates) {
-                        if (shouldRemapId(candidate?.characterId)) {
-                            candidate.characterId = newCharacterId;
-                            changed = true;
-                        }
-                    }
-                }
-            }
-
-            const breakdown = dialogueData?.stats?.characterBreakdown;
-            if (breakdown && typeof breakdown === 'object') {
-                const keys = Object.keys(breakdown);
-                for (const key of keys) {
-                    if (key === prefix || key.startsWith(`${prefix}-`)) {
-                        const count = Number(breakdown[key] ?? 0);
-                        breakdown[newCharacterId] = Number(breakdown[newCharacterId] ?? 0) + count;
-                        delete breakdown[key];
-                        changed = true;
-                    }
-                }
-            }
-
-            if (changed) {
-                await writeDialogue(dialoguePath, dialogueData);
-            }
-        } catch {
-        }
-    }
-}
-
-export async function remapCharacterIdPrefixInVoicesAssignments(
-    root: string,
-    oldPrefix: string,
-    newCharacterId: string,
-): Promise<void> {
-    const prefix = String(oldPrefix || '').trim();
-    if (!prefix || !newCharacterId) return;
-
-    try {
-        const voicesData: any = await readVoices(root);
-        if (!voicesData || !Array.isArray(voicesData.assignments)) return;
-
-        let changed = false;
-        voicesData.assignments = voicesData.assignments.map((assignment: any) => {
-            const id = typeof assignment?.characterId === 'string' ? assignment.characterId : '';
-            if (!id || id === newCharacterId) return assignment;
-            if (id === prefix || id.startsWith(`${prefix}-`)) {
-                changed = true;
-                return { ...assignment, characterId: newCharacterId };
-            }
-            return assignment;
-        });
-
-        if (changed) {
-            await writeVoices(root, voicesData);
-        }
-    } catch {
-    }
-}
-
-export async function remapCharacterNameInScriptFiles(
-    root: string,
-    chapterList: ChapterRemapTarget[],
-    oldName: string,
-    newName: string,
-): Promise<void> {
-    const oldKey = normalizeNameKey(oldName);
-    const nextName = String(newName || '').trim();
-    if (!oldKey || !nextName) return;
-
-    for (const chapter of chapterList) {
-        try {
-            const scriptPath = chapter.scriptPath ?? getScriptPath(root, chapter.title);
-            const scriptData: any = await readOptionalScript(scriptPath);
-            if (!scriptData || !Array.isArray(scriptData.lines)) continue;
-
-            let changed = false;
-            for (const line of scriptData.lines) {
-                if (normalizeNameKey(line?.chosenSpeaker) === oldKey) {
-                    line.chosenSpeaker = nextName;
-                    changed = true;
-                }
-
-                if (Array.isArray(line?.candidates)) {
-                    for (const candidate of line.candidates) {
-                        if (normalizeNameKey(candidate?.name) === oldKey) {
-                            candidate.name = nextName;
-                            changed = true;
-                        }
-                    }
-                }
-
-                if (Array.isArray(line?.attribution?.candidates)) {
-                    for (const candidate of line.attribution.candidates) {
-                        if (normalizeNameKey(candidate?.name) === oldKey) {
-                            candidate.name = nextName;
-                            changed = true;
-                        }
-                    }
-                }
-            }
-
-            const breakdown = scriptData?.stats?.characterBreakdown;
-            if (breakdown && typeof breakdown === 'object' && Object.prototype.hasOwnProperty.call(breakdown, oldName)) {
-                const count = Number(breakdown[oldName] ?? 0);
-                breakdown[nextName] = Number(breakdown[nextName] ?? 0) + count;
-                delete breakdown[oldName];
-                changed = true;
-            }
-
-            if (changed) {
-                await writeScript(scriptPath, scriptData);
-            }
-        } catch {
-        }
-    }
-}
-
-export async function remapCharacterNameInChapterCharacterFiles(
-    root: string,
-    chapterList: ChapterRemapTarget[],
-    oldName: string,
-    newName: string,
-): Promise<void> {
-    const oldKey = normalizeNameKey(oldName);
-    const nextName = String(newName || '').trim();
-    if (!oldKey || !nextName) return;
-
-    for (const chapter of chapterList) {
-        try {
-            const charactersPath = getCharactersPath(root, chapter.title);
-            const charactersData: any = await loadChapterCharactersData(root, charactersPath, true);
-            if (!charactersData || !Array.isArray(charactersData.characters)) continue;
-
-            let changed = false;
-            const remapped = charactersData.characters.map((character: any) => {
-                if (normalizeNameKey(character?.name) !== oldKey) return character;
-                changed = true;
-                return {
-                    ...character,
-                    name: nextName,
-                };
+                return entry;
             });
 
-            if (!changed) continue;
-
-            const deduped: any[] = [];
-            const keyToIndex = new Map<string, number>();
-            for (const character of remapped) {
-                const key = normalizeNameKey(character?.name);
-                if (!key) continue;
-                const existingIndex = keyToIndex.get(key);
-                if (existingIndex == null) {
-                    keyToIndex.set(key, deduped.length);
-                    deduped.push(character);
-                    continue;
-                }
-
-                const existing = deduped[existingIndex] ?? {};
-                deduped[existingIndex] = {
-                    ...existing,
-                    ...character,
-                    name: existing.name || character.name,
-                    color: existing.color ?? character.color ?? null,
-                    voice: existing.voice ?? character.voice ?? null,
-                    provider: existing.provider ?? character.provider ?? null,
-                    voiceId: existing.voiceId ?? character.voiceId ?? null,
-                    voiceMeta: existing.voiceMeta ?? character.voiceMeta ?? null,
-                    manifestStats: existing.manifestStats ?? character.manifestStats ?? null,
-                    count: Number(existing.count ?? 0) + Number(character.count ?? 0),
-                    chapterCount: Math.max(Number(existing.chapterCount ?? 0), Number(character.chapterCount ?? 0)),
-                    firstAppearance: existing.firstAppearance ?? character.firstAppearance ?? null,
-                    aliases: normalizeAliasList([
-                        ...(Array.isArray(existing.aliases) ? existing.aliases : []),
-                        ...(Array.isArray(character.aliases) ? character.aliases : []),
-                    ]),
-                };
+            if (changed) {
+                await writeCharacters(charactersPath, { ...raw, characters });
             }
-
-            await persistChapterCharactersData(root, charactersPath, {
-                formatVersion: charactersData.formatVersion || '2.0',
-                characters: deduped,
-            });
         } catch {
         }
     }
