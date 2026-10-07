@@ -395,6 +395,7 @@ export async function syncMissingBookCharacterDefaults(
 export async function loadBookCharactersData(
     root: string,
     chapterList: ChapterCharacterContext[],
+    onMigrationNotice?: (notice: { ok: boolean; message: string }) => void,
 ): Promise<CharactersJson> {
     // Tier 1 (v3): the characters/ folder is the source of truth.
     const folderData = await readCharacterFolder(root);
@@ -417,16 +418,24 @@ export async function loadBookCharactersData(
             if (result?.ok) {
                 const migrated = await readCharacterFolder(root);
                 if (migrated) {
+                    if ((result.unresolvedRefs ?? 0) > 0) {
+                        // Not an error: the book migrated; some references just
+                        // pointed at names with no character cluster.
+                        console.info(`[bookCharacters] v3 migration succeeded with ${result.unresolvedRefs} unresolvable references left in place`);
+                    }
                     console.log('[bookCharacters] v3 migration succeeded; loaded folder:', migrated.characters.length, 'characters');
                     const refreshed = await syncMissingBookCharacterDefaults(root, migrated, chapterList);
                     return refreshed ?? migrated;
                 }
                 console.warn('[bookCharacters] v3 migration reported ok but the folder read returned nothing; falling back to v2');
             } else {
-                console.warn('[bookCharacters] v3 migration aborted:', result?.abortReason ?? 'unknown reason');
+                const reason = result?.abortReason ?? 'unknown reason';
+                console.warn('[bookCharacters] v3 migration aborted:', reason);
+                onMigrationNotice?.({ ok: false, message: `Auto-migration to the new character format was skipped for this book: ${reason}` });
             }
         } catch (err) {
             console.warn('[bookCharacters] v3 migration threw; continuing with legacy characters.json:', err);
+            onMigrationNotice?.({ ok: false, message: `Auto-migration to the new character format failed: ${err instanceof Error ? err.message : String(err)}` });
         }
 
         // v2 fallback load (today's behavior, unchanged).

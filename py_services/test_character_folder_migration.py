@@ -715,37 +715,50 @@ class MigrationV2Tests(unittest.TestCase):
         self.assertIn("'catherine'", out)
         self.assertEqual(diff_tree(before, tree_map(book)), {})
 
-    def test_m15_unresolvable_dialogue_ref_aborts_with_zero_writes(self):
+    def test_m15_unresolvable_dialogue_ref_left_in_place(self):
+        # Unresolvable references do NOT abort: they stay exactly where they
+        # were, unremapped (the v2 runtime already tolerated them).
         book = build_book(self.tmp)
         dialogue = read_json(book / "chapter-1" / "dialogue.json")
         dialogue["lines"].append({"id": 99, "characterId": "ghost", "text": "???"})
         _write_json(book / "chapter-1" / "dialogue.json", dialogue)
-        before = tree_map(book)
 
         code, out = run_cli(book, "--apply", "--backup-dir", str(self.backup_dir))
 
-        self.assertNotEqual(code, 0)
-        self.assertIn("Validation failed", out)
+        self.assertEqual(code, 0)
+        self.assertIn("Unresolved references", out)
         self.assertIn("ghost", out)
-        self.assertEqual(diff_tree(before, tree_map(book)), {})
+        after = read_json(book / "chapter-1" / "dialogue.json")
+        ghosts = [line for line in after["lines"] if line.get("characterId") == "ghost"]
+        self.assertEqual(len(ghosts), 1)
+        # The rest of the migration proceeds normally.
+        self.assertFalse((book / "characters.json").exists())
+        self.assertTrue((book / "characters" / "Catherine.json").exists())
 
-    def test_m15_unresolvable_roster_aborts_unless_drop_flag(self):
+    def test_m15_unresolvable_roster_left_in_place_unless_drop_flag(self):
         book = build_book(self.tmp)
         roster = read_json(book / "chapter-1" / "chapter-1.characters.json")
         roster["characters"].append({"id": "ghost"})
         _write_json(book / "chapter-1" / "chapter-1.characters.json", roster)
-        before = tree_map(book)
 
-        code, out = run_cli(book, "--apply", "--backup-dir", str(self.backup_dir))
-        self.assertNotEqual(code, 0)
-        self.assertIn("ghost", out)
-        self.assertEqual(diff_tree(before, tree_map(book)), {})
-
-        # With --drop-unresolved the entry is dropped and migration proceeds.
-        apply_migration(book, self.backup_dir, drop_unresolved=True)
+        # Default: the entry is left in place, unremapped; migration proceeds.
+        apply_migration(book, self.backup_dir)
         g = {slug: expected_guid(slug) for slug in V2_SLUGS}
         roster = read_json(book / "chapter-1" / "chapter-1.characters.json")
-        self.assertEqual([e["id"] for e in roster["characters"]], [g["catherine"], g["cat-and-mouse"]])
+        self.assertIn({"id": "ghost"}, roster["characters"])
+        self.assertEqual(
+            sorted(e["id"] for e in roster["characters"]),
+            sorted([g["catherine"], g["cat-and-mouse"], "ghost"]),
+        )
+
+        # With --drop-unresolved the entry is dropped and migration proceeds.
+        book2 = build_book(self.tmp / "drop")
+        roster2 = read_json(book2 / "chapter-1" / "chapter-1.characters.json")
+        roster2["characters"].append({"id": "ghost"})
+        _write_json(book2 / "chapter-1" / "chapter-1.characters.json", roster2)
+        apply_migration(book2, self.backup_dir, drop_unresolved=True)
+        roster_after = read_json(book2 / "chapter-1" / "chapter-1.characters.json")
+        self.assertEqual([e["id"] for e in roster_after["characters"]], [g["catherine"], g["cat-and-mouse"]])
 
     # -- M16 ---------------------------------------------------------------
 
@@ -1016,16 +1029,20 @@ class MigrationV1Tests(unittest.TestCase):
             for slug in V1_SLUGS:
                 self.assertNotIn(slug, strings, f"{rel}: stale slug {slug}")
 
-    def test_v1_unresolved_reference_aborts_by_default(self):
+    def test_v1_unresolvable_reference_left_in_place(self):
         book = build_v1_book(self.tmp, ghost_dialogue=True)
-        before = tree_map(book)
 
         code, out = run_cli(book, "--apply", "--backup-dir", str(self.backup_dir))
 
-        self.assertNotEqual(code, 0)
+        self.assertEqual(code, 0)
+        self.assertIn("Unresolved references", out)
         self.assertIn("Phantom", out)
-        self.assertEqual(diff_tree(before, tree_map(book)), {})
-        self.assertFalse((book / "characters").exists())
+        after = read_json(book / "chapter-1" / "dialogue.json")
+        ghosts = [line for line in after["lines"] if line.get("characterId") == "Phantom"]
+        self.assertEqual(len(ghosts), 1)
+        # Clusters created, v1 store retired.
+        self.assertTrue((book / "characters" / "Mara.json").exists())
+        self.assertFalse((book / "book.characters.json").exists())
 
     def test_v1_second_run_is_byte_identical_noop(self):
         book = build_v1_book(self.tmp)

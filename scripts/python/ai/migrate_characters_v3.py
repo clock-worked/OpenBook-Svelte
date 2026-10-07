@@ -119,8 +119,9 @@ def parse_args() -> argparse.Namespace:
         "--drop-unresolved",
         action="store_true",
         help=(
-            "Omit legacy roster entries that cannot be resolved to a central "
-            "character. Without this flag, any such entry aborts the migration."
+            "Drop legacy roster entries that cannot be resolved to a central "
+            "character. Without this flag, unresolvable references are left "
+            "in place, unremapped (the migration itself never aborts on them)."
         ),
     )
     return parser.parse_args()
@@ -455,12 +456,21 @@ def walk_dialogue(payload: Any, resolve: Resolver, remap: dict[str, str]) -> tup
     return changed, refs, unresolved
 
 
-def walk_roster(payload: Any, resolve: Resolver, remap: dict[str, str]) -> tuple[bool, int, list[str]]:
-    """Roster entries become [{ "id": "<GUID>" }]; the file formatVersion -> "3.0"."""
+def walk_roster(
+    payload: Any,
+    resolve: Resolver,
+    remap: dict[str, str],
+    drop_unresolved: bool = False,
+) -> tuple[bool, int, list[str]]:
+    """Roster entries become [{ "id": "<GUID>" }]; the file formatVersion -> "3.0".
+
+    Unresolvable entries are left in place (unremapped) by default; with
+    ``drop_unresolved`` they are omitted from the rewritten roster.
+    """
     entries = payload.get("characters") if isinstance(payload, dict) else None
     if not isinstance(entries, list):
         entries = []
-    next_entries: list[dict] = []
+    next_entries: list[Any] = []
     seen: set[str] = set()
     changed = False
     refs = 0
@@ -474,10 +484,14 @@ def walk_roster(payload: Any, resolve: Resolver, remap: dict[str, str]) -> tuple
             surface = clean_text(entry.get("id")) or clean_text(entry.get("name"))
         if not surface:
             unresolved.append(f"entry {index}: {entry!r}")
+            if not drop_unresolved:
+                next_entries.append(entry)  # left in place, unremapped
             continue
         resolved = resolve(surface)
         if resolved is None:
             unresolved.append(f"entry {index}: {entry!r}")
+            if not drop_unresolved:
+                next_entries.append(entry)  # left in place, unremapped
             continue
         key = lookup_key(remap[resolved])
         if key in seen:
@@ -641,7 +655,8 @@ class MigrationPlan:
         default_factory=lambda: {"dialogueRefs": 0, "rosterRefs": 0, "voiceRefs": 0, "manifestRefs": 0}
     )
     violations: list[str] = field(default_factory=list)
-    roster_unresolved: list[str] = field(default_factory=list)
+    unresolved_refs: list[str] = field(default_factory=list)  # left in place, unremapped
+    resolve: Resolver | None = field(default=None, compare=False)  # for the stage-5d site-aware rescan
     v1_script_only: list[str] = field(default_factory=list)
     noop: bool = False
 
@@ -686,6 +701,7 @@ def build_plan(
 
     # Stage 1b: walk every reference family.
     resolve = make_resolver(ids, names)
+    plan.resolve = resolve
 
     for chapter in discover_chapters(book_root):
         # <Ch>/dialogue.json (four reference sites)
@@ -696,7 +712,7 @@ def build_plan(
             copy = deepcopy(dialogue)
             changed, refs, unresolved = walk_dialogue(copy, resolve, remap)
             plan.counts["dialogueRefs"] += refs
-            plan.violations.extend(f"{dialogue_path.relative_to(book_root)}: {site}" for site in unresolved)
+            plan.unresolved_refs.extend(f"{dialogue_path.relative_to(book_root)}: {site}" for site in unresolved)
             if changed:
                 plan.ref_changes[dialogue_path] = copy
         elif (chapter / f"{chapter.name}.script.json").is_file():
@@ -710,9 +726,9 @@ def build_plan(
         if roster is not None:
             plan.inventory.add(roster_path)
             copy = deepcopy(roster)
-            changed, refs, unresolved = walk_roster(copy, resolve, remap)
+            changed, refs, unresolved = walk_roster(copy, resolve, remap, drop_unresolved)
             plan.counts["rosterRefs"] += refs
-            plan.roster_unresolved.extend(
+            plan.unresolved_refs.extend(
                 f"{roster_path.relative_to(book_root)}: {site}" for site in unresolved
             )
             if changed:
@@ -726,7 +742,7 @@ def build_plan(
         copy = deepcopy(voices)
         changed, refs, unresolved = walk_voices(copy, resolve, remap)
         plan.counts["voiceRefs"] += refs
-        plan.violations.extend(f"voices.json: {site}" for site in unresolved)
+        plan.unresolved_refs.extend(f"voices.json: {site}" for site in unresolved)
         if changed:
             plan.ref_changes[voices_path] = copy
 
@@ -739,15 +755,14 @@ def build_plan(
         copy = deepcopy(manifest)
         changed, refs, unresolved = walk_manifest(copy, resolve, remap)
         plan.counts["manifestRefs"] += refs
-        plan.violations.extend(
+        plan.unresolved_refs.extend(
             f"{manifest_path.relative_to(book_root)}: {site}" for site in unresolved
         )
         if changed:
             plan.ref_changes[manifest_path] = copy
 
-    # Stage 3: roster unresolved entries abort unless --drop-unresolved.
-    if not drop_unresolved:
-        plan.violations.extend(plan.roster_unresolved)
+    # Unresolvable references never abort: they are left in place,
+    # unremapped (see walk_roster for the --drop-unresolved variant).
 
     return plan
 
@@ -797,22 +812,79 @@ def atomic_write_json(path: Path, payload: Any) -> None:
         raise
 
 
-def _find_stale(node: Any, old_ids: set[str]) -> bool:
-    if isinstance(node, str):
-        return node in old_ids
-    if isinstance(node, dict):
-        return any(key in old_ids or _find_stale(value, old_ids) for key, value in node.items())
-    if isinstance(node, list):
-        return any(_find_stale(item, old_ids) for item in node)
+def _stale_site_value(value: Any, resolve: Resolver, remap: dict[str, str]) -> bool:
+    """True when a reference-site value still carries a RESOLVABLE v2 value
+    (the walker should have remapped it). Unresolvable values — left in place
+    by design — the narrator sentinel (left literal by the walkers) and plain
+    text content are out of scope."""
+    if not isinstance(value, str) or not value:
+        return False
+    text = clean_text(value)
+    if not text or text == NARRATOR_SENTINEL:
+        return False
+    rid = resolve(text)
+    return rid is not None and value != remap[rid]
+
+
+def _payload_has_stale_site(payload: Any, resolve: Resolver, remap: dict[str, str]) -> bool:
+    """Walks exactly the inventoried reference sites (the same sites the
+    walkers remap): dialogue lines/candidates/attribution +
+    stats.characterBreakdown keys, roster entries, voices assignments +
+    usedByCharacters, manifest top-level + per-clip characterId. A dialogue
+    line whose TEXT merely contains a slug word is NOT a stale site."""
+    if not isinstance(payload, dict):
+        return False
+    for line in payload.get("lines") or []:
+        if not isinstance(line, dict):
+            continue
+        if _stale_site_value(line.get("characterId"), resolve, remap):
+            return True
+        for cand in line.get("candidates") or []:
+            if isinstance(cand, dict) and _stale_site_value(cand.get("characterId"), resolve, remap):
+                return True
+        attribution = line.get("attribution")
+        if isinstance(attribution, dict):
+            for cand in attribution.get("candidates") or []:
+                if isinstance(cand, dict) and _stale_site_value(cand.get("characterId"), resolve, remap):
+                    return True
+    stats = payload.get("stats")
+    breakdown = stats.get("characterBreakdown") if isinstance(stats, dict) else None
+    if isinstance(breakdown, dict):
+        for key in breakdown:
+            if _stale_site_value(key, resolve, remap):
+                return True
+    for entry in payload.get("characters") or []:
+        if isinstance(entry, str):
+            if _stale_site_value(entry, resolve, remap):
+                return True
+        elif isinstance(entry, dict):
+            if _stale_site_value(entry.get("id"), resolve, remap) or _stale_site_value(entry.get("name"), resolve, remap):
+                return True
+    for assignment in payload.get("assignments") or []:
+        if isinstance(assignment, dict) and _stale_site_value(assignment.get("characterId"), resolve, remap):
+            return True
+    for voice in payload.get("voices") or []:
+        if not isinstance(voice, dict):
+            continue
+        metadata = voice.get("metadata")
+        if isinstance(metadata, dict):
+            for name in metadata.get("usedByCharacters") or []:
+                if _stale_site_value(name, resolve, remap):
+                    return True
+    if _stale_site_value(payload.get("characterId"), resolve, remap):
+        return True
+    for clip in payload.get("clips") or []:
+        if isinstance(clip, dict) and _stale_site_value(clip.get("characterId"), resolve, remap):
+            return True
     return False
 
 
 def rescan_for_stale_ids(book_root: Path, plan: MigrationPlan) -> list[str]:
-    """Stage 5d: assert zero occurrences of any v2 slug across ALL
-    inventoried reference families (every string value and dict key,
-    exact match)."""
-    old_ids = set(plan.remap)
-    if not old_ids:
+    """Stage 5d: assert that no inventoried REFERENCE SITE still carries a
+    resolvable v2 value. Ordinary text (line bodies, notes) and
+    unresolvable values (left in place by design) are out of scope."""
+    resolve = plan.resolve
+    if resolve is None or not plan.remap:
         return []
     stale: list[str] = []
     for path in sorted(plan.inventory):
@@ -823,7 +895,7 @@ def rescan_for_stale_ids(book_root: Path, plan: MigrationPlan) -> list[str]:
         except ValueError:
             stale.append(str(path.relative_to(book_root)))
             continue
-        if _find_stale(payload, old_ids):
+        if _payload_has_stale_site(payload, resolve, plan.remap):
             stale.append(str(path.relative_to(book_root)))
     return stale
 
@@ -877,12 +949,12 @@ def print_report(plan: MigrationPlan, book_root: Path, legacy_path: Path, backup
         f"dialogue {counts['dialogueRefs']} · roster {counts['rosterRefs']} · "
         f"voices {counts['voiceRefs']} · manifests {counts['manifestRefs']}"
     )
-    if plan.roster_unresolved:
-        print(f"Unresolved roster entries: {len(plan.roster_unresolved)}")
-        for item in plan.roster_unresolved:
+    if plan.unresolved_refs:
+        print(f"Unresolved references (left in place, unremapped): {len(plan.unresolved_refs)}")
+        for item in plan.unresolved_refs:
             print(f"  - {item}")
     else:
-        print("Unresolved roster entries: none")
+        print("Unresolved references: none")
     if plan.v1_script_only:
         print("v1-script-only chapters (name-based, left untouched):")
         for chapter in plan.v1_script_only:

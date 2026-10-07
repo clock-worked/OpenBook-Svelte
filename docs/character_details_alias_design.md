@@ -28,7 +28,7 @@ Five stages (full algorithm: `docs/schema_characters_v3.md` + the guardian's sui
 0. **Idempotency gate (read-only):** folder with valid unique GUIDs → no-op exit. Folder **and** `characters.json` → **abort** (crashed prior run; never guess). Neither → v1 path (R11) or fresh book.
 1. **Inventory:** parse `characters.json`; validate uniqueness/ambiguity (reusing `migrate_chapter_character_ids.py:105-151` logic); walk every reference family (dialogue 4 sites, rosters, voices, manifests); filename-collision check.
 2. **Deterministic minting:** `SHA-256(book::v3::v2-id)` → 5 bytes → 8-char Crockford; sorted by `firstAppearance` then title for stability.
-3. **Validation gates:** any hit → abort, zero writes (parse failures, duplicates, unresolvable refs, co-existence, mint collision).
+3. **Validation gates:** any hit → abort, zero writes (parse failures, duplicate ids, filename collisions, ambiguous names, mint collision, in-flight co-existence). **Unresolvable dialogue/voices/manifest/roster references do NOT abort** — they are left in place, unremapped (the v2 runtime already tolerated them), and reported as `unresolvedRefs`; the Python script's `--drop-unresolved` instead drops unresolvable roster entries.
 4. **Backup:** `_backups/character-v3/<UTC-ts>/` mirroring relative paths of every file that will change (incl. the retired `characters.json`).
 5. **Ordered apply:** write all `characters/*.json` (atomic) → remap + atomically write every touched reference file → **last**, delete root `characters.json` → **post-apply rescan asserting zero surviving v2 slugs** across all families.
 

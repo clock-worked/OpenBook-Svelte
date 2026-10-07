@@ -27,17 +27,20 @@
 //      py_services/character_store.py). Mint order: clusters sorted by
 //      firstAppearance (nulls last) then title (casefold).
 //   3. Validation gates: any hit → abort, zero writes (parse failures,
-//      duplicate ids, duplicate filenames, ambiguous names, unresolvable
-//      dialogue/voices/manifest references, unresolvable roster entries,
-//      minted-GUID collisions, in-flight co-existence).
+//      duplicate ids, duplicate filenames, ambiguous names, minted-GUID
+//      collisions, in-flight co-existence). Unresolvable dialogue/voices/
+//      manifest/roster references do NOT abort: they are left in place,
+//      unremapped (the v2 runtime already tolerated them) and counted in
+//      the result as `unresolvedRefs`.
 //   4. Backup: _backups/character-v3/<UTC ts>/ mirroring the relative path
 //      of every file that will change (the legacy store + every touched
 //      reference file).
 //   5. Ordered apply (crash-safe): (a) write all characters/<Title>.json →
 //      (b) remap + write every touched reference file (exact
 //      old-id → GUID substitution at every inventoried site) → (c) LAST,
-//      delete the legacy store → (d) post-apply rescan asserting zero
-//      occurrences of any v2 slug across all inventoried reference families.
+//      delete the legacy store → (d) post-apply rescan asserting that no
+//      inventoried REFERENCE SITE carries a resolvable v2 value (plain text
+//      and unresolvable values left in place are out of scope).
 //
 // Crash-safety: the stage ordering plus the stage-0 idempotency gate make a
 // mid-run crash resumable by re-open. A crash between stages 4 and 5 leaves
@@ -82,6 +85,7 @@ export interface V3MigrationResult {
     createdCharacterFiles: string[];
     retiredLegacy: boolean; // the legacy store file was deleted
     remap: Record<string, string>; // v2 id/slug → guid
+    unresolvedRefs: number; // references left in place, unremapped
     counts: {
         clusters: number;
         dialogueRefs: number;
@@ -516,11 +520,13 @@ function walkRoster(payload: any, resolve: Resolver, remap: Record<string, strin
         else if (entry && typeof entry === 'object') surface = cleanText(entry.id) ?? cleanText(entry.name);
         if (!surface) {
             unresolved.push(`entry ${index}: ${JSON.stringify(entry)}`);
+            next.push(entry); // left in place, unremapped
             return;
         }
         const id = resolve(surface);
         if (!id) {
             unresolved.push(`entry ${index}: ${JSON.stringify(entry)}`);
+            next.push(entry); // left in place, unremapped
             return;
         }
         const key = lookupKey(remap[id]);
@@ -786,20 +792,83 @@ async function writeReferenceFile(root: string, change: ReferenceChange): Promis
     }
 }
 
-function containsStaleId(node: any, oldIds: Set<string>): boolean {
-    if (typeof node === 'string') return oldIds.has(node);
-    if (Array.isArray(node)) return node.some((item) => containsStaleId(item, oldIds));
-    if (node && typeof node === 'object') {
-        return Object.entries(node).some(([key, value]) => oldIds.has(key) || containsStaleId(value, oldIds));
+function isStaleSiteValue(value: any, resolve: Resolver, remap: Record<string, string>): boolean {
+    // True when a reference-site value still carries a RESOLVABLE v2 value
+    // (the walker should have remapped it). Unresolvable values — left in
+    // place by design — the narrator sentinel (left literal by the walkers)
+    // and plain text content are out of scope.
+    if (typeof value !== 'string' || !value) return false;
+    const text = cleanText(value);
+    if (!text || text === NARRATOR_SENTINEL) return false;
+    const id = resolve(text);
+    return id != null && value !== remap[id];
+}
+
+function payloadHasStaleSite(payload: any, resolve: Resolver, remap: Record<string, string>): boolean {
+    // Walks exactly the inventoried reference sites (the same sites the
+    // walkers remap). A dialogue line whose TEXT merely contains a slug
+    // word is NOT a stale site.
+    if (!payload || typeof payload !== 'object') return false;
+
+    // <Ch>/dialogue.json — four reference sites.
+    for (const line of Array.isArray(payload.lines) ? payload.lines : []) {
+        if (!line || typeof line !== 'object') continue;
+        if (isStaleSiteValue(line.characterId, resolve, remap)) return true;
+        for (const cand of Array.isArray(line.candidates) ? line.candidates : []) {
+            if (cand && typeof cand === 'object' && isStaleSiteValue(cand.characterId, resolve, remap)) return true;
+        }
+        const attribution = line.attribution;
+        if (attribution && typeof attribution === 'object') {
+            for (const cand of Array.isArray(attribution.candidates) ? attribution.candidates : []) {
+                if (cand && typeof cand === 'object' && isStaleSiteValue(cand.characterId, resolve, remap)) return true;
+            }
+        }
+    }
+    const breakdown = payload.stats && typeof payload.stats === 'object' ? payload.stats.characterBreakdown : null;
+    if (breakdown && typeof breakdown === 'object') {
+        for (const key of Object.keys(breakdown)) {
+            if (isStaleSiteValue(key, resolve, remap)) return true;
+        }
+    }
+
+    // <Ch>/<Ch>.characters.json — roster entries.
+    for (const entry of Array.isArray(payload.characters) ? payload.characters : []) {
+        if (typeof entry === 'string') {
+            if (isStaleSiteValue(entry, resolve, remap)) return true;
+        } else if (entry && typeof entry === 'object') {
+            if (isStaleSiteValue(entry.id, resolve, remap) || isStaleSiteValue(entry.name, resolve, remap)) return true;
+        }
+    }
+
+    // voices.json — assignments + usedByCharacters.
+    for (const assignment of Array.isArray(payload.assignments) ? payload.assignments : []) {
+        if (assignment && typeof assignment === 'object' && isStaleSiteValue(assignment.characterId, resolve, remap)) return true;
+    }
+    for (const voice of Array.isArray(payload.voices) ? payload.voices : []) {
+        if (!voice || typeof voice !== 'object' || !voice.metadata || typeof voice.metadata !== 'object') continue;
+        for (const name of Array.isArray(voice.metadata.usedByCharacters) ? voice.metadata.usedByCharacters : []) {
+            if (isStaleSiteValue(name, resolve, remap)) return true;
+        }
+    }
+
+    // audio manifest — top-level + per-clip.
+    if (isStaleSiteValue(payload.characterId, resolve, remap)) return true;
+    for (const clip of Array.isArray(payload.clips) ? payload.clips : []) {
+        if (clip && typeof clip === 'object' && isStaleSiteValue(clip.characterId, resolve, remap)) return true;
     }
     return false;
 }
 
-/** Stage 5d: assert zero occurrences of any v2 slug across ALL inventoried
- *  reference families (every string value and object key, exact match). */
-async function rescanForStaleIds(root: string, inventory: Set<string>, remap: Record<string, string>): Promise<string[]> {
-    const oldIds = new Set(Object.keys(remap));
-    if (oldIds.size === 0) return [];
+/** Stage 5d: assert that no inventoried REFERENCE SITE still carries a
+ *  resolvable v2 value. Ordinary text and unresolvable values (left in
+ *  place by design) are out of scope. */
+async function rescanForStaleIds(
+    root: string,
+    inventory: Set<string>,
+    remap: Record<string, string>,
+    resolve: Resolver,
+): Promise<string[]> {
+    if (Object.keys(remap).length === 0) return [];
     const stale: string[] = [];
     for (const relPath of [...inventory].sort()) {
         const text = await readTextFile(relPath);
@@ -811,7 +880,7 @@ async function rescanForStaleIds(root: string, inventory: Set<string>, remap: Re
             stale.push(relPath);
             continue;
         }
-        if (containsStaleId(payload, oldIds)) stale.push(relPath);
+        if (payloadHasStaleSite(payload, resolve, remap)) stale.push(relPath);
     }
     return stale;
 }
@@ -821,6 +890,7 @@ interface ApplyPlan {
     remap: Record<string, string>;
     changes: ReferenceChange[];
     inventory: Set<string>;
+    resolve: Resolver; // for the stage-5d site-aware rescan
 }
 
 async function applyPlan(
@@ -875,7 +945,7 @@ async function applyPlan(
     writtenSoFar.push(legacyRelPath);
 
     // Stage 5d: post-apply rescan (mandatory before success).
-    const stale = await rescanForStaleIds(root, plan.inventory, plan.remap);
+    const stale = await rescanForStaleIds(root, plan.inventory, plan.remap, plan.resolve);
     if (stale.length > 0) {
         return {
             ...started,
@@ -913,6 +983,7 @@ function emptyResult(): V3MigrationResult {
         createdCharacterFiles: [],
         retiredLegacy: false,
         remap: {},
+        unresolvedRefs: 0,
         counts: { clusters: 0, dialogueRefs: 0, rosterRefs: 0, voiceRefs: 0, manifestRefs: 0 },
     };
 }
@@ -966,12 +1037,9 @@ async function migrateStoreToV3(
         )];
         const resolve = makeResolver(ids, names);
         const inventory = await inventoryReferences(root, chapterNames, surfaceNames, resolve, remap);
-        violations.push(
-            ...inventory.unresolved.dialogue,
-            ...inventory.unresolved.voices,
-            ...inventory.unresolved.manifest,
-            ...inventory.unresolved.roster,
-        );
+        // Unresolvable references do NOT abort: they are left in place,
+        // unremapped (counted below as unresolvedRefs). The gates above
+        // (record issues, GUID collisions) are the only validation aborts.
         if (inventory.v1ScriptOnlyChapters.length > 0) {
             // R11: explicit flag, one line per v1-script-only chapter.
             inventory.v1ScriptOnlyChapters.forEach((chapter) => {
@@ -1008,10 +1076,17 @@ async function migrateStoreToV3(
             remap,
             changes: inventory.changes,
             inventory: inventory.inventory,
+            resolve,
         };
+        const unresolvedRefs =
+            inventory.unresolved.dialogue.length +
+            inventory.unresolved.voices.length +
+            inventory.unresolved.manifest.length +
+            inventory.unresolved.roster.length;
         const result = await applyPlan(root, spec.legacyRelPath, plan, {
             ...base,
             remap,
+            unresolvedRefs,
             counts: {
                 clusters: clusters.length,
                 dialogueRefs: inventory.counts.dialogueRefs,
@@ -1023,7 +1098,10 @@ async function migrateStoreToV3(
         if (result.ok) {
             console.log(
                 `[characterMigration] v3 migration (${spec.mode}) complete: ${result.createdCharacterFiles.length} character files, ` +
-                `${result.changedFiles.length} files changed`,
+                `${result.changedFiles.length} files changed` +
+                (result.unresolvedRefs > 0
+                    ? `, ${result.unresolvedRefs} unresolvable references left in place (unremapped)`
+                    : ''),
             );
         }
         return result;

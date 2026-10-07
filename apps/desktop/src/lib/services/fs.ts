@@ -704,9 +704,18 @@ export async function listCharacterFiles(root: string): Promise<string[]> {
 /**
  * Read a single character file from the book's `characters/` folder.
  * Returns null when the file does not exist.
+ *
+ * `silent` suppresses the error logging for the missing-file case: callers in
+ * the mutation/store path treat "no file yet" as a normal outcome (e.g. a
+ * pre-migration book, or a character that was never file-backed), and the
+ * noisy console.error would fire on every such operation.
  */
-export async function readCharacterFile(root: string, fileName: string): Promise<any | null> {
-  return readFileAsJson<any>(`characters/${fileName}`);
+export async function readCharacterFile(
+  root: string,
+  fileName: string,
+  silent = false,
+): Promise<any | null> {
+  return readFileAsJson<any>(`characters/${fileName}`, !silent);
 }
 
 /**

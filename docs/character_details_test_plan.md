@@ -32,7 +32,7 @@ Shared fixture: hermetic `Book-9` with 3 clusters (aliases, gender, color, descr
 | M12 | unrelated files untouched | `diff_tree(before, after)` == exact allowlist; decoys byte-identical |
 | M13 | kill mid-migration is recoverable | fault injection (writer raises / `os._exit` after 2nd of N writes): no torn file (all JSON parses); backup-restore reproduces the pre-migration tree byte-for-byte |
 | M14 | dry-run is the default | zero writes (incl. no backup dir); report returned |
-| M15 | validation aborts before any write | duplicate titles (exact + case/whitespace variants) → abort, names the collision, zero writes; unresolvable dialogue ref → abort (roster: abort unless `--drop-unresolved`) |
+| M15 | validation gates + unresolvable refs | duplicate titles (exact + case/whitespace variants) → abort, names the collision, zero writes; unresolvable dialogue ref → **left in place, unremapped**, migration proceeds (roster: left in place unless `--drop-unresolved`, which drops the entry) |
 | M16 | BOM + non-ASCII | `utf-8-sig` read; `Café`, `—`, CJK titles round-trip; output UTF-8 no BOM; filenames safe |
 | M17 | consumer equivalence after migration | on the same logical book, v2 readers and v3 folder readers **agree**: `load_character_lookup` identical name→canonical map; `build_closed_world_catalog` (folder) == catalog (v2 file); `update_character_stats` on migrated tree == pre-migration stats |
 

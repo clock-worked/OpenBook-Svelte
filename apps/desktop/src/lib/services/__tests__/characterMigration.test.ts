@@ -289,6 +289,31 @@ describe('characterMigration (FE module)', () => {
     expect(diffTree(before, inMemoryFs.__snapshot())).toEqual({ added: [], deleted: [], changed: [] });
   });
 
+  it('v2 → v3: unresolvable references are left in place, unremapped (no abort) and counted in unresolvedRefs', async () => {
+    seedV2Book();
+    // A dialogue reference + a roster entry pointing at a name with no cluster.
+    const dialogue = inMemoryFs.__readJson('Chapter1/dialogue.json');
+    dialogue.lines.push({ id: 99, characterId: 'ghost', text: '???' });
+    inMemoryFs.__seed({ 'Chapter1/dialogue.json': dialogue });
+    const roster = inMemoryFs.__readJson('Chapter1/Chapter1.characters.json');
+    roster.characters.push({ id: 'ghost' });
+    inMemoryFs.__seed({ 'Chapter1/Chapter1.characters.json': roster });
+
+    const result = await migrateCharactersV2ToV3(ROOT, ['Chapter1', 'Chapter2']);
+
+    expect(result.ok).toBe(true);
+    expect(result.abortReason).toBeUndefined();
+    expect(result.unresolvedRefs).toBe(2);
+    // The ghost references survive verbatim, unremapped.
+    const afterDialogue = inMemoryFs.__readJson('Chapter1/dialogue.json');
+    expect(afterDialogue.lines.some((line: any) => line.characterId === 'ghost')).toBe(true);
+    const afterRoster = inMemoryFs.__readJson('Chapter1/Chapter1.characters.json');
+    expect(afterRoster.characters).toContainEqual({ id: 'ghost' });
+    // The rest of the migration proceeds.
+    expect(inMemoryFs.__has('characters.json')).toBe(false);
+    expect(inMemoryFs.__has('characters/Alice.json')).toBe(true);
+  });
+
   it('v1 → v3: name-keyed book.characters.json migrates with mapped genders (m/f/u) and valid deterministic GUIDs; legacy store deleted; v1 script stays name-based; zero old slugs tree-wide (R11)', async () => {
     inMemoryFs.__reset();
     inMemoryFs.__seed({

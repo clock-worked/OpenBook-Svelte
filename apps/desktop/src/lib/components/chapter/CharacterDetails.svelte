@@ -120,7 +120,7 @@
       </button>
     {/if}
 
-    <!-- Stats: one column, three rows -->
+    <!-- Stats: three columns, one row -->
     <div class="stats-block">
       <div class="stat-row">
         <span class="meta-label">Lines this chapter</span>
@@ -283,8 +283,8 @@
   /* Stats (meta-label idiom from SpeakerCard) */
   .stats-block {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    flex-direction: row;
+    gap: 12px;
     padding: 8px 10px;
     border: 1px solid var(--app-border-subtle);
     border-radius: 6px;
@@ -295,6 +295,8 @@
     display: flex;
     flex-direction: column;
     gap: 2px;
+    flex: 1;
+    min-width: 0;
   }
 
   .meta-label {

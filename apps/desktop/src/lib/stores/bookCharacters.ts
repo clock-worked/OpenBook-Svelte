@@ -30,6 +30,12 @@ import { unassignVoicesFromCharacters } from '$lib/stores/speakers';
 
 export const bookCharacters = writable<CharactersJson>({ formatVersion: '2.0', characters: [] });
 
+// The auto-migration abort notice is surfaced at most ONCE per book root:
+// the chapters subscription re-fires the load on every chapter change, and a
+// persistent abort (e.g. a crashed prior migration) must not re-alert on each
+// navigation. A fresh page load resets the flag.
+let migrationAlertRoot: string | null = null;
+
 let _loadBookCharTimer: ReturnType<typeof setTimeout> | null = null;
 function loadBookCharacters() {
   // Debounce: bookRoot and chapters both subscribe and can fire together
@@ -53,7 +59,14 @@ async function _loadBookCharactersImpl() {
       parsed: chapter.parsed,
       scriptPath: chapter.scriptPath,
     }));
-    const loaded = await loadBookCharactersData(root, chapterList);
+    const loaded = await loadBookCharactersData(root, chapterList, (notice) => {
+      if (!notice.ok && migrationAlertRoot !== root) {
+        migrationAlertRoot = root;
+        // A migration abort was previously invisible (console.warn only) —
+        // the book silently stays v2 and v3 ops fail with "file not found".
+        alert(notice.message);
+      }
+    });
     bookCharacters.set(loaded);
   } catch (err) {
     console.error('Error loading book characters:', err);
@@ -120,7 +133,9 @@ async function readCharacterRecord(name: string): Promise<CharacterFileRecord | 
   const character = get(bookCharacters).characters.find((c) => c.name === name);
   if (!character) return null;
   const fileName = `${sanitizeCharacterFileName(character.name)}.json`;
-  const data: any = await readCharacterFile(root, fileName);
+  // silent: a missing file is a normal outcome here (pre-migration book, or
+  // a record that is not file-backed yet) — no console.error noise.
+  const data: any = await readCharacterFile(root, fileName, true);
   if (!data || typeof data !== 'object') return null;
   return { fileName, data: data as CharacterFile };
 }
