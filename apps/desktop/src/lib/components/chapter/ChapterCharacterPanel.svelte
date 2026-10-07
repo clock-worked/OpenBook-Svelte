@@ -4,7 +4,7 @@
   import { currentChapter, bookRoot, bookRootAbsolutePath, currentScript, chapters } from '$lib/stores/bookState';
   import { selection, conflictCursor } from '$lib/stores/selection';
   import { characters, colorForCharacter, rgbaToOpaqueHex, opaqueHexToRgba, refreshChapterCharactersFromFile } from '$lib/stores/characters';
-  import { getScriptPath, readScript, writeScript, writeCentralCharacters, readCentralCharacters, getCharactersPath } from '$lib/services/fs';
+  import { getScriptPath, readScript, writeScript, writeCentralCharacters, getCharactersPath } from '$lib/services/fs';
   import { loadChapterCharactersData, persistChapterCharactersData } from '$lib/services/chapterCharacterRepository';
   import { API_ENDPOINTS, apiFetch } from '$lib/services/apiClient';
   // removed generateChapterAudio per UI change
@@ -15,12 +15,12 @@
   import ChapterJevPanel from './ChapterJevPanel.svelte';
   import ChapterCharacterList from './ChapterCharacterList.svelte';
   import ChapterCharacterBookList from './ChapterCharacterBookList.svelte';
-  import ChapterCharacterDetails from './ChapterCharacterDetails.svelte';
+  import CharacterDetails from './CharacterDetails.svelte';
   import ClosedWorldCharacterReview from './ClosedWorldCharacterReview.svelte';
   import Dropdown from '$lib/components/common/Dropdown.svelte';
-  import { addBookCharacter, setBookCharacterColor, setBookCharacterGender, renameBookCharacter, removeBookCharacter, bookCharacters, detachBookCharacterAlias, forceRefreshBookCharacters, mergeBookCharacters, setBookCharacterPrimaryName } from '$lib/stores/bookCharacters';
+  import { addBookCharacter, addBookCharacterAlias, setBookCharacterColor, setBookCharacterGender, renameBookCharacter, removeBookCharacter, bookCharacters, detachBookCharacterAlias, setBookCharacterDescriptors, forceRefreshBookCharacters, mergeBookCharacters } from '$lib/stores/bookCharacters';
   import { buildClosedWorldReviewItems, resolveClosedWorldCandidateAsAlias, type ClosedWorldReviewItem } from '$lib/services/closedWorldCharacterWorkflow';
-  import { normalizeCharacterGender } from '$lib/services/characterGender';
+  import { computeChapterLineCounts } from '$lib/services/characterChapterStats';
   import {
     dialogueAiAssistState,
     dialogueAiAssistVisibleResults,
@@ -39,8 +39,6 @@
   const selectionActive = writable<boolean>(false);
   // removed master tab; panel only shows chapter characters
 
-  let editingIndex: number | null = null;
-  let editingValue: string = '';
   let openColorIndex: number | null = null;
   let newCharacterName: string = '';
   let newCharacterColor: string | null = null;
@@ -54,7 +52,10 @@
   let sortMode: SortMode = 'name';
   let activeTab: ChapterPanelTab = 'characters';
   let bookListOpen = false;
-  let selectedBookCharacterName: string | null = null;
+  // Unified selection: fed by BOTH the book pill list and the chapter row
+  // click; the details card derives everything from this single variable.
+  let selectedCharacterName: string | null = null;
+  let _selectionChapterKey: string | null = null;
   let lastAiRunning = false;
   let lastLocalAiRunning = false;
   let lastJevAiRunning = false;
@@ -149,55 +150,9 @@
     return String(name || '').trim().toLowerCase();
   }
 
-  function slugifyCharacterId(name: string): string {
-    const cleaned = name
-      .trim()
-      .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, '')
-      .replace(/\s+/g, ' ')
-      .trim();
-    return cleaned.length ? cleaned.replace(/\s/g, '-') : 'character';
-  }
-
-  function buildUniqueCharacterId(name: string, existingIds: Set<string>): string {
-    let id = slugifyCharacterId(name);
-    let suffix = 2;
-    while (existingIds.has(id)) {
-      id = `${slugifyCharacterId(name)}-${suffix}`;
-      suffix += 1;
-    }
-    existingIds.add(id);
-    return id;
-  }
-
-  function createBookCharacterRecord(name: string, overrides: Partial<Character> = {}): Character {
-    return {
-      id: typeof overrides.id === 'string' ? overrides.id : '',
-      name,
-      gender: normalizeCharacterGender(overrides.gender),
-      aliases: Array.isArray(overrides.aliases) ? overrides.aliases : [],
-      color: null,
-      notes: '',
-      stats: {
-        totalLines: 0,
-        chapterCount: 0,
-      },
-      voice: null,
-      provider: null,
-      voiceId: null,
-      voiceMeta: null,
-      manifestStats: null,
-      count: 0,
-      firstAppearance: null,
-      chapterCount: 0,
-      ...overrides,
-    } as Character;
-  }
-
   $: {
     // Reset transient UI state on chapter change
     if ($currentChapter) {
-      editingIndex = null;
       openColorIndex = null;
     }
   }
@@ -245,86 +200,10 @@
     return others;
   })();
 
-  // Total line counts for each character (book-wide)
-  $: totalLineCounts = (() => {
-    const counts = new Map<string, number>();
-    const aliasToCanonical = new Map<string, string>();
-    for (const character of $bookCharacters.characters) {
-      const aliases = Array.isArray(character.aliases) ? character.aliases : [];
-      for (const alias of aliases) {
-        const key = normalizeCharacterKey(alias);
-        if (key) aliasToCanonical.set(key, character.name);
-      }
-    }
-
-    const baseCounts = new Map<string, number>();
-    for (const character of $bookCharacters.characters) {
-      const key = normalizeCharacterKey(character.name);
-      baseCounts.set(key, (baseCounts.get(key) || 0) + (character.count || 0));
-    }
-
-    const canonicalTotals = new Map<string, number>();
-    for (const character of $bookCharacters.characters) {
-      const key = normalizeCharacterKey(character.name);
-      canonicalTotals.set(character.name, baseCounts.get(key) || 0);
-    }
-
-    for (const [aliasKey, canonical] of aliasToCanonical.entries()) {
-      const canonicalCount = canonicalTotals.get(canonical) || 0;
-      const aliasCount = baseCounts.get(aliasKey) || 0;
-      canonicalTotals.set(canonical, canonicalCount + aliasCount);
-    }
-
-    for (const [name, count] of canonicalTotals.entries()) {
-      counts.set(name, count);
-    }
-
-    for (const character of $bookCharacters.characters) {
-      const aliases = Array.isArray(character.aliases) ? character.aliases : [];
-      for (const alias of aliases) {
-        counts.set(alias, canonicalTotals.get(character.name) || 0);
-      }
-    }
-    return counts;
-  })();
-
-  // Chapter-specific line counts for jump-to-next
-  $: chapterLineCounts = (() => {
-    const counts = new Map<string, number>();
-    const scr = $currentScript;
-    if (!scr) return counts;
-    const aliasToCanonical = new Map<string, string>();
-    const canonicalToAliases = new Map<string, Set<string>>();
-    const nameToCanonical = new Map<string, string>();
-    for (const character of $bookCharacters.characters) {
-      const canonicalKey = normalizeCharacterKey(character.name);
-      if (canonicalKey) nameToCanonical.set(canonicalKey, character.name);
-      const aliases = Array.isArray(character.aliases) ? character.aliases : [];
-      for (const alias of aliases) {
-        const key = normalizeCharacterKey(alias);
-        if (!key) continue;
-        aliasToCanonical.set(key, character.name);
-        if (!canonicalToAliases.has(character.name)) {
-          canonicalToAliases.set(character.name, new Set());
-        }
-        canonicalToAliases.get(character.name)?.add(alias);
-      }
-    }
-    for (const line of scr.lines) {
-      if (line.chosenSpeaker) {
-        const key = normalizeCharacterKey(line.chosenSpeaker);
-        const canonical = aliasToCanonical.get(key) || nameToCanonical.get(key) || line.chosenSpeaker;
-        counts.set(canonical, (counts.get(canonical) || 0) + 1);
-      }
-    }
-    for (const [canonical, aliases] of canonicalToAliases.entries()) {
-      const canonicalCount = counts.get(canonical) || 0;
-      for (const alias of aliases) {
-        counts.set(alias, canonicalCount);
-      }
-    }
-    return counts;
-  })();
+  // Chapter-specific line counts for the list badges + details stats.
+  // Extracted to a pure helper (GUID-keyed in v3, chosenSpeaker fallback for
+  // v1-script chapters) so the derivation is never duplicated.
+  $: chapterLineCounts = computeChapterLineCounts($currentScript?.lines, $bookCharacters.characters);
 
   $: sortedBookCharacters = (() => {
     const list = $bookCharacters.characters
@@ -333,48 +212,37 @@
     return list;
   })();
 
-  $: selectedBookCharacter = selectedBookCharacterName
-    ? $bookCharacters.characters.find(c => c.name === selectedBookCharacterName) ?? null
+  // The selected record, resolved from the folder-loaded store.
+  $: selectedCharacter = selectedCharacterName
+    ? $bookCharacters.characters.find(c => c.name === selectedCharacterName) ?? null
     : null;
 
-  $: if (selectedBookCharacterName && !$bookCharacters.characters.some(c => c.name === selectedBookCharacterName)) {
-    selectedBookCharacterName = null;
+  // ONE reactive cleanup rule: the selection is stale when the resolved record
+  // no longer exists, and it resets when the chapter changes. This replaces the
+  // old ad-hoc nulling sites scattered across delete/merge.
+  $: if ($currentChapter && _selectionChapterKey !== $currentChapter.title) {
+    _selectionChapterKey = $currentChapter.title;
+    selectedCharacterName = null;
+  }
+  $: if (selectedCharacterName && !$bookCharacters.characters.some(c => c.name === selectedCharacterName)) {
+    selectedCharacterName = null;
   }
 
-  $: selectedAliasItems = (() => {
-    if (!selectedBookCharacter) return [] as Array<{ name: string; isPrimary: boolean; count: number }>;
-    const aliases = Array.isArray(selectedBookCharacter.aliases) ? selectedBookCharacter.aliases : [];
-    const names = [selectedBookCharacter.name, ...aliases].filter((n, i, arr) => n && arr.indexOf(n) === i);
-    return names.map((name) => ({
-      name,
-      isPrimary: name === selectedBookCharacter.name,
-      count: totalLineCounts.get(name) || 0,
-    }));
-  })();
-
-  $: selectedBookColor = selectedBookCharacter
-    ? resolveCharacterColor(selectedBookCharacter.name, selectedBookCharacter.color ?? null)
-    : 'var(--app-primary-soft)';
+  // Line count for the selected character in the current chapter (card stat).
+  $: selectedChapterLineCount = selectedCharacterName
+    ? (chapterLineCounts.get(selectedCharacterName) ?? 0)
+    : 0;
 
   function resolveCharacterColor(name: string, colorOverride?: string | null): string {
     return rgbaToOpaqueHex(colorOverride ?? colorForCharacter(name), DISPLAY_ALPHA);
   }
 
   async function ensureBookCharacterExists(name: string): Promise<void> {
-    const root = get(bookRoot);
-    if (!root) return;
-    const data = await readCentralCharacters(root);
-    if (!data) return;
-    const list = data.characters ?? [];
-    if (list.some(c => c.name === name)) return;
-    const existingIds = new Set(list.map((character: any) => character?.id).filter((id): id is string => !!id));
-    const id = buildUniqueCharacterId(name, existingIds);
-    const next: CharactersJson = {
-      formatVersion: data.formatVersion || '2.0',
-      characters: [...list, createBookCharacterRecord(name, { id })]
-    };
-    await writeCentralCharacters(root, next);
-    await forceRefreshBookCharacters();
+    // v3: a new cluster gets a minted GUID + one characters/<Title>.json via
+    // the mutation service (no root characters.json write, invariant IN-2).
+    const data = get(bookCharacters);
+    if (data.characters.some(c => c.name === name)) return;
+    await addBookCharacter(name, 'Unknown');
   }
 
   async function updateChapterCharactersFileForChapter(
@@ -486,25 +354,47 @@
     }
 
     await removeBookCharacter(name);
-    if (selectedBookCharacterName === name) {
-      selectedBookCharacterName = null;
-    }
+    // Selection cleanup is handled by the single reactive rule above (the
+    // resolved record no longer exists once removed).
   }
 
   async function mergeBookCharactersByName(sourceName: string, targetName: string): Promise<void> {
     if (!sourceName || !targetName || sourceName === targetName) return;
-    await mergeBookCharacters(sourceName, targetName);
-    if (selectedBookCharacterName === sourceName) {
-      selectedBookCharacterName = targetName;
+    const result = await mergeBookCharacters(sourceName, targetName);
+    if (!result.ok && result.message) alert(result.message);
+    // Keep the selection pointed at the survivor (a deliberate re-point, not a
+    // cleanup).
+    if (selectedCharacterName === sourceName) {
+      selectedCharacterName = targetName;
     }
   }
 
-  async function setPrimaryBookCharacterName(aliasName: string): Promise<void> {
-    if (!selectedBookCharacter) return;
-    const currentName = selectedBookCharacter.name;
-    if (!aliasName || aliasName === currentName) return;
-    await setBookCharacterPrimaryName(currentName, aliasName);
-    selectedBookCharacterName = aliasName;
+  // === Details-card intent wiring (one-liners over the store actions) ===
+
+  async function commitCharacterTitle(newName: string): Promise<void> {
+    if (!selectedCharacter) return;
+    const result = await renameBookCharacter(selectedCharacter.name, newName);
+    // A title collision is a VISIBLE rejection (R7/IN-8) — never silent; the
+    // card stays on the old title (the store was not mutated).
+    if (!result.ok && result.message) {
+      alert(result.message);
+    } else if (result.ok) {
+      // Follow the survivor: keep the card pointed at the renamed character.
+      selectedCharacterName = newName;
+      if (result.warning) console.warn('[ChapterCharacterPanel] rename warning:', result.warning);
+    }
+  }
+
+  function addCharacterDescriptor(descriptor: string): void {
+    if (!selectedCharacter) return;
+    const descriptors = Array.isArray(selectedCharacter.descriptors) ? selectedCharacter.descriptors : [];
+    setBookCharacterDescriptors(selectedCharacter.name, [...descriptors, descriptor]);
+  }
+
+  function removeCharacterDescriptor(descriptor: string): void {
+    if (!selectedCharacter) return;
+    const descriptors = Array.isArray(selectedCharacter.descriptors) ? selectedCharacter.descriptors : [];
+    setBookCharacterDescriptors(selectedCharacter.name, descriptors.filter((d) => d !== descriptor));
   }
 
   async function addBookCharacterToCurrentChapter(name: string): Promise<void> {
@@ -662,7 +552,6 @@
       return { formatVersion: existing?.formatVersion || '2.0', characters: withoutOld };
     });
     // Chapter-level characters will refresh automatically on chapter change
-    if (editingIndex === sourceIndex) editingIndex = null;
     if (openColorIndex === sourceIndex) openColorIndex = null;
   }
 
@@ -696,21 +585,12 @@
   }
 
   async function addCharacter() {
-    const ch: any = get(currentChapter);
-    const root = get(bookRoot);
-    if (!ch || !root) return;
     const bookChars = get(bookCharacters);
     const taken = new Set(bookChars.characters.map(c => c.name));
     const name = uniqueName('New Character', taken);
-    const existingIds = new Set(bookChars.characters.map(c => c.id).filter((id): id is string => !!id));
-    const id = buildUniqueCharacterId(name, existingIds);
-    // Add to book-level characters.json
-    const updated: CharactersJson = { 
-      formatVersion: bookChars.formatVersion, 
-      characters: [...bookChars.characters, createBookCharacterRecord(name, { id })] 
-    };
-    await persistCentralCharacters(root, updated);
-    bookCharacters.set(updated);
+    // v3: mint a GUID + write one characters/<Title>.json (silent auto-upsert).
+    const created = await addBookCharacter(name, 'Unknown');
+    if (!created) return;
     await updateChapterCharactersFile((existing) => {
       const list = existing?.characters ?? [];
       if (list.some(c => c.name === name)) return existing ?? { formatVersion: '2.0', characters: list };
@@ -728,83 +608,6 @@
       };
       characters.set(nextChars);
     }
-    // Find the index in the chapter's characters list
-    const chapterIndex = get(characters).characters.findIndex(c => c.name === name);
-    editingIndex = chapterIndex === -1 ? null : chapterIndex;
-    editingValue = name;
-  }
-
-  async function commitRename(index: number) {
-    const ch: any = get(currentChapter);
-    const root = get(bookRoot);
-    if (!ch || !root) return;
-    const chars = get(characters);
-    const oldName = chars.characters[index].name;
-    const newName = editingValue.trim();
-    const oldKey = normalizeCharacterKey(oldName);
-    const newKey = normalizeCharacterKey(newName);
-    editingIndex = null;
-    if (!newName || newName === oldName) return;
-    const bookChars = get(bookCharacters);
-    const existingIdx = bookChars.characters.findIndex((c) => normalizeCharacterKey(c.name) === newKey);
-    if (existingIdx !== -1) {
-      const canonicalTargetName = bookChars.characters[existingIdx]?.name || newName;
-      const doMerge = confirm(`A character named "${newName}" already exists. Combine characters?`);
-      if (!doMerge) { return; }
-      const scr = get(currentScript);
-      if (scr) {
-        for (const line of scr.lines) {
-          if (normalizeCharacterKey(line.chosenSpeaker || '') === oldKey) {
-            line.chosenSpeaker = canonicalTargetName;
-            line.isConflict = !line.chosenSpeaker || (line.candidates && line.candidates.length > 1 && !line.candidates.some(c => c.name === canonicalTargetName));
-          }
-        }
-        await writeScript(ch.scriptPath ?? getScriptPath(root, ch.title), scr);
-        currentScript.set(scr);
-      }
-      await mergeBookCharacters(oldName, canonicalTargetName);
-      await updateChapterCharactersFile((existing) => {
-        const list = existing?.characters ?? [];
-        const withoutOld = list.filter(c => normalizeCharacterKey(c.name) !== oldKey);
-        if (!withoutOld.some(c => normalizeCharacterKey(c.name) === normalizeCharacterKey(canonicalTargetName))) {
-          withoutOld.push({ name: canonicalTargetName, color: null, voice: null } as Character);
-        }
-        return { formatVersion: existing?.formatVersion || '2.0', characters: withoutOld };
-      });
-      // Update local display by removing the merged character
-      characters.set({
-        formatVersion: chars.formatVersion || '2.0',
-        characters: chars.characters.filter((c) => normalizeCharacterKey(c.name) !== oldKey)
-      });
-      return;
-    }
-    const scr = get(currentScript);
-    if (scr) {
-      for (const line of scr.lines) {
-        if (normalizeCharacterKey(line.chosenSpeaker || '') === oldKey) {
-          line.chosenSpeaker = newName;
-          line.isConflict = !line.chosenSpeaker || (line.candidates && line.candidates.length > 1 && !line.candidates.some(c => c.name === newName));
-        }
-      }
-      await writeScript(ch.scriptPath ?? getScriptPath(root, ch.title), scr);
-      currentScript.set(scr);
-    }
-    // Update book-level characters.json
-    await renameBookCharacter(oldName, newName);
-    await updateChapterCharactersFile((existing) => {
-      const list = existing?.characters ?? [];
-      const updated = list.map((c) => c.name === oldName ? { ...c, name: newName } : c);
-      if (!updated.some(c => c.name === newName)) {
-        updated.push({ name: newName, color: null, voice: null } as Character);
-      }
-      return { formatVersion: existing?.formatVersion || '2.0', characters: updated.filter((c, i, arr) => arr.findIndex(x => x.name === c.name) === i) };
-    });
-    // Update local display immediately
-    characters.set({
-      formatVersion: chars.formatVersion || '2.0',
-      characters: chars.characters.map((c) => c.name === oldName ? { ...c, name: newName } : c)
-    });
-    // Chapter-level characters will refresh automatically on chapter change
   }
 
   async function setColor(index: number, opaqueColor: string | null) {
@@ -832,21 +635,12 @@
   async function createAndApplyNewCharacter() {
     const name = newCharacterName.trim();
     if (!name) return;
-    const ch: any = get(currentChapter);
-    const root = get(bookRoot);
-    if (!ch || !root) return;
     const bookChars = get(bookCharacters);
     const exists = bookChars.characters.some(c => c.name === name);
     if (!exists) {
-      const existingIds = new Set(bookChars.characters.map(c => c.id).filter((id): id is string => !!id));
-      const id = buildUniqueCharacterId(name, existingIds);
-      // Add to book-level characters.json (single source of truth)
-      const updated: CharactersJson = { 
-        formatVersion: bookChars.formatVersion, 
-        characters: [...bookChars.characters, createBookCharacterRecord(name, { id, color: newCharacterColor ?? null })] 
-      };
-      await persistCentralCharacters(root, updated);
-      bookCharacters.set(updated);
+      // v3: mint a GUID + write one characters/<Title>.json (silent auto-upsert).
+      const created = await addBookCharacter(name, 'Unknown');
+      if (!created) return;
     } else if (newCharacterColor) {
       // Update color if character already exists
       await setBookCharacterColor(name, newCharacterColor);
@@ -1115,16 +909,12 @@
 
     <ChapterCharacterList
       items={sortedCharacters}
-      {editingIndex}
-      {editingValue}
       {openColorIndex}
       selectionActive={$selectionActive}
       {DISPLAY_ALPHA}
       lineCounts={chapterLineCounts}
       jumpLineCounts={chapterLineCounts}
-      onRenameStart={(index: number, name: string) => { editingIndex = index; editingValue = name; }}
-      onRenameCommit={(index: number) => commitRename(index)}
-      onEditingChange={(value: string) => editingValue = value}
+      onSelect={(name: string) => selectedCharacterName = name}
       onToggleColor={(index: number) => openColorIndex = openColorIndex === index ? null : index}
       onSetColor={(index: number, color: string | null) => setColor(index, color)}
       onApplyToSelection={(name: string) => applyToSelection(name)}
@@ -1164,7 +954,6 @@
           formatVersion: chars.formatVersion || '2.0',
           characters: chars.characters.filter((c) => c.name !== name)
         });
-        if (editingIndex === index) editingIndex = null;
         if (openColorIndex === index) openColorIndex = null;
       }}
     />
@@ -1175,23 +964,24 @@
     <ChapterCharacterBookList
       open={bookListOpen}
       items={sortedBookCharacters}
-      selectedName={selectedBookCharacterName}
+      selectedName={selectedCharacterName}
       onToggle={() => bookListOpen = !bookListOpen}
-      onSelect={(name) => selectedBookCharacterName = name}
+      onSelect={(name) => selectedCharacterName = name}
       onDelete={(name, count) => deleteBookCharacter(name, count)}
       onMerge={(sourceName, targetName) => mergeBookCharactersByName(sourceName, targetName)}
       resolveColor={resolveCharacterColor}
     />
 
-    {#if selectedBookCharacter}
-      <ChapterCharacterDetails
-        selectedName={selectedBookCharacter.name}
-        gender={normalizeCharacterGender(selectedBookCharacter.gender)}
-        aliasItems={selectedAliasItems}
-        color={selectedBookColor}
-        onSetGender={(gender) => setBookCharacterGender(selectedBookCharacter.name, gender)}
-        onDetach={(aliasName) => detachBookCharacterAlias(selectedBookCharacter.name, aliasName)}
-        onSetPrimary={(aliasName) => setPrimaryBookCharacterName(aliasName)}
+    {#if selectedCharacter}
+      <CharacterDetails
+        character={selectedCharacter}
+        chapterLineCount={selectedChapterLineCount}
+        onSetTitle={(newName: string) => commitCharacterTitle(newName)}
+        onSetGender={(gender: Gender) => setBookCharacterGender(selectedCharacter.name, gender)}
+        onAddAlias={(alias: string) => addBookCharacterAlias(selectedCharacter.name, alias)}
+        onRemoveAlias={(alias: string) => detachBookCharacterAlias(selectedCharacter.name, alias)}
+        onAddDescriptor={(descriptor: string) => addCharacterDescriptor(descriptor)}
+        onRemoveDescriptor={(descriptor: string) => removeCharacterDescriptor(descriptor)}
       />
     {/if}
   {/if}

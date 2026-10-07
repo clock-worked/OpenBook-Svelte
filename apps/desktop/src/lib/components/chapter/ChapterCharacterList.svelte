@@ -3,20 +3,16 @@
   import { bookCharacters } from '$lib/stores/bookCharacters';
   import { defaultColors } from '$lib/theme/colors';
   import ColorPicker from '$lib/components/common/ColorPicker.svelte';
-  import { Trash2, Pencil, CornerDownRight } from 'lucide-svelte';
+  import { Trash2, CornerDownRight } from 'lucide-svelte';
 
   export let items: Array<{ character: { name: string; color: string | null; voice?: any }, origIndex: number }> = [];
-  export let editingIndex: number | null;
-  export let editingValue: string;
   export let openColorIndex: number | null;
   export let selectionActive: boolean;
   export let DISPLAY_ALPHA: number = 1.0;
   export let lineCounts: Map<string, number> = new Map();
   export let jumpLineCounts: Map<string, number> = new Map();
 
-  export let onRenameStart: (index: number, currentName: string) => void;
-  export let onRenameCommit: (index: number) => void;
-  export let onEditingChange: (value: string) => void;
+  export let onSelect: (name: string) => void;
   export let onToggleColor: (index: number) => void;
   export let onSetColor: (index: number, opaqueColor: string | null) => void;
   export let onApplyToSelection: (name: string) => void;
@@ -24,27 +20,27 @@
   export let onDropBookCharacter: (name: string) => void;
   export let onDelete: (index: number) => void;
   export let onJumpToNext: (name: string) => void;
-  
+
   // Subscribe to both stores to force re-render when colors change
   $: charsVersion = $characters;
   $: bookCharsVersion = $bookCharacters;
-  
+
   // Create a reactive map of character colors
   $: colorMap = new Map<string, string>(
     items.map(item => {
       // Check book-level first
       const bookChar = $bookCharacters?.characters?.find(c => c.name === item.character.name);
       if (bookChar?.color) return [item.character.name, bookChar.color];
-      
+
       // Check chapter-level
       const chapterChar = $characters?.characters?.find(c => c.name === item.character.name);
       if (chapterChar?.color) return [item.character.name, chapterChar.color];
-      
+
       // Fall back to hash-based default
       return [item.character.name, colorForCharacter(item.character.name)];
     })
   );
-  
+
   // Helper function to get current color from the reactive map
   function getCurrentColor(name: string): string {
     return colorMap.get(name) || colorForCharacter(name);
@@ -86,7 +82,7 @@
     align-items: center;
     gap: 8px;
     position: relative;
-    cursor: move;
+    cursor: pointer;
     -webkit-app-region: no-drag;
     box-sizing: border-box;
     transition: border-color 120ms ease, box-shadow 120ms ease;
@@ -113,14 +109,6 @@
 
   .line-count-badge:hover {
     opacity: 0.85;
-  }
-
-  .name-input {
-    flex: 1;
-    padding: 2px 4px;
-    border: 1px solid var(--app-border);
-    border-radius: 4px;
-    font-size: 14px;
   }
 
   .name-display {
@@ -206,69 +194,61 @@
       <div class="character-row" draggable="true"
            role="button"
            tabindex="0"
+           aria-label={`Select ${item.character.name}`}
            style={`--gender-gradient:${getGenderGradient(item.character.name)};`}
+           on:click={() => onSelect(item.character.name)}
+           on:keydown={(e) => { if (e.key === 'Enter') onSelect(item.character.name); }}
            on:dragstart={(e) => {
-             if (!e.dataTransfer) return;
-             e.dataTransfer.setData('application/x-openbook-chapter-character-index', String(item.origIndex));
-             e.dataTransfer.setData('text/plain', String(item.origIndex));
-             e.dataTransfer.effectAllowed = 'move';
-           }}
-           on:dragover={(e) => {
-             const hasBookName = !!(e.dataTransfer?.getData('application/x-openbook-book-character-name') || '');
-             e.preventDefault();
-             if (e.dataTransfer) e.dataTransfer.dropEffect = hasBookName ? 'copy' : 'move';
-           }}
-           on:drop={(e) => {
-             e.preventDefault();
-             e.stopPropagation();
-             const droppedBookName = e.dataTransfer?.getData('application/x-openbook-book-character-name') || '';
-             if (droppedBookName) {
-               onDropBookCharacter(droppedBookName);
-               return;
-             }
-             const sourceIndexRaw =
-               e.dataTransfer?.getData('application/x-openbook-chapter-character-index')
-               || e.dataTransfer?.getData('text/plain')
-               || '-1';
-             const sourceIndex = parseInt(sourceIndexRaw, 10);
-             if (!Number.isNaN(sourceIndex) && sourceIndex >= 0) {
-               onMerge(sourceIndex, item.origIndex);
-             }
-           }}>
-        <button 
-          class="line-count-badge" 
-          title="Change color" 
-          on:click={() => onToggleColor(item.origIndex)} 
-                   style={`background:${hexToRgba(getCurrentColor(item.character.name), 0.58)};`}>
+              if (!e.dataTransfer) return;
+              e.dataTransfer.setData('application/x-openbook-chapter-character-index', String(item.origIndex));
+              e.dataTransfer.setData('text/plain', String(item.origIndex));
+              e.dataTransfer.effectAllowed = 'move';
+            }}
+            on:dragover={(e) => {
+              const hasBookName = !!(e.dataTransfer?.getData('application/x-openbook-book-character-name') || '');
+              e.preventDefault();
+              if (e.dataTransfer) e.dataTransfer.dropEffect = hasBookName ? 'copy' : 'move';
+            }}
+            on:drop={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              const droppedBookName = e.dataTransfer?.getData('application/x-openbook-book-character-name') || '';
+              if (droppedBookName) {
+                onDropBookCharacter(droppedBookName);
+                return;
+              }
+              const sourceIndexRaw =
+                e.dataTransfer?.getData('application/x-openbook-chapter-character-index')
+                || e.dataTransfer?.getData('text/plain')
+                || '-1';
+              const sourceIndex = parseInt(sourceIndexRaw, 10);
+              if (!Number.isNaN(sourceIndex) && sourceIndex >= 0) {
+                onMerge(sourceIndex, item.origIndex);
+              }
+            }}>
+        <button
+          class="line-count-badge"
+          title="Change color"
+          on:click|stopPropagation={() => onToggleColor(item.origIndex)}
+          style={`background:${hexToRgba(getCurrentColor(item.character.name), 0.58)};`}>
           {#if lineCounts.has(item.character.name)}
             {lineCounts.get(item.character.name)}
           {:else}
             &nbsp;
           {/if}
         </button>
-        {#if editingIndex === item.origIndex}
-          <input value={editingValue}
-                 on:input={(e: any) => onEditingChange(e.currentTarget.value)}
-                 on:keydown={(e) => { if (e.key==='Enter' || e.key==='Escape') e.currentTarget.blur(); }}
-                 on:blur={() => onRenameCommit(item.origIndex)}
-                 class="name-input" />
-        {:else}
-          <div class="name-display">
-            <span class="name-text">{item.character.name}</span>
-          </div>
-        {/if}
-        <button class="icon-btn hover-btn" title="Edit name" aria-label="Edit name" on:click={() => onRenameStart(item.origIndex, item.character.name)}>
-          <Pencil size={16} />
-        </button>
+        <div class="name-display">
+          <span class="name-text">{item.character.name}</span>
+        </div>
         {#if (jumpLineCounts.get(item.character.name) || 0) > 0}
-          <button class="icon-btn hover-btn" title="Jump to next" aria-label="Jump to next" on:click={() => onJumpToNext(item.character.name)}>
+          <button class="icon-btn hover-btn" title="Jump to next" aria-label="Jump to next" on:click|stopPropagation={() => onJumpToNext(item.character.name)}>
             <CornerDownRight size={16} />
           </button>
         {/if}
         {#if selectionActive}
-          <button class="apply-btn" on:click={() => onApplyToSelection(item.character.name)}>Apply</button>
+          <button class="apply-btn" on:click|stopPropagation={() => onApplyToSelection(item.character.name)}>Apply</button>
         {/if}
-        <button class="icon-btn hover-btn" title="Delete character" aria-label="Delete character" on:click={() => onDelete(item.origIndex)}>
+        <button class="icon-btn hover-btn" title="Delete character" aria-label="Delete character" on:click|stopPropagation={() => onDelete(item.origIndex)}>
           <Trash2 size={16} />
         </button>
         {#if openColorIndex === item.origIndex}
@@ -282,5 +262,3 @@
     {/each}
   </div>
 {/key}
-
-

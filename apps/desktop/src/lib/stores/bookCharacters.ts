@@ -1,20 +1,25 @@
 import { writable, get } from 'svelte/store';
-import type { CharacterManifestStats, CharacterVoiceMeta, CharactersJson, TtsProvider, Character, Gender } from '$lib/types';
+import type { CharacterManifestStats, CharacterVoiceMeta, CharactersJson, TtsProvider, Character, Gender, CharacterFile } from '$lib/types';
+import { CHARACTER_GUID_PATTERN } from '$lib/types';
 import { audioRoot, bookRoot, chapters } from '$lib/stores/bookState';
-import { getCharactersPath, readCentralCharacters } from '$lib/services/fs';
+import { getCharactersPath, readCentralCharacters, readCharacterFile } from '$lib/services/fs';
 import { loadChapterCharactersData, persistChapterCharactersData } from '$lib/services/chapterCharacterRepository';
 import { loadCharacterManifestSummary } from '$lib/services/manifests';
 import {
   loadBookCharactersData,
-  persistBookCharactersData,
+  sanitizeCharacterFileName,
+  writeCharacterRecord,
 } from '$lib/services/bookCharacterRepository';
 import {
-  addCentralCharacter,
   addCentralCharacterAlias,
+  createCentralCharacter,
   detachCentralCharacterAlias,
   mergeCentralCharacters,
   renameCentralCharacter,
+  setCentralCharacterDescriptors,
   setCentralCharacterPrimaryName,
+  type CharacterFileRecord,
+  type CharacterOpResult,
 } from '$lib/services/characterMutationService';
 import {
   resolveCanonicalCharacterName,
@@ -74,15 +79,70 @@ export async function forceRefreshBookCharacters(): Promise<void> {
 export async function addBookCharacter(name: string, gender: Gender): Promise<Character | null> {
   const root = get(bookRoot);
   if (!root) return null;
-  const character = await addCentralCharacter(root, name, gender);
-  if (character) await forceRefreshBookCharacters();
-  return character;
+  // v3: `createCentralCharacter` mints a GUID and writes ONE new
+  // characters/<Title>.json (silent auto-upsert, R7). No file exists before
+  // the mint, so there is no CharacterFileRecord to build.
+  const file = await createCentralCharacter(root, name, gender);
+  if (file) {
+    await forceRefreshBookCharacters();
+    return characterFileToCharacter(file);
+  }
+  return null;
 }
 
+/**
+ * Persist the book's characters with surgical per-file writes (invariant IN-3).
+ * Replaces the retired whole-file `persistBookCharactersData`: only file-backed
+ * records (valid GUIDs) are written, one file each; the root characters.json is
+ * never touched (invariant IN-2).
+ */
 export async function persistBookCharacters(): Promise<void> {
   const root = get(bookRoot);
   if (!root) return;
-  await persistBookCharactersData(root, get(bookCharacters));
+  for (const record of get(bookCharacters).characters) {
+    if (!CHARACTER_GUID_PATTERN.test(record.guid ?? '')) continue;
+    const ok = await writeCharacterRecord(root, record);
+    if (!ok) console.warn('[bookCharacters] Failed to write character file:', record.name);
+  }
+}
+
+/**
+ * Build a `CharacterFileRecord` for a single-file op with a FRESH read. The
+ * fresh read avoids clobbering concurrent backend stats writes (the op's own
+ * read-modify-write then applies on top of the latest on-disk content).
+ * Returns null when there is no root, the character is unknown, or its file is
+ * missing (e.g. a derived/in-memory-only record with no cluster file yet).
+ */
+async function readCharacterRecord(name: string): Promise<CharacterFileRecord | null> {
+  const root = get(bookRoot);
+  if (!root) return null;
+  const character = get(bookCharacters).characters.find((c) => c.name === name);
+  if (!character) return null;
+  const fileName = `${sanitizeCharacterFileName(character.name)}.json`;
+  const data: any = await readCharacterFile(root, fileName);
+  if (!data || typeof data !== 'object') return null;
+  return { fileName, data: data as CharacterFile };
+}
+
+/** Map a v3 `CharacterFile` to an in-memory `Character` (id = guid mirror). */
+function characterFileToCharacter(file: CharacterFile): Character {
+  return {
+    guid: file.guid,
+    id: file.guid, // documented mirror: in v3, id = guid
+    name: file.title,
+    gender: file.gender,
+    aliases: Array.isArray(file.aliases) ? file.aliases : [],
+    descriptors: Array.isArray(file.descriptors) ? file.descriptors : [],
+    color: file.color ?? null,
+    notes: file.notes ?? '',
+    stats: file.stats ?? { totalLines: 0, chapterCount: 0 },
+    voice: file.voice ?? null,
+    provider: file.provider ?? null,
+    voiceId: file.voiceId ?? null,
+    voiceMeta: file.voiceMeta ?? null,
+    manifestStats: file.manifestStats ?? null,
+    firstAppearance: file.firstAppearance ?? null,
+  } as Character;
 }
 
 function createEmptyBookCharacter(name: string): Character {
@@ -137,7 +197,15 @@ async function upsertBookCharacter(name: string, updates: Partial<Character>): P
     };
 
   bookCharacters.set(next);
-  await persistBookCharacters();
+
+  // v3: surgical single-file write of just the touched record (invariant IN-3).
+  // Derived / in-memory-only records (no valid GUID) are not written here; a
+  // cluster file is minted for them by the mutation service on creation.
+  const root = get(bookRoot);
+  const touched = next.characters.find((c) => c.name === canonicalName);
+  if (root && touched && CHARACTER_GUID_PATTERN.test(touched.guid ?? '')) {
+    await writeCharacterRecord(root, touched);
+  }
 }
 
 export async function setBookCharacterVoice(name: string, voice: string | null): Promise<void> {
@@ -194,14 +262,20 @@ function getChapterRemapTargets() {
   }));
 }
 
-export async function renameBookCharacter(oldName: string, newName: string): Promise<void> {
+export async function renameBookCharacter(oldName: string, newName: string): Promise<CharacterOpResult> {
   const root = get(bookRoot);
-  if (!root) return;
+  if (!root) return { ok: false, message: 'No book root is open.' };
 
-  const changed = await renameCentralCharacter(root, getChapterRemapTargets(), oldName, newName);
-  if (changed) {
+  const record = await readCharacterRecord(oldName);
+  if (!record) {
+    return { ok: false, message: `Cannot rename: “${oldName}” is not a file-backed character.` };
+  }
+
+  const result = await renameCentralCharacter(root, record, newName);
+  if (result.ok) {
     await forceRefreshBookCharacters();
   }
+  return result;
 }
 
 export async function removeBookCharacter(name: string): Promise<void> {
@@ -239,44 +313,73 @@ export async function removeBookCharacters(names: string[]): Promise<number> {
   return removedCharacters.length;
 }
 
-export async function mergeBookCharacters(sourceName: string, targetName: string): Promise<void> {
+export async function mergeBookCharacters(sourceName: string, targetName: string): Promise<CharacterOpResult> {
   const root = get(bookRoot);
-  if (!root) return;
+  if (!root) return { ok: false, message: 'No book root is open.' };
 
-  const changed = await mergeCentralCharacters(root, getChapterRemapTargets(), sourceName, targetName);
-  if (changed) {
+  // Merge is the one routine multi-file op (invariant IN-4). Rosters are
+  // remapped internally by the service (exact-string GUID substitution) — never
+  // routed through persistChapterCharactersData, which canonicalizes against the
+  // retired root file and would drop entries.
+  const source = await readCharacterRecord(sourceName);
+  const target = await readCharacterRecord(targetName);
+  if (!source || !target) {
+    return { ok: false, message: 'Cannot merge: both characters must be file-backed.' };
+  }
+
+  const result = await mergeCentralCharacters(root, getChapterRemapTargets(), source, target);
+  if (result.ok) {
     await forceRefreshBookCharacters();
   }
+  return result;
 }
 
-export async function setBookCharacterPrimaryName(currentName: string, newPrimaryName: string): Promise<void> {
+export async function setBookCharacterPrimaryName(currentName: string, newPrimaryName: string): Promise<CharacterOpResult> {
   const root = get(bookRoot);
-  if (!root) return;
+  if (!root) return { ok: false, message: 'No book root is open.' };
 
-  const changed = await setCentralCharacterPrimaryName(root, currentName, newPrimaryName);
-  if (changed) {
+  // R7: the service is kept (thin delegate to rename), the primary-name UI is
+  // retired. The details card's title editor uses renameBookCharacter instead.
+  const record = await readCharacterRecord(currentName);
+  if (!record) {
+    return { ok: false, message: `Cannot set the display name: “${currentName}” is not a file-backed character.` };
+  }
+
+  const result = await setCentralCharacterPrimaryName(root, record, newPrimaryName);
+  if (result.ok) {
     await forceRefreshBookCharacters();
   }
+  return result;
 }
 
 export async function detachBookCharacterAlias(characterName: string, aliasName: string): Promise<void> {
   const root = get(bookRoot);
   if (!root) return;
 
-  const changed = await detachCentralCharacterAlias(root, getChapterRemapTargets(), characterName, aliasName);
-  if (changed) {
-    await forceRefreshBookCharacters();
-  }
+  const record = await readCharacterRecord(characterName);
+  if (!record) return;
+  const ok = await detachCentralCharacterAlias(root, record, aliasName);
+  if (ok) await forceRefreshBookCharacters();
 }
 
 export async function addBookCharacterAlias(characterName: string, aliasName: string): Promise<void> {
   const root = get(bookRoot);
   if (!root) return;
 
-  const changed = await addCentralCharacterAlias(root, characterName, aliasName);
-  if (changed) {
-    await forceRefreshBookCharacters();
-  }
+  const record = await readCharacterRecord(characterName);
+  if (!record) return;
+  const ok = await addCentralCharacterAlias(root, record, aliasName);
+  if (ok) await forceRefreshBookCharacters();
+}
+
+export async function setBookCharacterDescriptors(name: string, descriptors: string[]): Promise<void> {
+  const root = get(bookRoot);
+  if (!root) return;
+
+  const record = await readCharacterRecord(name);
+  if (!record) return;
+  const ok = await setCentralCharacterDescriptors(root, record, descriptors);
+  if (ok) await forceRefreshBookCharacters();
 }
 
 /**

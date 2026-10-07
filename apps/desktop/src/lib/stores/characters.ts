@@ -74,13 +74,21 @@ function updateDerivedFromScript(scr: any): void {
     }
   }
 
-  const namesFromScript = Array.from(new Set(scr.lines
-    .map((l: any) => (l.chosenSpeaker ?? '').trim())
-    .filter((n: string) => n.length > 0)
-    .map((n: string) => {
-      const key = normalizeCharacterKey(n);
-      return idToCanonical.get(key) || aliasToCanonical.get(key) || nameToCanonical.get(key) || n;
-    })
+  // v3 roster derivation: key off `line.characterId` (a GUID in v3) FIRST,
+  // `chosenSpeaker` fallback for legacy v1-script chapters. The precedence chain
+  // below (idToCanonical → aliasToCanonical → nameToCanonical) then resolves
+  // GUIDs to display names with zero structural change.
+  const scriptIdentities: string[] = (scr.lines ?? []).map((l: any) => {
+    const rawIdentity = l.characterId ?? l.chosenSpeaker;
+    return typeof rawIdentity === 'string' ? rawIdentity : '';
+  });
+  const namesFromScript = Array.from(new Set(
+    scriptIdentities
+      .filter((n: string) => n.length > 0)
+      .map((n: string) => {
+        const key = normalizeCharacterKey(n);
+        return idToCanonical.get(key) || aliasToCanonical.get(key) || nameToCanonical.get(key) || n;
+      })
   )).sort();
 
   const names = mergeNamesWithExtras(namesFromScript);
