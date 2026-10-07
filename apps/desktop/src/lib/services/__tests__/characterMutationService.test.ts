@@ -318,7 +318,10 @@ describe('characterMutationService (v3 single-file ops)', () => {
     expect(dialogue.lines[0].attribution.candidates[0].characterId).toBe(GB);
     expect(dialogue.stats.characterBreakdown).toEqual({ [GB]: 2 });
     const roster = inMemoryFs.__readJson('Chapter1/Chapter1.characters.json');
-    expect(roster.characters.map((entry: any) => entry.id)).toEqual([GB, GB]);
+    // The fixture roster listed BOTH the source (GA) and the target (GB);
+    // after remap + dedupe it carries the survivor's GUID exactly once
+    // (mirrors the Python migration's roster remap).
+    expect(roster.characters.map((entry: any) => entry.id)).toEqual([GB]);
     const voices = inMemoryFs.__readJson('voices.json');
     expect(voices.assignments.every((assignment: any) => assignment.characterId === GB)).toBe(true);
 

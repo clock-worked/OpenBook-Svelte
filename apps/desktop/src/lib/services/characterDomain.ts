@@ -236,13 +236,22 @@ export async function remapCharacterGuidInChapterRosters(
             if (!raw || !Array.isArray(raw.characters)) continue;
 
             let changed = false;
-            const characters = raw.characters.map((entry: any) => {
-                if (entry && typeof entry === 'object' && entry.id === oldGuid) {
-                    changed = true;
-                    return { ...entry, id: newGuid };
-                }
-                return entry;
-            });
+            const characters = raw.characters
+                .map((entry: any) => {
+                    if (entry && typeof entry === 'object' && entry.id === oldGuid) {
+                        changed = true;
+                        return { ...entry, id: newGuid };
+                    }
+                    return entry;
+                })
+                // A roster listing both a merged source and its target would
+                // otherwise carry the same GUID twice — dedupe by id (mirrors
+                // the migration's roster remap). Legacy string entries pass
+                // through untouched.
+                .filter((entry: any, i: number, arr: any[]) => {
+                    if (!entry || typeof entry !== 'object' || !entry.id) return true;
+                    return arr.findIndex((e: any) => e && typeof e === 'object' && e.id === entry.id) === i;
+                });
 
             if (changed) {
                 await writeCharacters(charactersPath, { ...raw, characters });
