@@ -482,6 +482,7 @@ export async function runParserForChapter(args: {
       existingBookCharNames.add(normalizedName);
 
       allBookChars.push({
+        guid: null,
         id: charId,
         name,
         gender: 'Unknown',
