@@ -184,15 +184,22 @@ export function colorForCharacter(name: string | null | undefined, charsJson?: C
   // Always check book-level store first (single source of truth).
   // v3: reference values may be GUIDs (line/roster characterId is the
   // character's guid) — resolve by name first, then by guid, so the
-  // SAVED color wins instead of the hash-based fallback.
+  // SAVED color wins instead of the hash-based fallback. Name matching is
+  // case-insensitive (house normalization): stale name references like a
+  // pre-rename "rashid" must still find "Rashid". Titles are guaranteed
+  // case-insensitively unique by the v3 migration, so this cannot be
+  // ambiguous.
+  const keyLower = key.toLowerCase();
   const bookChars = get(bookCharacters);
   const bookMatched = bookChars?.characters?.find(ch => ch.name === key)
+    ?? bookChars?.characters?.find(ch => ch.name.toLowerCase() === keyLower)
     ?? bookChars?.characters?.find(ch => ch.guid != null && ch.guid === key);
   if (bookMatched && bookMatched.color) return bookMatched.color;
 
   // Fall back to chapter-level if book doesn't have it
   const chars = charsJson ?? get(characters);
   const matched = chars?.characters?.find(ch => ch.name === key)
+    ?? chars?.characters?.find(ch => ch.name.toLowerCase() === keyLower)
     ?? chars?.characters?.find(ch => ch.guid != null && ch.guid === key);
   if (matched && matched.color) return matched.color;
 
