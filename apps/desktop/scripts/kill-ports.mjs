@@ -17,8 +17,35 @@
  * never close your terminal window.
  */
 import { execFileSync } from 'node:child_process';
+import net from 'node:net';
 
 const SLEEP = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+/**
+ * Ground truth for "is this port free": actually try to bind it.
+ * netstat can keep stale LISTENING entries for already-dead PIDs (ghost
+ * sockets), which would send the kill loop after a PID that no longer
+ * exists and make this script abort a perfectly good dev start. A
+ * successful bind proves the port is usable, no entry or not.
+ */
+function portIsBindable(port) {
+  return new Promise((resolve) => {
+    let settled = false;
+    const finish = (ok) => {
+      if (!settled) {
+        settled = true;
+        resolve(ok);
+      }
+    };
+    const srv = net.createServer();
+    srv.once('error', () => finish(false)); // EADDRINUSE: genuinely held
+    srv.listen({ port, host: '0.0.0.0' }, () => {
+      srv.close();
+      finish(true);
+    });
+    setTimeout(() => finish(true), 1500); // hang safety valve
+  });
+}
 
 function portPids(port) {
   const out = execFileSync('netstat', ['-ano'], { encoding: 'utf8' });
@@ -89,6 +116,11 @@ for (const port of ports) {
       done = true;
       break;
     }
+    if (await portIsBindable(port)) {
+      console.log(`Port ${port} free (netstat entry is stale — bind test passed)`);
+      done = true;
+      break;
+    }
     for (const pid of owners) {
       const root = highestKillableAncestor(pid);
       console.log(`Port ${port}: killing tree rooted at PID ${root} (socket owner ${pid})`);
@@ -107,11 +139,15 @@ for (const port of ports) {
   }
   const remaining = portPids(port);
   if (remaining.size) {
-    console.warn(
-      `WARNING: port ${port} still held by PID(s) ${[...remaining].join(',')} ` +
-      'after tree kill. Run this from an ELEVATED terminal so the full ' +
-      'process tree is visible, then retry.'
-    );
-    process.exitCode = 1;
+    if (await portIsBindable(port)) {
+      console.log(`Port ${port} usable (netstat entry is stale — bind test passed)`);
+    } else {
+      console.warn(
+        `WARNING: port ${port} still held by PID(s) ${[...remaining].join(',')} ` +
+        'after tree kill. Run this from an ELEVATED terminal so the full ' +
+        'process tree is visible, then retry.'
+      );
+      process.exitCode = 1;
+    }
   }
 }
