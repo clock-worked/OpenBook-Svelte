@@ -13,7 +13,10 @@ import type {
 import { storeProjectHandle } from './persistence';
 import { API_ENDPOINTS, apiPostJson, apiPostVoid, apiRequestJson, toApiClientError } from './apiClient';
 import type {
+  DeleteFileRequest,
   ListChaptersResponse,
+  ListFilesRequest,
+  ListFilesResponse,
   PickBookDirectoryResponse,
   ReadTextRequest,
   ReadTextResponse,
@@ -659,6 +662,93 @@ export async function writeSettings(root: string, data: any): Promise<boolean> {
 // Legacy: Read old speaker_blocklist.json format
 export async function readSpeakerBlocklist(root: string): Promise<any | null> {
   return readFileAsJson<any>('speaker_blocklist.json');
+}
+
+// === v3.0 Character Folder Primitives ===
+
+/**
+ * List the names of `*.json` files in the book's `characters/` folder.
+ * Returns [] when the folder does not exist (book not migrated to v3 yet).
+ */
+export async function listCharacterFiles(root: string): Promise<string[]> {
+  if (rootDirHandle) {
+    try {
+      const charactersDirHandle = await rootDirHandle.getDirectoryHandle('characters', { create: false });
+      const files: string[] = [];
+      for await (const entry of charactersDirHandle.values()) {
+        if (entry.kind === 'file' && !entry.name.startsWith('.') && entry.name.toLowerCase().endsWith('.json')) {
+          files.push(entry.name);
+        }
+      }
+      return files;
+    } catch (error) {
+      // A missing characters/ folder is a normal pre-migration state.
+      if (error instanceof DOMException && error.name === 'NotFoundError') {
+        return [];
+      }
+      console.warn('[fs] File System API character folder listing failed; trying backend', error);
+    }
+  }
+
+  try {
+    const response = await apiPostJson<ListFilesResponse, ListFilesRequest>(API_ENDPOINTS.listFiles, {
+      file_path: 'characters',
+    });
+    return Array.isArray(response.files) ? response.files : [];
+  } catch (error) {
+    console.error('Failed to list character files from backend', error);
+    return [];
+  }
+}
+
+/**
+ * Read a single character file from the book's `characters/` folder.
+ * Returns null when the file does not exist.
+ */
+export async function readCharacterFile(root: string, fileName: string): Promise<any | null> {
+  return readFileAsJson<any>(`characters/${fileName}`);
+}
+
+/**
+ * Write a single character file to the book's `characters/` folder.
+ * The `characters/` directory is created on demand by writeFile.
+ */
+export async function writeCharacterFile(root: string, fileName: string, content: unknown): Promise<boolean> {
+  return writeFile(`characters/${fileName}`, JSON.stringify(content, null, 2));
+}
+
+/**
+ * Delete a file at a path relative to the book root.
+ * Deleting a file that does not exist is a success (idempotent).
+ */
+export async function deleteFile(root: string, relPath: string): Promise<boolean> {
+  if (rootDirHandle) {
+    try {
+      const pathParts = relPath.split('/').filter(p => p);
+      if (pathParts.length > 0) {
+        const fileName = pathParts.pop() as string;
+        const parentDirHandle = await getDirectoryHandle(rootDirHandle, pathParts, false);
+        await parentDirHandle.removeEntry(fileName);
+        return true;
+      }
+    } catch (error) {
+      // A missing file (or parent directory) is a normal delete outcome.
+      if (error instanceof DOMException && error.name === 'NotFoundError') {
+        return true;
+      }
+      console.warn(`[fs] File System API delete failed for ${relPath}; trying backend`, error);
+    }
+  }
+
+  try {
+    await apiPostVoid<DeleteFileRequest>(API_ENDPOINTS.deleteFile, {
+      file_path: relPath,
+    });
+    return true;
+  } catch (error) {
+    console.error(`Failed to delete ${relPath}`, error);
+    return false;
+  }
 }
 
 // === Legacy v1.0 Functions (for backward compatibility) ===

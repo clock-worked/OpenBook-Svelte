@@ -86,6 +86,22 @@ export interface SaveFileRequest {
   content: unknown;
 }
 
+export interface ListFilesRequest {
+  file_path: string;
+}
+
+export interface ListFilesResponse {
+  files?: string[];
+}
+
+export interface DeleteFileRequest {
+  file_path: string;
+}
+
+export interface DeleteFileResponse {
+  message: string;
+}
+
 export interface UpdateCharacterStatsResponse {
   stats?: unknown;
 }
