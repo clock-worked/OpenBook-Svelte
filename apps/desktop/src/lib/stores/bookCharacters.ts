@@ -13,6 +13,7 @@ import {
 import {
   addCentralCharacterAlias,
   createCentralCharacter,
+  deleteCentralCharacter,
   detachCentralCharacterAlias,
   mergeCentralCharacters,
   renameCentralCharacter,
@@ -294,6 +295,20 @@ export async function removeBookCharacters(names: string[]): Promise<number> {
   const removedCharacters = data.characters.filter((character) => canonicalNames.has(character.name));
   if (removedCharacters.length === 0) return 0;
 
+  // v3 (IN-2): file-backed (valid-GUID) characters also have their
+  // characters/<file> removed. Fresh-read each record BEFORE the store update
+  // below drops the names from the in-memory list (readCharacterRecord resolves
+  // via the store). Derived (non-GUID) characters are in-memory-only — no file.
+  const root = get(bookRoot);
+  const removalRecords: CharacterFileRecord[] = [];
+  if (root) {
+    for (const character of removedCharacters) {
+      if (!CHARACTER_GUID_PATTERN.test(character.guid ?? '')) continue;
+      const record = await readCharacterRecord(character.name);
+      if (record) removalRecords.push(record);
+    }
+  }
+
   const removedCharacterIds = removedCharacters
     .map((character) => character.id)
     .filter((characterId): characterId is string => typeof characterId === 'string' && characterId.length > 0);
@@ -305,6 +320,13 @@ export async function removeBookCharacters(names: string[]): Promise<number> {
 
   bookCharacters.set(next);
   await persistBookCharacters();
+
+  if (root) {
+    for (const record of removalRecords) {
+      const ok = await deleteCentralCharacter(root, record);
+      if (!ok) console.warn('[bookCharacters] Failed to delete character file:', record.data.title);
+    }
+  }
 
   if (removedCharacterIds.length > 0) {
     await unassignVoicesFromCharacters(removedCharacterIds);
@@ -362,14 +384,15 @@ export async function detachBookCharacterAlias(characterName: string, aliasName:
   if (ok) await forceRefreshBookCharacters();
 }
 
-export async function addBookCharacterAlias(characterName: string, aliasName: string): Promise<void> {
+export async function addBookCharacterAlias(characterName: string, aliasName: string): Promise<boolean> {
   const root = get(bookRoot);
-  if (!root) return;
+  if (!root) return false;
 
   const record = await readCharacterRecord(characterName);
-  if (!record) return;
+  if (!record) return false;
   const ok = await addCentralCharacterAlias(root, record, aliasName);
   if (ok) await forceRefreshBookCharacters();
+  return ok;
 }
 
 export async function setBookCharacterDescriptors(name: string, descriptors: string[]): Promise<void> {

@@ -1,7 +1,7 @@
 import { get } from 'svelte/store';
 import { parserHints } from '$lib/stores/settings';
 import type { Line, DialogueJson, DialogueLine, Character, LineCandidate, ParserHints } from '$lib/types';
-import { readTextFile, getRootDirHandle, readCentralCharacters, writeCentralCharacters } from '$lib/services/fs';
+import { readTextFile, getRootDirHandle, readCentralCharacters, writeCentralCharacters, listCharacterFiles } from '$lib/services/fs';
 import { computeReturningFlags } from '$lib/services/dialogueReturning';
 import { buildIdToNameMap, buildNameToIdMap } from '$lib/stores/characters';
 import { API_ENDPOINTS, apiPostJson, apiPostVoid, apiRequestJson, toApiClientError } from '$lib/services/apiClient';
@@ -497,8 +497,12 @@ export async function runParserForChapter(args: {
       });
     }
 
-    // Write updated central characters.json
-    await writeCentralCharacters(root, { formatVersion: existingBookChars.formatVersion || '2.0', characters: allBookChars });
+    // Write updated central characters.json (skipped in v3 folder mode —
+    // IN-2: the characters/ folder is the sole source of truth).
+    const hasV3Folder = (await listCharacterFiles(root)).length > 0;
+    if (!hasV3Folder) {
+      await writeCentralCharacters(root, { formatVersion: existingBookChars.formatVersion || '2.0', characters: allBookChars });
+    }
 
     const idToNameMap = buildIdToNameMap(allBookChars);
 

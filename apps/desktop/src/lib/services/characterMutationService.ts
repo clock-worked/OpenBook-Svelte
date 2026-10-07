@@ -364,6 +364,20 @@ export async function createCentralCharacter(
 }
 
 /**
+ * Delete a character: remove its `characters/<fileName>` so a deleted
+ * character leaves no file behind (IN-2: the folder is the sole SoT).
+ * Idempotent — an already-absent file is a success.
+ */
+export async function deleteCentralCharacter(
+    root: string,
+    record: CharacterFileRecord,
+): Promise<boolean> {
+    const fileName = String(record.fileName || '').trim();
+    if (!fileName) return false;
+    return deleteFile(root, `characters/${fileName}`);
+}
+
+/**
  * Merge two characters — the ONE surviving fan-out (IN-4). The target file
  * absorbs the source's aliases INCLUDING the source's title (R1/IN-7) plus
  * the descriptor union; then exact-string GUID remaps across dialogue files,

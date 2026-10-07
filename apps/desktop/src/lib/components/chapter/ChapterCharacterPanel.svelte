@@ -4,7 +4,7 @@
   import { currentChapter, bookRoot, bookRootAbsolutePath, currentScript, chapters } from '$lib/stores/bookState';
   import { selection, conflictCursor } from '$lib/stores/selection';
   import { characters, colorForCharacter, rgbaToOpaqueHex, opaqueHexToRgba, refreshChapterCharactersFromFile } from '$lib/stores/characters';
-  import { getScriptPath, readScript, writeScript, writeCentralCharacters, getCharactersPath } from '$lib/services/fs';
+  import { getScriptPath, readScript, writeScript, getCharactersPath } from '$lib/services/fs';
   import { loadChapterCharactersData, persistChapterCharactersData } from '$lib/services/chapterCharacterRepository';
   import { API_ENDPOINTS, apiFetch } from '$lib/services/apiClient';
   // removed generateChapterAudio per UI change
@@ -96,7 +96,9 @@
     if (!root) return;
     const resolved = resolveClosedWorldCandidateAsAlias($bookCharacters, item.candidateName, targetCharacterId);
     if (resolved.changed) {
-      const saved = await persistCentralCharacters(root, resolved.characters);
+      // v3 (IN-2/IN-3): persist ONLY the touched character's file via the
+      // store's per-file write — never the root characters.json.
+      const saved = await addBookCharacterAlias(target.name, item.candidateName);
       if (!saved) throw new Error(`Failed to add ${item.candidateName} as an alias of ${target.name}`);
     }
     await applyReviewedCharacter(item, target.id, target.name);
@@ -651,40 +653,6 @@
     newCharacterColor = null;
   }
 
-  async function persistCentralCharacters(root: string, data: CharactersJson): Promise<boolean> {
-    const savedLocally = await writeCentralCharacters(root, data);
-    if (savedLocally) return true;
-
-    const backendRoot = get(bookRootAbsolutePath);
-    if (!backendRoot) {
-      console.warn('[ChapterCharacterPanel] Failed to save characters.json: no backend root path available');
-      return false;
-    }
-
-    try {
-      const payload = {
-        file_path: 'characters.json',
-        content: data
-      };
-      const response = await apiFetch(API_ENDPOINTS.save, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      if (response.ok) {
-        console.log('[ChapterCharacterPanel] Successfully saved characters.json via API');
-        return true;
-      } else {
-        const errorData = await response.json();
-        console.error('[ChapterCharacterPanel] Failed to save characters.json via API:', errorData.detail || response.statusText);
-        return false;
-      }
-    } catch (error) {
-      console.error('[ChapterCharacterPanel] Network error saving characters.json via API:', error);
-      return false;
-    }
-  }
 </script>
 
 <style>
