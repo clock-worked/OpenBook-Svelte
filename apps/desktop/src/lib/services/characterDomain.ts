@@ -58,7 +58,10 @@ export function resolveCanonicalCharacterName(data: CharactersJson, inputName: s
 // === v3 GUID identity (docs/schema_characters_v3.md §GUID spec) ===
 
 /** Crockford base32 alphabet: 0-9 + A-Z minus I, L, O, U (32 symbols). Local to this file by design. */
-const CROCKFORD_BASE32_ALPHABET = '0123456789BHJKMNPQRSTVWXYZ';
+// 32-symbol Crockford base32, uppercase — MUST match CHARACTER_GUID_PATTERN
+// (types.ts) and CROCKFORD_BASE32_ALPHABET in py_services/character_store.py.
+// Normative source: docs/schema_characters_v3.md §GUID spec.
+const CROCKFORD_BASE32_ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
 
 function encodeCrockfordBase32(bytes: Uint8Array): string {
     let bits = 0;
