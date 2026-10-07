@@ -39,6 +39,19 @@ export interface Character {
 export const CHARACTER_GUID_PATTERN = /^[0-9A-HJKM-NP-QRSTV-Z]{8}$/;
 
 /**
+ * Normalize a free-form gender value to the canonical `Gender` union.
+ * Pure (no service imports): kept in this dependency-free module so
+ * fs-independent modules (e.g. characterFileMapping) can use it without
+ * pulling in the fs import chain.
+ */
+export function normalizeCharacterGender(value: unknown): Gender {
+  const normalized = String(value || '').trim().toLowerCase();
+  if (normalized === 'male' || normalized === 'm') return 'Male';
+  if (normalized === 'female' || normalized === 'f') return 'Female';
+  return 'Unknown';
+}
+
+/**
  * v3.0 per-character file record: characters/<Title>.json (one file per alias cluster).
  * Normative field table: docs/schema_characters_v3.md §File format.
  */

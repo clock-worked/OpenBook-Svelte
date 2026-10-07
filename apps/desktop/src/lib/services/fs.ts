@@ -3,6 +3,7 @@ import type { ChapterStatus } from '$lib/stores/bookState';
 import { get } from 'svelte/store';
 import { bookRootPathOverride } from '$lib/stores/settings';
 import type {
+  Character,
   DialogueJson,
   CharactersJson,
   VoicesJson,
@@ -11,6 +12,11 @@ import type {
   LineItem
 } from '$lib/types';
 import { storeProjectHandle } from './persistence';
+import {
+  clearRawCharacterFileDocs,
+  mapCharacterFile,
+  recordRawCharacterFileDoc,
+} from './characterFileMapping';
 import { API_ENDPOINTS, apiPostJson, apiPostVoid, apiRequestJson, toApiClientError } from './apiClient';
 import type {
   DeleteFileRequest,
@@ -643,7 +649,12 @@ export async function writeVoices(root: string, data: VoicesJson): Promise<boole
 export async function readCentralCharacters(root: string): Promise<CharactersJson | null> {
   // When using FileSystemDirectoryHandle, rootDirHandle is already at the book directory level
   // so we just need "characters.json", not "${root}/characters.json"
-  return readFileAsJson<CharactersJson>('characters.json');
+  const legacy = await readFileAsJson<CharactersJson>('characters.json');
+  if (legacy) return legacy;
+  // v3.0: characters.json is retired; the characters/ folder is the source of truth.
+  // Without this fallback, v3 books resolve no central characters at all and
+  // chapter views fall back to raw reference values (GUIDs / v2 slugs).
+  return readCharacterFolder(root);
 }
 
 export async function writeCentralCharacters(root: string, data: CharactersJson): Promise<boolean> {
@@ -724,6 +735,34 @@ export async function readCharacterFile(
  */
 export async function writeCharacterFile(root: string, fileName: string, content: unknown): Promise<boolean> {
   return writeFile(`characters/${fileName}`, JSON.stringify(content, null, 2));
+}
+
+// === v3.0 Character Folder Read Path ===
+
+/**
+ * Read the v3 `characters/` folder: list the files, map each through
+ * `mapCharacterFile` (characterFileMapping.ts), and refresh the raw-document
+ * cache. Returns null when the folder is absent/empty or yields no valid
+ * records.
+ */
+export async function readCharacterFolder(root: string): Promise<CharactersJson | null> {
+  const fileNames = await listCharacterFiles(root);
+  if (fileNames.length === 0) return null;
+
+  clearRawCharacterFileDocs();
+  const characters: Character[] = [];
+  for (const fileName of fileNames) {
+    const raw = await readCharacterFile(root, fileName);
+    if (!raw) continue;
+    const character = mapCharacterFile(raw);
+    if (!character) continue;
+    recordRawCharacterFileDoc(character.guid, raw as Record<string, unknown>);
+    characters.push(character);
+  }
+
+  if (characters.length === 0) return null;
+  characters.sort((left, right) => left.name.localeCompare(right.name));
+  return { formatVersion: '3.0', characters };
 }
 
 /**

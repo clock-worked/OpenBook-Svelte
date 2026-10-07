@@ -17,6 +17,13 @@
 // and drive it via the exported test controls (__seed / __snapshot / ...).
 // ============================================================================
 
+import type { Character } from '$lib/types';
+import {
+  clearRawCharacterFileDocs,
+  mapCharacterFile,
+  recordRawCharacterFileDoc,
+} from '$lib/services/characterFileMapping';
+
 const files = new Map<string, string>();
 
 function normalizePath(path: string): string {
@@ -65,6 +72,26 @@ export const inMemoryFs = {
   readCharacterFile: async (_root: string, fileName: string) => readJson(`characters/${fileName}`),
   writeCharacterFile: async (_root: string, fileName: string, content: unknown) =>
     writeJson(`characters/${fileName}`, content),
+  // Folder read with the REAL mapping + raw-document cache (characterFileMapping
+  // is not fs-mocked), driving the in-memory list/read primitives — mirrors the
+  // fs.ts readCharacterFolder composition.
+  readCharacterFolder: async (root: string) => {
+    const fileNames = await inMemoryFs.listCharacterFiles(root);
+    if (fileNames.length === 0) return null;
+    clearRawCharacterFileDocs();
+    const characters: Character[] = [];
+    for (const fileName of fileNames) {
+      const raw = await readJson(`characters/${fileName}`);
+      if (!raw) continue;
+      const character = mapCharacterFile(raw);
+      if (!character) continue;
+      recordRawCharacterFileDoc(character.guid, raw as Record<string, unknown>);
+      characters.push(character);
+    }
+    if (characters.length === 0) return null;
+    characters.sort((left, right) => left.name.localeCompare(right.name));
+    return { formatVersion: '3.0', characters };
+  },
   // Deleting a missing file is a success (idempotent).
   deleteFile: async (_root: string, relPath: string) => {
     files.delete(normalizePath(relPath));

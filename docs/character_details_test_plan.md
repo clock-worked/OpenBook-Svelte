@@ -54,6 +54,7 @@ Shared fixture: hermetic `Book-9` with 3 clusters (aliases, gender, color, descr
 | folder loader: duplicate title / duplicate guid | detected and surfaced, not silent first-wins |
 | persist round-trip | a record with `roleLabels` on disk survives an unrelated character's persist (IN-2/IN-5) |
 | **no name-vs-id string matching** | no consumer code path matches display names against ids (guideline from data facet risk 3) |
+| chapter normalization display names (`components/chapter/tools/shared/__tests__/chapterNormalization.test.ts`) | v2 slug `chosenSpeaker`/candidate (`sergeant-jaha`) → canonical title (`Sergeant Jaha`); uppercase v3 GUID `characterId` → title despite lowercase id-map keys; unknown speakers untouched |
 
 ## Regression gate (merge blockers)
 
@@ -69,6 +70,7 @@ Shared fixture: hermetic `Book-9` with 3 clusters (aliases, gender, color, descr
 4. Post-apply scans: tree-wide stale-slug scan = 0; every dialogue `characterId` resolves to a `characters/*.json`; per-char stats identical pre/post (run stats refresh, diff).
 5. App walk: rosters render; no null speakers in a known chapter; audio panel finds manifests; one closed-world parse + one JEV run succeed (catalog consumers live).
 6. **Core safety on real data:** one UI title rename → on disk exactly one file changed in `characters/`, zero reference files changed.
+7. **Chapter-view display names:** character chips/labels render the saved title — slug-era `chosenSpeaker` values (e.g. `sergeant-jaha`) show as `Sergeant Jaha`; GUID-referenced lines show the title, never the raw GUID.
 
 ## Related Docs
 

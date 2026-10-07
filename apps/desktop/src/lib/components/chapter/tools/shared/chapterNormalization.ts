@@ -121,12 +121,14 @@ function normalizeLine(
 
         let charName: string | null = null;
         if (line.characterId && !isNonSpeaker) {
-            charName = charactersMap?.get(line.characterId) || line.characterId;
+            // buildIdToNameMap stores lowercase keys; v3 GUIDs are uppercase.
+            charName = charactersMap?.get(line.characterId.toLowerCase()) || line.characterId;
         }
 
         const normalizedSpan = (line.span && line.span.start === 0 && line.span.end === 0) ? null : line.span;
         const normalizedCandidates = line.candidates.map((candidate) => {
-            const candidateName = candidate.characterId ? (charactersMap?.get(candidate.characterId) || candidate.characterId) : null;
+            const candidateId = candidate.characterId || null;
+            const candidateName = candidateId ? (charactersMap?.get(candidateId.toLowerCase()) || candidateId) : null;
             return {
                 name: candidateName || unknownSpeakerLabel,
                 characterId: candidate.characterId || null,
@@ -195,6 +197,17 @@ function normalizeLine(
     };
 }
 
+/**
+ * JS mirror of the v2 character-id slug used by the parser and the
+ * migration scripts (`migrate_characters_v3.py`): casefold, drop everything
+ * but `[a-z0-9\s-]`, collapse whitespace/hyphen runs to a single `-`,
+ * strip edge hyphens. "Sergeant Jaha" -> "sergeant-jaha".
+ */
+function slugifyCharacterName(value: string): string {
+    const stripped = value.toLowerCase().replace(/[^a-z0-9\s-]/g, '');
+    return stripped.replace(/[\s-]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
 function buildAliasMaps(centralCharacters: any[] | null | undefined) {
     const aliasToCanonical = new Map<string, string>();
     const nameToCanonical = new Map<string, string>();
@@ -202,6 +215,14 @@ function buildAliasMaps(centralCharacters: any[] | null | undefined) {
         if (!entry?.name) continue;
         const canonical = String(entry.name);
         nameToCanonical.set(canonical.toLowerCase(), canonical);
+        // v2-era reference values (chosenSpeaker, candidates) store the slug
+        // form of the name; map it back to the canonical title so chapter
+        // views show "Sergeant Jaha", not "sergeant-jaha". First registration
+        // wins so a slug collision can never shadow a real name.
+        const slug = slugifyCharacterName(canonical);
+        if (slug && !nameToCanonical.has(slug)) {
+            nameToCanonical.set(slug, canonical);
+        }
         const aliases = Array.isArray(entry.aliases) ? entry.aliases : [];
         for (const alias of aliases) {
             const key = String(alias || '').trim().toLowerCase();

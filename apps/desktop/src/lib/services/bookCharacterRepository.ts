@@ -7,6 +7,7 @@ import {
     getScriptPath,
     listCharacterFiles,
     readCharacterFile,
+    readCharacterFolder,
     readCharacters,
     readDialogue,
     readScript,
@@ -14,6 +15,13 @@ import {
     writeCharacterFile,
     writeCharacters,
 } from '$lib/services/fs';
+import { getRawCharacterFileDoc } from '$lib/services/characterFileMapping';
+// v3 folder read path: `mapCharacterFile` + raw-doc cache live in
+// characterFileMapping.ts (fs-independent, so the fs-mocked test matrix keeps
+// the real round-trip logic), `readCharacterFolder` in fs.ts (readCentralCharacters
+// falls back to it). Re-exported here so existing importers keep their paths.
+export { mapCharacterFile } from '$lib/services/characterFileMapping';
+export { readCharacterFolder } from '$lib/services/fs';
 import { normalizeCharacterGender } from '$lib/services/characterGender';
 import { normalizeCharacterKey } from '$lib/services/characterDomain';
 import { loadChapterCharactersData } from '$lib/services/chapterCharacterRepository';
@@ -27,96 +35,12 @@ export interface ChapterCharacterContext {
     scriptPath?: string;
 }
 
-// === v3 folder record cache (unknown-field round-trip) ===
-
-/**
- * Per-record cache of raw v3 file documents, keyed by GUID.
- *
- * The TS `Character` type is intentionally narrower than the v3 file format:
- * fields such as `roleLabels` (read by `dialogue_ai_context.py:288`) have no
- * slot on `Character`. The in-memory record is therefore lossy by design, so
- * we keep the raw document per GUID and the write path re-serializes the raw
- * document as the base, overlaying the in-memory display fields on top.
- * Unknown raw fields (including `roleLabels`) round-trip untouched.
- * The cache is disposable (schema doc §GUID spec): it is rebuilt on every
- * folder read and never authoritative.
- */
-const rawCharacterFileDocs = new Map<string, Record<string, unknown>>();
+// The v3 folder read path (raw-document cache, `mapCharacterFile`,
+// `readCharacterFolder`) lives in fs.ts so that `readCentralCharacters` can
+// fall back to the folder without a circular import. It is re-exported above.
 
 function isV3Guid(value: unknown): value is string {
     return typeof value === 'string' && CHARACTER_GUID_PATTERN.test(value.trim());
-}
-
-/**
- * Map a raw `characters/<Title>.json` document (v3.0) to an in-memory
- * `Character`. Returns null (and warns) for records that fail the schema
- * validation rules (formatVersion 3.0, valid GUID, non-empty title).
- *
- * `id` is the documented mirror of `guid` (`id = guid`) so existing read
- * sites keep working; the GUID is the identity, the title is display data.
- */
-export function mapCharacterFile(raw: unknown): Character | null {
-    if (!raw || typeof raw !== 'object') return null;
-    const doc = raw as Record<string, any>;
-    const guid = typeof doc.guid === 'string' ? doc.guid.trim() : '';
-    const title = typeof doc.title === 'string' ? doc.title.trim() : '';
-
-    if (doc.formatVersion !== '3.0' || !CHARACTER_GUID_PATTERN.test(guid) || !title) {
-        console.warn('[bookCharacters] Skipping invalid character file record:', {
-            formatVersion: doc.formatVersion,
-            guid,
-            title,
-        });
-        return null;
-    }
-
-    const stats = doc.stats ?? {};
-    return {
-        guid,
-        id: guid, // documented mirror: in v3, id = guid
-        name: title,
-        gender: normalizeCharacterGender(doc.gender),
-        aliases: Array.isArray(doc.aliases) ? doc.aliases.filter((alias: unknown) => typeof alias === 'string') : [],
-        descriptors: Array.isArray(doc.descriptors) ? doc.descriptors.filter((descriptor: unknown) => typeof descriptor === 'string') : [],
-        race: typeof doc.race === 'string' ? doc.race : undefined,
-        color: doc.color ?? null,
-        notes: typeof doc.notes === 'string' ? doc.notes : '',
-        firstAppearance: typeof doc.firstAppearance === 'string' ? doc.firstAppearance : null,
-        stats: {
-            totalLines: typeof stats.totalLines === 'number' ? stats.totalLines : 0,
-            chapterCount: typeof stats.chapterCount === 'number' ? stats.chapterCount : 0,
-        },
-        voice: doc.voice ?? null,
-        provider: doc.provider ?? null,
-        voiceId: doc.voiceId ?? null,
-        voiceMeta: doc.voiceMeta ?? null,
-        manifestStats: doc.manifestStats ?? null,
-    };
-}
-
-/**
- * Read the v3 `characters/` folder: list the files, map each through
- * `mapCharacterFile`, and refresh the raw-document cache.
- * Returns null when the folder is absent/empty or yields no valid records.
- */
-export async function readCharacterFolder(root: string): Promise<CharactersJson | null> {
-    const fileNames = await listCharacterFiles(root);
-    if (fileNames.length === 0) return null;
-
-    rawCharacterFileDocs.clear();
-    const characters: Character[] = [];
-    for (const fileName of fileNames) {
-        const raw = await readCharacterFile(root, fileName);
-        if (!raw) continue;
-        const character = mapCharacterFile(raw);
-        if (!character) continue;
-        rawCharacterFileDocs.set(character.guid, raw as Record<string, unknown>);
-        characters.push(character);
-    }
-
-    if (characters.length === 0) return null;
-    characters.sort((left, right) => left.name.localeCompare(right.name));
-    return { formatVersion: '3.0', characters };
 }
 
 // === Filename rules (docs/schema_characters_v3.md §Filename rules) ===
@@ -180,7 +104,7 @@ export async function writeCharacterRecord(root: string, record: Character): Pro
     };
 
     const base: Partial<CharacterFile> =
-        (rawCharacterFileDocs.get(guid) as Partial<CharacterFile> | undefined) ?? {};
+        (getRawCharacterFileDoc(guid) as Partial<CharacterFile> | undefined) ?? {};
 
     const file: CharacterFile = {
         ...base,

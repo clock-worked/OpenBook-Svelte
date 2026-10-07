@@ -1,4 +1,5 @@
 import type { CharactersJson, Gender } from '$lib/types';
+import { normalizeCharacterGender } from '$lib/types';
 import { resolveCanonicalCharacterName } from '$lib/services/characterDomain';
 
 export type LearnedBinaryGender = Exclude<Gender, 'Unknown'>;
@@ -80,12 +81,10 @@ function isNonLearnableSpeaker(name: string): boolean {
     return !normalized || normalized === 'unknown' || normalized === 'narrator';
 }
 
-export function normalizeCharacterGender(value: unknown): Gender {
-    const normalized = String(value || '').trim().toLowerCase();
-    if (normalized === 'male' || normalized === 'm') return 'Male';
-    if (normalized === 'female' || normalized === 'f') return 'Female';
-    return 'Unknown';
-}
+// Defined in $lib/types (dependency-free) so fs-independent modules
+// (characterFileMapping) can use it without the fs import chain; re-exported
+// here so existing importers keep their paths.
+export { normalizeCharacterGender };
 
 export function normalizeLearnedBinaryGender(value: unknown): LearnedBinaryGender | null {
     const normalized = normalizeCharacterGender(value);
