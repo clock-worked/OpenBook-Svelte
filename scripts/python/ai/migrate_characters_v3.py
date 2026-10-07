@@ -17,7 +17,9 @@ docs/character_details_alias_design.md §Migration):
      lines[].attribution.candidates[].characterId,
      stats.characterBreakdown keys), rosters (<Ch>/<Ch>.characters.json),
      voices.json (assignments + usedByCharacters), audio manifests
-     (audio_lines/**/manifest.json, top-level + per-clip characterId).
+     (audio_lines/**/manifest.json, top-level + per-clip characterId,
+     plus the dialogue-style lines[].characterId carried by chapter-level
+     TTS-pipeline manifests).
   2. Deterministic minting: SHA-256("<book-name>::v3::<v2-id>") -> first 5
      bytes -> 8-char Crockford base32 (shared table in
      py_services/character_store.py). Mint order: clusters sorted by
@@ -554,7 +556,13 @@ def walk_voices(payload: Any, resolve: Resolver, remap: dict[str, str]) -> tuple
 
 
 def walk_manifest(payload: Any, resolve: Resolver, remap: dict[str, str]) -> tuple[bool, int, list[str]]:
-    """Top-level + per-clip characterId. characterName stays a name (R8)."""
+    """Top-level + per-clip characterId. characterName stays a name (R8).
+
+    Chapter-level TTS-pipeline manifests also carry a dialogue-style
+    `lines` array; build_plan pairs this walk with walk_dialogue on the
+    same payload so those sites are remapped too (walker/rescan symmetry
+    with the stage-5d rescan, which polices `lines` in every inventoried
+    file)."""
     changed = False
     refs = 0
     unresolved: list[str] = []
@@ -754,6 +762,15 @@ def build_plan(
         plan.inventory.add(manifest_path)
         copy = deepcopy(manifest)
         changed, refs, unresolved = walk_manifest(copy, resolve, remap)
+        # Chapter TTS-pipeline manifests (audio_lines/manifest.json) embed a
+        # dialogue-style `lines` array; the stage-5d rescan polices those
+        # sites, so the walker must remap them too (walker/rescan symmetry).
+        # A plain clip manifest has no `lines` key -> this is a no-op.
+        dchanged, drefs, dunresolved = walk_dialogue(copy, resolve, remap)
+        if dchanged:
+            changed = True
+        refs += drefs
+        unresolved.extend(dunresolved)
         plan.counts["manifestRefs"] += refs
         plan.unresolved_refs.extend(
             f"{manifest_path.relative_to(book_root)}: {site}" for site in unresolved
