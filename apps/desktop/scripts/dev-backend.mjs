@@ -8,7 +8,11 @@ const __dirname = path.dirname(__filename);
 const desktopDir = path.resolve(__dirname, "..");
 const repoRoot = path.resolve(desktopDir, "..", "..");
 const pyServicesDir = path.join(repoRoot, "py_services");
-const pythonExe = path.join(repoRoot, ".venv", "Scripts", "python.exe");
+// OPENBOOK_PYTHON_EXE lets a worktree/secondary checkout borrow the main
+// checkout's .venv instead of needing its own (venvs are not git-tracked).
+const pythonExe =
+  process.env.OPENBOOK_PYTHON_EXE ||
+  path.join(repoRoot, ".venv", "Scripts", "python.exe");
 
 // 8012: 8011 is squatted by a stale elevated/other-user backend process on
 // this machine that cannot be killed from a normal session (it keeps
