@@ -3,9 +3,18 @@ import os
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
+try:
+    from ..character_store import load_character_folder
+except ImportError:
+    from character_store import load_character_folder
+
 
 class KnowledgeStore:
     """Lightweight knowledge store backed by a per-book book.characters.json.
+
+    Load order: book.characters.json (primary, read-write) -> the v3
+    characters/ folder (read-only fallback) -> the retired root
+    characters.json (read-only fallback).
 
     This augments rule-based parsing with:
     - genders per character
@@ -38,6 +47,33 @@ class KnowledgeStore:
         elif os.path.exists(self.characters_path):
             source_path = self.characters_path
             self._read_only = True
+
+        # v3: the characters/ folder takes the fallback slot between the
+        # primary book.characters.json and the retired characters.json.
+        # It is read-only here: knowledge writes still go to the primary.
+        if not source_path:
+            folder_records = load_character_folder(self.book_root_dir)
+            if folder_records:
+                self._read_only = True
+                for record in folder_records:
+                    name = str(record.get("name") or "").strip()
+                    if not name:
+                        continue
+                    stats = record.get("stats")
+                    stats = stats if isinstance(stats, dict) else {}
+                    self._characters[name] = {
+                        "name": name,
+                        "gender": record.get("gender", "u"),
+                        "aliases": list(record.get("aliases") or []),
+                        "first_seen_chapter": record.get("firstAppearance"),
+                        "count_dialogue": stats.get("totalLines", 0),
+                        "count_mentions": 0,
+                        "color": record.get("color"),
+                        "voice": record.get("voice"),
+                    }
+                self._loaded = True
+                self._rebuild_views()
+                return
 
         if not source_path:
             # Nothing to load; keep empty knowledge

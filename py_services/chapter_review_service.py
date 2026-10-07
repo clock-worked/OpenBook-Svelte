@@ -13,8 +13,18 @@ from typing import Any, Dict, Iterable, List, Optional
 import spacy
 
 try:
+    from .character_store import (
+        load_characters,
+        load_legacy_document,
+        write_character,
+    )
     from .openbook_parser.attribution_passes import ATTRIBUTION_VERBS
 except ImportError:
+    from character_store import (
+        load_characters,
+        load_legacy_document,
+        write_character,
+    )
     from openbook_parser.attribution_passes import ATTRIBUTION_VERBS
 
 VAGUE_DESCRIPTOR_MODIFIERS = {"all", "any", "each", "every", "few", "other", "same", "some"}
@@ -237,16 +247,21 @@ def review_chapter(book_root: str, chapter_name: str) -> Dict[str, object]:
     dialogue_path = os.path.join(chapter_dir, "dialogue.json")
     text_path = os.path.join(chapter_dir, "chapter.txt")
     characters_path = os.path.join(root, "characters.json")
-    for required_path in (dialogue_path, text_path, characters_path):
+    for required_path in (dialogue_path, text_path):
         if not os.path.isfile(required_path):
             raise ValueError(f"Required file not found: {required_path}")
+
+    # v3: the characters/ folder is the source of truth when present; the
+    # retired root characters.json is only required for not-yet-migrated
+    # books (IN-2).
+    characters, characters_source = load_characters(root)
+    if characters_source == "legacy" and not os.path.isfile(characters_path):
+        raise ValueError(f"Required file not found: {characters_path}")
 
     with open(dialogue_path, "r", encoding="utf-8") as handle:
         dialogue = json.load(handle)
     with open(text_path, "r", encoding="utf-8") as handle:
         raw_text = handle.read()
-    with open(characters_path, "r", encoding="utf-8") as handle:
-        characters = json.load(handle)
 
     lines = dialogue.get("lines") or []
     unresolved = [
@@ -260,7 +275,7 @@ def review_chapter(book_root: str, chapter_name: str) -> Dict[str, object]:
 
     characters_by_id = {
         str(character.get("id") or "").strip(): character
-        for character in characters.get("characters") or []
+        for character in characters
         if str(character.get("id") or "").strip()
     }
     identity_surfaces = {
@@ -276,6 +291,7 @@ def review_chapter(book_root: str, chapter_name: str) -> Dict[str, object]:
 
     observations = 0
     additions = 0
+    changed_character_ids = set()
     for line in lines:
         character_id = str(line.get("characterId") or "").strip()
         character = characters_by_id.get(character_id)
@@ -324,6 +340,7 @@ def review_chapter(book_root: str, chapter_name: str) -> Dict[str, object]:
             else []
         )
         known = {str(value).casefold() for value in descriptors}
+        character_changed = False
         for descriptor in learned:
             observations += 1
             if descriptor.casefold() in known:
@@ -331,7 +348,10 @@ def review_chapter(book_root: str, chapter_name: str) -> Dict[str, object]:
             descriptors.append(descriptor)
             known.add(descriptor.casefold())
             additions += 1
-        character["descriptors"] = descriptors
+            character_changed = True
+        if character_changed:
+            character["descriptors"] = descriptors
+            changed_character_ids.add(character_id)
 
     character_breakdown: Dict[str, int] = {}
     for line in lines:
@@ -349,7 +369,17 @@ def review_chapter(book_root: str, chapter_name: str) -> Dict[str, object]:
     dialogue["reviewed"] = True
     dialogue["reviewedAt"] = reviewed_at
     dialogue["reviewedLineCount"] = len(lines)
-    _write_json_atomic(characters_path, characters)
+    if characters_source == "folder":
+        # IN-2: the folder is the sole source of truth — write only the
+        # affected character files, never the retired root characters.json.
+        for character_id in sorted(changed_character_ids):
+            write_character(root, characters_by_id[character_id])
+    else:
+        # Keep the legacy document's top-level keys (e.g. formatVersion)
+        # while writing back the in-memory-modified character records.
+        characters_document = load_legacy_document(root) or {}
+        characters_document["characters"] = characters
+        _write_json_atomic(characters_path, characters_document)
     _write_json_atomic(dialogue_path, dialogue)
     return {
         "chapter": chapter_name,

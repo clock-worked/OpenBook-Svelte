@@ -1,5 +1,11 @@
 """Convert per-chapter character rosters to canonical book character ID references."""
 
+# SUPERSEDED (2026-10-06, Character Details v3): this script targets the
+# retired v2 `characters.json` store. It is superseded by the v3
+# `characters/` folder format (docs/schema_characters_v3.md) and, for
+# v2 -> v3 migration, by scripts/python/ai/migrate_characters_v3.py.
+# Kept as-is for unmigrated books only; do not run against migrated books.
+
 from __future__ import annotations
 
 import argparse

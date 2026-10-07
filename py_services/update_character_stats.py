@@ -1,22 +1,90 @@
 #!/usr/bin/env python3
 """
-Utility to update character statistics in characters.json from dialogue.json files.
+Utility to update character statistics from dialogue.json files.
 This should be run whenever dialogue files are modified to keep stats in sync.
+
+Writes to the v3 characters/ folder (one file per character, atomic,
+write-only-on-change) when the book has a valid v3 store; not-yet-migrated
+books keep the legacy root characters.json single-file write. The folder
+is the source of truth once present (IN-2): the legacy write is only
+reachable when the folder has no valid v3.0 files.
 """
 
 import json
 from pathlib import Path
-from typing import Dict, Set
+from typing import Dict, List, Set
 from collections import defaultdict
+
+from character_store import load_characters, write_character
+
+
+def _update_folder_stats(
+    book_root: Path,
+    records: List[Dict],
+    character_stats: Dict,
+    processed_chapters: int,
+) -> Dict:
+    """Rewrite the affected characters/<file>.json files (v3 store).
+
+    Write-only-on-change: stats are compared before each write because
+    this runs on every dialogue save and would otherwise fan out to
+    N files.
+    """
+    # Build a normalized version of character_stats for matching
+    normalized_stats = {k.lower(): v for k, v in character_stats.items()}
+
+    updated_count = 0
+    for character in records:
+        char_id = character.get('id')      # v3: the GUID
+        char_name = character.get('name')   # v3: the title
+        char_id_lower = char_id.lower() if char_id else None
+        char_name_lower = char_name.lower() if char_name else None
+
+        new_stats = None
+        if char_id and char_id in character_stats:
+            new_stats = character_stats[char_id]
+        elif char_id_lower and char_id_lower in normalized_stats:
+            original_key = next((k for k in character_stats.keys() if k.lower() == char_id_lower), None)
+            if original_key:
+                new_stats = character_stats[original_key]
+        elif char_name and char_name in character_stats:
+            new_stats = character_stats[char_name]
+        elif char_name_lower and char_name_lower in normalized_stats:
+            original_key = next((k for k in character_stats.keys() if k.lower() == char_name_lower), None)
+            if original_key:
+                new_stats = character_stats[original_key]
+        if new_stats is None:
+            # Character exists but has no lines
+            new_stats = {'totalLines': 0, 'chapterCount': 0}
+
+        existing = character.get('stats')
+        existing = existing if isinstance(existing, dict) else {}
+        if (existing.get('totalLines') == new_stats['totalLines']
+                and existing.get('chapterCount') == new_stats['chapterCount']):
+            continue
+
+        character['stats'] = new_stats
+        write_character(book_root, character)
+        updated_count += 1
+
+    print(f"  Updated {updated_count} character files in characters/")
+
+    return {
+        'success': True,
+        'updatedCharacters': updated_count,
+        'totalCharacters': len(records),
+        'processedChapters': processed_chapters
+    }
 
 
 def update_character_stats(book_root: Path) -> Dict:
     """
-    Scan all dialogue.json files in a book and update characters.json with current stats.
-    
+    Scan all dialogue.json files in a book and update the character store
+    (v3 characters/ folder, or legacy characters.json) with current stats.
+
     Args:
         book_root: Path to book directory (e.g., "Book-1/")
-        
+
     Returns:
         Dict with statistics about the update
     """
@@ -99,9 +167,24 @@ def update_character_stats(book_root: Path) -> Dict:
         else:
             print(f"  DEBUG: 'allen' NOT found in character_stats. Available keys: {list(character_stats.keys())[:20]}")
     
-    # Update characters.json
+    # Update the character store (v3 characters/ folder, or legacy characters.json)
+    records, source = load_characters(book_root)
+
+    if source == "folder":
+        # IN-2: the folder is the source of truth; the retired root
+        # characters.json is never written on this path.
+        try:
+            return _update_folder_stats(book_root, records, character_stats, processed_chapters)
+        except Exception as e:
+            print(f"  Error updating characters/ folder: {e}")
+            return {
+                'success': False,
+                'error': str(e),
+                'processedChapters': processed_chapters
+            }
+
     characters_path = book_root / "characters.json"
-    
+
     if not characters_path.exists():
         print(f"  Error: {characters_path} not found!")
         return {
@@ -109,7 +192,7 @@ def update_character_stats(book_root: Path) -> Dict:
             'error': 'characters.json not found',
             'processedChapters': processed_chapters
         }
-    
+
     try:
         with open(characters_path, 'r', encoding='utf-8') as f:
             characters_data = json.load(f)

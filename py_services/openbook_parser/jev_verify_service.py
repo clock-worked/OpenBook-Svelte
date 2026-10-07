@@ -36,6 +36,11 @@ from typing import Callable, Dict, List, Optional, Sequence, Tuple
 from .dialogue_parser_service import DialogueLine
 from .episode_decoder import HARD_REASONS
 
+try:
+    from ..character_store import load_characters
+except ImportError:
+    from character_store import load_characters
+
 SCHEMA_VERSION = "jev-verify/1"
 JEV_MODEL = "jev-latest"
 
@@ -91,14 +96,15 @@ def _slugify(value: str) -> str:
 
 
 def load_character_lookup(book_root: str) -> Dict[str, str]:
-    """normalized name/alias -> canonical display name (mirrors eval scripts)."""
-    characters_path = os.path.join(book_root, "characters.json")
+    """normalized name/alias -> canonical display name (mirrors eval scripts).
+
+    Sourced from the shared v3 character store (character_store): the
+    characters/ folder when it holds at least one valid v3.0 file, else
+    the legacy root characters.json.
+    """
     name_lookup: Dict[str, str] = {"narrator": "narrator"}
-    if not os.path.exists(characters_path):
-        return name_lookup
-    with open(characters_path, "r", encoding="utf-8") as handle:
-        payload = json.load(handle)
-    for entry in payload.get("characters", []):
+    records, _source = load_characters(book_root)
+    for entry in records:
         if not isinstance(entry, dict):
             continue
         name = str(entry.get("name") or "").strip()
