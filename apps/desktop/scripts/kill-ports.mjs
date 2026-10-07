@@ -27,6 +27,14 @@ const SLEEP = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
  * sockets), which would send the kill loop after a PID that no longer
  * exists and make this script abort a perfectly good dev start. A
  * successful bind proves the port is usable, no entry or not.
+ *
+ * The test binds 127.0.0.1, the address this dev stack actually uses
+ * (vite on localhost:5173, uvicorn on 127.0.0.1:8012). Binding 0.0.0.0
+ * here would be a FALSE check on Windows: unlike Linux, Windows lets a
+ * wildcard (0.0.0.0) bind and a loopback (127.0.0.1) bind of the same
+ * port COEXIST, so a 0.0.0.0 probe passes while a live 127.0.0.1
+ * listener still blocks the real server (observed: orphaned vite on
+ * 127.0.0.1:5173, probe said "free", new vite died with EADDRINUSE).
  */
 function portIsBindable(port) {
   return new Promise((resolve) => {
@@ -39,7 +47,7 @@ function portIsBindable(port) {
     };
     const srv = net.createServer();
     srv.once('error', () => finish(false)); // EADDRINUSE: genuinely held
-    srv.listen({ port, host: '0.0.0.0' }, () => {
+    srv.listen({ port, host: '127.0.0.1' }, () => {
       srv.close();
       finish(true);
     });
