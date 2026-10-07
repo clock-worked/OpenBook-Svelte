@@ -181,14 +181,19 @@ export function colorForCharacter(name: string | null | undefined, charsJson?: C
     return '#ffffff'; // Default white for Narrator
   }
 
-  // Always check book-level store first (single source of truth)
+  // Always check book-level store first (single source of truth).
+  // v3: reference values may be GUIDs (line/roster characterId is the
+  // character's guid) — resolve by name first, then by guid, so the
+  // SAVED color wins instead of the hash-based fallback.
   const bookChars = get(bookCharacters);
-  const bookMatched = bookChars?.characters?.find(ch => ch.name === key);
+  const bookMatched = bookChars?.characters?.find(ch => ch.name === key)
+    ?? bookChars?.characters?.find(ch => ch.guid != null && ch.guid === key);
   if (bookMatched && bookMatched.color) return bookMatched.color;
 
   // Fall back to chapter-level if book doesn't have it
   const chars = charsJson ?? get(characters);
-  const matched = chars?.characters?.find(ch => ch.name === key);
+  const matched = chars?.characters?.find(ch => ch.name === key)
+    ?? chars?.characters?.find(ch => ch.guid != null && ch.guid === key);
   if (matched && matched.color) return matched.color;
 
   // Return hash-based default (will be persisted on first use)
