@@ -104,10 +104,10 @@ Max 3 concurrent implementation agents — dependency-safe; the 8-agent ceiling 
 
 ## Lane 8 Current Status
 - ✅ 8a: vitest setup + service matrix
-- 🚧 8b: T-MIG suite + folder reader equivalence (flips to 🏁 when the test gate is confirmed)
-- ⬜ regression gate green
+- ✅ 8b: T-MIG suite + folder reader equivalence
+- ✅ regression gate green (orchestrator-confirmed: 49 + 61 Python tests OK; 17/17 vitest OK; chapter_review 14/15 — the 1 failure is the pre-existing spaCy env issue, fails on clean tree too)
 - ✅ pinned doc deltas (schema_v3.md:7 verbatim, schema_v2 banner, api_contract, architecture, ui_ux)
-- Status: 🚧 (8a ✅ `8729319` + `80c2472` follow-up; 8b in progress)
+- Status: 🏁 (8a ✅ `8729319` + `80c2472` follow-up; 8b ✅ `3e4f690` + `7505433`; gate confirmed 2026-10-07)
 
 ## Related Docs
 
