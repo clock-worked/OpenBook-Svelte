@@ -27,6 +27,11 @@
 
 ### Right Characters Panel
 - Color swatch, name, Apply button (visible when selection active).
+- Character rows: whole-row click (or Enter) selects the character and opens the details card; the pencil/inline-rename affordance is gone — the title is edited from the card. Row badge/jump/apply/delete actions use `stopPropagation` so they don't change selection.
+- Details card (`CharacterDetails.svelte`):
+  - Title editor: renaming writes the character file (new file + old deleted); a title colliding with another character (case-insensitive) is rejected with a visible message and nothing is written.
+  - Stats: 3 rows (total lines, chapter count, share) in 3 states — computed from chapter line counts, stale/derived from the stored stats, and zero/empty.
+  - Gender pills; aliases as a pill list (add/remove); descriptors as bullets with hover-X removal, a quiet `+` to add, and the note "Removed descriptors may reappear after the next chapter review" (re-learning).
 - Expand to choose voice per character.
 - Bottom button: Generate audio (disabled until conflicts resolved); becomes Regenerate audio if WAVs exist.
 

@@ -61,49 +61,53 @@ Max 3 concurrent implementation agents — dependency-safe; the 8-agent ceiling 
 ```
 
 ## Lane 1 Current Status
-- ⬜ `types.ts`: `Character.guid`, `CharacterFile`, GUID constant
-- Status: ⬜
+- ✅ `types.ts`: `Character.guid`, `CharacterFile`, GUID constant
+- Status: ✅ `5e2b11e`
 
 ## Lane 2 Current Status
-- ⬜ `fs.ts` folder primitives (list/read/write/delete, dual-path)
-- ⬜ `POST /api/list-files` + `POST /api/delete-file`
-- Status: ⬜
+- ✅ `fs.ts` folder primitives (list/read/write/delete, dual-path)
+- ✅ `POST /api/list-files` + `POST /api/delete-file`
+- Status: ✅ `5dcdfa2`
 
 ## Lane 3 Current Status
-- ⬜ `character_store.py` shared loader (API frozen first)
-- ⬜ six readers on the loader; stats write-only-on-change
-- ⬜ one-off scripts retired/superseded
-- Status: ⬜
+- ✅ `character_store.py` shared loader (API frozen first)
+- ✅ six readers on the loader; stats write-only-on-change
+- ✅ one-off scripts retired/superseded
+- Status: ✅ `097c612`
 
 ## Lane 4 Current Status
-- ⬜ FE `characterMigration.ts` (5-stage, auto-on-open)
-- ⬜ `scripts/python/ai/migrate_characters_v3.py` (dry-run/`--apply`/backup/post-rescan)
-- Status: ⬜
+- ✅ FE `characterMigration.ts` (5-stage, auto-on-open)
+- ✅ `scripts/python/ai/migrate_characters_v3.py` (dry-run/`--apply`/backup/post-rescan)
+- Status: ✅ `fb06557`
 
 ## Lane 5 Current Status
-- ⬜ folder load cascade + per-file write; `persistBookCharactersData` deleted
-- ⬜ roster GUID hydration
-- Status: ⬜
+- ✅ folder load cascade + per-file write; `persistBookCharactersData` deleted
+- ✅ roster GUID hydration
+- Status: ✅ `2620333`
 
 ## Lane 6 Current Status
-- ⬜ rename op (collision-reject → write-new → verify → delete-old)
-- ⬜ single-file alias/descriptor/gender/color ops; merge fan-out
-- ⬜ `mintCharacterGuid`; dead slug machinery removed
-- Status: ⬜
+- ✅ rename op (collision-reject → write-new → verify → delete-old)
+- ✅ single-file alias/descriptor/gender/color ops; merge fan-out
+- ✅ `mintCharacterGuid`; dead slug machinery removed
+- Status: ✅ `5f6ab52` (+fix `4566fd6`)
 
 ## Lane 7 Current Status
-- ⬜ store actions (single-file internals; `setBookCharacterDescriptors`)
-- ⬜ `ChapterCharacterList` whole-row click, pencil deleted
-- ⬜ `ChapterCharacterDetails` card (title/stats/gender/aliases/descriptors)
-- ⬜ panel unified selection; old details deleted
-- Status: ⬜
+- ✅ store actions (single-file internals; `setBookCharacterDescriptors`)
+- ✅ `ChapterCharacterList` whole-row click, pencil deleted
+- ✅ `ChapterCharacterDetails` card (title/stats/gender/aliases/descriptors)
+- ✅ panel unified selection; old details deleted
+- Status: ✅ `2c84c9e` (+`9030578` hygiene)
+
+## Lane 7b Current Status
+- ✅ v3 delete removes character file; closed-world alias flow off root characters.json
+- Status: ✅ `9030578`
 
 ## Lane 8 Current Status
-- ⬜ vitest setup + service matrix
-- ⬜ T-MIG suite + folder reader equivalence
+- ✅ 8a: vitest setup + service matrix
+- 🚧 8b: T-MIG suite + folder reader equivalence (flips to 🏁 when the test gate is confirmed)
 - ⬜ regression gate green
-- ⬜ pinned doc deltas (schema_v3.md:7 verbatim, schema_v2 banner, api_contract, architecture, ui_ux)
-- Status: ⬜
+- ✅ pinned doc deltas (schema_v3.md:7 verbatim, schema_v2 banner, api_contract, architecture, ui_ux)
+- Status: 🚧 (8a ✅ `8729319` + `80c2472` follow-up; 8b in progress)
 
 ## Related Docs
 
