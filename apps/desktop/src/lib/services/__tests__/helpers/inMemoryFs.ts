@@ -116,6 +116,19 @@ export const inMemoryFs = {
   // === Text read (used by the migration's readInventoried / rescan) ===
   readTextFile: async (path: string) => files.get(normalizePath(path)) ?? null,
 
+  // === Generic JSON read + chapter dialogue resolution (bookMigration) ===
+  readJsonRelative: async (path: string) => readJson(path),
+  readOptionalJsonRelative: async (path: string) => readJson(path),
+  // Mirrors fs.ts readDialogueForChapter: versioned dialogue.json first, then
+  // the v1 script.json, then dialogue.json as a legacy non-versioned script.
+  readDialogueForChapter: async (chapterTitle: string) => {
+    const dialogue = readJson(`${chapterTitle}/dialogue.json`);
+    if (dialogue && ['2.0', '3.0', '3.1', '3.2'].includes(String(dialogue.formatVersion))) return dialogue;
+    const script = readJson(`${chapterTitle}/${chapterTitle}.script.json`);
+    if (script) return script;
+    return dialogue ?? null;
+  },
+
   // === Test controls ===
   __reset: () => {
     files.clear();

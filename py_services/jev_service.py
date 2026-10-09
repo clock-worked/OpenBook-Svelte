@@ -179,9 +179,21 @@ class JevService:
             state, questions = self._build_jev_request(request, line, target, assist_context)
             jev_response = self._client.ask(state=state, questions=questions)
 
-            answer_payload = jev_response.get("answers", {}).get("speaker", {})
+            if not isinstance(jev_response, dict) or not isinstance(jev_response.get("answers"), dict):
+                raise ValueError("JEV returned an invalid answers object.")
+            answer_payload = jev_response["answers"].get("speaker")
+            if not isinstance(answer_payload, dict):
+                raise ValueError("JEV returned no valid speaker answer.")
             suggested_id = answer_payload.get("choice")
+            if not isinstance(suggested_id, str):
+                raise ValueError("JEV returned an invalid speaker choice; expected a string.")
             jev_confidence = answer_payload.get("confidence")
+            if jev_confidence is not None and (
+                isinstance(jev_confidence, bool)
+                or not isinstance(jev_confidence, (int, float))
+                or not 0 <= jev_confidence <= 1
+            ):
+                raise ValueError("JEV returned an invalid confidence; expected a number between 0 and 1.")
             raw_output = str(jev_response)
 
         except (ValueError, ConnectionError) as e:

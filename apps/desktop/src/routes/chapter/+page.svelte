@@ -17,9 +17,35 @@
   import { isAudioActive, audioState } from '$lib/stores/audio';
   import { parserHints } from '$lib/stores/settings';
 
+  const MIN_CHARACTER_PANEL_WIDTH = 300;
+  const MAX_CHARACTER_PANEL_WIDTH = 700;
+  const CHARACTER_PANEL_RESIZE_STEP = 20;
+
   let layout = { left: 20, center: 60, right: 20 };
+  let reviewLayoutElement: HTMLDivElement;
+  let characterPanelWidth = 550;
   let isLoading = true;
   let loadError = '';
+
+  function resizeCharacterPanel(width: number) {
+    characterPanelWidth = Math.max(
+      MIN_CHARACTER_PANEL_WIDTH,
+      Math.min(MAX_CHARACTER_PANEL_WIDTH, width)
+    );
+  }
+
+  function handleCharacterPanelResize(event: PointerEvent) {
+    if (!reviewLayoutElement) return;
+    const layoutRight = reviewLayoutElement.getBoundingClientRect().right;
+    resizeCharacterPanel(layoutRight - event.clientX);
+  }
+
+  function handleCharacterPanelResizeKeydown(event: KeyboardEvent) {
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+    event.preventDefault();
+    const direction = event.key === 'ArrowLeft' ? 1 : -1;
+    resizeCharacterPanel(characterPanelWidth + direction * CHARACTER_PANEL_RESIZE_STEP);
+  }
 
   async function loadParserHints() {
     const settings = await readSettings(get(bookRoot));
@@ -129,14 +155,37 @@
 {:else}
   <div class="review-page">
     <Toolbar />
-    <div class="review-layout">
+    <div class="review-layout" bind:this={reviewLayoutElement}>
       <div class="toc-panel">
         <TableOfContents />
       </div>
       <div class="chapter-panel">
         <ChapterView />
       </div>
-      <div class="character-panel">
+      <!-- svelte-ignore a11y_no_noninteractive_tabindex a11y_no_noninteractive_element_interactions a11y_no_static_element_interactions (A focusable separator supports pointer and keyboard resizing.) -->
+      <div
+        class="character-panel-resizer"
+        role="separator"
+        aria-label="Resize character panel"
+        aria-orientation="vertical"
+        aria-valuemin={MIN_CHARACTER_PANEL_WIDTH}
+        aria-valuemax={MAX_CHARACTER_PANEL_WIDTH}
+        aria-valuenow={characterPanelWidth}
+        tabindex="0"
+        on:pointerdown={(event) => {
+          event.preventDefault();
+          event.currentTarget.setPointerCapture(event.pointerId);
+          handleCharacterPanelResize(event);
+        }}
+        on:pointermove={(event) => {
+          if (event.buttons > 0) handleCharacterPanelResize(event);
+        }}
+        on:keydown={handleCharacterPanelResizeKeydown}
+      ></div>
+      <div
+        class="character-panel"
+        style={`width: ${characterPanelWidth}px; flex-basis: ${characterPanelWidth}px;`}
+      >
         {#if $toolMode === 'audio'}
           <AudioPanel />
         {:else}
@@ -201,11 +250,38 @@
     overflow: auto;
   }
 
+  .character-panel-resizer {
+    flex: 0 0 8px;
+    cursor: col-resize;
+    touch-action: none;
+    user-select: none;
+    position: relative;
+    z-index: 1;
+  }
+
+  .character-panel-resizer::after {
+    content: '';
+    position: absolute;
+    inset: 0 3px;
+    background: transparent;
+    transition: background-color 120ms ease;
+  }
+
+  .character-panel-resizer:hover::after,
+  .character-panel-resizer:focus-visible::after {
+    background: var(--app-primary);
+  }
+
+  .character-panel-resizer:focus-visible {
+    outline: none;
+  }
+
   .character-panel {
+    flex: 0 0 550px;
+    box-sizing: border-box;
     min-width: 300px;
-    max-width: 550px;
+    max-width: 700px;
     border-left: 1px solid var(--app-border-subtle);
     overflow: auto;
   }
 </style>
-

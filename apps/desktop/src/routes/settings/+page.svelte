@@ -1,9 +1,60 @@
 <script lang="ts">
+    import { get } from 'svelte/store';
     import { appTheme, bookRootPathOverride, parserHints, type AppTheme } from '$lib/stores/settings';
-    import { setBackendBookRoot } from '$lib/services/fs';
+    import { bookRoot, bookRootAbsolutePath, chapters } from '$lib/stores/bookState';
+    import { forceRefreshBookCharacters } from '$lib/stores/bookCharacters';
+    import { setBackendBookRoot, getRootDirInfo } from '$lib/services/fs';
+    import { API_ENDPOINTS, apiFetch } from '$lib/services/apiClient';
+    import { migrateBookToV3, type BookMigrationReport } from '$lib/services/bookMigration';
+    import { clampConfidence } from '$lib/components/chapter/tools/shared/chapterNormalization';
     import Toolbar from '$lib/components/chapter/Toolbar.svelte';
 
     let bookRootPathInput = $bookRootPathOverride || '';
+
+    let migrationRunning = false;
+    let migrationProgress = '';
+    let migrationReport: BookMigrationReport | null = null;
+
+    $: openBookName = $bookRoot ? (getRootDirInfo().hasHandle ? getRootDirInfo().name : $bookRoot) : null;
+
+    async function handleMigrateBook() {
+        const root = get(bookRoot);
+        if (!root || migrationRunning) return;
+        const confirmed = confirm(
+            'Migrate this book\'s characters and dialogue files to the current format?\n\n' +
+            'Backups of every rewritten file are written to _backups/ first. Speakers with no matching character get a new character file.'
+        );
+        if (!confirmed) return;
+
+        migrationRunning = true;
+        migrationReport = null;
+        migrationProgress = 'Starting…';
+        try {
+            migrationReport = await migrateBookToV3({
+                root,
+                chapters: get(chapters),
+                unknownThreshold: clampConfidence($parserHints.attribution?.unknownThreshold ?? 0.62),
+                apiSave: (relativePath, content) =>
+                    apiFetch(API_ENDPOINTS.save, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ file_path: relativePath, content }),
+                    }),
+                getBackendRootAbsolutePath: () => get(bookRootAbsolutePath),
+                onProgress: (message) => {
+                    migrationProgress = message;
+                },
+            });
+            await forceRefreshBookCharacters();
+        } finally {
+            migrationRunning = false;
+            migrationProgress = '';
+        }
+    }
+
+    function plural(count: number, noun: string): string {
+        return `${count} ${noun}${count === 1 ? '' : 's'}`;
+    }
 
     function handleThemeChange(theme: AppTheme) {
         appTheme.set(theme);
@@ -110,6 +161,74 @@
         on:input={handleUnknownThresholdInput}
     />
 </section>
+
+<section class="settings-section">
+    <h2>Data Migration</h2>
+    <p>
+        Convert the open book to the current data formats: the legacy <code>characters.json</code> becomes the
+        <code>characters/</code> folder, and every chapter's <code>dialogue.json</code> still using the old
+        name-based format (or stale character references) is rewritten with character IDs.
+        Pre-images are saved under <code>_backups/</code> before anything is changed.
+    </p>
+    {#if openBookName}
+        <p>Open book: <strong>{openBookName}</strong> ({plural($chapters.length, 'chapter')})</p>
+    {:else}
+        <p>Open a book first to enable migration.</p>
+    {/if}
+    <button on:click={handleMigrateBook} disabled={!$bookRoot || migrationRunning}>
+        {migrationRunning ? 'Migrating…' : 'Migrate Characters & Dialogue'}
+    </button>
+    {#if migrationRunning && migrationProgress}
+        <p class="migration-progress" aria-live="polite">{migrationProgress}</p>
+    {/if}
+    {#if migrationReport}
+        <div class="migration-report" class:failed={!migrationReport.ok} aria-live="polite">
+            <strong>{migrationReport.ok ? 'Migration complete' : 'Migration did not finish'}</strong>
+            {#if migrationReport.abortReason}
+                <p>{migrationReport.abortReason}</p>
+            {/if}
+            <ul>
+                <li>Characters: {migrationReport.characters.message}
+                    {#if migrationReport.characters.unresolvedRefs > 0}
+                        ({plural(migrationReport.characters.unresolvedRefs, 'unresolvable reference')} left in place)
+                    {/if}
+                </li>
+                <li>
+                    Dialogue: {plural(migrationReport.dialogue.scanned, 'file')} scanned,
+                    {migrationReport.dialogue.migrated.length} migrated, {migrationReport.dialogue.skipped} already current.
+                </li>
+                {#if migrationReport.dialogue.createdCharacters.length > 0}
+                    <li>New characters: {migrationReport.dialogue.createdCharacters.join(', ')}</li>
+                {/if}
+                {#if migrationReport.dialogue.droppedCandidateNames.length > 0}
+                    <li>Dropped candidate-only names (never a chosen speaker): {migrationReport.dialogue.droppedCandidateNames.join(', ')}</li>
+                {/if}
+                {#if migrationReport.dialogue.unresolvedNames.length > 0}
+                    <li>Could not create characters for: {migrationReport.dialogue.unresolvedNames.join(', ')}</li>
+                {/if}
+                {#if migrationReport.dialogue.rostersRewritten > 0 || migrationReport.dialogue.staleRosterEntriesDropped > 0}
+                    <li>
+                        Chapter rosters: {migrationReport.dialogue.rostersRewritten} rewritten,
+                        {plural(migrationReport.dialogue.staleRosterEntriesDropped, 'stale entry')} removed.
+                    </li>
+                {/if}
+                {#if migrationReport.dialogue.failed.length > 0}
+                    <li>
+                        Failed:
+                        <ul>
+                            {#each migrationReport.dialogue.failed as failure}
+                                <li>{failure.chapter}: {failure.reason}</li>
+                            {/each}
+                        </ul>
+                    </li>
+                {/if}
+                {#if migrationReport.backupDir}
+                    <li>Backups: <code>{migrationReport.backupDir}/</code></li>
+                {/if}
+            </ul>
+        </div>
+    {/if}
+</section>
 </div>
 
 <style>
@@ -160,6 +279,50 @@
 
     button:hover {
         background: var(--app-surface-hover);
+    }
+
+    button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    code {
+        font-size: 0.9em;
+        padding: 1px 4px;
+        border-radius: var(--app-radius-sm);
+        background: var(--app-surface-subtle);
+    }
+
+    .migration-progress {
+        margin-top: 10px;
+        font-style: italic;
+    }
+
+    .migration-report {
+        margin-top: 14px;
+        padding: 12px 14px;
+        border: 1px solid var(--app-border);
+        border-radius: var(--app-radius-sm);
+        background: var(--app-surface-subtle);
+        color: var(--app-text);
+    }
+
+    .migration-report.failed {
+        border-color: var(--app-danger);
+    }
+
+    .migration-report ul {
+        margin: 8px 0 0;
+        padding-left: 20px;
+    }
+
+    .migration-report li {
+        color: var(--app-text-muted);
+        line-height: 1.5;
+    }
+
+    .migration-report p {
+        margin: 6px 0 0;
     }
 
     .theme-toggle {

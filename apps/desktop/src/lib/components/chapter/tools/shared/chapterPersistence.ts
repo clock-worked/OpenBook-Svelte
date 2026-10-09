@@ -181,13 +181,13 @@ export async function saveDialogueFromNormalized(params: {
 
     const characterBreakdown: Record<string, number> = {};
     for (const line of linesWithReturning) {
-        if (!line.characterName) continue;
+        if (!line.characterName || line.characterName.trim().toLowerCase() === 'unknown') continue;
         const charId = nameToIdMap.get(line.characterName.toLowerCase());
         if (charId) {
             characterBreakdown[charId] = (characterBreakdown[charId] || 0) + 1;
         } else {
             console.warn(
-                `[ChapterView] Character "${line.characterName}" not found in characters.json, skipping from breakdown`
+                `[ChapterView] Character "${line.characterName}" not found in the book roster, skipping from breakdown`
             );
         }
     }

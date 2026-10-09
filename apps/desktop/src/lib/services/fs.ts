@@ -647,14 +647,9 @@ export async function writeVoices(root: string, data: VoicesJson): Promise<boole
 }
 
 export async function readCentralCharacters(root: string): Promise<CharactersJson | null> {
-  // When using FileSystemDirectoryHandle, rootDirHandle is already at the book directory level
-  // so we just need "characters.json", not "${root}/characters.json"
-  const legacy = await readFileAsJson<CharactersJson>('characters.json');
-  if (legacy) return legacy;
-  // v3.0: characters.json is retired; the characters/ folder is the source of truth.
-  // Without this fallback, v3 books resolve no central characters at all and
-  // chapter views fall back to raw reference values (GUIDs / v2 slugs).
-  return readCharacterFolder(root);
+  const folder = await readCharacterFolder(root);
+  if (folder) return folder;
+  return readFileAsJson<CharactersJson>('characters.json', false);
 }
 
 export async function writeCentralCharacters(root: string, data: CharactersJson): Promise<boolean> {

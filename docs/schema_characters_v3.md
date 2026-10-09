@@ -138,6 +138,16 @@ Writers: **v3 folder only.** Any writer that writes root `characters.json` when 
 
 **v1-script books** (ruling R11): character store migrates to the folder with GUIDs; v1 `script.json` files stay name-based (the format has no `characterId` slot). Documented intermediate state ("v3 store, v1 references") that resolves when a chapter is re-parsed.
 
+### Manual migration (Settings → Data Migration)
+
+The auto-on-open driver only migrates the *character store*; dialogue files it could not fully remap (legacy non-versioned `dialogue.json` with `chosenSpeaker` names, or v3.x files whose `characterId` values are v2 slugs with no cluster) stay as-is until the chapter is re-saved. The **Migrate Characters & Dialogue** button on the Settings page (`apps/desktop/src/lib/services/bookMigration.ts`) finishes the job for the open book:
+
+1. Runs the character-store migration above if `characters.json` / `book.characters.json` still exists (same abort rules; an in-flight state stops the run).
+2. Rewrites every `dialogue.json` that is non-versioned or still carries a non-GUID reference through the chapter view's normalize → save pipeline, producing v3.2 with GUID refs. Chosen speakers with no matching character get a new `characters/<Title>.json` (R7 auto-upsert; v2 slugs are title-cased, e.g. `unknown-women` → `Unknown Women`). Candidate-only names (never chosen on a line) are not promoted; they are dropped from `candidates[]` and listed in the report.
+3. Rebuilds the touched `<Ch>.characters.json` rosters from the migrated lines; stale roster entries that no longer resolve are removed.
+
+Pre-images of every rewritten dialogue/roster file go to `_backups/dialogue-v3/<UTC ts>/`. The run is idempotent: a second click reports everything current and writes nothing.
+
 ## Validation rules
 
 1. Every `characters/*.json` parses; `formatVersion === "3.0"`; `guid` matches the pattern; `title` non-empty.

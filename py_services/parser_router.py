@@ -1,5 +1,6 @@
 import asyncio
 import json
+import logging
 import os
 import tempfile
 from pathlib import Path
@@ -366,6 +367,9 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
             return response.model_dump()
         except (ValueError, ConnectionError) as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
+        except Exception as exc:
+            logging.getLogger(__name__).exception("JEV dialogue assist failed")
+            raise HTTPException(status_code=500, detail=f"JEV dialogue assist failed: {exc}") from exc
 
     @router.get("/api/jev-dialogue-ai-status/{request_id}")
     async def jev_dialogue_ai_status(request_id: str):

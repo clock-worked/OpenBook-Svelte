@@ -203,7 +203,7 @@ function normalizeLine(
  * but `[a-z0-9\s-]`, collapse whitespace/hyphen runs to a single `-`,
  * strip edge hyphens. "Sergeant Jaha" -> "sergeant-jaha".
  */
-function slugifyCharacterName(value: string): string {
+export function slugifyCharacterName(value: string): string {
     const stripped = value.toLowerCase().replace(/[^a-z0-9\s-]/g, '');
     return stripped.replace(/[\s-]+/g, '-').replace(/^-+|-+$/g, '');
 }

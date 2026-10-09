@@ -1,4 +1,5 @@
 import { spawn } from "node:child_process";
+import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import kill from "tree-kill";
@@ -19,14 +20,23 @@ const pythonExe =
 // respawning workers with pre-fix code). Revisit after a reboot.
 const args = ["-m", "uvicorn", "api_server:app", "--port", "8012", "--reload"];
 
+const backendEnv = {
+  ...process.env,
+  PYTHONIOENCODING: "utf-8",
+  PYTHONUTF8: "1",
+};
+for (const variable of ["SSL_CERT_FILE", "SSL_CERT_DIR"]) {
+  const certificatePath = backendEnv[variable];
+  if (certificatePath && !existsSync(certificatePath)) {
+    console.warn(`Ignoring ${variable}: certificate path does not exist (${certificatePath}). Using default TLS trust.`);
+    delete backendEnv[variable];
+  }
+}
+
 const child = spawn(pythonExe, args, {
   cwd: pyServicesDir,
   stdio: "inherit",
-  env: {
-    ...process.env,
-    PYTHONIOENCODING: "utf-8",
-    PYTHONUTF8: "1",
-  },
+  env: backendEnv,
 });
 
 let shuttingDown = false;
