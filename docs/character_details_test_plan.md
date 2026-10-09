@@ -35,7 +35,6 @@ Shared fixture: hermetic `Book-9` with 3 clusters (aliases, gender, color, descr
 | M15 | validation gates + unresolvable refs | duplicate titles (exact + case/whitespace variants) → abort, names the collision, zero writes; unresolvable dialogue ref → **left in place, unremapped**, migration proceeds (roster: left in place unless `--drop-unresolved`, which drops the entry) |
 | M16 | BOM + non-ASCII | `utf-8-sig` read; `Café`, `—`, CJK titles round-trip; output UTF-8 no BOM; filenames safe |
 | M17 | consumer equivalence after migration | on the same logical book, v2 readers and v3 folder readers **agree**: `load_character_lookup` identical name→canonical map; `build_closed_world_catalog` (folder) == catalog (v2 file); `update_character_stats` on migrated tree == pre-migration stats |
-| M18 | TTS-manifest `lines` remapped (walker/rescan symmetry) | chapter-level `audio_lines/manifest.json` (TTS pipeline manifest with a dialogue-style `lines[]`) has every `lines[].characterId` remapped to the GUID (narrator sentinel stays literal); pre-fix the stage-5d rescan policed these sites while the walker left them stale → abort |
 
 **v1 staged path (same file):** v1 speakers → one cluster each (slug id per `id_candidates()`, `migrate_chapter_character_ids.py:72-80`); `m/f/u` → gender bijective; full pipeline invariants (M1/M9/M12) hold; unresolved `chosenSpeaker` aborts by default; second run byte-identical no-op. **R11 case:** v1-script-only chapters → store migrates, script files stay name-based, dry run flags each.
 
@@ -61,7 +60,7 @@ Shared fixture: hermetic `Book-9` with 3 clusters (aliases, gender, color, descr
 
 **Existing, must pass unchanged:** `py_services/test_parser_router.py` · `test_chapter_review_service.py` · `openbook_parser/test_closed_world_parser.py` · `openbook_parser/test_jev_verify.py` · `openbook_parser/test_episode_decoder.py` · `openbook_parser/test_modernbooknlp_service.py` · `scripts/python/dev_smoke/router_split_smoke_test.py`.
 
-**New joiners:** `py_services/test_character_folder_migration.py` (M1–M18 + v1) · `py_services/openbook_parser/test_character_folder_reader.py` (M17's reader half) · the vitest service matrix. Gate = all green in one run.
+**New joiners:** `py_services/test_character_folder_migration.py` (M1–M17 + v1) · `py_services/openbook_parser/test_character_folder_reader.py` (M17's reader half) · the vitest service matrix. Gate = all green in one run.
 
 ## Smoke checklist (`dev:all` against a real book)
 

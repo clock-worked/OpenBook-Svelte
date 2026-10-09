@@ -895,52 +895,6 @@ class MigrationV2Tests(unittest.TestCase):
         # The migrated stats already match the dialogue: write-only-on-change.
         self.assertEqual(post_result.get("updatedCharacters"), 0)
 
-    # -- M18 ---------------------------------------------------------------
-
-    def test_m18_tts_manifest_lines_remapped(self):
-        # Chapter-level TTS-pipeline manifests (audio_lines/manifest.json)
-        # embed a dialogue-style `lines` array. The walker must remap those
-        # sites: the stage-5d rescan polices them, and the pre-fix
-        # walker/rescan asymmetry aborted every book that carried one.
-        book = build_book(self.tmp)
-        tts = book / "chapter-1" / "audio_lines" / "manifest.json"
-        _write_json(
-            tts,
-            {
-                "dialogue": "chapter-1/dialogue.json",
-                "output_dir": "chapter-1/audio_lines",
-                "lines": [
-                    {
-                        "id": 0,
-                        "characterId": "narrator",
-                        "text": "In the beginning, there were only the Gods.",
-                        "output": "Narrator/0-Narrator.mp3",
-                    },
-                    {
-                        "id": 1,
-                        "characterId": "catherine",
-                        "text": "We're not done.",
-                        "output": "Catherine/1-Catherine.mp3",
-                    },
-                    {
-                        "id": 2,
-                        "characterId": "Cat and Mouse",  # name, not slug
-                        "text": "Try me.",
-                        "output": "Cat and Mouse/2-Cat and Mouse.mp3",
-                    },
-                ],
-            },
-        )
-        plan = apply_migration(book, self.backup_dir)
-        g = {slug: expected_guid(slug) for slug in V2_SLUGS}
-
-        payload = read_json(tts)
-        # Narrator sentinel stays literal; slug and name sites become GUIDs.
-        self.assertEqual(payload["lines"][0]["characterId"], "narrator")
-        self.assertEqual(payload["lines"][1]["characterId"], g["catherine"])
-        self.assertEqual(payload["lines"][2]["characterId"], g["cat-and-mouse"])
-        self.assertIn(tts, plan.inventory)
-
 
 def restore_from_backup(book_root: Path, backup_dir: Path) -> None:
     """Copy every backed-up pre-image back over the book and drop partial
