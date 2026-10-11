@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { CharactersJson, Character, Gender } from '$lib/types';
   import { writable, get } from 'svelte/store';
-  import { currentChapter, bookRoot, bookRootAbsolutePath, currentScript, chapters } from '$lib/stores/bookState';
+  import { currentChapter, bookRoot, bookRootAbsolutePath, currentScript, chapters, requestChapterReload } from '$lib/stores/bookState';
   import { selection, conflictCursor } from '$lib/stores/selection';
   import { characters, colorForCharacter, rgbaToOpaqueHex, opaqueHexToRgba, refreshChapterCharactersFromFile } from '$lib/stores/characters';
   import { getScriptPath, readScript, writeScript, getCharactersPath } from '$lib/services/fs';
@@ -404,6 +404,7 @@
     if (!sourceName || !targetName || sourceName === targetName) return;
     const result = await mergeBookCharacters(sourceName, targetName);
     if (!result.ok && result.message) alert(result.message);
+    if (result.ok) requestChapterReload();
     // Keep the selection pointed at the survivor (a deliberate re-point, not a
     // cleanup).
     if (selectedCharacterName === sourceName) {
@@ -424,6 +425,7 @@
       // Follow the survivor: keep the card pointed at the renamed character.
       selectedCharacterName = newName;
       if (result.warning) console.warn('[ChapterCharacterPanel] rename warning:', result.warning);
+      requestChapterReload();
     }
   }
 

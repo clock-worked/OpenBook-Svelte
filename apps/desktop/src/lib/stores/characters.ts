@@ -18,9 +18,9 @@ function normalizeCharacterKey(name: string): string {
   return String(name || '').trim().toLowerCase();
 }
 
-function mergeNamesWithExtras(names: string[]): string[] {
+function mergeNamesWithExtras(names: string[], resolve: (name: string) => string = (n) => n): string[] {
   const merged = new Set(names);
-  for (const name of _chapterExtrasByName.keys()) merged.add(name);
+  for (const name of _chapterExtrasByName.keys()) merged.add(resolve(name));
   return Array.from(merged).sort();
 }
 
@@ -82,16 +82,19 @@ function updateDerivedFromScript(scr: any): void {
     const rawIdentity = l.characterId ?? l.chosenSpeaker;
     return typeof rawIdentity === 'string' ? rawIdentity : '';
   });
+  const resolveIdentity = (n: string): string => {
+    const key = normalizeCharacterKey(n);
+    return idToCanonical.get(key) || aliasToCanonical.get(key) || nameToCanonical.get(key) || n;
+  };
   const namesFromScript = Array.from(new Set(
     scriptIdentities
       .filter((n: string) => n.length > 0)
-      .map((n: string) => {
-        const key = normalizeCharacterKey(n);
-        return idToCanonical.get(key) || aliasToCanonical.get(key) || nameToCanonical.get(key) || n;
-      })
+      .map(resolveIdentity)
   )).sort();
 
-  const names = mergeNamesWithExtras(namesFromScript);
+  // Extras come from the chapter's characters.json, which may still hold a
+  // pre-rename title; resolve them through aliases like script identities.
+  const names = mergeNamesWithExtras(namesFromScript, resolveIdentity);
   if (names.length === _lastDerivedNames.length && names.every((n, i) => n === _lastDerivedNames[i])) return;
   _lastDerivedNames = names;
 
