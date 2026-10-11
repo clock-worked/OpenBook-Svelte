@@ -4,7 +4,7 @@
 
 Schema v3.2 extends v3.1 with richer attribution provenance for parser output, including gender-cue metadata, parser backend provenance, decision trace details, and candidate collapse semantics.
 
-This is a **dialogue format evolution**. `characters.json` and `voices.json` remain v2-compatible structures.
+This is a **dialogue format evolution**. `voices.json` remains a v2-compatible structure. **Character storage is no longer v2-compatible**: characters live in the per-character `characters/` folder (v3.0) — see `docs/schema_characters_v3.md`.
 
 ## What Changed from v3.1
 

@@ -804,7 +804,7 @@
       {@const isHighlightPhase = animationPhase === 'highlight'}
       {@const isAnimationActive = animationPhase !== 'complete'}
       {@const showRunMarkers = animationPhase === 'complete' || info.isRevealed}
-      {#if run.characterId}
+      {#if run.characterId || run.lineId != null}
         <span
           id={run.lineId != null ? 'line-'+run.lineId : undefined}
           class="run run-character"
@@ -1275,5 +1275,4 @@
     color: #cbd5e1;
   }
 </style>
-
 

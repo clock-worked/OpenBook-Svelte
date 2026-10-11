@@ -1,6 +1,7 @@
 import type { DialogueJson, ScriptJson } from '$lib/types';
 import type { UnifiedLine } from '$lib/components/chapter/tools/types';
 import { computeReturningFlags, isDialogueSpan } from '$lib/services/dialogueReturning';
+import { alignChapterLineSpans } from './chapterPresentation';
 
 type ChapterLike = {
     title: string;
@@ -105,7 +106,8 @@ export async function loadChapterContent(params: {
     }
 
     if (normalized) {
-        const normalizedWithReturning = applyReturningFlags(normalized.lines, rawText);
+        const alignedLines = rawText ? alignChapterLineSpans(normalized.lines, rawText) : normalized.lines;
+        const normalizedWithReturning = applyReturningFlags(alignedLines, rawText);
         normalized = {
             ...normalized,
             lines: normalizedWithReturning,
@@ -181,13 +183,13 @@ export async function saveDialogueFromNormalized(params: {
 
     const characterBreakdown: Record<string, number> = {};
     for (const line of linesWithReturning) {
-        if (!line.characterName) continue;
+        if (!line.characterName || line.characterName.trim().toLowerCase() === 'unknown') continue;
         const charId = nameToIdMap.get(line.characterName.toLowerCase());
         if (charId) {
             characterBreakdown[charId] = (characterBreakdown[charId] || 0) + 1;
         } else {
             console.warn(
-                `[ChapterView] Character "${line.characterName}" not found in characters.json, skipping from breakdown`
+                `[ChapterView] Character "${line.characterName}" not found in the book roster, skipping from breakdown`
             );
         }
     }

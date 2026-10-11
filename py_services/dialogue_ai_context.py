@@ -1,11 +1,10 @@
 """Helpers for assembling deterministic chapter context for dialogue AI review."""
 
-import json
 import re
-from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence
 
 from api_models import DialogueAiCharacterRef, DialogueJson, DialogueLine
+from character_store import load_characters
 from dialogue_ai_enrichment import (
     build_recent_turn_history,
     build_scene_alias_memory,
@@ -263,22 +262,23 @@ def find_paragraph_index(line: DialogueLine, paragraphs: List[Dict[str, Any]]) -
 
 
 def load_book_characters(book_root: Optional[str]) -> List[DialogueAiCharacterRef]:
-    """Load canonical book characters from the active book root when available."""
+    """Load canonical book characters from the active book root when available.
+
+    Sourced from the shared v3 character store (character_store): the
+    characters/ folder when it holds at least one valid v3.0 file, else
+    the legacy root characters.json.
+    """
 
     if not book_root:
         return []
 
-    characters_path = Path(book_root) / "characters.json"
-    if not characters_path.exists():
-        return []
-
     try:
-        data = json.loads(characters_path.read_text(encoding="utf-8"))
-    except (OSError, TypeError, ValueError, json.JSONDecodeError):
+        records, _source = load_characters(book_root)
+    except Exception:
         return []
 
     characters: List[DialogueAiCharacterRef] = []
-    for raw_character in data.get("characters", []):
+    for raw_character in records:
         character_id = str(raw_character.get("id") or "").strip()
         name = str(raw_character.get("name") or character_id).strip()
         if not character_id or not name:

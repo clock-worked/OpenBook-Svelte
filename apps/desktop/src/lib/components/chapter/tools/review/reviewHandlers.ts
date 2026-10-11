@@ -142,6 +142,7 @@ export function assignCharacterToLines(
   for (const line of scr.lines) {
     if (!byId.has(line.id)) continue;
     line.characterName = characterName;
+    line.isNonSpeaker = false;
     if (!line.candidates.some(c => c.name === characterName)) {
       line.candidates.push({ name: characterName, confidence: 1 });
     }
@@ -215,5 +216,4 @@ export function assignCharacterToLines(
   // Prune any characters no longer used in assignments or unresolved conflicts
   syncCharactersWithUsage(normalizedScript);
 }
-
 

@@ -12,6 +12,7 @@ from pathlib import Path
 from unittest import mock
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.testclient import TestClient
 
 from parser_router import create_parser_router
@@ -55,3 +56,30 @@ class SaveEndpointTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         written = (self.book_root / "note.json").read_text(encoding="utf-8")
         self.assertIn("caf\u00e9", written)
+
+    def test_unexpected_jev_failure_returns_json_with_cors(self):
+        app = FastAPI()
+        origin = "http://127.0.0.1:5173"
+        app.add_middleware(CORSMiddleware, allow_origins=[origin])
+        with mock.patch("parser_router.JevService") as service_class:
+            service_class.return_value.run.side_effect = RuntimeError("test JEV failure")
+            app.include_router(create_parser_router(lambda: str(self.book_root)))
+            with TestClient(app) as client, self.assertLogs("parser_router", level="ERROR"):
+                response = client.post(
+                    "/api/jev-dialogue-ai",
+                    headers={"Origin": origin},
+                    json={
+                        "request_id": "failed-jev",
+                        "chapter_path": "chapter",
+                        "chapter_text": "Hello",
+                        "dialogue": {
+                            "formatVersion": "2.0",
+                            "chapterId": "chapter",
+                            "lines": [],
+                            "stats": {"totalLines": 0, "conflicts": 0, "characterBreakdown": {}},
+                        },
+                    },
+                )
+        self.assertEqual(response.status_code, 500)
+        self.assertEqual(response.headers.get("access-control-allow-origin"), origin)
+        self.assertEqual(response.json()["detail"], "JEV dialogue assist failed: test JEV failure")

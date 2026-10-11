@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onDestroy, onMount, tick } from 'svelte';
-  import { chapters, currentChapter, currentScript, bookRoot, bookRootAbsolutePath } from '$lib/stores/bookState';
+  import { chapters, currentChapter, currentScript, bookRoot, bookRootAbsolutePath, chapterReloadRequest } from '$lib/stores/bookState';
   import type { ScriptJson, DialogueJson } from '$lib/types';
   import { writable } from 'svelte/store';
   import { conflictCursor, toolMode, audioGenerateLineId } from '$lib/stores/selection';
@@ -714,25 +714,8 @@
     }
 
     try {
-      const root = get(bookRoot);
-      if (root && get(currentChapter)?.title === chapter.title) {
-        const loaded = await loadChapterContent({
-          chapter: { title: chapter.title, path: chapter.path, parsed: chapter.parsed },
-          root,
-          unknownThreshold: getUnknownThreshold(),
-          unknownSpeakerLabel: UNKNOWN_SPEAKER_LABEL,
-          readDialogueForChapter,
-          normalizeScriptData,
-          readCentralCharacters,
-          buildIdToNameMap,
-          readTextFile,
-        });
-        if (loaded.normalized) {
-          normalizedScript.set({ lines: loaded.normalized.lines, stats: loaded.normalized.stats });
-          if (loaded.currentScript) currentScript.set(loaded.currentScript as ScriptJson);
-          rawText.set(loaded.rawText);
-          rebuildParagraphRuns();
-        }
+      if (get(currentChapter)?.title === chapter.title) {
+        await reloadCurrentChapterInPlace();
       }
     } finally {
       // Even if the post-save refresh throws, the flag is already persisted.
@@ -765,6 +748,49 @@
     if (!scr) { paragraphRuns.set([]); return; }
 
     paragraphRuns.set(buildParagraphRuns(scr.lines, txt));
+  }
+
+  // Re-read the open chapter from disk without clearing the view, so external
+  // changes (character renames, parser runs) show up without switching chapters.
+  async function reloadCurrentChapterInPlace(): Promise<void> {
+    const ch: any = get(currentChapter);
+    const root = get(bookRoot);
+    if (!ch || !root) return;
+    if (saveTimer) {
+      clearTimeout(saveTimer);
+      saveTimer = null;
+      await saveCurrentChapter();
+    }
+    const seq = ++chapterLoadSeq;
+    const loaded = await loadChapterContent({
+      chapter: { title: ch.title, path: ch.path, parsed: ch.parsed },
+      root,
+      unknownThreshold: getUnknownThreshold(),
+      unknownSpeakerLabel: UNKNOWN_SPEAKER_LABEL,
+      readDialogueForChapter,
+      normalizeScriptData,
+      readCentralCharacters,
+      buildIdToNameMap,
+      readTextFile,
+    });
+    if (seq !== chapterLoadSeq || get(currentChapter)?.title !== ch.title) return;
+    isV2Format = loaded.isV2Format;
+    characterNameToIdMap = null;
+    if (loaded.normalized) {
+      normalizedScript.set({ lines: loaded.normalized.lines, stats: loaded.normalized.stats });
+      if (loaded.currentScript) currentScript.set(loaded.currentScript as ScriptJson);
+    }
+    rawText.set(loaded.rawText);
+    loading.set(false);
+    rebuildParagraphRuns();
+  }
+
+  let lastChapterReloadRequest = get(chapterReloadRequest);
+  $: if ($chapterReloadRequest !== lastChapterReloadRequest) {
+    lastChapterReloadRequest = $chapterReloadRequest;
+    void reloadCurrentChapterInPlace().catch((error) => {
+      console.error('[ChapterView] Failed to reload chapter', error);
+    });
   }
 
   let loadedChapterKey: string | null = null;

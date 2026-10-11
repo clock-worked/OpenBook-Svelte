@@ -3,6 +3,7 @@ import type { ChapterStatus } from '$lib/stores/bookState';
 import { get } from 'svelte/store';
 import { bookRootPathOverride } from '$lib/stores/settings';
 import type {
+  Character,
   DialogueJson,
   CharactersJson,
   VoicesJson,
@@ -11,9 +12,17 @@ import type {
   LineItem
 } from '$lib/types';
 import { storeProjectHandle } from './persistence';
+import {
+  clearRawCharacterFileDocs,
+  mapCharacterFile,
+  recordRawCharacterFileDoc,
+} from './characterFileMapping';
 import { API_ENDPOINTS, apiPostJson, apiPostVoid, apiRequestJson, toApiClientError } from './apiClient';
 import type {
+  DeleteFileRequest,
   ListChaptersResponse,
+  ListFilesRequest,
+  ListFilesResponse,
   PickBookDirectoryResponse,
   ReadTextRequest,
   ReadTextResponse,
@@ -638,9 +647,9 @@ export async function writeVoices(root: string, data: VoicesJson): Promise<boole
 }
 
 export async function readCentralCharacters(root: string): Promise<CharactersJson | null> {
-  // When using FileSystemDirectoryHandle, rootDirHandle is already at the book directory level
-  // so we just need "characters.json", not "${root}/characters.json"
-  return readFileAsJson<CharactersJson>('characters.json');
+  const folder = await readCharacterFolder(root);
+  if (folder) return folder;
+  return readFileAsJson<CharactersJson>('characters.json', false);
 }
 
 export async function writeCentralCharacters(root: string, data: CharactersJson): Promise<boolean> {
@@ -659,6 +668,130 @@ export async function writeSettings(root: string, data: any): Promise<boolean> {
 // Legacy: Read old speaker_blocklist.json format
 export async function readSpeakerBlocklist(root: string): Promise<any | null> {
   return readFileAsJson<any>('speaker_blocklist.json');
+}
+
+// === v3.0 Character Folder Primitives ===
+
+/**
+ * List the names of `*.json` files in the book's `characters/` folder.
+ * Returns [] when the folder does not exist (book not migrated to v3 yet).
+ */
+export async function listCharacterFiles(root: string): Promise<string[]> {
+  if (rootDirHandle) {
+    try {
+      const charactersDirHandle = await rootDirHandle.getDirectoryHandle('characters', { create: false });
+      const files: string[] = [];
+      for await (const entry of charactersDirHandle.values()) {
+        if (entry.kind === 'file' && !entry.name.startsWith('.') && entry.name.toLowerCase().endsWith('.json')) {
+          files.push(entry.name);
+        }
+      }
+      return files;
+    } catch (error) {
+      // A missing characters/ folder is a normal pre-migration state.
+      if (error instanceof DOMException && error.name === 'NotFoundError') {
+        return [];
+      }
+      console.warn('[fs] File System API character folder listing failed; trying backend', error);
+    }
+  }
+
+  try {
+    const response = await apiPostJson<ListFilesResponse, ListFilesRequest>(API_ENDPOINTS.listFiles, {
+      file_path: 'characters',
+    });
+    return Array.isArray(response.files) ? response.files : [];
+  } catch (error) {
+    console.error('Failed to list character files from backend', error);
+    return [];
+  }
+}
+
+/**
+ * Read a single character file from the book's `characters/` folder.
+ * Returns null when the file does not exist.
+ *
+ * `silent` suppresses the error logging for the missing-file case: callers in
+ * the mutation/store path treat "no file yet" as a normal outcome (e.g. a
+ * pre-migration book, or a character that was never file-backed), and the
+ * noisy console.error would fire on every such operation.
+ */
+export async function readCharacterFile(
+  root: string,
+  fileName: string,
+  silent = false,
+): Promise<any | null> {
+  return readFileAsJson<any>(`characters/${fileName}`, !silent);
+}
+
+/**
+ * Write a single character file to the book's `characters/` folder.
+ * The `characters/` directory is created on demand by writeFile.
+ */
+export async function writeCharacterFile(root: string, fileName: string, content: unknown): Promise<boolean> {
+  return writeFile(`characters/${fileName}`, JSON.stringify(content, null, 2));
+}
+
+// === v3.0 Character Folder Read Path ===
+
+/**
+ * Read the v3 `characters/` folder: list the files, map each through
+ * `mapCharacterFile` (characterFileMapping.ts), and refresh the raw-document
+ * cache. Returns null when the folder is absent/empty or yields no valid
+ * records.
+ */
+export async function readCharacterFolder(root: string): Promise<CharactersJson | null> {
+  const fileNames = await listCharacterFiles(root);
+  if (fileNames.length === 0) return null;
+
+  clearRawCharacterFileDocs();
+  const characters: Character[] = [];
+  for (const fileName of fileNames) {
+    const raw = await readCharacterFile(root, fileName);
+    if (!raw) continue;
+    const character = mapCharacterFile(raw);
+    if (!character) continue;
+    recordRawCharacterFileDoc(character.guid, raw as Record<string, unknown>);
+    characters.push(character);
+  }
+
+  if (characters.length === 0) return null;
+  characters.sort((left, right) => left.name.localeCompare(right.name));
+  return { formatVersion: '3.0', characters };
+}
+
+/**
+ * Delete a file at a path relative to the book root.
+ * Deleting a file that does not exist is a success (idempotent).
+ */
+export async function deleteFile(root: string, relPath: string): Promise<boolean> {
+  if (rootDirHandle) {
+    try {
+      const pathParts = relPath.split('/').filter(p => p);
+      if (pathParts.length > 0) {
+        const fileName = pathParts.pop() as string;
+        const parentDirHandle = await getDirectoryHandle(rootDirHandle, pathParts, false);
+        await parentDirHandle.removeEntry(fileName);
+        return true;
+      }
+    } catch (error) {
+      // A missing file (or parent directory) is a normal delete outcome.
+      if (error instanceof DOMException && error.name === 'NotFoundError') {
+        return true;
+      }
+      console.warn(`[fs] File System API delete failed for ${relPath}; trying backend`, error);
+    }
+  }
+
+  try {
+    await apiPostVoid<DeleteFileRequest>(API_ENDPOINTS.deleteFile, {
+      file_path: relPath,
+    });
+    return true;
+  } catch (error) {
+    console.error(`Failed to delete ${relPath}`, error);
+    return false;
+  }
 }
 
 // === Legacy v1.0 Functions (for backward compatibility) ===

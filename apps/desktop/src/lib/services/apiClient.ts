@@ -38,6 +38,8 @@ export const API_ENDPOINTS = {
     setAudioRoot: '/api/set-audio-root',
     listChapters: '/api/list-chapters',
     readText: '/api/read-text',
+    listFiles: '/api/list-files',
+    deleteFile: '/api/delete-file',
     updateCharacterStats: '/api/update-character-stats',
     reviewChapter: '/api/review-chapter',
     modernBookNlpCache: '/api/modernbooknlp/cache',

@@ -44,7 +44,7 @@ Stores remain orchestration-focused (Lane 4):
 
 At book root (example):
 
-- `characters.json`
+- `characters/` (v3.0 — one file per character, GUID identity; the shared `py_services/character_store.py` loader is the single backend read/write path. Dual-I/O folder rules: legacy `characters.json` is read-only fallback, and once `characters/` holds valid v3.0 files it must not be rewritten — invariant IN-2)
 - `voices.json`
 - `settings.json` (optional)
 - `<Chapter>/chapter.txt`

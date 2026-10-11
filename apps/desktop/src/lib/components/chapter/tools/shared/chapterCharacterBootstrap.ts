@@ -1,4 +1,5 @@
 import { buildNameToIdMap } from '$lib/stores/characters';
+import { listCharacterFiles } from '$lib/services/fs';
 
 function slugifyCharacterId(name: string): string {
     const cleaned = String(name || '')
@@ -63,6 +64,10 @@ export async function ensureCentralCharactersForNames(params: {
     resetCharacterNameToIdCache: () => void;
 }): Promise<void> {
     if (!params.root) return;
+
+    // v3 (IN-2): when a characters/ folder exists it is the sole source of
+    // truth — never (re)create the root characters.json from this bootstrap.
+    if ((await listCharacterFiles(params.root)).length > 0) return;
 
     const loadedCentral = await params.readCentralCharacters(params.root);
     const central =

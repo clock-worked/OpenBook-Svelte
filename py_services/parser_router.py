@@ -1,5 +1,6 @@
 import asyncio
 import json
+import logging
 import os
 import tempfile
 from pathlib import Path
@@ -179,6 +180,40 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
         except OSError as exc:
             raise HTTPException(status_code=500, detail=str(exc)) from exc
 
+    @router.post("/api/list-files")
+    async def list_files(request: RelativeFileRequest):
+        book_root = Path(get_book_root()).resolve()
+        requested_path = (book_root / request.file_path).resolve()
+        if requested_path != book_root and book_root not in requested_path.parents:
+            raise HTTPException(status_code=400, detail="Invalid file path")
+        if not requested_path.is_dir():
+            # A missing directory means "nothing to list" (e.g. the book is
+            # not on the characters/ folder layout yet).
+            return {"files": []}
+        try:
+            files = sorted(entry.name for entry in requested_path.iterdir() if entry.is_file())
+            return {"files": files}
+        except OSError as exc:
+            raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+    @router.post("/api/delete-file")
+    async def delete_file(request: RelativeFileRequest):
+        book_root = Path(get_book_root()).resolve()
+        requested_path = (book_root / request.file_path).resolve()
+        if requested_path != book_root and book_root not in requested_path.parents:
+            raise HTTPException(status_code=400, detail="Invalid file path")
+        if requested_path == book_root or requested_path.is_dir():
+            # Only single files may be deleted through this route.
+            raise HTTPException(status_code=400, detail="Invalid file path")
+        if not requested_path.exists():
+            # Deleting a missing file is a no-op (idempotent).
+            return {"message": "File already absent."}
+        try:
+            requested_path.unlink()
+            return {"message": f"Deleted {request.file_path}"}
+        except OSError as exc:
+            raise HTTPException(status_code=500, detail=str(exc)) from exc
+
     @router.post("/api/update-character-stats")
     async def update_stats():
         try:
@@ -332,6 +367,9 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
             return response.model_dump()
         except (ValueError, ConnectionError) as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
+        except Exception as exc:
+            logging.getLogger(__name__).exception("JEV dialogue assist failed")
+            raise HTTPException(status_code=500, detail=f"JEV dialogue assist failed: {exc}") from exc
 
     @router.get("/api/jev-dialogue-ai-status/{request_id}")
     async def jev_dialogue_ai_status(request_id: str):

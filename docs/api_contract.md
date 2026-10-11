@@ -1,7 +1,7 @@
 # OpenBook API Contract (Frontend ↔ Python)
 
 **Status:** Active (Lane 2 foundation)  
-**Updated:** 2026-02-19
+**Updated:** 2026-10-07
 
 ## Ownership
 
@@ -31,6 +31,8 @@ Implementation reference:
 The following backend routes are currently governed by the centralized client:
 
 - `POST /api/parse`
+- `POST /api/list-files`
+- `POST /api/delete-file`
 - `POST /api/set-book-root`
 - `POST /api/set-audio-root`
 - `GET /api/list-chapters`
@@ -44,6 +46,13 @@ The following backend routes are currently governed by the centralized client:
 - `POST /api/delete_character_audio`
 - `POST /api/delete_audio_line`
 - `GET /api/audio/{chapterTitle}/{characterName}/{lineId}`
+
+The map was reconciled against the live routes in `py_services/parser_router.py` on 2026-10-07 (several other live routes, e.g. `/api/read-text` and `/api/review-chapter`, are also registered there).
+
+## Character Storage
+
+- The `characters/` folder (v3.0, one file per character, short-GUID identity) is the source of truth for character data — see `docs/schema_characters_v3.md`.
+- `/api/save` handles per-character files under `characters/` (dual-path, containment-checked like `/api/read-text`).
 
 ## Lane 2 Policy
 

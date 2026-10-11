@@ -116,56 +116,37 @@ function splitParagraphsWithOffsets(src: string): ParagraphSpan[] {
     return result;
 }
 
-function buildRunsForParagraphLoose(
-    paragraph: string,
-    paraStart: number,
-    paraEnd: number,
-    lines: UnifiedLine[],
-    startIdx: number
-): { runs: ChapterRun[]; nextIdx: number } {
-    const runs: ChapterRun[] = [];
+export function alignChapterLineSpans(lines: UnifiedLine[], rawText: string): UnifiedLine[] {
     let cursor = 0;
-    let i = startIdx;
-    while (i < lines.length) {
-        const line = lines[i];
-        const span = line.span;
-        const hasSpan = span && typeof span.start === 'number' && typeof span.end === 'number';
-
-        if (!hasSpan) {
-            if (runs.length > 0) break;
-            runs.push({ text: line.text, characterId: line.characterName, lineId: line.id });
-            return { runs, nextIdx: i + 1 };
+    const unresolvedIds: number[] = [];
+    const aligned = lines.map((line) => {
+        // Null spans are intentional for edited text, which need not occur in the source.
+        if (!line.span) return line;
+        const { start, end } = line.span;
+        const text = line.text.trim();
+        const valid = Number.isInteger(start) && Number.isInteger(end)
+            && start >= cursor && end > start && end <= rawText.length;
+        if (valid && text && rawText.slice(start, end).trim() === text) {
+            cursor = end;
+            return line;
         }
 
-        const startAbs = span.start;
-        const endAbs = span.end;
-        if (startAbs >= paraEnd) break;
-        if (endAbs <= paraStart) {
-            i++;
-            continue;
+        const matchStart = text ? rawText.indexOf(text, cursor) : -1;
+        if (matchStart >= 0) {
+            const span = { start: matchStart, end: matchStart + text.length };
+            cursor = span.end;
+            return { ...line, span };
         }
-        const start = Math.max(0, startAbs - paraStart);
-        const end = Math.min(paragraph.length, endAbs - paraStart);
 
-        if (start < cursor) {
-            i++;
-            continue;
-        }
-        if (cursor < start) {
-            runs.push({ text: paragraph.slice(cursor, start), characterId: null });
-        }
-        const textSlice = paragraph.slice(start, Math.min(end, paragraph.length));
-        runs.push({ text: textSlice, characterId: line.characterName, lineId: line.id });
-        cursor = Math.min(end, paragraph.length);
-        if (cursor >= paragraph.length) {
-            i++;
-            break;
-        }
-        i++;
+        unresolvedIds.push(line.id);
+        return { ...line, span: null };
+    });
+    if (unresolvedIds.length) {
+        console.warn('[ChapterView] Could not align line spans; keeping lines as editable standalone text', {
+            lineIds: unresolvedIds,
+        });
     }
-
-    if (cursor < paragraph.length) runs.push({ text: paragraph.slice(cursor), characterId: null });
-    return { runs, nextIdx: i };
+    return aligned;
 }
 
 export function buildParagraphRuns(
@@ -177,34 +158,68 @@ export function buildParagraphRuns(
         return lines.map((line) => [{ text: line.text, characterId: line.characterName, lineId: line.id }]);
     }
 
-    const paras = splitParagraphsWithOffsets(rawText);
-    const all: ChapterRun[][] = [];
-    let idx = 0;
-
-    while (idx < lines.length && !lines[idx].span) {
-        const line = lines[idx];
-        all.push([{ text: line.text, characterId: line.characterName, lineId: line.id }]);
-        idx++;
+    const alignedLines = alignChapterLineSpans(lines, rawText);
+    const positioned = alignedLines.filter(
+        (line): line is UnifiedLine & { span: NonNullable<UnifiedLine['span']> } => line.span != null
+    );
+    if (!positioned.length) {
+        return alignedLines.map((line) => [{ text: line.text, characterId: line.characterName, lineId: line.id }]);
     }
 
-    for (const paragraph of paras) {
-        if (idx >= lines.length) break;
-
-        const { runs, nextIdx } = buildRunsForParagraphLoose(paragraph.text, paragraph.start, paragraph.end, lines, idx);
-
-        if (runs.length === 0 || (runs.length === 1 && runs[0].characterId === null && runs[0].text === paragraph.text)) {
-            all.push([{ text: paragraph.text, characterId: narratorLabel }]);
-            idx = Math.min(idx + 1, lines.length);
+    const paras = splitParagraphsWithOffsets(rawText);
+    const all: ChapterRun[][] = [];
+    const renderedIds = new Set<number>();
+    const standalone: Array<{ line: UnifiedLine; beforeOffset: number }> = [];
+    let beforeOffset = Infinity;
+    for (let index = alignedLines.length - 1; index >= 0; index--) {
+        const line = alignedLines[index];
+        if (line.span) {
+            beforeOffset = line.span.start;
         } else {
+            standalone.push({ line, beforeOffset });
+        }
+    }
+    standalone.reverse();
+    let standaloneIndex = 0;
+    let positionedIndex = 0;
+
+    for (const paragraph of paras) {
+        while (standaloneIndex < standalone.length && standalone[standaloneIndex].beforeOffset < paragraph.end) {
+            const { line } = standalone[standaloneIndex++];
+            all.push([{ text: line.text, characterId: line.characterName, lineId: line.id }]);
+            renderedIds.add(line.id);
+        }
+        const runs: ChapterRun[] = [];
+        let cursor = paragraph.start;
+        while (positionedIndex < positioned.length && positioned[positionedIndex].span.end <= paragraph.start) {
+            positionedIndex++;
+        }
+        for (let index = positionedIndex; index < positioned.length; index++) {
+            const line = positioned[index];
+            const span = line.span;
+            if (span.start >= paragraph.end) break;
+            const start = Math.max(paragraph.start, span.start);
+            const end = Math.min(paragraph.end, span.end);
+            if (cursor < start) {
+                runs.push({ text: rawText.slice(cursor, start), characterId: null });
+            }
+            runs.push({ text: rawText.slice(start, end), characterId: line.characterName, lineId: line.id });
+            renderedIds.add(line.id);
+            cursor = end;
+        }
+        if (!runs.length) {
+            all.push([{ text: paragraph.text, characterId: narratorLabel }]);
+        } else {
+            if (cursor < paragraph.end) {
+                runs.push({ text: rawText.slice(cursor, paragraph.end), characterId: null });
+            }
             all.push(runs);
-            idx = nextIdx;
         }
     }
 
-    while (idx < lines.length && !lines[idx].span) {
-        const line = lines[idx];
+    for (const line of alignedLines) {
+        if (renderedIds.has(line.id)) continue;
         all.push([{ text: line.text, characterId: line.characterName, lineId: line.id }]);
-        idx++;
     }
 
     return all;

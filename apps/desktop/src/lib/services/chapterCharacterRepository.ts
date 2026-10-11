@@ -5,6 +5,10 @@ import {
     readOptionalCharacters,
     writeCharacters,
 } from '$lib/services/fs';
+// Note: bookCharacterRepository imports loadChapterCharactersData from this
+// module. The cycle is safe — both directions are only used at call time
+// (inside function bodies), never during module evaluation.
+import { readCharacterFolder } from '$lib/services/bookCharacterRepository';
 
 interface ChapterCharacterReference {
     id: string;
@@ -19,6 +23,29 @@ function normalizeLookupKey(value: unknown): string {
     return String(value ?? '').trim().toLowerCase();
 }
 
+/**
+ * Resolve the book's character set for roster hydration: the v3
+ * `characters/` folder first, falling back to the legacy root
+ * `characters.json` for unmigrated books.
+ */
+async function resolveBookCharacters(root: string): Promise<CharactersJson | null> {
+    try {
+        const folder = await readCharacterFolder(root);
+        if (folder && folder.characters.length > 0) return folder;
+    } catch (err) {
+        console.warn('[chapterCharacters] v3 folder read failed; falling back to characters.json:', err);
+    }
+    return readCentralCharacters(root);
+}
+
+/**
+ * Lookup tables for roster resolution.
+ *
+ * `byId` is the primary path: in v3 the roster `id` field carries the
+ * character GUID and the in-memory record's `id` is its documented mirror
+ * (`id = guid`), so an id-keyed hit is an exact identity match.
+ * `byName` (name + aliases) is legacy tolerance for unmigrated v2 books.
+ */
 function buildCentralLookups(central: CharactersJson | null): {
     byId: Map<string, Character>;
     byName: Map<string, Character>;
@@ -41,9 +68,10 @@ function buildCentralLookups(central: CharactersJson | null): {
 }
 
 /**
- * Load chapter-level character references and hydrate them from the central
- * characters.json. Legacy chapter records that contain names are resolved to
- * their canonical book character during the same read.
+ * Load chapter-level character references and hydrate them from the book's
+ * character set (v3 folder records in v3 books, characters.json otherwise).
+ * Legacy chapter records that contain names are resolved to their canonical
+ * book character during the same read.
  */
 export async function loadChapterCharactersData(
     root: string,
@@ -53,7 +81,7 @@ export async function loadChapterCharactersData(
     const raw: any = await (optional ? readOptionalCharacters(path) : readCharacters(path));
     if (!raw || !Array.isArray(raw.characters)) return null;
 
-    const central = await readCentralCharacters(root);
+    const central = await resolveBookCharacters(root);
     const { byId, byName } = buildCentralLookups(central);
     const hydrated: Character[] = [];
     const seenIds = new Set<string>();
@@ -61,6 +89,7 @@ export async function loadChapterCharactersData(
     for (const entry of raw.characters) {
         const rawId = typeof entry === 'string' ? entry : entry?.id;
         const rawName = typeof entry === 'object' && entry ? entry.name : null;
+        // byId first (in v3 the ref id IS the GUID); byName is legacy tolerance.
         const canonical = byId.get(normalizeLookupKey(rawId)) ?? byName.get(normalizeLookupKey(rawName));
 
         if (canonical) {
@@ -83,13 +112,17 @@ export async function loadChapterCharactersData(
     };
 }
 
-/** Persist a chapter roster as references to canonical book character IDs. */
+/**
+ * Persist a chapter roster as references to canonical book character IDs —
+ * in v3 books these are GUIDs (the `id` field name is unchanged; only the
+ * content is a GUID per docs/schema_characters_v3.md §Reference formats).
+ */
 export async function persistChapterCharactersData(
     root: string,
     path: string,
     data: CharactersJson,
 ): Promise<boolean> {
-    const central = await readCentralCharacters(root);
+    const central = await resolveBookCharacters(root);
     const { byId, byName } = buildCentralLookups(central);
     const references: ChapterCharacterReference[] = [];
     const seenIds = new Set<string>();

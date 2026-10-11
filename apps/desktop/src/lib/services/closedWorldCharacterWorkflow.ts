@@ -32,12 +32,26 @@ function normalizeGender(value: Gender): Gender {
   return value === 'Male' || value === 'Female' ? value : 'Unknown';
 }
 
+export interface ClosedWorldReviewLine {
+  id: number;
+  text: string;
+}
+
 export interface ClosedWorldReviewItem {
   lineId: number;
   lineIds: number[];
+  lines: ClosedWorldReviewLine[];
   candidateName: string;
   candidateCharacterId: string | null;
   text: string;
+}
+
+export interface ClosedWorldDescriptorAssignment {
+  characterId: string;
+  characterName: string;
+  lineIds: number[];
+  /** False when the character already carries this descriptor (or it is their name/alias). */
+  addDescriptor: boolean;
 }
 
 export interface NewClosedWorldCharacterInput {
@@ -128,6 +142,39 @@ export function resolveClosedWorldCandidateAsAlias(
   };
 }
 
+/**
+ * Descriptors ("the senior tribune") can describe different people on
+ * different lines, so each line is assigned individually. Returns one group
+ * per chosen character; lines with no choice are left out (stay unresolved).
+ */
+export function planClosedWorldDescriptorAssignments(
+  data: CharactersJson,
+  descriptor: string,
+  lineTargets: Record<number, string | null | undefined>,
+): ClosedWorldDescriptorAssignment[] {
+  const value = String(descriptor ?? '').trim();
+  if (!value) throw new Error('Descriptor is required');
+  const descriptorKey = normalizeKey(value);
+  const groups = new Map<string, ClosedWorldDescriptorAssignment>();
+  const entries = Object.entries(lineTargets)
+    .map(([lineId, target]) => [Number(lineId), normalizeKey(target)] as const)
+    .filter(([lineId, targetKey]) => Number.isFinite(lineId) && targetKey)
+    .sort(([left], [right]) => left - right);
+  for (const [lineId, targetKey] of entries) {
+    const target = data.characters.find((character) => normalizeKey(character.id) === targetKey);
+    if (!target) throw new Error(`Target character was not found for line ${lineId}`);
+    let group = groups.get(target.id);
+    if (!group) {
+      const alreadyKnown = [target.name, ...(target.aliases ?? []), ...(target.descriptors ?? [])]
+        .some((existing) => normalizeKey(existing) === descriptorKey);
+      group = { characterId: target.id, characterName: target.name, lineIds: [], addDescriptor: !alreadyKnown };
+      groups.set(target.id, group);
+    }
+    group.lineIds.push(lineId);
+  }
+  return [...groups.values()];
+}
+
 function catalogueKeys(data: CharactersJson): Set<string> {
   const keys = new Set<string>();
   for (const character of data.characters) {
@@ -169,11 +216,13 @@ export function buildClosedWorldReviewItems(
     const existing = itemByCandidate.get(candidateKey);
     if (existing) {
       existing.lineIds.push(line.id);
+      existing.lines.push({ id: line.id, text: line.text });
       continue;
     }
     const item = {
       lineId: line.id,
       lineIds: [line.id],
+      lines: [{ id: line.id, text: line.text }],
       candidateName,
       candidateCharacterId: candidateId || null,
       text: line.text,

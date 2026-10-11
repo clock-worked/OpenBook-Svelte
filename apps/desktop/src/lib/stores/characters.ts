@@ -18,9 +18,9 @@ function normalizeCharacterKey(name: string): string {
   return String(name || '').trim().toLowerCase();
 }
 
-function mergeNamesWithExtras(names: string[]): string[] {
+function mergeNamesWithExtras(names: string[], resolve: (name: string) => string = (n) => n): string[] {
   const merged = new Set(names);
-  for (const name of _chapterExtrasByName.keys()) merged.add(name);
+  for (const name of _chapterExtrasByName.keys()) merged.add(resolve(name));
   return Array.from(merged).sort();
 }
 
@@ -74,16 +74,27 @@ function updateDerivedFromScript(scr: any): void {
     }
   }
 
-  const namesFromScript = Array.from(new Set(scr.lines
-    .map((l: any) => (l.chosenSpeaker ?? '').trim())
-    .filter((n: string) => n.length > 0)
-    .map((n: string) => {
-      const key = normalizeCharacterKey(n);
-      return idToCanonical.get(key) || aliasToCanonical.get(key) || nameToCanonical.get(key) || n;
-    })
+  // v3 roster derivation: key off `line.characterId` (a GUID in v3) FIRST,
+  // `chosenSpeaker` fallback for legacy v1-script chapters. The precedence chain
+  // below (idToCanonical → aliasToCanonical → nameToCanonical) then resolves
+  // GUIDs to display names with zero structural change.
+  const scriptIdentities: string[] = (scr.lines ?? []).map((l: any) => {
+    const rawIdentity = l.characterId ?? l.chosenSpeaker;
+    return typeof rawIdentity === 'string' ? rawIdentity : '';
+  });
+  const resolveIdentity = (n: string): string => {
+    const key = normalizeCharacterKey(n);
+    return idToCanonical.get(key) || aliasToCanonical.get(key) || nameToCanonical.get(key) || n;
+  };
+  const namesFromScript = Array.from(new Set(
+    scriptIdentities
+      .filter((n: string) => n.length > 0)
+      .map(resolveIdentity)
   )).sort();
 
-  const names = mergeNamesWithExtras(namesFromScript);
+  // Extras come from the chapter's characters.json, which may still hold a
+  // pre-rename title; resolve them through aliases like script identities.
+  const names = mergeNamesWithExtras(namesFromScript, resolveIdentity);
   if (names.length === _lastDerivedNames.length && names.every((n, i) => n === _lastDerivedNames[i])) return;
   _lastDerivedNames = names;
 
@@ -173,14 +184,26 @@ export function colorForCharacter(name: string | null | undefined, charsJson?: C
     return '#ffffff'; // Default white for Narrator
   }
 
-  // Always check book-level store first (single source of truth)
+  // Always check book-level store first (single source of truth).
+  // v3: reference values may be GUIDs (line/roster characterId is the
+  // character's guid) — resolve by name first, then by guid, so the
+  // SAVED color wins instead of the hash-based fallback. Name matching is
+  // case-insensitive (house normalization): stale name references like a
+  // pre-rename "rashid" must still find "Rashid". Titles are guaranteed
+  // case-insensitively unique by the v3 migration, so this cannot be
+  // ambiguous.
+  const keyLower = key.toLowerCase();
   const bookChars = get(bookCharacters);
-  const bookMatched = bookChars?.characters?.find(ch => ch.name === key);
+  const bookMatched = bookChars?.characters?.find(ch => ch.name === key)
+    ?? bookChars?.characters?.find(ch => ch.name.toLowerCase() === keyLower)
+    ?? bookChars?.characters?.find(ch => ch.guid != null && ch.guid === key);
   if (bookMatched && bookMatched.color) return bookMatched.color;
 
   // Fall back to chapter-level if book doesn't have it
   const chars = charsJson ?? get(characters);
-  const matched = chars?.characters?.find(ch => ch.name === key);
+  const matched = chars?.characters?.find(ch => ch.name === key)
+    ?? chars?.characters?.find(ch => ch.name.toLowerCase() === keyLower)
+    ?? chars?.characters?.find(ch => ch.guid != null && ch.guid === key);
   if (matched && matched.color) return matched.color;
 
   // Return hash-based default (will be persisted on first use)

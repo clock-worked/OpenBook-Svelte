@@ -5,13 +5,16 @@
     currentChapter,
     currentScript,
     bookRoot,
+    bookRootAbsolutePath,
     bookRootHandle,
     chapters,
+    requestChapterReload,
   } from "$lib/stores/bookState";
   import { conflictCursor, toolMode } from "$lib/stores/selection";
   import { appTheme, defaultNarrator } from "$lib/stores/settings";
   import {
     getScriptPath,
+    listChaptersFromBackend,
     readScript,
     scanChapters,
     selectBookDirectory,
@@ -140,15 +143,27 @@
           numConflicts: result.numConflicts,
         },
       });
-      currentChapter.set({ ...ch, scriptPath });
+      // The chapter loader skips dialogue for `parsed: false`, so flip it now
+      // rather than waiting for a rescan (which needs a directory handle).
+      const parsedChapter = { ...ch, scriptPath, parsed: true };
+      chapters.update((list) =>
+        list.map((c) => (c.title === ch.title ? { ...c, scriptPath, parsed: true } : c)),
+      );
+      currentChapter.set(parsedChapter);
       // Rescan chapters to refresh TOC and statuses
       try {
         const rootHandle = get(bookRootHandle);
-        if (rootHandle) {
-          const list = await scanChapters(rootHandle);
+        const list = rootHandle
+          ? await scanChapters(rootHandle)
+          : get(bookRootAbsolutePath)
+            ? await listChaptersFromBackend()
+            : [];
+        if (list.length) {
           chapters.set(list);
           const updated = list.find((c) => c.title === ch.title);
-          if (updated) currentChapter.set(updated);
+          if (updated && get(currentChapter)?.title === ch.title) {
+            currentChapter.set({ ...updated, scriptPath: updated.scriptPath ?? scriptPath, parsed: true });
+          }
         }
       } catch {}
       // Trigger backend to recalculate character stats from all dialogue files
@@ -159,6 +174,9 @@
       } catch (err) {
         console.warn("[Regenerate] Failed to update character stats:", err);
       }
+      // Re-read the chapter even if its load key didn't change (re-parse of an
+      // already-parsed chapter).
+      requestChapterReload();
       // Refresh characters list for this chapter (derived from bookCharacters)
       // The characters store will automatically update when bookCharacters changes
       // Conflict count will update automatically via currentScript

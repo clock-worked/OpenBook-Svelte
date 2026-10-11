@@ -5,6 +5,7 @@
 > - Use [schema_v3.md](./schema_v3.md) for current dialogue schema.
 > - This v2 document remains as reference for v2-era structures and migration history.
 > - Active policy: legacy reads are supported as needed, but current writes target v3.2 dialogue.
+> - Character storage: `characters.json` v2.0 is **retired as a write target** — superseded by the `characters/` folder (v3.0, `docs/schema_characters_v3.md`). Character sections below are reference/migration history only.
 
 ## Overview
 

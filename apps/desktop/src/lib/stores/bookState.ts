@@ -30,6 +30,13 @@ export const chapters = writable<ChapterStatus[]>([]);
 export const currentChapter = writable<ChapterStatus | null>(null);
 export const currentScript = writable<ScriptJson | null>(null);
 
+// Bumped to ask ChapterView to re-read the open chapter from disk in place
+// (e.g. after a character rename or a parser run).
+export const chapterReloadRequest = writable(0);
+export function requestChapterReload(): void {
+  chapterReloadRequest.update((n) => n + 1);
+}
+
 // Constants for localStorage
 const LAST_CHAPTER_KEY = 'openbook_last_chapter_title';
 
