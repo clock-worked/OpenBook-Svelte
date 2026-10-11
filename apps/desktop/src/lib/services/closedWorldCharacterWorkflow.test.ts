@@ -4,6 +4,7 @@ import test from 'node:test';
 import {
   buildClosedWorldReviewItems,
   createClosedWorldCharacter,
+  planClosedWorldDescriptorAssignments,
   resolveClosedWorldCandidateAsAlias,
 } from './closedWorldCharacterWorkflow.ts';
 
@@ -88,6 +89,35 @@ test('groups repeated candidates into one review item', () => {
 
   assert.equal(items.length, 1);
   assert.deepEqual(items[0].lineIds, [7, 12]);
+  assert.deepEqual(items[0].lines, [{ id: 7, text: 'first' }, { id: 12, text: 'second' }]);
+});
+
+test('plans per-line descriptor assignments grouped by character', () => {
+  const data = {
+    ...characters,
+    characters: [
+      characters.characters[0],
+      { ...characters.characters[0], id: 'miranda', name: 'Miranda', aliases: [], descriptors: ['the senior tribune'] },
+    ],
+  };
+
+  const groups = planClosedWorldDescriptorAssignments(data as any, 'The Senior Tribune', {
+    12: 'jake',
+    4: 'miranda',
+    7: 'jake',
+    9: '',
+  });
+
+  assert.deepEqual(groups, [
+    { characterId: 'miranda', characterName: 'Miranda', lineIds: [4], addDescriptor: false },
+    { characterId: 'jake', characterName: 'Jake', lineIds: [7, 12], addDescriptor: true },
+  ]);
+});
+
+test('descriptor planning rejects unknown targets and blank descriptors', () => {
+  assert.throws(() => planClosedWorldDescriptorAssignments(characters as any, 'The Tribune', { 3: 'ghost' }), /not found/i);
+  assert.throws(() => planClosedWorldDescriptorAssignments(characters as any, '  ', { 3: 'jake' }), /required/i);
+  assert.deepEqual(planClosedWorldDescriptorAssignments(characters as any, 'The Tribune', {}), []);
 });
 
 test('does not queue standalone articles as character candidates', () => {

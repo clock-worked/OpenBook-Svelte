@@ -1,6 +1,7 @@
 import type { DialogueJson, ScriptJson } from '$lib/types';
 import type { UnifiedLine } from '$lib/components/chapter/tools/types';
 import { computeReturningFlags, isDialogueSpan } from '$lib/services/dialogueReturning';
+import { alignChapterLineSpans } from './chapterPresentation';
 
 type ChapterLike = {
     title: string;
@@ -105,7 +106,8 @@ export async function loadChapterContent(params: {
     }
 
     if (normalized) {
-        const normalizedWithReturning = applyReturningFlags(normalized.lines, rawText);
+        const alignedLines = rawText ? alignChapterLineSpans(normalized.lines, rawText) : normalized.lines;
+        const normalizedWithReturning = applyReturningFlags(alignedLines, rawText);
         normalized = {
             ...normalized,
             lines: normalizedWithReturning,

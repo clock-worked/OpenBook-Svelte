@@ -14,11 +14,12 @@
 - Conflicts show gradient between candidate speaker colors.
 
 ### Speaker editing
-- Click a highlighted span: opens a dropdown/tooltip listing candidate speakers for that line plus known characters. Choosing a name sets that line's `chosenSpeaker`.
+- Click a script line (including unhighlighted non-speaker text): opens a dropdown/tooltip listing candidate speakers for that line plus known characters. Choosing a name sets that line's speaker and clears its non-speaker flag, so the assignment survives saving and reloading.
 - Mouse selection: when you mouse up after selecting text spanning one or more lines, a floating dropdown appears near the selection with the same speaker list; choosing a name assigns that speaker to all covered lines.
 - Click the paragraph speaker chip (in the left margin): opens the dropdown; choosing a name assigns that speaker to all lines in that paragraph.
 - Immediate feedback: highlight color updates instantly; the sticky toolbar conflict count recalculates.
 - Empty candidate sets: still show all known characters with search; unknown names are not allowed here (add characters via the Right panel first).
+- Chapter loading validates spans against source text and realigns stale offsets using exact text matches in script order. Unmatched lines remain editable standalone rows and emit a console warning; they are never silently discarded. Source paragraphs without script spans do not consume the next script line.
 
 #### Loading state
 - When a chapter is selected, show a vertical stack of paragraph-sized skeletons (grey blocks) while loading.
@@ -34,5 +35,4 @@
   - Gender pills; aliases as a pill list (add/remove); descriptors as bullets with hover-X removal, a quiet `+` to add, and the note "Removed descriptors may reappear after the next chapter review" (re-learning).
 - Expand to choose voice per character.
 - Bottom button: Generate audio (disabled until conflicts resolved); becomes Regenerate audio if WAVs exist.
-
 

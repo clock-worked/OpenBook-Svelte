@@ -19,7 +19,7 @@
   import ClosedWorldCharacterReview from './ClosedWorldCharacterReview.svelte';
   import Dropdown from '$lib/components/common/Dropdown.svelte';
   import { addBookCharacter, addBookCharacterAlias, setBookCharacterColor, setBookCharacterGender, renameBookCharacter, removeBookCharacter, bookCharacters, detachBookCharacterAlias, setBookCharacterDescriptors, forceRefreshBookCharacters, mergeBookCharacters } from '$lib/stores/bookCharacters';
-  import { buildClosedWorldReviewItems, resolveClosedWorldCandidateAsAlias, type ClosedWorldReviewItem } from '$lib/services/closedWorldCharacterWorkflow';
+  import { buildClosedWorldReviewItems, planClosedWorldDescriptorAssignments, resolveClosedWorldCandidateAsAlias, type ClosedWorldReviewItem } from '$lib/services/closedWorldCharacterWorkflow';
   import { computeChapterLineCounts } from '$lib/services/characterChapterStats';
   import {
     dialogueAiAssistState,
@@ -108,15 +108,55 @@
     await applyReviewedCharacter(item, null, null, true);
   }
 
+  async function mergeReviewedDescriptor(item: ClosedWorldReviewItem, lineTargets: Record<number, string>): Promise<void> {
+    if (!get(bookRoot)) return;
+    const itemLineIds = new Set(item.lineIds);
+    const scopedTargets = Object.fromEntries(
+      Object.entries(lineTargets).filter(([lineId]) => itemLineIds.has(Number(lineId))),
+    );
+    const groups = planClosedWorldDescriptorAssignments(get(bookCharacters), item.candidateName, scopedTargets);
+    if (!groups.length) return;
+    for (const group of groups) {
+      if (!group.addDescriptor) continue;
+      // Re-read each time: every save refreshes the store.
+      const target = get(bookCharacters).characters.find((character) => character.id === group.characterId);
+      if (!target) throw new Error(`Character ${group.characterName} was not found`);
+      const descriptors = Array.isArray(target.descriptors) ? target.descriptors : [];
+      const saved = await setBookCharacterDescriptors(target.name, [...descriptors, item.candidateName]);
+      if (!saved) throw new Error(`Failed to add ${item.candidateName} as a descriptor of ${target.name}`);
+    }
+    const assignments = new Map<number, ReviewedLineAssignment>();
+    for (const group of groups) {
+      for (const lineId of group.lineIds) {
+        assignments.set(lineId, { characterId: group.characterId, characterName: group.characterName });
+      }
+    }
+    await applyReviewedLines(assignments);
+  }
+
+  function jumpToReviewLine(lineId: number): void {
+    // Reset first so re-jumping to the same line still scrolls.
+    conflictCursor.set(null);
+    conflictCursor.set(lineId);
+  }
+
+  type ReviewedLineAssignment = { characterId: string | null; characterName: string | null; nonSpeaker?: boolean };
+
   async function applyReviewedCharacter(item: ClosedWorldReviewItem, characterId: string | null, characterName: string | null, nonSpeaker = false): Promise<void> {
+    await applyReviewedLines(new Map(item.lineIds.map((lineId) => [lineId, { characterId, characterName, nonSpeaker }])));
+  }
+
+  async function applyReviewedLines(assignments: Map<number, ReviewedLineAssignment>): Promise<void> {
     const scr = get(currentScript);
     const ch: any = get(currentChapter);
     const root = get(bookRoot);
     if (!scr || !ch || !root) return;
-    const lineIds = new Set(item.lineIds);
     let changed = false;
     for (const line of scr.lines) {
-      if (!lineIds.has(line.id)) continue;
+      const assignment = assignments.get(line.id);
+      if (!assignment) continue;
+      const { characterId, characterName } = assignment;
+      const nonSpeaker = assignment.nonSpeaker ?? false;
       (line as any).characterId = nonSpeaker ? null : characterId;
       line.chosenSpeaker = characterName;
       line.isConflict = false;
@@ -143,7 +183,7 @@
       });
       saved = response.ok;
     }
-    if (!saved) throw new Error(`Failed to save reviewed character lines for ${characterName}`);
+    if (!saved) throw new Error(`Failed to save reviewed character lines (${[...assignments.keys()].join(', ')})`);
     currentScript.set({ ...scr, lines: [...scr.lines] });
     await forceRefreshBookCharacters();
   }
@@ -579,20 +619,56 @@
     ensureCharacterInList(name);
   }
 
-  function uniqueName(base: string, taken: Set<string>): string {
-    if (!taken.has(base)) return base;
-    let i = 2;
-    while (taken.has(`${base} ${i}`)) i++;
-    return `${base} ${i}`;
+  let addCharacterModalOpen = false;
+  let addCharacterName = '';
+  let addCharacterError = '';
+  let addCharacterSaving = false;
+
+  function openAddCharacterModal() {
+    addCharacterName = '';
+    addCharacterError = '';
+    addCharacterSaving = false;
+    addCharacterModalOpen = true;
   }
 
-  async function addCharacter() {
-    const bookChars = get(bookCharacters);
-    const taken = new Set(bookChars.characters.map(c => c.name));
-    const name = uniqueName('New Character', taken);
+  function closeAddCharacterModal() {
+    if (addCharacterSaving) return;
+    addCharacterModalOpen = false;
+  }
+
+  function focusOnMount(node: HTMLInputElement) {
+    node.focus();
+  }
+
+  async function confirmAddCharacter() {
+    const name = addCharacterName.trim();
+    if (!name) {
+      addCharacterError = 'Please enter a character name.';
+      return;
+    }
+    const key = normalizeCharacterKey(name);
+    if (get(bookCharacters).characters.some(c => normalizeCharacterKey(c.name) === key)) {
+      addCharacterError = `A character named "${name}" already exists.`;
+      return;
+    }
+    addCharacterSaving = true;
+    try {
+      const added = await addCharacter(name);
+      if (!added) {
+        addCharacterError = 'Could not create the character.';
+        return;
+      }
+      addCharacterModalOpen = false;
+      selectedCharacterName = name;
+    } finally {
+      addCharacterSaving = false;
+    }
+  }
+
+  async function addCharacter(name: string): Promise<boolean> {
     // v3: mint a GUID + write one characters/<Title>.json (silent auto-upsert).
     const created = await addBookCharacter(name, 'Unknown');
-    if (!created) return;
+    if (!created) return false;
     await updateChapterCharactersFile((existing) => {
       const list = existing?.characters ?? [];
       if (list.some(c => c.name === name)) return existing ?? { formatVersion: '2.0', characters: list };
@@ -610,6 +686,7 @@
       };
       characters.set(nextChars);
     }
+    return true;
   }
 
   async function setColor(index: number, opaqueColor: string | null) {
@@ -656,6 +733,94 @@
 </script>
 
 <style>
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .modal-content {
+    background: var(--app-surface);
+    border-radius: 12px;
+    box-shadow: var(--app-shadow-lg);
+    width: min(400px, calc(100vw - 32px));
+    padding: 24px;
+    box-sizing: border-box;
+    color: var(--app-text);
+  }
+
+  .modal-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+  }
+
+  .modal-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 10px;
+    border: 1px solid var(--app-border);
+    border-radius: 6px;
+    background: var(--app-surface-alt, var(--app-surface));
+    color: var(--app-text);
+    font-size: 14px;
+  }
+
+  .modal-input:focus {
+    outline: none;
+    border-color: var(--app-primary);
+  }
+
+  .modal-error {
+    margin: 8px 0 0 0;
+    font-size: 13px;
+    color: var(--app-danger);
+  }
+
+  .modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+
+  .modal-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .modal-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .cancel-btn {
+    background: var(--app-surface-hover);
+    color: var(--app-text);
+  }
+
+  .cancel-btn:hover:not(:disabled) {
+    background: var(--app-surface-active);
+  }
+
+  .confirm-btn {
+    background: var(--app-primary);
+    color: var(--app-text-inverse);
+  }
+
+  .confirm-btn:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--app-primary) 85%, black);
+  }
+
   .character-panel {
     padding: 8px 12px;
     display: flex;
@@ -845,7 +1010,7 @@
             <ArrowUpDown size={18} />
           </button>
         </Dropdown>
-        <button class="header-btn" title="Add character" aria-label="Add character" on:click={addCharacter}>
+        <button class="header-btn" title="Add character" aria-label="Add character" on:click={openAddCharacterModal}>
           <Plus size={18} />
         </button>
       </div>
@@ -865,7 +1030,9 @@
       characters={$bookCharacters.characters}
       onAdd={addReviewedCharacter}
       onAlias={mergeReviewedAlias}
+      onDescriptor={mergeReviewedDescriptor}
       onNonSpeaker={markReviewedAsNonSpeaker}
+      onJump={jumpToReviewLine}
     />
     {#if $selectionActive}
       <div class="new-character-form">
@@ -955,4 +1122,44 @@
   {/if}
 </div>
 
+{#if addCharacterModalOpen}
+  <!-- svelte-ignore a11y-click-events-have-key-events -->
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
+  <div class="modal-backdrop" on:click={closeAddCharacterModal}>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <div
+      class="modal-content"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="add-character-title"
+      on:click|stopPropagation
+    >
+      <h3 class="modal-title" id="add-character-title">Add Character</h3>
+      <form on:submit|preventDefault={confirmAddCharacter}>
+        <input
+          class="modal-input"
+          placeholder="Character name"
+          aria-label="Character name"
+          bind:value={addCharacterName}
+          on:input={() => addCharacterError = ''}
+          on:keydown={(e) => { if (e.key === 'Escape') closeAddCharacterModal(); }}
+          disabled={addCharacterSaving}
+          use:focusOnMount
+        />
+        {#if addCharacterError}
+          <p class="modal-error">{addCharacterError}</p>
+        {/if}
+        <div class="modal-actions">
+          <button type="button" class="modal-btn cancel-btn" on:click={closeAddCharacterModal} disabled={addCharacterSaving}>
+            Cancel
+          </button>
+          <button type="submit" class="modal-btn confirm-btn" disabled={addCharacterSaving || !addCharacterName.trim()}>
+            Confirm
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+{/if}
 

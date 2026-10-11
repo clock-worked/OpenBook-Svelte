@@ -410,14 +410,15 @@ export async function addBookCharacterAlias(characterName: string, aliasName: st
   return ok;
 }
 
-export async function setBookCharacterDescriptors(name: string, descriptors: string[]): Promise<void> {
+export async function setBookCharacterDescriptors(name: string, descriptors: string[]): Promise<boolean> {
   const root = get(bookRoot);
-  if (!root) return;
+  if (!root) return false;
 
   const record = await readCharacterRecord(name);
-  if (!record) return;
+  if (!record) return false;
   const ok = await setCentralCharacterDescriptors(root, record, descriptors);
   if (ok) await forceRefreshBookCharacters();
+  return ok;
 }
 
 /**
