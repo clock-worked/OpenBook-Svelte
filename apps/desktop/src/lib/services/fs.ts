@@ -20,6 +20,7 @@ import {
 } from './characterFileMapping';
 import { API_ENDPOINTS, apiPostJson, apiPostVoid, apiRequestJson, toApiClientError } from './apiClient';
 import type {
+  ApplyDialogueStatsRequest,
   DeleteFileRequest,
   ListChaptersResponse,
   ListFilesRequest,
@@ -34,6 +35,14 @@ import type {
 } from './apiContracts';
 
 let rootDirHandle: FileSystemDirectoryHandle | null = null;
+
+// ADR 0012: read cache for central character data. One read per book
+// session: invalidated by every character-data write and by root changes.
+let centralCharactersCache: { root: string; value: CharactersJson | null } | null = null;
+
+export function invalidateCentralCharactersCache(): void {
+  centralCharactersCache = null;
+}
 
 export function requiresBackendDirectoryPicker(): boolean {
   return /\bCode\/\d/i.test(navigator.userAgent);
@@ -121,6 +130,7 @@ export function getRootDirInfo(): { name: string; hasHandle: boolean } {
 
 export function setRootDirHandle(handle: FileSystemDirectoryHandle | null): void {
   rootDirHandle = handle;
+  invalidateCentralCharactersCache();
 }
 
 /**
@@ -700,7 +710,10 @@ const httpTransport: BookFsTransport = {
   },
   async writeText(path, contents) {
     try {
-      await apiPostVoid<SaveFileRequest>(API_ENDPOINTS.save, {
+      // ADR 0012: dialogue saves go to the combined endpoint, which also
+      // applies the incremental character-stats delta — one round trip.
+      const endpoint = path.endsWith('/dialogue.json') ? API_ENDPOINTS.saveDialogue : API_ENDPOINTS.save;
+      await apiPostVoid<SaveFileRequest>(endpoint, {
         file_path: path,
         content: JSON.parse(contents) as unknown,
       });
@@ -888,7 +901,29 @@ export async function readOptionalDialogue(path: string): Promise<DialogueJson |
 }
 
 export async function writeDialogue(path: string, data: DialogueJson, recordHistory = true): Promise<boolean> {
-  return writeFile(path, JSON.stringify(data, null, 2), recordHistory);
+  const success = await writeFile(path, JSON.stringify(data, null, 2), recordHistory);
+  // ADR 0012: with a file-system handle the write went straight to disk, so
+  // the sidecar never saw it. One fire-and-forget delta call keeps character
+  // stats current without blocking the save.
+  if (success && rootDirHandle) {
+    void applyDialogueStatsDelta(path);
+  }
+  return success;
+}
+
+/**
+ * ADR 0012: ask the backend to apply the incremental character-stats delta
+ * for one saved dialogue file. Fire-and-forget by contract: callers must not
+ * await it, and a failure only warns — stats are eventually consistent.
+ */
+export async function applyDialogueStatsDelta(relPath: string): Promise<boolean> {
+  try {
+    await apiPostVoid<ApplyDialogueStatsRequest>(API_ENDPOINTS.applyDialogueStats, { file_path: relPath });
+    return true;
+  } catch (error) {
+    console.warn(`[fs] Failed to apply dialogue stats delta for ${relPath}:`, error);
+    return false;
+  }
 }
 
 export async function readVoices(root: string): Promise<VoicesJson | null> {
@@ -902,14 +937,20 @@ export async function writeVoices(root: string, data: VoicesJson, recordHistory 
 }
 
 export async function readCentralCharacters(root: string): Promise<CharactersJson | null> {
+  if (centralCharactersCache && centralCharactersCache.root === root) {
+    return centralCharactersCache.value;
+  }
   const folder = await readCharacterFolder(root);
-  if (folder) return folder;
-  return readFileAsJson<CharactersJson>('characters.json', false);
+  const value = folder ?? await readFileAsJson<CharactersJson>('characters.json', false);
+  centralCharactersCache = { root, value };
+  return value;
 }
 
 export async function writeCentralCharacters(root: string, data: CharactersJson, recordHistory = true): Promise<boolean> {
   // When using FileSystemDirectoryHandle, rootDirHandle is already at the book directory level
-  return writeFile('characters.json', JSON.stringify(data, null, 2), recordHistory);
+  const success = await writeFile('characters.json', JSON.stringify(data, null, 2), recordHistory);
+  if (success) invalidateCentralCharactersCache();
+  return success;
 }
 
 export async function readSettings(root: string): Promise<any | null> {
@@ -973,7 +1014,9 @@ export async function readCharacterFile(
  * The `characters/` directory is created on demand by writeFile.
  */
 export async function writeCharacterFile(root: string, fileName: string, content: unknown, recordHistory = true): Promise<boolean> {
-  return writeFile(`characters/${fileName}`, JSON.stringify(content, null, 2), recordHistory);
+  const success = await writeFile(`characters/${fileName}`, JSON.stringify(content, null, 2), recordHistory);
+  if (success) invalidateCentralCharactersCache();
+  return success;
 }
 
 // === v3.0 Character Folder Read Path ===
@@ -1023,6 +1066,7 @@ export async function deleteFile(root: string, relPath: string, recordHistory = 
         : await writeFileDirect(relPath, value);
       if (!success) throw new Error(`Could not restore or delete ${relPath}`);
     }, sameEditableJson);
+    invalidateCentralCharactersCache();
     return true;
   } catch (error) {
     history.reportError(error);
@@ -1084,10 +1128,11 @@ export async function writeScript(path: string, data: ScriptJson): Promise<boole
   const success = await writeFile(path, JSON.stringify(data, null, 2));
 
   // If we saved any dialogue/script file, update character stats
-  // This covers both v1.0 (script.json) and v2.0 (dialogue.json) formats
+  // This covers both v1.0 (script.json) and v2.0 (dialogue.json) formats.
+  // ADR 0012: the delta call replaces the old book-wide rescan trigger.
   if (success && (path.includes('dialogue.json') || path.includes('.script.json'))) {
     // Don't await - update in background
-    triggerStatsUpdate().catch(err => console.warn('Stats update failed:', err));
+    void applyDialogueStatsDelta(path);
   }
 
   return success;

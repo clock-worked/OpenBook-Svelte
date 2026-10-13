@@ -53,6 +53,14 @@ The set of characters who speak in a chapter.
 **Reference family**:
 The four data families that reference a character by GUID: dialogue files, chapter rosters, voices, and audio manifests.
 
+**Character stats**:
+A character's book-wide speaking volume: how many lines they speak and in how many chapters.
+_Avoid_: character counts, speaking totals
+
+**Stats accumulation**:
+The per-character, per-chapter line counts from which character stats are derived; rebuilt when a book is opened and adjusted as assignments change.
+_Avoid_: counts cache, tallies
+
 ### Voices
 
 **Voice**:

@@ -1,3 +1,4 @@
+import asyncio
 import os
 import threading
 import tkinter as tk
@@ -7,6 +8,7 @@ from fastapi import APIRouter, HTTPException
 
 from api_models import SetAudioRootRequest, SetRootRequest
 from api_runtime_state import ApiRuntimeState
+from character_stats_accumulator import stats_accumulator
 
 
 _directory_picker_lock = threading.Lock()
@@ -43,6 +45,15 @@ def create_root_config_router(runtime_state: ApiRuntimeState) -> APIRouter:
 
         normalized_book_root = runtime_state.set_book_root(request.root_path)
         print(f"Book root path set to: '{normalized_book_root}'")
+
+        # ADR 0012: (re)build the in-memory stats accumulation when a book
+        # is selected — the one full scan it pays per book session. A failure
+        # only defers the build (the delta path builds lazily), so it must
+        # not fail the book selection.
+        try:
+            await asyncio.to_thread(stats_accumulator.build, normalized_book_root)
+        except Exception as exc:
+            print(f"Stats accumulation build deferred: {exc}")
 
         if not runtime_state.get_audio_root():
             normalized_audio_root = runtime_state.initialize_audio_service(normalized_book_root)

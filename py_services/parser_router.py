@@ -34,6 +34,7 @@ from openbook_parser.jev_verify_service import (
     load_character_lookup,
     verify_chapter,
 )
+from character_stats_accumulator import apply_dialogue_stats_delta
 from safe_io import resolve_within_root, write_json_atomic
 from update_character_stats import update_character_stats
 
@@ -113,6 +114,15 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
             print(f"Error listing chapters: {exc}")
             raise HTTPException(status_code=500, detail=f"Failed to list chapters: {str(exc)}") from exc
 
+    def write_book_file(book_root: str, file_path: str, content: dict) -> Path:
+        """Resolve a relative path, create its parent, write it atomically."""
+        resolved_path = resolve_within_root(book_root, file_path)
+        if not resolved_path.parent.exists():
+            resolved_path.parent.mkdir(parents=True)
+        # content is a plain dict (SaveRequest.content: Dict[str, Any]).
+        write_json_atomic(resolved_path, content)
+        return resolved_path
+
     @router.post("/api/save")
     async def save_file(request: SaveRequest):
         try:
@@ -121,28 +131,8 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
                 raise HTTPException(status_code=400, detail="Book root path not set. Please select a book directory first.")
 
             print(f"Received save request for relative path: '{request.file_path}'")
-            resolved_path = resolve_within_root(book_root, request.file_path)
-            print(f"Full path: '{resolved_path}'")
-
-            if not resolved_path.parent.exists():
-                resolved_path.parent.mkdir(parents=True)
-                print(f"Created directory: {resolved_path.parent}")
-
-            # request.content is a plain dict (SaveRequest.content: Dict[str, Any]).
-            write_json_atomic(resolved_path, request.content)
-
+            resolved_path = write_book_file(book_root, request.file_path, request.content)
             print(f"Successfully wrote to {resolved_path}")
-
-            if "dialogue.json" in request.file_path:
-                try:
-                    print("Updating character stats after dialogue save...")
-                    stats_result = update_character_stats(Path(book_root))
-                    if stats_result.get("success"):
-                        print(f"  ✓ Updated {stats_result['updatedCharacters']} characters")
-                    else:
-                        print(f"  ⚠️  Character stats update failed: {stats_result.get('error')}")
-                except Exception as stats_err:
-                    print(f"  ⚠️  Error updating character stats: {stats_err}")
 
             return {"message": "File saved successfully."}
         except HTTPException as http_exc:
@@ -152,6 +142,58 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
             import traceback
 
             traceback.print_exc()
+            raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+    @router.post("/api/save-dialogue")
+    async def save_dialogue(request: SaveRequest):
+        """Combined dialogue save (ADR 0012): one round trip writes the
+        dialogue file and applies the character stats delta (in-memory
+        accumulation, no book scan). Stats failures never fail the save."""
+        try:
+            book_root = get_book_root()
+            if not book_root:
+                raise HTTPException(status_code=400, detail="Book root path not set. Please select a book directory first.")
+
+            print(f"Received dialogue save for relative path: '{request.file_path}'")
+            resolved_path = write_book_file(book_root, request.file_path, request.content)
+            print(f"Successfully wrote to {resolved_path}")
+
+            try:
+                await asyncio.to_thread(
+                    apply_dialogue_stats_delta, Path(book_root), resolved_path, request.content
+                )
+            except Exception as stats_err:
+                print(f"  ⚠️  Error applying character stats delta: {stats_err}")
+
+            return {"message": "File saved successfully."}
+        except HTTPException as http_exc:
+            raise http_exc
+        except Exception as exc:
+            print(f"Error saving dialogue '{request.file_path}': {exc}")
+            import traceback
+
+            traceback.print_exc()
+            raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+    @router.post("/api/apply-dialogue-stats")
+    async def apply_dialogue_stats(request: RelativeFileRequest):
+        """Dual-I/O (FSA mode): the frontend wrote the dialogue file
+        directly to disk; this applies the stats delta (ADR 0012)."""
+        try:
+            book_root = get_book_root()
+            if not book_root:
+                raise HTTPException(status_code=400, detail="Book root path not set.")
+
+            resolved_path = resolve_within_root(book_root, request.file_path)
+            if not resolved_path.is_file():
+                raise HTTPException(status_code=404, detail=f"File not found: {request.file_path}")
+
+            await asyncio.to_thread(apply_dialogue_stats_delta, Path(book_root), resolved_path, None)
+            return {"message": "Character stats delta applied."}
+        except HTTPException as http_exc:
+            raise http_exc
+        except Exception as exc:
+            print(f"Error applying dialogue stats for '{request.file_path}': {exc}")
             raise HTTPException(status_code=500, detail=str(exc)) from exc
 
     @router.post("/api/read-text")

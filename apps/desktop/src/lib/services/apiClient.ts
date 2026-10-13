@@ -59,6 +59,8 @@ export const API_ENDPOINTS = {
     audioLine: (chapterTitle: string, characterName: string, lineId: number) =>
         `/api/audio/${encodeURIComponent(chapterTitle)}/${encodeURIComponent(characterName)}/${lineId}`,
     save: '/api/save',
+    saveDialogue: '/api/save-dialogue',
+    applyDialogueStats: '/api/apply-dialogue-stats',
 } as const;
 
 export function toApiUrl(endpointPath: string): string {

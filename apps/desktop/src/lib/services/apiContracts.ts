@@ -86,6 +86,10 @@ export interface SaveFileRequest {
   content: unknown;
 }
 
+export interface ApplyDialogueStatsRequest {
+  file_path: string;
+}
+
 export interface ListFilesRequest {
   file_path: string;
 }

@@ -3,7 +3,7 @@
     import { appTheme, bookRootPathOverride, parserHints, type AppTheme } from '$lib/stores/settings';
     import { bookRoot, bookRootAbsolutePath, chapters } from '$lib/stores/bookState';
     import { forceRefreshBookCharacters } from '$lib/stores/bookCharacters';
-    import { setBackendBookRoot, getRootDirInfo, readEditableJson, writeEditableJson } from '$lib/services/fs';
+    import { setBackendBookRoot, getRootDirInfo, readEditableJson, writeEditableJson, triggerStatsUpdate } from '$lib/services/fs';
     import { history } from '$lib/services/history';
     import type { ParserHints } from '$lib/types';
     import { API_ENDPOINTS, apiFetch } from '$lib/services/apiClient';
@@ -48,6 +48,13 @@
                     migrationProgress = message;
                 },
             }));
+            // ADR 0012: the migration's dialogue rewrites apply per-chapter
+            // stats deltas; close it with one explicit full rebuild so the
+            // final stats are deterministic even if a fire-and-forget delta
+            // was lost along the way.
+            if (migrationReport.ok) {
+                await triggerStatsUpdate();
+            }
             await forceRefreshBookCharacters();
         } finally {
             migrationRunning = false;
