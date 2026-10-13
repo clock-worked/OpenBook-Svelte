@@ -16,7 +16,8 @@ vi.mock('$lib/services/fs', async () => {
 });
 
 import type { Character } from '$lib/types';
-import { readCharacterFolder, writeCharacterRecord } from '../bookCharacterRepository';
+import { readCharacterFolder } from '$lib/services/fs';
+import { writeCharacterRecord } from '../bookCharacterRepository';
 
 const ROOT = 'Book-9';
 const GA = 'AA01BB02'; // Alice

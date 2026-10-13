@@ -50,12 +50,12 @@ function writeJson(path: string, data: unknown): boolean {
 
 export const inMemoryFs = {
   // === Path helpers (pure; mirror fs.ts) ===
-  getBookCharactersPath: (_root: string) => 'characters.json',
-  getCentralCharactersPath: (_root: string) => 'characters.json',
-  getCharactersPath: (_root: string, title: string) => `${title}/${title}.characters.json`,
-  getDialoguePath: (_root: string, title: string) => `${title}/dialogue.json`,
-  getScriptPath: (_root: string, title: string) => `${title}/${title}.script.json`,
-  getVoicesPath: (_root: string) => 'voices.json',
+  getBookCharactersPath: () => 'characters.json',
+  getCentralCharactersPath: () => 'characters.json',
+  getCharactersPath: (title: string) => `${title}/${title}.characters.json`,
+  getDialoguePath: (title: string) => `${title}/dialogue.json`,
+  getScriptPath: (title: string) => `${title}/${title}.script.json`,
+  getVoicesPath: () => 'voices.json',
   getRootDirInfo: () => ({ name: 'none', hasHandle: false }),
 
   // === v3.0 character folder primitives ===
@@ -118,6 +118,7 @@ export const inMemoryFs = {
 
   // === Generic JSON read + chapter dialogue resolution (bookMigration) ===
   readJsonRelative: async (path: string) => readJson(path),
+  readFileAsJson: async (path: string) => readJson(path),
   readOptionalJsonRelative: async (path: string) => readJson(path),
   // Mirrors fs.ts readDialogueForChapter: versioned dialogue.json first, then
   // the v1 script.json, then dialogue.json as a legacy non-versioned script.

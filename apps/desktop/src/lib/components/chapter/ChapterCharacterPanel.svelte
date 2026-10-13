@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { CharactersJson, Character, Gender } from '$lib/types';
+  import type { CharactersJson, Character, Gender, ScriptJson } from '$lib/types';
   import { writable, get } from 'svelte/store';
   import { currentChapter, bookRoot, bookRootAbsolutePath, currentScript, chapters, requestChapterReload } from '$lib/stores/bookState';
   import { selection, conflictCursor } from '$lib/stores/selection';
   import { characters, colorForCharacter, rgbaToOpaqueHex, opaqueHexToRgba, refreshChapterCharactersFromFile } from '$lib/stores/characters';
-  import { getScriptPath, readScript, writeScript, getCharactersPath } from '$lib/services/fs';
+  import { getScriptPath, readFileAsJson, writeScript, getCharactersPath } from '$lib/services/fs';
   import { loadChapterCharactersData, persistChapterCharactersData } from '$lib/services/chapterCharacterRepository';
   import { API_ENDPOINTS, apiFetch } from '$lib/services/apiClient';
   // removed generateChapterAudio per UI change
@@ -18,7 +18,7 @@
   import CharacterDetails from './CharacterDetails.svelte';
   import ClosedWorldCharacterReview from './ClosedWorldCharacterReview.svelte';
   import Dropdown from '$lib/components/common/Dropdown.svelte';
-  import { addBookCharacter, addBookCharacterAlias, setBookCharacterColor, setBookCharacterGender, renameBookCharacter, removeBookCharacter, bookCharacters, detachBookCharacterAlias, setBookCharacterDescriptors, forceRefreshBookCharacters, mergeBookCharacters } from '$lib/stores/bookCharacters';
+  import { addBookCharacter, addBookCharacterAlias, upsertBookCharacter, renameBookCharacter, removeBookCharacter, bookCharacters, detachBookCharacterAlias, setBookCharacterDescriptors, forceRefreshBookCharacters, mergeBookCharacters } from '$lib/stores/bookCharacters';
   import { buildClosedWorldReviewItems, planClosedWorldDescriptorAssignments, resolveClosedWorldCandidateAsAlias, type ClosedWorldReviewItem } from '$lib/services/closedWorldCharacterWorkflow';
   import { computeChapterLineCounts } from '$lib/services/characterChapterStats';
   import { normalizeCharacterKey } from '$lib/services/characterDomain';
@@ -174,7 +174,7 @@
       changed = true;
     }
     if (!changed) return;
-    const scriptPath = ch.scriptPath ?? getScriptPath(root, ch.title);
+    const scriptPath = ch.scriptPath ?? getScriptPath(ch.title);
     let saved = await writeScript(scriptPath, scr);
     if (!saved && get(bookRootAbsolutePath)) {
       const response = await apiFetch(API_ENDPOINTS.save, {
@@ -290,7 +290,7 @@
   ): Promise<void> {
     const root = get(bookRoot);
     if (!root) return;
-    const path = getCharactersPath(root, chapterTitle);
+    const path = getCharactersPath(chapterTitle);
     const existing = await loadChapterCharactersData(root, path);
     const next = updater(existing);
     if (!next) return;
@@ -307,8 +307,8 @@
     const oldKey = normalizeCharacterKey(oldName);
     const newKey = normalizeCharacterKey(newName);
     for (const ch of chapterList) {
-      const path = (ch as any).scriptPath ?? getScriptPath(root, ch.title);
-      const scr = await readScript(path);
+      const path = (ch as any).scriptPath ?? getScriptPath(ch.title);
+      const scr = await readFileAsJson<ScriptJson>(path);
       if (!scr) continue;
       let changed = false;
       for (const line of scr.lines) {
@@ -353,8 +353,8 @@
     let total = 0;
     const chapterList = get(chapters);
     for (const chapter of chapterList) {
-      const path = (chapter as any).scriptPath ?? getScriptPath(root, chapter.title);
-      const scr = await readScript(path);
+      const path = (chapter as any).scriptPath ?? getScriptPath(chapter.title);
+      const scr = await readFileAsJson<ScriptJson>(path);
       if (!scr?.lines) continue;
       for (const line of scr.lines) {
         if (!line.chosenSpeaker) continue;
@@ -477,7 +477,7 @@
     const ch: any = get(currentChapter);
     const root = get(bookRoot);
     if (!ch || !root) return;
-    const path = getCharactersPath(root, ch.title);
+    const path = getCharactersPath(ch.title);
     const existing = await loadChapterCharactersData(root, path);
     const next = updater(existing);
     if (!next) return;
@@ -572,7 +572,7 @@
           line.isConflict = !line.chosenSpeaker || (line.candidates && line.candidates.length > 1 && !line.candidates.some(c => c.name === newName));
         }
       }
-      await writeScript(ch.scriptPath ?? getScriptPath(root, ch.title), scr);
+      await writeScript(ch.scriptPath ?? getScriptPath(ch.title), scr);
       currentScript.set(scr);
     }
     // Update book-level characters using merge semantics to preserve aliases on conflict
@@ -611,7 +611,7 @@
     const ch: any = get(currentChapter);
     const root = get(bookRoot);
     if (ch && root) {
-      const path = ch.scriptPath ?? getScriptPath(root, ch.title);
+      const path = ch.scriptPath ?? getScriptPath(ch.title);
       await writeScript(path, scr);
       currentScript.set(scr);
     }
@@ -697,7 +697,7 @@
     const originalColor = opaqueColor ? opaqueHexToRgba(opaqueColor, DISPLAY_ALPHA) : null;
     
     // ONLY update book-level (single source of truth)
-    await setBookCharacterColor(name, originalColor);
+    await upsertBookCharacter(name, { color: originalColor });
     
     // Update local display by re-reading from book-level
     const updated: CharactersJson = { 
@@ -721,7 +721,7 @@
       if (!created) return;
     } else if (newCharacterColor) {
       // Update color if character already exists
-      await setBookCharacterColor(name, newCharacterColor);
+      await upsertBookCharacter(name, { color: newCharacterColor });
     }
     ensureCharacterInList(name, newCharacterColor ?? null);
     await applyToSelection(name);
@@ -1075,7 +1075,7 @@
               line.isConflict = true;
             }
           }
-          await writeScript(ch.scriptPath ?? getScriptPath(root, ch.title), scr);
+          await writeScript(ch.scriptPath ?? getScriptPath(ch.title), scr);
           currentScript.set(scr);
         }
         await removeBookCharacter(name);
@@ -1111,7 +1111,7 @@
         character={selectedCharacter}
         chapterLineCount={selectedChapterLineCount}
         onSetTitle={(newName: string) => commitCharacterTitle(newName)}
-        onSetGender={(gender: Gender) => setBookCharacterGender(selectedCharacter.name, gender)}
+        onSetGender={(gender: Gender) => upsertBookCharacter(selectedCharacter.name, { gender })}
         onAddAlias={(alias: string) => addBookCharacterAlias(selectedCharacter.name, alias)}
         onRemoveAlias={(alias: string) => detachBookCharacterAlias(selectedCharacter.name, alias)}
         onAddDescriptor={(descriptor: string) => addCharacterDescriptor(descriptor)}

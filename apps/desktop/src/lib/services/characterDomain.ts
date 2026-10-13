@@ -122,7 +122,7 @@ export async function remapCharacterIdInDialogueFiles(
 
     for (const chapter of chapterList) {
         try {
-            const dialoguePath = getDialoguePath(root, chapter.title);
+            const dialoguePath = getDialoguePath(chapter.title);
             const dialogueData: any = await readOptionalDialogue(dialoguePath);
             if (!dialogueData || !Array.isArray(dialogueData.lines)) continue;
 
@@ -216,7 +216,7 @@ export async function remapCharacterGuidInChapterRosters(
     for (const title of chapterTitles) {
         if (!title) continue;
         try {
-            const charactersPath = getCharactersPath(root, title);
+            const charactersPath = getCharactersPath(title);
             const raw: any = await readOptionalCharacters(charactersPath);
             if (!raw || !Array.isArray(raw.characters)) continue;
 

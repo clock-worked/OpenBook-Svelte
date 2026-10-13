@@ -41,14 +41,16 @@ export async function discoverVoicesFromManifests(audioRoot: string): Promise<Vo
       try {
         // Extract voice information from v2.0 format
         if (manifestData.formatVersion === '2.0') {
-          const { characterName, metadata, clips } = manifestData;
+          const { characterName, metadata } = manifestData;
           const primaryVoiceId = metadata?.primaryVoiceId;
           const voiceIds = metadata?.voiceIds || {};
-          const sources = metadata?.sources || {};
 
-          // Process each unique voice in this manifest
+          // Process each unique voice in this manifest. Every manifest voice
+          // is VibeVoice-local: the former determineProvider hint-walking
+          // returned 'vibevoice_local' on every path, so it collapsed to this
+          // constant.
           for (const [voiceId, clipCount] of Object.entries(voiceIds) as [string, number][]) {
-            const provider = determineProvider(sources, clips, voiceId);
+            const provider: TtsProvider = 'vibevoice_local';
             const voiceKey = `${provider}-${voiceId}`;
 
             if (!voiceMap.has(voiceKey)) {
@@ -100,27 +102,6 @@ export async function discoverVoicesFromManifests(audioRoot: string): Promise<Vo
     // Return empty array instead of throwing - allows graceful fallback
     return [];
   }
-}
-
-function determineProvider(
-  sources: Record<string, number>,
-  clips: Array<{ voiceId?: string; voice_id?: string; provider?: string }> = [],
-  voiceId: string
-): TtsProvider {
-  // Check clips array/provider hint first
-  const clip = clips.find((entry) => entry.voiceId === voiceId || entry.voice_id === voiceId);
-  if (clip?.provider) {
-    const provider = clip.provider.toLowerCase();
-    if (provider === 'vibevoice_local' || provider === 'vibevoice') return 'vibevoice_local';
-  }
-
-  // Fall back to source metadata hints
-  const sourceKeys = Object.keys(sources);
-  if (sourceKeys.includes('VibeVoice')) {
-    return 'vibevoice_local';
-  }
-
-  return 'vibevoice_local';
 }
 
 /**

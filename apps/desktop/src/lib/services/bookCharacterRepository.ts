@@ -1,4 +1,4 @@
-import type { Character, CharacterConfig, CharacterFile, CharactersJson } from '$lib/types';
+import type { Character, CharacterConfig, CharacterFile, CharactersJson, ScriptJson } from '$lib/types';
 import { CHARACTER_GUID_PATTERN } from '$lib/types';
 import {
     getBookCharactersPath,
@@ -6,9 +6,8 @@ import {
     getDialoguePath,
     getScriptPath,
     readCharacterFolder,
-    readCharacters,
     readDialogue,
-    readScript,
+    readFileAsJson,
     writeCentralCharacters,
     writeCharacterFile,
 } from '$lib/services/fs';
@@ -146,15 +145,15 @@ async function collectDerivedStats(
     for (const chapter of chapterList) {
         if (chapter.parsed === false) continue;
         try {
-            const dialogue = await readDialogue(getDialoguePath(root, chapter.title));
+            const dialogue = await readDialogue(getDialoguePath(chapter.title));
             if (dialogue?.lines) {
                 for (const line of dialogue.lines) recordUsage((line as any).characterId, chapter.title);
                 continue;
             }
 
             // Legacy fallback for books that have not yet migrated to dialogue.json.
-            const scriptPath: string = chapter.scriptPath ?? getScriptPath(root, chapter.title);
-            const script = await readScript(scriptPath);
+            const scriptPath: string = chapter.scriptPath ?? getScriptPath(chapter.title);
+            const script = await readFileAsJson<ScriptJson>(scriptPath);
             for (const line of script?.lines ?? []) recordUsage((line as any).chosenSpeaker, chapter.title);
         } catch {
         }
@@ -309,9 +308,9 @@ export async function loadBookCharactersData(
     }
 
     // Tier 2 (v2): characters.json present, folder absent/empty.
-    const legacyPath = getBookCharactersPath(root);
+    const legacyPath = getBookCharactersPath();
     console.log('[bookCharacters] No v3 folder; checking legacy file:', legacyPath);
-    const legacyRaw = await readCharacters(legacyPath);
+    const legacyRaw = await readFileAsJson<CharactersJson>(legacyPath);
 
     if (legacyRaw && Array.isArray(legacyRaw.characters)) {
         // Ruling R9: auto-migrate on open. The migration must never break
@@ -396,7 +395,7 @@ export async function deriveCharactersFromChapters(
     for (const chapter of chapterList) {
         if (chapter.parsed === false) continue;
         try {
-            const chars = await loadChapterCharactersData(root, getCharactersPath(root, chapter.title));
+            const chars = await loadChapterCharactersData(root, getCharactersPath(chapter.title));
             if (chars && Array.isArray(chars.characters)) {
                 for (const character of chars.characters) {
                     const normalized = normalizeCharacterConfig(character as any);
@@ -427,8 +426,8 @@ export async function deriveCharactersFromChapters(
             }
 
             if (chapter.parsed) {
-                const scriptPath: string = chapter.scriptPath ?? getScriptPath(root, chapter.title);
-                const script = await readScript(scriptPath);
+                const scriptPath: string = chapter.scriptPath ?? getScriptPath(chapter.title);
+                const script = await readFileAsJson<ScriptJson>(scriptPath);
                 if (!script) continue;
 
                 for (const line of script.lines) {
@@ -464,8 +463,8 @@ export async function deriveCharactersFromChapters(
     for (const chapter of chapterList) {
         try {
             if (!chapter.parsed) continue;
-            const scriptPath: string = chapter.scriptPath ?? getScriptPath(root, chapter.title);
-            const script = await readScript(scriptPath);
+            const scriptPath: string = chapter.scriptPath ?? getScriptPath(chapter.title);
+            const script = await readFileAsJson<ScriptJson>(scriptPath);
             if (!script) continue;
 
             for (const line of script.lines) {

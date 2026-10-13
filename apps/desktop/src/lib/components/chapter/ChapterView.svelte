@@ -5,7 +5,7 @@
   import { writable } from 'svelte/store';
   import { conflictCursor, toolMode, audioGenerateLineId } from '$lib/stores/selection';
   import { get } from 'svelte/store';
-  import { readTextFile, readDialogueForChapter, readScript, readCentralCharacters, writeCentralCharacters, getRootDirInfo, writeDialogue, writeScript, readOptionalJsonRelative } from '$lib/services/fs';
+  import { readTextFile, readDialogueForChapter, readCentralCharacters, writeCentralCharacters, writeScript, readOptionalJsonRelative } from '$lib/services/fs';
   import { readManifest } from '$lib/services/audio';
   import { API_ENDPOINTS, apiFetch, apiPostJson } from '$lib/services/apiClient';
   import type { ReviewChapterRequest, ReviewChapterResponse } from '$lib/services/apiContracts';
@@ -619,22 +619,14 @@
     await saveDialogueFromNormalized({
       normalized: scr,
       chapter: { title: ch.title, path: ch.path },
-      root,
       rawText: get(rawText),
       unknownThreshold: getUnknownThreshold(),
       unknownSpeakerLabel: UNKNOWN_SPEAKER_LABEL,
-      ensureCentralCharactersForNames,
-      ensureCharacterNameToIdMap,
-      normalizeAttribution,
-      writeDialogue,
-      getRootDirInfo,
-      getBackendRootAbsolutePath: () => get(bookRootAbsolutePath),
-      apiSave: (relativePath, content) =>
-        apiFetch(API_ENDPOINTS.save, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ file_path: relativePath, content }),
-        }),
+      repo: {
+        ensureCentralCharactersForNames,
+        ensureCharacterNameToIdMap,
+        normalizeAttribution,
+      },
       reviewed,
       reviewedAt,
     });

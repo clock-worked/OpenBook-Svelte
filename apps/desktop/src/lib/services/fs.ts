@@ -512,29 +512,29 @@ export async function scanChapters(root: FileSystemDirectoryHandle): Promise<Cha
   return chapters;
 }
 
-export function getChapterDir(root: string, title: string): string {
-  // When using File System Access API, paths are relative to rootDirHandle
-  // So we don't include the root directory name in the path
+export function getChapterDir(title: string): string {
+  // Paths are relative to the book root (rootDirHandle / backend book root),
+  // so they never include the root directory name.
   return title;
 }
 
 // === v2.0 Paths ===
 
-export function getDialoguePath(root: string, title: string): string {
-  return `${getChapterDir(root, title)}/dialogue.json`;
+export function getDialoguePath(title: string): string {
+  return `${getChapterDir(title)}/dialogue.json`;
 }
 
-export function getCentralCharactersPath(root: string): string {
+export function getCentralCharactersPath(): string {
   // Paths are relative to rootDirHandle, not including root directory name
   return `characters.json`;
 }
 
-export function getVoicesPath(root: string): string {
+export function getVoicesPath(): string {
   // Paths are relative to rootDirHandle, not including root directory name
   return `voices.json`;
 }
 
-export function getSettingsPath(root: string): string {
+export function getSettingsPath(): string {
   // Paths are relative to rootDirHandle, not including root directory name
   return `settings.json`;
 }
@@ -542,52 +542,236 @@ export function getSettingsPath(root: string): string {
 // === Legacy v1.0 Paths (deprecated) ===
 
 /** @deprecated Use getDialoguePath instead */
-export function getScriptPath(root: string, title: string): string {
-  return `${getChapterDir(root, title)}/${title}.script.json`;
+export function getScriptPath(title: string): string {
+  return `${getChapterDir(title)}/${title}.script.json`;
 }
 
 /** @deprecated Chapter-level characters are deprecated in v2.0 */
-export function getCharactersPath(root: string, title: string): string {
-  return `${getChapterDir(root, title)}/${title}.characters.json`;
+export function getCharactersPath(title: string): string {
+  return `${getChapterDir(title)}/${title}.characters.json`;
 }
 
 /** @deprecated Use getCentralCharactersPath instead */
-export function getBookCharactersPath(root: string): string {
+export function getBookCharactersPath(): string {
   // When using File System Access API, paths are relative to rootDirHandle
   // So we just return the filename, not a full path
   return `characters.json`;
 }
 
-async function readFileAsJson<T>(path: string, logError = true): Promise<T | null> {
-  if (rootDirHandle) {
-    try {
-      const pathParts = path.split('/').filter(p => p);
-      const fileHandle = await getFileHandle(rootDirHandle, pathParts);
-      if (fileHandle) {
-        const file = await fileHandle.getFile();
-        return JSON.parse(await file.text()) as T;
-      }
-      if (!logError) return null;
-    } catch (error) {
-      console.warn(`[fs] File System API read failed for ${path}; trying backend`, error);
-    }
-  }
+// === Transport seam ===
+//
+// Every file read/write/list/delete in this module goes through a
+// BookFsTransport. There are two real adapters:
+//
+//   - `fsaTransport`  — the File System Access API (rootDirHandle)
+//   - `httpTransport` — the local FastAPI sidecar (apiClient)
+//
+// While a directory handle is attached, `activeTransport()` returns a
+// composite that tries the handle first and falls back to the sidecar.
+// The "which storage are we talking to" decision lives here and nowhere
+// else: the public primitives (and their callers) never see it.
 
+interface BookFsTransport {
+  /**
+   * Read a file as raw text (path relative to the book root).
+   * Returns null when the file is absent or unreadable through this
+   * transport (the composite then falls back to the sidecar).
+   *
+   * `optional` is forwarded to the sidecar only when it is a boolean:
+   * `true` marks a missing file as an expected outcome, `false` keeps
+   * the strict read, and `undefined` omits the field entirely (plain
+   * text reads).
+   */
+  readText(path: string, options: { optional?: boolean }): Promise<string | null>;
+  /**
+   * Write a file, creating parent directories on demand. The handle
+   * adapter writes the string verbatim; the sidecar adapter ships the
+   * parsed JSON value, so `contents` must be JSON text.
+   * Returns false when the write did not complete through this
+   * transport (the composite then falls back to the sidecar).
+   */
+  writeText(path: string, contents: string): Promise<boolean>;
+  /**
+   * List the entry names of a directory. Returns null when the
+   * directory is unreachable through this transport (the composite
+   * then falls back to the sidecar); a directory that exists but is
+   * empty yields `[]`. The handle adapter treats a missing directory
+   * as a normal pre-migration state (`[]`, no fallback).
+   *
+   * With `jsonOnly`, the handle adapter returns only non-hidden
+   * `*.json` files (the sidecar already returns a file listing).
+   */
+  listEntries(dirPath: string, options: { jsonOnly?: boolean }): Promise<string[] | null>;
+  /**
+   * Delete a file (path relative to the book root). Returns true on
+   * success, including when the target was already absent (idempotent
+   * delete).
+   */
+  deleteEntry(path: string): Promise<boolean>;
+}
+
+function splitRelPath(path: string): string[] {
+  return path.split('/').filter((p) => p);
+}
+
+const fsaTransport: BookFsTransport = {
+  async readText(path) {
+    if (!rootDirHandle) return null;
+    try {
+      const fileHandle = await getFileHandle(rootDirHandle, splitRelPath(path));
+      if (!fileHandle) return null;
+      const file = await fileHandle.getFile();
+      return await file.text();
+    } catch (error) {
+      // Missing files are expected in many read flows; the composite
+      // falls through to the sidecar below.
+      console.warn(`[fs] File System API read failed for ${path}; trying backend`, error);
+      return null;
+    }
+  },
+  async writeText(path, contents) {
+    if (!rootDirHandle) return false;
+    try {
+      const fileHandle = await getFileHandle(rootDirHandle, splitRelPath(path), true);
+      if (!fileHandle) return false;
+      const writable = await fileHandle.createWritable();
+      await writable.write(contents);
+      await writable.close();
+      return true;
+    } catch (error) {
+      console.warn(`[fs] File System API write failed for ${path}; trying backend`, error);
+      return false;
+    }
+  },
+  async listEntries(dirPath, { jsonOnly }) {
+    if (!rootDirHandle) return null;
+    try {
+      const dirHandle = await rootDirHandle.getDirectoryHandle(dirPath, { create: false });
+      const entries: string[] = [];
+      for await (const entry of dirHandle.values()) {
+        if (entry.kind !== 'file' || entry.name.startsWith('.')) continue;
+        if (jsonOnly && !entry.name.toLowerCase().endsWith('.json')) continue;
+        entries.push(entry.name);
+      }
+      return entries;
+    } catch (error) {
+      // A missing folder is a normal pre-migration state.
+      if (error instanceof DOMException && error.name === 'NotFoundError') {
+        return [];
+      }
+      console.warn(`[fs] File System API listing failed for ${dirPath}; trying backend`, error);
+      return null;
+    }
+  },
+  async deleteEntry(path) {
+    if (!rootDirHandle) return false;
+    const pathParts = splitRelPath(path);
+    if (pathParts.length === 0) return false;
+    const fileName = pathParts.pop() as string;
+    try {
+      const parentDirHandle = await getDirectoryHandle(rootDirHandle, pathParts, false);
+      await parentDirHandle.removeEntry(fileName);
+      return true;
+    } catch (error) {
+      // A missing file (or parent directory) is a normal delete outcome.
+      if (error instanceof DOMException && error.name === 'NotFoundError') {
+        return true;
+      }
+      console.warn(`[fs] File System API delete failed for ${path}; trying backend`, error);
+      return false;
+    }
+  },
+};
+
+const httpTransport: BookFsTransport = {
+  async readText(path, { optional }) {
+    const request: ReadTextRequest = { file_path: path };
+    if (optional !== undefined) request.optional = optional;
+    try {
+      const response = await apiPostJson<ReadTextResponse, ReadTextRequest>(API_ENDPOINTS.readText, request);
+      return response.content ?? null;
+    } catch (error) {
+      console.error(`Failed to read text from ${path}:`, error);
+      return null;
+    }
+  },
+  async writeText(path, contents) {
+    try {
+      await apiPostVoid<SaveFileRequest>(API_ENDPOINTS.save, {
+        file_path: path,
+        content: JSON.parse(contents) as unknown,
+      });
+      return true;
+    } catch (error) {
+      console.error(`Failed to write to ${path}`, error);
+      return false;
+    }
+  },
+  async listEntries(dirPath) {
+    try {
+      const response = await apiPostJson<ListFilesResponse, ListFilesRequest>(API_ENDPOINTS.listFiles, {
+        file_path: dirPath,
+      });
+      return Array.isArray(response.files) ? response.files : [];
+    } catch (error) {
+      console.error('Failed to list files from backend', error);
+      return [];
+    }
+  },
+  async deleteEntry(path) {
+    try {
+      await apiPostVoid<DeleteFileRequest>(API_ENDPOINTS.deleteFile, {
+        file_path: path,
+      });
+      return true;
+    } catch (error) {
+      console.error(`Failed to delete ${path}`, error);
+      return false;
+    }
+  },
+};
+
+/**
+ * Handle-first composite: try the File System Access API, then the
+ * sidecar, whenever the handle cannot reach the target (missing file,
+ * transient FSA failure, ...). The per-primitive try-FSA-then-HTTP
+ * dance that used to be copy-pasted into every primitive lives here,
+ * once.
+ */
+function handleOverSidecar(): BookFsTransport {
+  return {
+    readText: (path, options) =>
+      fsaTransport.readText(path, options).then(
+        (text) => text ?? httpTransport.readText(path, options),
+      ),
+    writeText: (path, contents) =>
+      fsaTransport.writeText(path, contents).then(
+        (ok) => ok || httpTransport.writeText(path, contents),
+      ),
+    listEntries: (dirPath, options) =>
+      fsaTransport.listEntries(dirPath, options).then(
+        (entries) => entries ?? httpTransport.listEntries(dirPath, options),
+      ),
+    deleteEntry: (path) =>
+      fsaTransport.deleteEntry(path).then(
+        (ok) => ok || httpTransport.deleteEntry(path),
+      ),
+  };
+}
+
+function activeTransport(): BookFsTransport {
+  return rootDirHandle ? handleOverSidecar() : httpTransport;
+}
+
+export async function readFileAsJson<T>(path: string, logError = true): Promise<T | null> {
+  const text = await activeTransport().readText(path, { optional: !logError });
+  if (text == null) return null;
   try {
-    const response = await apiPostJson<ReadTextResponse, ReadTextRequest>(API_ENDPOINTS.readText, {
-      file_path: path,
-      optional: !logError,
-    });
-    if (response.content == null) return null;
-    return JSON.parse(response.content) as T;
+    return JSON.parse(text) as T;
   } catch (error) {
     if (logError) console.error(`Failed to read or parse JSON from ${path}`, error);
     return null;
   }
-}
-
-export async function readJsonRelative<T>(path: string): Promise<T | null> {
-  return readFileAsJson<T>(path);
 }
 
 export async function readOptionalJsonRelative<T>(path: string): Promise<T | null> {
@@ -595,31 +779,7 @@ export async function readOptionalJsonRelative<T>(path: string): Promise<T | nul
 }
 
 async function writeFile(path: string, contents: string): Promise<boolean> {
-  if (rootDirHandle) {
-    try {
-      const pathParts = path.split('/').filter(p => p);
-      const fileHandle = await getFileHandle(rootDirHandle, pathParts, true);
-      if (fileHandle) {
-        const writable = await fileHandle.createWritable();
-        await writable.write(contents);
-        await writable.close();
-        return true;
-      }
-    } catch (error) {
-      console.warn(`[fs] File System API write failed for ${path}; trying backend`, error);
-    }
-  }
-
-  try {
-    await apiPostVoid<SaveFileRequest>(API_ENDPOINTS.save, {
-      file_path: path,
-      content: JSON.parse(contents) as unknown,
-    });
-    return true;
-  } catch (error) {
-    console.error(`Failed to write to ${path}`, error);
-    return false;
-  }
+  return activeTransport().writeText(path, contents);
 }
 
 // === v2.0 Read/Write Functions ===
@@ -677,34 +837,10 @@ export async function readSpeakerBlocklist(root: string): Promise<any | null> {
  * Returns [] when the folder does not exist (book not migrated to v3 yet).
  */
 export async function listCharacterFiles(root: string): Promise<string[]> {
-  if (rootDirHandle) {
-    try {
-      const charactersDirHandle = await rootDirHandle.getDirectoryHandle('characters', { create: false });
-      const files: string[] = [];
-      for await (const entry of charactersDirHandle.values()) {
-        if (entry.kind === 'file' && !entry.name.startsWith('.') && entry.name.toLowerCase().endsWith('.json')) {
-          files.push(entry.name);
-        }
-      }
-      return files;
-    } catch (error) {
-      // A missing characters/ folder is a normal pre-migration state.
-      if (error instanceof DOMException && error.name === 'NotFoundError') {
-        return [];
-      }
-      console.warn('[fs] File System API character folder listing failed; trying backend', error);
-    }
-  }
-
-  try {
-    const response = await apiPostJson<ListFilesResponse, ListFilesRequest>(API_ENDPOINTS.listFiles, {
-      file_path: 'characters',
-    });
-    return Array.isArray(response.files) ? response.files : [];
-  } catch (error) {
-    console.error('Failed to list character files from backend', error);
-    return [];
-  }
+  // A missing characters/ folder is a normal pre-migration state: the
+  // transport reports it as [] (no fallback needed).
+  const files = await activeTransport().listEntries('characters', { jsonOnly: true });
+  return files ?? [];
 }
 
 /**
@@ -765,41 +901,12 @@ export async function readCharacterFolder(root: string): Promise<CharactersJson 
  * Deleting a file that does not exist is a success (idempotent).
  */
 export async function deleteFile(root: string, relPath: string): Promise<boolean> {
-  if (rootDirHandle) {
-    try {
-      const pathParts = relPath.split('/').filter(p => p);
-      if (pathParts.length > 0) {
-        const fileName = pathParts.pop() as string;
-        const parentDirHandle = await getDirectoryHandle(rootDirHandle, pathParts, false);
-        await parentDirHandle.removeEntry(fileName);
-        return true;
-      }
-    } catch (error) {
-      // A missing file (or parent directory) is a normal delete outcome.
-      if (error instanceof DOMException && error.name === 'NotFoundError') {
-        return true;
-      }
-      console.warn(`[fs] File System API delete failed for ${relPath}; trying backend`, error);
-    }
-  }
-
-  try {
-    await apiPostVoid<DeleteFileRequest>(API_ENDPOINTS.deleteFile, {
-      file_path: relPath,
-    });
-    return true;
-  } catch (error) {
-    console.error(`Failed to delete ${relPath}`, error);
-    return false;
-  }
+  // Deleting a file that does not exist is a success (idempotent) — both
+  // adapters report that as true, and the composite falls through on failure.
+  return activeTransport().deleteEntry(relPath);
 }
 
 // === Legacy v1.0 Functions (for backward compatibility) ===
-
-/** @deprecated Use readDialogue instead */
-export async function readScript(path: string): Promise<ScriptJson | null> {
-  return readFileAsJson<ScriptJson>(path);
-}
 
 export async function readOptionalScript(path: string): Promise<ScriptJson | null> {
   return readFileAsJson<ScriptJson>(path, false);
@@ -859,11 +966,6 @@ export async function writeScript(path: string, data: ScriptJson): Promise<boole
   return success;
 }
 
-/** @deprecated Use readCentralCharacters or readVoices instead */
-export async function readCharacters(path: string): Promise<CharactersJson | null> {
-  return readFileAsJson<CharactersJson>(path);
-}
-
 export async function readOptionalCharacters(path: string): Promise<CharactersJson | null> {
   return readFileAsJson<CharactersJson>(path, false);
 }
@@ -874,29 +976,8 @@ export async function writeCharacters(path: string, data: CharactersJson): Promi
 }
 
 export async function readTextFile(path: string): Promise<string | null> {
-  if (rootDirHandle) {
-    try {
-      const pathParts = path.split('/').filter(p => p);
-      console.log('[readTextFile] Reading file at path:', path, 'split into parts:', pathParts);
-      const fileHandle = await getFileHandle(rootDirHandle, pathParts);
-      if (fileHandle) {
-        const file = await fileHandle.getFile();
-        const text = await file.text();
-        console.log('[readTextFile] Successfully read', text.length, 'characters from', path);
-        return text;
-      }
-    } catch (error) {
-      console.warn(`[readTextFile] File System API read failed for ${path}; trying backend`, error);
-    }
-  }
-
-  try {
-    const response = await apiPostJson<{ content: string }>(API_ENDPOINTS.readText, { file_path: path });
-    return response.content;
-  } catch (error) {
-    console.error(`[readTextFile] Failed to read text from ${path}:`, error);
-    return null;
-  }
+  // Plain text read: no `optional` flag is forwarded to the sidecar.
+  return activeTransport().readText(path, {});
 }
 
 /**

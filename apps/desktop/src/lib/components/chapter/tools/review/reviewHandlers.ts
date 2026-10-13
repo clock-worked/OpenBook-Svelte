@@ -120,7 +120,7 @@ export function syncCharactersWithUsage(
     })
   };
 
-  const path = getCharactersPath(root, ch.title);
+  const path = getCharactersPath(ch.title);
   void persistChapterCharactersData(root, path, updated);
   characters.set(updated);
 }
@@ -206,7 +206,7 @@ export function assignCharacterToLines(
             voiceMeta: bookChar?.voiceMeta ?? null,
           } as Character]
         };
-        const path = getCharactersPath(root, ch.title);
+        const path = getCharactersPath(ch.title);
         void persistChapterCharactersData(root, path, updated);
         characters.set(updated);
       }
