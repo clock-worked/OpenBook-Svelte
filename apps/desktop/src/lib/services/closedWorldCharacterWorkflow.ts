@@ -1,4 +1,5 @@
 import type { Character, CharactersJson, DialogueLine, Gender } from '../types.ts';
+import { buildUniqueCharacterId, normalizeCharacterKey } from './characterIdentity.ts';
 
 function slugifyCharacterId(name: string): string {
   const cleaned = String(name ?? '')
@@ -10,18 +11,10 @@ function slugifyCharacterId(name: string): string {
   return cleaned ? cleaned.replace(/\s/g, '-') : 'character';
 }
 
-function buildUniqueCharacterId(name: string, existingIds: Set<string>): string {
-  const base = slugifyCharacterId(name);
-  let id = base;
-  let suffix = 2;
-  while (existingIds.has(id)) id = `${base}-${suffix++}`;
-  return id;
-}
-
 function normalizeAliasList(values: string[]): string[] {
   const seen = new Set<string>();
   return values.filter((value) => {
-    const key = normalizeKey(value);
+    const key = normalizeCharacterKey(value);
     if (!key || seen.has(key)) return false;
     seen.add(key);
     return true;
@@ -59,10 +52,6 @@ export interface NewClosedWorldCharacterInput {
   gender: Gender;
 }
 
-function normalizeKey(value: unknown): string {
-  return String(value ?? '').trim().toLowerCase();
-}
-
 function isCharacterCandidate(value: string): boolean {
   return !/^(?:a|an|the)$/i.test(value.trim());
 }
@@ -93,16 +82,16 @@ export function createClosedWorldCharacter(
 ): { characters: CharactersJson; character: Character } {
   const displayName = String(input.displayName ?? '').trim();
   if (!displayName) throw new Error('Character display name is required');
-  const displayKey = normalizeKey(displayName);
+  const displayKey = normalizeCharacterKey(displayName);
   const collides = data.characters.some((character) =>
-    normalizeKey(character.name) === displayKey
-    || (character.aliases ?? []).some((alias) => normalizeKey(alias) === displayKey),
+    normalizeCharacterKey(character.name) === displayKey
+    || (character.aliases ?? []).some((alias) => normalizeCharacterKey(alias) === displayKey),
   );
   if (collides) throw new Error(`Character name already exists: ${displayName}`);
   const existingIds = new Set(
     data.characters.map((character) => character.id).filter((id): id is string => Boolean(id)),
   );
-  const character = createCharacterRecord(buildUniqueCharacterId(displayName, existingIds), displayName, input.gender);
+  const character = createCharacterRecord(buildUniqueCharacterId(slugifyCharacterId(displayName), existingIds), displayName, input.gender);
   return {
     character,
     characters: {
@@ -118,17 +107,17 @@ export function resolveClosedWorldCandidateAsAlias(
   targetCharacterId: string,
 ): { characters: CharactersJson; changed: boolean } {
   const alias = String(candidateName ?? '').trim();
-  const targetIdKey = normalizeKey(targetCharacterId);
+  const targetIdKey = normalizeCharacterKey(targetCharacterId);
   if (!alias || !targetIdKey) throw new Error('Alias and target character are required');
-  const targetIndex = data.characters.findIndex((character) => normalizeKey(character.id) === targetIdKey);
+  const targetIndex = data.characters.findIndex((character) => normalizeCharacterKey(character.id) === targetIdKey);
   if (targetIndex < 0) throw new Error('Target character was not found');
-  const aliasKey = normalizeKey(alias);
+  const aliasKey = normalizeCharacterKey(alias);
   const canonicalCollision = data.characters.find(
-    (character, index) => index !== targetIndex && normalizeKey(character.name) === aliasKey,
+    (character, index) => index !== targetIndex && normalizeCharacterKey(character.name) === aliasKey,
   );
   if (canonicalCollision) throw new Error(`Alias is already a canonical character: ${canonicalCollision.name}`);
   const target = data.characters[targetIndex];
-  if (normalizeKey(target.name) === aliasKey || (target.aliases ?? []).some((value) => normalizeKey(value) === aliasKey)) {
+  if (normalizeCharacterKey(target.name) === aliasKey || (target.aliases ?? []).some((value) => normalizeCharacterKey(value) === aliasKey)) {
     return { characters: data, changed: false };
   }
   const characters = data.characters.map((character, index) =>
@@ -154,19 +143,19 @@ export function planClosedWorldDescriptorAssignments(
 ): ClosedWorldDescriptorAssignment[] {
   const value = String(descriptor ?? '').trim();
   if (!value) throw new Error('Descriptor is required');
-  const descriptorKey = normalizeKey(value);
+  const descriptorKey = normalizeCharacterKey(value);
   const groups = new Map<string, ClosedWorldDescriptorAssignment>();
   const entries = Object.entries(lineTargets)
-    .map(([lineId, target]) => [Number(lineId), normalizeKey(target)] as const)
+    .map(([lineId, target]) => [Number(lineId), normalizeCharacterKey(target)] as const)
     .filter(([lineId, targetKey]) => Number.isFinite(lineId) && targetKey)
     .sort(([left], [right]) => left - right);
   for (const [lineId, targetKey] of entries) {
-    const target = data.characters.find((character) => normalizeKey(character.id) === targetKey);
+    const target = data.characters.find((character) => normalizeCharacterKey(character.id) === targetKey);
     if (!target) throw new Error(`Target character was not found for line ${lineId}`);
     let group = groups.get(target.id);
     if (!group) {
       const alreadyKnown = [target.name, ...(target.aliases ?? []), ...(target.descriptors ?? [])]
-        .some((existing) => normalizeKey(existing) === descriptorKey);
+        .some((existing) => normalizeCharacterKey(existing) === descriptorKey);
       group = { characterId: target.id, characterName: target.name, lineIds: [], addDescriptor: !alreadyKnown };
       groups.set(target.id, group);
     }
@@ -179,7 +168,7 @@ function catalogueKeys(data: CharactersJson): Set<string> {
   const keys = new Set<string>();
   for (const character of data.characters) {
     for (const value of [character.id, character.name, ...(character.aliases ?? [])]) {
-      const key = normalizeKey(value);
+      const key = normalizeCharacterKey(value);
       if (key) keys.add(key);
     }
   }
@@ -206,11 +195,11 @@ export function buildClosedWorldReviewItems(
   const itemByCandidate = new Map<string, ClosedWorldReviewItem>();
   for (const line of lines) {
     if (line.isNonSpeaker) continue;
-    if (normalizeKey(line.characterId) === 'narrator') continue;
+    if (normalizeCharacterKey(line.characterId) === 'narrator') continue;
     const candidateName = candidateSurface(line);
     const candidateId = String(line.characterId ?? '').trim();
-    const candidateKey = normalizeKey(candidateName);
-    const idKey = normalizeKey(candidateId);
+    const candidateKey = normalizeCharacterKey(candidateName);
+    const idKey = normalizeCharacterKey(candidateId);
     if ((idKey && known.has(idKey)) || (candidateKey && known.has(candidateKey))) continue;
     if (!candidateName || candidateKey === 'narrator' || !isCharacterCandidate(candidateName)) continue;
     const existing = itemByCandidate.get(candidateKey);

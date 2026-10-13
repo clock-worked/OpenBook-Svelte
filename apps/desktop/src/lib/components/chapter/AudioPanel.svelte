@@ -33,17 +33,27 @@
     updateJobProgress,
     type AudioQueueItem,
   } from '$lib/stores/audioQueue';
+  import {
+    planWholeBookMissing,
+    planAdvancedPreview,
+    planAdvancedGeneration,
+    rebuildQueuedJobPayload,
+    buildSpeakerSourceBatches,
+    buildCumulativeCharacterCounts,
+    type PlannedQueueJob,
+    type PlannerVoiceInfo,
+    type PlannedSpeakerSourceBatch,
+    type AdvancedBookPreview,
+    type AdvancedGenerationMode,
+    type AudioPlannerContext,
+    type RebuiltQueuePayload,
+  } from '$lib/services/audioQueuePlanning';
 
   const DISPLAY_ALPHA = 1.0;
   const CHARACTER_BATCH_TARGET = 800;
   const DEFAULT_ADVANCED_FILLER_TEXT = 'The following lines are all voiced by the same speaker source. Keep the same voice, pacing, and emotional continuity across the batch.';
 
-  type VoiceInfo = {
-    voiceId: string;
-    provider: string;
-    displayName: string;
-    characterId: string;
-  };
+  type VoiceInfo = PlannerVoiceInfo;
 
   let generatingCharacter: string | null = null;
   let generationProgress = { current: 0, total: 0 };
@@ -54,77 +64,7 @@
   let reloadingManifestData = false;
   let audioClipCounts = new Map<string, number>();
   let queueProcessing = false;
-  type QueuedDialogueLine = DialogueLine & {
-    chapterTitle?: string;
-    sourceFile?: string;
-    __queueChapterTitle?: string;
-    __queueSourceFile?: string;
-  };
-  type QueuedJobPayload = {
-    characterId: string;
-    characterName: string;
-    lines: QueuedDialogueLine[];
-    cumulativeCharacterCounts: number[];
-    totalCharacters: number;
-    voiceInfo: VoiceInfo;
-    chapterTitle: string;
-    sourceFile: string;
-    generationOptions?: GenerateAudioCharacterOptions;
-  };
-
-  type AdvancedGenerationMode = 'character' | 'chapter' | 'speaker-source';
-
-  type AdvancedBookChapterBatch = {
-    chapterTitle: string;
-    sourceFile: string;
-    characterId: string;
-    characterName: string;
-    voiceInfo: VoiceInfo;
-    lines: QueuedDialogueLine[];
-    totalCharacters: number;
-  };
-
-  type AdvancedBookCharacterBatch = {
-    characterId: string;
-    characterName: string;
-    voiceInfo: VoiceInfo;
-    lines: QueuedDialogueLine[];
-    totalCharacters: number;
-    chapterCount: number;
-    chapterBatchCount: number;
-    underTargetChapterBatchCount: number;
-  };
-
-  type AdvancedSpeakerSourceBatch = {
-    speakerSourceId: string;
-    speakerLabel: string;
-    voiceInfo: VoiceInfo;
-    lines: QueuedDialogueLine[];
-    totalCharacters: number;
-    characterCount: number;
-    chapterCount: number;
-    primaryCharacterId: string;
-    primaryCharacterName: string;
-  };
-
-  type AdvancedChapterOverview = {
-    chapterTitle: string;
-    missingVoiceTotal: number;
-  };
-
-  type AdvancedBookPreview = {
-    totalChapterCount: number;
-    parsedChapterCount: number;
-    skippedUnparsedCount: number;
-    totalMissingLines: number;
-    missingVoiceLineCount: number;
-    missingVoiceCharacterCount: number;
-    characters: AdvancedBookCharacterBatch[];
-    chapterBatches: AdvancedBookChapterBatch[];
-    chapterOverview: AdvancedChapterOverview[];
-  };
-
-  const queuedJobs = new Map<string, QueuedJobPayload>();
+  const queuedJobs = new Map<string, PlannedQueueJob>();
   let showAdvancedOverlay = false;
   let loadingAdvancedPreview = false;
   let advancedSubmitting = false;
@@ -138,26 +78,6 @@
   let selectedAdvancedCharacterIds = new Set<string>();
   let advancedPreviewRequestId = 0;
   let advancedSelectAllInput: HTMLInputElement | null = null;
-
-  function countLineCharacters(line: DialogueLine): number {
-    return Math.max(1, String((line as any)?.text ?? '').length);
-  }
-
-  function sumLineCharacters(lines: DialogueLine[]): number {
-    return lines.reduce((sum, line) => sum + countLineCharacters(line), 0);
-  }
-
-  function buildCumulativeCharacterCounts(lines: DialogueLine[]): { cumulative: number[]; total: number } {
-    const cumulative: number[] = [];
-    let runningTotal = 0;
-
-    for (const line of lines) {
-      runningTotal += countLineCharacters(line);
-      cumulative.push(runningTotal);
-    }
-
-    return { cumulative, total: runningTotal };
-  }
 
   // Maps: ID → name, name → ID (for legacy data), ID → Character
   let characterIdToName = new Map<string, string>();
@@ -180,124 +100,21 @@
     return chapter.path || `${chapter.title}/chapter.txt`;
   }
 
-  function buildQueuedLinesWithContext(
-    lines: DialogueLine[],
-    chapterTitle: string,
-    sourceFile: string,
-    characterName: string,
-  ): QueuedDialogueLine[] {
-    return lines.map((line) => ({
-      ...(line as any),
-      __queueChapterTitle: chapterTitle,
-      __queueSourceFile: sourceFile,
-      __queueCharacterName: characterName,
-      ...(typeof (line as any)?.chosenSpeaker === 'string' && String((line as any).chosenSpeaker).trim()
-        ? {}
-        : { chosenSpeaker: characterName }),
-    }));
+  // Adapter from this panel's environment to the audio queue planners.
+  function buildPlannerContext(): AudioPlannerContext {
+    return {
+      chapters: get(chapters),
+      batchTarget: CHARACTER_BATCH_TARGET,
+      readScriptForChapter: (title) => readDialogueForChapter(title),
+      isLineAudioPresent: ({ chapterTitle, characterName, lineId }) =>
+        checkAudioExistsForLine(chapterTitle, characterName, lineId),
+      resolveCharacterIdFromLine,
+      resolveCharacterName: (id) => characterIdToName.get(id) || id,
+      getVoice: getVoiceForCharacter,
+      getChapterSourceFile,
+    };
   }
 
-  function getSpeakerSourceId(voiceInfo: VoiceInfo): string {
-    return `${voiceInfo.provider}::${voiceInfo.voiceId}`;
-  }
-
-  function buildSpeakerSourceBatches(items: AdvancedBookCharacterBatch[]): AdvancedSpeakerSourceBatch[] {
-    const batchesBySource = new Map<
-      string,
-      {
-        speakerSourceId: string;
-        speakerLabel: string;
-        voiceInfo: VoiceInfo;
-        lines: QueuedDialogueLine[];
-        totalCharacters: number;
-        characterIds: Set<string>;
-        chapterTitles: Set<string>;
-        primaryCharacterId: string;
-        primaryCharacterName: string;
-      }
-    >();
-
-    for (const item of items) {
-      const speakerSourceId = getSpeakerSourceId(item.voiceInfo);
-      let batch = batchesBySource.get(speakerSourceId);
-      if (!batch) {
-        batch = {
-          speakerSourceId,
-          speakerLabel: item.voiceInfo.displayName,
-          voiceInfo: item.voiceInfo,
-          lines: [],
-          totalCharacters: 0,
-          characterIds: new Set<string>(),
-          chapterTitles: new Set<string>(),
-          primaryCharacterId: item.characterId,
-          primaryCharacterName: item.characterName,
-        };
-        batchesBySource.set(speakerSourceId, batch);
-      }
-
-      batch.lines.push(...item.lines);
-      batch.totalCharacters += item.totalCharacters;
-      batch.characterIds.add(item.characterId);
-      for (const line of item.lines) {
-        const lineChapterTitle = resolveQueuedLineChapterTitle(line, item.characterName);
-        if (lineChapterTitle) {
-          batch.chapterTitles.add(lineChapterTitle);
-        }
-      }
-    }
-
-    const batches = Array.from(batchesBySource.values()).map((item) => ({
-      speakerSourceId: item.speakerSourceId,
-      speakerLabel: item.speakerLabel,
-      voiceInfo: item.voiceInfo,
-      lines: [...item.lines].sort((left, right) => {
-        const leftChapter = resolveQueuedLineChapterTitle(left, item.primaryCharacterName);
-        const rightChapter = resolveQueuedLineChapterTitle(right, item.primaryCharacterName);
-        const chapterCompare = leftChapter.localeCompare(rightChapter, undefined, { sensitivity: 'base' });
-        if (chapterCompare !== 0) return chapterCompare;
-        return Number((left as any)?.id || 0) - Number((right as any)?.id || 0);
-      }),
-      totalCharacters: item.totalCharacters,
-      characterCount: item.characterIds.size,
-      chapterCount: item.chapterTitles.size,
-      primaryCharacterId: item.primaryCharacterId,
-      primaryCharacterName: item.primaryCharacterName,
-    }));
-
-    batches.sort((left, right) => {
-      if (right.totalCharacters !== left.totalCharacters) {
-        return right.totalCharacters - left.totalCharacters;
-      }
-      return left.speakerLabel.localeCompare(right.speakerLabel, undefined, { sensitivity: 'base' });
-    });
-
-    return batches;
-  }
-
-  function resolveQueuedLineChapterTitle(line: QueuedDialogueLine | undefined, fallbackChapterTitle: string): string {
-    if (typeof (line as any)?.chapterTitle === 'string' && String((line as any).chapterTitle).trim()) {
-      return String((line as any).chapterTitle).trim();
-    }
-
-    if (typeof line?.__queueChapterTitle === 'string' && String(line.__queueChapterTitle).trim()) {
-      return String(line.__queueChapterTitle).trim();
-    }
-
-    return fallbackChapterTitle;
-  }
-
-  function resolveQueuedLineSourceFile(line: QueuedDialogueLine | undefined, fallbackSourceFile: string): string {
-    if (typeof (line as any)?.sourceFile === 'string' && String((line as any).sourceFile).trim()) {
-      return String((line as any).sourceFile).trim();
-    }
-
-    if (typeof line?.__queueSourceFile === 'string' && String(line.__queueSourceFile).trim()) {
-      return String(line.__queueSourceFile).trim();
-    }
-
-    return fallbackSourceFile;
-  }
-  
   // Load character data from characters.json (ID-first approach)
   $: if ($currentChapter && $bookRoot) {
     void loadCharacterData();
@@ -370,7 +187,7 @@
   $: advancedSpeakerSourceBatches = buildSpeakerSourceBatches(advancedCharacters);
   $: selectedAdvancedSpeakerSourceBatches = buildSpeakerSourceBatches(selectedAdvancedCharacters);
   $: speakerSourceBatchByCharacterId = (() => {
-    const index = new Map<string, AdvancedSpeakerSourceBatch>();
+    const index = new Map<string, PlannedSpeakerSourceBatch>();
     for (const batch of advancedSpeakerSourceBatches) {
       for (const line of batch.lines) {
         const lineCharacterId = typeof (line as any)?.characterId === 'string' ? String((line as any).characterId).trim() : '';
@@ -451,94 +268,11 @@
       return;
     }
 
-    type ChapterQueueTotals = {
-      queuedCharacterBatches: number;
-      queuedLines: number;
-      missingVoiceLines: number;
-    };
+    const plan = await planWholeBookMissing(buildPlannerContext());
 
-    const missingVoiceCharacterIds = new Set<string>();
-    const jobsByCharacterId = new Map<string, QueuedJobPayload>();
-    const characterQueueOrder: string[] = [];
-    const chapterQueueTotals = new Map<string, ChapterQueueTotals>();
-    let totalLinesQueued = 0;
-
-    for (const chapter of allChapters) {
-      const script = await readDialogueForChapter(chapter.title);
-      if (!script?.lines?.length) continue;
-
-      const linesByCharacterId = new Map<string, DialogueLine[]>();
-      for (const line of script.lines as any[]) {
-        const characterId = resolveCharacterIdFromLine(line);
-
-        if (!characterId) continue;
-
-        const existingLines = linesByCharacterId.get(characterId) || [];
-        existingLines.push(line as DialogueLine);
-        linesByCharacterId.set(characterId, existingLines);
-      }
-
-      const chapterTotals: ChapterQueueTotals = {
-        queuedCharacterBatches: 0,
-        queuedLines: 0,
-        missingVoiceLines: 0,
-      };
-
-      for (const [characterId, characterLines] of linesByCharacterId.entries()) {
-        if (characterLines.length === 0) continue;
-
-        const characterName = characterIdToName.get(characterId) || characterId;
-        const voiceInfo = getVoiceForCharacter(characterId);
-        if (!voiceInfo) {
-          missingVoiceCharacterIds.add(characterId);
-          chapterTotals.missingVoiceLines += characterLines.length;
-          continue;
-        }
-
-        const checks = await Promise.all(
-          characterLines.map(async (line) => ({
-            line,
-            exists: await checkAudioExistsForLine(chapter.title, characterName, line.id),
-          }))
-        );
-
-        const linesToGenerate = checks.filter(check => !check.exists).map(check => check.line);
-        if (linesToGenerate.length === 0) continue;
-
-        const sourceFile = getChapterSourceFile(chapter);
-        const linesWithContext = buildQueuedLinesWithContext(linesToGenerate, chapter.title, sourceFile, characterName);
-
-        let payload = jobsByCharacterId.get(characterId);
-        if (!payload) {
-          payload = {
-            characterId,
-            characterName,
-            lines: [],
-            cumulativeCharacterCounts: [],
-            totalCharacters: 0,
-            voiceInfo,
-            chapterTitle: chapter.title,
-            sourceFile,
-          };
-          jobsByCharacterId.set(characterId, payload);
-          characterQueueOrder.push(characterId);
-        }
-
-        payload.lines.push(...linesWithContext);
-
-        totalLinesQueued += linesWithContext.length;
-        chapterTotals.queuedCharacterBatches += 1;
-        chapterTotals.queuedLines += linesWithContext.length;
-      }
-
-      if (chapterTotals.queuedLines > 0 || chapterTotals.missingVoiceLines > 0) {
-        chapterQueueTotals.set(chapter.title, chapterTotals);
-      }
-    }
-
-    if (jobsByCharacterId.size === 0) {
-      const missingVoicesNote = missingVoiceCharacterIds.size > 0
-        ? ` ${missingVoiceCharacterIds.size} character(s) are missing voice assignments.`
+    if (plan.jobs.length === 0) {
+      const missingVoicesNote = plan.missingVoiceCharacterIds.size > 0
+        ? ` ${plan.missingVoiceCharacterIds.size} character(s) are missing voice assignments.`
         : '';
       alert(`No missing audio lines found across this book.${missingVoicesNote}`);
       return;
@@ -547,28 +281,21 @@
     const queueRunTimestamp = Date.now();
     let jobCounter = 0;
 
-    for (const characterId of characterQueueOrder) {
-      const payload = jobsByCharacterId.get(characterId);
-      if (!payload || payload.lines.length === 0) continue;
-
-      const { cumulative, total } = buildCumulativeCharacterCounts(payload.lines);
-      payload.cumulativeCharacterCounts = cumulative;
-      payload.totalCharacters = total;
-
-      const jobId = `book-${characterId}-missing-${queueRunTimestamp}-${jobCounter++}`;
-      queuedJobs.set(jobId, payload);
+    for (const job of plan.jobs) {
+      const jobId = `${job.jobIdBase}-${queueRunTimestamp}-${jobCounter++}`;
+      queuedJobs.set(jobId, job);
       enqueueAudioJob({
         id: jobId,
-        characterId: payload.characterId,
-        characterName: payload.characterName,
-        chapterTitle: payload.chapterTitle,
+        characterId: job.characterId,
+        characterName: job.displayName,
+        chapterTitle: job.chapterTitle,
         generationMode: 'missing',
-        total: payload.lines.length,
-        totalCharacters: payload.totalCharacters,
+        total: job.lines.length,
+        totalCharacters: job.totalCharacters,
       });
     }
 
-    for (const [chapterTitle, totals] of chapterQueueTotals.entries()) {
+    for (const [chapterTitle, totals] of plan.chapterTotals.entries()) {
       setQueueChapterOverview(chapterTitle, totals.queuedLines, totals.missingVoiceLines);
     }
 
@@ -576,17 +303,17 @@
       void processQueue();
     }
 
-    const chaptersWithQueuedJobs = Array.from(chapterQueueTotals.values())
+    const chaptersWithQueuedJobs = Array.from(plan.chapterTotals.values())
       .filter((totals) => totals.queuedCharacterBatches > 0)
       .length;
-    const totalJobsQueued = jobsByCharacterId.size;
+    const totalJobsQueued = plan.jobs.length;
     const charactersWithQueuedJobs = totalJobsQueued;
 
-    const missingVoicesNote = missingVoiceCharacterIds.size > 0
-      ? ` Skipped ${missingVoiceCharacterIds.size} character(s) with no assigned voice.`
+    const missingVoicesNote = plan.missingVoiceCharacterIds.size > 0
+      ? ` Skipped ${plan.missingVoiceCharacterIds.size} character(s) with no assigned voice.`
       : '';
     alert(
-      `Queued ${totalLinesQueued} missing line${totalLinesQueued === 1 ? '' : 's'} ` +
+      `Queued ${plan.totalLinesQueued} missing line${plan.totalLinesQueued === 1 ? '' : 's'} ` +
       `across ${totalJobsQueued} character job${totalJobsQueued === 1 ? '' : 's'} in ` +
       `${chaptersWithQueuedJobs} chapter${chaptersWithQueuedJobs === 1 ? '' : 's'} ` +
       `for ${charactersWithQueuedJobs} character${charactersWithQueuedJobs === 1 ? '' : 's'}, ` +
@@ -599,153 +326,7 @@
       await loadCharacterData();
     }
 
-    const allChapters = get(chapters);
-    const parsedChapters = allChapters.filter((chapter) => chapter.parsed);
-
-    type CharacterAccumulator = {
-      characterId: string;
-      characterName: string;
-      voiceInfo: VoiceInfo;
-      lines: QueuedDialogueLine[];
-      totalCharacters: number;
-      chapterBatchCount: number;
-      underTargetChapterBatchCount: number;
-      chapters: Set<string>;
-    };
-
-    const charactersById = new Map<string, CharacterAccumulator>();
-    const chapterBatches: AdvancedBookChapterBatch[] = [];
-    const chapterOverview = new Map<string, AdvancedChapterOverview>();
-    const missingVoiceCharacterIds = new Set<string>();
-    let totalMissingLines = 0;
-    let missingVoiceLineCount = 0;
-
-    for (const chapter of parsedChapters) {
-      const script = await readDialogueForChapter(chapter.title);
-      if (!script?.lines?.length) continue;
-
-      const linesByCharacterId = new Map<string, DialogueLine[]>();
-      for (const line of script.lines as any[]) {
-        const characterId = resolveCharacterIdFromLine(line);
-        if (!characterId) continue;
-
-        const existingLines = linesByCharacterId.get(characterId) || [];
-        existingLines.push(line as DialogueLine);
-        linesByCharacterId.set(characterId, existingLines);
-      }
-
-      const sourceFile = getChapterSourceFile(chapter);
-      let chapterMissingVoiceTotal = 0;
-
-      for (const [characterId, characterLines] of linesByCharacterId.entries()) {
-        if (characterLines.length === 0) continue;
-
-        const characterName = characterIdToName.get(characterId) || characterId;
-        const checks = await Promise.all(
-          characterLines.map(async (line) => ({
-            line,
-            exists: await checkAudioExistsForLine(chapter.title, characterName, line.id),
-          }))
-        );
-
-        const linesToGenerate = checks.filter((check) => !check.exists).map((check) => check.line);
-        if (linesToGenerate.length === 0) continue;
-
-        const voiceInfo = getVoiceForCharacter(characterId);
-        if (!voiceInfo) {
-          missingVoiceCharacterIds.add(characterId);
-          chapterMissingVoiceTotal += linesToGenerate.length;
-          missingVoiceLineCount += linesToGenerate.length;
-          continue;
-        }
-
-        const linesWithContext = buildQueuedLinesWithContext(linesToGenerate, chapter.title, sourceFile, characterName);
-        const totalCharacters = sumLineCharacters(linesWithContext);
-
-        chapterBatches.push({
-          chapterTitle: chapter.title,
-          sourceFile,
-          characterId,
-          characterName,
-          voiceInfo,
-          lines: linesWithContext,
-          totalCharacters,
-        });
-
-        totalMissingLines += linesWithContext.length;
-
-        let candidate = charactersById.get(characterId);
-        if (!candidate) {
-          candidate = {
-            characterId,
-            characterName,
-            voiceInfo,
-            lines: [],
-            totalCharacters: 0,
-            chapterBatchCount: 0,
-            underTargetChapterBatchCount: 0,
-            chapters: new Set<string>(),
-          };
-          charactersById.set(characterId, candidate);
-        }
-
-        candidate.lines.push(...linesWithContext);
-        candidate.totalCharacters += totalCharacters;
-        candidate.chapterBatchCount += 1;
-        if (totalCharacters < CHARACTER_BATCH_TARGET) {
-          candidate.underTargetChapterBatchCount += 1;
-        }
-        candidate.chapters.add(chapter.title);
-      }
-
-      if (chapterMissingVoiceTotal > 0) {
-        chapterOverview.set(chapter.title, {
-          chapterTitle: chapter.title,
-          missingVoiceTotal: chapterMissingVoiceTotal,
-        });
-      }
-    }
-
-    const characters = Array.from(charactersById.values())
-      .map((candidate) => ({
-        characterId: candidate.characterId,
-        characterName: candidate.characterName,
-        voiceInfo: candidate.voiceInfo,
-        lines: candidate.lines,
-        totalCharacters: candidate.totalCharacters,
-        chapterCount: candidate.chapters.size,
-        chapterBatchCount: candidate.chapterBatchCount,
-        underTargetChapterBatchCount: candidate.underTargetChapterBatchCount,
-      }))
-      .sort((left, right) => {
-        if (right.totalCharacters !== left.totalCharacters) {
-          return right.totalCharacters - left.totalCharacters;
-        }
-        if (right.lines.length !== left.lines.length) {
-          return right.lines.length - left.lines.length;
-        }
-        return left.characterName.localeCompare(right.characterName, undefined, { sensitivity: 'base' });
-      });
-
-    chapterBatches.sort((left, right) => {
-      const chapterCompare = left.chapterTitle.localeCompare(right.chapterTitle, undefined, { sensitivity: 'base' });
-      if (chapterCompare !== 0) return chapterCompare;
-      return left.characterName.localeCompare(right.characterName, undefined, { sensitivity: 'base' });
-    });
-
-    return {
-      totalChapterCount: allChapters.length,
-      parsedChapterCount: parsedChapters.length,
-      skippedUnparsedCount: Math.max(0, allChapters.length - parsedChapters.length),
-      totalMissingLines,
-      missingVoiceLineCount,
-      missingVoiceCharacterCount: missingVoiceCharacterIds.size,
-      characters,
-      chapterBatches,
-      chapterOverview: Array.from(chapterOverview.values()).sort((left, right) =>
-        left.chapterTitle.localeCompare(right.chapterTitle, undefined, { sensitivity: 'base' })
-      ),
-    };
+    return planAdvancedPreview(buildPlannerContext());
   }
 
   async function handleOpenAdvancedOverlay() {
@@ -842,144 +423,45 @@
     advancedSubmitting = true;
 
     try {
-      const selectedIds = new Set(selectedAdvancedCharacterIds);
-      const queueRunTimestamp = Date.now();
-      const chapterProcessableTotals = new Map<string, number>();
-      const chapterMissingVoiceTotals = new Map(
-        advancedPreview.chapterOverview.map((entry) => [entry.chapterTitle, entry.missingVoiceTotal])
-      );
+      const plan = planAdvancedGeneration(advancedPreview, {
+        mode: advancedGenerationMode,
+        selectedCharacterIds: selectedAdvancedCharacterIds,
+        generationOptions,
+      });
 
-      let jobsQueued = 0;
-      let linesQueued = 0;
-      let jobCounter = 0;
-
-      if (advancedGenerationMode === 'character') {
-        for (const batch of selectedAdvancedCharacters) {
-          if (!selectedIds.has(batch.characterId) || batch.lines.length === 0) continue;
-
-          const firstLine = batch.lines[0];
-          const chapterTitle = resolveQueuedLineChapterTitle(firstLine, batch.characterName);
-          const sourceFile = resolveQueuedLineSourceFile(firstLine, `${chapterTitle}/chapter.txt`);
-          const { cumulative, total } = buildCumulativeCharacterCounts(batch.lines);
-          const jobId = `advanced-character-${batch.characterId}-${queueRunTimestamp}-${jobCounter++}`;
-
-          queuedJobs.set(jobId, {
-            characterId: batch.characterId,
-            characterName: batch.characterName,
-            lines: batch.lines,
-            cumulativeCharacterCounts: cumulative,
-            totalCharacters: total,
-            voiceInfo: batch.voiceInfo,
-            chapterTitle,
-            sourceFile,
-            generationOptions,
-          });
-
-          enqueueAudioJob({
-            id: jobId,
-            characterId: batch.characterId,
-            characterName: batch.characterName,
-            chapterTitle,
-            generationMode: 'missing',
-            total: batch.lines.length,
-            totalCharacters: total,
-          });
-
-          for (const line of batch.lines) {
-            const lineChapterTitle = resolveQueuedLineChapterTitle(line, chapterTitle);
-            chapterProcessableTotals.set(lineChapterTitle, (chapterProcessableTotals.get(lineChapterTitle) || 0) + 1);
-          }
-
-          jobsQueued += 1;
-          linesQueued += batch.lines.length;
-        }
-      } else if (advancedGenerationMode === 'chapter') {
-        for (const batch of selectedAdvancedChapterBatches) {
-          if (!selectedIds.has(batch.characterId) || batch.lines.length === 0) continue;
-
-          const { cumulative, total } = buildCumulativeCharacterCounts(batch.lines);
-          const jobId = `advanced-chapter-${batch.chapterTitle}-${batch.characterId}-${queueRunTimestamp}-${jobCounter++}`;
-
-          queuedJobs.set(jobId, {
-            characterId: batch.characterId,
-            characterName: batch.characterName,
-            lines: batch.lines,
-            cumulativeCharacterCounts: cumulative,
-            totalCharacters: total,
-            voiceInfo: batch.voiceInfo,
-            chapterTitle: batch.chapterTitle,
-            sourceFile: batch.sourceFile,
-            generationOptions,
-          });
-
-          enqueueAudioJob({
-            id: jobId,
-            characterId: batch.characterId,
-            characterName: batch.characterName,
-            chapterTitle: batch.chapterTitle,
-            generationMode: 'missing',
-            total: batch.lines.length,
-            totalCharacters: total,
-          });
-
-          chapterProcessableTotals.set(batch.chapterTitle, (chapterProcessableTotals.get(batch.chapterTitle) || 0) + batch.lines.length);
-          jobsQueued += 1;
-          linesQueued += batch.lines.length;
-        }
-      } else {
-        for (const batch of selectedAdvancedSpeakerSourceBatches) {
-          if (batch.lines.length === 0) continue;
-
-          const firstLine = batch.lines[0];
-          const chapterTitle = resolveQueuedLineChapterTitle(firstLine, batch.primaryCharacterName);
-          const sourceFile = resolveQueuedLineSourceFile(firstLine, `${chapterTitle}/chapter.txt`);
-          const { cumulative, total } = buildCumulativeCharacterCounts(batch.lines);
-          const jobId = `advanced-speaker-source-${batch.speakerSourceId.replace(/[^a-zA-Z0-9_-]/g, '_')}-${queueRunTimestamp}-${jobCounter++}`;
-
-          queuedJobs.set(jobId, {
-            characterId: batch.primaryCharacterId,
-            characterName: batch.primaryCharacterName,
-            lines: batch.lines,
-            cumulativeCharacterCounts: cumulative,
-            totalCharacters: total,
-            voiceInfo: batch.voiceInfo,
-            chapterTitle,
-            sourceFile,
-            generationOptions,
-          });
-
-          enqueueAudioJob({
-            id: jobId,
-            characterId: batch.primaryCharacterId,
-            characterName: `${batch.speakerLabel} (speaker source)`,
-            chapterTitle,
-            generationMode: 'missing',
-            total: batch.lines.length,
-            totalCharacters: total,
-          });
-
-          for (const line of batch.lines) {
-            const lineChapterTitle = resolveQueuedLineChapterTitle(line, chapterTitle);
-            chapterProcessableTotals.set(lineChapterTitle, (chapterProcessableTotals.get(lineChapterTitle) || 0) + 1);
-          }
-
-          jobsQueued += 1;
-          linesQueued += batch.lines.length;
-        }
-      }
-
-      if (jobsQueued === 0 || linesQueued === 0) {
+      if (plan.jobsQueued === 0 || plan.linesQueued === 0) {
         alert('No missing audio lines found for the selected characters.');
         return;
       }
 
+      const queueRunTimestamp = Date.now();
+      let jobCounter = 0;
+
+      for (const job of plan.jobs) {
+        const jobId = `${job.jobIdBase}-${queueRunTimestamp}-${jobCounter++}`;
+        queuedJobs.set(jobId, job);
+        enqueueAudioJob({
+          id: jobId,
+          characterId: job.characterId,
+          characterName: job.displayName,
+          chapterTitle: job.chapterTitle,
+          generationMode: 'missing',
+          total: job.lines.length,
+          totalCharacters: job.totalCharacters,
+        });
+      }
+
+      const chapterMissingVoiceTotals = new Map(
+        advancedPreview.chapterOverview.map((entry) => [entry.chapterTitle, entry.missingVoiceTotal])
+      );
+
       const chapterTitles = new Set<string>([
-        ...chapterProcessableTotals.keys(),
+        ...plan.chapterProcessableTotals.keys(),
         ...chapterMissingVoiceTotals.keys(),
       ]);
 
       for (const chapterTitle of chapterTitles) {
-        const processableTotal = chapterProcessableTotals.get(chapterTitle) || 0;
+        const processableTotal = plan.chapterProcessableTotals.get(chapterTitle) || 0;
         const missingVoiceTotal = chapterMissingVoiceTotals.get(chapterTitle) || 0;
         if (processableTotal > 0 || missingVoiceTotal > 0) {
           setQueueChapterOverview(chapterTitle, processableTotal, missingVoiceTotal);
@@ -1006,8 +488,8 @@
         ? ` Text normalization:${normalizationNotes.join(' and')}.`
         : '';
       alert(
-        `Queued ${linesQueued} missing line${linesQueued === 1 ? '' : 's'} ` +
-        `across ${jobsQueued} ${batchLabel}${jobsQueued === 1 ? '' : 'es'} ` +
+        `Queued ${plan.linesQueued} missing line${plan.linesQueued === 1 ? '' : 's'} ` +
+        `across ${plan.jobsQueued} ${batchLabel}${plan.jobsQueued === 1 ? '' : 'es'} ` +
         `from ${selectedAdvancedParsedChapterCount} parsed chapter${selectedAdvancedParsedChapterCount === 1 ? '' : 's'}.` +
         fillerNote +
         normalizationNote
@@ -1219,61 +701,25 @@
     }
   }
 
-  async function buildPayloadFromQueueItem(item: AudioQueueItem): Promise<{ payload: QueuedJobPayload | null; markComplete?: boolean; error?: string }> {
-    const chapter = get(chapters).find((entry) => entry.title === item.chapterTitle) || null;
-    const activeChapter = get(currentChapter);
-    let script: any = null;
-
-    if (activeChapter?.title === item.chapterTitle) {
-      script = get(currentScript);
-    }
-
-    if (!script?.lines?.length) {
-      script = await readDialogueForChapter(item.chapterTitle);
-    }
-
-    if (!script?.lines?.length) {
-      return { payload: null, markComplete: true };
-    }
-
-    const characterName = characterIdToName.get(item.characterId) || item.characterName || item.characterId;
-    const voiceInfo = getVoiceForCharacter(item.characterId);
-    if (!voiceInfo) {
-      return { payload: null, error: `No voice assigned to ${characterName}.` };
-    }
-
-    const linesForCharacter = getCharacterLinesForScript(item.characterId, characterName, script);
-    if (linesForCharacter.length === 0) {
-      return { payload: null, markComplete: true };
-    }
-
-    let linesToGenerate = linesForCharacter;
-    if ((item.generationMode ?? 'missing') === 'missing') {
-      const checks = await Promise.all(
-        linesForCharacter.map(async (line) => ({
-          line,
-          exists: await checkAudioExistsForLine(item.chapterTitle, characterName, line.id),
-        }))
-      );
-      linesToGenerate = checks.filter((check) => !check.exists).map((check) => check.line);
-      if (linesToGenerate.length === 0) {
-        return { payload: null, markComplete: true };
-      }
-    }
-
-    const { cumulative, total } = buildCumulativeCharacterCounts(linesToGenerate);
-    return {
-      payload: {
-        characterId: item.characterId,
-        characterName,
-        lines: linesToGenerate,
-        cumulativeCharacterCounts: cumulative,
-        totalCharacters: total,
-        voiceInfo,
-        chapterTitle: item.chapterTitle,
-        sourceFile: chapter?.path || `${item.chapterTitle}/chapter.txt`,
+  async function buildPayloadFromQueueItem(item: AudioQueueItem): Promise<RebuiltQueuePayload> {
+    return rebuildQueuedJobPayload(
+      {
+        resolveChapterPath: (title) => get(chapters).find((entry) => entry.title === title)?.path,
+        resolveScript: (title) => {
+          const activeChapter = get(currentChapter);
+          const inMemory = activeChapter?.title === title ? get(currentScript) : null;
+          if (inMemory?.lines?.length) return Promise.resolve(inMemory);
+          return readDialogueForChapter(title);
+        },
+        resolveCharacterName: (characterId, fallbackName) =>
+          characterIdToName.get(characterId) || fallbackName || characterId,
+        getVoice: getVoiceForCharacter,
+        filterCharacterLines: getCharacterLinesForScript,
+        isLineAudioPresent: ({ chapterTitle, characterName, lineId }) =>
+          checkAudioExistsForLine(chapterTitle, characterName, lineId),
       },
-    };
+      item,
+    );
   }
 
   async function pruneStaleCharacterAudio(
@@ -1353,6 +799,8 @@
     const jobId = `${characterId}-${mode}-${Date.now()}`;
     const { cumulative, total } = buildCumulativeCharacterCounts(linesToGenerate);
     queuedJobs.set(jobId, {
+      jobIdBase: `${characterId}-${mode}`,
+      displayName: characterName,
       characterId,
       characterName,
       lines: linesToGenerate,

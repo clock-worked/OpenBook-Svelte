@@ -1,5 +1,4 @@
 import os
-import threading
 from datetime import datetime, timezone
 from typing import Any, Callable, Dict, List, Optional
 
@@ -11,16 +10,23 @@ from api_models import (
     LocalDialogueAiResponse,
     LocalDialogueAiSummary,
 )
+from dialogue_ai_common import (
+    character_lookup as _character_lookup,
+    character_name as _character_name,
+    count_target_lines,
+    load_local_env_file as _load_local_env_file,
+    normalize_character as _normalize_character,
+    normalize_model_answer as _normalize_model_answer,
+)
 from dialogue_ai_context import build_assist_context
 from jev_client import JevClient
-from local_dialogue_ai_service import _load_local_env_file, _normalize_model_answer, _character_lookup, _character_name, _normalize_character
+from run_status import RunStatusTracker
 
 
 class JevService:
     def __init__(self, get_book_root: Callable[[], str]):
         self._get_book_root = get_book_root
-        self._status_lock = threading.Lock()
-        self._run_statuses: Dict[str, Dict[str, Any]] = {}
+        self._status = RunStatusTracker()
         _load_local_env_file()
         api_key = os.getenv("VERCEL_JEV_API_KEY")
         if not api_key:
@@ -31,61 +37,15 @@ class JevService:
         request_id = str(request.request_id or "").strip()
         if not request_id:
             return
-        total_lines = sum(
-            1
-            for line in request.dialogue.lines
-            if line.characterId not in (None, "", "narrator")
-        )
-        if request.max_lines is not None and request.max_lines >= 0:
-            total_lines = min(total_lines, request.max_lines)
-        self._update_status(
+        total_lines = count_target_lines(request.dialogue.lines, request.max_lines)
+        self._status.prepare(
             request_id,
-            status="queued",
-            processed_lines=0,
             total_lines=total_lines,
             chapter_path=request.chapter_path,
         )
 
     def get_status(self, request_id: str) -> Optional[DialogueAiAssistStatus]:
-        with self._status_lock:
-            payload = self._run_statuses.get(str(request_id or "").strip())
-            return DialogueAiAssistStatus(**payload) if payload else None
-
-    def _update_status(
-        self,
-        request_id: Optional[str],
-        *,
-        status: str,
-        processed_lines: int,
-        total_lines: int,
-        chapter_path: Optional[str] = None,
-        error: Optional[str] = None,
-        started_at: Optional[str] = None,
-    ) -> None:
-        request_id = str(request_id or "").strip()
-        if not request_id:
-            return
-
-        now = datetime.now(timezone.utc).isoformat()
-        total = max(0, int(total_lines or 0))
-        processed = min(max(0, int(processed_lines or 0)), total) if total else 0
-        ratio = processed / total if total else (1.0 if status == "completed" else 0.0)
-        with self._status_lock:
-            previous = self._run_statuses.get(request_id, {})
-            self._run_statuses[request_id] = {
-                "requestId": request_id,
-                "status": status,
-                "processedLines": processed,
-                "totalLines": total,
-                "progressRatio": ratio,
-                "startedAt": started_at or previous.get("startedAt") or now,
-                "updatedAt": now,
-                "chapterPath": chapter_path or previous.get("chapterPath"),
-                "error": error,
-                "logDirectory": None,
-            }
-            while len(self._run_statuses) > 64:
-                self._run_statuses.pop(next(iter(self._run_statuses)), None)
+        return self._status.get(request_id)
 
     def run(self, request: LocalDialogueAiRequest) -> LocalDialogueAiResponse:
         assist_context = build_assist_context(
@@ -100,7 +60,7 @@ class JevService:
         request_id = str(request.request_id or "").strip() or None
         started_at = datetime.now(timezone.utc).isoformat()
         total_lines = len(targets)
-        self._update_status(
+        self._status.update(
             request_id,
             status="running",
             processed_lines=0,
@@ -127,7 +87,7 @@ class JevService:
                 results.append(result)
                 if result.outcome == "error" and result.error:
                     errors.append(f"line {result.lineId}: {result.error}")
-                self._update_status(
+                self._status.update(
                     request_id,
                     status="running",
                     processed_lines=processed,
@@ -145,7 +105,7 @@ class JevService:
                 skippedNarratorLines=assist_context["skippedNarratorLines"],
                 modelCalls=len(results),
             )
-            self._update_status(
+            self._status.update(
                 request_id,
                 status="completed",
                 processed_lines=total_lines,
@@ -155,7 +115,7 @@ class JevService:
             )
             return LocalDialogueAiResponse(summary=summary, results=results, errors=errors)
         except Exception as exc:
-            self._update_status(
+            self._status.update(
                 request_id,
                 status="failed",
                 processed_lines=len(results),

@@ -21,6 +21,7 @@
   import { addBookCharacter, addBookCharacterAlias, setBookCharacterColor, setBookCharacterGender, renameBookCharacter, removeBookCharacter, bookCharacters, detachBookCharacterAlias, setBookCharacterDescriptors, forceRefreshBookCharacters, mergeBookCharacters } from '$lib/stores/bookCharacters';
   import { buildClosedWorldReviewItems, planClosedWorldDescriptorAssignments, resolveClosedWorldCandidateAsAlias, type ClosedWorldReviewItem } from '$lib/services/closedWorldCharacterWorkflow';
   import { computeChapterLineCounts } from '$lib/services/characterChapterStats';
+  import { normalizeCharacterKey } from '$lib/services/characterDomain';
   import {
     dialogueAiAssistState,
     dialogueAiAssistVisibleResults,
@@ -186,10 +187,6 @@
     if (!saved) throw new Error(`Failed to save reviewed character lines (${[...assignments.keys()].join(', ')})`);
     currentScript.set({ ...scr, lines: [...scr.lines] });
     await forceRefreshBookCharacters();
-  }
-
-  function normalizeCharacterKey(name: string): string {
-    return String(name || '').trim().toLowerCase();
   }
 
   $: {

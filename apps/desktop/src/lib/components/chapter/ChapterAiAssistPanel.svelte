@@ -6,9 +6,9 @@
     dialogueAiAssistVisibleResults,
     formatDialogueAiReasonCodes,
     formatDialogueAiToolTrace,
-    jumpToDialogueAiResult,
     runDialogueAiAssistForCurrentChapter,
   } from '$lib/stores/dialogueAiAssist';
+  import { conflictCursor } from '$lib/stores/selection';
 
   $: progress = $dialogueAiAssistState.progress;
   $: progressProcessed = Math.max(0, progress?.processedLines ?? 0);
@@ -132,7 +132,7 @@
             <div class="ai-assist-result-actions">
               <button
                 class="ai-inline-btn"
-                on:click={() => jumpToDialogueAiResult(result.lineId)}
+                on:click={() => conflictCursor.set(result.lineId)}
               >
                 Jump
               </button>

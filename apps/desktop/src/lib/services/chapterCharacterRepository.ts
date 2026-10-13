@@ -1,14 +1,12 @@
 import type { Character, CharactersJson } from '$lib/types';
 import {
     readCentralCharacters,
+    readCharacterFolder,
     readCharacters,
     readOptionalCharacters,
     writeCharacters,
 } from '$lib/services/fs';
-// Note: bookCharacterRepository imports loadChapterCharactersData from this
-// module. The cycle is safe — both directions are only used at call time
-// (inside function bodies), never during module evaluation.
-import { readCharacterFolder } from '$lib/services/bookCharacterRepository';
+import { normalizeCharacterKey } from '$lib/services/characterIdentity';
 
 interface ChapterCharacterReference {
     id: string;
@@ -19,16 +17,15 @@ interface ChapterCharacterReferencesJson {
     characters: ChapterCharacterReference[];
 }
 
-function normalizeLookupKey(value: unknown): string {
-    return String(value ?? '').trim().toLowerCase();
-}
-
 /**
  * Resolve the book's character set for roster hydration: the v3
  * `characters/` folder first, falling back to the legacy root
  * `characters.json` for unmigrated books.
+ *
+ * Exported so the parser can consume the same resolved catalog (a resolved
+ * catalog, never a raw path) when building its closed-world options.
  */
-async function resolveBookCharacters(root: string): Promise<CharactersJson | null> {
+export async function resolveBookCharacters(root: string): Promise<CharactersJson | null> {
     try {
         const folder = await readCharacterFolder(root);
         if (folder && folder.characters.length > 0) return folder;
@@ -54,12 +51,12 @@ function buildCentralLookups(central: CharactersJson | null): {
     const byName = new Map<string, Character>();
 
     for (const character of central?.characters ?? []) {
-        const idKey = normalizeLookupKey(character.id);
-        const nameKey = normalizeLookupKey(character.name);
+        const idKey = normalizeCharacterKey(character.id);
+        const nameKey = normalizeCharacterKey(character.name);
         if (idKey) byId.set(idKey, character);
         if (nameKey) byName.set(nameKey, character);
         for (const alias of character.aliases ?? []) {
-            const aliasKey = normalizeLookupKey(alias);
+            const aliasKey = normalizeCharacterKey(alias);
             if (aliasKey && !byName.has(aliasKey)) byName.set(aliasKey, character);
         }
     }
@@ -90,10 +87,10 @@ export async function loadChapterCharactersData(
         const rawId = typeof entry === 'string' ? entry : entry?.id;
         const rawName = typeof entry === 'object' && entry ? entry.name : null;
         // byId first (in v3 the ref id IS the GUID); byName is legacy tolerance.
-        const canonical = byId.get(normalizeLookupKey(rawId)) ?? byName.get(normalizeLookupKey(rawName));
+        const canonical = byId.get(normalizeCharacterKey(rawId)) ?? byName.get(normalizeCharacterKey(rawName));
 
         if (canonical) {
-            const key = normalizeLookupKey(canonical.id);
+            const key = normalizeCharacterKey(canonical.id);
             if (!seenIds.has(key)) {
                 hydrated.push({ ...canonical });
                 seenIds.add(key);
@@ -128,8 +125,8 @@ export async function persistChapterCharactersData(
     const seenIds = new Set<string>();
 
     for (const character of data.characters ?? []) {
-        const canonical = byId.get(normalizeLookupKey(character?.id))
-            ?? byName.get(normalizeLookupKey(character?.name));
+        const canonical = byId.get(normalizeCharacterKey(character?.id))
+            ?? byName.get(normalizeCharacterKey(character?.name));
         const id = canonical?.id?.trim();
 
         if (!id) {
@@ -140,7 +137,7 @@ export async function persistChapterCharactersData(
             continue;
         }
 
-        const key = normalizeLookupKey(id);
+        const key = normalizeCharacterKey(id);
         if (seenIds.has(key)) continue;
         references.push({ id });
         seenIds.add(key);

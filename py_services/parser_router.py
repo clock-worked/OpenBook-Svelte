@@ -1,5 +1,4 @@
 import asyncio
-import json
 import logging
 import os
 import tempfile
@@ -35,6 +34,7 @@ from openbook_parser.jev_verify_service import (
     load_character_lookup,
     verify_chapter,
 )
+from safe_io import resolve_within_root, write_json_atomic
 from update_character_stats import update_character_stats
 
 
@@ -120,26 +120,18 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
             if not book_root:
                 raise HTTPException(status_code=400, detail="Book root path not set. Please select a book directory first.")
 
-            full_path = os.path.join(book_root, request.file_path)
-            normalized_path = os.path.normpath(full_path)
             print(f"Received save request for relative path: '{request.file_path}'")
-            print(f"Full path: '{full_path}'")
-            print(f"Normalized path: '{normalized_path}'")
+            resolved_path = resolve_within_root(book_root, request.file_path)
+            print(f"Full path: '{resolved_path}'")
 
-            if ".." in normalized_path:
-                raise HTTPException(status_code=400, detail="Invalid file path")
+            if not resolved_path.parent.exists():
+                resolved_path.parent.mkdir(parents=True)
+                print(f"Created directory: {resolved_path.parent}")
 
             # request.content is a plain dict (SaveRequest.content: Dict[str, Any]).
-            content_str = json.dumps(request.content, indent=2, ensure_ascii=False)
-            dir_name = os.path.dirname(normalized_path)
-            if not os.path.exists(dir_name):
-                os.makedirs(dir_name)
-                print(f"Created directory: {dir_name}")
+            write_json_atomic(resolved_path, request.content)
 
-            with open(normalized_path, "w", encoding="utf-8") as handle:
-                handle.write(content_str)
-
-            print(f"Successfully wrote {len(content_str)} bytes to {normalized_path}")
+            print(f"Successfully wrote to {resolved_path}")
 
             if "dialogue.json" in request.file_path:
                 try:
@@ -156,7 +148,7 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
         except HTTPException as http_exc:
             raise http_exc
         except Exception as exc:
-            print(f"Error saving file '{normalized_path}': {exc}")
+            print(f"Error saving file '{request.file_path}': {exc}")
             import traceback
 
             traceback.print_exc()
@@ -164,10 +156,7 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
 
     @router.post("/api/read-text")
     async def read_text_file(request: RelativeFileRequest):
-        book_root = Path(get_book_root()).resolve()
-        requested_path = (book_root / request.file_path).resolve()
-        if requested_path != book_root and book_root not in requested_path.parents:
-            raise HTTPException(status_code=400, detail="Invalid file path")
+        requested_path = resolve_within_root(get_book_root(), request.file_path)
         if not requested_path.is_file():
             raise HTTPException(status_code=404, detail=f"File not found: {request.file_path}")
         try:
@@ -182,10 +171,7 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
 
     @router.post("/api/list-files")
     async def list_files(request: RelativeFileRequest):
-        book_root = Path(get_book_root()).resolve()
-        requested_path = (book_root / request.file_path).resolve()
-        if requested_path != book_root and book_root not in requested_path.parents:
-            raise HTTPException(status_code=400, detail="Invalid file path")
+        requested_path = resolve_within_root(get_book_root(), request.file_path)
         if not requested_path.is_dir():
             # A missing directory means "nothing to list" (e.g. the book is
             # not on the characters/ folder layout yet).
@@ -199,9 +185,7 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
     @router.post("/api/delete-file")
     async def delete_file(request: RelativeFileRequest):
         book_root = Path(get_book_root()).resolve()
-        requested_path = (book_root / request.file_path).resolve()
-        if requested_path != book_root and book_root not in requested_path.parents:
-            raise HTTPException(status_code=400, detail="Invalid file path")
+        requested_path = resolve_within_root(book_root, request.file_path)
         if requested_path == book_root or requested_path.is_dir():
             # Only single files may be deleted through this route.
             raise HTTPException(status_code=400, detail="Invalid file path")
@@ -314,7 +298,7 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
                 },
             }
         except Exception as exc:
-            return {"error": str(exc)}, 500
+            raise HTTPException(status_code=500, detail=str(exc)) from exc
         finally:
             if "temp_file_path" in locals() and os.path.exists(temp_file_path):
                 os.unlink(temp_file_path)
