@@ -1,10 +1,12 @@
-import { writable } from 'svelte/store';
+import { writable, get } from 'svelte/store';
+import { history } from '$lib/services/history';
 import type { AudiobookSettings, ParserHints } from '$lib/types';
 
 export type AppTheme = 'light' | 'dark';
 
-function createStoredWritable<T>(key: string, defaultValue: T) {
-  const { subscribe, set, update } = writable<T>(defaultValue);
+function createStoredWritable<T>(key: string, defaultValue: T, historyLabel?: string) {
+  const store = writable<T>(defaultValue);
+  const { subscribe, set } = store;
 
   if (typeof window !== 'undefined') {
     const storedValue = localStorage.getItem(key);
@@ -24,18 +26,24 @@ function createStoredWritable<T>(key: string, defaultValue: T) {
     set(value);
   };
 
+  const setValue = (value: T) => {
+    if (!historyLabel) {
+      setStored(value);
+      return;
+    }
+    void history.write(historyLabel, key, JSON.stringify(value),
+      async () => JSON.stringify(get(store)),
+      async (text) => {
+        if (text === null) throw new Error(`Missing setting: ${key}`);
+        setStored(JSON.parse(text) as T);
+      },
+    ).catch((error) => history.reportError(error));
+  };
+
   return {
     subscribe,
-    set: setStored,
-    update: (updater: (value: T) => T) => {
-      update((current) => {
-        const next = updater(current);
-        if (typeof window !== 'undefined') {
-          localStorage.setItem(key, JSON.stringify(next));
-        }
-        return next;
-      });
-    },
+    set: setValue,
+    update: (updater: (value: T) => T) => setValue(updater(get(store))),
   };
 }
 
@@ -43,7 +51,7 @@ export const pythonBin = writable<string>('python');
 export const estimatedCostPerChar = writable<number>(0.0);
 export const defaultNarrator = writable<string>('Narrator');
 
-export const audiobookSettings = writable<AudiobookSettings>({
+export const defaultAudiobookSettings: AudiobookSettings = {
   narrators: [],
   allowMultipleNarrators: false,
   narratorSameAsProtagonist: true,
@@ -52,9 +60,9 @@ export const audiobookSettings = writable<AudiobookSettings>({
   sideCharacters: [],
   defaultAccent: 'en-GB',
   speakingRate: 1.0,
-});
+};
 
-export const parserHints = writable<ParserHints>({
+export const defaultParserHints: ParserHints = {
   parserBackend: 'legacy',
   protagonistName: '',
   protagonistNames: [],
@@ -77,9 +85,11 @@ export const parserHints = writable<ParserHints>({
   attribution: {
     unknownThreshold: 0.62,
   },
-});
+};
+
+export const audiobookSettings = writable<AudiobookSettings>(structuredClone(defaultAudiobookSettings));
+export const parserHints = writable<ParserHints>(structuredClone(defaultParserHints));
 
 // Optional absolute path for backend operations when File System Access API cannot provide one.
 export const bookRootPathOverride = createStoredWritable<string | null>('bookRootPathOverride', null);
-export const appTheme = createStoredWritable<AppTheme>('appTheme', 'light');
-
+export const appTheme = createStoredWritable<AppTheme>('appTheme', 'light', 'Change theme');

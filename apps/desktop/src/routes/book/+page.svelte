@@ -8,6 +8,7 @@
   import { initRouteProjectContext } from '$lib/services/projectSession';
   import { getProjectInitFailurePolicy } from '$lib/services/routePolicy';
   import { audiobookSettings, parserHints } from '$lib/stores/settings';
+  import { history, historyAction } from '$lib/services/history';
   import {
     bookCharacters,
     removeBookCharacters,
@@ -115,7 +116,7 @@
           }));
           
           // Save the migrated settings
-          await saveSettings();
+          await saveSettings(false);
           console.log('Migration complete, saved to settings.json');
         } else {
           // No settings at all, initialize with defaults
@@ -136,7 +137,7 @@
     }
   }
 
-  async function saveSettings() {
+  async function saveSettings(recordHistory = true) {
     const root = get(bookRoot);
     if (!root) return;
     
@@ -147,9 +148,11 @@
     };
     
     try {
-      await writeSettings(root, settings);
+      if (!await writeSettings(root, settings, recordHistory)) throw new Error('Could not save book settings.');
     } catch (error) {
       console.error('Error saving settings:', error);
+      history.reportError(error);
+      throw error;
     }
   }
 
@@ -223,11 +226,11 @@
       const samplesRoot = get(voiceSamplesRoot);
       if (samplesRoot) {
         console.log('[book route] Auto-syncing sample-backed voices...');
-        await syncVoicesFromSamples(samplesRoot);
+        await syncVoicesFromSamples(samplesRoot, false);
       }
       
       console.log('[book route] Auto-discovering voices from manifests...');
-      const discoveredCount = await discoverVoices();
+      const discoveredCount = await discoverVoices(false);
       if (discoveredCount > 0) {
         console.log(`[book route] Discovered ${discoveredCount} new voices`);
       }
@@ -413,7 +416,8 @@
     }
   }
 
-  async function assignVoice(characterName: string, voiceId: string) {
+  const assignVoice = historyAction('Assign character voice', assignVoiceImpl);
+  async function assignVoiceImpl(characterName: string, voiceId: string) {
     // Find character by name to get its ID
     const character = $bookCharacters.characters.find(c => c.name === characterName);
     if (!character || !character.id) {
@@ -473,7 +477,11 @@
     }
   }
 
-  async function removeZeroLineCharacters() {
+  const removeZeroLineCharacters = historyAction('Remove empty characters', removeZeroLineCharactersImpl);
+  const handleDiscoverVoices = historyAction('Discover and assign voices', handleDiscoverVoicesImpl);
+  const autoAssignAllVoices = historyAction('Assign all voices', autoAssignAllVoicesImpl);
+
+  async function removeZeroLineCharactersImpl() {
     if (zeroLineCharacterNames.length === 0 || pruningZeroLineCharacters) return;
 
     const count = zeroLineCharacterNames.length;
@@ -543,7 +551,7 @@
     }
   }
 
-  async function handleDiscoverVoices(): Promise<number> {
+  async function handleDiscoverVoicesImpl(): Promise<number> {
     const count = await discoverVoices();
     
     // After discovering voices, try to auto-assign them to characters with manifest data
@@ -554,7 +562,7 @@
     return count;
   }
 
-  async function autoAssignAllVoices() {
+  async function autoAssignAllVoicesImpl() {
     const characters = $bookCharacters.characters;
     
     for (const char of characters) {
@@ -611,9 +619,7 @@
         alert('Could not read absolute path. Enter the path manually.');
         return;
       }
-      voiceSamplesRoot.set(absolutePath);
-      await syncVoicesFromSamples(absolutePath);
-      await syncAssignmentsFromVoicesJson();
+      await handleVoiceSamplesPathChange(absolutePath);
     } catch (err) {
       if (err instanceof Error && err.message.includes('not supported')) {
         alert('Folder picker is not supported in this browser. Enter the path manually.');
@@ -626,7 +632,8 @@
     }
   }
 
-  async function handleVoiceSamplesPathChange(path: string | null) {
+  const handleVoiceSamplesPathChange = historyAction('Change voice samples folder', handleVoiceSamplesPathChangeImpl);
+  async function handleVoiceSamplesPathChangeImpl(path: string | null) {
     voiceSamplesRoot.set(path);
     if (path) {
       try {
@@ -643,6 +650,17 @@
 
   async function handleVoiceSamplesRootPersist() {
     await saveSettings();
+  }
+
+  function handleAudioRootChange(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    void history.write('Change audio folder', 'audioRoot', JSON.stringify(value),
+      async () => JSON.stringify(get(audioRoot)),
+      async (text) => {
+        if (text === null) throw new Error('Missing audio folder setting');
+        audioRoot.set(JSON.parse(text) as string | null);
+      },
+    ).catch((error) => history.reportError(error));
   }
 </script>
 
@@ -691,7 +709,7 @@
         type="text" 
         class="audio-path-input" 
         value={$audioRoot || ''} 
-        on:change={(e) => audioRoot.set((e.target as HTMLInputElement).value)}
+        on:change={handleAudioRootChange}
         placeholder="Audio directory path"
         title="Path to audio files directory"
       />
@@ -1032,11 +1050,8 @@
       onVoiceSamplesPathChange={(path) => {
         void handleVoiceSamplesPathChange(path || null);
       }}
-      onPickVoiceSamplesFolder={async () => {
-        await handlePickVoiceSamplesFolder();
-        await saveSettings();
-      }}
-      on:update={saveSettings}
+      onPickVoiceSamplesFolder={handlePickVoiceSamplesFolder}
+      on:update={() => saveSettings()}
     />
     </div>
   </div>
@@ -1483,5 +1498,3 @@
   }
 
 </style>
-
-

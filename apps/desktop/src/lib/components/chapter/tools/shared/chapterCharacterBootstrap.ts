@@ -160,26 +160,7 @@ export async function ensureCentralCharactersForNames(params: {
 
     const savedLocally = await params.writeCentralCharacters(params.root, central as any);
     if (!savedLocally) {
-        const backendRoot = params.getBackendRootAbsolutePath();
-        if (!backendRoot) {
-            console.warn('[ChapterView] Failed to save characters.json: no backend root path available');
-        } else {
-            try {
-                const response = await params.apiSave({
-                    file_path: 'characters.json',
-                    content: central,
-                });
-
-                if (response.ok) {
-                    console.log('[ChapterView] Successfully saved characters.json via API');
-                } else {
-                    const errorData = await response.json();
-                    console.error('[ChapterView] Failed to save characters.json via API:', errorData.detail || response.statusText);
-                }
-            } catch (error) {
-                console.error('[ChapterView] Network error saving characters.json via API:', error);
-            }
-        }
+        throw new Error('Could not save characters.json. Character changes have not been saved.');
     }
 
     params.onCharactersUpdated(central as any);

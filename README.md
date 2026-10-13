@@ -24,6 +24,26 @@ OpenBook is a desktop-first workflow for chapter parsing, dialogue review, chara
 - Schema references: `docs/schema_v2.md`, `docs/schema_v3.md`
 - Quote-attribution experiments and benchmark ledger: `docs/quote_attribution_experiments.md`
 
+## Undo and Redo
+
+Use the toolbar's **Undo** and **Redo** buttons for saved chapter text,
+joins/splits, speaker assignments, character edits (including rename, merge,
+creation and deletion), voice assignments/details, book settings, and theme
+changes. Shortcuts: **Ctrl/Cmd+Z** to undo, **Ctrl/Cmd+Shift+Z** or **Ctrl+Y** to
+redo. Text inputs keep their native editing shortcuts.
+
+History retains the latest **100 actions** across pages and chapters during the
+current session. Opening a different project or reloading the app clears it.
+Making a new edit after undo clears the redo branch. Multi-file character
+renames/merges and voice assignments are restored together, including their
+saved files. Controls are disabled while an edit is being saved or restored.
+
+Navigation, selection, playback, credentials, project-path configuration,
+parsing/migration, and audio generation/deletion are not reversible edits.
+Parsing and explicit migration start a fresh history. Undo never refunds API
+usage or restores generated audio. If files were edited externally, undo/redo
+stops with a visible error rather than overwriting those edits.
+
 ## Fresh Clone Setup
 
 Prerequisites: Git, Node.js 20+, and Python 3.11. From the repository root:

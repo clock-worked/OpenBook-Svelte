@@ -1,15 +1,14 @@
 <script lang="ts">
   import type { CharactersJson, Character, Gender } from '$lib/types';
   import { writable, get } from 'svelte/store';
-  import { currentChapter, bookRoot, bookRootAbsolutePath, currentScript, chapters, requestChapterReload } from '$lib/stores/bookState';
+  import { currentChapter, bookRoot, currentScript, chapters, requestChapterReload } from '$lib/stores/bookState';
   import { selection, conflictCursor } from '$lib/stores/selection';
   import { characters, colorForCharacter, rgbaToOpaqueHex, opaqueHexToRgba, refreshChapterCharactersFromFile } from '$lib/stores/characters';
   import { getScriptPath, readScript, writeScript, getCharactersPath } from '$lib/services/fs';
   import { loadChapterCharactersData, persistChapterCharactersData } from '$lib/services/chapterCharacterRepository';
-  import { API_ENDPOINTS, apiFetch } from '$lib/services/apiClient';
   // removed generateChapterAudio per UI change
   import { defaultColors } from '$lib/theme/colors';
-  import { Plus, ArrowUpDown } from 'lucide-svelte';
+  import { Plus, ArrowUpDown, Menu } from 'lucide-svelte';
   import ChapterAiAssistPanel from './ChapterAiAssistPanel.svelte';
   import ChapterLocalAiPanel from './ChapterLocalAiPanel.svelte';
   import ChapterJevPanel from './ChapterJevPanel.svelte';
@@ -19,6 +18,7 @@
   import ClosedWorldCharacterReview from './ClosedWorldCharacterReview.svelte';
   import Dropdown from '$lib/components/common/Dropdown.svelte';
   import { addBookCharacter, addBookCharacterAlias, setBookCharacterColor, setBookCharacterGender, renameBookCharacter, removeBookCharacter, bookCharacters, detachBookCharacterAlias, setBookCharacterDescriptors, forceRefreshBookCharacters, mergeBookCharacters } from '$lib/stores/bookCharacters';
+  import { historyAction } from '$lib/services/history';
   import { buildClosedWorldReviewItems, planClosedWorldDescriptorAssignments, resolveClosedWorldCandidateAsAlias, type ClosedWorldReviewItem } from '$lib/services/closedWorldCharacterWorkflow';
   import { computeChapterLineCounts } from '$lib/services/characterChapterStats';
   import {
@@ -51,6 +51,25 @@
 
   let sortMode: SortMode = 'name';
   let activeTab: ChapterPanelTab = 'characters';
+  let compactTabs = false;
+  $: panelTabs = [
+    { value: 'characters' as const, label: 'Characters', hasAlert: false },
+    { value: 'ai' as const, label: 'AI Assist', hasAlert: $dialogueAiAssistState.running || $dialogueAiAssistVisibleResults.length > 0 },
+    { value: 'local-ai' as const, label: 'Local AI', hasAlert: $localDialogueAiState.running || $localDialogueAiVisibleResults.length > 0 },
+    { value: 'jev' as const, label: 'JEV', hasAlert: $jevDialogueAiState.running || $jevDialogueAiVisibleResults.length > 0 },
+  ];
+  $: selectedTab = panelTabs.find((tab) => tab.value === activeTab)!;
+
+  function observePanelWidth(node: HTMLDivElement) {
+    const updateWidth = () => {
+      compactTabs = node.getBoundingClientRect().width < 450;
+    };
+    updateWidth();
+    const observer = new ResizeObserver(updateWidth);
+    observer.observe(node, { box: 'border-box' });
+    return { destroy: () => observer.disconnect() };
+  }
+
   let bookListOpen = false;
   // Unified selection: fed by BOTH the book pill list and the chapter row
   // click; the details card derives everything from this single variable.
@@ -83,13 +102,21 @@
     $bookCharacters,
   );
 
-  async function addReviewedCharacter(item: ClosedWorldReviewItem, name: string, gender: Gender): Promise<void> {
+  const addReviewedCharacter = historyAction('Create and assign character', addReviewedCharacterImpl);
+  const mergeReviewedAlias = historyAction('Confirm character alias', mergeReviewedAliasImpl);
+  const mergeReviewedDescriptor = historyAction('Confirm character descriptor', mergeReviewedDescriptorImpl);
+  const deleteBookCharacter = historyAction('Delete and reassign character', deleteBookCharacterImpl);
+  const mergeCharacters = historyAction('Merge characters', mergeCharactersImpl);
+  const addCharacter = historyAction('Create character', addCharacterImpl);
+  const createAndApplyNewCharacter = historyAction('Create and assign character', createAndApplyNewCharacterImpl);
+
+  async function addReviewedCharacterImpl(item: ClosedWorldReviewItem, name: string, gender: Gender): Promise<void> {
     const created = await addBookCharacter(name, gender);
     if (!created) return;
     await applyReviewedCharacter(item, created.id, created.name);
   }
 
-  async function mergeReviewedAlias(item: ClosedWorldReviewItem, targetCharacterId: string): Promise<void> {
+  async function mergeReviewedAliasImpl(item: ClosedWorldReviewItem, targetCharacterId: string): Promise<void> {
     const target = $bookCharacters.characters.find((character) => character.id === targetCharacterId);
     if (!target) return;
     const root = get(bookRoot);
@@ -108,7 +135,7 @@
     await applyReviewedCharacter(item, null, null, true);
   }
 
-  async function mergeReviewedDescriptor(item: ClosedWorldReviewItem, lineTargets: Record<number, string>): Promise<void> {
+  async function mergeReviewedDescriptorImpl(item: ClosedWorldReviewItem, lineTargets: Record<number, string>): Promise<void> {
     if (!get(bookRoot)) return;
     const itemLineIds = new Set(item.lineIds);
     const scopedTargets = Object.fromEntries(
@@ -174,15 +201,7 @@
     }
     if (!changed) return;
     const scriptPath = ch.scriptPath ?? getScriptPath(root, ch.title);
-    let saved = await writeScript(scriptPath, scr);
-    if (!saved && get(bookRootAbsolutePath)) {
-      const response = await apiFetch(API_ENDPOINTS.save, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ file_path: scriptPath, content: scr }),
-      });
-      saved = response.ok;
-    }
+    const saved = await writeScript(scriptPath, scr);
     if (!saved) throw new Error(`Failed to save reviewed character lines (${[...assignments.keys()].join(', ')})`);
     currentScript.set({ ...scr, lines: [...scr.lines] });
     await forceRefreshBookCharacters();
@@ -369,7 +388,7 @@
     return total;
   }
 
-  async function deleteBookCharacter(name: string, count: number): Promise<void> {
+  async function deleteBookCharacterImpl(name: string, count: number): Promise<void> {
     const usageCount = await countCharacterUsageAcrossBook(name);
     if (usageCount > 0) {
       const input = prompt(
@@ -555,7 +574,7 @@
     conflictCursor.set(nextLine.id);
   }
 
-  async function mergeCharacters(sourceIndex: number, targetIndex: number) {
+  async function mergeCharactersImpl(sourceIndex: number, targetIndex: number) {
     if (sourceIndex === targetIndex) return;
     const ch: any = get(currentChapter);
     const root = get(bookRoot);
@@ -667,7 +686,7 @@
     }
   }
 
-  async function addCharacter(name: string): Promise<boolean> {
+  async function addCharacterImpl(name: string): Promise<boolean> {
     // v3: mint a GUID + write one characters/<Title>.json (silent auto-upsert).
     const created = await addBookCharacter(name, 'Unknown');
     if (!created) return false;
@@ -713,7 +732,7 @@
     openColorIndex = null;
   }
 
-  async function createAndApplyNewCharacter() {
+  async function createAndApplyNewCharacterImpl() {
     const name = newCharacterName.trim();
     if (!name) return;
     const bookChars = get(bookCharacters);
@@ -879,6 +898,28 @@
     color: var(--app-primary-text);
   }
 
+  .panel-menu-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .panel-menu-trigger.has-alert {
+    color: var(--app-primary-text);
+  }
+
+  .panel-menu-options {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .panel-menu-options .panel-tab {
+    text-align: left;
+  }
+
   .header-btn {
     width: 24px;
     height: 24px;
@@ -950,49 +991,49 @@
 
 </style>
 
-<div class="character-panel">
+<div class="character-panel" use:observePanelWidth>
   <div class="panel-header">
-    <div class="panel-tabs" role="tablist" aria-label="Character panel tabs">
-      <button
-        class="panel-tab"
-        class:active={activeTab === 'characters'}
-        role="tab"
-        aria-selected={activeTab === 'characters'}
-        on:click={() => activeTab = 'characters'}
+    {#if compactTabs}
+      <Dropdown
+        title="Character panel tabs"
+        showCaret={false}
+        minWidth={160}
+        align="left"
       >
-        Characters
-      </button>
-      <button
-        class="panel-tab"
-        class:active={activeTab === 'ai'}
-        class:has-alert={$dialogueAiAssistState.running || $dialogueAiAssistVisibleResults.length > 0}
-        role="tab"
-        aria-selected={activeTab === 'ai'}
-        on:click={() => activeTab = 'ai'}
-      >
-        AI Assist
-      </button>
-      <button
-        class="panel-tab"
-        class:active={activeTab === 'local-ai'}
-        class:has-alert={$localDialogueAiState.running || $localDialogueAiVisibleResults.length > 0}
-        role="tab"
-        aria-selected={activeTab === 'local-ai'}
-        on:click={() => activeTab = 'local-ai'}
-      >
-        Local AI
-      </button>
-      <button
-        class="panel-tab"
-        class:active={activeTab === 'jev'}
-        class:has-alert={$jevDialogueAiState.running || $jevDialogueAiVisibleResults.length > 0}
-        role="tab"
-        aria-selected={activeTab === 'jev'}
-        on:click={() => activeTab = 'jev'}
-      >
-        JEV
-      </button>
-    </div>
+        <span class="panel-menu-trigger" class:has-alert={panelTabs.some((tab) => tab.hasAlert)}>
+          <Menu size={18} />
+          <span>{selectedTab.label}</span>
+        </span>
+        <div slot="panel" let:close class="panel-menu-options" role="group" aria-label="Character panel tabs">
+          {#each panelTabs as tab}
+            <button
+              class="panel-tab"
+              class:active={activeTab === tab.value}
+              class:has-alert={tab.hasAlert}
+              aria-pressed={activeTab === tab.value}
+              on:click={() => { activeTab = tab.value; close(); }}
+            >
+              {tab.label}
+            </button>
+          {/each}
+        </div>
+      </Dropdown>
+    {:else}
+      <div class="panel-tabs" role="tablist" aria-label="Character panel tabs">
+        {#each panelTabs as tab}
+          <button
+            class="panel-tab"
+            class:active={activeTab === tab.value}
+            class:has-alert={tab.hasAlert}
+            role="tab"
+            aria-selected={activeTab === tab.value}
+            on:click={() => activeTab = tab.value}
+          >
+            {tab.label}
+          </button>
+        {/each}
+      </div>
+    {/if}
 
     {#if activeTab === 'characters'}
       <div class="header-actions">
@@ -1164,4 +1205,3 @@
     </div>
   </div>
 {/if}
-

@@ -8,6 +8,7 @@ import { API_ENDPOINTS, apiPostJson, apiPostVoid, apiRequestJson, toApiClientErr
 import type { JevVerifySummary } from '$lib/services/apiContracts';
 import { setJevVerifySummary } from '$lib/stores/jevDialogueAi';
 import { buildClosedWorldParserOptions } from '$lib/services/parserCatalog';
+import { history } from '$lib/services/history';
 
 const ALWAYS_BLOCKED_CHARACTER_NAMES = new Set(['he', 'she', 'as', 'it', 'that', 'they', 'them', 'the', 'this', 'these', 'those']);
 
@@ -365,6 +366,7 @@ export async function runParserForChapter(args: {
   input: string; // Path to chapter text file, e.g., "{chapterId}/chapter.txt" or "chapter.txt" (legacy)
   narrator?: string;
 }): Promise<{ ok: boolean; chapter?: string; numLines?: number; numConflicts?: number; scriptPath?: string; error?: string }> {
+  history.clear();
 
   try {
     let fileContent = await readTextFile(args.input);
@@ -501,7 +503,7 @@ export async function runParserForChapter(args: {
     // IN-2: the characters/ folder is the sole source of truth).
     const hasV3Folder = (await listCharacterFiles(root)).length > 0;
     if (!hasV3Folder) {
-      await writeCentralCharacters(root, { formatVersion: existingBookChars.formatVersion || '2.0', characters: allBookChars });
+      await writeCentralCharacters(root, { formatVersion: existingBookChars.formatVersion || '2.0', characters: allBookChars }, false);
     }
 
     const idToNameMap = buildIdToNameMap(allBookChars);
@@ -590,5 +592,4 @@ function buildParserOptions(hints: ParserHints) {
     heuristics,
   };
 }
-
 

@@ -12,6 +12,7 @@ import type {
   LineItem
 } from '$lib/types';
 import { storeProjectHandle } from './persistence';
+import { history } from './history';
 import {
   clearRawCharacterFileDocs,
   mapCharacterFile,
@@ -118,7 +119,7 @@ export function getRootDirInfo(): { name: string; hasHandle: boolean } {
   };
 }
 
-export function setRootDirHandle(handle: FileSystemDirectoryHandle): void {
+export function setRootDirHandle(handle: FileSystemDirectoryHandle | null): void {
   rootDirHandle = handle;
 }
 
@@ -594,7 +595,7 @@ export async function readOptionalJsonRelative<T>(path: string): Promise<T | nul
   return readFileAsJson<T>(path, false);
 }
 
-async function writeFile(path: string, contents: string): Promise<boolean> {
+async function writeFileDirect(path: string, contents: string): Promise<boolean> {
   if (rootDirHandle) {
     try {
       const pathParts = path.split('/').filter(p => p);
@@ -622,6 +623,98 @@ async function writeFile(path: string, contents: string): Promise<boolean> {
   }
 }
 
+async function readHistoryFile(path: string): Promise<string | null> {
+  const validate = (contents: unknown): string | null => {
+    if (contents === null) return null;
+    if (typeof contents !== 'string') throw new Error(`Invalid file snapshot response for ${path}`);
+    JSON.parse(contents);
+    return contents;
+  };
+  if (rootDirHandle) {
+    try {
+      const parts = path.split('/').filter(Boolean);
+      const name = parts.pop();
+      if (!name) throw new Error('Missing file name');
+      const directory = await getDirectoryHandle(rootDirHandle, parts);
+      if (!directory) throw new Error(`Cannot access ${path}`);
+      return validate(await (await (await directory.getFileHandle(name)).getFile()).text());
+    } catch (error) {
+      if (error instanceof DOMException && error.name === 'NotFoundError') return null;
+      throw error;
+    }
+  }
+  const response = await apiPostJson<ReadTextResponse, ReadTextRequest>(API_ENDPOINTS.readText, {
+    file_path: path, optional: true,
+  });
+  return validate(response.content);
+}
+
+function sameEditableJson(left: string | null, right: string | null): boolean {
+  if (left === null || right === null) return left === right;
+  const canonical = (text: string) => JSON.stringify(JSON.parse(text), (key, value) => {
+    // These fields are rebuilt by chapter/manifest scans, not edited by the user.
+    if (['stats', 'manifestStats', 'updatedAt', 'firstAppearance'].includes(key)) return undefined;
+    if (value && typeof value === 'object' && !Array.isArray(value)) {
+      return Object.fromEntries(Object.entries(value).sort(([a], [b]) => a.localeCompare(b)));
+    }
+    return value;
+  });
+  return canonical(left) === canonical(right);
+}
+
+export async function writeEditableJson(path: string, content: unknown, recordHistory = true): Promise<boolean> {
+  return writeFile(path, JSON.stringify(content, null, 2), recordHistory);
+}
+
+export async function readEditableJson<T>(path: string): Promise<T | null> {
+  const contents = await readHistoryFile(path);
+  return contents === null ? null : JSON.parse(contents) as T;
+}
+
+export async function captureEditableFiles<T>(
+  label: string,
+  paths: string[],
+  operation: () => Promise<T>,
+): Promise<T> {
+  const capture = (index: number): Promise<T> => {
+    const path = paths[index];
+    if (path === undefined) return operation();
+    return history.capture(label, path, () => readHistoryFile(path), async (value) => {
+      const success = value === null
+        ? await deleteFileDirect('', path)
+        : await writeFileDirect(path, value);
+      if (!success) throw new Error(`Could not restore ${path}`);
+    }, () => capture(index + 1), sameEditableJson);
+  };
+  return capture(0);
+}
+
+async function writeFile(path: string, contents: string, recordHistory = true): Promise<boolean> {
+  if (!recordHistory || path.startsWith('_backups/')) return writeFileDirect(path, contents);
+  try {
+    await history.write(
+      path === 'settings.json' ? 'Change book settings'
+        : path === 'voices.json' ? 'Change voices'
+        : path.startsWith('characters/') ? 'Edit character'
+        : 'Edit chapter',
+      path,
+      contents,
+      () => readHistoryFile(path),
+      async (value) => {
+        const success = value === null
+          ? await deleteFileDirect('', path)
+          : await writeFileDirect(path, value);
+        if (!success) throw new Error(`Could not restore or save ${path}`);
+      },
+      sameEditableJson,
+    );
+    return true;
+  } catch (error) {
+    history.reportError(error);
+    return false;
+  }
+}
+
 // === v2.0 Read/Write Functions ===
 
 export async function readDialogue(path: string): Promise<DialogueJson | null> {
@@ -632,8 +725,8 @@ export async function readOptionalDialogue(path: string): Promise<DialogueJson |
   return readFileAsJson<DialogueJson>(path, false);
 }
 
-export async function writeDialogue(path: string, data: DialogueJson): Promise<boolean> {
-  return writeFile(path, JSON.stringify(data, null, 2));
+export async function writeDialogue(path: string, data: DialogueJson, recordHistory = true): Promise<boolean> {
+  return writeFile(path, JSON.stringify(data, null, 2), recordHistory);
 }
 
 export async function readVoices(root: string): Promise<VoicesJson | null> {
@@ -641,9 +734,9 @@ export async function readVoices(root: string): Promise<VoicesJson | null> {
   return readFileAsJson<VoicesJson>('voices.json');
 }
 
-export async function writeVoices(root: string, data: VoicesJson): Promise<boolean> {
+export async function writeVoices(root: string, data: VoicesJson, recordHistory = true): Promise<boolean> {
   // When using FileSystemDirectoryHandle, rootDirHandle is already at the book directory level
-  return writeFile('voices.json', JSON.stringify(data, null, 2));
+  return writeFile('voices.json', JSON.stringify(data, null, 2), recordHistory);
 }
 
 export async function readCentralCharacters(root: string): Promise<CharactersJson | null> {
@@ -652,17 +745,17 @@ export async function readCentralCharacters(root: string): Promise<CharactersJso
   return readFileAsJson<CharactersJson>('characters.json', false);
 }
 
-export async function writeCentralCharacters(root: string, data: CharactersJson): Promise<boolean> {
+export async function writeCentralCharacters(root: string, data: CharactersJson, recordHistory = true): Promise<boolean> {
   // When using FileSystemDirectoryHandle, rootDirHandle is already at the book directory level
-  return writeFile('characters.json', JSON.stringify(data, null, 2));
+  return writeFile('characters.json', JSON.stringify(data, null, 2), recordHistory);
 }
 
 export async function readSettings(root: string): Promise<any | null> {
   return readFileAsJson<any>('settings.json');
 }
 
-export async function writeSettings(root: string, data: any): Promise<boolean> {
-  return writeFile('settings.json', JSON.stringify(data, null, 2));
+export async function writeSettings(root: string, data: any, recordHistory = true): Promise<boolean> {
+  return writeFile('settings.json', JSON.stringify(data, null, 2), recordHistory);
 }
 
 // Legacy: Read old speaker_blocklist.json format
@@ -676,7 +769,7 @@ export async function readSpeakerBlocklist(root: string): Promise<any | null> {
  * List the names of `*.json` files in the book's `characters/` folder.
  * Returns [] when the folder does not exist (book not migrated to v3 yet).
  */
-export async function listCharacterFiles(root: string): Promise<string[]> {
+export async function listCharacterFiles(root: string, strict = false): Promise<string[]> {
   if (rootDirHandle) {
     try {
       const charactersDirHandle = await rootDirHandle.getDirectoryHandle('characters', { create: false });
@@ -692,6 +785,7 @@ export async function listCharacterFiles(root: string): Promise<string[]> {
       if (error instanceof DOMException && error.name === 'NotFoundError') {
         return [];
       }
+      if (strict) throw error;
       console.warn('[fs] File System API character folder listing failed; trying backend', error);
     }
   }
@@ -700,9 +794,13 @@ export async function listCharacterFiles(root: string): Promise<string[]> {
     const response = await apiPostJson<ListFilesResponse, ListFilesRequest>(API_ENDPOINTS.listFiles, {
       file_path: 'characters',
     });
+    if (strict && (!Array.isArray(response.files) || !response.files.every((file) => typeof file === 'string'))) {
+      throw new Error('Invalid character folder listing; cannot safely record this edit.');
+    }
     return Array.isArray(response.files) ? response.files : [];
   } catch (error) {
     console.error('Failed to list character files from backend', error);
+    if (strict) throw error;
     return [];
   }
 }
@@ -728,8 +826,8 @@ export async function readCharacterFile(
  * Write a single character file to the book's `characters/` folder.
  * The `characters/` directory is created on demand by writeFile.
  */
-export async function writeCharacterFile(root: string, fileName: string, content: unknown): Promise<boolean> {
-  return writeFile(`characters/${fileName}`, JSON.stringify(content, null, 2));
+export async function writeCharacterFile(root: string, fileName: string, content: unknown, recordHistory = true): Promise<boolean> {
+  return writeFile(`characters/${fileName}`, JSON.stringify(content, null, 2), recordHistory);
 }
 
 // === v3.0 Character Folder Read Path ===
@@ -764,7 +862,7 @@ export async function readCharacterFolder(root: string): Promise<CharactersJson 
  * Delete a file at a path relative to the book root.
  * Deleting a file that does not exist is a success (idempotent).
  */
-export async function deleteFile(root: string, relPath: string): Promise<boolean> {
+async function deleteFileDirect(root: string, relPath: string): Promise<boolean> {
   if (rootDirHandle) {
     try {
       const pathParts = relPath.split('/').filter(p => p);
@@ -795,6 +893,22 @@ export async function deleteFile(root: string, relPath: string): Promise<boolean
 }
 
 // === Legacy v1.0 Functions (for backward compatibility) ===
+
+export async function deleteFile(root: string, relPath: string, recordHistory = true): Promise<boolean> {
+  if (!recordHistory) return deleteFileDirect(root, relPath);
+  try {
+    await history.write('Delete character', relPath, null, () => readHistoryFile(relPath), async (value) => {
+      const success = value === null
+        ? await deleteFileDirect(root, relPath)
+        : await writeFileDirect(relPath, value);
+      if (!success) throw new Error(`Could not restore or delete ${relPath}`);
+    }, sameEditableJson);
+    return true;
+  } catch (error) {
+    history.reportError(error);
+    return false;
+  }
+}
 
 /** @deprecated Use readDialogue instead */
 export async function readScript(path: string): Promise<ScriptJson | null> {
@@ -869,8 +983,8 @@ export async function readOptionalCharacters(path: string): Promise<CharactersJs
 }
 
 /** @deprecated Use writeCentralCharacters instead */
-export async function writeCharacters(path: string, data: CharactersJson): Promise<boolean> {
-  return writeFile(path, JSON.stringify(data, null, 2));
+export async function writeCharacters(path: string, data: CharactersJson, recordHistory = true): Promise<boolean> {
+  return writeFile(path, JSON.stringify(data, null, 2), recordHistory);
 }
 
 export async function readTextFile(path: string): Promise<string | null> {
@@ -955,4 +1069,3 @@ export async function readScriptForChapter(chapterTitle: string): Promise<Script
     return null;
   }
 }
-

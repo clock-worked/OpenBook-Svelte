@@ -286,15 +286,5 @@ export async function saveDialogueFromNormalized(params: {
         return;
     }
 
-    try {
-        const response = await params.apiSave(relativePath, dialoguePayload);
-        if (response.ok) {
-            console.log('[ChapterView] ✓ Successfully saved dialogue.json via API');
-        } else {
-            const errorData = await response.json();
-            console.error('[ChapterView] ✗ Failed to save dialogue.json via API:', errorData.detail || response.statusText);
-        }
-    } catch (error) {
-        console.error('[ChapterView] ✗ Network error saving dialogue.json via API:', error);
-    }
+    throw new Error(`Could not save ${relativePath}. Your changes have not been saved.`);
 }

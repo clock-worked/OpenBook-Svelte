@@ -2,6 +2,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 try:
     from .chapter_review_service import (
@@ -284,6 +285,79 @@ class ChapterReviewServiceTests(unittest.TestCase):
 
         self.assertTrue(result["reviewed"])
         self.assertEqual(result["descriptorsAdded"], 0)
+
+    def test_review_learns_only_from_speakers_in_legacy_and_guid_books(self):
+        for source in ("legacy", "folder"):
+            with self.subTest(source=source), tempfile.TemporaryDirectory() as temp_dir:
+                root = Path(temp_dir)
+                chapter = root / "01-Test"
+                chapter.mkdir()
+                (chapter / "chapter.txt").write_text("Narration. Hello.", encoding="utf-8")
+                narrator_id = "ABC12345" if source == "folder" else "narrator"
+                speaker_id = "DEF67890" if source == "folder" else "alice"
+                characters = [
+                    {"id": narrator_id, "name": "Narrator", "aliases": [], "descriptors": []},
+                    {"id": speaker_id, "name": "Alice", "aliases": [], "descriptors": []},
+                ]
+                if source == "folder":
+                    folder = root / "characters"
+                    folder.mkdir()
+                    for character in characters:
+                        (folder / f'{character["name"]}.json').write_text(json.dumps({
+                            "formatVersion": "3.0",
+                            "guid": character["id"],
+                            "title": character["name"],
+                            "aliases": [],
+                            "descriptors": [],
+                        }), encoding="utf-8")
+                    narrator_before = (folder / "Narrator.json").read_bytes()
+                else:
+                    (root / "characters.json").write_text(json.dumps({
+                        "formatVersion": "2.0", "characters": characters,
+                    }), encoding="utf-8")
+
+                lines = [
+                    {"id": 1, "characterId": narrator_id, "text": "Narration."},
+                    {"id": 2, "characterId": "NaRrAtOr", "text": "Narration."},
+                    {"id": 3, "characterId": speaker_id, "text": "Hello.", "isNonSpeaker": True},
+                    {"id": 4, "characterId": speaker_id, "text": "Hello."},
+                ]
+                for line in lines:
+                    line["attribution"] = {"sourceDescriptors": ["the cartographer"]}
+                    line["metadata"] = {
+                        "customTags": {"attribution": {"sourceDescriptors": ["the traveler"]}},
+                    }
+                    line["isConflict"] = True
+                (chapter / "dialogue.json").write_text(json.dumps({"lines": lines}), encoding="utf-8")
+
+                with patch(
+                    f"{review_chapter.__module__}.extract_nearby_descriptors",
+                    return_value=["the mage"],
+                ) as extract:
+                    result = review_chapter(str(root), "01-Test")
+                    self.assertEqual(extract.call_count, 1)
+
+                self.assertEqual(result["descriptorObservations"], 3)
+                self.assertEqual(result["descriptorsAdded"], 3)
+                if source == "folder":
+                    self.assertEqual((folder / "Narrator.json").read_bytes(), narrator_before)
+                    narrator = json.loads((folder / "Narrator.json").read_text(encoding="utf-8"))
+                    speaker = json.loads((folder / "Alice.json").read_text(encoding="utf-8"))
+                    self.assertFalse((root / "characters.json").exists())
+                else:
+                    narrator, speaker = json.loads(
+                        (root / "characters.json").read_text(encoding="utf-8")
+                    )["characters"]
+                self.assertEqual(narrator["descriptors"], [])
+                self.assertEqual(speaker["descriptors"], ["the cartographer", "the traveler", "the mage"])
+                dialogue = json.loads((chapter / "dialogue.json").read_text(encoding="utf-8"))
+                self.assertTrue(dialogue["reviewed"])
+                for line in dialogue["lines"]:
+                    self.assertEqual(line["attribution"]["resolutionStatus"], "user_confirmed")
+                    self.assertFalse(line["isConflict"])
+                    if line["id"] != 4:
+                        self.assertEqual(line["attribution"]["sourceDescriptors"], [])
+                        self.assertEqual(line["metadata"]["customTags"]["sourceDescriptors"], [])
 
 
 if __name__ == "__main__":

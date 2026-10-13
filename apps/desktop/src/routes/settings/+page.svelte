@@ -3,7 +3,9 @@
     import { appTheme, bookRootPathOverride, parserHints, type AppTheme } from '$lib/stores/settings';
     import { bookRoot, bookRootAbsolutePath, chapters } from '$lib/stores/bookState';
     import { forceRefreshBookCharacters } from '$lib/stores/bookCharacters';
-    import { setBackendBookRoot, getRootDirInfo } from '$lib/services/fs';
+    import { setBackendBookRoot, getRootDirInfo, readEditableJson, writeEditableJson } from '$lib/services/fs';
+    import { history } from '$lib/services/history';
+    import type { ParserHints } from '$lib/types';
     import { API_ENDPOINTS, apiFetch } from '$lib/services/apiClient';
     import { migrateBookToV3, type BookMigrationReport } from '$lib/services/bookMigration';
     import { clampConfidence } from '$lib/components/chapter/tools/shared/chapterNormalization';
@@ -30,7 +32,8 @@
         migrationReport = null;
         migrationProgress = 'Starting…';
         try {
-            migrationReport = await migrateBookToV3({
+            history.clear();
+            migrationReport = await history.exclude(() => migrateBookToV3({
                 root,
                 chapters: get(chapters),
                 unknownThreshold: clampConfidence($parserHints.attribution?.unknownThreshold ?? 0.62),
@@ -44,7 +47,7 @@
                 onProgress: (message) => {
                     migrationProgress = message;
                 },
-            });
+            }));
             await forceRefreshBookCharacters();
         } finally {
             migrationRunning = false;
@@ -97,13 +100,25 @@
     function handleUnknownThresholdInput(event: Event) {
         const input = event.target as HTMLInputElement;
         const next = clamp01(Number(input.value));
-        parserHints.update((h) => ({
-            ...h,
-            attribution: {
-                ...(h.attribution || {}),
-                unknownThreshold: next,
-            },
-        }));
+        const hints = get(parserHints);
+        const updated: ParserHints = {
+            ...hints,
+            attribution: { ...(hints.attribution || {}), unknownThreshold: next },
+        };
+        void history.batch('Change attribution threshold', async () => {
+          await history.write('Change attribution threshold', 'parserHints', JSON.stringify(updated),
+            async () => JSON.stringify(get(parserHints)),
+            async (text) => {
+              if (!text) throw new Error('Missing parser settings');
+              parserHints.set(JSON.parse(text) as ParserHints);
+            });
+          if (get(bookRoot)) {
+            const settings = await readEditableJson<Record<string, unknown>>('settings.json');
+            if (!await writeEditableJson('settings.json', { ...settings, parserHints: get(parserHints) })) {
+              throw new Error('Could not save attribution settings.');
+            }
+          }
+        }).catch((error) => history.reportError(error));
     }
 </script>
 

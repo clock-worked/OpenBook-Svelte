@@ -27,6 +27,7 @@ import {
 } from '$lib/services/characterDomain';
 import { normalizeCharacterGender } from '$lib/services/characterGender';
 import { unassignVoicesFromCharacters } from '$lib/stores/speakers';
+import { historyAction } from '$lib/services/history';
 
 export const bookCharacters = writable<CharactersJson>({ formatVersion: '2.0', characters: [] });
 
@@ -110,7 +111,7 @@ export async function addBookCharacter(name: string, gender: Gender): Promise<Ch
  * records (valid GUIDs) are written, one file each; the root characters.json is
  * never touched (invariant IN-2).
  */
-export async function persistBookCharacters(): Promise<void> {
+async function persistBookCharactersImpl(): Promise<void> {
   const root = get(bookRoot);
   if (!root) return;
   for (const record of get(bookCharacters).characters) {
@@ -298,7 +299,7 @@ export async function removeBookCharacter(name: string): Promise<void> {
   await removeBookCharacters([name]);
 }
 
-export async function removeBookCharacters(names: string[]): Promise<number> {
+async function removeBookCharactersImpl(names: string[]): Promise<number> {
   const data = get(bookCharacters);
   const canonicalNames = new Set(
     names
@@ -349,6 +350,9 @@ export async function removeBookCharacters(names: string[]): Promise<number> {
 
   return removedCharacters.length;
 }
+
+export const persistBookCharacters = historyAction('Edit characters', persistBookCharactersImpl);
+export const removeBookCharacters = historyAction('Remove characters', removeBookCharactersImpl);
 
 export async function mergeBookCharacters(sourceName: string, targetName: string): Promise<CharacterOpResult> {
   const root = get(bookRoot);
@@ -460,8 +464,8 @@ export async function syncAllChapterColorsFromBook(): Promise<{ updated: number;
           })
         };
 
-        await persistChapterCharactersData(root, charsPath, synced);
-        updated++;
+        const persisted = await persistChapterCharactersData(root, charsPath, synced);
+        if (persisted) updated++;
       }
     } catch (e) {
       errors.push(`${ch.title}: ${String(e)}`);
@@ -629,5 +633,4 @@ export async function setBookCharacterProviderAndAssign(
     }
   }
 }
-
 

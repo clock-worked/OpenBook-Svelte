@@ -781,14 +781,14 @@ async function inventoryReferences(
 async function writeReferenceFile(root: string, change: ReferenceChange): Promise<boolean> {
     switch (change.writer) {
         case 'dialogue':
-            return writeDialogue(change.path, change.payload as DialogueJson);
+            return writeDialogue(change.path, change.payload as DialogueJson, false);
         case 'voices':
-            return writeVoices(root, change.payload as VoicesJson);
+            return writeVoices(root, change.payload as VoicesJson, false);
         case 'roster':
         case 'manifest':
             // The generic single-file JSON writer (house pattern for
             // arbitrary-path JSON files such as rosters and manifests).
-            return writeCharacters(change.path, change.payload as CharactersJson);
+            return writeCharacters(change.path, change.payload as CharactersJson, false);
     }
 }
 
@@ -922,7 +922,7 @@ async function applyPlan(
 
     // Stage 5a: all character files, in mint order.
     for (const cluster of plan.clusters) {
-        const ok = await writeCharacterFile(root, cluster.fileName, buildV3File(cluster));
+        const ok = await writeCharacterFile(root, cluster.fileName, buildV3File(cluster), false);
         if (!ok) throw new MigrationAbort(`Failed to write characters/${cluster.fileName}`);
         writtenSoFar.push(`characters/${cluster.fileName}`);
     }
@@ -935,7 +935,7 @@ async function applyPlan(
     }
 
     // Stage 5c: LAST — retire the legacy store.
-    const deleted = await deleteFile(root, legacyRelPath);
+    const deleted = await deleteFile(root, legacyRelPath, false);
     if (!deleted) {
         throw new MigrationAbort(
             `Failed to delete the retired ${legacyRelPath}; the book is now in the ` +

@@ -392,7 +392,9 @@ async function rewriteRoster(
         formatVersion: '3.0',
         characters: [...next.values()].map((character) => ({ ...character, id: character.guid as string })),
     };
-    const ok = await persistChapterCharactersData(root, getCharactersPath(root, plan.chapter.title), roster);
+    const ok = await persistChapterCharactersData(root, getCharactersPath(root, plan.chapter.title), roster, {
+        bypassV3Guard: true, // the migration is the one flow that writes v3 rosters
+    });
     if (ok) report.dialogue.rostersRewritten += 1;
 }
 

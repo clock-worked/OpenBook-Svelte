@@ -24,18 +24,27 @@ function normalizeLookupKey(value: unknown): string {
 }
 
 /**
+ * The v3 book's character set read from the `characters/` folder, or `null`
+ * when the book is not v3 (folder missing/empty, or the read failed).
+ * This is the v3 detection predicate shared by the roster read/write paths.
+ */
+async function readV3BookCharacters(root: string): Promise<CharactersJson | null> {
+    try {
+        const folder = await readCharacterFolder(root);
+        return folder && folder.characters.length > 0 ? folder : null;
+    } catch (err) {
+        console.warn('[chapterCharacters] v3 folder read failed; treating book as non-v3:', err);
+        return null;
+    }
+}
+
+/**
  * Resolve the book's character set for roster hydration: the v3
  * `characters/` folder first, falling back to the legacy root
  * `characters.json` for unmigrated books.
  */
 async function resolveBookCharacters(root: string): Promise<CharactersJson | null> {
-    try {
-        const folder = await readCharacterFolder(root);
-        if (folder && folder.characters.length > 0) return folder;
-    } catch (err) {
-        console.warn('[chapterCharacters] v3 folder read failed; falling back to characters.json:', err);
-    }
-    return readCentralCharacters(root);
+    return (await readV3BookCharacters(root)) ?? readCentralCharacters(root);
 }
 
 /**
@@ -76,8 +85,10 @@ function buildCentralLookups(central: CharactersJson | null): {
 export async function loadChapterCharactersData(
     root: string,
     path: string,
-    optional = false,
+    optional = true,
 ): Promise<CharactersJson | null> {
+    // Optional by default: in v3 books a chapter roster file may legitimately
+    // not exist — a missing roster is an empty roster, not an error.
     const raw: any = await (optional ? readOptionalCharacters(path) : readCharacters(path));
     if (!raw || !Array.isArray(raw.characters)) return null;
 
@@ -117,11 +128,26 @@ export async function loadChapterCharactersData(
  * in v3 books these are GUIDs (the `id` field name is unchanged; only the
  * content is a GUID per docs/schema_characters_v3.md §Reference formats).
  */
+export interface PersistChapterCharactersOptions {
+    /**
+     * The v3 migration rebuilds chapter rosters as canonical GUID references
+     * and is the one flow allowed to write them in a v3 book. Normal editing
+     * flows must not (re)create them there (ADR 0003).
+     */
+    bypassV3Guard?: boolean;
+}
+
 export async function persistChapterCharactersData(
     root: string,
     path: string,
     data: CharactersJson,
+    options: PersistChapterCharactersOptions = {},
 ): Promise<boolean> {
+    // v3 (ADR 0003 read-legacy-write-current): a populated characters/ folder
+    // is the book's live character set; normal editing flows never write
+    // chapter roster files in v3 books.
+    if (!options.bypassV3Guard && (await readV3BookCharacters(root)) != null) return false;
+
     const central = await resolveBookCharacters(root);
     const { byId, byName } = buildCentralLookups(central);
     const references: ChapterCharacterReference[] = [];

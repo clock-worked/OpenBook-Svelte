@@ -295,6 +295,12 @@ def review_chapter(book_root: str, chapter_name: str) -> Dict[str, object]:
     for line in lines:
         character_id = str(line.get("characterId") or "").strip()
         character = characters_by_id.get(character_id)
+        # v3 Narrator has a GUID, so the legacy ID sentinel alone is insufficient.
+        is_narrator = character_id.casefold() == "narrator" or (
+            character is not None
+            and str(character.get("name") or "").strip().casefold() == "narrator"
+        )
+        can_learn = character is not None and not is_narrator and not line.get("isNonSpeaker")
         attribution = line.get("attribution") if isinstance(line.get("attribution"), dict) else {}
         metadata = line.get("metadata") if isinstance(line.get("metadata"), dict) else {}
         custom_tags = (
@@ -313,7 +319,7 @@ def review_chapter(book_root: str, chapter_name: str) -> Dict[str, object]:
             *(nested_attribution.get("sourceDescriptors") or []),
             *_modern_nominal_mentions(attribution, character),
             *extract_nearby_descriptors(raw_text, line.get("span"), line.get("text")),
-        ]
+        ] if can_learn else []
         learned: List[str] = []
         for source_value in source_values:
             descriptor = normalize_descriptor(source_value)
@@ -332,7 +338,7 @@ def review_chapter(book_root: str, chapter_name: str) -> Dict[str, object]:
         line["metadata"] = metadata
         line["isConflict"] = False
 
-        if not character or character_id == "narrator":
+        if not can_learn:
             continue
         descriptors = (
             character.get("descriptors")

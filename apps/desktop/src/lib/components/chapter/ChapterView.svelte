@@ -1,11 +1,12 @@
 <script lang="ts">
   import { onDestroy, onMount, tick } from 'svelte';
+  import { history, historyAction } from '$lib/services/history';
   import { chapters, currentChapter, currentScript, bookRoot, bookRootAbsolutePath, chapterReloadRequest } from '$lib/stores/bookState';
   import type { ScriptJson, DialogueJson } from '$lib/types';
   import { writable } from 'svelte/store';
   import { conflictCursor, toolMode, audioGenerateLineId } from '$lib/stores/selection';
   import { get } from 'svelte/store';
-  import { readTextFile, readDialogueForChapter, readScript, readCentralCharacters, writeCentralCharacters, getRootDirInfo, writeDialogue, writeScript, readOptionalJsonRelative } from '$lib/services/fs';
+  import { readTextFile, readDialogueForChapter, readScript, readCentralCharacters, writeCentralCharacters, getRootDirInfo, writeDialogue, writeScript, readOptionalJsonRelative, captureEditableFiles, listCharacterFiles } from '$lib/services/fs';
   import { readManifest } from '$lib/services/audio';
   import { API_ENDPOINTS, apiFetch, apiPostJson } from '$lib/services/apiClient';
   import type { ReviewChapterRequest, ReviewChapterResponse } from '$lib/services/apiContracts';
@@ -213,6 +214,15 @@
   }
 
   onMount(() => {
+    const unsubscribeHistory = history.onRestore(async (keys) => {
+      const title = get(currentChapter)?.title;
+      if (!keys.some((key) => key.startsWith(`${title}/`) || key.startsWith('characters/') || key === 'characters.json')) return;
+      reviewMenuVisible.set(false);
+      editOverlayVisible.set(false);
+      editingLineId = null;
+      await reloadCurrentChapterInPlace();
+      await tick();
+    });
     const handleUserScroll = () => {
       cancelChapterAnimation();
     };
@@ -222,6 +232,7 @@
     window.addEventListener('touchmove', handleUserScroll, { passive: true });
 
     return () => {
+      unsubscribeHistory();
       window.removeEventListener('scroll', handleUserScroll);
       window.removeEventListener('wheel', handleUserScroll);
       window.removeEventListener('touchmove', handleUserScroll);
@@ -604,7 +615,9 @@
     splitButtonPosition = null;
   }
 
-  async function saveCurrentChapter(
+  const saveCurrentChapter = historyAction('Edit chapter', saveCurrentChapterImpl);
+
+  async function saveCurrentChapterImpl(
     reviewed = chapterReviewed,
     reviewedAt: string | null = chapterReviewedAt,
   ) {
@@ -656,18 +669,27 @@
   }
 
   function scheduleSave() {
-    console.log('[ChapterView] scheduleSave called, will execute in 350ms');
+    if (history.isRestoring) return;
     reviewMessage = '';
     clearTimeout(saveTimer);
-    const scheduledChapterTitle = get(currentChapter)?.title;
-    saveTimer = setTimeout(async () => {
-      if (!scheduledChapterTitle || get(currentChapter)?.title !== scheduledChapterTitle) return;
-      console.log('[ChapterView] scheduleSave timer fired, reading from store...');
-      await saveCurrentChapter();
-    }, 350);
+    saveTimer = null;
+    void saveCurrentChapter().catch((error) => {
+      reviewMessage = error instanceof Error ? error.message : 'Could not save chapter.';
+      history.reportError(error);
+    });
   }
 
-  async function markChapterReviewed() {
+  const markChapterReviewed = historyAction('Mark chapter reviewed', async () => {
+    const chapter = get(currentChapter);
+    const root = get(bookRoot);
+    if (!chapter || !root) return;
+    const files = await listCharacterFiles(root, true);
+    await captureEditableFiles('Mark chapter reviewed',
+      [`${chapter.title}/dialogue.json`, 'characters.json', ...files.map((file) => `characters/${file}`)],
+      markChapterReviewedImpl);
+  });
+
+  async function markChapterReviewedImpl() {
     const chapter = get(currentChapter);
     const script = get(normalizedScript);
     if (!chapter || !script || markingReviewed) return;
@@ -775,6 +797,8 @@
     });
     if (seq !== chapterLoadSeq || get(currentChapter)?.title !== ch.title) return;
     isV2Format = loaded.isV2Format;
+    chapterReviewedAt = loaded.reviewedAt;
+    setReviewedState(loaded.reviewed);
     characterNameToIdMap = null;
     if (loaded.normalized) {
       normalizedScript.set({ lines: loaded.normalized.lines, stats: loaded.normalized.stats });

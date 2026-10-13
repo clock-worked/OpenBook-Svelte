@@ -80,7 +80,7 @@ export function sanitizeCharacterFileName(title: string): string {
  * return false so callers can surface the failure. New clusters get a minted
  * GUID via the mutation service (Lane 6, `createCharacterFile`).
  */
-export async function writeCharacterRecord(root: string, record: Character): Promise<boolean> {
+export async function writeCharacterRecord(root: string, record: Character, recordHistory = true): Promise<boolean> {
     const guid = record.guid?.trim() ?? '';
     if (!CHARACTER_GUID_PATTERN.test(guid)) {
         console.warn('[bookCharacters] Cannot write character file without a valid GUID:', record.name);
@@ -127,7 +127,7 @@ export async function writeCharacterRecord(root: string, record: Character): Pro
         updatedAt: new Date().toISOString(),
     };
 
-    return writeCharacterFile(root, `${sanitizeCharacterFileName(normalized.name)}.json`, file);
+    return writeCharacterFile(root, `${sanitizeCharacterFileName(normalized.name)}.json`, file, recordHistory);
 }
 
 // === Derived stats (dialogue-driven) ===
@@ -226,7 +226,7 @@ async function syncFolderCharacterStats(
         nextCharacters.push(next);
 
         // Write-only-on-change: rewrite exactly this character's file.
-        const written = await writeCharacterRecord(root, next);
+        const written = await writeCharacterRecord(root, next, false);
         if (written) updated = true;
     }
 
@@ -310,7 +310,7 @@ export async function syncMissingBookCharacterDefaults(
     };
 
     if (!updated) return null;
-    await writeCentralCharacters(root, next);
+    await writeCentralCharacters(root, next, false);
     return next;
 }
 

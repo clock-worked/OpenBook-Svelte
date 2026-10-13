@@ -1,4 +1,5 @@
 import type { CharacterFile, Gender } from '$lib/types';
+import { historyAction } from './history';
 import {
     deleteFile,
     listCharacterFiles,
@@ -116,7 +117,7 @@ function pickCharacterFileName(title: string, guid: string, others: CharacterFil
  *     A failed delete returns success-with-warning: the duplicate-GUID pair
  *     self-heals on the next load (newest `updatedAt` wins).
  */
-export async function renameCentralCharacter(
+async function renameCentralCharacterImpl(
     root: string,
     record: CharacterFileRecord,
     newTitle: string,
@@ -190,6 +191,9 @@ export async function renameCentralCharacter(
 
     return { ok: true };
 }
+
+export const renameCentralCharacter = historyAction('Rename character', renameCentralCharacterImpl);
+export const mergeCentralCharacters = historyAction('Merge characters', mergeCentralCharactersImpl);
 
 /**
  * Ruling R7: the service is kept, the UI is retired. Thin delegate to the
@@ -384,7 +388,7 @@ export async function deleteCentralCharacter(
  * voice assignments, and chapter rosters; LAST the source file is deleted.
  * The survivor keeps its GUID; the absorbed GUID dies with its file.
  */
-export async function mergeCentralCharacters(
+async function mergeCentralCharactersImpl(
     root: string,
     remapTargets: ChapterRemapTarget[],
     source: CharacterFileRecord,

@@ -13,6 +13,8 @@ import {
   mergeDiscoveredVoices,
 } from '$lib/services/voiceDomain';
 import { readVoices, writeVoices } from '$lib/services/fs';
+import { history, historyAction } from '$lib/services/history';
+import type { VoiceSampleEntry } from '$lib/services/apiContracts';
 
 export const voices = writable<VoicesJson>({
   formatVersion: '2.0',
@@ -44,7 +46,7 @@ export async function loadVoices(): Promise<void> {
         console.warn(
           `[voices] Removed ${deduped.removed} duplicate voices and updated ${deduped.updated} assignments while loading voices.json`,
         );
-        await saveVoicesData();
+        await saveVoicesData(false);
       }
 
       console.log(`[voices] Loaded ${deduped.voices.length} voices, ${deduped.assignments.length} assignments`);
@@ -62,7 +64,7 @@ export async function loadVoices(): Promise<void> {
  * Scans audio manifests and discovers voices from existing audio files.
  * Also auto-creates assignments for characters based on primaryVoiceId in manifests.
  */
-export async function discoverVoices(): Promise<number> {
+export async function discoverVoices(recordHistory = true): Promise<number> {
   const audio = get(audioRoot);
   const root = get(bookRoot);
   if (!audio) {
@@ -84,12 +86,12 @@ export async function discoverVoices(): Promise<number> {
         voices: merged.mergedVoices,
         assignments: current.assignments
       });
-      await saveVoicesData();
+      await saveVoicesData(recordHistory);
     }
 
     // Auto-create assignments based on manifest data
     if (root) {
-      await autoCreateAssignmentsFromManifests(audio);
+      await autoCreateAssignmentsFromManifests(audio, recordHistory);
     }
 
     console.log('[voices] Discovered', merged.newVoicesCount, 'new voices');
@@ -103,7 +105,7 @@ export async function discoverVoices(): Promise<number> {
 /**
  * Auto-create voice assignments based on manifest primaryVoiceId
  */
-async function autoCreateAssignmentsFromManifests(audioRoot: string): Promise<void> {
+async function autoCreateAssignmentsFromManifests(audioRoot: string, recordHistory: boolean): Promise<void> {
   try {
     const root = get(bookRoot);
     if (!root) return;
@@ -132,7 +134,7 @@ async function autoCreateAssignmentsFromManifests(audioRoot: string): Promise<vo
         ...current,
         assignments: assignmentResult.assignments
       });
-      await saveVoicesData();
+      await saveVoicesData(recordHistory);
       console.log(`[voices] Created ${assignmentResult.createdCount} automatic assignments`);
     }
   } catch (err) {
@@ -173,7 +175,7 @@ export async function deduplicateVoices(): Promise<{ removed: number; updated: n
   return { removed: deduped.removed, updated: deduped.updated };
 }
 
-export async function syncVoicesFromSamples(samplesRoot: string): Promise<{ imported: number; removed: number }> {
+export async function syncVoicesFromSamples(samplesRoot: string, recordHistory = true): Promise<{ imported: number; removed: number }> {
   if (!samplesRoot) return { imported: 0, removed: 0 };
 
   const sampleEntries = await listVoiceSamples(samplesRoot);
@@ -222,11 +224,11 @@ export async function syncVoicesFromSamples(samplesRoot: string): Promise<{ impo
     assignments: deduped.assignments,
   });
 
-  await saveVoicesData();
+  await saveVoicesData(recordHistory);
   return { imported: sampleEntries.length, removed: removedVoiceIds.size };
 }
 
-export async function saveVoiceSampleMetadataForVoice(
+async function saveVoiceSampleMetadataForVoiceImpl(
   voiceId: string,
   samplesRoot: string,
   displayName: string,
@@ -236,11 +238,19 @@ export async function saveVoiceSampleMetadataForVoice(
   const voice = current.voices.find((entry) => entry.id === voiceId);
   if (!voice) return;
 
-  const sample = await saveVoiceSampleMetadata(
-    samplesRoot,
-    voice.providerVoiceId,
-    displayName,
-    tags,
+  const sample = await history.capture('Edit voice sample details',
+    `voice-sample:${samplesRoot}:${voice.providerVoiceId}`,
+    async () => {
+      const entry = (await listVoiceSamples(samplesRoot)).find((sample) => sample.sample_file === voice.providerVoiceId);
+      if (!entry) throw new Error('The voice sample could not be found.');
+      return JSON.stringify(entry);
+    },
+    async (text) => {
+      if (!text) throw new Error('Missing voice sample metadata');
+      const entry = JSON.parse(text) as VoiceSampleEntry;
+      await saveVoiceSampleMetadata(samplesRoot, entry.sample_file, entry.display_name, entry.tags);
+    },
+    () => saveVoiceSampleMetadata(samplesRoot, voice.providerVoiceId, displayName, tags),
   );
 
   voices.set({
@@ -253,19 +263,22 @@ export async function saveVoiceSampleMetadataForVoice(
   await saveVoicesData();
 }
 
+export const saveVoiceSampleMetadataForVoice = historyAction('Edit voice sample details', saveVoiceSampleMetadataForVoiceImpl);
+
 /**
  * Save the current voices data to voices.json
  */
-export async function saveVoicesData(): Promise<void> {
+export async function saveVoicesData(recordHistory = true): Promise<void> {
   const root = get(bookRoot);
   if (!root) return;
 
   try {
     const data = get(voices);
-    await writeVoices(root, data);
+    if (!await writeVoices(root, data, recordHistory)) throw new Error('Could not save voices.json');
     console.log('[voices] Saved voices.json:', data.voices.length, 'voices,', data.assignments.length, 'assignments');
   } catch (err) {
     console.error('Error saving voices:', err);
+    throw err;
   }
 }
 
@@ -424,4 +437,3 @@ if (import.meta.hot) {
     _unsubBookRoot();
   });
 }
-

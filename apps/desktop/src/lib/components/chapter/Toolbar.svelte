@@ -45,6 +45,7 @@
   } from "$lib/services/characterGender";
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
+  import HistoryControls from '$lib/components/common/HistoryControls.svelte';
 
   const conflicts = derived(
     currentScript,
@@ -402,6 +403,7 @@
     </div>
   {/if}
   <div class="toolbar-slot"><slot /></div>
+  <HistoryControls />
   <div class="theme-switch-wrap" aria-label="Theme">
     <Sun size={16} aria-hidden="true" />
     <button
@@ -561,7 +563,6 @@
   }
 
   .theme-switch-wrap {
-    margin-left: auto;
     display: inline-flex;
     align-items: center;
     gap: 8px;

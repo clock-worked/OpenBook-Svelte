@@ -51,6 +51,13 @@ The map was reconciled against the live routes in `py_services/parser_router.py`
 
 ## Character Storage
 
+Chapter review (`POST /api/review-chapter`) learns descriptors only from assigned
+speaker lines. Narrator is excluded by its canonical name as well as the legacy
+`narrator` ID, including books where Narrator has a v3 GUID. Explicit non-speaker
+lines are also excluded. Review still confirms these lines, but does not harvest
+their descriptors or modify Narrator's character file. Previously saved character
+descriptors are not automatically removed.
+
 - The `characters/` folder (v3.0, one file per character, short-GUID identity) is the source of truth for character data — see `docs/schema_characters_v3.md`.
 - `/api/save` handles per-character files under `characters/` (dual-path, containment-checked like `/api/read-text`).
 
