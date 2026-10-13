@@ -22,18 +22,21 @@ npm run build   # vite build
 ### Python (`py_services`)
 
 ```
-python -m unittest test_parser_router test_jev_service test_import_boundaries test_character_store test_character_folder_migration openbook_parser.test_jev_verify openbook_parser.test_episode_decoder openbook_parser.test_closed_world_parser openbook_parser.test_character_folder_reader
+python -m unittest discover -p 'test_*.py'
 ```
 
-- `test_chapter_review_service` is local-only: needs spaCy 3.5 + `en_core_web_sm`; one test is skip-marked and the file is excluded from CI.
-- `openbook_parser/test_modernbooknlp_service.py` is local-only: needs the `booknlp` package; excluded from CI.
+`discover` picks up every `test_*.py` module automatically — a new test file needs no list update (CI runs the same command). Local-only suites use a `local_` prefix so discovery skips them:
+
+- `local_chapter_review_service` is local-only: needs spaCy 3.5 + `en_core_web_sm`; one test is skip-marked.
+- `openbook_parser/local_modernbooknlp_service.py` is local-only: needs the `booknlp` package.
 - A fresh worktree has no venv of its own — use the main checkout's environment or system Python.
 
-### Gotchas (Windows / PowerShell)
+### Gotchas
 
-- `2>&1 | Select-Object` makes a GREEN run report "Exited with code 1". Reliable form:
+- Edit the same file sequentially — parallel `edit` calls to one file can fail ("Could not find oldString") even with correct text.
+- (Windows/PowerShell) `2>&1 | Select-Object` makes a GREEN run report "Exited with code 1". Reliable form:
   `python -m unittest ... > out.txt 2>&1; echo EXIT=$LASTEXITCODE`.
-- `git worktree add` — pass `-q` to keep output clean.
+- (Windows/PowerShell) `git worktree add` — pass `-q` to keep output clean.
 
 ## Repo map
 

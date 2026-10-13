@@ -6,14 +6,14 @@ from unittest.mock import patch
 
 try:
     from .chapter_review_service import (
-        _modern_nominal_mentions,
+        modern_nominal_mentions,
         extract_nearby_descriptors,
         normalize_descriptor,
         review_chapter,
     )
 except ImportError:
     from chapter_review_service import (
-        _modern_nominal_mentions,
+        modern_nominal_mentions,
         extract_nearby_descriptors,
         normalize_descriptor,
         review_chapter,
@@ -31,7 +31,7 @@ class ChapterReviewServiceTests(unittest.TestCase):
         character = {"id": "alice", "name": "Alice", "aliases": []}
 
         self.assertEqual(
-            _modern_nominal_mentions(attribution, character),
+            modern_nominal_mentions(attribution, character),
             ["the cartographer"],
         )
 
@@ -44,7 +44,7 @@ class ChapterReviewServiceTests(unittest.TestCase):
         }
         character = {"id": "bob", "name": "Bob", "aliases": []}
 
-        self.assertEqual(_modern_nominal_mentions(attribution, character), [])
+        self.assertEqual(modern_nominal_mentions(attribution, character), [])
 
     def test_extracts_specific_and_generic_descriptors(self):
         text = 'The chubby mage smiled thinly. “Hello.”\nThe orc replied, “No.”'

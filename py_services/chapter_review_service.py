@@ -103,7 +103,7 @@ def _descriptor_predicate(chunk: Any) -> Any:
     return None
 
 
-def _modern_nominal_mentions(
+def modern_nominal_mentions(
     attribution: Dict[str, object],
     character: Optional[Dict[str, object]],
 ) -> List[object]:
@@ -317,7 +317,7 @@ def review_chapter(book_root: str, chapter_name: str) -> Dict[str, object]:
         source_values: Iterable[object] = [
             *(attribution.get("sourceDescriptors") or []),
             *(nested_attribution.get("sourceDescriptors") or []),
-            *_modern_nominal_mentions(attribution, character),
+            *modern_nominal_mentions(attribution, character),
             *extract_nearby_descriptors(raw_text, line.get("span"), line.get("text")),
         ] if can_learn else []
         learned: List[str] = []
