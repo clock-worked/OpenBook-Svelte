@@ -6,6 +6,7 @@ import { loadChapterCharactersData } from '$lib/services/chapterCharacterReposit
 import { defaultColors } from '$lib/theme/colors';
 import { bookCharacters } from '$lib/stores/bookCharacters';
 import { normalizeCharacterGender } from '$lib/services/characterGender';
+import { normalizeCharacterKey } from '$lib/services/characterIdentity';
 
 export const characters = writable<CharactersJson>({ formatVersion: '2.0', characters: [] });
 
@@ -13,10 +14,6 @@ let _chapterExtrasByName = new Map<string, CharacterConfig>();
 let _currentChapterRef: any = null;
 let _currentRoot: string | null = null;
 let _chapterLoadToken = 0;
-
-function normalizeCharacterKey(name: string): string {
-  return String(name || '').trim().toLowerCase();
-}
 
 function mergeNamesWithExtras(names: string[], resolve: (name: string) => string = (n) => n): string[] {
   const merged = new Set(names);
@@ -110,7 +107,7 @@ async function loadChapterExtras(ch: any, root: string | null): Promise<void> {
   }
 
   try {
-    const path = getCharactersPath(root, ch.title);
+    const path = getCharactersPath(ch.title);
     const data = await loadChapterCharactersData(root, path);
     if (token !== _chapterLoadToken) return;
     const next = new Map<string, CharacterConfig>();

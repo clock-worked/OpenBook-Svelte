@@ -65,6 +65,11 @@
 import { CHARACTER_GUID_PATTERN } from '$lib/types';
 import type { CharactersJson, DialogueJson, VoicesJson } from '$lib/types';
 import {
+    CROCKFORD_BASE32_ALPHABET,
+    normalizeCharacterKey,
+    sanitizeCharacterFileStem,
+} from '$lib/services/characterIdentity';
+import {
     deleteFile,
     getRootDirInfo,
     listCharacterFiles,
@@ -149,16 +154,13 @@ export async function migrateCharactersV1ToV3(
 const FORMAT_VERSION = '3.0';
 const NARRATOR_SENTINEL = 'narrator';
 const BACKUP_DIR_PARTS = ['_backups', 'character-v3'] as const;
-const INVALID_FILENAME_CHARS = /[/\\:*?"<>|\u0000-\u001f\u007f]/g;
-const CONSECUTIVE_DASHES = /-{2,}/g;
-const WINDOWS_RESERVED_NAMES = new Set([
-    'CON', 'PRN', 'AUX', 'NUL',
-    ...Array.from({ length: 9 }, (_, i) => `COM${i + 1}`),
-    ...Array.from({ length: 9 }, (_, i) => `LPT${i + 1}`),
-]);
-// Crockford base32, uppercase: 0-9 + A-Z minus I, L, O, U (32 symbols).
-// MUST stay identical to CROCKFORD_BASE32_ALPHABET in py_services/character_store.py.
-const CROCKFORD_BASE32_ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
+// Filename-sanitising constants (invalid chars, reserved names) and the
+// Crockford base32 alphabet now live in characterIdentity.ts, shared with
+// the store/migration/parse paths. Cross-language parity with
+// py_services/character_store.py is pinned by the vector fixture
+// tests/character_identity_vectors.json (asserted by
+// apps/desktop/.../characterIdentity.test.ts and
+// py_services/test_character_identity_parity.py).
 
 class MigrationAbort extends Error {}
 
@@ -168,10 +170,6 @@ function cleanText(value: unknown): string | null {
     if (typeof value !== 'string') return null;
     const cleaned = value.trim();
     return cleaned || null;
-}
-
-function lookupKey(value: unknown): string {
-    return String(value ?? '').trim().toLowerCase();
 }
 
 /** Conservative legacy-name variants that may already be central IDs
@@ -191,21 +189,13 @@ function idCandidates(value: string): string[] {
     return candidates;
 }
 
-/**
- * `characters/` filename stem (mirror of py_services/character_store.py
- * `sanitize_filename`): replace `\/:*?"<>|` + control chars with `-`,
- * collapse repeats, trim, cap 80 chars, guard Windows reserved names.
- * (The migration aborts on case-insensitive collisions, so no GUID
- * fallback naming is needed here.)
- */
-function sanitizeCharacterFileStem(title: string): string {
-    let text = String(title ?? '').replace(INVALID_FILENAME_CHARS, '-');
-    text = text.replace(CONSECUTIVE_DASHES, '-').trim().replace(/^-+|-+$/g, '');
-    text = text.slice(0, 80).replace(/-+$/g, '');
-    if (!text) return '-';
-    if (WINDOWS_RESERVED_NAMES.has(text.toUpperCase())) return `-${text}`;
-    return text;
-}
+// `sanitizeCharacterFileStem` (imported from characterIdentity) is the
+// byte-for-byte mirror of py_services/character_store.py `sanitize_filename`
+// (the migration aborts on case-insensitive collisions, so no GUID fallback
+// naming is needed here). Parity is pinned by the vector fixture
+// tests/character_identity_vectors.json — asserted on both sides by
+// apps/desktop/src/lib/services/__tests__/characterIdentity.test.ts and
+// py_services/test_character_identity_parity.py.
 
 function stripBom(text: string): string {
     return text.charCodeAt(0) === 0xfeff ? text.slice(1) : text;
@@ -302,14 +292,14 @@ type Resolver = (value: string) => string | null;
 
 function makeResolver(ids: Map<string, string>, names: Map<string, string>): Resolver {
     return (value: string): string | null => {
-        const key = lookupKey(value);
+        const key = normalizeCharacterKey(value);
         if (!key) return null;
         const byId = ids.get(key);
         if (byId) return byId;
         const byName = names.get(key);
         if (byName) return byName;
         for (const candidate of idCandidates(value)) {
-            const hit = ids.get(lookupKey(candidate));
+            const hit = ids.get(normalizeCharacterKey(candidate));
             if (hit) return hit;
         }
         return null;
@@ -366,7 +356,7 @@ function validateRecords(records: any[]): RecordValidation {
             issues.push(`record ${index} must have non-empty id and name`);
             return;
         }
-        const idKey = lookupKey(id);
+        const idKey = normalizeCharacterKey(id);
         const existing = ids.get(idKey);
         if (existing && existing !== id) {
             issues.push(`Duplicate character ID (case-insensitive): ${id}`);
@@ -377,7 +367,7 @@ function validateRecords(records: any[]): RecordValidation {
         for (const surface of surfaces) {
             const text = cleanText(surface);
             if (!text) continue;
-            const key = lookupKey(text);
+            const key = normalizeCharacterKey(text);
             const previous = names.get(key);
             if (previous && previous !== id) {
                 const clusterIds = ambiguous.get(key) ?? new Set<string>();
@@ -405,7 +395,7 @@ function validateRecords(records: any[]): RecordValidation {
         const name = cleanText(record?.name);
         if (!name) continue;
         const stem = sanitizeCharacterFileStem(name);
-        const key = lookupKey(stem);
+        const key = normalizeCharacterKey(stem);
         const titles = byStem.get(key) ?? [];
         titles.push(name);
         byStem.set(key, titles);
@@ -529,7 +519,7 @@ function walkRoster(payload: any, resolve: Resolver, remap: Record<string, strin
             next.push(entry); // left in place, unremapped
             return;
         }
-        const key = lookupKey(remap[id]);
+        const key = normalizeCharacterKey(remap[id]);
         if (seen.has(key)) return; // dedupe (house behavior of the legacy roster migrator)
         seen.add(key);
         next.push({ id: remap[id] });

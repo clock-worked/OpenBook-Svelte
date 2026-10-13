@@ -1,12 +1,12 @@
 <script lang="ts">
   import {
     applyLocalDialogueAiSuggestion,
-    jumpToLocalDialogueAiResult,
     localDialogueAiState,
     localDialogueAiVisibleResults,
     runLocalDialogueAiForCurrentChapter,
     updateLocalDialogueAiSettings,
   } from '$lib/stores/localDialogueAi';
+  import { conflictCursor } from '$lib/stores/selection';
 
   $: progress = $localDialogueAiState.progress;
   $: progressProcessed = Math.max(0, progress?.processedLines ?? 0);
@@ -128,7 +128,7 @@
               </span>
             </div>
             <div class="result-actions">
-              <button class="inline-btn" on:click={() => jumpToLocalDialogueAiResult(result.lineId)}>Jump</button>
+              <button class="inline-btn" on:click={() => conflictCursor.set(result.lineId)}>Jump</button>
               {#if result.outcome === 'suggestion' && result.suggestedCharacterName}
                 <button class="inline-btn primary" on:click={() => void applyLocalDialogueAiSuggestion(result)}>Apply</button>
               {/if}

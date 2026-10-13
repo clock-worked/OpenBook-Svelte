@@ -1,8 +1,5 @@
 import os
-import re
-import threading
 from datetime import datetime, timezone
-from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional
 
 import httpx
@@ -15,12 +12,20 @@ from api_models import (
     LocalDialogueAiResponse,
     LocalDialogueAiSummary,
 )
+from dialogue_ai_common import (
+    character_lookup as _character_lookup,
+    character_name as _character_name,
+    count_target_lines,
+    load_local_env_file as _load_local_env_file,
+    normalize_character as _normalize_character,
+    normalize_model_answer as _normalize_model_answer,
+)
 from dialogue_ai_context import build_assist_context
+from run_status import RunStatusTracker
 
 
 DEFAULT_ENDPOINT = "http://127.0.0.1:1234/api/v1/chat"
 DEFAULT_MODEL_NAME = "primal-hunter-llama-3-8b-instruct"
-ENV_FILE_PATH = Path(__file__).with_name(".env")
 SYSTEM_PROMPT = (
     "You are an expert dialogue attribution AI. Read the metadata and the text context. "
     "The target dialogue is wrapped in <quote> tags. Output ONLY the characterId of the speaker, or 'None'. "
@@ -34,61 +39,11 @@ SYSTEM_PROMPT = (
 )
 
 
-def _load_local_env_file() -> None:
-    if not ENV_FILE_PATH.exists():
-        return
-
-    for raw_line in ENV_FILE_PATH.read_text(encoding="utf-8").splitlines():
-        line = raw_line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        key, value = line.split("=", 1)
-        key = key.strip()
-        value = value.strip()
-        if len(value) >= 2 and value[0] == value[-1] and value[0] in {'"', "'"}:
-            value = value[1:-1]
-        if key:
-            os.environ.setdefault(key, value)
-
-
 def _local_model_config() -> tuple[str, str]:
     _load_local_env_file()
     endpoint = os.getenv("OPENBOOK_LOCAL_AI_ENDPOINT", DEFAULT_ENDPOINT).strip() or DEFAULT_ENDPOINT
     model = os.getenv("OPENBOOK_LOCAL_AI_MODEL", DEFAULT_MODEL_NAME).strip() or DEFAULT_MODEL_NAME
     return endpoint, model
-
-
-def _normalize_character(value: Any) -> str:
-    text = str(value or "").strip().lower().replace("_", " ").replace("-", " ")
-    text = re.sub(r"[^a-z0-9 ]+", " ", text)
-    return re.sub(r"\s+", " ", text).strip()
-
-
-def _character_name(character_id: Optional[str], characters: List[DialogueAiCharacterRef]) -> Optional[str]:
-    normalized = _normalize_character(character_id)
-    if not normalized:
-        return None
-    for character in characters:
-        if normalized in {
-            _normalize_character(character.characterId),
-            _normalize_character(character.name),
-            *(_normalize_character(alias) for alias in character.aliases),
-        }:
-            return character.name
-    return str(character_id).replace("_", " ").replace("-", " ").title()
-
-
-def _character_lookup(
-    chapter_characters: List[DialogueAiCharacterRef],
-    book_characters: List[DialogueAiCharacterRef],
-) -> Dict[str, DialogueAiCharacterRef]:
-    lookup: Dict[str, DialogueAiCharacterRef] = {}
-    for character in [*book_characters, *chapter_characters]:
-        for value in [character.characterId, character.name, *character.aliases]:
-            normalized = _normalize_character(value)
-            if normalized:
-                lookup[normalized] = character
-    return lookup
 
 
 def _extract_content(value: Any) -> str:
@@ -138,80 +93,24 @@ def _extract_model_output(payload: Any) -> str:
     return ""
 
 
-def _normalize_model_answer(raw_output: str) -> str:
-    answer = str(raw_output or "").strip()
-    answer = re.sub(r"^```(?:text)?\s*", "", answer, flags=re.IGNORECASE)
-    answer = re.sub(r"\s*```$", "", answer)
-    answer = answer.splitlines()[0].strip() if answer else ""
-    answer = re.sub(r"^(?:character(?:id)?|speaker)\s*:\s*", "", answer, flags=re.IGNORECASE)
-    return answer.strip(" `\"'.,;:")
-
-
 class LocalDialogueAiService:
     def __init__(self, get_book_root: Callable[[], str]):
         self._get_book_root = get_book_root
-        self._status_lock = threading.Lock()
-        self._run_statuses: Dict[str, Dict[str, Any]] = {}
+        self._status = RunStatusTracker()
 
     def prepare_status(self, request: LocalDialogueAiRequest) -> None:
         request_id = str(request.request_id or "").strip()
         if not request_id:
             return
-        total_lines = sum(
-            1
-            for line in request.dialogue.lines
-            if line.characterId not in (None, "", "narrator")
-        )
-        if request.max_lines is not None and request.max_lines >= 0:
-            total_lines = min(total_lines, request.max_lines)
-        self._update_status(
+        total_lines = count_target_lines(request.dialogue.lines, request.max_lines)
+        self._status.prepare(
             request_id,
-            status="queued",
-            processed_lines=0,
             total_lines=total_lines,
             chapter_path=request.chapter_path,
         )
 
     def get_status(self, request_id: str) -> Optional[DialogueAiAssistStatus]:
-        with self._status_lock:
-            payload = self._run_statuses.get(str(request_id or "").strip())
-            return DialogueAiAssistStatus(**payload) if payload else None
-
-    def _update_status(
-        self,
-        request_id: Optional[str],
-        *,
-        status: str,
-        processed_lines: int,
-        total_lines: int,
-        chapter_path: Optional[str] = None,
-        error: Optional[str] = None,
-        started_at: Optional[str] = None,
-    ) -> None:
-        request_id = str(request_id or "").strip()
-        if not request_id:
-            return
-
-        now = datetime.now(timezone.utc).isoformat()
-        total = max(0, int(total_lines or 0))
-        processed = min(max(0, int(processed_lines or 0)), total) if total else 0
-        ratio = processed / total if total else (1.0 if status == "completed" else 0.0)
-        with self._status_lock:
-            previous = self._run_statuses.get(request_id, {})
-            self._run_statuses[request_id] = {
-                "requestId": request_id,
-                "status": status,
-                "processedLines": processed,
-                "totalLines": total,
-                "progressRatio": ratio,
-                "startedAt": started_at or previous.get("startedAt") or now,
-                "updatedAt": now,
-                "chapterPath": chapter_path or previous.get("chapterPath"),
-                "error": error,
-                "logDirectory": None,
-            }
-            while len(self._run_statuses) > 64:
-                self._run_statuses.pop(next(iter(self._run_statuses)), None)
+        return self._status.get(request_id)
 
     def run(self, request: LocalDialogueAiRequest) -> LocalDialogueAiResponse:
         assist_context = build_assist_context(
@@ -226,7 +125,7 @@ class LocalDialogueAiService:
         request_id = str(request.request_id or "").strip() or None
         started_at = datetime.now(timezone.utc).isoformat()
         total_lines = len(targets)
-        self._update_status(
+        self._status.update(
             request_id,
             status="running",
             processed_lines=0,
@@ -257,7 +156,7 @@ class LocalDialogueAiService:
                 results.append(result)
                 if result.outcome == "error" and result.error:
                     errors.append(f"line {result.lineId}: {result.error}")
-                self._update_status(
+                self._status.update(
                     request_id,
                     status="running",
                     processed_lines=processed,
@@ -275,7 +174,7 @@ class LocalDialogueAiService:
                 skippedNarratorLines=assist_context["skippedNarratorLines"],
                 modelCalls=len(results),
             )
-            self._update_status(
+            self._status.update(
                 request_id,
                 status="completed",
                 processed_lines=total_lines,
@@ -285,7 +184,7 @@ class LocalDialogueAiService:
             )
             return LocalDialogueAiResponse(summary=summary, results=results, errors=errors)
         except Exception as exc:
-            self._update_status(
+            self._status.update(
                 request_id,
                 status="failed",
                 processed_lines=len(results),

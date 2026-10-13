@@ -26,10 +26,14 @@ import json
 import os
 import re
 import secrets
-import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, Union
+
+try:
+    from .safe_io import write_json_atomic as _write_json_atomic
+except ImportError:
+    from safe_io import write_json_atomic as _write_json_atomic
 
 #: Character file format version (independent of the dialogue.json line).
 FORMAT_VERSION = "3.0"
@@ -188,16 +192,6 @@ def load_characters(book_root: Union[str, Path]) -> Tuple[List[Dict[str, Any]], 
 # ---------------------------------------------------------------------------
 # Writing
 # ---------------------------------------------------------------------------
-
-
-def _write_json_atomic(path: Path, payload: Dict[str, Any]) -> None:
-    """Atomic write: temp file in the same directory + os.replace."""
-    with tempfile.NamedTemporaryFile(
-        "w", encoding="utf-8", dir=path.parent, delete=False
-    ) as handle:
-        json.dump(payload, handle, indent=2, ensure_ascii=False)
-        temporary_path = handle.name
-    os.replace(temporary_path, path)
 
 
 def write_character(book_root: Union[str, Path], record: Dict[str, Any]) -> str:

@@ -66,7 +66,7 @@ export async function handleLineAudioClick(
     // Play the audio
     const audioPath = getAudioPath(ch.title, characterName, lineId, true);
     console.log('[Audio] Playing audio from:', audioPath);
-    await playLine(lineId, characterName, ch.title, audioPath, async (lineId, charId) => {
+    await playLine({ lineId, characterName, chapterTitle: ch.title, audioPath }, async (lineId, charId) => {
       const charName = await getCharacterNameFromId(charId);
       return getAudioPathIfExists(ch.title, charName, lineId).then(path => {
         if (!path) return null;
@@ -182,7 +182,7 @@ export async function handleGenerateLineAudio(
     if (result.audioPath) {
       // Use cache-busting to force browser to load the new audio
       const freshAudioPath = getAudioPath(ch.title, line.characterName, lineId, true);
-      await playLine(lineId, line.characterName, ch.title, freshAudioPath, async (lineId, charName) => {
+      await playLine({ lineId, characterName: line.characterName, chapterTitle: ch.title, audioPath: freshAudioPath }, async (lineId, charName) => {
         const charName2 = await getCharacterNameFromId(charName);
         // Use cache-busting for freshly generated audio
         return getAudioPath(ch.title, charName2, lineId, true);

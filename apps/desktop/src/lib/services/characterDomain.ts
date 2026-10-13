@@ -9,15 +9,20 @@ import {
     writeDialogue,
     writeVoices,
 } from '$lib/services/fs';
+import {
+    CROCKFORD_BASE32_ALPHABET,
+    normalizeCharacterKey,
+    sanitizeCharacterFileStem,
+} from './characterIdentity';
 
 export interface ChapterRemapTarget {
     title: string;
     scriptPath?: string;
 }
 
-export function normalizeCharacterKey(name: string): string {
-    return String(name || '').trim().toLowerCase();
-}
+// Canonical key form lives in characterIdentity (single copy); re-exported
+// so existing importers keep their path.
+export { normalizeCharacterKey };
 
 export function normalizeAliasList(names: string[]): string[] {
     const seen = new Set<string>();
@@ -57,11 +62,7 @@ export function resolveCanonicalCharacterName(data: CharactersJson, inputName: s
 
 // === v3 GUID identity (docs/schema_characters_v3.md §GUID spec) ===
 
-/** Crockford base32 alphabet: 0-9 + A-Z minus I, L, O, U (32 symbols). Local to this file by design. */
-// 32-symbol Crockford base32, uppercase — MUST match CHARACTER_GUID_PATTERN
-// (types.ts) and CROCKFORD_BASE32_ALPHABET in py_services/character_store.py.
-// Normative source: docs/schema_characters_v3.md §GUID spec.
-const CROCKFORD_BASE32_ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
+// CROCKFORD_BASE32_ALPHABET is imported from characterIdentity (single copy).
 
 function encodeCrockfordBase32(bytes: Uint8Array): string {
     let bits = 0;
@@ -99,30 +100,14 @@ export function mintCharacterGuid(existing: Iterable<string>): string {
 
 // === v3 filename rules (docs/schema_characters_v3.md §Filename rules) ===
 
-const WINDOWS_RESERVED_FILE_NAMES = new Set([
-    'CON', 'PRN', 'AUX', 'NUL',
-    'COM1', 'COM2', 'COM3', 'COM4', 'COM5', 'COM6', 'COM7', 'COM8', 'COM9',
-    'LPT1', 'LPT2', 'LPT3', 'LPT4', 'LPT5', 'LPT6', 'LPT7', 'LPT8', 'LPT9',
-]);
-
 /**
- * Derive the `characters/` basename for a title:
- * replace `\/:*?"<>|` + control chars with `-`, collapse repeats, trim, cap
- * 80 chars, guard Windows reserved names. The filename is a cache of the
- * title, not identity — the caller resolves case-collisions (GUID fallback).
+ * Derive the full `characters/` filename for a title: the canonical stem
+ * (characterIdentity, Python-parity) + `.json`. The filename is a cache of
+ * the title, not identity — the caller resolves case-collisions (GUID
+ * fallback).
  */
 export function sanitizeCharacterFileName(title: string): string {
-    let name = String(title || '')
-        .trim()
-        .replace(/[/\\:*?"<>|\u0000-\u001F]/g, '-')
-        .replace(/-+/g, '-')
-        .replace(/^-+|-+$/g, '');
-    if (name.length > 80) {
-        name = name.slice(0, 80).replace(/-+$/g, '');
-    }
-    if (!name) name = 'character';
-    if (WINDOWS_RESERVED_FILE_NAMES.has(name.toUpperCase())) name = `-${name}`;
-    return `${name}.json`;
+    return `${sanitizeCharacterFileStem(title)}.json`;
 }
 
 // === Reference remaps (exact-string GUID substitution, invariant IN-5) ===
@@ -137,7 +122,7 @@ export async function remapCharacterIdInDialogueFiles(
 
     for (const chapter of chapterList) {
         try {
-            const dialoguePath = getDialoguePath(root, chapter.title);
+            const dialoguePath = getDialoguePath(chapter.title);
             const dialogueData: any = await readOptionalDialogue(dialoguePath);
             if (!dialogueData || !Array.isArray(dialogueData.lines)) continue;
 
@@ -231,7 +216,7 @@ export async function remapCharacterGuidInChapterRosters(
     for (const title of chapterTitles) {
         if (!title) continue;
         try {
-            const charactersPath = getCharactersPath(root, title);
+            const charactersPath = getCharactersPath(title);
             const raw: any = await readOptionalCharacters(charactersPath);
             if (!raw || !Array.isArray(raw.characters)) continue;
 

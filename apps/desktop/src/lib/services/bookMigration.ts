@@ -35,7 +35,6 @@ import { CHARACTER_GUID_PATTERN } from '$lib/types';
 import {
     getCharactersPath,
     getDialoguePath,
-    getRootDirInfo,
     listCharacterFiles,
     readCharacterFolder,
     readDialogueForChapter,
@@ -263,7 +262,7 @@ async function planChapters(chapters: ChapterStatus[], root: string): Promise<Ch
     const plans: ChapterPlan[] = [];
     for (const chapter of chapters) {
         const dialogue = chapter.parsed === false ? null : await readDialogueForChapter(chapter.title);
-        const rosterRaw = await readOptionalCharacters(getCharactersPath(root, chapter.title));
+        const rosterRaw = await readOptionalCharacters(getCharactersPath(chapter.title));
         const dialogueStale = dialogue != null && (!isVersionedDialogue(dialogue) || collectStaleDialogueRefs(dialogue).length > 0);
         plans.push({
             chapter,
@@ -333,10 +332,10 @@ async function backupPreImages(
     const backupDir = `${BACKUP_DIR_PARTS.join('/')}/${backupTimestamp()}`;
     for (const plan of touched) {
         if (plan.dialogue && plan.dialogueStale) {
-            await writeDialogue(`${backupDir}/${getDialoguePath(root, plan.chapter.title)}`, plan.dialogue as DialogueJson);
+            await writeDialogue(`${backupDir}/${getDialoguePath(plan.chapter.title)}`, plan.dialogue as DialogueJson);
         }
         if (plan.rosterRaw && (plan.dialogueStale || plan.rosterStale.length > 0)) {
-            await writeCharacters(`${backupDir}/${getCharactersPath(root, plan.chapter.title)}`, plan.rosterRaw);
+            await writeCharacters(`${backupDir}/${getCharactersPath(plan.chapter.title)}`, plan.rosterRaw);
         }
     }
     report.backupDir = backupDir;
@@ -392,7 +391,7 @@ async function rewriteRoster(
         formatVersion: '3.0',
         characters: [...next.values()].map((character) => ({ ...character, id: character.guid as string })),
     };
-    const ok = await persistChapterCharactersData(root, getCharactersPath(root, plan.chapter.title), roster, {
+    const ok = await persistChapterCharactersData(root, getCharactersPath(plan.chapter.title), roster, {
         bypassV3Guard: true, // the migration is the one flow that writes v3 rosters
     });
     if (ok) report.dialogue.rostersRewritten += 1;
@@ -444,28 +443,17 @@ async function migrateDialogueFiles(options: MigrateBookOptions, report: BookMig
             if (!normalized) throw new Error('Could not normalize dialogue.json');
             const rawText = plan.chapter.path ? await readTextFile(plan.chapter.path) : null;
             const versioned = plan.dialogue && isVersionedDialogue(plan.dialogue) ? plan.dialogue : null;
-            let written = false;
-            await saveDialogueFromNormalized({
+            const written = await saveDialogueFromNormalized({
                 normalized,
                 chapter: { title: plan.chapter.title, path: plan.chapter.path },
-                root,
                 rawText,
                 unknownThreshold: options.unknownThreshold,
                 unknownSpeakerLabel,
-                // Character creation already happened book-wide above; in a v3 book this bootstrap is a no-op anyway.
-                ensureCentralCharactersForNames: async () => {},
-                ensureCharacterNameToIdMap: async () => buildNameToIdMap(await readFolderCharacters(root)),
-                normalizeAttribution,
-                writeDialogue: async (path, data) => {
-                    written = await writeDialogue(path, data);
-                    return written;
-                },
-                getRootDirInfo,
-                getBackendRootAbsolutePath: options.getBackendRootAbsolutePath,
-                apiSave: async (relativePath, content) => {
-                    const response = await options.apiSave(relativePath, content);
-                    written = written || response.ok;
-                    return response;
+                repo: {
+                    // Character creation already happened book-wide above; in a v3 book this bootstrap is a no-op anyway.
+                    ensureCentralCharactersForNames: async () => {},
+                    ensureCharacterNameToIdMap: async () => buildNameToIdMap(await readFolderCharacters(root)),
+                    normalizeAttribution,
                 },
                 reviewed: Boolean(versioned?.reviewed),
                 reviewedAt: versioned?.reviewedAt ?? null,

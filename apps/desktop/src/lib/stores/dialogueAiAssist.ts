@@ -1,11 +1,6 @@
-import { derived, get, writable } from 'svelte/store';
-
-import type { UnifiedLine } from '$lib/components/chapter/tools/types';
-import { conflictCursor } from '$lib/stores/selection';
 import { addBookCharacterAlias } from '$lib/stores/bookCharacters';
 import type {
   DialogueAiAssistLineResult,
-  DialogueAiAssistStatus,
   DialogueAiAssistSummary,
 } from '$lib/services/apiContracts';
 import {
@@ -13,36 +8,38 @@ import {
   getDialogueAiAssistStatus,
   runDialogueAiAssist,
 } from '$lib/services/dialogueAi';
+import {
+  buildDialogueAiPayload,
+  type DialogueAiAssistChapterInput,
+  type DialogueAiAssistController,
+  type DialogueAiAssistRunArgs,
+} from '$lib/services/dialogueAiPayload';
+import {
+  createProviderAssistStore,
+  type AiAssistBaseState,
+  type AiAssistUiResult,
+  type ProviderAssistApi,
+} from '$lib/stores/providerAssist';
 
-type DialogueAiAssistDisplayResult = DialogueAiAssistLineResult & {
-  uiStatus?: 'pending' | 'applied' | 'error';
-  uiMessage?: string | null;
-};
+// Shared payload helpers live in the neutral payload module; re-exported here
+// for existing import sites.
+export {
+  buildDialogueAiPayload,
+  countReviewableDialogueLines,
+  formatDialogueAiReasonCodes,
+  formatDialogueAiToolTrace,
+} from '$lib/services/dialogueAiPayload';
+export type {
+  DialogueAiAssistChapterInput,
+  DialogueAiAssistController,
+} from '$lib/services/dialogueAiPayload';
 
-type DialogueAiAssistTone = 'info' | 'success' | 'error';
+type DialogueAiAssistDisplayResult = AiAssistUiResult<DialogueAiAssistLineResult>;
 
-export type DialogueAiAssistChapterInput = {
-  chapterPath: string;
-  chapterTitle: string;
-  rawText: string;
-  normalizedScript: { lines: UnifiedLine[]; stats: any };
-};
-
-export type DialogueAiAssistController = {
-  getChapterInput: () => DialogueAiAssistChapterInput | null;
-  ensureAndAssignCharacters: (lineIds: number[], characterName: string) => Promise<void>;
-};
-
-type DialogueAiAssistState = {
-  running: boolean;
-  error: string | null;
-  statusMessage: string | null;
-  statusTone: DialogueAiAssistTone;
-  summary: DialogueAiAssistSummary | null;
-  results: DialogueAiAssistDisplayResult[];
-  requestId: string | null;
-  progress: DialogueAiAssistStatus | null;
-};
+type DialogueAiAssistState = AiAssistBaseState<
+  DialogueAiAssistSummary,
+  DialogueAiAssistLineResult
+>;
 
 const initialState: DialogueAiAssistState = {
   running: false,
@@ -54,44 +51,6 @@ const initialState: DialogueAiAssistState = {
   requestId: null,
   progress: null,
 };
-
-const dialogueAiAssistStateStore = writable<DialogueAiAssistState>(initialState);
-
-let controller: DialogueAiAssistController | null = null;
-let activeRunToken = 0;
-let progressPollTimer: ReturnType<typeof setTimeout> | null = null;
-
-export const dialogueAiAssistState = {
-  subscribe: dialogueAiAssistStateStore.subscribe,
-};
-
-export const dialogueAiAssistVisibleResults = derived(
-  dialogueAiAssistStateStore,
-  (state) => state.results.filter((result) => {
-    if (result.uiStatus === 'error') return true;
-    if (result.uiStatus === 'applied') return false;
-    return result.disposition !== 'auto_apply';
-  })
-);
-
-function stopProgressPolling(): void {
-  if (progressPollTimer !== null) {
-    clearTimeout(progressPollTimer);
-    progressPollTimer = null;
-  }
-}
-
-function updateAiAssistResult(
-  lineId: number,
-  updates: Partial<DialogueAiAssistDisplayResult>
-): void {
-  dialogueAiAssistStateStore.update((state) => ({
-    ...state,
-    results: state.results.map((result) => (
-      result.lineId === lineId ? { ...result, ...updates } : result
-    )),
-  }));
-}
 
 function summarizeAiRun(args: {
   summary: DialogueAiAssistSummary;
@@ -114,79 +73,19 @@ function summarizeAiRun(args: {
   return `AI assist complete. ${parts.join(', ')}.`;
 }
 
-export function buildDialogueAiPayload(input: DialogueAiAssistChapterInput) {
-  return {
-    formatVersion: '2.0' as const,
-    chapterId: input.chapterTitle,
-    lines: input.normalizedScript.lines.map((line) => ({
-      id: line.id,
-      characterId: line.characterName
-        ? line.characterName.toLowerCase().trim().replace(/\s+/g, '_')
-        : null,
-      text: line.text,
-      span: line.span,
-      metadata: {
-        emotion: null,
-        intensity: 1,
-        pacing: null,
-        prefix: null,
-        customTags: {},
-      },
-      candidates: (line.candidates || []).map((candidate) => ({
-        characterId: candidate.name.toLowerCase().trim().replace(/\s+/g, '_'),
-        confidence: candidate.confidence,
-      })),
-      isConflict: line.isConflict,
-      isReturning: !!line.isReturning,
-      attribution: line.attribution
-        ? {
-            confidence: line.attribution.confidence,
-            topCandidateConfidence: line.attribution.topCandidateConfidence,
-            marginToSecond: line.attribution.marginToSecond,
-            misattributionRisk: line.attribution.misattributionRisk,
-            resolutionStatus: line.attribution.resolutionStatus,
-            thresholdUsed: line.attribution.thresholdUsed,
-            sourceAlias: line.attribution.sourceAlias,
-            sourceCandidates: line.attribution.sourceCandidates,
-            sourceDescriptors: line.attribution.sourceDescriptors,
-            contextGender: line.attribution.contextGender,
-            contextGenderCue: line.attribution.contextGenderCue,
-            genderConflict: line.attribution.genderConflict,
-            parserBackend: line.attribution.parserBackend,
-            decisionTrace: line.attribution.decisionTrace,
-            candidates: (line.attribution.candidates || []).map((candidate) => ({
-              characterId: candidate.characterId ?? null,
-              name: candidate.name,
-              confidence: candidate.confidence,
-              reasons: candidate.reasons,
-            })),
-          }
-        : undefined,
-    })),
-    stats: {
-      totalLines:
-        input.normalizedScript.stats?.totalLines ?? input.normalizedScript.lines.length,
-      conflicts:
-        input.normalizedScript.stats?.conflicts
-        ?? input.normalizedScript.lines.filter((line) => line.isConflict).length,
-      characterBreakdown: input.normalizedScript.stats?.characterBreakdown ?? {},
-    },
-  };
-}
-
-export function countReviewableDialogueLines(input: DialogueAiAssistChapterInput): number {
-  return input.normalizedScript.lines.filter((line) => {
-    const characterName = String(line.characterName ?? '').trim().toLowerCase();
-    return characterName.length > 0 && characterName !== 'narrator';
-  }).length;
-}
-
-async function autoApplyAiResults(
-  results: DialogueAiAssistDisplayResult[]
+/**
+ * Gemini auto-apply: `keep_existing` dispositions confirm the current
+ * assignment; `reassign_existing` dispositions are grouped by suggested
+ * character and skipped when the suggestion already matches the line.
+ */
+async function autoApplyGeminiResults(
+  results: DialogueAiAssistDisplayResult[],
+  api: ProviderAssistApi<DialogueAiAssistLineResult>
 ): Promise<{ reassignedCount: number; confirmedCount: number }> {
-  if (!controller) return { reassignedCount: 0, confirmedCount: 0 };
+  const active = api.getController();
+  if (!active) return { reassignedCount: 0, confirmedCount: 0 };
 
-  const chapterInput = controller.getChapterInput();
+  const chapterInput = active.getChapterInput();
   if (!chapterInput) return { reassignedCount: 0, confirmedCount: 0 };
 
   const linesById = new Map(
@@ -200,7 +99,7 @@ async function autoApplyAiResults(
 
     if (result.action === 'keep_existing') {
       confirmedCount += 1;
-      updateAiAssistResult(result.lineId, {
+      api.updateResult(result.lineId, {
         uiStatus: 'applied',
         uiMessage: 'Confirmed existing assignment.',
       });
@@ -220,7 +119,7 @@ async function autoApplyAiResults(
 
     if (currentName === suggestedName) {
       confirmedCount += 1;
-      updateAiAssistResult(result.lineId, {
+      api.updateResult(result.lineId, {
         uiStatus: 'applied',
         uiMessage: 'Suggested character already matched the current assignment.',
       });
@@ -234,11 +133,11 @@ async function autoApplyAiResults(
 
   let reassignedCount = 0;
   for (const [characterName, lineIds] of groupedAssignments.entries()) {
-    await controller.ensureAndAssignCharacters(lineIds, characterName);
+    await active.ensureAndAssignCharacters(lineIds, characterName);
     reassignedCount += lineIds.length;
 
     for (const lineId of lineIds) {
-      updateAiAssistResult(lineId, {
+      api.updateResult(lineId, {
         uiStatus: 'applied',
         uiMessage: `Applied ${characterName} automatically.`,
       });
@@ -248,178 +147,70 @@ async function autoApplyAiResults(
   return { reassignedCount, confirmedCount };
 }
 
-async function pollDialogueAiAssistStatus(
-  requestId: string,
-  runToken: number
-): Promise<void> {
-  try {
-    const status = await getDialogueAiAssistStatus(requestId);
+const assist = createProviderAssistStore<
+  DialogueAiAssistRunArgs,
+  DialogueAiAssistSummary,
+  DialogueAiAssistLineResult,
+  DialogueAiAssistState
+>({
+  client: {
+    createRequestId: createDialogueAiAssistRequestId,
+    run: (args) => runDialogueAiAssist(args),
+    getStatus: getDialogueAiAssistStatus,
+  },
+  initialState,
+  visibleResultsFilter: (result) => {
+    if (result.uiStatus === 'error') return true;
+    if (result.uiStatus === 'applied') return false;
+    return result.disposition !== 'auto_apply';
+  },
+  buildRunArgs: ({ requestId, chapterInput }) => ({
+    requestId,
+    chapterPath: chapterInput.chapterPath,
+    chapterText: chapterInput.rawText,
+    dialogue: buildDialogueAiPayload(chapterInput),
+  }),
+  autoApply: (results, api) => autoApplyGeminiResults(results, api),
+  completionTone: (summary) => (summary.errorCount > 0 ? 'info' : 'success'),
+  completionMessage: (summary, counts) =>
+    summarizeAiRun({
+      summary,
+      reassignedCount: counts.reassignedCount,
+      confirmedCount: counts.confirmedCount,
+    }),
+  failureMessage: 'AI assist failed.',
+  completedProgressPatch: (summary, progress) => ({
+    logDirectory: summary.logDirectory ?? progress.logDirectory,
+  }),
+});
 
-    if (runToken !== activeRunToken) return;
+export const dialogueAiAssistState = {
+  subscribe: assist.stateStore.subscribe,
+};
 
-    dialogueAiAssistStateStore.update((state) => {
-      if (state.requestId !== requestId) return state;
-      return {
-        ...state,
-        progress: status,
-      };
-    });
-
-    if (status.status === 'queued' || status.status === 'running') {
-      progressPollTimer = setTimeout(() => {
-        void pollDialogueAiAssistStatus(requestId, runToken);
-      }, 350);
-    }
-  } catch {
-    if (runToken !== activeRunToken) return;
-
-    progressPollTimer = setTimeout(() => {
-      void pollDialogueAiAssistStatus(requestId, runToken);
-    }, 500);
-  }
-}
+export const dialogueAiAssistVisibleResults = assist.visibleResults;
 
 export function registerDialogueAiAssistController(
   nextController: DialogueAiAssistController
 ): () => void {
-  controller = nextController;
-
-  return () => {
-    if (controller === nextController) {
-      controller = null;
-    }
-  };
+  return assist.registerController(nextController);
 }
 
 export function resetDialogueAiAssistState(): void {
-  activeRunToken += 1;
-  stopProgressPolling();
-  dialogueAiAssistStateStore.set(initialState);
+  assist.resetState();
 }
 
-export async function runDialogueAiAssistForCurrentChapter(): Promise<void> {
-  const chapterInput = controller?.getChapterInput() ?? null;
-  if (!controller || !chapterInput) return;
-
-  const currentState = get(dialogueAiAssistStateStore);
-  if (currentState.running) return;
-
-  const requestId = createDialogueAiAssistRequestId();
-  const startedAt = new Date().toISOString();
-  const runToken = ++activeRunToken;
-  const totalReviewableLines = countReviewableDialogueLines(chapterInput);
-
-  stopProgressPolling();
-  dialogueAiAssistStateStore.set({
-    ...initialState,
-    running: true,
-    requestId,
-    progress: {
-      requestId,
-      status: 'queued',
-      processedLines: 0,
-      totalLines: totalReviewableLines,
-      progressRatio: 0,
-      startedAt,
-      updatedAt: startedAt,
-      chapterPath: chapterInput.chapterPath,
-      error: null,
-      logDirectory: null,
-    },
-  });
-
-  void pollDialogueAiAssistStatus(requestId, runToken);
-
-  try {
-    const response = await runDialogueAiAssist({
-      requestId,
-      chapterPath: chapterInput.chapterPath,
-      chapterText: chapterInput.rawText,
-      dialogue: buildDialogueAiPayload(chapterInput),
-    });
-
-    if (runToken !== activeRunToken) return;
-
-    dialogueAiAssistStateStore.update((state) => ({
-      ...state,
-      summary: response.summary,
-      results: response.results.map((result) => ({
-        ...result,
-        uiStatus: 'pending',
-        uiMessage: null,
-      })),
-    }));
-
-    const { reassignedCount, confirmedCount } = await autoApplyAiResults(
-      get(dialogueAiAssistStateStore).results
-    );
-
-    if (runToken !== activeRunToken) return;
-
-    dialogueAiAssistStateStore.update((state) => ({
-      ...state,
-      running: false,
-      statusTone: response.summary.errorCount > 0 ? 'info' : 'success',
-      statusMessage: summarizeAiRun({
-        summary: response.summary,
-        reassignedCount,
-        confirmedCount,
-      }),
-      progress: state.progress
-        ? {
-            ...state.progress,
-            status: 'completed',
-            processedLines: response.summary.scannedLines,
-            totalLines: response.summary.scannedLines,
-            progressRatio: response.summary.scannedLines > 0 ? 1 : 0,
-            updatedAt: new Date().toISOString(),
-            logDirectory: response.summary.logDirectory ?? state.progress.logDirectory,
-          }
-        : state.progress,
-    }));
-  } catch (error) {
-    if (runToken !== activeRunToken) return;
-
-    dialogueAiAssistStateStore.update((state) => ({
-      ...state,
-      running: false,
-      error: error instanceof Error ? error.message : String(error),
-      statusTone: 'error',
-      statusMessage: 'AI assist failed.',
-      progress: state.progress
-        ? {
-            ...state.progress,
-            status: 'failed',
-            error: error instanceof Error ? error.message : String(error),
-            updatedAt: new Date().toISOString(),
-          }
-        : state.progress,
-    }));
-  } finally {
-    if (runToken === activeRunToken) {
-      stopProgressPolling();
-    }
-  }
+export function runDialogueAiAssistForCurrentChapter(): Promise<void> {
+  return assist.runForCurrentChapter();
 }
 
 export async function applyDialogueAiCharacterSuggestion(
   result: DialogueAiAssistDisplayResult
 ): Promise<void> {
-  const characterName = result.suggestedCharacterName?.trim();
-  if (!controller || !characterName) return;
-
-  try {
-    await controller.ensureAndAssignCharacters([result.lineId], characterName);
-    updateAiAssistResult(result.lineId, {
-      uiStatus: 'applied',
-      uiMessage: `Applied ${characterName}.`,
-    });
-  } catch (error) {
-    updateAiAssistResult(result.lineId, {
-      uiStatus: 'error',
-      uiMessage: error instanceof Error ? error.message : String(error),
-    });
-  }
+  await assist.applyCharacterSuggestion(
+    result,
+    result.suggestedCharacterName?.trim() || null
+  );
 }
 
 export async function applyDialogueAiAliasSuggestion(
@@ -430,34 +221,14 @@ export async function applyDialogueAiAliasSuggestion(
 
   try {
     await addBookCharacterAlias(aliasProposal.characterName, aliasProposal.alias);
-    updateAiAssistResult(result.lineId, {
+    assist.updateResult(result.lineId, {
       uiStatus: 'applied',
       uiMessage: `Added alias ${aliasProposal.alias} to ${aliasProposal.characterName}.`,
     });
   } catch (error) {
-    updateAiAssistResult(result.lineId, {
+    assist.updateResult(result.lineId, {
       uiStatus: 'error',
       uiMessage: error instanceof Error ? error.message : String(error),
     });
   }
-}
-
-export function jumpToDialogueAiResult(lineId: number): void {
-  conflictCursor.set(lineId);
-}
-
-export function formatDialogueAiReasonCodes(reasonCodes: string[]): string {
-  return reasonCodes.map((code) => code.replace(/_/g, ' ')).join(', ');
-}
-
-export function formatDialogueAiToolTrace(
-  toolTrace: Array<{ tool: string; status: string; note?: string | null }>
-): string {
-  return toolTrace
-    .map((entry) => (
-      entry.note
-        ? `${entry.tool} (${entry.status}: ${entry.note})`
-        : `${entry.tool} (${entry.status})`
-    ))
-    .join(', ');
 }

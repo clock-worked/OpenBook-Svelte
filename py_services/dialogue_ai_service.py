@@ -3,7 +3,6 @@ import hashlib
 import logging
 import os
 import re
-import threading
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple
@@ -21,6 +20,11 @@ from api_models import (
     DialogueAiNewCharacterProposal,
     DialogueAiToolTraceEntry,
 )
+from dialogue_ai_common import (
+    count_target_lines,
+    load_local_env_file as _load_local_env_file,
+    normalize_character as _normalize_character_lookup,
+)
 from dialogue_ai_context import build_assist_context
 from dialogue_ai_enrichment import (
     build_candidate_cards,
@@ -28,10 +32,10 @@ from dialogue_ai_enrichment import (
     extract_attribution_signals,
     resolve_surface_identity,
 )
+from run_status import RunStatusTracker
 
 
 DEFAULT_MODEL_NAME = "gemini-3-flash-preview"
-ENV_FILE_PATH = Path(__file__).with_name(".env")
 AI_CACHE_DIR = Path(__file__).with_name(".cache") / "dialogue_ai"
 AI_LOG_DIR = Path(__file__).with_name("logs") / "dialogue_ai"
 UNKNOWN_CHARACTER_NAME = "Unknown"
@@ -86,29 +90,6 @@ logging.getLogger("httpx").setLevel(logging.WARNING)
 logging.getLogger("httpcore").setLevel(logging.WARNING)
 
 
-def _load_local_env_file() -> None:
-    if not ENV_FILE_PATH.exists():
-        return
-
-    for raw_line in ENV_FILE_PATH.read_text(encoding="utf-8").splitlines():
-        line = raw_line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-
-        key, value = line.split("=", 1)
-        normalized_key = key.strip()
-        normalized_value = value.strip()
-        if not normalized_key:
-            continue
-        if (
-            len(normalized_value) >= 2
-            and normalized_value[0] == normalized_value[-1]
-            and normalized_value[0] in {'"', "'"}
-        ):
-            normalized_value = normalized_value[1:-1]
-        os.environ.setdefault(normalized_key, normalized_value)
-
-
 def _get_model_name() -> str:
     configured = (
         os.getenv("OPENBOOK_DIALOGUE_AI_MODEL")
@@ -161,13 +142,6 @@ def _slugify_fragment(value: Optional[str]) -> str:
     text = re.sub(r"[^a-z0-9]+", "-", text)
     text = re.sub(r"-+", "-", text).strip("-")
     return text or "chapter"
-
-
-def _normalize_character_lookup(value: Optional[str]) -> str:
-    text = str(value or "").strip().lower().replace("_", " ").replace("-", " ")
-    text = re.sub(r"[^a-z0-9 ]+", " ", text)
-    text = re.sub(r"\s+", " ", text).strip()
-    return text
 
 
 def _strip_title_prefix(value: str) -> str:
@@ -894,78 +868,22 @@ def _format_dialogue_line_context(
 class DialogueAiAssistService:
     def __init__(self, get_book_root: Callable[[], str]):
         self._get_book_root = get_book_root
-        self._status_lock = threading.Lock()
-        self._run_statuses: Dict[str, Dict[str, Any]] = {}
+        self._status = RunStatusTracker()
 
     def prepare_status(self, request: DialogueAiAssistRequest) -> None:
         request_id = str(request.request_id or "").strip() or None
         if request_id is None:
             return
 
-        total_lines = sum(
-            1
-            for line in request.dialogue.lines
-            if line.characterId not in (None, "", "narrator")
-        )
-        self._update_status(
+        total_lines = count_target_lines(request.dialogue.lines)
+        self._status.prepare(
             request_id,
-            status="queued",
-            processed_lines=0,
             total_lines=total_lines,
             chapter_path=request.chapter_path,
         )
 
     def get_status(self, request_id: str) -> Optional[DialogueAiAssistStatus]:
-        with self._status_lock:
-            payload = self._run_statuses.get(str(request_id or "").strip())
-            if not payload:
-                return None
-            return DialogueAiAssistStatus(**payload)
-
-    def _update_status(
-        self,
-        request_id: Optional[str],
-        *,
-        status: str,
-        processed_lines: int,
-        total_lines: int,
-        chapter_path: Optional[str] = None,
-        error: Optional[str] = None,
-        log_directory: Optional[str] = None,
-        started_at: Optional[str] = None,
-    ) -> None:
-        normalized_request_id = str(request_id or "").strip()
-        if not normalized_request_id:
-            return
-
-        now = datetime.now(timezone.utc).isoformat()
-        normalized_total = max(int(total_lines or 0), 0)
-        normalized_processed = max(int(processed_lines or 0), 0)
-
-        if normalized_total > 0:
-            normalized_processed = min(normalized_processed, normalized_total)
-            progress_ratio = normalized_processed / normalized_total
-        else:
-            progress_ratio = 1.0 if status == "completed" else 0.0
-
-        with self._status_lock:
-            previous = self._run_statuses.get(normalized_request_id, {})
-            self._run_statuses[normalized_request_id] = {
-                "requestId": normalized_request_id,
-                "status": status,
-                "processedLines": normalized_processed,
-                "totalLines": normalized_total,
-                "progressRatio": progress_ratio,
-                "startedAt": started_at or previous.get("startedAt") or now,
-                "updatedAt": now,
-                "chapterPath": chapter_path or previous.get("chapterPath"),
-                "error": error,
-                "logDirectory": log_directory or previous.get("logDirectory"),
-            }
-
-            while len(self._run_statuses) > 64:
-                oldest_request_id = next(iter(self._run_statuses))
-                self._run_statuses.pop(oldest_request_id, None)
+        return self._status.get(request_id)
 
     def run(self, request: DialogueAiAssistRequest) -> DialogueAiAssistResponse:
         book_root = self._get_book_root()
@@ -981,7 +899,7 @@ class DialogueAiAssistService:
         chapter_slug = _slugify_fragment(Path(str(request.chapter_path or request.dialogue.chapterId or "chapter")).stem)
         run_log_directory = AI_LOG_DIR / chapter_slug / _timestamp_token()
         run_log_directory.mkdir(parents=True, exist_ok=True)
-        self._update_status(
+        self._status.update(
             request_id,
             status="running",
             processed_lines=0,
@@ -1006,7 +924,7 @@ class DialogueAiAssistService:
                 if result.disposition == "error" and result.error:
                     errors.append(f"line {result.lineId}: {result.error}")
 
-                self._update_status(
+                self._status.update(
                     request_id,
                     status="running",
                     processed_lines=index,
@@ -1028,7 +946,7 @@ class DialogueAiAssistService:
                 modelCalls=int(run_state["modelCalls"]),
                 logDirectory=str(run_log_directory.resolve()),
             )
-            self._update_status(
+            self._status.update(
                 request_id,
                 status="completed",
                 processed_lines=total_lines,
@@ -1039,7 +957,7 @@ class DialogueAiAssistService:
             )
             return DialogueAiAssistResponse(summary=summary, results=results, errors=errors)
         except Exception as exc:
-            self._update_status(
+            self._status.update(
                 request_id,
                 status="failed",
                 processed_lines=len(results),
