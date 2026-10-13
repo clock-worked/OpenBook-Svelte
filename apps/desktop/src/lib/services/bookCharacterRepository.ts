@@ -1,29 +1,23 @@
-import type { Character, CharacterConfig, CharacterFile, CharactersJson } from '$lib/types';
+import type { Character, CharacterConfig, CharacterFile, CharactersJson, ScriptJson } from '$lib/types';
 import { CHARACTER_GUID_PATTERN } from '$lib/types';
 import {
     getBookCharactersPath,
     getCharactersPath,
     getDialoguePath,
     getScriptPath,
-    listCharacterFiles,
-    readCharacterFile,
     readCharacterFolder,
-    readCharacters,
     readDialogue,
-    readScript,
+    readFileAsJson,
     writeCentralCharacters,
     writeCharacterFile,
-    writeCharacters,
 } from '$lib/services/fs';
 import { getRawCharacterFileDoc } from '$lib/services/characterFileMapping';
-// v3 folder read path: `mapCharacterFile` + raw-doc cache live in
-// characterFileMapping.ts (fs-independent, so the fs-mocked test matrix keeps
-// the real round-trip logic), `readCharacterFolder` in fs.ts (readCentralCharacters
-// falls back to it). Re-exported here so existing importers keep their paths.
-export { mapCharacterFile } from '$lib/services/characterFileMapping';
-export { readCharacterFolder } from '$lib/services/fs';
 import { normalizeCharacterGender } from '$lib/services/characterGender';
-import { normalizeCharacterKey } from '$lib/services/characterDomain';
+import {
+    isCharacterGuid,
+    normalizeCharacterKey,
+    sanitizeCharacterFileStem,
+} from '$lib/services/characterIdentity';
 import { loadChapterCharactersData } from '$lib/services/chapterCharacterRepository';
 // Lane 4 (parallel): pinned interface — (root, chapterNames) → V3MigrationResult
 // { ok, abortReason?, changedFiles, createdCharacterFiles, retiredLegacy, remap, counts }.
@@ -37,33 +31,17 @@ export interface ChapterCharacterContext {
 
 // The v3 folder read path (raw-document cache, `mapCharacterFile`,
 // `readCharacterFolder`) lives in fs.ts so that `readCentralCharacters` can
-// fall back to the folder without a circular import. It is re-exported above.
+// fall back to the folder without a circular import.
+// `readCharacterFolder` is re-exported for the remaining importer that
+// still resolves it through this module (the service test matrix); new
+// importers should use $lib/services/fs directly.
+export { readCharacterFolder } from '$lib/services/fs';
 
-function isV3Guid(value: unknown): value is string {
-    return typeof value === 'string' && CHARACTER_GUID_PATTERN.test(value.trim());
-}
-
-// === Filename rules (docs/schema_characters_v3.md §Filename rules) ===
-
-const WINDOWS_RESERVED_NAMES = new Set([
-    'CON', 'PRN', 'AUX', 'NUL',
-    ...Array.from({ length: 9 }, (_, i) => `COM${i + 1}`),
-    ...Array.from({ length: 9 }, (_, i) => `LPT${i + 1}`),
-]);
-
-/**
- * `characters/<sanitize(title)>.json` — the filename is a cache of the title,
- * not identity. All lookups go by GUID from file contents, never filenames.
- */
-export function sanitizeCharacterFileName(title: string): string {
-    let name = String(title ?? '')
-        .replace(/[\\/:*?"<>|\u0000-\u001f]/g, '-')
-        .replace(/-+/g, '-')
-        .trim();
-    if (name.length > 80) name = name.slice(0, 80).replace(/-+$/g, '');
-    if (name && WINDOWS_RESERVED_NAMES.has(name.toUpperCase())) name = `-${name}`;
-    return name || 'character';
-}
+// Filename rules (docs/schema_characters_v3.md §Filename rules) live in
+// characterIdentity.sanitizeCharacterFileStem. Re-exported under the legacy
+// name for consumers that build the full filename themselves
+// (stores/bookCharacters.ts appends `.json`).
+export { sanitizeCharacterFileStem as sanitizeCharacterFileName } from '$lib/services/characterIdentity';
 
 // === Per-file persistence (replaces the whole-file merge) ===
 
@@ -127,7 +105,7 @@ export async function writeCharacterRecord(root: string, record: Character, reco
         updatedAt: new Date().toISOString(),
     };
 
-    return writeCharacterFile(root, `${sanitizeCharacterFileName(normalized.name)}.json`, file, recordHistory);
+    return writeCharacterFile(root, `${sanitizeCharacterFileStem(normalized.name)}.json`, file);
 }
 
 // === Derived stats (dialogue-driven) ===
@@ -167,15 +145,15 @@ async function collectDerivedStats(
     for (const chapter of chapterList) {
         if (chapter.parsed === false) continue;
         try {
-            const dialogue = await readDialogue(getDialoguePath(root, chapter.title));
+            const dialogue = await readDialogue(getDialoguePath(chapter.title));
             if (dialogue?.lines) {
                 for (const line of dialogue.lines) recordUsage((line as any).characterId, chapter.title);
                 continue;
             }
 
             // Legacy fallback for books that have not yet migrated to dialogue.json.
-            const scriptPath: string = chapter.scriptPath ?? getScriptPath(root, chapter.title);
-            const script = await readScript(scriptPath);
+            const scriptPath: string = chapter.scriptPath ?? getScriptPath(chapter.title);
+            const script = await readFileAsJson<ScriptJson>(scriptPath);
             for (const line of script?.lines ?? []) recordUsage((line as any).chosenSpeaker, chapter.title);
         } catch {
         }
@@ -241,7 +219,7 @@ export async function syncMissingBookCharacterDefaults(
     if (!chapterList.length) return null;
 
     // Folder mode ⇔ the records carry v3 GUIDs (Tier 1 / post-migration load).
-    const isFolderMode = rawData.characters.some((character) => isV3Guid(character.guid));
+    const isFolderMode = rawData.characters.some((character) => isCharacterGuid(character.guid));
     if (isFolderMode) {
         return syncFolderCharacterStats(root, rawData, chapterList);
     }
@@ -330,9 +308,9 @@ export async function loadBookCharactersData(
     }
 
     // Tier 2 (v2): characters.json present, folder absent/empty.
-    const legacyPath = getBookCharactersPath(root);
+    const legacyPath = getBookCharactersPath();
     console.log('[bookCharacters] No v3 folder; checking legacy file:', legacyPath);
-    const legacyRaw = await readCharacters(legacyPath);
+    const legacyRaw = await readFileAsJson<CharactersJson>(legacyPath);
 
     if (legacyRaw && Array.isArray(legacyRaw.characters)) {
         // Ruling R9: auto-migrate on open. The migration must never break
@@ -371,35 +349,6 @@ export async function loadBookCharactersData(
     // Tier 3: fresh book — derive from chapters.
     console.log('[bookCharacters] Fallback: deriving from chapters');
     return deriveCharactersFromChapters(root, chapterList);
-}
-
-/**
- * @deprecated The whole-file merge is gone in v3: books with a characters/
- * folder persist one file per record via `writeCharacterRecord`. This shim
- * exists only so the existing store call site (stores/bookCharacters.ts,
- * rewired by Lane 7) keeps compiling and behaving correctly meanwhile:
- * - any record with a v3 GUID → per-file writes (folder mode; root
- *   characters.json is never touched, invariant IN-2)
- * - no GUIDs at all → whole-file characters.json write (today's v2 behavior
- *   for unmigrated books)
- */
-export async function persistBookCharactersData(root: string, data: CharactersJson): Promise<void> {
-    const folderRecords = data.characters.filter((character) => isV3Guid(character.guid));
-
-    if (folderRecords.length > 0) {
-        for (const record of folderRecords) {
-            const ok = await writeCharacterRecord(root, record);
-            if (!ok) console.warn('[bookCharacters] Failed to write character file:', record.name);
-        }
-        return;
-    }
-
-    const path = getBookCharactersPath(root);
-    try {
-        await writeCharacters(path, data);
-    } catch (err) {
-        console.error('Error persisting book characters:', err);
-    }
 }
 
 // === v2 readers (legacy tolerance) ===
@@ -446,7 +395,7 @@ export async function deriveCharactersFromChapters(
     for (const chapter of chapterList) {
         if (chapter.parsed === false) continue;
         try {
-            const chars = await loadChapterCharactersData(root, getCharactersPath(root, chapter.title));
+            const chars = await loadChapterCharactersData(root, getCharactersPath(chapter.title));
             if (chars && Array.isArray(chars.characters)) {
                 for (const character of chars.characters) {
                     const normalized = normalizeCharacterConfig(character as any);
@@ -477,8 +426,8 @@ export async function deriveCharactersFromChapters(
             }
 
             if (chapter.parsed) {
-                const scriptPath: string = chapter.scriptPath ?? getScriptPath(root, chapter.title);
-                const script = await readScript(scriptPath);
+                const scriptPath: string = chapter.scriptPath ?? getScriptPath(chapter.title);
+                const script = await readFileAsJson<ScriptJson>(scriptPath);
                 if (!script) continue;
 
                 for (const line of script.lines) {
@@ -514,8 +463,8 @@ export async function deriveCharactersFromChapters(
     for (const chapter of chapterList) {
         try {
             if (!chapter.parsed) continue;
-            const scriptPath: string = chapter.scriptPath ?? getScriptPath(root, chapter.title);
-            const script = await readScript(scriptPath);
+            const scriptPath: string = chapter.scriptPath ?? getScriptPath(chapter.title);
+            const script = await readFileAsJson<ScriptJson>(scriptPath);
             if (!script) continue;
 
             for (const line of script.lines) {

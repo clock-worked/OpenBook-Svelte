@@ -1,6 +1,7 @@
 import type { DialogueJson, ScriptJson } from '$lib/types';
 import type { UnifiedLine } from '$lib/components/chapter/tools/types';
 import { computeReturningFlags, isDialogueSpan } from '$lib/services/dialogueReturning';
+import { writeDialogue } from '$lib/services/fs';
 import { alignChapterLineSpans } from './chapterPresentation';
 
 type ChapterLike = {
@@ -140,34 +141,37 @@ export async function loadChapterContent(params: {
     };
 }
 
-export async function saveDialogueFromNormalized(params: {
-    normalized: { lines: UnifiedLine[]; stats: any };
-    chapter: ChapterLike;
-    root: string;
-    rawText: string | null;
-    unknownThreshold: number;
-    unknownSpeakerLabel: string;
+/**
+ * The book's character-resolution services the save pipeline needs, bundled
+ * into one `repo` object so this function's interface stays narrow: the
+ * transport (fs `writeDialogue`, which already does the File System API →
+ * backend fallback internally) is internal, and callers supply only the
+ * book's resolution callbacks.
+ */
+export type ChapterSaveRepo = {
     ensureCentralCharactersForNames: (names: string[]) => Promise<void>;
     ensureCharacterNameToIdMap: () => Promise<Map<string, string>>;
     normalizeAttribution: NormalizedAttributionFn;
-    writeDialogue: (path: string, data: DialogueJson) => Promise<boolean>;
-    getRootDirInfo: () => { name: string; hasHandle: boolean };
-    getBackendRootAbsolutePath: () => string | null;
-    apiSave: (relativePath: string, content: DialogueJson) => Promise<Response>;
+};
+
+export async function saveDialogueFromNormalized(params: {
+    normalized: { lines: UnifiedLine[]; stats: any };
+    chapter: ChapterLike;
+    rawText: string | null;
+    unknownThreshold: number;
+    unknownSpeakerLabel: string;
+    repo: ChapterSaveRepo;
     reviewed?: boolean;
     reviewedAt?: string | null;
-}): Promise<void> {
+}): Promise<boolean> {
     const scr = params.normalized;
     const ch = params.chapter;
     const linesWithReturning = applyReturningFlags(scr.lines, params.rawText);
 
-    const rootInfo = params.getRootDirInfo();
     console.log('[ChapterView] Saving changes...', {
         format: 'v3.2',
         numLines: linesWithReturning.length,
         chapter: ch.title,
-        root: params.root,
-        rootDirHandle: rootInfo,
     });
 
     const allNames = new Set<string>();
@@ -178,8 +182,8 @@ export async function saveDialogueFromNormalized(params: {
         }
     }
 
-    await params.ensureCentralCharactersForNames(Array.from(allNames));
-    const nameToIdMap = await params.ensureCharacterNameToIdMap();
+    await params.repo.ensureCentralCharactersForNames(Array.from(allNames));
+    const nameToIdMap = await params.repo.ensureCharacterNameToIdMap();
 
     const characterBreakdown: Record<string, number> = {};
     for (const line of linesWithReturning) {
@@ -202,7 +206,7 @@ export async function saveDialogueFromNormalized(params: {
         reviewedLineCount: params.reviewed ? linesWithReturning.length : undefined,
         lines: linesWithReturning.map((line) => {
             const isNonSpeaker = line.isNonSpeaker === true;
-            const attribution = params.normalizeAttribution(
+            const attribution = params.repo.normalizeAttribution(
                 line.attribution || null,
                 (line.candidates || []).map((candidate) => ({
                     name: candidate.name,
@@ -280,11 +284,13 @@ export async function saveDialogueFromNormalized(params: {
     const relativePath = `${ch.title}/dialogue.json`;
     console.log('[ChapterView] Writing dialogue to relative path:', relativePath);
 
-    const savedLocally = await params.writeDialogue(relativePath, dialoguePayload);
-    if (savedLocally) {
-        console.log('[ChapterView] ✓ Successfully saved dialogue.json via File System API');
-        return;
+    // writeDialogue (fs) already performs the File System API → backend
+    // fallback internally, so one call is the entire transport.
+    const saved = await writeDialogue(relativePath, dialoguePayload);
+    if (saved) {
+        console.log('[ChapterView] ✓ Successfully saved dialogue.json');
+    } else {
+        console.error('[ChapterView] ✗ Failed to save dialogue.json');
     }
-
-    throw new Error(`Could not save ${relativePath}. Your changes have not been saved.`);
+    return saved;
 }

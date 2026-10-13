@@ -1,12 +1,12 @@
 <script lang="ts">
   import {
     applyJevDialogueAiSuggestion,
-    jumpToJevDialogueAiResult,
     jevDialogueAiState,
     jevDialogueAiVisibleResults,
     jevVerifySummary,
     runJevDialogueAiForCurrentChapter,
   } from '$lib/stores/jevDialogueAi';
+  import { conflictCursor } from '$lib/stores/selection';
 
   $: progress = $jevDialogueAiState.progress;
   $: progressProcessed = Math.max(0, progress?.processedLines ?? 0);
@@ -91,7 +91,7 @@
               </span>
             </div>
             <div class="result-actions">
-              <button class="inline-btn" on:click={() => jumpToJevDialogueAiResult(result.lineId)}>Jump</button>
+              <button class="inline-btn" on:click={() => conflictCursor.set(result.lineId)}>Jump</button>
               {#if result.outcome === 'suggestion' && result.suggestedCharacterName}
                 <button class="inline-btn primary" on:click={() => void applyJevDialogueAiSuggestion(result)}>Apply</button>
               {/if}

@@ -3,8 +3,20 @@ import { get, writable } from 'svelte/store';
 import { assignCharacterToLines } from '../../review/reviewHandlers';
 import { normalizeAttribution, normalizeScriptData } from '../chapterNormalization';
 import { loadChapterContent, saveDialogueFromNormalized } from '../chapterPersistence';
+import { writeDialogue } from '$lib/services/fs';
 import type { UnifiedLine } from '../../types';
 import type { DialogueJson } from '$lib/types';
+
+// The save pipeline now calls fs writeDialogue directly (the transport is
+// internal to chapterPersistence), so stub just that one export and keep the
+// rest of the fs module real (reviewHandlers uses getCharactersPath from it).
+vi.mock('$lib/services/fs', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('$lib/services/fs')>();
+    return {
+        ...actual,
+        writeDialogue: vi.fn(async (_path: string, _data: DialogueJson) => true),
+    };
+});
 
 describe('non-speaker role assignment', () => {
     it('clears the non-speaker flag and retains the chosen role through save and reload', async () => {
@@ -24,19 +36,17 @@ describe('non-speaker role assignment', () => {
         expect(rebuild).toHaveBeenCalledOnce();
         expect(scheduleSave).toHaveBeenCalledOnce();
 
-        const writeDialogue = vi.fn(async (_path: string, _data: DialogueJson) => true);
         const rawText = `\u201c${line.text}\u201d`;
         await saveDialogueFromNormalized({
-            normalized: get(script), chapter: { title: 'Test chapter' }, root: 'test-root',
+            normalized: get(script), chapter: { title: 'Test chapter' },
             rawText, unknownThreshold: 0.62, unknownSpeakerLabel: 'Unknown',
-            ensureCentralCharactersForNames: async () => {},
-            ensureCharacterNameToIdMap: async () => new Map([['catherine', 'CATHERINE_ID']]),
-            normalizeAttribution, writeDialogue,
-            getRootDirInfo: () => ({ name: 'test-root', hasHandle: true }),
-            getBackendRootAbsolutePath: () => null,
-            apiSave: vi.fn(),
+            repo: {
+                ensureCentralCharactersForNames: async () => {},
+                ensureCharacterNameToIdMap: async () => new Map([['catherine', 'CATHERINE_ID']]),
+                normalizeAttribution,
+            },
         });
-        const saved = writeDialogue.mock.calls[0][1];
+        const saved = vi.mocked(writeDialogue).mock.calls[0][1];
         expect(saved.lines[0]).toMatchObject({ characterId: 'CATHERINE_ID', isNonSpeaker: false });
         const reloaded = await normalizeScriptData(saved, {
             root: 'test-root', unknownThreshold: 0.62,

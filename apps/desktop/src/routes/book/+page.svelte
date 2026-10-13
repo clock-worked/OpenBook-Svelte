@@ -12,10 +12,7 @@
   import {
     bookCharacters,
     removeBookCharacters,
-    setBookCharacterColor,
-    setBookCharacterProvider,
-    setBookCharacterVoiceId,
-    setBookCharacterVoiceMeta,
+    upsertBookCharacter,
     refreshCharacterManifestStats,
     forceRefreshBookCharacters,
     syncAssignmentsFromVoicesJson,
@@ -431,9 +428,9 @@
       await unassignVoiceFromCharacter(characterId);
       
       // Also clear from character data for backward compatibility
-      await setBookCharacterProvider(characterName, null);
-      await setBookCharacterVoiceId(characterName, '');
-      await setBookCharacterVoiceMeta(characterName, null);
+      await upsertBookCharacter(characterName, { provider: null });
+      await upsertBookCharacter(characterName, { voiceId: '' });
+      await upsertBookCharacter(characterName, { voiceMeta: null });
       return;
     }
     
@@ -445,15 +442,17 @@
       await assignVoiceToCharacter(characterId, voiceId);
       
       // Also update character data for backward compatibility
-      await setBookCharacterProvider(characterName, voice.provider);
-      await setBookCharacterVoiceId(characterName, voice.providerVoiceId);
+      await upsertBookCharacter(characterName, { provider: voice.provider });
+      await upsertBookCharacter(characterName, { voiceId: voice.providerVoiceId });
       
       // Set voice metadata
-      await setBookCharacterVoiceMeta(characterName, {
-        name: voice.displayName,
-        previewUrl: voice.previewUrl || null,
-        provider: voice.provider,
-        fetchedAt: new Date().toISOString()
+      await upsertBookCharacter(characterName, {
+        voiceMeta: {
+          name: voice.displayName,
+          previewUrl: voice.previewUrl || null,
+          provider: voice.provider,
+          fetchedAt: new Date().toISOString()
+        }
       });
       
       console.log(`[book route] Assigned ${voice.displayName} to ${characterName}`);
@@ -761,7 +760,7 @@
                                 alpha={1.0}
                                 on:select={async (e) => {
                                   const original = e.detail.color ? opaqueHexToRgba(e.detail.color, 1.0) : null;
-                                  await setBookCharacterColor(it.character.name, original);
+                                  await upsertBookCharacter(it.character.name, { color: original });
                                   close();
                                 }}
                               />
@@ -902,7 +901,7 @@
                         alpha={1.0}
                         on:select={async (e) => {
                           const original = e.detail.color ? opaqueHexToRgba(e.detail.color, 1.0) : null;
-                          await setBookCharacterColor(it.character.name, original);
+                          await upsertBookCharacter(it.character.name, { color: original });
                           close();
                         }}
                       />

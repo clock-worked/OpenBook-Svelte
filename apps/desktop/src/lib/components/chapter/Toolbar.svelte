@@ -15,7 +15,7 @@
   import {
     getScriptPath,
     listChaptersFromBackend,
-    readScript,
+    readFileAsJson,
     scanChapters,
     selectBookDirectory,
     triggerStatsUpdate,
@@ -90,7 +90,7 @@
     const ch: any = get(currentChapter);
     if (!ch || !ch.scriptPath) return;
     try {
-      const data = (await readScript(ch.scriptPath)) as ScriptJson | null;
+      const data = await readFileAsJson<ScriptJson>(ch.scriptPath);
       if (!data) {
         conflictCursor.set(null);
         return;
@@ -136,7 +136,7 @@
       const scriptPath =
         result.ok && result.scriptPath
           ? result.scriptPath
-          : getScriptPath(root, ch.title);
+          : getScriptPath(ch.title);
       console.debug("[Regenerate] Wrote script to", {
         scriptPath,
         counts: {

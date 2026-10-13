@@ -100,7 +100,7 @@ async function autoAdvanceToNext(
       const audioPath = await getAudioPathAsync(line.id, characterName, getAudioPath);
       console.log(`[audio] Audio path for line ${line.id}:`, audioPath);
       if (audioPath) {
-        await playLine(line.id, characterName, state.currentChapterTitle, audioPath, getAudioPath);
+        await playLine({ lineId: line.id, characterName, chapterTitle: state.currentChapterTitle, audioPath }, getAudioPath);
         return;
       }
     }
@@ -186,16 +186,21 @@ export async function calculateTotalDuration(
   return totalDuration;
 }
 
+export interface PlayLineArgs {
+  lineId: number;
+  characterName: string;
+  chapterTitle: string;
+  audioPath: string;
+}
+
 /**
  * Play audio for a specific dialogue line
  */
 export async function playLine(
-  lineId: number,
-  characterName: string,
-  chapterTitle: string,
-  audioPath: string,
+  args: PlayLineArgs,
   getAudioPath?: (lineId: number, characterName: string) => string | null | Promise<string | null>
 ): Promise<void> {
+  const { lineId, characterName, chapterTitle, audioPath } = args;
   console.log('[audio] playLine called:', { lineId, characterName, chapterTitle, audioPath });
 
   const state = get(audioState);
@@ -390,7 +395,7 @@ export async function next(
       const characterName = await getCharacterNameFromId(line.chosenSpeaker);
       const audioPath = await getAudioPathAsync(line.id, characterName, getAudioPath);
       if (audioPath) {
-        await playLine(line.id, characterName, state.currentChapterTitle, audioPath, getAudioPath);
+        await playLine({ lineId: line.id, characterName, chapterTitle: state.currentChapterTitle, audioPath }, getAudioPath);
         return;
       }
     }
@@ -418,7 +423,7 @@ export async function previous(
       const characterName = await getCharacterNameFromId(line.chosenSpeaker);
       const audioPath = await getAudioPathAsync(line.id, characterName, getAudioPath);
       if (audioPath) {
-        await playLine(line.id, characterName, state.currentChapterTitle, audioPath, getAudioPath);
+        await playLine({ lineId: line.id, characterName, chapterTitle: state.currentChapterTitle, audioPath }, getAudioPath);
         return;
       }
     }
@@ -446,7 +451,7 @@ export async function nextSpeaker(
       const characterName = await getCharacterNameFromId(line.chosenSpeaker);
       const audioPath = await getAudioPathAsync(line.id, characterName, getAudioPath);
       if (audioPath) {
-        await playLine(line.id, characterName, state.currentChapterTitle, audioPath, getAudioPath);
+        await playLine({ lineId: line.id, characterName, chapterTitle: state.currentChapterTitle, audioPath }, getAudioPath);
         return;
       }
     }
@@ -474,7 +479,7 @@ export async function previousSpeaker(
       const characterName = await getCharacterNameFromId(line.chosenSpeaker);
       const audioPath = await getAudioPathAsync(line.id, characterName, getAudioPath);
       if (audioPath) {
-        await playLine(line.id, characterName, state.currentChapterTitle, audioPath, getAudioPath);
+        await playLine({ lineId: line.id, characterName, chapterTitle: state.currentChapterTitle, audioPath }, getAudioPath);
         return;
       }
     }

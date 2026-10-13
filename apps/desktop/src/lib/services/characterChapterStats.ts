@@ -1,14 +1,11 @@
 import type { Character } from '$lib/types';
+import { normalizeCharacterKey } from '$lib/services/characterIdentity';
 
 /**
  * Pure chapter-statistics helpers (Lane 7). No store/fs imports: the panel
  * feeds it already-loaded data so the same derivation powers both the list
  * line-count badges and the CharacterDetails card stats (never copied twice).
  */
-
-function normalizeCharacterKey(name: string): string {
-  return String(name ?? '').trim().toLowerCase();
-}
 
 /** The identity a line carries: a GUID in v3 dialogue, a name/alias in v1 scripts. */
 export interface ChapterLineIdentity {

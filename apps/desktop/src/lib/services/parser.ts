@@ -1,16 +1,16 @@
 import { get } from 'svelte/store';
 import { parserHints } from '$lib/stores/settings';
-import type { Line, DialogueJson, DialogueLine, Character, LineCandidate, ParserHints } from '$lib/types';
-import { readTextFile, getRootDirHandle, readCentralCharacters, writeCentralCharacters, listCharacterFiles } from '$lib/services/fs';
+import type { Line, DialogueJson, DialogueLine, Character, LineCandidate, ParserHints, CharactersJson } from '$lib/types';
+import { readTextFile, writeCentralCharacters, writeDialogue } from '$lib/services/fs';
 import { computeReturningFlags } from '$lib/services/dialogueReturning';
 import { buildIdToNameMap, buildNameToIdMap } from '$lib/stores/characters';
-import { API_ENDPOINTS, apiPostJson, apiPostVoid, apiRequestJson, toApiClientError } from '$lib/services/apiClient';
+import { API_ENDPOINTS, apiPostJson, toApiClientError } from '$lib/services/apiClient';
+import { resolveBookCharacters } from '$lib/services/chapterCharacterRepository';
+import { ALWAYS_BLOCKED_CHARACTER_NAMES, buildUniqueCharacterId, normalizeCharacterKey } from '$lib/services/characterIdentity';
 import type { JevVerifySummary } from '$lib/services/apiContracts';
 import { setJevVerifySummary } from '$lib/stores/jevDialogueAi';
 import { buildClosedWorldParserOptions } from '$lib/services/parserCatalog';
 import { history } from '$lib/services/history';
-
-const ALWAYS_BLOCKED_CHARACTER_NAMES = new Set(['he', 'she', 'as', 'it', 'that', 'they', 'them', 'the', 'this', 'these', 'those']);
 
 interface ParserOutput {
   script: Line[];
@@ -25,12 +25,8 @@ function nameToId(name: string): string {
   return name.toLowerCase().trim();
 }
 
-function normalizeCharacterToken(name: string): string {
-  return String(name || '').toLowerCase().trim();
-}
-
 function isBlockedCharacterToken(name: string): boolean {
-  return ALWAYS_BLOCKED_CHARACTER_NAMES.has(normalizeCharacterToken(name));
+  return ALWAYS_BLOCKED_CHARACTER_NAMES.has(normalizeCharacterKey(name));
 }
 
 function stripNumericSlugSuffix(name: string): string {
@@ -91,7 +87,7 @@ function collapseMappedCandidates(
   const collapsed = new Map<string, RankedParserCandidate & { order: number }>();
 
   rawCandidates.forEach((candidate, index) => {
-    const normalizedName = normalizeCharacterToken(candidate.name);
+    const normalizedName = normalizeCharacterKey(candidate.name);
     if (!normalizedName || isBlockedCharacterToken(normalizedName)) return;
 
     const mappedId = nameToCharIdMap.get(normalizedName) || null;
@@ -328,38 +324,179 @@ function convertLineToDialogueLine(
 }
 
 /**
- * Write DialogueJson to file.
+ * Read the chapter text file: File System API first, then the backend
+ * readText endpoint; throws when neither yields content.
  */
-async function writeDialogue(path: string, data: DialogueJson): Promise<boolean> {
-  const rootHandle = getRootDirHandle();
-  if (rootHandle) {
-    try {
-      const pathParts = path.split('/').filter(p => p);
-      let currentHandle: FileSystemDirectoryHandle | FileSystemFileHandle = rootHandle;
-      for (let i = 0; i < pathParts.length; i++) {
-        const part = pathParts[i];
-        if (i < pathParts.length - 1) {
-          currentHandle = await (currentHandle as FileSystemDirectoryHandle).getDirectoryHandle(part, { create: true });
-        } else {
-          const fileHandle = await (currentHandle as FileSystemDirectoryHandle).getFileHandle(part, { create: true });
-          const writable = await fileHandle.createWritable();
-          await writable.write(JSON.stringify(data, null, 2));
-          await writable.close();
-        }
-      }
-      return true;
-    } catch (error) {
-      console.warn(`[parser] File System API write failed for ${path}; trying backend`, error);
+async function readChapterText(input: string): Promise<string> {
+  let fileContent = await readTextFile(input);
+  if (fileContent === null) {
+    const response = await apiPostJson<{ content: string }>(API_ENDPOINTS.readText, {
+      file_path: input,
+    });
+    fileContent = response.content;
+  }
+  if (fileContent === null) {
+    throw new Error(`Could not read file content from ${input}`);
+  }
+  return fileContent;
+}
+
+/**
+ * Resolve the book's character catalog for this parse: the v3
+ * `characters/` folder first, falling back to the legacy root
+ * `characters.json`. An empty book resolves to an empty v2.0 catalog.
+ */
+async function resolveBookCatalog(): Promise<CharactersJson> {
+  const catalog = await resolveBookCharacters('');
+  return catalog ?? { formatVersion: '2.0', characters: [] };
+}
+
+/**
+ * Extract the chapter name from the input path:
+ * "{chapterId}/chapter.txt" -> "{chapterId}"; the legacy "chapter.txt"
+ * shape falls back to the filename minus extension.
+ */
+function extractChapterName(input: string): string {
+  const pathParts = input.split('/');
+  if (pathParts.length > 1 && pathParts[pathParts.length - 1] === 'chapter.txt') {
+    return pathParts[pathParts.length - 2];
+  }
+  return pathParts[pathParts.length - 1].replace(/\.txt$/, '');
+}
+
+/**
+ * Bootstrap the book's character set from the parsed chapter: keeps the
+ * catalog's characters (minus blocked tokens) and, for books without a
+ * closed-world catalog yet, adds one record per unknown parsed name.
+ * With a catalog present, unknown parser surfaces stay provisional and are
+ * resolved explicitly during review.
+ */
+function bootstrapCharacters(
+  catalog: CharactersJson,
+  parsedCharacterNames: string[],
+  chapterName: string,
+): { characters: CharactersJson; nameToCharIdMap: Map<string, string> } {
+  const allBookChars = catalog.characters.filter((character) =>
+    !isBlockedCharacterToken(character.id) && !isBlockedCharacterToken(character.name),
+  );
+  const existingBookCharNames = new Set(allBookChars.map((c) => c.name.toLowerCase().trim()));
+  const existingBookCharIds = new Set(allBookChars.map((c) => c.id));
+
+  for (const char of allBookChars) {
+    const aliases = Array.isArray(char.aliases) ? char.aliases : [];
+    for (const alias of aliases) {
+      const key = String(alias || '').toLowerCase().trim();
+      if (key) existingBookCharNames.add(key);
     }
   }
 
-  try {
-    await apiPostVoid(API_ENDPOINTS.save, { file_path: path, content: data });
-    return true;
-  } catch (error) {
-    console.error(`Failed to write dialogue to ${path}`, error);
-    return false;
+  const nameToCharIdMap = buildNameToIdMap(allBookChars);
+  const closedWorldEnabled = catalog.characters.length > 0;
+
+  for (const name of parsedCharacterNames) {
+    const normalizedName = normalizeCharacterKey(name);
+    if (!normalizedName) continue;
+    if (isBlockedCharacterToken(normalizedName)) continue;
+    if (nameToCharIdMap.has(normalizedName) || existingBookCharNames.has(normalizedName)) {
+      continue;
+    }
+    if (closedWorldEnabled) continue;
+
+    const baseNormalizedName = stripNumericSlugSuffix(normalizedName);
+    if (baseNormalizedName && baseNormalizedName !== normalizedName && existingBookCharNames.has(baseNormalizedName)) {
+      const canonical = allBookChars.find((character) => {
+        const canonicalKey = String(character?.name || '').toLowerCase().trim();
+        if (canonicalKey === baseNormalizedName) return true;
+        const aliases = Array.isArray(character?.aliases) ? character.aliases : [];
+        return aliases.some((alias: string) => String(alias || '').toLowerCase().trim() === baseNormalizedName);
+      });
+
+      if (canonical) {
+        const aliases = Array.isArray(canonical.aliases) ? canonical.aliases : [];
+        if (!aliases.some((alias: string) => String(alias || '').toLowerCase().trim() === normalizedName)) {
+          canonical.aliases = [...aliases, name];
+        }
+        if (canonical.id) {
+          nameToCharIdMap.set(normalizedName, canonical.id);
+        }
+        existingBookCharNames.add(normalizedName);
+        continue;
+      }
+    }
+
+    // ID is the lowercased name, made unique with the canonical
+    // `-2`/`-3`… scheme (characterIdentity.buildUniqueCharacterId).
+    const charId = buildUniqueCharacterId(nameToId(name), existingBookCharIds);
+    existingBookCharIds.add(charId);
+    nameToCharIdMap.set(normalizedName, charId);
+    existingBookCharNames.add(normalizedName);
+
+    allBookChars.push({
+      guid: null,
+      id: charId,
+      name,
+      gender: 'Unknown',
+      aliases: [],
+      color: null,
+      notes: '',
+      firstAppearance: chapterName,
+      stats: {
+        totalLines: 0,
+        chapterCount: 0
+      }
+    });
   }
+
+  return {
+    characters: { formatVersion: catalog.formatVersion || '2.0', characters: allBookChars },
+    nameToCharIdMap,
+  };
+}
+
+/**
+ * Convert the parser's script lines into the persisted DialogueLine shape
+ * and stamp the returning flags.
+ */
+function buildDialogueLines(
+  script: Line[],
+  rawText: string,
+  nameToCharIdMap: Map<string, string>,
+  idToNameMap: Map<string, string>,
+): DialogueLine[] {
+  const baseDialogueLines = script.map((line, idx) =>
+    convertLineToDialogueLine(line, idx + 1, nameToCharIdMap, idToNameMap, idx, script)
+  );
+  const returningFlags = computeReturningFlags(
+    baseDialogueLines,
+    rawText,
+    (_line, index) => script[index]?.line_type === 'dialogue'
+  );
+  return baseDialogueLines.map((line, index) => ({
+    ...line,
+    isReturning: returningFlags[index],
+  }));
+}
+
+/**
+ * Assemble the persisted dialogue.json document for a chapter.
+ */
+function assembleDialogueJson(chapterName: string, dialogueLines: DialogueLine[]): DialogueJson {
+  const characterBreakdown: Record<string, number> = {};
+  for (const line of dialogueLines) {
+    if (line.characterId) {
+      characterBreakdown[line.characterId] = (characterBreakdown[line.characterId] || 0) + 1;
+    }
+  }
+  return {
+    formatVersion: '3.2',
+    chapterId: chapterName,
+    lines: dialogueLines,
+    stats: {
+      totalLines: dialogueLines.length,
+      conflicts: dialogueLines.filter((line) => line.isConflict).length,
+      characterBreakdown
+    }
+  };
 }
 
 export async function runParserForChapter(args: {
@@ -369,23 +506,17 @@ export async function runParserForChapter(args: {
   history.clear();
 
   try {
-    let fileContent = await readTextFile(args.input);
-    if (fileContent === null) {
-      const response = await apiPostJson<{ content: string }>(API_ENDPOINTS.readText, {
-        file_path: args.input,
-      });
-      fileContent = response.content;
-    }
-    if (fileContent === null) {
-      throw new Error(`Could not read file content from ${args.input}`);
-    }
+    const fileContent = await readChapterText(args.input);
 
     const hints = get(parserHints);
     const manualBlockList = Array.from(
       new Set([...(hints.manualBlockList || []), ...ALWAYS_BLOCKED_CHARACTER_NAMES])
     );
-    const existingBookCharacters = await readCentralCharacters('') || { formatVersion: '2.0', characters: [] };
-    const parserOptions = buildClosedWorldParserOptions(buildParserOptions(hints), existingBookCharacters);
+    // RESOLVED catalog (v3 characters/ folder, else the legacy
+    // characters.json) — the parser consumes a resolved catalog, never a
+    // raw path, when building its closed-world options.
+    const bookCatalog = await resolveBookCatalog();
+    const parserOptions = buildClosedWorldParserOptions(buildParserOptions(hints), bookCatalog);
 
     const parsed = await apiPostJson<ParserOutput>(API_ENDPOINTS.parse, {
       text: fileContent,
@@ -402,145 +533,21 @@ export async function runParserForChapter(args: {
     // Defensive: older parses may not include it.
     setJevVerifySummary(parsed.meta?.jevVerify ?? null);
 
-    // Extract chapter name from path: "{chapterId}/chapter.txt" -> "{chapterId}"
-    // Handle both old format ("chapter.txt") and new format ("{chapterId}/chapter.txt")
-    const pathParts = args.input.split('/');
-    let chapterName: string;
-    if (pathParts.length > 1 && pathParts[pathParts.length - 1] === 'chapter.txt') {
-      // New format: extract directory name
-      chapterName = pathParts[pathParts.length - 2];
-    } else {
-      // Old format: extract from filename
-      const inputFileName = pathParts[pathParts.length - 1];
-      chapterName = inputFileName.replace(/\.txt$/, '');
+    const chapterName = extractChapterName(args.input);
+
+    // Update the central characters.json FIRST (single source of truth for
+    // v2 books). The resolved catalog carries formatVersion '3.0' only in
+    // v3 folder mode, where the characters/ folder remains the sole source
+    // of truth (IN-2) — the central file is left untouched.
+    const { characters: bootstrapped, nameToCharIdMap } = bootstrapCharacters(bookCatalog, parsedCharacters, chapterName);
+    if (bootstrapped.formatVersion !== '3.0') {
+      await writeCentralCharacters('', bootstrapped);
     }
+    const idToNameMap = buildIdToNameMap(bootstrapped.characters);
 
-    // Update the central characters.json file FIRST (single source of truth)
-    const root = ''; // Not used in v2.0 but required by function signature
-    const existingBookChars = existingBookCharacters;
-    const allBookChars = existingBookChars.characters.filter((character) => {
-      return !isBlockedCharacterToken(character.id) && !isBlockedCharacterToken(character.name);
-    });
-    const existingBookCharNames = new Set(allBookChars.map(c => c.name.toLowerCase().trim()));
-    const existingBookCharIds = new Set(allBookChars.map(c => c.id));
-
-    for (const char of allBookChars) {
-      const aliases = Array.isArray(char.aliases) ? char.aliases : [];
-      for (const alias of aliases) {
-        const key = String(alias || '').toLowerCase().trim();
-        if (key) existingBookCharNames.add(key);
-      }
-    }
-
-    // Create name to character ID map for dialogue conversion
-    // Use centralized helper to build the map from existing characters
-    const nameToCharIdMap = buildNameToIdMap(allBookChars);
-
-    const closedWorldEnabled = existingBookChars.characters.length > 0;
-
-    // Bootstrap empty projects as before. Once a catalogue exists, unknown parser
-    // surfaces stay provisional and are resolved explicitly during review.
-    for (const name of parsedCharacters) {
-      const normalizedName = String(name || '').toLowerCase().trim();
-      if (!normalizedName) continue;
-      if (isBlockedCharacterToken(normalizedName)) continue;
-      if (nameToCharIdMap.has(normalizedName) || existingBookCharNames.has(normalizedName)) {
-        continue;
-      }
-      if (closedWorldEnabled) continue;
-
-      const baseNormalizedName = stripNumericSlugSuffix(normalizedName);
-      if (baseNormalizedName && baseNormalizedName !== normalizedName && existingBookCharNames.has(baseNormalizedName)) {
-        const canonical = allBookChars.find((character) => {
-          const canonicalKey = String(character?.name || '').toLowerCase().trim();
-          if (canonicalKey === baseNormalizedName) return true;
-          const aliases = Array.isArray(character?.aliases) ? character.aliases : [];
-          return aliases.some((alias: string) => String(alias || '').toLowerCase().trim() === baseNormalizedName);
-        });
-
-        if (canonical) {
-          const aliases = Array.isArray(canonical.aliases) ? canonical.aliases : [];
-          if (!aliases.some((alias: string) => String(alias || '').toLowerCase().trim() === normalizedName)) {
-            canonical.aliases = [...aliases, name];
-          }
-          if (canonical.id) {
-            nameToCharIdMap.set(normalizedName, canonical.id);
-          }
-          existingBookCharNames.add(normalizedName);
-          continue;
-        }
-      }
-
-      // Generate ID from name (lowercase)
-      let charId = nameToId(name);
-      // Ensure ID is unique
-      let counter = 1;
-      while (existingBookCharIds.has(charId)) {
-        charId = `${nameToId(name)}_${counter}`;
-        counter++;
-      }
-      existingBookCharIds.add(charId);
-      nameToCharIdMap.set(normalizedName, charId);
-      existingBookCharNames.add(normalizedName);
-
-      allBookChars.push({
-        guid: null,
-        id: charId,
-        name,
-        gender: 'Unknown',
-        aliases: [],
-        color: null,
-        notes: '',
-        firstAppearance: chapterName,
-        stats: {
-          totalLines: 0,
-          chapterCount: 0
-        }
-      });
-    }
-
-    // Write updated central characters.json (skipped in v3 folder mode —
-    // IN-2: the characters/ folder is the sole source of truth).
-    const hasV3Folder = (await listCharacterFiles(root)).length > 0;
-    if (!hasV3Folder) {
-      await writeCentralCharacters(root, { formatVersion: existingBookChars.formatVersion || '2.0', characters: allBookChars }, false);
-    }
-
-    const idToNameMap = buildIdToNameMap(allBookChars);
-
-    const baseDialogueLines = parsed.script.map((line, idx) =>
-      convertLineToDialogueLine(line, idx + 1, nameToCharIdMap, idToNameMap, idx, parsed.script)
-    );
-    const returningFlags = computeReturningFlags(
-      baseDialogueLines,
-      fileContent,
-      (_line, index) => parsed.script[index]?.line_type === 'dialogue'
-    );
-    const dialogueLines = baseDialogueLines.map((line, index) => ({
-      ...line,
-      isReturning: returningFlags[index],
-    }));
-
-    // Calculate character breakdown for stats
-    const characterBreakdown: Record<string, number> = {};
-    for (const line of dialogueLines) {
-      if (line.characterId) {
-        characterBreakdown[line.characterId] = (characterBreakdown[line.characterId] || 0) + 1;
-      }
-    }
-
-    const numConflicts = dialogueLines.filter(line => line.isConflict).length;
-
-    const dialogueJson: DialogueJson = {
-      formatVersion: '3.2',
-      chapterId: chapterName,
-      lines: dialogueLines,
-      stats: {
-        totalLines: dialogueLines.length,
-        conflicts: numConflicts,
-        characterBreakdown
-      }
-    };
+    const dialogueLines = buildDialogueLines(parsed.script, fileContent, nameToCharIdMap, idToNameMap);
+    const dialogueJson = assembleDialogueJson(chapterName, dialogueLines);
+    const numConflicts = dialogueJson.stats.conflicts;
 
     const dialoguePath = `${chapterName}/dialogue.json`;
 

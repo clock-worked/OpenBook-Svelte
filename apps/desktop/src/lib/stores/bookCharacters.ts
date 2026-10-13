@@ -1,5 +1,5 @@
 import { writable, get } from 'svelte/store';
-import type { CharacterManifestStats, CharacterVoiceMeta, CharactersJson, TtsProvider, Character, Gender, CharacterFile } from '$lib/types';
+import type { CharacterManifestStats, CharactersJson, TtsProvider, Character, Gender, CharacterFile } from '$lib/types';
 import { CHARACTER_GUID_PATTERN } from '$lib/types';
 import { audioRoot, bookRoot, chapters } from '$lib/stores/bookState';
 import { getCharactersPath, readCentralCharacters, readCharacterFile } from '$lib/services/fs';
@@ -7,9 +7,9 @@ import { loadChapterCharactersData, persistChapterCharactersData } from '$lib/se
 import { loadCharacterManifestSummary } from '$lib/services/manifests';
 import {
   loadBookCharactersData,
-  sanitizeCharacterFileName,
   writeCharacterRecord,
 } from '$lib/services/bookCharacterRepository';
+import { sanitizeCharacterFileStem } from '$lib/services/characterIdentity';
 import {
   addCentralCharacterAlias,
   createCentralCharacter,
@@ -122,6 +122,35 @@ async function persistBookCharactersImpl(): Promise<void> {
 }
 
 /**
+ * Resolve a character's on-disk file by GUID verification. The normal file
+ * is `characters/<sanitized title>.json`, but a case-insensitive title
+ * collision pushes a record to `characters/<guid>.json` (schema §Filename
+ * rules, rule 3 — the same fallback the mutation service applies on
+ * creation). Try the title stem first, then the GUID file, and accept the
+ * first candidate whose stored guid matches. Non-GUID (legacy/derived)
+ * records have nothing to verify against, so the first existing file wins.
+ */
+async function resolveCharacterFile(
+  root: string,
+  character: Character,
+): Promise<CharacterFileRecord | null> {
+  const candidates = [`${sanitizeCharacterFileStem(character.name)}.json`];
+  const hasGuid = CHARACTER_GUID_PATTERN.test(character.guid ?? '');
+  if (hasGuid) candidates.push(`${character.guid}.json`);
+
+  for (const fileName of candidates) {
+    // silent: a missing file is a normal outcome here (pre-migration book,
+    // or a record that is not file-backed yet) — no console.error noise.
+    const data: any = await readCharacterFile(root, fileName, true);
+    if (!data || typeof data !== 'object') continue;
+    if (!hasGuid || data.guid === character.guid) {
+      return { fileName, data: data as CharacterFile };
+    }
+  }
+  return null;
+}
+
+/**
  * Build a `CharacterFileRecord` for a single-file op with a FRESH read. The
  * fresh read avoids clobbering concurrent backend stats writes (the op's own
  * read-modify-write then applies on top of the latest on-disk content).
@@ -133,12 +162,7 @@ async function readCharacterRecord(name: string): Promise<CharacterFileRecord | 
   if (!root) return null;
   const character = get(bookCharacters).characters.find((c) => c.name === name);
   if (!character) return null;
-  const fileName = `${sanitizeCharacterFileName(character.name)}.json`;
-  // silent: a missing file is a normal outcome here (pre-migration book, or
-  // a record that is not file-backed yet) — no console.error noise.
-  const data: any = await readCharacterFile(root, fileName, true);
-  if (!data || typeof data !== 'object') return null;
-  return { fileName, data: data as CharacterFile };
+  return resolveCharacterFile(root, character);
 }
 
 /** Map a v3 `CharacterFile` to an in-memory `Character` (id = guid mirror). */
@@ -184,7 +208,13 @@ function createEmptyBookCharacter(name: string): Character {
   } as Character;
 }
 
-async function upsertBookCharacter(name: string, updates: Partial<Character>): Promise<void> {
+/**
+ * The one store update entry point: merge `updates` into the character by
+ * (canonical) name, then do a surgical single-file write when the record is
+ * file-backed (valid GUID). Callers pass the field(s) directly — the old
+ * per-field `setBookCharacter*` wrappers are retired.
+ */
+export async function upsertBookCharacter(name: string, updates: Partial<Character>): Promise<void> {
   const data = get(bookCharacters);
   const canonicalName = resolveCanonicalCharacterName(data, name) ?? name;
   const exists = data.characters.some((character) => character.name === canonicalName);
@@ -225,34 +255,6 @@ async function upsertBookCharacter(name: string, updates: Partial<Character>): P
   }
 }
 
-export async function setBookCharacterVoice(name: string, voice: string | null): Promise<void> {
-  await upsertBookCharacter(name, { voice });
-}
-
-export async function setBookCharacterColor(name: string, color: string | null): Promise<void> {
-  await upsertBookCharacter(name, { color });
-}
-
-export async function setBookCharacterGender(name: string, gender: Gender): Promise<void> {
-  await upsertBookCharacter(name, { gender: normalizeCharacterGender(gender) });
-}
-
-export async function setBookCharacterProvider(name: string, provider: TtsProvider | null): Promise<void> {
-  await upsertBookCharacter(name, { provider });
-}
-
-export async function setBookCharacterVoiceId(name: string, voiceId: string | null): Promise<void> {
-  await upsertBookCharacter(name, { voiceId });
-}
-
-export async function setBookCharacterVoiceMeta(name: string, voiceMeta: CharacterVoiceMeta | null): Promise<void> {
-  await upsertBookCharacter(name, { voiceMeta });
-}
-
-export async function setBookCharacterManifestStats(name: string, manifestStats: CharacterManifestStats | null): Promise<void> {
-  await upsertBookCharacter(name, { manifestStats });
-}
-
 interface RefreshManifestOptions {
   totalLines?: number;
   force?: boolean;
@@ -268,7 +270,7 @@ export async function refreshCharacterManifestStats(
     totalLines: options?.totalLines,
     force: options?.force,
   });
-  await setBookCharacterManifestStats(name, summary.stats);
+  await upsertBookCharacter(name, { manifestStats: summary.stats });
   return summary.stats;
 }
 
@@ -443,7 +445,7 @@ export async function syncAllChapterColorsFromBook(): Promise<{ updated: number;
 
   for (const ch of chapterList) {
     try {
-      const charsPath = getCharactersPath(root, ch.title);
+      const charsPath = getCharactersPath(ch.title);
       const chapterChars = await loadChapterCharactersData(root, charsPath);
 
       if (chapterChars && chapterChars.characters) {
@@ -535,16 +537,16 @@ export async function syncAssignmentsFromVoicesJson(): Promise<void> {
     const data = get(bookCharacters);
     let updated = false;
 
-    // Create a map from character name to character ID (from characters.json)
-    const nameToIdMap = new Map<string, string>();
-    charactersData.characters.forEach((char: any) => {
-      nameToIdMap.set(char.name, char.id);
-    });
+    // Canonical name→ID map (lowercased keys + alias coverage) from the
+    // shared characters-store builder. Dynamic import: characters.ts imports
+    // this store, so a static import would be circular.
+    const { buildNameToIdMap } = await import('$lib/stores/characters');
+    const nameToIdMap = buildNameToIdMap(charactersData.characters);
 
     const next: CharactersJson = {
       formatVersion: data.formatVersion,
       characters: data.characters.map(c => {
-        const characterId = nameToIdMap.get(c.name);
+        const characterId = nameToIdMap.get(c.name.toLowerCase());
         if (!characterId) return c;
 
         const assignment = getCharacterAssignment(characterId);
@@ -580,26 +582,8 @@ export async function syncAssignmentsFromVoicesJson(): Promise<void> {
 }
 
 /**
- * Get character ID from character name by reading characters.json
- */
-async function getCharacterIdByName(name: string): Promise<string | null> {
-  const root = get(bookRoot);
-  if (!root) return null;
-
-  try {
-    const charactersData = await readCentralCharacters(root);
-    if (!charactersData) return null;
-
-    const char = charactersData.characters.find((c: any) => c.name === name);
-    return char?.id || null;
-  } catch (err) {
-    console.error('[bookCharacters] Error getting character ID:', err);
-    return null;
-  }
-}
-
-/**
- * Update setBookCharacterProvider to also update voices.json assignments
+ * Update the character's provider + voiceId, then mirror the assignment into
+ * voices.json.
  */
 export async function setBookCharacterProviderAndAssign(
   name: string,
@@ -607,14 +591,16 @@ export async function setBookCharacterProviderAndAssign(
   voiceId: string | null
 ): Promise<void> {
   // Update character in bookCharacters
-  await setBookCharacterProvider(name, provider);
+  await upsertBookCharacter(name, { provider });
 
   if (voiceId) {
-    await setBookCharacterVoiceId(name, voiceId);
+    await upsertBookCharacter(name, { voiceId });
   }
 
-  // Also update voices.json assignment
+  // Also update voices.json assignment. Dynamic import: characters.ts imports
+  // this store, so a static import would be circular.
   if (provider && voiceId) {
+    const { getCharacterIdByName } = await import('$lib/stores/characters');
     const characterId = await getCharacterIdByName(name);
     if (characterId) {
       const { assignVoiceToCharacter } = await import('$lib/stores/speakers');

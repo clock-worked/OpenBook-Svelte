@@ -19,6 +19,11 @@ import type {
   ReconcileAudioManifestRequest,
   ReconcileAudioManifestResponse,
 } from '$lib/services/apiContracts';
+import {
+  resolvePlannedLineChapterTitle,
+  resolvePlannedLineCharacterName,
+  resolvePlannedLineSourceFile,
+} from '$lib/services/audioQueuePlanning';
 
 export interface AudioManifest {
   formatVersion: string;
@@ -135,6 +140,14 @@ export async function getCharacterNameFromId(characterId: string): Promise<strin
 }
 
 /**
+ * Resolve the effective audio root: explicit audio root, book absolute
+ * path, or the user-configured book root override.
+ */
+export function audioRootFor(): string | null {
+  return get(audioRoot) || get(bookRootAbsolutePath) || get(bookRootPathOverride) || null;
+}
+
+/**
  * Construct the HTTP URL for an audio file served by the backend
  */
 export function getAudioPath(
@@ -146,7 +159,7 @@ export function getAudioPath(
   // Use HTTP endpoint to serve audio files instead of file:// paths
   // The backend will handle file system access
   const baseUrl = toApiUrl(API_ENDPOINTS.audioLine(chapterTitle, characterName, lineId));
-  const resolvedRoot = get(audioRoot) || get(bookRootAbsolutePath) || get(bookRootPathOverride);
+  const resolvedRoot = audioRootFor();
 
   const params = new URLSearchParams();
   if (resolvedRoot) {
@@ -316,7 +329,7 @@ export async function reconcileAudioManifestForCharacter(
   characterName: string,
 ): Promise<{ success: boolean; removedCount: number; clipCount: number }> {
   try {
-    const resolvedAudioRoot = get(audioRoot) || get(bookRootAbsolutePath) || get(bookRootPathOverride);
+    const resolvedAudioRoot = audioRootFor();
     const payload: ReconcileAudioManifestRequest = {
       chapter_title: chapterTitle,
       character_name: characterName,
@@ -370,7 +383,7 @@ export async function generateAudioForLine(
     const samplesRoot = get(voiceSamplesRoot);
     const isVibeVoice = provider.toLowerCase().includes('vibevoice');
     const includeSamplesRoot = isVibeVoice && samplesRoot;
-    const resolvedAudioRoot = get(audioRoot) || get(bookRootAbsolutePath) || get(bookRootPathOverride);
+    const resolvedAudioRoot = audioRootFor();
     const endpoint = isVibeVoice
       ? API_ENDPOINTS.generateVibeVoiceLine
       : API_ENDPOINTS.generateAudioLine;
@@ -447,7 +460,7 @@ export async function generateAudioForCharacter(
 
   try {
     const samplesRoot = get(voiceSamplesRoot);
-    const resolvedAudioRoot = get(audioRoot) || get(bookRootAbsolutePath) || get(bookRootPathOverride);
+    const resolvedAudioRoot = audioRootFor();
 
     const payload: GenerateAudioCharacterRequest = {
       character_name: characterName,
@@ -456,27 +469,10 @@ export async function generateAudioForCharacter(
         id: Number(line.id),
         text: String((line as any)?.text ?? ''),
         characterId: (line as any)?.characterId ? String((line as any).characterId) : undefined,
-        characterName:
-          typeof (line as any)?.characterName === 'string' && String((line as any).characterName).trim()
-            ? String((line as any).characterName).trim()
-            : typeof (line as any)?.__queueCharacterName === 'string' && String((line as any).__queueCharacterName).trim()
-              ? String((line as any).__queueCharacterName).trim()
-              : typeof (line as any)?.chosenSpeaker === 'string' && String((line as any).chosenSpeaker).trim()
-                ? String((line as any).chosenSpeaker).trim()
-                : undefined,
+        characterName: resolvePlannedLineCharacterName(line) || undefined,
         chosenSpeaker: (line as any)?.chosenSpeaker ? String((line as any).chosenSpeaker) : undefined,
-        chapterTitle:
-          typeof (line as any)?.chapterTitle === 'string' && String((line as any).chapterTitle).trim()
-            ? String((line as any).chapterTitle).trim()
-            : typeof (line as any)?.__queueChapterTitle === 'string' && String((line as any).__queueChapterTitle).trim()
-              ? String((line as any).__queueChapterTitle).trim()
-              : chapterTitle,
-        sourceFile:
-          typeof (line as any)?.sourceFile === 'string' && String((line as any).sourceFile).trim()
-            ? String((line as any).sourceFile).trim()
-            : typeof (line as any)?.__queueSourceFile === 'string' && String((line as any).__queueSourceFile).trim()
-              ? String((line as any).__queueSourceFile).trim()
-              : sourceFile,
+        chapterTitle: resolvePlannedLineChapterTitle(line, chapterTitle),
+        sourceFile: resolvePlannedLineSourceFile(line, sourceFile),
       })),
       voice_id: voiceId,
       provider,
@@ -526,12 +522,7 @@ export async function generateAudioForCharacter(
 
     if (affectedChapters.size === 0) {
       for (const line of lines) {
-        const lineChapter =
-          (typeof (line as any)?.chapterTitle === 'string' && String((line as any).chapterTitle).trim())
-            ? String((line as any).chapterTitle).trim()
-            : (typeof (line as any)?.__queueChapterTitle === 'string' && String((line as any).__queueChapterTitle).trim())
-              ? String((line as any).__queueChapterTitle).trim()
-              : chapterTitle;
+        const lineChapter = resolvePlannedLineChapterTitle(line, chapterTitle);
         if (lineChapter) {
           affectedChapters.add(lineChapter);
         }
@@ -544,14 +535,7 @@ export async function generateAudioForCharacter(
 
     const affectedCharacterNames = new Set<string>();
     for (const line of lines) {
-      const lineCharacterName =
-        (typeof (line as any)?.characterName === 'string' && String((line as any).characterName).trim())
-          ? String((line as any).characterName).trim()
-          : (typeof (line as any)?.__queueCharacterName === 'string' && String((line as any).__queueCharacterName).trim())
-            ? String((line as any).__queueCharacterName).trim()
-            : (typeof (line as any)?.chosenSpeaker === 'string' && String((line as any).chosenSpeaker).trim())
-              ? String((line as any).chosenSpeaker).trim()
-              : '';
+      const lineCharacterName = resolvePlannedLineCharacterName(line);
       if (lineCharacterName) {
         affectedCharacterNames.add(lineCharacterName);
       }
@@ -598,7 +582,7 @@ export async function generateAudioForChapterVibeVoice(
 ): Promise<{ success: boolean; generatedCount: number; skippedCount: number; totalLines: number; errors: string[] }> {
   try {
     const samplesRoot = get(voiceSamplesRoot);
-    const resolvedAudioRoot = get(audioRoot) || get(bookRootAbsolutePath) || get(bookRootPathOverride);
+    const resolvedAudioRoot = audioRootFor();
 
     const payload: GenerateAudioChapterRequest = {
       dialogue_path: dialoguePath,
