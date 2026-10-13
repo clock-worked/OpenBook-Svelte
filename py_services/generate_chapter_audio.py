@@ -552,132 +552,132 @@ def main() -> None:
     start_wall = time.time()
     with tqdm(total=total, desc="Generating", unit="line") as progress:
         for index, line in enumerate(candidates, start=1):
-        line_id = line.get("id")
-        if not isinstance(line_id, int):
-            continue
-        if line_id < args.start_id:
-            continue
-        if args.end_id is not None and line_id > args.end_id:
-            continue
+            line_id = line.get("id")
+            if not isinstance(line_id, int):
+                continue
+            if line_id < args.start_id:
+                continue
+            if args.end_id is not None and line_id > args.end_id:
+                continue
 
-        text = normalize_text(line.get("text", ""))
-        if not text:
-            continue
+            text = normalize_text(line.get("text", ""))
+            if not text:
+                continue
 
-        character_id = line.get("characterId", "narrator")
-        sample_path = SPEAKER_SAMPLES.get(character_id)
-        if not sample_path:
-            raise KeyError(
-                f"No sample mapping for characterId: {character_id}")
+            character_id = line.get("characterId", "narrator")
+            sample_path = SPEAKER_SAMPLES.get(character_id)
+            if not sample_path:
+                raise KeyError(
+                    f"No sample mapping for characterId: {character_id}")
 
-        if args.backend == "comfy":
-            sample_filename = ensure_comfy_input(sample_path, comfy_input_dir)
-            patched_workflow = patch_workflow(workflow, sample_filename, text)
-            if "nodes" in patched_workflow and "links" in patched_workflow:
-                prompt = workflow_to_prompt(patched_workflow)
-            elif "prompt" in patched_workflow:
-                prompt = patched_workflow["prompt"]
-            else:
-                prompt = patched_workflow
-        else:
-            prompt = {}
-
-        output_name = f"{line_id:04d}_{character_id}.wav"
-        output_path = os.path.join(output_dir, output_name)
-
-        if args.skip_existing and os.path.exists(output_path):
-            manifest["lines"].append(
-                {
-                    "id": line_id,
-                    "characterId": character_id,
-                    "text": text,
-                    "output": output_name,
-                    "skipped": True,
-                }
-            )
-            progress.update(1)
-            continue
-
-        if args.dry_run:
-            manifest["lines"].append(
-                {
-                    "id": line_id,
-                    "characterId": character_id,
-                    "text": text,
-                    "output": output_name,
-                    "skipped": True,
-                }
-            )
-            processed += 1
-            progress.update(1)
-        else:
             if args.backend == "comfy":
-                response = post_json(
-                    f"{args.comfy_url}/prompt",
-                    {
-                        "prompt": prompt,
-                        "extra_data": {"extra_pnginfo": {"workflow": workflow}},
-                    },
-                )
-                prompt_id = response.get("prompt_id")
-                if not prompt_id:
-                    raise RuntimeError(
-                        f"Unexpected ComfyUI response: {response}")
-
-                _, audio_meta = wait_for_audio(args.comfy_url, prompt_id)
-                download_audio(args.comfy_url, audio_meta, output_path)
+                sample_filename = ensure_comfy_input(sample_path, comfy_input_dir)
+                patched_workflow = patch_workflow(workflow, sample_filename, text)
+                if "nodes" in patched_workflow and "links" in patched_workflow:
+                    prompt = workflow_to_prompt(patched_workflow)
+                elif "prompt" in patched_workflow:
+                    prompt = patched_workflow["prompt"]
+                else:
+                    prompt = patched_workflow
             else:
-                if vibevoice_model is None or vibevoice_processor is None:
-                    raise RuntimeError("VibeVoice backend not initialized")
+                prompt = {}
 
-                import torch  # noqa: WPS433
+            output_name = f"{line_id:04d}_{character_id}.wav"
+            output_path = os.path.join(output_dir, output_name)
 
-                if args.seed is not None:
-                    torch.manual_seed(args.seed)
-
-                script = format_script(text)
-                inputs = vibevoice_processor(
-                    text=[script],
-                    voice_samples=[[sample_path]],
-                    padding=True,
-                    return_tensors="pt",
-                    return_attention_mask=True,
+            if args.skip_existing and os.path.exists(output_path):
+                manifest["lines"].append(
+                    {
+                        "id": line_id,
+                        "characterId": character_id,
+                        "text": text,
+                        "output": output_name,
+                        "skipped": True,
+                    }
                 )
+                progress.update(1)
+                continue
 
-                target_device = vibevoice_device if vibevoice_device != "cpu" else "cpu"
-                for key, value in inputs.items():
-                    if torch.is_tensor(value):
-                        inputs[key] = value.to(target_device)
-
-                outputs = vibevoice_model.generate(
-                    **inputs,
-                    max_new_tokens=None,
-                    cfg_scale=args.cfg_scale,
-                    tokenizer=vibevoice_processor.tokenizer,
-                    generation_config={"do_sample": False},
+            if args.dry_run:
+                manifest["lines"].append(
+                    {
+                        "id": line_id,
+                        "characterId": character_id,
+                        "text": text,
+                        "output": output_name,
+                        "skipped": True,
+                    }
                 )
+                processed += 1
+                progress.update(1)
+            else:
+                if args.backend == "comfy":
+                    response = post_json(
+                        f"{args.comfy_url}/prompt",
+                        {
+                            "prompt": prompt,
+                            "extra_data": {"extra_pnginfo": {"workflow": workflow}},
+                        },
+                    )
+                    prompt_id = response.get("prompt_id")
+                    if not prompt_id:
+                        raise RuntimeError(
+                            f"Unexpected ComfyUI response: {response}")
 
-                ensure_dir(os.path.dirname(output_path))
-                vibevoice_processor.save_audio(
-                    outputs.speech_outputs[0],
-                    output_path=output_path,
+                    _, audio_meta = wait_for_audio(args.comfy_url, prompt_id)
+                    download_audio(args.comfy_url, audio_meta, output_path)
+                else:
+                    if vibevoice_model is None or vibevoice_processor is None:
+                        raise RuntimeError("VibeVoice backend not initialized")
+
+                    import torch  # noqa: WPS433
+
+                    if args.seed is not None:
+                        torch.manual_seed(args.seed)
+
+                    script = format_script(text)
+                    inputs = vibevoice_processor(
+                        text=[script],
+                        voice_samples=[[sample_path]],
+                        padding=True,
+                        return_tensors="pt",
+                        return_attention_mask=True,
+                    )
+
+                    target_device = vibevoice_device if vibevoice_device != "cpu" else "cpu"
+                    for key, value in inputs.items():
+                        if torch.is_tensor(value):
+                            inputs[key] = value.to(target_device)
+
+                    outputs = vibevoice_model.generate(
+                        **inputs,
+                        max_new_tokens=None,
+                        cfg_scale=args.cfg_scale,
+                        tokenizer=vibevoice_processor.tokenizer,
+                        generation_config={"do_sample": False},
+                    )
+
+                    ensure_dir(os.path.dirname(output_path))
+                    vibevoice_processor.save_audio(
+                        outputs.speech_outputs[0],
+                        output_path=output_path,
+                    )
+
+                manifest["lines"].append(
+                    {
+                        "id": line_id,
+                        "characterId": character_id,
+                        "text": text,
+                        "output": output_name,
+                        "skipped": False,
+                    }
                 )
+                processed += 1
 
-            manifest["lines"].append(
-                {
-                    "id": line_id,
-                    "characterId": character_id,
-                    "text": text,
-                    "output": output_name,
-                    "skipped": False,
-                }
-            )
-            processed += 1
+            progress.update(1)
 
-        progress.update(1)
-
-        if args.limit is not None and processed >= args.limit:
-            break
+            if args.limit is not None and processed >= args.limit:
+                break
 
     manifest_path = os.path.join(output_dir, "manifest.json")
     write_json(manifest_path, manifest)
