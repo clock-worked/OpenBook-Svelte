@@ -150,6 +150,10 @@ export interface LineAttributionDecisionTrace {
   selectedCandidate?: string | null;
   selectedReasons?: string[];
   overrideReason?: string | null;
+  /** Every name the signals proposed, before gating and closed-world filtering. */
+  rawCandidatePool?: string[];
+  /** Pool names the closed-world catalog could not resolve (dropped before ranking). */
+  droppedCandidates?: string[];
   signals?: Record<string, any>;
 }
 

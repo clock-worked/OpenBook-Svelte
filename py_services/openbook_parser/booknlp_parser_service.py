@@ -14,6 +14,7 @@ from .attribution_passes import (
     find_paragraph_index_for_offset,
     infer_addressed_name,
     infer_pronoun_attributed_gender,
+    infer_post_quote_named_mention,
     infer_previous_paragraph_named_mention,
     infer_recent_named_mention,
     infer_sentence_attributed_speaker,
@@ -86,10 +87,14 @@ def build_closed_world_catalog(rows) -> Dict[str, object]:
         gender = _normalize_gender_label(row.get("gender"))
         if gender:
             gender_by_name[name] = gender
-        for value in row.get("descriptors") or []:
-            descriptor = _normalize_text(str(value or ""))
-            if descriptor:
-                descriptor_owners.setdefault(descriptor, set()).add(name)
+        # The Narrator is the first-person "I" voice; it never appears as a
+        # third-person descriptor in attribution context. Excluding it prevents
+        # its (often polluted) descriptor list from disabling unique matches.
+        if _normalize_text(name) not in ("narrator", "narration"):
+            for value in row.get("descriptors") or []:
+                descriptor = _normalize_text(str(value or ""))
+                if descriptor:
+                    descriptor_owners.setdefault(descriptor, set()).add(name)
     descriptor_to_name = {
         descriptor: next(iter(owners))
         for descriptor, owners in descriptor_owners.items()
@@ -145,6 +150,8 @@ def _build_line_attribution(
     signals: LineSignals,
     decision,
     legacy_rule: Optional[str] = None,
+    raw_pool: Optional[List[str]] = None,
+    dropped: Optional[List[str]] = None,
 ) -> Dict[str, object]:
     selected_entry = next(
         (
@@ -175,6 +182,8 @@ def _build_line_attribution(
         "decisionTrace": {
             "selectedCandidate": decision.chosen_name,
             "selectedReasons": selected_reasons,
+            "rawCandidatePool": list(raw_pool or []),
+            "droppedCandidates": list(dropped or []),
             "signals": {
                 "usedFallbackAlignment": signals.used_fallback_alignment,
                 "exactQuoteMatch": signals.exact_quote_match,
@@ -185,6 +194,7 @@ def _build_line_attribution(
                 "addressedNamePrevSentence": signals.addressed_name_prev_sentence,
                 "explicitQuoteMentions": list(signals.explicit_quote_mentions or []),
                 "nextSentenceAttributedSpeaker": signals.next_sentence_attributed_speaker,
+                "postQuoteNamedMention": signals.post_quote_named_mention,
                 "recentNamedMentionBeforeQuote": signals.recent_named_mention_before_quote,
                 "previousParagraphNamedMention": signals.previous_paragraph_named_mention,
                 "descriptorMatch": signals.descriptor_match,
@@ -387,6 +397,7 @@ class BookNLPParserService:
             raw_context = ""
             pre_quote_context = ""
             post_quote_context = ""
+            next_dialogue_tail = ""
             if isinstance(line.span_start, int) and isinstance(line.span_end, int):
                 if paragraph_range:
                     left = max(paragraph_range.start, line.span_start - 120)
@@ -406,6 +417,14 @@ class BookNLPParserService:
                         next_dialogue = base_lines[next_dialogue_index]
                         if isinstance(next_dialogue.span_start, int):
                             post_right = min(post_right, next_dialogue.span_start)
+                        # The next line's own trailing tag (e.g. `"Second,"
+                        # Morgan said.`) is appended so post-quote speaker
+                        # inference can see it; the next line's quoted text
+                        # itself stays out of the context.
+                        if isinstance(next_dialogue.span_end, int):
+                            next_dialogue_tail = " " + original_text[
+                                next_dialogue.span_end : next_dialogue.span_end + 80
+                            ]
                 else:
                     left = max(0, line.span_start - 120)
                     right = min(len(original_text), line.span_end + 120)
@@ -413,13 +432,19 @@ class BookNLPParserService:
                     post_right = min(len(original_text), line.span_end + 280)
                 raw_context = original_text[left:right]
                 pre_quote_context = original_text[pre_left:line.span_start]
-                post_quote_context = original_text[line.span_end:post_right]
+                post_quote_context = (
+                    original_text[line.span_end:post_right] + next_dialogue_tail
+                )
 
             last_sentence = extract_last_sentence(pre_quote_context)
             next_sentence = extract_first_sentence(post_quote_context)
             addressed_name = infer_addressed_name(last_sentence, known_names)
             explicit_mentions = extract_explicit_mentions(line.text, known_names)
             next_sentence_speaker = infer_sentence_attributed_speaker(next_sentence, known_names)
+            post_quote_named_mention = infer_post_quote_named_mention(
+                post_quote_context,
+                known_names,
+            )
             descriptor_speaker = infer_unique_descriptor_speaker(
                 f"{pre_quote_context[-160:]} {next_sentence}",
                 closed_world_catalog,
@@ -433,8 +458,7 @@ class BookNLPParserService:
                 if context_gender:
                     break
             if (
-                context_gender
-                and next_sentence_speaker is None
+                next_sentence_speaker is None
                 and recent_named_mention is None
                 and previous_paragraph_named_mention is None
                 and paragraph_index > 0
@@ -458,13 +482,16 @@ class BookNLPParserService:
                 previous_dialogue_by_line.get(line_idx) is not None and prev_resolved
             )
 
+            # Union of every signal-proposed name. Recorded in the decision
+            # trace as rawCandidatePool so closed-world drops stay visible.
             dialogue_candidates = _unique_suggestions(
                 *(line.suggestions or []),
                 legacy_name,
                 prev_resolved,
                 next_sentence_speaker,
-                recent_named_mention if context_gender else None,
-                previous_paragraph_named_mention if context_gender else None,
+                post_quote_named_mention,
+                recent_named_mention,
+                previous_paragraph_named_mention,
                 descriptor_speaker,
             )
             if not dialogue_candidates:
@@ -472,18 +499,27 @@ class BookNLPParserService:
                     legacy_name,
                     prev_resolved,
                     next_sentence_speaker,
-                    recent_named_mention if context_gender else None,
-                    previous_paragraph_named_mention if context_gender else None,
+                    post_quote_named_mention,
+                    recent_named_mention,
+                    previous_paragraph_named_mention,
                     descriptor_speaker,
                 )
+            raw_pool_names = list(dialogue_candidates)
 
+            dropped_candidates: List[str] = []
             if closed_world:
+                pool_before_filter = list(dialogue_candidates)
                 canonical_candidates: List[str] = []
-                for candidate_name in dialogue_candidates:
+                for candidate_name in pool_before_filter:
                     canonical = canonicalize_closed_world_name(candidate_name, closed_world_catalog)
                     if canonical:
                         canonical_candidates.append(canonical)
                 dialogue_candidates = _unique_suggestions(*canonical_candidates)
+                dropped_candidates = [
+                    name
+                    for name in pool_before_filter
+                    if not canonicalize_closed_world_name(name, closed_world_catalog)
+                ]
 
             if not dialogue_candidates:
                 line.speaker = legacy_name
@@ -495,6 +531,8 @@ class BookNLPParserService:
                     "decisionTrace": {
                         "selectedCandidate": None,
                         "selectedReasons": ["closed_world_unresolved"],
+                        "rawCandidatePool": raw_pool_names,
+                        "droppedCandidates": dropped_candidates,
                         "signals": {"sourceCandidate": legacy_name},
                     },
                 }
@@ -522,8 +560,9 @@ class BookNLPParserService:
                 addressed_name_prev_sentence=addressed_name,
                 explicit_quote_mentions=explicit_mentions,
                 next_sentence_attributed_speaker=next_sentence_speaker,
-                recent_named_mention_before_quote=recent_named_mention if context_gender else None,
-                previous_paragraph_named_mention=previous_paragraph_named_mention if context_gender else None,
+                post_quote_named_mention=post_quote_named_mention,
+                recent_named_mention_before_quote=recent_named_mention,
+                previous_paragraph_named_mention=previous_paragraph_named_mention,
                 candidate_genders=candidate_genders,
                 context_gender=context_gender,
                 context_gender_cue=context_gender_cue,
@@ -537,7 +576,13 @@ class BookNLPParserService:
             line.speaker = decision.chosen_name
             line.is_suggestion = decision.is_suggestion
             line.suggestions = [entry.name for entry in decision.ranked]
-            line.attribution = _build_line_attribution(signals, decision, legacy_rule=legacy_rule)
+            line.attribution = _build_line_attribution(
+                signals,
+                decision,
+                legacy_rule=legacy_rule,
+                raw_pool=raw_pool_names,
+                dropped=dropped_candidates,
+            )
             if legacy_rule in {"0p_protagonist_first_person", "first_person_override"}:
                 protagonist_name = (
                     canonicalize_closed_world_name(legacy_name, closed_world_catalog)

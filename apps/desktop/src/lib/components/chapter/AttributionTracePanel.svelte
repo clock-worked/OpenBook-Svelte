@@ -41,6 +41,22 @@
   $: jev = (attribution?.jevVerification ?? null) as JevVerification | null;
   $: legacyRule = attribution?.legacyRule ?? null;
   $: hasTrace = !!decisionTrace;
+  $: droppedNames = (decisionTrace?.droppedCandidates ?? []).filter(
+    (name): name is string => typeof name === 'string' && name.trim().length > 0
+  );
+  $: scoredNameKeys = new Set(candidateRows.map((row) => row.name.toLowerCase()));
+  $: unscoredProposals = (() => {
+    const seen = new Set<string>();
+    const names: string[] = [];
+    for (const name of decisionTrace?.rawCandidatePool ?? []) {
+      if (typeof name !== 'string' || !name.trim()) continue;
+      const key = name.toLowerCase();
+      if (scoredNameKeys.has(key) || seen.has(key)) continue;
+      seen.add(key);
+      names.push(name);
+    }
+    return names;
+  })();
 
   function titleCaseRule(rule: string): string {
     return rule
@@ -71,6 +87,30 @@
     }
     return `${base} — agrees with the chosen speaker.`;
   }
+
+  // --- Copy the full trace ----------------------------------------------------
+  let copyState: 'idle' | 'copied' | 'failed' = 'idle';
+  let copyTimer: number | undefined;
+
+  async function copyFullTrace() {
+    if (!tracedLineRecord) return;
+    const payload = {
+      lineId: tracedLineRecord.id,
+      text: tracedLineRecord.text,
+      characterName: tracedLineRecord.characterName ?? null,
+      attribution: attribution ?? null,
+    };
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(payload, null, 2));
+      copyState = 'copied';
+    } catch {
+      copyState = 'failed';
+    }
+    window.clearTimeout(copyTimer);
+    copyTimer = window.setTimeout(() => {
+      copyState = 'idle';
+    }, 1500);
+  }
 </script>
 
 <div class="trace-panel">
@@ -94,6 +134,15 @@
         {#if tracedLineRecord.characterName}
           <span class="trace-line-char">{tracedLineRecord.characterName}</span>
         {/if}
+        <button
+          class="trace-copy-btn"
+          class:copied={copyState === 'copied'}
+          type="button"
+          onclick={copyFullTrace}
+          title="Copy the full decision trace (line + attribution JSON) to the clipboard"
+        >
+          {copyState === 'copied' ? 'Copied' : copyState === 'failed' ? 'Copy failed' : 'Copy trace'}
+        </button>
       </div>
       <div class="trace-line-snippet">“{snippet(tracedLineRecord.text)}”</div>
     </div>
@@ -142,6 +191,12 @@
               </li>
             {/each}
           </ol>
+        {/if}
+        {#if droppedNames.length > 0}
+          <p class="trace-dropped">Closed-world filter dropped: {droppedNames.join(', ')}</p>
+        {/if}
+        {#if unscoredProposals.length > 0}
+          <p class="trace-muted">Proposed by signals, never scored: {unscoredProposals.join(', ')}</p>
         {/if}
       </section>
 
@@ -227,6 +282,28 @@
     border-radius: 999px;
     background: rgba(59, 130, 246, 0.16);
     border: 1px solid rgba(96, 165, 250, 0.22);
+  }
+
+  .trace-copy-btn {
+    margin-left: auto;
+    padding: 2px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #cbd5e1;
+    background: rgba(148, 163, 184, 0.12);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    border-radius: 999px;
+    cursor: pointer;
+  }
+
+  .trace-copy-btn:hover {
+    color: #f8fafc;
+    border-color: rgba(148, 163, 184, 0.45);
+  }
+
+  .trace-copy-btn.copied {
+    color: #86efac;
+    border-color: rgba(134, 239, 172, 0.4);
   }
 
   .trace-line-snippet {
@@ -341,6 +418,13 @@
     margin: 0;
     font-size: 12px;
     color: #94a3b8;
+  }
+
+  .trace-dropped {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #fbbf24;
   }
 
   .trace-signals {

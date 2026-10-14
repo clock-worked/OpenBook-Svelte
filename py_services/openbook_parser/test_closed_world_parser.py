@@ -27,7 +27,7 @@ class ClosedWorldParserTests(unittest.TestCase):
             "Morgan",
         )
 
-    def test_post_quote_context_stops_before_next_quote(self):
+    def test_post_quote_context_reads_next_lines_trailing_tag(self):
         options = {
             "episode_joint_decode": False,
             "closed_world_characters": True,
@@ -50,12 +50,121 @@ class ClosedWorldParserTests(unittest.TestCase):
 
         dialogue = [line for line in lines if line.line_type == "dialogue"]
         self.assertEqual(len(dialogue), 2)
-        self.assertIsNone(
+        # The next line's trailing tag is visible to the post-quote
+        # inference; the next line's quoted text itself is not.
+        self.assertEqual(
             dialogue[0].attribution["decisionTrace"]["signals"].get(
                 "nextSentenceAttributedSpeaker"
-            )
+            ),
+            "Morgan",
         )
         self.assertEqual(dialogue[1].speaker, "Morgan")
+
+    def test_closed_world_drops_recorded_in_decision_trace(self):
+        options = {
+            "episode_joint_decode": False,
+            "closed_world_characters": True,
+            "character_catalog": [
+                {"characterId": "alex", "name": "Alex", "aliases": []},
+                {"characterId": "morgan", "name": "Morgan", "aliases": []},
+            ],
+            "heuristics": {"coreference": False},
+        }
+        with tempfile.TemporaryDirectory() as temp_dir:
+            chapter_path = Path(temp_dir) / "chapter.txt"
+            chapter_path.write_text(
+                'Rogue asked, "First?" "Second," Alex said.\n',
+                encoding="utf-8",
+            )
+            lines, _, _ = BookNLPParserService().parse_file(
+                str(chapter_path),
+                options=options,
+            )
+
+        dialogue = [line for line in lines if line.line_type == "dialogue"]
+        self.assertEqual(len(dialogue), 2)
+        trace = dialogue[0].attribution["decisionTrace"]
+        self.assertIn("Rogue", trace["rawCandidatePool"])
+        self.assertIn("Rogue", trace["droppedCandidates"])
+
+    def test_post_quote_action_narration_names_speaker(self):
+        options = {
+            "episode_joint_decode": False,
+            "closed_world_characters": True,
+            "character_catalog": [
+                {"characterId": "alex", "name": "Alex", "aliases": []},
+                {"characterId": "morgan", "name": "Morgan", "aliases": []},
+            ],
+            "heuristics": {"coreference": False},
+        }
+        with tempfile.TemporaryDirectory() as temp_dir:
+            chapter_path = Path(temp_dir) / "chapter.txt"
+            chapter_path.write_text(
+                '"Pondering an assault?" Alex probed, coming to stand besides me.\n',
+                encoding="utf-8",
+            )
+            lines, _, _ = BookNLPParserService().parse_file(
+                str(chapter_path),
+                options=options,
+            )
+
+        dialogue = [line for line in lines if line.line_type == "dialogue"]
+        self.assertEqual(len(dialogue), 1)
+        trace = dialogue[0].attribution["decisionTrace"]
+        self.assertEqual(
+            trace["signals"].get("postQuoteNamedMention"),
+            "Alex",
+        )
+        self.assertEqual(dialogue[0].speaker, "Alex")
+        self.assertIn("post_quote_mention", trace["selectedReasons"])
+
+    def test_infer_post_quote_named_mention(self):
+        from .attribution_passes import infer_post_quote_named_mention
+
+        self.assertEqual(
+            infer_post_quote_named_mention(
+                "Alex probed, coming to stand besides me.",
+                ["Alex", "Morgan"],
+            ),
+            "Alex",
+        )
+        self.assertIsNone(
+            infer_post_quote_named_mention(
+                "Everyone looked at the walls.",
+                ["Alex", "Morgan"],
+            )
+        )
+
+    def test_name_mention_enters_pool_without_gender_cue(self):
+        options = {
+            "episode_joint_decode": False,
+            "closed_world_characters": True,
+            "character_catalog": [
+                {"characterId": "alex", "name": "Alex", "aliases": []},
+                {"characterId": "morgan", "name": "Morgan", "aliases": []},
+            ],
+            "heuristics": {"coreference": False},
+        }
+        with tempfile.TemporaryDirectory() as temp_dir:
+            chapter_path = Path(temp_dir) / "chapter.txt"
+            chapter_path.write_text(
+                'Morgan crossed the room. "First?"\n',
+                encoding="utf-8",
+            )
+            lines, _, _ = BookNLPParserService().parse_file(
+                str(chapter_path),
+                options=options,
+            )
+
+        dialogue = [line for line in lines if line.line_type == "dialogue"]
+        self.assertEqual(len(dialogue), 1)
+        trace = dialogue[0].attribution["decisionTrace"]
+        self.assertIn("Morgan", trace["rawCandidatePool"])
+        self.assertEqual(
+            trace["signals"].get("recentNamedMentionBeforeQuote"),
+            "Morgan",
+        )
+        self.assertEqual(dialogue[0].speaker, "Morgan")
 
     def test_punctuated_began_tag_resolves_speaker(self):
         options = {

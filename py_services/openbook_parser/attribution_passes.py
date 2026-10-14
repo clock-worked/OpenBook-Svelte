@@ -119,6 +119,7 @@ class LineSignals:
     line_ends_with_question: bool = False
     next_dialogue_legacy: Optional[str] = None
     descriptor_match: Optional[str] = None
+    post_quote_named_mention: Optional[str] = None
 
 
 @dataclass
@@ -278,6 +279,33 @@ def infer_recent_named_mention(text: str, known_names: Sequence[str]) -> Optiona
                 latest_name = candidate
 
     return latest_name
+
+
+def infer_post_quote_named_mention(text: str, known_names: Sequence[str]) -> Optional[str]:
+    """First known name in the narration immediately AFTER a quoted line.
+
+    Captures the action-narration attribution pattern:
+        `"Pondering an assault?" Pickler probed, coming to stand besides me.`
+    where the following sentence describes the speaker's action even though
+    it carries no speech verb.
+    """
+    raw_text = str(text or "")
+    if not raw_text:
+        return None
+
+    earliest_index = -1
+    earliest_name: Optional[str] = None
+    for name in known_names:
+        candidate = str(name or "").strip()
+        if not candidate:
+            continue
+        pattern = r"\b" + re.escape(candidate) + r"(?:['’]s)?\b"
+        match = re.search(pattern, raw_text, re.I)
+        if match and (earliest_index == -1 or match.start() < earliest_index):
+            earliest_index = match.start()
+            earliest_name = candidate
+
+    return earliest_name
 
 
 def infer_previous_paragraph_named_mention(text: str, known_names: Sequence[str]) -> Optional[str]:
@@ -491,6 +519,14 @@ def rank_candidates(candidates: Sequence[str], signals: LineSignals) -> RankedDe
         if next_sentence_speaker and key == next_sentence_speaker and key != "narrator":
             score += 0.4
             reasons.append("post_quote_attribution")
+
+        if (
+            signals.post_quote_named_mention
+            and key == _norm(signals.post_quote_named_mention)
+            and key != "narrator"
+        ):
+            score += 0.4
+            reasons.append("post_quote_mention")
 
         if recent_named_mention and key == recent_named_mention and key != "narrator":
             score += 0.16
