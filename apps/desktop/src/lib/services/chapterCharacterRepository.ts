@@ -143,7 +143,10 @@ export async function persistChapterCharactersData(
     // v3 (ADR 0003 read-legacy-write-current): a populated characters/ folder
     // is the book's live character set; normal editing flows never write
     // chapter roster files in v3 books.
-    if (!options.bypassV3Guard && (await readV3BookCharacters(root)) != null) return false;
+    if (!options.bypassV3Guard && (await readV3BookCharacters(root)) != null) {
+        console.warn('[chapterCharacters] v3 guard: roster write blocked (no bypass)', path);
+        return false;
+    }
 
     const central = await resolveBookCharacters(root);
     const { byId, byName } = buildCentralLookups(central);
@@ -173,5 +176,7 @@ export async function persistChapterCharactersData(
         formatVersion: data.formatVersion || '2.0',
         characters: references,
     };
-    return writeCharacters(path, serialized as unknown as CharactersJson);
+    const ok = await writeCharacters(path, serialized as unknown as CharactersJson);
+    console.log('[chapterCharacters] roster written:', path, `(${references.length} refs), ok=${ok}`);
+    return ok;
 }

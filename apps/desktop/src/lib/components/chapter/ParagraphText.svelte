@@ -353,12 +353,28 @@
       hideTraceTooltip();
     };
 
-    window.addEventListener('scroll', refreshLayout, { passive: true });
+    // The chapter scrolls inside an inner panel, so bubble-phase window scroll
+    // events never fire for it. The capture phase sees every descendant scroll.
+    window.addEventListener('scroll', refreshLayout, { passive: true, capture: true });
     window.addEventListener('resize', refreshLayout);
 
+    // The tooltip must not outlive the hover. Per-run mouseleave misses cases
+    // where the run span is re-rendered or the pointer jumps away, so also hide
+    // the tooltip whenever the cursor is no longer over the traced line.
+    const handleDocMouseMove = (event: MouseEvent) => {
+      if (traceHoverLineId == null || !traceTooltip) return;
+      const lineEl = document.getElementById(`line-${traceHoverLineId}`);
+      const target = event.target instanceof Element ? event.target : null;
+      if (!lineEl || !target || !lineEl.contains(target)) {
+        hideTraceTooltip();
+      }
+    };
+    document.addEventListener('mousemove', handleDocMouseMove, true);
+
     return () => {
-      window.removeEventListener('scroll', refreshLayout);
+      window.removeEventListener('scroll', refreshLayout, { capture: true });
       window.removeEventListener('resize', refreshLayout);
+      document.removeEventListener('mousemove', handleDocMouseMove, true);
     };
   });
   
@@ -1181,7 +1197,7 @@
     z-index: 40;
     width: min(360px, calc(100vw - 24px));
     max-height: min(320px, calc(100vh - 24px));
-    overflow: auto;
+    overflow: hidden;
     padding: 12px 14px;
     border-radius: 10px;
     border: 1px solid rgba(148, 163, 184, 0.26);

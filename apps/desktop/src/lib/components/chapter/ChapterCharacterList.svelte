@@ -25,6 +25,9 @@
   $: charsVersion = $characters;
   $: bookCharsVersion = $bookCharacters;
 
+  // TEMP DnD diagnostic: log the enter transition once per drag.
+  let _traceInsideList = false;
+
   // Create a reactive map of character colors
   $: colorMap = new Map<string, string>(
     items.map(item => {
@@ -176,14 +179,23 @@
     class="chapter-list-drop"
     role="region"
     aria-label="Chapter characters"
+    on:dragenter={() => {
+      if (!_traceInsideList) {
+        _traceInsideList = true;
+        console.log('[DnD-trace] drag entered chapter list');
+      }
+    }}
     on:dragover={(e) => {
-      const bookName = e.dataTransfer?.getData('application/x-openbook-book-character-name') || '';
-      if (!bookName) return;
+      // Mid-drag, getData() always returns '' (browser blocks payload reads
+      // until drop) — gate on the dragged types instead.
+      const draggingBookCharacter = e.dataTransfer?.types.includes('application/x-openbook-book-character-name') ?? false;
+      if (!draggingBookCharacter) return;
       e.preventDefault();
       if (e.dataTransfer) e.dataTransfer.dropEffect = 'copy';
     }}
     on:drop={(e) => {
       const bookName = e.dataTransfer?.getData('application/x-openbook-book-character-name') || '';
+      console.log('[DnD-trace] drop on chapter list container, name:', JSON.stringify(bookName));
       if (!bookName) return;
       e.preventDefault();
       e.stopPropagation();
@@ -205,7 +217,8 @@
               e.dataTransfer.effectAllowed = 'move';
             }}
             on:dragover={(e) => {
-              const hasBookName = !!(e.dataTransfer?.getData('application/x-openbook-book-character-name') || '');
+              // getData() is blocked mid-drag; use types for the effect.
+              const hasBookName = e.dataTransfer?.types.includes('application/x-openbook-book-character-name') ?? false;
               e.preventDefault();
               if (e.dataTransfer) e.dataTransfer.dropEffect = hasBookName ? 'copy' : 'move';
             }}
@@ -214,6 +227,7 @@
               e.stopPropagation();
               const droppedBookName = e.dataTransfer?.getData('application/x-openbook-book-character-name') || '';
               if (droppedBookName) {
+                console.log('[DnD-trace] drop on chapter row, name:', droppedBookName);
                 onDropBookCharacter(droppedBookName);
                 return;
               }

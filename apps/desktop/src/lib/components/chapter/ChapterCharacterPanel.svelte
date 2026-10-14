@@ -5,7 +5,7 @@
   import { selection, conflictCursor } from '$lib/stores/selection';
   import { characters, colorForCharacter, rgbaToOpaqueHex, opaqueHexToRgba, refreshChapterCharactersFromFile } from '$lib/stores/characters';
   import { getScriptPath, readFileAsJson, writeScript, getCharactersPath } from '$lib/services/fs';
-  import { loadChapterCharactersData, persistChapterCharactersData } from '$lib/services/chapterCharacterRepository';
+  import { loadChapterCharactersData, persistChapterCharactersData, type PersistChapterCharactersOptions } from '$lib/services/chapterCharacterRepository';
   // removed generateChapterAudio per UI change
   import { defaultColors } from '$lib/theme/colors';
   import { Plus, ArrowUpDown, Menu } from 'lucide-svelte';
@@ -467,11 +467,13 @@
   }
 
   async function addBookCharacterToCurrentChapter(name: string): Promise<void> {
+    console.log('[DnD-trace] addBookCharacterToCurrentChapter:', name);
     const trimmedName = String(name || '').trim();
     if (!trimmedName) return;
 
     const existingChapter = get(characters);
     if (existingChapter.characters.some((character) => normalizeCharacterKey(character.name) === normalizeCharacterKey(trimmedName))) {
+      console.log('[DnD-trace] early return: already in chapter list');
       return;
     }
 
@@ -480,6 +482,11 @@
     );
     const chapterName = canonical?.name || trimmedName;
 
+    // Explicit, user-initiated roster edit (drop a book character into the
+    // chapter list): allowed to write the roster file in v3 books, the same
+    // way the migration does. The v3 guard (issue #2) stays in force for
+    // INCIDENTAL flows (assignment changes, rename/merge resyncs), which must
+    // not resurrect roster files the user never asked for.
     await updateChapterCharactersFile((existing) => {
       const list = existing?.characters ?? [];
       if (list.some((character) => normalizeCharacterKey(character.name) === normalizeCharacterKey(chapterName))) {
@@ -496,11 +503,12 @@
           } as Character,
         ],
       };
-    });
+    }, { bypassV3Guard: true });
   }
 
   async function updateChapterCharactersFile(
-    updater: (existing: CharactersJson | null) => CharactersJson | null
+    updater: (existing: CharactersJson | null) => CharactersJson | null,
+    options: PersistChapterCharactersOptions = {}
   ): Promise<void> {
     const ch: any = get(currentChapter);
     const root = get(bookRoot);
@@ -509,7 +517,7 @@
     const existing = await loadChapterCharactersData(root, path);
     const next = updater(existing);
     if (!next) return;
-    await persistChapterCharactersData(root, path, next);
+    await persistChapterCharactersData(root, path, next, options);
     await refreshChapterCharactersFromFile();
   }
 
@@ -696,6 +704,8 @@
     // v3: mint a GUID + write one characters/<Title>.json (silent auto-upsert).
     const created = await addBookCharacter(name, 'Unknown');
     if (!created) return false;
+    // Explicit, user-initiated roster add — same v3 exemption as the
+    // book-character drop (see addBookCharacterToCurrentChapter).
     await updateChapterCharactersFile((existing) => {
       const list = existing?.characters ?? [];
       if (list.some(c => c.name === name)) return existing ?? { formatVersion: '2.0', characters: list };
@@ -703,7 +713,7 @@
         formatVersion: existing?.formatVersion || '2.0',
         characters: [...list, { name, color: null, voice: null } as Character]
       };
-    });
+    }, { bypassV3Guard: true });
     // Update local display so the new character appears immediately
     const chars = get(characters);
     if (!chars.characters.some(c => c.name === name)) {

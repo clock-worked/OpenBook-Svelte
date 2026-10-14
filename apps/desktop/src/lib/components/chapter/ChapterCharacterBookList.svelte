@@ -153,7 +153,11 @@
                 if (!e.dataTransfer) return;
                 e.dataTransfer.setData('application/x-openbook-book-character-name', item.character.name);
                 e.dataTransfer.setData('text/plain', item.character.name);
-                e.dataTransfer.effectAllowed = 'move';
+                // 'copyMove': the chapter list drops with dropEffect 'copy' (add to
+                // chapter), pill-to-pill merge drops with 'move'. A drop is only
+                // allowed when dropEffect ⊆ effectAllowed, so both must be offered.
+                e.dataTransfer.effectAllowed = 'copyMove';
+                console.log('[DnD-trace] dragstart book pill:', item.character.name);
               }}
               on:dragover={(e) => {
                 e.preventDefault();
@@ -176,7 +180,7 @@
                   if (!e.dataTransfer) return;
                   e.dataTransfer.setData('application/x-openbook-book-character-name', item.character.name);
                   e.dataTransfer.setData('text/plain', item.character.name);
-                  e.dataTransfer.effectAllowed = 'move';
+                  e.dataTransfer.effectAllowed = 'copyMove';
                 }}
                 on:dragover={(e) => {
                   e.preventDefault();
