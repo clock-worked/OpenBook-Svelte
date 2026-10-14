@@ -2,7 +2,7 @@
   import type { CharactersJson, Character, Gender, ScriptJson } from '$lib/types';
   import { writable, get } from 'svelte/store';
   import { currentChapter, bookRoot, bookRootAbsolutePath, currentScript, chapters, requestChapterReload } from '$lib/stores/bookState';
-  import { selection, conflictCursor } from '$lib/stores/selection';
+  import { selection, conflictCursor, tracedLine } from '$lib/stores/selection';
   import { characters, colorForCharacter, rgbaToOpaqueHex, opaqueHexToRgba, refreshChapterCharactersFromFile } from '$lib/stores/characters';
   import { getScriptPath, readFileAsJson, writeScript, getCharactersPath } from '$lib/services/fs';
   import { loadChapterCharactersData, persistChapterCharactersData, type PersistChapterCharactersOptions } from '$lib/services/chapterCharacterRepository';
@@ -12,6 +12,7 @@
   import ChapterAiAssistPanel from './ChapterAiAssistPanel.svelte';
   import ChapterLocalAiPanel from './ChapterLocalAiPanel.svelte';
   import ChapterJevPanel from './ChapterJevPanel.svelte';
+  import AttributionTracePanel from './AttributionTracePanel.svelte';
   import ChapterCharacterList from './ChapterCharacterList.svelte';
   import ChapterCharacterBookList from './ChapterCharacterBookList.svelte';
   import CharacterDetails from './CharacterDetails.svelte';
@@ -49,7 +50,7 @@
   const lastScrolledLine = new Map<string, number>();
   
   type SortMode = 'name' | 'lines' | 'color';
-  type ChapterPanelTab = 'characters' | 'ai' | 'local-ai' | 'jev';
+  type ChapterPanelTab = 'characters' | 'ai' | 'local-ai' | 'jev' | 'trace';
 
   let sortMode: SortMode = 'name';
   let activeTab: ChapterPanelTab = 'characters';
@@ -59,7 +60,11 @@
     { value: 'ai' as const, label: 'AI Assist', hasAlert: $dialogueAiAssistState.running || $dialogueAiAssistVisibleResults.length > 0 },
     { value: 'local-ai' as const, label: 'Local AI', hasAlert: $localDialogueAiState.running || $localDialogueAiVisibleResults.length > 0 },
     { value: 'jev' as const, label: 'JEV', hasAlert: $jevDialogueAiState.running || $jevDialogueAiVisibleResults.length > 0 },
+    { value: 'trace' as const, label: 'Trace', hasAlert: false },
   ];
+
+  // Ctrl/⌘-clicking a line (review mode) jumps to the Trace tab.
+  $: if ($tracedLine) activeTab = 'trace';
   $: selectedTab = panelTabs.find((tab) => tab.value === activeTab)!;
 
   function observePanelWidth(node: HTMLDivElement) {
@@ -1083,6 +1088,8 @@
     <ChapterLocalAiPanel />
   {:else if activeTab === 'jev'}
     <ChapterJevPanel />
+  {:else if activeTab === 'trace'}
+    <AttributionTracePanel />
   {:else}
     <ClosedWorldCharacterReview
       items={closedWorldReviewItems}
