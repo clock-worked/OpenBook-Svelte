@@ -101,6 +101,11 @@ export function normalizeAttribution(
         genderConflict: typeof existing?.genderConflict === 'boolean' ? existing.genderConflict : false,
         parserBackend: typeof existing?.parserBackend === 'string' ? existing.parserBackend : null,
         decisionTrace: existing?.decisionTrace ?? null,
+        legacyRule: typeof existing?.legacyRule === 'string' ? existing.legacyRule : null,
+        jevVerification:
+            existing?.jevVerification && typeof existing.jevVerification === 'object'
+                ? existing.jevVerification
+                : null,
         candidates: sortedCandidates,
     };
 }

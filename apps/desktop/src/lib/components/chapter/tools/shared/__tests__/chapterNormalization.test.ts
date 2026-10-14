@@ -1,5 +1,21 @@
 import { describe, expect, it } from 'vitest';
-import { normalizeScriptData } from '../chapterNormalization';
+import { normalizeAttribution, normalizeScriptData } from '../chapterNormalization';
+
+describe('normalizeAttribution — audit fields', () => {
+    it('preserves legacyRule and jevVerification from the existing attribution', () => {
+        const result = normalizeAttribution(
+            {
+                legacyRule: '4b_tag_continuation',
+                jevVerification: { called: true, choice: 'Rashid', confidence: 0.8 }
+            },
+            [{ name: 'Rashid', confidence: 0.9 }],
+            'Rashid',
+            0.5
+        );
+        expect(result.legacyRule).toBe('4b_tag_continuation');
+        expect(result.jevVerification).toEqual({ called: true, choice: 'Rashid', confidence: 0.8 });
+    });
+});
 import { buildIdToNameMap } from '$lib/stores/characters';
 import type { Character } from '$lib/types';
 

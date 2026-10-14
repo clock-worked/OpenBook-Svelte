@@ -153,6 +153,19 @@ export interface LineAttributionDecisionTrace {
   signals?: Record<string, any>;
 }
 
+/** JEV cross-verification verdict for a line (the "verify layer"). */
+export interface JevVerification {
+  called: boolean;
+  cacheHit?: boolean;
+  query?: string;
+  choice?: string | null;
+  confidence?: number;
+  heuristicSpeaker?: string;
+  ts?: string;
+  isDialogue?: number;
+  error?: string;
+}
+
 export interface LineAttribution {
   confidence: number;
   topCandidateConfidence: number;
@@ -168,6 +181,8 @@ export interface LineAttribution {
   genderConflict?: boolean;
   parserBackend?: string | null;
   decisionTrace?: LineAttributionDecisionTrace | null;
+  legacyRule?: string | null;
+  jevVerification?: JevVerification | null;
   candidates: LineAttributionCandidate[];
 }
 
@@ -178,6 +193,8 @@ export interface ParserLineAttribution {
   genderConflict?: boolean;
   candidates?: LineAttributionCandidate[];
   decisionTrace?: LineAttributionDecisionTrace | null;
+  legacyRule?: string | null;
+  jevVerification?: JevVerification | null;
 }
 
 export interface DialogueLine {

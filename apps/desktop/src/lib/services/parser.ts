@@ -162,7 +162,7 @@ function estimateDialogueConfidence(line: Line, index: number, allLines: Line[],
 /**
  * Convert parser output into the persisted dialogue.json line shape.
  */
-function convertLineToDialogueLine(
+export function convertLineToDialogueLine(
   line: Line,
   id: number,
   nameToCharIdMap: Map<string, string>,
@@ -313,6 +313,8 @@ function convertLineToDialogueLine(
         genderConflict: parserAttribution?.genderConflict ?? false,
         parserBackend: parserAttribution?.parserBackend ?? null,
         decisionTrace: parserAttribution?.decisionTrace ?? null,
+        legacyRule: parserAttribution?.legacyRule ?? null,
+        jevVerification: parserAttribution?.jevVerification ?? null,
         candidates: collapsedCandidates.map((candidate) => ({
           characterId: candidate.characterId,
           name: candidate.name,
