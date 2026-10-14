@@ -18,7 +18,7 @@ type NormalizedScriptPayload = {
 
 type NormalizedAttributionFn = (
     existing: any,
-    candidates: Array<{ name: string; characterId?: string | null; confidence: number }>,
+    candidates: Array<{ name: string; characterId?: string | null; confidence: number; reasons?: string[] }>,
     characterName: string | null,
     threshold: number,
     fallbackSourceAlias?: string | null,
@@ -212,6 +212,7 @@ export async function saveDialogueFromNormalized(params: {
                     name: candidate.name,
                     characterId: candidate.name ? (nameToIdMap.get(candidate.name.toLowerCase()) || null) : null,
                     confidence: candidate.confidence,
+                    reasons: candidate.reasons,
                 })),
                 isNonSpeaker ? null : line.characterName,
                 params.unknownThreshold,

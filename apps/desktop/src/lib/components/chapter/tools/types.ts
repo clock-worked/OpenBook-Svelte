@@ -7,7 +7,7 @@ export type UnifiedLine = {
   span: { start: number; end: number } | null;
   characterName: string | null;  // Normalized field name
   isNonSpeaker?: boolean;
-  candidates: { name: string; confidence: number }[];
+  candidates: { name: string; characterId?: string | null; confidence: number; reasons?: string[] }[];
   isConflict: boolean;
   isReturning: boolean;
   attribution?: {

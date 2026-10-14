@@ -5,6 +5,7 @@ type AttributionInputCandidate = {
     name: string;
     characterId?: string | null;
     confidence: number;
+    reasons?: string[];
 };
 
 type NormalizeScriptOptions = {
