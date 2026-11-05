@@ -360,6 +360,26 @@ class BookNLPParserService:
             for idx, paragraph_index in line_paragraph_index.items()
         }
 
+        # User-confirmed speakers per paragraph: lines the user has explicitly
+        # attributed (resolutionStatus == "user_confirmed") are the strongest
+        # evidence for sibling-line attribution.
+        user_confirmed_speakers_by_paragraph: Dict[int, List[str]] = {}
+        for idx, base_line in enumerate(base_lines):
+            if base_line.line_type != "dialogue":
+                continue
+            attribution = base_line.attribution
+            if not isinstance(attribution, dict):
+                continue
+            if attribution.get("resolutionStatus") != "user_confirmed":
+                continue
+            speaker = str(base_line.speaker or "").strip()
+            if not speaker:
+                continue
+            para_idx = line_paragraph_index.get(idx, -1)
+            if para_idx < 0:
+                continue
+            user_confirmed_speakers_by_paragraph.setdefault(para_idx, []).append(speaker)
+
         uncertain_lines = 0
         resolved_dialogue_by_paragraph: Dict[int, str] = {}
 
@@ -394,115 +414,52 @@ class BookNLPParserService:
                 if 0 <= paragraph_index < len(paragraph_ranges)
                 else None
             )
-            raw_context = ""
-            pre_quote_context = ""
-            post_quote_context = ""
-            next_dialogue_tail = ""
-            if isinstance(line.span_start, int) and isinstance(line.span_end, int):
-                if paragraph_range:
-                    left = max(paragraph_range.start, line.span_start - 120)
-                    right = min(paragraph_range.end, line.span_end + 120)
-                    pre_left = paragraph_range.start
-                    post_right = paragraph_range.end
-                    previous_dialogue_index = previous_dialogue_by_line.get(line_idx)
-                    if previous_dialogue_index is not None:
-                        previous_dialogue = base_lines[previous_dialogue_index]
-                        if isinstance(previous_dialogue.span_end, int):
-                            pre_left = max(pre_left, previous_dialogue.span_end)
-                    next_dialogue_index = next_dialogue_by_line.get(line_idx)
-                    if (
-                        next_dialogue_index is not None
-                        and line_paragraph_index.get(next_dialogue_index) == paragraph_index
-                    ):
-                        next_dialogue = base_lines[next_dialogue_index]
-                        if isinstance(next_dialogue.span_start, int):
-                            post_right = min(post_right, next_dialogue.span_start)
-                        # The next line's own trailing tag (e.g. `"Second,"
-                        # Morgan said.`) is appended so post-quote speaker
-                        # inference can see it; the next line's quoted text
-                        # itself stays out of the context.
-                        if isinstance(next_dialogue.span_end, int):
-                            next_dialogue_tail = " " + original_text[
-                                next_dialogue.span_end : next_dialogue.span_end + 80
-                            ]
-                else:
-                    left = max(0, line.span_start - 120)
-                    right = min(len(original_text), line.span_end + 120)
-                    pre_left = max(0, line.span_start - 240)
-                    post_right = min(len(original_text), line.span_end + 280)
-                raw_context = original_text[left:right]
-                pre_quote_context = original_text[pre_left:line.span_start]
-                post_quote_context = (
-                    original_text[line.span_end:post_right] + next_dialogue_tail
-                )
+            # --- Signal extraction (delegated to signal_extractor module) ---
+            from .signal_extractor import ExtractionContext, extract_line_signals
 
-            last_sentence = extract_last_sentence(pre_quote_context)
-            next_sentence = extract_first_sentence(post_quote_context)
-            addressed_name = infer_addressed_name(last_sentence, known_names)
-            explicit_mentions = extract_explicit_mentions(line.text, known_names)
-            next_sentence_speaker = infer_sentence_attributed_speaker(next_sentence, known_names)
-            post_quote_named_mention = infer_post_quote_named_mention(
-                post_quote_context,
-                known_names,
+            extraction_ctx = ExtractionContext(
+                line=line,
+                line_idx=line_idx,
+                base_lines=base_lines,
+                line_paragraph_index=line_paragraph_index,
+                paragraph_ranges=paragraph_ranges,
+                original_text=original_text,
+                known_names=known_names,
+                known_gender_by_key=known_gender_by_key,
+                next_legacy_by_line=next_legacy_by_line,
+                next_dialogue_by_line=next_dialogue_by_line,
+                previous_dialogue_by_line=previous_dialogue_by_line,
+                resolved_dialogue_by_paragraph=resolved_dialogue_by_paragraph,
+                is_returning_by_line=is_returning_by_line,
+                closed_world_catalog=closed_world_catalog,
+                closed_world=closed_world,
+                user_confirmed_speakers_by_paragraph=user_confirmed_speakers_by_paragraph,
             )
-            descriptor_speaker = infer_unique_descriptor_speaker(
-                f"{pre_quote_context[-160:]} {next_sentence}",
-                closed_world_catalog,
-            ) if closed_world else None
-            recent_named_mention = infer_recent_named_mention(pre_quote_context, known_names)
-            previous_paragraph_named_mention = None
-            context_gender = None
-            context_gender_cue = None
-            for sentence in (next_sentence, last_sentence):
-                context_gender, context_gender_cue = infer_pronoun_attributed_gender(sentence)
-                if context_gender:
-                    break
-            if (
-                next_sentence_speaker is None
-                and recent_named_mention is None
-                and previous_paragraph_named_mention is None
-                and paragraph_index > 0
-            ):
-                previous_paragraph_range = paragraph_ranges[paragraph_index - 1]
-                previous_paragraph_text = original_text[
-                    previous_paragraph_range.start:previous_paragraph_range.end
-                ]
-                previous_paragraph_named_mention = infer_previous_paragraph_named_mention(
-                    previous_paragraph_text,
-                    known_names,
-                )
-
-            next_legacy = next_legacy_by_line.get(line_idx)
-            prev_resolved = (
-                resolved_dialogue_by_paragraph.get(paragraph_index)
-                if paragraph_index >= 0
-                else None
-            )
-            continues_paragraph_dialogue = bool(
-                previous_dialogue_by_line.get(line_idx) is not None and prev_resolved
-            )
+            result = extract_line_signals(extraction_ctx)
+            signals = result.signals
+            raw_context = result.raw_context
 
             # Union of every signal-proposed name. Recorded in the decision
             # trace as rawCandidatePool so closed-world drops stay visible.
             dialogue_candidates = _unique_suggestions(
                 *(line.suggestions or []),
-                legacy_name,
-                prev_resolved,
-                next_sentence_speaker,
-                post_quote_named_mention,
-                recent_named_mention,
-                previous_paragraph_named_mention,
-                descriptor_speaker,
+                signals.legacy_name,
+                signals.prev_resolved,
+                signals.next_sentence_attributed_speaker,
+                signals.post_quote_named_mention,
+                signals.recent_named_mention_before_quote,
+                signals.previous_paragraph_named_mention,
+                signals.descriptor_match,
             )
             if not dialogue_candidates:
                 dialogue_candidates = _unique_suggestions(
-                    legacy_name,
-                    prev_resolved,
-                    next_sentence_speaker,
-                    post_quote_named_mention,
-                    recent_named_mention,
-                    previous_paragraph_named_mention,
-                    descriptor_speaker,
+                    signals.legacy_name,
+                    signals.prev_resolved,
+                    signals.next_sentence_attributed_speaker,
+                    signals.post_quote_named_mention,
+                    signals.recent_named_mention_before_quote,
+                    signals.previous_paragraph_named_mention,
+                    signals.descriptor_match,
                 )
             raw_pool_names = list(dialogue_candidates)
 
@@ -545,33 +502,8 @@ class BookNLPParserService:
                 candidate_gender = known_gender_by_key.get(candidate_key)
                 if candidate_gender:
                     candidate_genders[candidate_key] = candidate_gender
+            signals.candidate_genders = candidate_genders
 
-            signals = LineSignals(
-                predicted_name=legacy_name,
-                legacy_name=legacy_name,
-                prev_resolved=prev_resolved,
-                next_resolved=None,
-                used_fallback_alignment=False,
-                exact_quote_match=True,
-                quote_boundary_quality=quote_boundary_quality(raw_context, line.text),
-                nearby_speech_verb=detect_nearby_speech_verb(raw_context),
-                has_coref_name=False,
-                alias_match_strength=0.0,
-                addressed_name_prev_sentence=addressed_name,
-                explicit_quote_mentions=explicit_mentions,
-                next_sentence_attributed_speaker=next_sentence_speaker,
-                post_quote_named_mention=post_quote_named_mention,
-                recent_named_mention_before_quote=recent_named_mention,
-                previous_paragraph_named_mention=previous_paragraph_named_mention,
-                candidate_genders=candidate_genders,
-                context_gender=context_gender,
-                context_gender_cue=context_gender_cue,
-                is_returning=is_returning_by_line.get(line_idx, False),
-                continues_paragraph_dialogue=continues_paragraph_dialogue,
-                line_ends_with_question=str(line.text or "").strip().endswith("?"),
-                next_dialogue_legacy=next_legacy,
-                descriptor_match=descriptor_speaker,
-            )
             decision = rank_candidates(dialogue_candidates, signals)
             line.speaker = decision.chosen_name
             line.is_suggestion = decision.is_suggestion

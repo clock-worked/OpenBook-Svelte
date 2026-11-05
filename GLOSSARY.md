@@ -45,13 +45,14 @@ A character's stable 8-character Crockford base32 identity, decoupled from all o
 _Avoid_: slug, id (the v2 name-derived form)
 
 **Narrator**:
-A reserved sentinel speaker for unattributed narration. Not a character and has no character file.
+The reserved speaker that reads narration. In v3 books a first-class character — own file, GUID, voice, and stats. A line with no attributed character is an *Unknown line*, not a narrator line.
+_Avoid_: null speaker
 
 **Roster**:
 The set of characters who speak in a chapter.
 
 **Reference family**:
-The four data families that reference a character by GUID: dialogue files, chapter rosters, voices, and audio manifests.
+The four data families that reference a character: dialogue files, chapter rosters, and voices by GUID; audio manifests by character name.
 
 **Character stats**:
 A character's book-wide speaking volume: how many lines they speak and in how many chapters.

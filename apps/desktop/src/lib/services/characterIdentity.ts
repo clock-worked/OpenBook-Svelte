@@ -104,3 +104,39 @@ export function buildUniqueCharacterId(
 export function isCharacterGuid(value: unknown): value is string {
     return typeof value === 'string' && CHARACTER_GUID_PATTERN.test(value.trim());
 }
+
+/**
+ * Canonical line → character-ID resolution (single home for the copies that
+ * used to live in AudioPanel and the queue planners).
+ *
+ * - v3 lines carry `characterId` (GUID) — returned as-is.
+ * - legacy lines carry `chosenSpeaker` (a name or alias surface form) —
+ *   resolved case-insensitively through a name/alias → id map.
+ * - neither present, or `characterId: null` → null. A null-characterId line
+ *   is an Unknown line (unattributed), NOT a narrator line.
+ */
+export function resolveLineCharacterId(
+    line: { characterId?: unknown; chosenSpeaker?: unknown } | null | undefined,
+    nameToId: ReadonlyMap<string, string>,
+): string | null {
+    if (!line) return null;
+    const characterId = typeof line.characterId === 'string' ? line.characterId.trim() : '';
+    if (characterId) return characterId;
+    const speaker = typeof line.chosenSpeaker === 'string' ? line.chosenSpeaker.trim() : '';
+    if (!speaker) return null;
+    return nameToId.get(speaker.toLowerCase()) ?? null;
+}
+
+/**
+ * Canonical character-ID → display name. ID → name maps store lowercase keys
+ * while v3 GUIDs are uppercase, so the lookup is lowercased. Falls back to
+ * `fallback`, then the raw ID, so UI text shows a resolved name whenever the
+ * map knows the character.
+ */
+export function resolveCharacterNameForId(
+    characterId: string,
+    idToName: ReadonlyMap<string, string>,
+    fallback?: string,
+): string {
+    return idToName.get(characterId.toLowerCase()) ?? fallback ?? characterId;
+}

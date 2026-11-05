@@ -141,6 +141,7 @@ export function assignCharacterToLines(
   const byId = new Set(lineIds);
   for (const line of scr.lines) {
     if (!byId.has(line.id)) continue;
+    if (line.characterName?.toLowerCase() === 'narrator') continue;
     line.characterName = characterName;
     line.isNonSpeaker = false;
     if (!line.candidates.some(c => c.name === characterName)) {

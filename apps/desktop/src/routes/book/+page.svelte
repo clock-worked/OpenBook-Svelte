@@ -415,8 +415,12 @@
 
   const assignVoice = historyAction('Assign character voice', assignVoiceImpl);
   async function assignVoiceImpl(characterName: string, voiceId: string) {
-    // Find character by name to get its ID
-    const character = $bookCharacters.characters.find(c => c.name === characterName);
+    // Find character by name to get its ID. The UI shows "Narrator"
+    // (title-cased) while v3 roster entries may store "narrator" — match
+    // case-insensitively after the exact attempt, per house normalization.
+    const characterNameLower = characterName.toLowerCase();
+    const character = $bookCharacters.characters.find(c => c.name === characterName)
+      ?? $bookCharacters.characters.find(c => c.name?.toLowerCase() === characterNameLower);
     if (!character || !character.id) {
       console.error(`Character not found or missing ID for ${characterName}`);
       return;

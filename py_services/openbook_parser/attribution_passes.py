@@ -120,6 +120,7 @@ class LineSignals:
     next_dialogue_legacy: Optional[str] = None
     descriptor_match: Optional[str] = None
     post_quote_named_mention: Optional[str] = None
+    paragraph_sibling_speaker: Optional[str] = None
 
 
 @dataclass
@@ -466,16 +467,28 @@ def rank_candidates(candidates: Sequence[str], signals: LineSignals) -> RankedDe
     )
     predicted_is_generic = _is_generic_speaker_label(signals.predicted_name)
 
+    # Explicit local evidence (post-quote name/speech tag) overrides the
+    # legacy continuity anchor for all *other* candidates. Rationale: a
+    # direct name in the post-quote text is stronger evidence than the
+    # fuzzy "next line is same speaker" assumption.
+    explicit_anchor: Optional[str] = None
+    if next_sentence_speaker:
+        explicit_anchor = next_sentence_speaker
+    elif signals.post_quote_named_mention:
+        explicit_anchor = _norm(signals.post_quote_named_mention)
+
     for candidate in unique:
         key = _norm(candidate)
         score = 0.38
         reasons: List[str] = []
 
-        if key == _norm(signals.predicted_name):
+        legacy_suppressed = explicit_anchor is not None and key != explicit_anchor
+
+        if key == _norm(signals.predicted_name) and not legacy_suppressed:
             score += 0.2 if signals.exact_quote_match else 0.08
             reasons.append("parser_match")
 
-        if key == _norm(signals.legacy_name) and key != "narrator":
+        if key == _norm(signals.legacy_name) and key != "narrator" and not legacy_suppressed:
             score += 0.16
             reasons.append("legacy_match")
             if signals.used_fallback_alignment or predicted_is_generic:
@@ -493,6 +506,10 @@ def rank_candidates(candidates: Sequence[str], signals: LineSignals) -> RankedDe
         if signals.next_resolved and key == _norm(signals.next_resolved):
             score += 0.1
             reasons.append("next_continuity")
+
+        if signals.paragraph_sibling_speaker and key == _norm(signals.paragraph_sibling_speaker):
+            score += 0.3
+            reasons.append("paragraph_sibling_confirmed")
 
         if (
             signals.prev_resolved
@@ -598,6 +615,7 @@ def rank_candidates(candidates: Sequence[str], signals: LineSignals) -> RankedDe
         "recent_named_mention",
         "previous_paragraph_named_mention",
         "same_paragraph_continuation",
+        "paragraph_sibling_confirmed",
         "speech_verb",
         "alias_strength",
         "learned_descriptor_match",

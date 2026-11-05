@@ -25,6 +25,7 @@ if sys.platform == 'win32':
     os.environ['PYTHONIOENCODING'] = 'utf-8'
 
 
+from chatterbox_local_service import ChatterboxLocalService
 from vibevoice_local_service import VibeVoiceLocalService
 
 
@@ -44,6 +45,8 @@ class AudioGenerationService:
         self.google_token_expiry = None
         self.vibevoice_local_service: Optional[VibeVoiceLocalService] = None
         self._vibevoice_lock = threading.Lock()
+        self.chatterbox_local_service: Optional[ChatterboxLocalService] = None
+        self._chatterbox_lock = threading.Lock()
         
         # Load Google credentials
         self._load_google_credentials()
@@ -98,6 +101,19 @@ class AudioGenerationService:
                     return {
                         "success": False,
                         "error": f"VibeVoice generation failed: {error_details}"
+                    }
+            elif provider_lower in ["chatterbox", "chatterbox_local", "chatterbox-local"]:
+                success, error_details = await asyncio.to_thread(
+                    self._generate_chatterbox_local,
+                    normalized_text,
+                    voice_id,
+                    audio_path,
+                    voice_sample_root,
+                )
+                if not success:
+                    return {
+                        "success": False,
+                        "error": f"Chatterbox generation failed: {error_details}"
                     }
             else:
                 return {
@@ -359,7 +375,7 @@ class AudioGenerationService:
         voice_sample_root: Optional[str]
     ) -> Tuple[bool, Optional[str]]:
         try:
-            sample_path, resolution_error = self._resolve_vibevoice_sample_path(
+            sample_path, resolution_error = self._resolve_local_voice_sample_path(
                 voice_id=voice_id,
                 voice_sample_root=voice_sample_root,
             )
@@ -398,7 +414,54 @@ class AudioGenerationService:
             voice_sample_root=voice_sample_root,
         )
 
-    def _resolve_vibevoice_sample_path(
+    def _generate_chatterbox_local(
+        self,
+        text: str,
+        voice_id: str,
+        output_path: Path,
+        voice_sample_root: Optional[str]
+    ) -> Tuple[bool, Optional[str]]:
+        try:
+            sample_path, resolution_error = self._resolve_local_voice_sample_path(
+                voice_id=voice_id,
+                voice_sample_root=voice_sample_root,
+            )
+            if not sample_path:
+                return False, resolution_error or "Unable to resolve voice sample path."
+
+            if self.chatterbox_local_service is None:
+                self.chatterbox_local_service = ChatterboxLocalService()
+
+            with self._chatterbox_lock:
+                self.chatterbox_local_service.generate_audio(
+                    text=text,
+                    sample_path=sample_path,
+                    output_path=str(output_path),
+                )
+            return True, None
+        except Exception as exc:
+            error_msg = str(exc).encode('utf-8', errors='replace').decode('utf-8', errors='replace')
+            print(f"Error generating Chatterbox audio: {error_msg}")
+            import traceback
+            traceback.print_exc()
+            return False, error_msg
+
+    def generate_chatterbox_text_to_path(
+        self,
+        *,
+        text: str,
+        voice_id: str,
+        output_path: Path,
+        voice_sample_root: Optional[str],
+    ) -> Tuple[bool, Optional[str]]:
+        return self._generate_chatterbox_local(
+            text=text,
+            voice_id=voice_id,
+            output_path=output_path,
+            voice_sample_root=voice_sample_root,
+        )
+
+    def _resolve_local_voice_sample_path(
         self,
         voice_id: str,
         voice_sample_root: Optional[str],
@@ -473,6 +536,8 @@ class AudioGenerationService:
     def _get_audio_extension(self, provider: str) -> str:
         provider_lower = provider.lower()
         if provider_lower in ["vibevoice_local", "vibevoice-local", "vibevoice"]:
+            return ".wav"
+        if provider_lower in ["chatterbox", "chatterbox_local", "chatterbox-local"]:
             return ".wav"
         return ".mp3"
     

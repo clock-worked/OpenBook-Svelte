@@ -20,6 +20,7 @@
   import { audioGenerateLineId } from '$lib/stores/selection';
   import { audioUpdateTrigger, triggerAudioUpdate } from '$lib/stores/audioUpdates';
   import { readCentralCharacters, readDialogueForChapter } from '$lib/services/fs';
+  import { resolveLineCharacterId, resolveCharacterNameForId } from '$lib/services/characterIdentity';
   import {
     enqueueAudioJob,
     getNextQueuedJob,
@@ -84,16 +85,11 @@
   let characterNameToId = new Map<string, string>();
   let characterIdToData = new Map<string, Character>();
 
+  // Canonical line → character resolution (shared with the queue planners):
+  // v3 lines carry characterId; legacy lines carry chosenSpeaker (name/alias,
+  // case-insensitive). Neither present, or characterId null = Unknown line.
   function resolveCharacterIdFromLine(line: any): string | null {
-    if ('characterId' in line && line.characterId) {
-      return String(line.characterId);
-    }
-
-    if ('chosenSpeaker' in line && line.chosenSpeaker) {
-      return characterNameToId.get(String(line.chosenSpeaker).toLowerCase()) || null;
-    }
-
-    return null;
+    return resolveLineCharacterId(line, characterNameToId);
   }
 
   function getChapterSourceFile(chapter: { title: string; path?: string }): string {
@@ -109,7 +105,7 @@
       isLineAudioPresent: ({ chapterTitle, characterName, lineId }) =>
         checkAudioExistsForLine(chapterTitle, characterName, lineId),
       resolveCharacterIdFromLine,
-      resolveCharacterName: (id) => characterIdToName.get(id) || id,
+      resolveCharacterName: (id) => resolveCharacterNameForId(id, characterIdToName),
       getVoice: getVoiceForCharacter,
       getChapterSourceFile,
     };
@@ -540,7 +536,7 @@
     try {
       clearAllManifestCache();
       for (const item of sortedCharactersById) {
-        const characterName = characterIdToName.get(item.id) || item.name || item.id;
+        const characterName = resolveCharacterNameForId(item.id, characterIdToName, item.name);
         await reconcileAudioManifestForCharacter(ch.title, characterName);
       }
       await loadAudioClipCounts();
@@ -557,7 +553,7 @@
     const newCounts = new Map<string, number>();
     
     for (const item of sortedCharactersById) {
-      const characterName = characterIdToName.get(item.id) || item.id;
+      const characterName = resolveCharacterNameForId(item.id, characterIdToName);
       const { clipCount } = await checkAudioExistsForCharacter(ch.title, characterName);
       newCounts.set(item.id, clipCount);
     }
@@ -574,7 +570,10 @@
 
   // Get voice assignment for a character by ID
   function getVoiceForCharacter(characterId: string): VoiceInfo | null {
-    const assignment = $voices.assignments.find(a => a.characterId === characterId);
+    // Case-insensitive: v3 character IDs are uppercase, but some stored
+    // assignments use a different case for the same character.
+    const lowerId = characterId.toLowerCase();
+    const assignment = $voices.assignments.find(a => a.characterId.toLowerCase() === lowerId);
     if (!assignment) return null;
     
     const voice = $voices.voices.find(v => v.id === assignment.voiceId);
@@ -595,7 +594,7 @@
     
     if (!ch || !root || !scr) return;
 
-    const characterName = characterIdToName.get(characterId) || characterId;
+    const characterName = resolveCharacterNameForId(characterId, characterIdToName);
     const voiceInfo = getVoiceForCharacter(characterId);
     const selectedLineId = get(audioGenerateLineId);
     const characterLines = getCharacterLinesForCurrentScript(characterId, characterName, scr);
@@ -642,12 +641,12 @@
     await enqueueCharacterGeneration(characterId, { missingOnly: false });
   }
 
-  function getCharacterLinesForScript(characterId: string, characterName: string, script: any): DialogueLine[] {
-    return script.lines.filter((line: any) => {
-      if ('characterId' in line && line.characterId === characterId) return true;
-      if ('chosenSpeaker' in line && line.chosenSpeaker === characterName) return true;
-      return false;
-    }) as unknown as DialogueLine[];
+  function getCharacterLinesForScript(characterId: string, _characterName: string, script: any): DialogueLine[] {
+    // Canonical match: resolve each line to a character ID (v3 characterId,
+    // legacy chosenSpeaker via the name/alias map) and compare IDs.
+    return script.lines.filter((line: any) =>
+      resolveLineCharacterId(line, characterNameToId) === characterId,
+    ) as unknown as DialogueLine[];
   }
 
   function getCharacterLinesForCurrentScript(characterId: string, characterName: string, scr: any): DialogueLine[] {
@@ -712,7 +711,7 @@
           return readDialogueForChapter(title);
         },
         resolveCharacterName: (characterId, fallbackName) =>
-          characterIdToName.get(characterId) || fallbackName || characterId,
+          resolveCharacterNameForId(characterId, characterIdToName, fallbackName),
         getVoice: getVoiceForCharacter,
         filterCharacterLines: getCharacterLinesForScript,
         isLineAudioPresent: ({ chapterTitle, characterName, lineId }) =>
@@ -763,7 +762,7 @@
     
     if (!ch || !root || !scr) return 0;
 
-    const characterName = characterIdToName.get(characterId) || characterId;
+    const characterName = resolveCharacterNameForId(characterId, characterIdToName);
     const voiceInfo = getVoiceForCharacter(characterId);
     if (!voiceInfo) {
       alert(`No voice assigned to ${characterName}`);
@@ -1824,7 +1823,7 @@
     <div class="modal-content" on:click|stopPropagation>
       <h3 class="modal-title">Overwrite Existing Audio?</h3>
       <p class="modal-message">
-        Audio already exists for <strong>{overwriteCharacterId ? characterIdToName.get(overwriteCharacterId) || overwriteCharacterId : 'Unknown'}</strong> ({overwriteClipCount} clip{overwriteClipCount !== 1 ? 's' : ''}).
+        Audio already exists for <strong>{overwriteCharacterId ? resolveCharacterNameForId(overwriteCharacterId, characterIdToName) : 'Unknown'}</strong> ({overwriteClipCount} clip{overwriteClipCount !== 1 ? 's' : ''}).
         Do you want to regenerate and overwrite the existing audio?
       </p>
       <div class="modal-actions">

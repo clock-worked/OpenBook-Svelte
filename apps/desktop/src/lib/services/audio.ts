@@ -381,10 +381,12 @@ export async function generateAudioForLine(
 ): Promise<{ success: boolean; audioPath?: string; error?: string }> {
   try {
     const samplesRoot = get(voiceSamplesRoot);
-    const isVibeVoice = provider.toLowerCase().includes('vibevoice');
-    const includeSamplesRoot = isVibeVoice && samplesRoot;
+    // Local-model providers (VibeVoice/Chatterbox) share the chunked
+    // generation endpoints and the voice-sample root plumbing.
+    const isLocalChunked = /vibevoice|chatterbox/.test(provider.toLowerCase());
+    const includeSamplesRoot = isLocalChunked && samplesRoot;
     const resolvedAudioRoot = audioRootFor();
-    const endpoint = isVibeVoice
+    const endpoint = isLocalChunked
       ? API_ENDPOINTS.generateVibeVoiceLine
       : API_ENDPOINTS.generateAudioLine;
 
@@ -442,12 +444,14 @@ export async function generateAudioForCharacter(
   }
 
   const providerLower = provider.toLowerCase();
-  if (!providerLower.includes('vibevoice')) {
+  // Local-model providers (VibeVoice/Chatterbox) share the chunked
+  // character generation pipeline.
+  if (!/vibevoice|chatterbox/.test(providerLower)) {
     return {
       success: false,
       generatedCount: 0,
       errors: [
-        `Unsupported provider '${provider}'. OpenBook generation is VibeVoice-only.`,
+        `Unsupported provider '${provider}'. Chunked generation supports local models only (VibeVoice/Chatterbox).`,
       ],
       canceled: false,
     };

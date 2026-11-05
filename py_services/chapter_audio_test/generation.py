@@ -11,7 +11,14 @@ import soundfile as sf
 from .text_utils import normalize_chapter_text
 
 
-def _split_text_to_max_chars(text: str, max_chars: int) -> list[str]:
+def split_text_to_max_chars(text: str, max_chars: int) -> list[str]:
+    """Split ``text`` into pieces of at most ``max_chars`` characters.
+
+    Public so TTS services (e.g. Chatterbox, a short-form engine) can reuse the
+    same sentence/word-aware chunking the chapter pipeline uses. Pieces break
+    on sentence boundaries first, then word boundaries, and small pieces are
+    re-packed so no piece exceeds ``max_chars``.
+    """
     if len(text) <= max_chars:
         return [text]
 
@@ -79,7 +86,7 @@ def build_line_chunk_generation_plan(
         normalized_line = normalize_chapter_text(raw_line)
         if normalized_line:
             pieces = (
-                _split_text_to_max_chars(normalized_line, max_chunk_chars)
+                split_text_to_max_chars(normalized_line, max_chunk_chars)
                 if max_chunk_chars is not None
                 else [normalized_line]
             )

@@ -1,6 +1,13 @@
 import type { Voice, VoiceAssignment } from '$lib/types';
 import type { ManifestData } from '$lib/services/apiContracts';
 
+/** Local-model engines that share the chunked generation pipeline. */
+const LOCAL_ENGINE_PROVIDERS = new Set<string>(['vibevoice_local', 'chatterbox']);
+
+function isLocalEngineProvider(provider: string): boolean {
+    return LOCAL_ENGINE_PROVIDERS.has(provider);
+}
+
 export function mergeDiscoveredVoices(
     existingVoices: Voice[],
     discoveredVoices: Voice[],
@@ -19,6 +26,41 @@ export function mergeDiscoveredVoices(
         const existing = existingVoicesMap.get(key);
 
         if (!existing) {
+            // Engine switch: a voice discovered under a local engine that
+            // already exists under a DIFFERENT local engine (e.g. a
+            // 'vibevoice_local' voice from before the Chatterbox switch) is
+            // the same logical voice. Flip the existing entry's provider in
+            // place — keeping its id so character assignments keep resolving
+            // — instead of adding a duplicate the assignments never point at.
+            const twin = isLocalEngineProvider(discoveredVoice.provider)
+                ? existingVoices.find(
+                    (voice) =>
+                        voice.provider !== discoveredVoice.provider &&
+                        isLocalEngineProvider(voice.provider) &&
+                        voice.providerVoiceId === discoveredVoice.providerVoiceId,
+                  )
+                : undefined;
+            if (twin) {
+                const twinIndex = mergedVoices.findIndex((voice) => voice.id === twin.id);
+                if (twinIndex !== -1) {
+                    mergedVoices[twinIndex] = {
+                        ...twin,
+                        provider: discoveredVoice.provider,
+                        metadata: {
+                            ...twin.metadata,
+                            totalClips:
+                                discoveredVoice.metadata.totalClips || twin.metadata.totalClips,
+                            usedByCharacters: [
+                                ...(twin.metadata.usedByCharacters || []),
+                                ...(discoveredVoice.metadata.usedByCharacters || []),
+                            ].filter((value, index, array) => array.indexOf(value) === index),
+                        },
+                    };
+                    hasUpdates = true;
+                }
+                continue;
+            }
+
             newVoices.push(discoveredVoice);
             hasUpdates = true;
             continue;

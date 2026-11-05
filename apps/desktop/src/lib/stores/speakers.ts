@@ -184,24 +184,30 @@ export async function syncVoicesFromSamples(samplesRoot: string, recordHistory =
     return { imported: 0, removed: 0 };
   }
 
-  const sampleByKey = new Map(sampleEntries.map((sample) => [`vibevoice_local:${sample.sample_file}`, sample]));
+  // Match samples by file name, not provider: sample voices may carry a
+  // legacy 'vibevoice_local' provider while new ones are 'chatterbox'. The
+  // sample file is the stable identity; re-deriving via createVoiceFromSample
+  // flips the engine to Chatterbox while keeping the existing voice id (so
+  // character assignments keep resolving).
+  const sampleByFile = new Map(sampleEntries.map((sample) => [sample.sample_file, sample]));
   const current = get(voices);
 
   const nextVoices: Voice[] = [];
-  const handledKeys = new Set<string>();
+  const handledFiles = new Set<string>();
   const removedVoiceIds = new Set<string>();
 
   for (const voice of current.voices) {
-    const key = `${voice.provider}:${voice.providerVoiceId}`;
-    const sample = sampleByKey.get(key);
+    const isLocalSampleVoice =
+      (voice.provider === 'vibevoice_local' || voice.provider === 'chatterbox') &&
+      voice.metadata.discoveredFrom === 'sample';
+    const sample = isLocalSampleVoice ? sampleByFile.get(voice.providerVoiceId) : undefined;
     if (sample) {
       nextVoices.push(createVoiceFromSample(samplesRoot, sample, voice));
-      handledKeys.add(key);
+      handledFiles.add(sample.sample_file);
       continue;
     }
 
-    const isImportedSampleVoice = voice.provider === 'vibevoice_local' && voice.metadata.discoveredFrom === 'sample';
-    if (isImportedSampleVoice) {
+    if (isLocalSampleVoice) {
       removedVoiceIds.add(voice.id);
       continue;
     }
@@ -210,8 +216,7 @@ export async function syncVoicesFromSamples(samplesRoot: string, recordHistory =
   }
 
   for (const sample of sampleEntries) {
-    const key = `vibevoice_local:${sample.sample_file}`;
-    if (handledKeys.has(key)) continue;
+    if (handledFiles.has(sample.sample_file)) continue;
     nextVoices.push(createVoiceFromSample(samplesRoot, sample));
   }
 

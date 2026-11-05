@@ -345,6 +345,7 @@
       if (!scr) continue;
       let changed = false;
       for (const line of scr.lines) {
+        if (normalizeCharacterKey(line.chosenSpeaker || '') === 'narrator') continue;
         if (normalizeCharacterKey(line.chosenSpeaker || '') === oldKey) {
           line.chosenSpeaker = newName;
           line.isConflict = !line.chosenSpeaker || (line.candidates && line.candidates.length > 1 && !line.candidates.some(c => c.name === newName));
@@ -608,6 +609,7 @@
     const scr = get(currentScript);
     if (scr) {
       for (const line of scr.lines) {
+        if (normalizeCharacterKey(line.chosenSpeaker || '') === 'narrator') continue;
         if (normalizeCharacterKey(line.chosenSpeaker || '') === oldKey) {
           line.chosenSpeaker = newName;
           line.isConflict = !line.chosenSpeaker || (line.candidates && line.candidates.length > 1 && !line.candidates.some(c => c.name === newName));
@@ -1119,7 +1121,15 @@
       onToggleColor={(index: number) => openColorIndex = openColorIndex === index ? null : index}
       onSetColor={(index: number, color: string | null) => setColor(index, color)}
       onApplyToSelection={(name: string) => applyToSelection(name)}
-      onMerge={(source: number, target: number) => mergeCharacters(source, target)}
+      onMerge={(source: number, target: number) => {
+        const chars = $characters;
+        const sourceName = chars.characters[source]?.name;
+        const targetName = chars.characters[target]?.name;
+        if (!sourceName || !targetName) return;
+        const ok = confirm(`Merge "${sourceName}" into "${targetName}"?\n\nAll lines assigned to "${sourceName}" will be re-assigned to "${targetName}". The "${sourceName}" character file will be deleted.`);
+        if (!ok) return;
+        mergeCharacters(source, target);
+      }}
       onDropBookCharacter={(name: string) => addBookCharacterToCurrentChapter(name)}
       onJumpToNext={(name: string) => jumpToNextCharacter(name)}
       onDelete={async (index: number) => {
@@ -1131,12 +1141,13 @@
         if (!name) return;
         const scr = $currentScript;
         const hasAssignments = !!scr?.lines.some(l => l.chosenSpeaker === name);
-        if (hasAssignments) {
-          const ok = confirm(`Delete character "${name}"? This will clear ${name}'s assignments in this chapter.`);
-          if (!ok) return;
-        }
+        const ok = confirm(hasAssignments
+          ? `Delete character "${name}"? This will clear ${name}'s assignments in this chapter and remove the character file.`
+          : `Delete character "${name}"? This will remove the character file.`);
+        if (!ok) return;
         if (scr) {
           for (const line of scr.lines) {
+            if (normalizeCharacterKey(line.chosenSpeaker || '') === 'narrator') continue;
             if (line.chosenSpeaker === name) {
               line.chosenSpeaker = null;
               line.isConflict = true;
@@ -1168,8 +1179,16 @@
       selectedName={selectedCharacterName}
       onToggle={() => bookListOpen = !bookListOpen}
       onSelect={(name) => selectedCharacterName = name}
-      onDelete={(name, count) => deleteBookCharacter(name, count)}
-      onMerge={(sourceName, targetName) => mergeBookCharactersByName(sourceName, targetName)}
+      onDelete={(name, count) => {
+        const ok = confirm(`Delete character "${name}"?\n\nThis will remove the character file and reassign all their lines across the book.`);
+        if (!ok) return;
+        deleteBookCharacter(name, count);
+      }}
+      onMerge={(sourceName, targetName) => {
+        const ok = confirm(`Merge "${sourceName}" into "${targetName}"?\n\nAll lines assigned to "${sourceName}" will be re-assigned to "${targetName}". The "${sourceName}" character file will be deleted.`);
+        if (!ok) return;
+        mergeBookCharactersByName(sourceName, targetName);
+      }}
       resolveColor={resolveCharacterColor}
     />
 

@@ -67,9 +67,12 @@ export function createVoiceFromSample(
   existing?: Voice,
 ): Voice {
   return {
-    id: existing?.id || generateVoiceId('vibevoice_local', sample.sample_file),
+    // Chatterbox is the local generation engine for sample voices. Existing
+    // voices keep their current id (via `existing?.id`) so character
+    // assignments keep resolving; only the engine changes.
+    id: existing?.id || generateVoiceId('chatterbox', sample.sample_file),
     displayName: sample.display_name?.trim() || existing?.displayName || fallbackDisplayName(sample.sample_file),
-    provider: 'vibevoice_local',
+    provider: 'chatterbox',
     providerVoiceId: sample.sample_file,
     previewUrl: getVoiceSamplePreviewUrl(samplesRoot, sample.sample_file),
     notes: existing?.notes || '',

@@ -9,9 +9,9 @@ from typing import Iterable, Optional
 
 HARD_REASONS = {
     "post_quote_attribution",
-    "explicit_speech_tag",
-    "forward_explicit_tag",
-    "backward_explicit_tag",
+    "post_quote_mention",
+    "2_forward_explicit_tags",
+    "2b_backward_explicit_tags",
 }
 EPSILON = 1e-6
 
@@ -35,8 +35,14 @@ def _trace(line) -> dict:
 
 
 def _is_hard(line) -> bool:
-    reasons = {str(reason) for reason in (_trace(line).get("selectedReasons") or [])}
-    return bool(reasons & HARD_REASONS)
+    attribution = getattr(line, "attribution", None)
+    if not isinstance(attribution, dict):
+        return False
+    trace = attribution.get("decisionTrace")
+    trace = trace if isinstance(trace, dict) else {}
+    reasons = {str(reason) for reason in (trace.get("selectedReasons") or [])}
+    legacy_rule = str(attribution.get("legacyRule") or "")
+    return bool(reasons & HARD_REASONS) or legacy_rule in HARD_REASONS
 
 
 def _candidate_scores(line) -> dict[str, tuple[str, float]]:

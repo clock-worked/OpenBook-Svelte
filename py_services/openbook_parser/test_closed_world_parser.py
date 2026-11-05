@@ -380,6 +380,48 @@ class ClosedWorldParserTests(unittest.TestCase):
             dialogue.attribution["decisionTrace"]["selectedReasons"],
         )
 
+    def test_legacy_anchor_suppressed_when_post_quote_mention_present(self):
+        """When a post-quote name mention identifies the speaker, the legacy
+        continuation anchor must not inflate competing candidates."""
+        signals = LineSignals(
+            predicted_name="Bob",
+            legacy_name="Bob",
+            prev_resolved=None,
+            next_resolved=None,
+            used_fallback_alignment=False,
+            exact_quote_match=True,
+            quote_boundary_quality=0.8,
+            nearby_speech_verb=False,
+            has_coref_name=False,
+            alias_match_strength=0.0,
+            addressed_name_prev_sentence=None,
+            explicit_quote_mentions=[],
+            next_sentence_attributed_speaker=None,
+            post_quote_named_mention="Alice",
+            recent_named_mention_before_quote=None,
+            previous_paragraph_named_mention=None,
+            candidate_genders={},
+            context_gender=None,
+            context_gender_cue=None,
+            is_returning=False,
+            continues_paragraph_dialogue=False,
+            line_ends_with_question=False,
+            next_dialogue_legacy=None,
+            descriptor_match=None,
+        )
+        decision = rank_candidates(["Alice", "Bob"], signals)
+        # Alice wins via post_quote_mention (+0.4)
+        self.assertEqual(decision.chosen_name, "Alice")
+        # Bob should NOT have parser_match or legacy_match in his reasons
+        bob_entry = next(e for e in decision.ranked if e.name == "Bob")
+        self.assertNotIn("parser_match", bob_entry.reasons)
+        self.assertNotIn("legacy_match", bob_entry.reasons)
+        # Alice should have post_quote_mention
+        alice_entry = next(e for e in decision.ranked if e.name == "Alice")
+        self.assertIn("post_quote_mention", alice_entry.reasons)
+        # Margin should be wide (not fragile)
+        self.assertGreaterEqual(decision.ranked[0].score - decision.ranked[1].score, 0.3)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,5 +1,5 @@
 import { spawn } from "node:child_process";
-import { existsSync } from "node:fs";
+import { createWriteStream, existsSync, mkdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import kill from "tree-kill";
@@ -33,11 +33,30 @@ for (const variable of ["SSL_CERT_FILE", "SSL_CERT_DIR"]) {
   }
 }
 
+// Tee the backend's stdout/stderr to a log file so readers outside the task
+// terminal (e.g. coding agents) can see uvicorn tracebacks.
+const logDir = path.join(desktopDir, ".dev");
+const logPath = path.join(logDir, "backend.log");
+mkdirSync(logDir, { recursive: true });
+const logStream = createWriteStream(logPath, { flags: "a" });
+console.log(`dev-backend: ${pythonExe}`);
+console.log(`dev-backend: logging to ${logPath}`);
+
 const child = spawn(pythonExe, args, {
   cwd: pyServicesDir,
-  stdio: "inherit",
+  stdio: ["inherit", "pipe", "pipe"],
   env: backendEnv,
 });
+
+for (const [stream, consoleTarget] of [
+  [child.stdout, process.stdout],
+  [child.stderr, process.stderr],
+]) {
+  stream.on("data", (chunk) => {
+    consoleTarget.write(chunk);
+    logStream.write(chunk);
+  });
+}
 
 let shuttingDown = false;
 
@@ -64,6 +83,7 @@ function handleShutdown(signal) {
   }
 
   shuttingDown = true;
+  logStream.end();
   stopChild(signal).finally(() => {
     process.exit(signal === "SIGINT" ? 130 : 143);
   });

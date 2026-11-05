@@ -46,11 +46,11 @@ export async function discoverVoicesFromManifests(audioRoot: string): Promise<Vo
           const voiceIds = metadata?.voiceIds || {};
 
           // Process each unique voice in this manifest. Every manifest voice
-          // is VibeVoice-local: the former determineProvider hint-walking
-          // returned 'vibevoice_local' on every path, so it collapsed to this
-          // constant.
+          // is a local-model voice generated through the Chatterbox engine
+          // (the former determineProvider hint-walking collapsed to a single
+          // local provider constant; that local engine is now Chatterbox).
           for (const [voiceId, clipCount] of Object.entries(voiceIds) as [string, number][]) {
-            const provider: TtsProvider = 'vibevoice_local';
+            const provider: TtsProvider = 'chatterbox';
             const voiceKey = `${provider}-${voiceId}`;
 
             if (!voiceMap.has(voiceKey)) {

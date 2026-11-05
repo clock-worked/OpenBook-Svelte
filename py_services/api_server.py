@@ -4,6 +4,7 @@ FastAPI server for OpenBook parser/audio services.
 Composition root that wires routers and shared runtime state.
 """
 
+import importlib
 import os
 import sys
 
@@ -65,6 +66,30 @@ app.include_router(
         set_audio_service=runtime_state.set_audio_service,
     )
 )
+
+
+@app.get("/env")
+def env_info() -> dict:
+    """Runtime self-identification for environment-related diagnostics:
+    which Python executable is serving, and which audio dependencies are
+    importable in it."""
+
+    def importable(name: str) -> bool:
+        try:
+            importlib.import_module(name)
+            return True
+        except ImportError:
+            return False
+
+    torch = importlib.import_module("torch") if importable("torch") else None
+    return {
+        "pythonExecutable": sys.executable,
+        "platform": sys.platform,
+        "torchVersion": torch.__version__ if torch else None,
+        "cudaAvailable": bool(torch.cuda.is_available()) if torch else False,
+        "whisperxImportable": importable("whisperx"),
+        "pyarrowImportable": importable("pyarrow"),
+    }
 
 
 if __name__ == "__main__":

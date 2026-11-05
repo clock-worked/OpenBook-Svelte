@@ -4,7 +4,7 @@
 //  docs/schema_characters_v3.md; dialogue/voices lines are separate)
 // ============================================================================
 
-export type TtsProvider = 'vibevoice_local';
+export type TtsProvider = 'vibevoice_local' | 'chatterbox';
 export type Gender = 'Male' | 'Female' | 'Unknown';
 
 // === Characters (Story Characters) ===

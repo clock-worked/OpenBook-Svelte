@@ -26,4 +26,6 @@ is judgement guidance for agents and humans.
 - **Canonical identity helpers** live in `services/characterIdentity.ts`
   (FE) and `dialogue_ai_common.py` (py) — both from
   `refactor/architecture-deepening`; the two sides must stay in sync with
-  `tests/character_identity_vectors.json`.
+  `tests/character_identity_vectors.json`. FE components resolve
+  id→name / line→character-id through the `characterIdentity.ts` helpers;
+  a raw character-map lookup in a component is a bug (raw GUIDs in the UI).

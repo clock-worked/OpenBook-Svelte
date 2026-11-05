@@ -6,9 +6,15 @@ import json
 import os
 import subprocess
 import sys
+import tempfile
 import time
 from pathlib import Path
 from typing import Any, Optional
+
+from chapter_audio_test.generation import (
+    split_text_to_max_chars,
+    stitch_generated_chunk_audio,
+)
 
 
 def find_chatterbox_python() -> Path:
@@ -39,11 +45,17 @@ class ChatterboxLocalService:
         temperature: float = 0.8,
         repetition_penalty: float = 1.2,
         python_executable: Optional[str | Path] = None,
+        max_chunk_chars: int = 450,
+        join_pause_ms: int = 0,
     ) -> None:
         self.variant = variant.lower().strip()
         self.device = device
         self.temperature = temperature
         self.repetition_penalty = repetition_penalty
+        # Chatterbox is a short-form engine; long single-pass text garbles.
+        # Split any line longer than this into sentence/word-aware chunks.
+        self.max_chunk_chars = max(1, int(max_chunk_chars))
+        self.join_pause_ms = max(0, int(join_pause_ms))
         self.python_executable = (
             Path(python_executable) if python_executable else find_chatterbox_python()
         )
@@ -143,10 +155,47 @@ class ChatterboxLocalService:
         output_path: str,
         seed: Optional[int] = None,
     ) -> None:
-        """Generate audio for text using sample_path as reference voice."""
+        """Generate audio for text using sample_path as reference voice.
+
+        Chatterbox is a short-form engine: feeding it a long line in a single
+        call degrades into garbled/truncated audio. Text longer than
+        ``max_chunk_chars`` is split into sentence/word-aware chunks (each
+        <= ``max_chunk_chars``), generated separately, and stitched back
+        together — the same strategy the chapter benchmark pipeline uses to
+        produce clean long-form output.
+        """
         sample_resolved = str(Path(sample_path).resolve())
         out_resolved = str(Path(output_path).resolve())
 
+        chunks = split_text_to_max_chars(text, self.max_chunk_chars)
+        if len(chunks) == 1:
+            self._generate_single(chunks[0], sample_resolved, out_resolved, seed)
+            return
+
+        # Long text: generate each chunk to a temp file, then stitch.
+        with tempfile.TemporaryDirectory(prefix="chatterbox_chunks_") as tmp_dir:
+            tmp_dir_path = Path(tmp_dir)
+            chunk_paths = [
+                tmp_dir_path / f"chunk_{i:03d}.wav" for i in range(len(chunks))
+            ]
+            for chunk_text, chunk_path in zip(chunks, chunk_paths):
+                self._generate_single(
+                    chunk_text, sample_resolved, str(chunk_path), seed
+                )
+            stitch_generated_chunk_audio(
+                chunk_audio_paths=chunk_paths,
+                output_path=Path(out_resolved),
+                join_pause_ms=self.join_pause_ms,
+            )
+
+    def _generate_single(
+        self,
+        text: str,
+        sample_path: str,
+        output_path: str,
+        seed: Optional[int],
+    ) -> None:
+        """Generate audio for a single (short) piece of text to one file."""
         if self._in_process_model is not None:
             import torch
             import torchaudio as ta
@@ -156,9 +205,9 @@ class ChatterboxLocalService:
                 if torch.cuda.is_available():
                     torch.cuda.manual_seed_all(seed)
 
-            if self._cached_sample_path != sample_resolved or self._in_process_model.conds is None:
-                self._in_process_model.prepare_conditionals(sample_resolved)
-                self._cached_sample_path = sample_resolved
+            if self._cached_sample_path != sample_path or self._in_process_model.conds is None:
+                self._in_process_model.prepare_conditionals(sample_path)
+                self._cached_sample_path = sample_path
 
             t0 = time.perf_counter()
             wav = self._in_process_model.generate(
@@ -168,7 +217,7 @@ class ChatterboxLocalService:
             )
             gen_sec = time.perf_counter() - t0
             dur_sec = float(wav.numel()) / float(self._in_process_model.sr)
-            ta.save(out_resolved, wav, self._in_process_model.sr)
+            ta.save(output_path, wav, self._in_process_model.sr)
             self.stats.append({
                 "duration_sec": dur_sec,
                 "gen_time_sec": gen_sec,
@@ -182,8 +231,8 @@ class ChatterboxLocalService:
         req = {
             "action": "generate",
             "text": text,
-            "sample_path": sample_resolved,
-            "output_path": out_resolved,
+            "sample_path": sample_path,
+            "output_path": output_path,
             "seed": seed,
             "temperature": self.temperature,
             "repetition_penalty": self.repetition_penalty,

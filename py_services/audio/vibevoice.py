@@ -44,8 +44,10 @@ from chapter_audio_test.text_utils import normalize_chapter_text, utc_now_iso
 DEFAULT_MIN_CHUNK_CHARS = 800
 DEFAULT_LINE_CHUNK_JOIN_MS = 0
 
-WHISPERX_DEVICE = "cuda"
-WHISPERX_COMPUTE_TYPE = "float16"
+# "auto" = CUDA when available, CPU otherwise (dev machines may run a
+# CPU-only .venv; int8 is the CPU compute type).
+WHISPERX_DEVICE = "auto"
+WHISPERX_COMPUTE_TYPE = "auto"
 WHISPERX_BATCH_SIZE = 0
 WHISPERX_VAD_METHOD = "silero"
 WHISPERX_QUIET = True
@@ -167,6 +169,16 @@ class VibeVoiceChapterRequest(BaseModel):
 
 def _is_vibevoice_provider(provider: str) -> bool:
     return "vibevoice" in str(provider or "").strip().lower()
+
+
+def _is_chatterbox_provider(provider: str) -> bool:
+    return "chatterbox" in str(provider or "").strip().lower()
+
+
+def _is_local_chunked_provider(provider: str) -> bool:
+    """Local-model providers supported by the chunked generation pipeline
+    (VibeVoice and Chatterbox)."""
+    return _is_vibevoice_provider(provider) or _is_chatterbox_provider(provider)
 
 
 QUOTE_ENDS_WITH_COMMA_RE = re.compile(r",(?=(?:['\"])(?:\s|$))|,(?=\s*$)")
@@ -376,10 +388,13 @@ def _transcribe_with_whisperx_alignment(
         whisperx = importlib.import_module("whisperx")
     except ImportError as exc:
         raise RuntimeError(
-            "WhisperX is not installed. Install it with: pip install whisperx"
+            f"WhisperX is not installed in this backend environment "
+            f"({sys.executable}). Install it with: pip install whisperx"
         ) from exc
 
     selected_device = device
+    if selected_device == "auto":
+        selected_device = "cuda" if torch.cuda.is_available() else "cpu"
     if selected_device == "cuda" and not torch.cuda.is_available():
         raise RuntimeError(
             "WhisperX is configured for CUDA but CUDA is not available in this environment."
@@ -389,6 +404,10 @@ def _transcribe_with_whisperx_alignment(
         raise RuntimeError(
             f"Unsupported WhisperX device '{selected_device}'. Expected 'cuda' or 'cpu'."
         )
+
+    selected_compute_type = compute_type
+    if selected_compute_type == "auto":
+        selected_compute_type = "float16" if selected_device == "cuda" else "int8"
 
     selected_batch_size = batch_size if batch_size > 0 else (32 if selected_device == "cuda" else 8)
 
@@ -405,7 +424,7 @@ def _transcribe_with_whisperx_alignment(
     model = whisperx.load_model(
         "small.en",
         device=selected_device,
-        compute_type=compute_type,
+        compute_type=selected_compute_type,
         vad_method=vad_method,
     )
 
@@ -717,10 +736,12 @@ def _run_character_chunk_pipeline(
             audio_service: AudioGenerationService,
             voice_id: str,
             voice_sample_root: Optional[str],
+            provider: str,
         ) -> None:
             self._audio_service = audio_service
             self._voice_id = voice_id
             self._voice_sample_root = voice_sample_root
+            self._provider = str(provider or "").strip().lower()
 
         def generate_audio(
             self,
@@ -733,19 +754,30 @@ def _run_character_chunk_pipeline(
             effective_voice_id = self._voice_id or str(sample_path)
             _ = seed
 
-            success, error_details = self._audio_service.generate_vibevoice_text_to_path(
-                text=text,
-                voice_id=effective_voice_id,
-                output_path=Path(output_path),
-                voice_sample_root=self._voice_sample_root,
-            )
+            if _is_chatterbox_provider(self._provider):
+                success, error_details = self._audio_service.generate_chatterbox_text_to_path(
+                    text=text,
+                    voice_id=effective_voice_id,
+                    output_path=Path(output_path),
+                    voice_sample_root=self._voice_sample_root,
+                )
+                fallback_error = "Chatterbox generation failed."
+            else:
+                success, error_details = self._audio_service.generate_vibevoice_text_to_path(
+                    text=text,
+                    voice_id=effective_voice_id,
+                    output_path=Path(output_path),
+                    voice_sample_root=self._voice_sample_root,
+                )
+                fallback_error = "VibeVoice generation failed."
             if not success:
-                raise RuntimeError(error_details or "VibeVoice generation failed.")
+                raise RuntimeError(error_details or fallback_error)
 
     chunk_generator = _ServiceChunkGenerator(
         audio_service=service,
         voice_id=request.voice_id,
         voice_sample_root=request.voice_sample_root,
+        provider=request.provider,
     )
 
     generation_report = generate_line_chunked_chapter_audio(
@@ -1097,11 +1129,12 @@ def create_vibevoice_router(
 
     @router.post("/character")
     async def generate_character(request: VibeVoiceCharacterRequest):
-        if not _is_vibevoice_provider(request.provider):
+        if not _is_local_chunked_provider(request.provider):
             raise HTTPException(
                 status_code=400,
                 detail=(
-                    "Chunked character generation is VibeVoice-only. "
+                    "Chunked character generation supports local models only "
+                    "(VibeVoice/Chatterbox). "
                     f"Received provider '{request.provider}'."
                 ),
             )
@@ -1181,11 +1214,11 @@ def create_vibevoice_router(
                 errors.append(f"Line {line_id}: no selected voice mapping for character '{character_id}'")
                 continue
 
-            if not _is_vibevoice_provider(assignment.provider):
+            if not _is_local_chunked_provider(assignment.provider):
                 skipped_count += 1
                 errors.append(
                     f"Line {line_id}: provider '{assignment.provider}' is not supported. "
-                    "Chunked generation is VibeVoice-only."
+                    "Chunked generation supports local models only (VibeVoice/Chatterbox)."
                 )
                 continue
 

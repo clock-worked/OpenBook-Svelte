@@ -144,8 +144,9 @@ for (const port of ports) {
     } else {
       console.warn(
         `WARNING: port ${port} still held by PID(s) ${[...remaining].join(',')} ` +
-        'after tree kill. Run this from an ELEVATED terminal so the full ' +
-        'process tree is visible, then retry.'
+        'after tree kill. The owner is likely an elevated or other-user ' +
+        'process not killable from this session. Try an ELEVATED terminal; ' +
+        'if that fails, a reboot is the reliable fix.'
       );
       process.exitCode = 1;
     }

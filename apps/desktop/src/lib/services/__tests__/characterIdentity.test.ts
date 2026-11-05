@@ -19,6 +19,8 @@ import {
   buildUniqueCharacterId,
   isCharacterGuid,
   normalizeCharacterKey,
+  resolveCharacterNameForId,
+  resolveLineCharacterId,
   sanitizeCharacterFileStem,
 } from '../characterIdentity';
 
@@ -102,5 +104,61 @@ describe('characterIdentity unit tests', () => {
     // 0 / false.
     expect(normalizeCharacterKey(0)).toBe('0');
     expect(normalizeCharacterKey(false)).toBe('false');
+  });
+});
+
+describe('canonical line/character resolution (audio generation path)', () => {
+  // Mirrors Book-19 shapes: v3 book where the Narrator is a first-class
+  // character (uppercase Crockford GUID) and dialogue lines carry
+  // `characterId`; name→id maps are lowercase-keyed.
+  const NARRATOR_ID = '4JQA1N6V';
+  const nameToId = new Map<string, string>([
+    ['narrator', NARRATOR_ID],
+    ['protagonist', NARRATOR_ID], // alias
+  ]);
+  const idToName = new Map<string, string>([[NARRATOR_ID.toLowerCase(), 'Narrator']]);
+
+  describe('resolveLineCharacterId', () => {
+    it('v3 line: returns the characterId as-is (uppercase GUID preserved)', () => {
+      expect(resolveLineCharacterId({ characterId: NARRATOR_ID }, nameToId)).toBe(NARRATOR_ID);
+    });
+
+    it('legacy line: resolves chosenSpeaker by name, case-insensitively', () => {
+      expect(resolveLineCharacterId({ chosenSpeaker: 'Narrator' }, nameToId)).toBe(NARRATOR_ID);
+      expect(resolveLineCharacterId({ chosenSpeaker: 'narrator' }, nameToId)).toBe(NARRATOR_ID);
+    });
+
+    it('legacy line: resolves chosenSpeaker by alias', () => {
+      expect(resolveLineCharacterId({ chosenSpeaker: 'Protagonist' }, nameToId)).toBe(NARRATOR_ID);
+    });
+
+    it('characterId present wins over chosenSpeaker', () => {
+      expect(resolveLineCharacterId({ characterId: NARRATOR_ID, chosenSpeaker: 'Protagonist' }, nameToId)).toBe(NARRATOR_ID);
+    });
+
+    it('characterId null with no speaker is an Unknown line, not a narrator line', () => {
+      expect(resolveLineCharacterId({ characterId: null }, nameToId)).toBeNull();
+      expect(resolveLineCharacterId({}, nameToId)).toBeNull();
+    });
+
+    it('unresolvable chosenSpeaker is null', () => {
+      expect(resolveLineCharacterId({ chosenSpeaker: 'Some Stranger' }, nameToId)).toBeNull();
+    });
+  });
+
+  describe('resolveCharacterNameForId', () => {
+    it('uppercase v3 GUID resolves through the lowercase-keyed id→name map', () => {
+      expect(resolveCharacterNameForId(NARRATOR_ID, idToName)).toBe('Narrator');
+    });
+
+    it('lowercase id also resolves', () => {
+      expect(resolveCharacterNameForId(NARRATOR_ID.toLowerCase(), idToName)).toBe('Narrator');
+    });
+
+    it('falls back to the fallback name, then the raw id', () => {
+      const unknown = 'AB12CD34';
+      expect(resolveCharacterNameForId(unknown, idToName, 'Fallback')).toBe('Fallback');
+      expect(resolveCharacterNameForId(unknown, idToName)).toBe(unknown);
+    });
   });
 });

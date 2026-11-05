@@ -45,4 +45,5 @@ python -m unittest discover -p 'test_*.py'
 - `py_services/*.py` — FastAPI route handlers, one per area (`dialogue_ai_service.py` = OpenJEV route, `local_dialogue_ai_service.py`, `jev_service.py`, `chapter_review_service.py`, …).
 - Shared cross-cutting code is being consolidated by `refactor/architecture-deepening` (FE: `services/characterIdentity.ts`, `services/dialogueAiPayload.ts`; py: `dialogue_ai_common.py`, `safe_io.py`, `fs_history.py`).
 - Docs: `docs/` (per-area design notes), `docs/adr/` (decisions), `docs/agents/` (agent docs).
+- Backend Python env: `docs/backend_environments.md` — which Python serves 8012, how to verify/switch it, the `.venv` python.exe-copy landmine.
 - Conventions: `CODING_STANDARDS.md` (import boundaries enforced by `py_services/test_import_boundaries.py`).

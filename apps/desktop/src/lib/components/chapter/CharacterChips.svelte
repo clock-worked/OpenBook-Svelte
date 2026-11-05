@@ -28,10 +28,13 @@
 
   function onChipClick(e: MouseEvent, characterName: string) {
     if (toolMode !== 'review') return; // Only works in review mode
+    if (characterName?.toLowerCase() === 'narrator') return;
+    // Collect ALL line IDs in this paragraph so the menu re-assigns the
+    // entire paragraph, not just the lines already attributed to this chip.
     const ids = Array.from(
       new Set(
         runs
-          .filter((r) => r.lineId != null && r.characterId === characterName && characterName?.toLowerCase() !== 'narrator')
+          .filter((r) => r.lineId != null)
           .map((r) => r.lineId as number)
       )
     );
