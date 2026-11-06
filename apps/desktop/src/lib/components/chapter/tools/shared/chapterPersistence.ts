@@ -1,7 +1,7 @@
-import type { DialogueJson, ScriptJson } from '$lib/types';
+import type { AudioGenerationRecord, DialogueJson, ScriptJson } from '$lib/types';
 import type { UnifiedLine } from '$lib/components/chapter/tools/types';
 import { computeReturningFlags, isDialogueSpan } from '$lib/services/dialogueReturning';
-import { writeDialogue } from '$lib/services/fs';
+import { readOptionalDialogue, writeDialogue } from '$lib/services/fs';
 import { alignChapterLineSpans } from './chapterPresentation';
 
 type ChapterLike = {
@@ -168,6 +168,11 @@ export async function saveDialogueFromNormalized(params: {
     const ch = params.chapter;
     const linesWithReturning = applyReturningFlags(scr.lines, params.rawText);
 
+    // Pull per-line generator records that exist on disk but not in memory
+    // (e.g. a line generated after this chapter view was loaded) so a
+    // review-save can't wipe them.
+    const diskAudioGeneration = await readDiskAudioGeneration(ch.title);
+
     console.log('[ChapterView] Saving changes...', {
         format: 'v3.2',
         numLines: linesWithReturning.length,
@@ -273,6 +278,7 @@ export async function saveDialogueFromNormalized(params: {
                 isNonSpeaker,
                 isReturning: line.isReturning,
                 attribution,
+                audioGeneration: line.audioGeneration ?? diskAudioGeneration.get(line.id) ?? null,
             };
         }),
         stats: {
@@ -294,4 +300,59 @@ export async function saveDialogueFromNormalized(params: {
         console.error('[ChapterView] ✗ Failed to save dialogue.json');
     }
     return saved;
+}
+
+/**
+ * Read per-line audio generator records from the chapter's dialogue.json on
+ * disk. Returns a lineId → record map (empty on any failure).
+ */
+async function readDiskAudioGeneration(
+    chapterTitle: string
+): Promise<Map<number, AudioGenerationRecord>> {
+    const map = new Map<number, AudioGenerationRecord>();
+    try {
+        const doc = await readOptionalDialogue(`${chapterTitle}/dialogue.json`);
+        if (!doc || !Array.isArray(doc.lines)) return map;
+        for (const line of doc.lines) {
+            if (line && typeof line.id === 'number' && line.audioGeneration) {
+                map.set(line.id, line.audioGeneration);
+            }
+        }
+    } catch (error) {
+        console.warn('[ChapterView] Failed to read disk audio generation records:', error);
+    }
+    return map;
+}
+
+/**
+ * Record which generator produced audio for the given lines in the chapter's
+ * dialogue.json. Best-effort read-modify-write through the dual I/O (File
+ * System Access → backend); a stamp failure never breaks generation.
+ */
+export async function recordLineAudioGeneration(
+    chapterTitle: string,
+    lineIds: number[],
+    record: AudioGenerationRecord
+): Promise<void> {
+    if (!chapterTitle || lineIds.length === 0) return;
+    const relativePath = `${chapterTitle}/dialogue.json`;
+    const doc = await readOptionalDialogue(relativePath);
+    if (!doc || !Array.isArray(doc.lines)) {
+        console.warn('[Audio] Cannot record generator: no dialogue.json for', chapterTitle);
+        return;
+    }
+    const idSet = new Set(lineIds);
+    let touched = false;
+    for (const line of doc.lines) {
+        if (line && idSet.has(Number(line.id))) {
+            line.audioGeneration = record;
+            touched = true;
+        }
+    }
+    if (!touched) return;
+    // recordHistory=false: a generator stamp is metadata, not a content edit.
+    const saved = await writeDialogue(relativePath, doc, false);
+    if (!saved) {
+        console.warn('[Audio] Failed to write generator record to dialogue.json');
+    }
 }

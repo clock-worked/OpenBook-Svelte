@@ -8,6 +8,7 @@
     type AudioQueueItem,
   } from '$lib/stores/audioQueue';
   import { ChevronDown, ChevronUp, X } from 'lucide-svelte';
+  import { phaseLabel } from '$lib/services/audioPipelineProgress';
 
   type OverlayTab = 'queue' | 'overview';
 
@@ -265,7 +266,7 @@
       <div class="running-card">
         <div class="running-title">
           {#if runningItem}
-            Generating: {runningItem.characterName}
+            Generating: {runningItem.characterName}{#if runningItem.phase} · {phaseLabel(runningItem.phase)}{/if}
           {:else}
             Waiting for next queued item
           {/if}

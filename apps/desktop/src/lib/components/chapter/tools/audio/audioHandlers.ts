@@ -14,6 +14,9 @@ import {
   deleteAudioLineForCharacter,
 } from '$lib/services/audio';
 import { triggerAudioUpdate } from '$lib/stores/audioUpdates';
+import { resolveEffectiveAudioGenerator } from '$lib/services/audioGenerator';
+import { recordLineAudioGeneration } from '../shared/chapterPersistence';
+import type { AudioGenerationRecord } from '$lib/types';
 
 async function resolveCharacterIdFromName(characterName: string): Promise<string | null> {
   const root = get(bookRoot);
@@ -157,20 +160,38 @@ export async function handleGenerateLineAudio(
 
   setGenerating(lineId);
 
+  // Resolve which generator + settings to use (settings-tab default,
+  // no per-run override on this path).
+  const resolved = resolveEffectiveAudioGenerator(voice.provider);
+  const generationRecord: AudioGenerationRecord = {
+    provider: resolved.provider,
+    variant: resolved.chatterboxSettings?.variant ?? null,
+    temperature: resolved.chatterboxSettings?.temperature ?? null,
+    cfgWeight: resolved.chatterboxSettings?.cfg_weight ?? null,
+    exaggeration: resolved.chatterboxSettings?.exaggeration ?? null,
+    generatedAt: new Date().toISOString(),
+  };
+
   const result = await generateAudioForLine(
     lineId,
     line.text,
     line.characterName,
     characterId,
     voice.providerVoiceId,
-    voice.provider,
+    resolved.provider,
     ch.title,
-    ch.path || ''
+    ch.path || '',
+    resolved.chatterboxSettings
   );
 
   setGenerating(null);
 
   if (result.success) {
+    // Record which generator produced this line in dialogue.json
+    void recordLineAudioGeneration(ch.title, [lineId], generationRecord).catch((e) => {
+      console.warn('[Audio] Failed to record generation info in dialogue.json', e);
+    });
+
     // Update cache
     const cacheKey = `${ch.title}-${line.characterName}-${lineId}`;
     audioExistsCache.set(cacheKey, true);

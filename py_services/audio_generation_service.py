@@ -29,6 +29,43 @@ from chatterbox_local_service import ChatterboxLocalService
 from vibevoice_local_service import VibeVoiceLocalService
 
 
+DEFAULT_CHATTERBOX_VARIANT = "base"
+
+# Provider strings (lowercased) that route to the local Chatterbox engine.
+CHATTERBOX_PROVIDER_ALIASES = ("chatterbox", "chatterbox_local", "chatterbox-local")
+
+
+def is_chatterbox_provider(provider: Optional[str]) -> bool:
+    return str(provider or "").strip().lower() in CHATTERBOX_PROVIDER_ALIASES
+
+
+def build_chatterbox_generator_info(
+    provider: Optional[str],
+    settings: Optional[Dict[str, Any]],
+) -> Dict[str, Any]:
+    """Build the per-clip manifest record for which generator produced a clip.
+
+    Chatterbox clips record the effective variant plus the explicit sampling
+    settings (``None`` when the caller left a knob at its default). Non-Chatterbox
+    providers record nulls so every clip entry has a uniform schema.
+    """
+    if not is_chatterbox_provider(provider):
+        return {
+            "variant": None,
+            "temperature": None,
+            "cfgWeight": None,
+            "exaggeration": None,
+        }
+    settings = settings or {}
+    variant = str(settings.get("variant") or DEFAULT_CHATTERBOX_VARIANT).lower().strip()
+    return {
+        "variant": variant,
+        "temperature": settings.get("temperature"),
+        "cfgWeight": settings.get("cfg_weight"),
+        "exaggeration": settings.get("exaggeration"),
+    }
+
+
 class AudioGenerationService:
     """Service for generating audio clips using various TTS providers."""
     
@@ -45,7 +82,9 @@ class AudioGenerationService:
         self.google_token_expiry = None
         self.vibevoice_local_service: Optional[VibeVoiceLocalService] = None
         self._vibevoice_lock = threading.Lock()
-        self.chatterbox_local_service: Optional[ChatterboxLocalService] = None
+        # One cached worker per Chatterbox variant (model class is fixed at
+        # load time). Max two models in GPU memory: "turbo" and "base".
+        self._chatterbox_services: Dict[str, ChatterboxLocalService] = {}
         self._chatterbox_lock = threading.Lock()
         
         # Load Google credentials
@@ -62,7 +101,8 @@ class AudioGenerationService:
         chapter_title: str,
         source_file: str,
         emotion: Optional[str] = None,
-        voice_sample_root: Optional[str] = None
+        voice_sample_root: Optional[str] = None,
+        chatterbox_settings: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         """
         Generate audio for a single dialogue line.
@@ -102,13 +142,14 @@ class AudioGenerationService:
                         "success": False,
                         "error": f"VibeVoice generation failed: {error_details}"
                     }
-            elif provider_lower in ["chatterbox", "chatterbox_local", "chatterbox-local"]:
+            elif provider_lower in CHATTERBOX_PROVIDER_ALIASES:
                 success, error_details = await asyncio.to_thread(
                     self._generate_chatterbox_local,
                     normalized_text,
                     voice_id,
                     audio_path,
                     voice_sample_root,
+                    chatterbox_settings,
                 )
                 if not success:
                     return {
@@ -134,6 +175,7 @@ class AudioGenerationService:
             
             # Update manifest
             manifest_path = character_dir / "manifest.json"
+            generator_info = build_chatterbox_generator_info(provider, chatterbox_settings)
             await asyncio.to_thread(
                 self._update_manifest,
                 manifest_path,
@@ -148,6 +190,7 @@ class AudioGenerationService:
                 provider,
                 emotion,
                 estimated_duration,
+                generator_info,
             )
             
             return {
@@ -414,12 +457,25 @@ class AudioGenerationService:
             voice_sample_root=voice_sample_root,
         )
 
+    def _get_chatterbox_service(self, variant: Optional[str]) -> ChatterboxLocalService:
+        """Return the cached worker for a Chatterbox variant, loading it if needed.
+
+        Must be called with ``self._chatterbox_lock`` held.
+        """
+        normalized_variant = str(variant or DEFAULT_CHATTERBOX_VARIANT).lower().strip()
+        service = self._chatterbox_services.get(normalized_variant)
+        if service is None:
+            service = ChatterboxLocalService(variant=normalized_variant)
+            self._chatterbox_services[normalized_variant] = service
+        return service
+
     def _generate_chatterbox_local(
         self,
         text: str,
         voice_id: str,
         output_path: Path,
-        voice_sample_root: Optional[str]
+        voice_sample_root: Optional[str],
+        settings: Optional[Dict[str, Any]] = None,
     ) -> Tuple[bool, Optional[str]]:
         try:
             sample_path, resolution_error = self._resolve_local_voice_sample_path(
@@ -429,14 +485,18 @@ class AudioGenerationService:
             if not sample_path:
                 return False, resolution_error or "Unable to resolve voice sample path."
 
-            if self.chatterbox_local_service is None:
-                self.chatterbox_local_service = ChatterboxLocalService()
+            settings = settings or {}
+            variant = str(settings.get("variant") or DEFAULT_CHATTERBOX_VARIANT).lower().strip()
 
             with self._chatterbox_lock:
-                self.chatterbox_local_service.generate_audio(
+                service = self._get_chatterbox_service(variant)
+                service.generate_audio(
                     text=text,
                     sample_path=sample_path,
                     output_path=str(output_path),
+                    temperature=settings.get("temperature"),
+                    cfg_weight=settings.get("cfg_weight"),
+                    exaggeration=settings.get("exaggeration"),
                 )
             return True, None
         except Exception as exc:
@@ -453,12 +513,14 @@ class AudioGenerationService:
         voice_id: str,
         output_path: Path,
         voice_sample_root: Optional[str],
+        settings: Optional[Dict[str, Any]] = None,
     ) -> Tuple[bool, Optional[str]]:
         return self._generate_chatterbox_local(
             text=text,
             voice_id=voice_id,
             output_path=output_path,
             voice_sample_root=voice_sample_root,
+            settings=settings,
         )
 
     def _resolve_local_voice_sample_path(
@@ -554,7 +616,8 @@ class AudioGenerationService:
         voice_id: str,
         provider: str,
         emotion: Optional[str],
-        duration: float
+        duration: float,
+        generator_info: Optional[Dict[str, Any]] = None,
     ):
         """Update or create manifest.json with new clip information."""
         
@@ -579,6 +642,7 @@ class AudioGenerationService:
             }
         
         # Create new clip entry
+        generator_info = generator_info or {}
         new_clip = {
             "id": line_id,
             "characterId": character_id,
@@ -589,6 +653,10 @@ class AudioGenerationService:
             "sourceFile": source_file,
             "voiceId": voice_id,
             "provider": provider,
+            "variant": generator_info.get("variant"),
+            "temperature": generator_info.get("temperature"),
+            "cfgWeight": generator_info.get("cfgWeight"),
+            "exaggeration": generator_info.get("exaggeration"),
             "emotion": emotion,
             "metadata": {
                 "generatedAt": datetime.utcnow().isoformat() + "Z",

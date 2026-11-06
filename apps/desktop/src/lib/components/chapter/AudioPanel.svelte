@@ -16,7 +16,9 @@
   } from '$lib/services/audio';
   import type { GenerateAudioCharacterOptions } from '$lib/services/audio';
   import { Headphones, Loader, RefreshCw, Scissors, FileText, BookOpen, X } from 'lucide-svelte';
-  import type { DialogueLine, Character } from '$lib/types';
+  import type { AudioGeneratorId, AudioGenerationRecord, Character, ChatterboxSettingsChoice, DialogueLine } from '$lib/types';
+  import { resolveEffectiveAudioGenerator, type ResolvedGenerator } from '$lib/services/audioGenerator';
+  import { recordLineAudioGeneration } from '$lib/components/chapter/tools/shared/chapterPersistence';
   import { audioGenerateLineId } from '$lib/stores/selection';
   import { audioUpdateTrigger, triggerAudioUpdate } from '$lib/stores/audioUpdates';
   import { readCentralCharacters, readDialogueForChapter } from '$lib/services/fs';
@@ -32,6 +34,7 @@
     markJobRunning,
     setQueueChapterOverview,
     updateJobProgress,
+    updateJobPhase,
     type AudioQueueItem,
   } from '$lib/stores/audioQueue';
   import {
@@ -49,6 +52,7 @@
     type AudioPlannerContext,
     type RebuiltQueuePayload,
   } from '$lib/services/audioQueuePlanning';
+  import { phaseLabel } from '$lib/services/audioPipelineProgress';
 
   const DISPLAY_ALPHA = 1.0;
   const CHARACTER_BATCH_TARGET = 800;
@@ -58,6 +62,7 @@
 
   let generatingCharacter: string | null = null;
   let generationProgress = { current: 0, total: 0 };
+  let generationPhase: string | null = null;
   let showOverwriteModal = false;
   let overwriteCharacterId: string | null = null;
   let overwriteClipCount = 0;
@@ -76,6 +81,14 @@
   let advancedFillerText = DEFAULT_ADVANCED_FILLER_TEXT;
   let advancedReplaceLineFinalCommasWithPeriods = true;
   let advancedReplaceNumbersWithWords = false;
+  // Per-run generator override for advanced batches ('use_default' = settings tab)
+  let advancedGeneratorOverride: AudioGeneratorId | 'use_default' = 'use_default';
+  let advancedChoicePreset: ChatterboxSettingsChoice['preset'] = 'default';
+  let advancedCbTempText = '';
+  let advancedCbCfgText = '';
+  let advancedCbExagText = '';
+  $: advancedIsChatterbox = advancedGeneratorOverride === 'chatterbox_base' || advancedGeneratorOverride === 'chatterbox_turbo';
+  $: advancedIsBase = advancedGeneratorOverride === 'chatterbox_base';
   let selectedAdvancedCharacterIds = new Set<string>();
   let advancedPreviewRequestId = 0;
   let advancedSelectAllInput: HTMLInputElement | null = null;
@@ -339,6 +352,11 @@
     advancedFillerText = DEFAULT_ADVANCED_FILLER_TEXT;
     advancedReplaceLineFinalCommasWithPeriods = true;
     advancedReplaceNumbersWithWords = false;
+    advancedGeneratorOverride = 'use_default';
+    advancedChoicePreset = 'default';
+    advancedCbTempText = '';
+    advancedCbCfgText = '';
+    advancedCbExagText = '';
 
     try {
       const preview = await buildAdvancedBookPreview();
@@ -395,6 +413,26 @@
     clearAdvancedCharacterSelection();
   }
 
+  function parseOptionalNumber(text: string): number | null {
+    const trimmed = text.trim();
+    if (!trimmed) return null;
+    const n = Number(trimmed);
+    return Number.isFinite(n) ? n : null;
+  }
+
+  /** Build the dialogue.json record for a resolved generator. */
+  function buildGenerationRecord(resolved: ResolvedGenerator): AudioGenerationRecord {
+    const s = resolved.chatterboxSettings;
+    return {
+      provider: resolved.provider,
+      variant: s?.variant ?? null,
+      temperature: s?.temperature ?? null,
+      cfgWeight: s?.cfg_weight ?? null,
+      exaggeration: s?.exaggeration ?? null,
+      generatedAt: new Date().toISOString(),
+    };
+  }
+
   async function handleQueueAdvancedGeneration() {
     if (!advancedPreview || advancedSubmitting) return;
 
@@ -409,11 +447,22 @@
       return;
     }
 
+    const generatorChoice: ChatterboxSettingsChoice = {
+      preset: advancedChoicePreset,
+      temperature: parseOptionalNumber(advancedCbTempText),
+      cfgWeight: parseOptionalNumber(advancedCbCfgText),
+      exaggeration: parseOptionalNumber(advancedCbExagText),
+    };
+
     const generationOptions: GenerateAudioCharacterOptions = {
       useFillerForShortBatch: advancedUseFillerForShortBatch,
       fillerText: advancedUseFillerForShortBatch ? trimmedFillerText : null,
       replaceLineFinalCommasWithPeriods: advancedReplaceLineFinalCommasWithPeriods,
       replaceNumbersWithWords: advancedReplaceNumbersWithWords,
+      // Raw override is stored so processQueue can re-resolve provider +
+      // settings per job at run time (null = use the settings-tab default).
+      generatorOverride: advancedGeneratorOverride === 'use_default' ? null : advancedGeneratorOverride,
+      chatterboxChoice: advancedGeneratorOverride === 'use_default' ? null : generatorChoice,
     };
 
     advancedSubmitting = true;
@@ -673,21 +722,28 @@
     generationProgress = { current: 0, total: 1 };
 
     try {
+      const resolved = resolveEffectiveAudioGenerator(voiceInfo.provider);
       const result = await generateAudioForLine(
         lineId,
         text,
         characterName,
         characterId,
         voiceInfo.voiceId,
-        voiceInfo.provider,
+        resolved.provider,
         chapterTitle,
         sourceFile,
+        resolved.chatterboxSettings,
       );
 
       if (!result.success) {
         alert(result.error || 'Failed to generate selected line audio.');
         return false;
       }
+
+      // Record which generator produced this line in dialogue.json (best-effort).
+      void recordLineAudioGeneration(chapterTitle, [lineId], buildGenerationRecord(resolved)).catch((e) =>
+        console.warn('[Audio] Failed to record generator in dialogue.json:', e)
+      );
 
       generationProgress = { current: 1, total: 1 };
       audioGenerateLineId.set(null);
@@ -697,6 +753,7 @@
     } finally {
       generatingCharacter = null;
       generationProgress = { current: 0, total: 0 };
+      generationPhase = null;
     }
   }
 
@@ -837,6 +894,7 @@
         queueProcessing = false;
         generatingCharacter = null;
         generationProgress = { current: 0, total: 0 };
+        generationPhase = null;
         break;
       }
 
@@ -865,6 +923,26 @@
       markJobRunning(next.id);
       generatingCharacter = payload.characterId;
       generationProgress = { current: 0, total: payload.lines.length };
+      generationPhase = null;
+
+      // Resolve this job's generator at run time: the advanced-overlay
+      // override (stored on the job) wins over the settings-tab default.
+      const jobOverride = payload.generationOptions?.generatorOverride
+        ? {
+            generator: payload.generationOptions.generatorOverride,
+            chatterboxChoice: payload.generationOptions.chatterboxChoice ?? undefined,
+          }
+        : null;
+      const resolved = resolveEffectiveAudioGenerator(payload.voiceInfo.provider, jobOverride);
+      const jobOptions: GenerateAudioCharacterOptions = {
+        ...payload.generationOptions,
+        providerOverride: resolved.provider,
+        chatterboxSettings: resolved.chatterboxSettings,
+      };
+
+      // Tracks the last line-count the chunk progress scaled to, so we only
+      // touch the stores when the number actually moves.
+      let lastChunkScaled = -1;
 
       const result = await generateAudioForCharacter(
         payload.characterName,
@@ -881,13 +959,45 @@
           updateJobProgress(next.id, current, total, processedCharacters, payload.totalCharacters);
         },
         () => isJobCanceled(next.id),
-        payload.generationOptions
+        jobOptions,
+        (phase, detail, chunkIndex, chunkTotal) => {
+          generationPhase = phaseLabel(phase, detail);
+          updateJobPhase(next.id, phase);
+          // Scale the line-count bar with TTS chunk progress so it moves
+          // while speech is being generated (the long pole of the run).
+          if (
+            phase === 'generating' &&
+            typeof chunkIndex === 'number' &&
+            typeof chunkTotal === 'number' &&
+            chunkTotal > 0
+          ) {
+            const scaled = Math.min(
+              payload.lines.length,
+              Math.floor((chunkIndex / chunkTotal) * payload.lines.length),
+            );
+            if (scaled !== lastChunkScaled) {
+              lastChunkScaled = scaled;
+              generationProgress = { current: scaled, total: payload.lines.length };
+              const boundedCurrent = Math.max(0, Math.min(scaled, payload.cumulativeCharacterCounts.length));
+              const processedCharacters = boundedCurrent > 0 ? payload.cumulativeCharacterCounts[boundedCurrent - 1] : 0;
+              updateJobProgress(next.id, scaled, payload.lines.length, processedCharacters, payload.totalCharacters);
+            }
+          }
+        }
       );
 
       if (result.canceled) {
         markJobCanceled(next.id);
       } else if (result.success) {
         markJobCompleted(next.id);
+        // Record which generator produced this batch in dialogue.json (best-effort).
+        const record = buildGenerationRecord(resolved);
+        const lineIds = payload.lines
+          .map((l) => Number(l.id))
+          .filter((n) => Number.isFinite(n));
+        void recordLineAudioGeneration(payload.chapterTitle, lineIds, record).catch((e) =>
+          console.warn('[Audio] Failed to record generator in dialogue.json:', e)
+        );
       } else {
         markJobFailed(next.id, result.errors);
       }
@@ -1087,6 +1197,14 @@
 
   .generating-indicator .completed {
     color: var(--app-text-subtle);
+  }
+
+  .generating-indicator .generation-phase-label {
+    color: var(--app-text-muted);
+    font-weight: 400;
+    font-size: 12px;
+    margin-left: 2px;
+    white-space: nowrap;
   }
 
   .no-characters {
@@ -1344,6 +1462,40 @@
   .advanced-textarea:disabled {
     background: var(--app-surface-hover);
     color: var(--app-text-subtle);
+  }
+
+  .advanced-select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--app-border);
+    border-radius: 10px;
+    font: inherit;
+    color: var(--app-text);
+    background: var(--app-surface-raised);
+  }
+
+  .advanced-number-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .advanced-number-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--app-text-muted);
+  }
+
+  .advanced-number-field input {
+    width: 110px;
+    padding: 6px 8px;
+    border: 1px solid var(--app-border);
+    border-radius: 10px;
+    font: inherit;
+    color: var(--app-text);
+    background: var(--app-surface-raised);
   }
 
   .advanced-warning,
@@ -1792,6 +1944,9 @@
               <Loader size={16} />
             </span>
             <span>{generationProgress.current}/{generationProgress.total}</span>
+            {#if generationPhase}
+              <span class="generation-phase-label">{generationPhase}</span>
+            {/if}
           {:else}
             {@const existingClips = audioClipCounts.get(item.id) || 0}
             {@const isComplete = existingClips === lineCount && lineCount > 0}
@@ -1926,6 +2081,43 @@
                   </span>
                 </label>
               </div>
+            </div>
+
+            <div class="advanced-section">
+              <h4>Audio Generator</h4>
+              <p class="advanced-section-note">Choose which engine generates this batch. "Use default" follows the book's Audio Generation settings.</p>
+              <select class="advanced-select" bind:value={advancedGeneratorOverride}>
+                <option value="use_default">Use default (from book settings)</option>
+                <option value="chatterbox_base">Chatterbox base</option>
+                <option value="chatterbox_turbo">Chatterbox turbo</option>
+                <option value="vibevoice">VibeVoice</option>
+                <option value="per_voice">Per-voice assignment</option>
+              </select>
+              {#if advancedIsChatterbox}
+                <select class="advanced-select" bind:value={advancedChoicePreset}>
+                  <option value="default">Default settings</option>
+                  <option value="expressive">Expressive (exaggeration 0.6)</option>
+                  <option value="custom">Custom</option>
+                </select>
+                {#if advancedChoicePreset === 'custom'}
+                  <div class="advanced-number-row">
+                    <label class="advanced-number-field">
+                      <span>Temperature</span>
+                      <input type="number" step="0.05" min="0" max="2" placeholder="0.8" bind:value={advancedCbTempText} />
+                    </label>
+                    {#if advancedIsBase}
+                      <label class="advanced-number-field">
+                        <span>CFG weight</span>
+                        <input type="number" step="0.1" min="0" max="5" placeholder="1.0" bind:value={advancedCbCfgText} />
+                      </label>
+                      <label class="advanced-number-field">
+                        <span>Exaggeration</span>
+                        <input type="number" step="0.05" min="0" max="2" placeholder="1.0" bind:value={advancedCbExagText} />
+                      </label>
+                    {/if}
+                  </div>
+                {/if}
+              {/if}
             </div>
 
             <div class="advanced-section">

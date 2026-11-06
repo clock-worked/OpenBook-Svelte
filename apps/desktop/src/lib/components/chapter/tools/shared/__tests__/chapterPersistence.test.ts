@@ -1,7 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
 
 vi.mock('$lib/services/fs', () => ({
-    writeDialogue: vi.fn(async () => true)
+    writeDialogue: vi.fn(async () => true),
+    readOptionalDialogue: vi.fn(async () => null)
 }));
 
 import { writeDialogue } from '$lib/services/fs';

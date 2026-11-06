@@ -47,11 +47,18 @@ class ChatterboxLocalService:
         python_executable: Optional[str | Path] = None,
         max_chunk_chars: int = 450,
         join_pause_ms: int = 0,
+        exaggeration: Optional[float] = None,
+        cfg_weight: Optional[float] = None,
     ) -> None:
         self.variant = variant.lower().strip()
         self.device = device
         self.temperature = temperature
         self.repetition_penalty = repetition_penalty
+        # Base-variant (ChatterboxTTS) expressive/guidance levers. ``None``
+        # leaves the model defaults in place; set them for audiobook tuning.
+        # (ChatterboxTurboTTS ignores both.)
+        self.exaggeration = exaggeration
+        self.cfg_weight = cfg_weight
         # Chatterbox is a short-form engine; long single-pass text garbles.
         # Split any line longer than this into sentence/word-aware chunks.
         self.max_chunk_chars = max(1, int(max_chunk_chars))
@@ -154,6 +161,9 @@ class ChatterboxLocalService:
         sample_path: str,
         output_path: str,
         seed: Optional[int] = None,
+        temperature: Optional[float] = None,
+        cfg_weight: Optional[float] = None,
+        exaggeration: Optional[float] = None,
     ) -> None:
         """Generate audio for text using sample_path as reference voice.
 
@@ -167,9 +177,22 @@ class ChatterboxLocalService:
         sample_resolved = str(Path(sample_path).resolve())
         out_resolved = str(Path(output_path).resolve())
 
+        # Per-call overrides: ``None`` falls back to the instance defaults.
+        effective_temperature = self.temperature if temperature is None else temperature
+        effective_cfg_weight = self.cfg_weight if cfg_weight is None else cfg_weight
+        effective_exaggeration = self.exaggeration if exaggeration is None else exaggeration
+
         chunks = split_text_to_max_chars(text, self.max_chunk_chars)
         if len(chunks) == 1:
-            self._generate_single(chunks[0], sample_resolved, out_resolved, seed)
+            self._generate_single(
+                chunks[0],
+                sample_resolved,
+                out_resolved,
+                seed,
+                effective_temperature,
+                effective_cfg_weight,
+                effective_exaggeration,
+            )
             return
 
         # Long text: generate each chunk to a temp file, then stitch.
@@ -180,7 +203,13 @@ class ChatterboxLocalService:
             ]
             for chunk_text, chunk_path in zip(chunks, chunk_paths):
                 self._generate_single(
-                    chunk_text, sample_resolved, str(chunk_path), seed
+                    chunk_text,
+                    sample_resolved,
+                    str(chunk_path),
+                    seed,
+                    effective_temperature,
+                    effective_cfg_weight,
+                    effective_exaggeration,
                 )
             stitch_generated_chunk_audio(
                 chunk_audio_paths=chunk_paths,
@@ -194,8 +223,22 @@ class ChatterboxLocalService:
         sample_path: str,
         output_path: str,
         seed: Optional[int],
+        effective_temperature: Optional[float] = None,
+        effective_cfg_weight: Optional[float] = None,
+        effective_exaggeration: Optional[float] = None,
     ) -> None:
-        """Generate audio for a single (short) piece of text to one file."""
+        """Generate audio for a single (short) piece of text to one file.
+
+        ``effective_*`` are the call-resolved sampling values (instance
+        defaults already applied by the caller); ``None`` keeps the
+        instance value.
+        """
+        if effective_temperature is None:
+            effective_temperature = self.temperature
+        if effective_cfg_weight is None:
+            effective_cfg_weight = self.cfg_weight
+        if effective_exaggeration is None:
+            effective_exaggeration = self.exaggeration
         if self._in_process_model is not None:
             import torch
             import torchaudio as ta
@@ -210,11 +253,16 @@ class ChatterboxLocalService:
                 self._cached_sample_path = sample_path
 
             t0 = time.perf_counter()
-            wav = self._in_process_model.generate(
-                text,
-                repetition_penalty=self.repetition_penalty,
-                temperature=self.temperature,
-            )
+            gen_kwargs: dict[str, Any] = {
+                "repetition_penalty": self.repetition_penalty,
+                "temperature": effective_temperature,
+            }
+            if self.variant == "base":
+                if effective_exaggeration is not None:
+                    gen_kwargs["exaggeration"] = effective_exaggeration
+                if effective_cfg_weight is not None:
+                    gen_kwargs["cfg_weight"] = effective_cfg_weight
+            wav = self._in_process_model.generate(text, **gen_kwargs)
             gen_sec = time.perf_counter() - t0
             dur_sec = float(wav.numel()) / float(self._in_process_model.sr)
             ta.save(output_path, wav, self._in_process_model.sr)
@@ -228,15 +276,20 @@ class ChatterboxLocalService:
         if self.worker_process is None or self.worker_process.poll() is not None:
             raise RuntimeError("Chatterbox worker process is not running.")
 
-        req = {
+        req: dict[str, Any] = {
             "action": "generate",
             "text": text,
             "sample_path": sample_path,
             "output_path": output_path,
             "seed": seed,
-            "temperature": self.temperature,
+            "temperature": effective_temperature,
             "repetition_penalty": self.repetition_penalty,
         }
+        if self.variant == "base":
+            if effective_exaggeration is not None:
+                req["exaggeration"] = effective_exaggeration
+            if effective_cfg_weight is not None:
+                req["cfg_weight"] = effective_cfg_weight
 
         self.worker_process.stdin.write(json.dumps(req) + "\n")
         self.worker_process.stdin.flush()

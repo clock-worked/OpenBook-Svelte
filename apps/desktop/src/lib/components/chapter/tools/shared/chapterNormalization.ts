@@ -166,6 +166,7 @@ function normalizeLine(
             isConflict: isNonSpeaker ? false : line.isConflict || normalizedAttribution.resolutionStatus === 'unknown',
             isNonSpeaker,
             isReturning,
+            audioGeneration: (line as any).audioGeneration ?? null,
             attribution: normalizedAttribution
         };
     }
@@ -199,6 +200,7 @@ function normalizeLine(
         isConflict: line.isNonSpeaker ? false : line.isConflict || normalizedAttribution.resolutionStatus === 'unknown',
         isNonSpeaker: line.isNonSpeaker === true,
         isReturning: typeof (line as any).isReturning === 'boolean' ? Boolean((line as any).isReturning) : false,
+        audioGeneration: (line as any).audioGeneration ?? null,
         attribution: normalizedAttribution
     };
 }

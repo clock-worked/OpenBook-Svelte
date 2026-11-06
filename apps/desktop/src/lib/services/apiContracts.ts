@@ -134,6 +134,17 @@ export interface ChapterVoiceAssignmentPayload {
   provider: string;
 }
 
+/**
+ * Chatterbox generation settings sent with a generation request
+ * (wire shape — snake_case to match the backend model).
+ */
+export interface ChatterboxSettingsPayload {
+  variant?: 'base' | 'turbo' | string;
+  temperature?: number;
+  cfg_weight?: number;
+  exaggeration?: number;
+}
+
 export interface GenerateAudioLineRequest {
   line_id: number;
   text: string;
@@ -145,6 +156,7 @@ export interface GenerateAudioLineRequest {
   source_file: string;
   voice_sample_root: string | null;
   audio_root: string | null;
+  chatterbox_settings?: ChatterboxSettingsPayload | null;
 }
 
 export interface GenerateAudioLineSuccessResponse {
@@ -158,6 +170,7 @@ export interface GenerateAudioChapterRequest {
   assignments: ChapterVoiceAssignmentPayload[];
   voice_sample_root: string | null;
   audio_root: string | null;
+  chatterbox_settings?: ChatterboxSettingsPayload | null;
 }
 
 export interface VibeVoiceCharacterLineRequest {
@@ -184,6 +197,7 @@ export interface GenerateAudioCharacterRequest {
   replace_numbers_with_words?: boolean;
   voice_sample_root: string | null;
   audio_root: string | null;
+  chatterbox_settings?: ChatterboxSettingsPayload | null;
 }
 
 export interface GenerateAudioCharacterResponse {
@@ -201,6 +215,17 @@ export interface GenerateAudioCharacterResponse {
       minChunkChars?: number;
     };
   };
+}
+
+/** Live pipeline progress written by the backend while a character run is in flight. */
+export interface VibeVoiceCharacterProgressResponse {
+  phase: string;
+  detail?: string | null;
+  lineCount?: number | null;
+  chunkIndex?: number | null;
+  chunkTotal?: number | null;
+  startedAt?: string | null;
+  updatedAt?: string | null;
 }
 
 export interface GenerateAudioChapterResponse {

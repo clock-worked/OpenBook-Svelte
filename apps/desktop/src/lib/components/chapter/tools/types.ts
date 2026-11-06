@@ -1,3 +1,5 @@
+import type { AudioGenerationRecord } from '$lib/types';
+
 /**
  * Unified line type that works with both v1.0 and v2.0 dialogue formats
  */
@@ -10,6 +12,7 @@ export type UnifiedLine = {
   candidates: { name: string; characterId?: string | null; confidence: number; reasons?: string[] }[];
   isConflict: boolean;
   isReturning: boolean;
+  audioGeneration?: AudioGenerationRecord | null;
   attribution?: {
     confidence: number;
     topCandidateConfidence: number;

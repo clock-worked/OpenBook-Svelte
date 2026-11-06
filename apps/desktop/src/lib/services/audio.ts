@@ -1,12 +1,13 @@
 import { get } from 'svelte/store';
 import { audioRoot, bookRoot, bookRootAbsolutePath, voiceSamplesRoot } from '$lib/stores/bookState';
 import { bookRootPathOverride } from '$lib/stores/settings';
-import type { DialogueLine, CharactersJson } from '$lib/types';
+import type { AudioGeneratorId, ChatterboxSettingsChoice, DialogueLine, CharactersJson } from '$lib/types';
 import { readCentralCharacters, readOptionalJsonRelative } from '$lib/services/fs';
 import { API_ENDPOINTS, ApiClientError, apiFetch, apiPostJson, apiPostVoid, toApiUrl } from '$lib/services/apiClient';
 import type {
   BackendErrorPayload,
   ChapterVoiceAssignmentPayload,
+  ChatterboxSettingsPayload,
   DeleteAudioLineRequest,
   DeleteCharacterAudioRequest,
   GenerateAudioCharacterRequest,
@@ -24,6 +25,7 @@ import {
   resolvePlannedLineCharacterName,
   resolvePlannedLineSourceFile,
 } from '$lib/services/audioQueuePlanning';
+import { startCharacterPipelineProgressPolling } from '$lib/services/audioPipelineProgress';
 
 export interface AudioManifest {
   formatVersion: string;
@@ -57,6 +59,17 @@ export interface GenerateAudioCharacterOptions {
   fillerText?: string | null;
   replaceLineFinalCommasWithPeriods?: boolean;
   replaceNumbersWithWords?: boolean;
+  /**
+   * Raw advanced-overlay generator override, kept on queued jobs so the
+   * queue can re-resolve provider + settings per job at run time.
+   * Absent/null = use the settings-tab default.
+   */
+  generatorOverride?: AudioGeneratorId | null;
+  chatterboxChoice?: ChatterboxSettingsChoice | null;
+  /** Resolved concrete provider for this run (wins over the voice's). */
+  providerOverride?: string | null;
+  /** Resolved Chatterbox settings for this run. */
+  chatterboxSettings?: ChatterboxSettingsPayload | null;
 }
 
 const manifestCache = new Map<string, AudioManifest | null>();
@@ -377,7 +390,8 @@ export async function generateAudioForLine(
   voiceId: string,
   provider: string,
   chapterTitle: string,
-  sourceFile: string
+  sourceFile: string,
+  chatterboxSettings?: ChatterboxSettingsPayload | null
 ): Promise<{ success: boolean; audioPath?: string; error?: string }> {
   try {
     const samplesRoot = get(voiceSamplesRoot);
@@ -401,6 +415,7 @@ export async function generateAudioForLine(
       source_file: sourceFile,
       voice_sample_root: includeSamplesRoot ? samplesRoot : null,
       audio_root: resolvedAudioRoot || null,
+      chatterbox_settings: chatterboxSettings ?? null,
     };
 
     const data = await apiPostJson<GenerateAudioLineSuccessResponse, GenerateAudioLineRequest>(endpoint, payload);
@@ -432,7 +447,13 @@ export async function generateAudioForCharacter(
   sourceFile: string,
   onProgress?: (current: number, total: number) => void,
   shouldCancel?: () => boolean,
-  options: GenerateAudioCharacterOptions = {}
+  options: GenerateAudioCharacterOptions = {},
+  onPipelineProgress?: (
+    phase: string,
+    detail: string | null,
+    chunkIndex: number | null,
+    chunkTotal: number | null,
+  ) => void
 ): Promise<{ success: boolean; generatedCount: number; errors: string[]; canceled: boolean }> {
   if (shouldCancel?.()) {
     return {
@@ -443,7 +464,10 @@ export async function generateAudioForCharacter(
     };
   }
 
-  const providerLower = provider.toLowerCase();
+  // A resolved generator override (advanced batch UI / settings tab) wins
+  // over the voice's assigned provider for this run.
+  const effectiveProvider = options.providerOverride ?? provider;
+  const providerLower = effectiveProvider.toLowerCase();
   // Local-model providers (VibeVoice/Chatterbox) share the chunked
   // character generation pipeline.
   if (!/vibevoice|chatterbox/.test(providerLower)) {
@@ -462,6 +486,25 @@ export async function generateAudioForCharacter(
     onProgress(0, totalLines);
   }
 
+  // While the (long) synchronous generation request is in flight, poll the
+  // live pipeline progress so the UI can show which phase the backend is in
+  // (speech generation, WhisperX transcription, splitting, ...).
+  const lineChapters = new Set(
+    lines
+      .map((line) => resolvePlannedLineChapterTitle(line, chapterTitle))
+      .filter((title): title is string => Boolean(title)),
+  );
+  const stopProgressPolling = onPipelineProgress
+    ? startCharacterPipelineProgressPolling({
+        characterName,
+        chapterTitle,
+        crossChapter: lineChapters.size > 1,
+        audioRoot: audioRootFor() || null,
+        requestStart: Date.now(),
+        onProgress: onPipelineProgress,
+      })
+    : () => {};
+
   try {
     const samplesRoot = get(voiceSamplesRoot);
     const resolvedAudioRoot = audioRootFor();
@@ -479,7 +522,7 @@ export async function generateAudioForCharacter(
         sourceFile: resolvePlannedLineSourceFile(line, sourceFile),
       })),
       voice_id: voiceId,
-      provider,
+      provider: effectiveProvider,
       chapter_title: chapterTitle,
       source_file: sourceFile,
       use_filler_for_short_batch: Boolean(options.useFillerForShortBatch),
@@ -490,6 +533,7 @@ export async function generateAudioForCharacter(
       replace_numbers_with_words: Boolean(options.replaceNumbersWithWords),
       voice_sample_root: samplesRoot || null,
       audio_root: resolvedAudioRoot || null,
+      chatterbox_settings: options.chatterboxSettings ?? null,
     };
 
     const data = await apiPostJson<GenerateAudioCharacterResponse, GenerateAudioCharacterRequest>(
@@ -575,6 +619,8 @@ export async function generateAudioForCharacter(
       errors: [getBackendErrorMessage(error, 'Failed to generate character audio')],
       canceled: false,
     };
+  } finally {
+    stopProgressPolling();
   }
 }
 

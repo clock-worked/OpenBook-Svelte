@@ -15,7 +15,11 @@ import soundfile as sf
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
-from audio_generation_service import AudioGenerationService
+from api_models import ChatterboxGenerationSettings
+from audio_generation_service import (
+    AudioGenerationService,
+    build_chatterbox_generator_info,
+)
 from chapter_audio_test.asr_alignment import (
     build_line_timestamps,
     collect_asr_word_tokens,
@@ -123,6 +127,7 @@ class VibeVoiceLineRequest(BaseModel):
     source_file: str
     voice_sample_root: Optional[str] = None
     audio_root: Optional[str] = None
+    chatterbox_settings: Optional[ChatterboxGenerationSettings] = None
 
 
 class VibeVoiceLineInput(BaseModel):
@@ -149,6 +154,7 @@ class VibeVoiceCharacterRequest(BaseModel):
     replace_numbers_with_words: bool = False
     voice_sample_root: Optional[str] = None
     audio_root: Optional[str] = None
+    chatterbox_settings: Optional[ChatterboxGenerationSettings] = None
 
 
 class VibeVoiceAssignment(BaseModel):
@@ -165,6 +171,7 @@ class VibeVoiceChapterRequest(BaseModel):
     source_file: Optional[str] = None
     voice_sample_root: Optional[str] = None
     audio_root: Optional[str] = None
+    chatterbox_settings: Optional[ChatterboxGenerationSettings] = None
 
 
 def _is_vibevoice_provider(provider: str) -> bool:
@@ -179,6 +186,20 @@ def _is_local_chunked_provider(provider: str) -> bool:
     """Local-model providers supported by the chunked generation pipeline
     (VibeVoice and Chatterbox)."""
     return _is_vibevoice_provider(provider) or _is_chatterbox_provider(provider)
+
+
+def _chatterbox_settings_dict(
+    settings: Optional[ChatterboxGenerationSettings],
+) -> Optional[Dict[str, Any]]:
+    """Flatten the request's Chatterbox settings to a plain dict (or None)."""
+    if settings is None:
+        return None
+    return {
+        "variant": settings.variant,
+        "temperature": settings.temperature,
+        "cfg_weight": settings.cfg_weight,
+        "exaggeration": settings.exaggeration,
+    }
 
 
 QUOTE_ENDS_WITH_COMMA_RE = re.compile(r",(?=(?:['\"])(?:\s|$))|,(?=\s*$)")
@@ -559,6 +580,7 @@ def _upsert_character_manifest(
     voice_id: str,
     provider: str,
     split_lines: list[dict[str, Any]],
+    generator_info: Optional[dict[str, Any]] = None,
 ) -> dict[str, Any]:
     manifest = _load_or_create_manifest(
         manifest_path=manifest_path,
@@ -582,6 +604,7 @@ def _upsert_character_manifest(
         kept_clips.append(clip)
 
     generated_at = utc_now_iso()
+    generator_info = generator_info or {}
     new_clips: list[dict[str, Any]] = []
     for item in split_lines:
         new_clips.append(
@@ -595,6 +618,10 @@ def _upsert_character_manifest(
                 "sourceFile": source_file,
                 "voiceId": voice_id,
                 "provider": provider,
+                "variant": generator_info.get("variant"),
+                "temperature": generator_info.get("temperature"),
+                "cfgWeight": generator_info.get("cfgWeight"),
+                "exaggeration": generator_info.get("exaggeration"),
                 "emotion": None,
                 "metadata": {
                     "generatedAt": generated_at,
@@ -662,12 +689,124 @@ def _upsert_character_manifest(
     return manifest
 
 
+PIPELINE_PROGRESS_FILENAME = "progress.json"
+
+
+def _resolve_character_work_root(
+    audio_root: Path,
+    character_name: str,
+    *,
+    single_chapter: bool,
+    chapter_title: str,
+) -> Path:
+    """Work-root layout shared by the chunk pipeline and the progress route.
+
+    Single-chapter runs write under the chapter's audio_lines folder;
+    cross-chapter (book batch) runs share a _book_batch folder.
+    """
+    if single_chapter:
+        return audio_root / chapter_title / "audio_lines" / character_name
+    return audio_root / "_book_batch" / character_name
+
+
+def _resolve_character_work_dir(
+    service: AudioGenerationService,
+    request: VibeVoiceCharacterRequest,
+) -> Path:
+    """Re-derive the pipeline work dir from a request (pure text work)."""
+    default_chapter_title = str(request.chapter_title or "").strip() or "unknown"
+    lines = _normalize_character_lines(
+        request.lines,
+        character_id=request.character_id,
+        character_name=request.character_name,
+        fallback_chapter_title=default_chapter_title,
+        fallback_source_file=default_chapter_title,
+        replace_line_final_commas_with_periods=bool(request.replace_line_final_commas_with_periods),
+        replace_numbers_with_words=bool(request.replace_numbers_with_words),
+    )
+    input_chapters = sorted(
+        {
+            str(line.get("chapterTitle") or default_chapter_title).strip() or default_chapter_title
+            for line in lines
+        }
+    )
+    work_root = _resolve_character_work_root(
+        service.audio_root,
+        request.character_name,
+        single_chapter=len(input_chapters) == 1,
+        chapter_title=input_chapters[0],
+    )
+    return work_root / "_chunk_pipeline"
+
+
+def _write_pipeline_progress(
+    work_dir: Path,
+    phase: str,
+    *,
+    detail: Optional[str] = None,
+    line_count: Optional[int] = None,
+    chunk_index: Optional[int] = None,
+    chunk_total: Optional[int] = None,
+) -> None:
+    """Atomically record pipeline progress so the UI can poll it.
+
+    Never raises: progress bookkeeping must not break generation.
+    ``startedAt`` is preserved from the previous entry so the whole run
+    carries one stable start timestamp. ``chunkIndex``/``chunkTotal``
+    track TTS chunk progress within the generating phase.
+    """
+    try:
+        work_dir.mkdir(parents=True, exist_ok=True)
+        progress_path = work_dir / PIPELINE_PROGRESS_FILENAME
+        previous: Dict[str, Any] = {}
+        if progress_path.exists():
+            try:
+                loaded = json.loads(progress_path.read_text(encoding="utf-8"))
+                if isinstance(loaded, dict):
+                    previous = loaded
+            except Exception:
+                previous = {}
+        started_at = previous.get("startedAt") or utc_now_iso()
+        payload: Dict[str, Any] = {
+            "phase": phase,
+            "detail": detail,
+            "lineCount": line_count,
+            "chunkIndex": chunk_index,
+            "chunkTotal": chunk_total,
+            "startedAt": started_at,
+            "updatedAt": utc_now_iso(),
+        }
+        if line_count is None:
+            previous_count = previous.get("lineCount")
+            if isinstance(previous_count, int):
+                payload["lineCount"] = previous_count
+        if chunk_index is None:
+            previous_index = previous.get("chunkIndex")
+            if isinstance(previous_index, int):
+                payload["chunkIndex"] = previous_index
+        if chunk_total is None:
+            previous_total = previous.get("chunkTotal")
+            if isinstance(previous_total, int):
+                payload["chunkTotal"] = previous_total
+        tmp_path = progress_path.with_suffix(".json.tmp")
+        tmp_path.write_text(
+            json.dumps(payload, indent=2, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        os.replace(tmp_path, progress_path)
+    except Exception as exc:
+        logging.getLogger(__name__).warning("Failed to write pipeline progress: %s", exc)
+
+
 def _run_character_chunk_pipeline(
     service: AudioGenerationService,
     request: VibeVoiceCharacterRequest,
 ) -> dict[str, Any]:
     default_chapter_title = str(request.chapter_title or "").strip() or "unknown"
     default_source_file = str(request.source_file or "").strip() or default_chapter_title
+
+    chatterbox_settings = _chatterbox_settings_dict(request.chatterbox_settings)
+    generator_info = build_chatterbox_generator_info(request.provider, chatterbox_settings)
 
     lines = _normalize_character_lines(
         request.lines,
@@ -716,14 +855,17 @@ def _run_character_chunk_pipeline(
         }
     )
 
-    if len(input_chapters) == 1:
-        work_root = service.audio_root / input_chapters[0] / "audio_lines" / request.character_name
-    else:
-        work_root = service.audio_root / "_book_batch" / request.character_name
+    work_root = _resolve_character_work_root(
+        service.audio_root,
+        request.character_name,
+        single_chapter=len(input_chapters) == 1,
+        chapter_title=input_chapters[0],
+    )
 
     work_root.mkdir(parents=True, exist_ok=True)
 
     work_dir = work_root / "_chunk_pipeline"
+    _write_pipeline_progress(work_dir, "starting", line_count=len(lines))
     chunks_dir = work_dir / "generation_chunks"
     full_audio_path = work_dir / "full_character.wav"
     transcription_json_path = work_dir / "transcription_result.json"
@@ -737,11 +879,13 @@ def _run_character_chunk_pipeline(
             voice_id: str,
             voice_sample_root: Optional[str],
             provider: str,
+            chatterbox_settings: Optional[Dict[str, Any]] = None,
         ) -> None:
             self._audio_service = audio_service
             self._voice_id = voice_id
             self._voice_sample_root = voice_sample_root
             self._provider = str(provider or "").strip().lower()
+            self._chatterbox_settings = chatterbox_settings
 
         def generate_audio(
             self,
@@ -760,6 +904,7 @@ def _run_character_chunk_pipeline(
                     voice_id=effective_voice_id,
                     output_path=Path(output_path),
                     voice_sample_root=self._voice_sample_root,
+                    settings=self._chatterbox_settings,
                 )
                 fallback_error = "Chatterbox generation failed."
             else:
@@ -778,7 +923,10 @@ def _run_character_chunk_pipeline(
         voice_id=request.voice_id,
         voice_sample_root=request.voice_sample_root,
         provider=request.provider,
+        chatterbox_settings=chatterbox_settings,
     )
+
+    _write_pipeline_progress(work_dir, "generating", line_count=len(lines))
 
     generation_report = generate_line_chunked_chapter_audio(
         service=chunk_generator,
@@ -789,9 +937,19 @@ def _run_character_chunk_pipeline(
         min_chunk_chars=DEFAULT_MIN_CHUNK_CHARS,
         seed=None,
         join_pause_ms=DEFAULT_LINE_CHUNK_JOIN_MS,
+        on_chunk=lambda index, total: _write_pipeline_progress(
+            work_dir,
+            "generating",
+            line_count=len(lines),
+            chunk_index=index,
+            chunk_total=total,
+            detail=f"chunk {index}/{total}",
+        ),
     )
 
     audio_duration_sec = float(sf.info(str(full_audio_path)).duration)
+
+    _write_pipeline_progress(work_dir, "transcribing")
 
     transcription, transcription_engine = _transcribe_with_whisperx_alignment(
         audio_path=full_audio_path,
@@ -814,6 +972,8 @@ def _run_character_chunk_pipeline(
             "No WhisperX word timestamps were produced for chunked character generation."
         )
 
+    _write_pipeline_progress(work_dir, "aligning")
+
     line_timestamps, alignment_report = build_line_timestamps(
         lines=lines,
         asr_words=asr_words,
@@ -833,6 +993,8 @@ def _run_character_chunk_pipeline(
         next_start_backpad_ms=BOUNDARY_NEXT_START_BACKPAD_MS,
         min_line_ms=BOUNDARY_MIN_LINE_MS,
     )
+
+    _write_pipeline_progress(work_dir, "splitting")
 
     full_audio_2d, split_sample_rate = load_audio_float_2d(full_audio_path)
     split_lines = _write_character_split_clips(
@@ -888,13 +1050,18 @@ def _run_character_chunk_pipeline(
                 voice_id=request.voice_id,
                 provider=request.provider,
                 split_lines=chapter_split_lines,
+                generator_info=generator_info,
             )
 
         return chapters
 
+    _write_pipeline_progress(work_dir, "finalizing")
+
     # Persist manifests as soon as split clips are first written so the UI can
     # reflect generated audio even if later validation steps fail.
     chapters_affected = _upsert_split_manifests(split_lines)
+
+    _write_pipeline_progress(work_dir, "validating")
 
     release_accelerator_cache()
     validation_engine, transcribe_split_clip = create_split_validation_transcriber(
@@ -1040,6 +1207,8 @@ def _run_character_chunk_pipeline(
             f"{final_validation_summary['flaggedLineCount']} line(s) after readjustment."
         )
 
+    _write_pipeline_progress(work_dir, "done", line_count=len(split_lines))
+
     return {
         "pipelineMode": "chunked-character-v1",
         "success": True,
@@ -1109,6 +1278,7 @@ def create_vibevoice_router(
             chapter_title=request.chapter_title,
             source_file=request.source_file,
             voice_sample_root=request.voice_sample_root,
+            chatterbox_settings=_chatterbox_settings_dict(request.chatterbox_settings),
         )
 
         if not result.get("success"):
@@ -1146,10 +1316,49 @@ def create_vibevoice_router(
         except HTTPException as http_exc:
             raise http_exc
         except Exception as exc:
+            try:
+                failed_work_dir = _resolve_character_work_dir(service, request)
+                _write_pipeline_progress(
+                    failed_work_dir, "failed", detail=str(exc)[:500]
+                )
+            except Exception:
+                pass
             raise HTTPException(
                 status_code=500,
                 detail=f"Chunked character generation failed: {exc}",
             ) from exc
+
+    @router.get("/character/progress")
+    async def get_character_progress(
+        character_name: str,
+        chapter_title: str = "",
+        cross_chapter: bool = False,
+        audio_root: Optional[str] = None,
+    ):
+        """Poll live pipeline progress for a character generation run."""
+        service = _ensure_audio_service(audio_root)
+        work_dir = (
+            _resolve_character_work_root(
+                service.audio_root,
+                character_name,
+                single_chapter=not cross_chapter,
+                chapter_title=chapter_title or "unknown",
+            )
+            / "_chunk_pipeline"
+        )
+        progress_path = work_dir / PIPELINE_PROGRESS_FILENAME
+        if progress_path.exists():
+            try:
+                return json.loads(progress_path.read_text(encoding="utf-8"))
+            except Exception:
+                pass
+        return {
+            "phase": "unknown",
+            "detail": None,
+            "lineCount": None,
+            "startedAt": None,
+            "updatedAt": None,
+        }
 
     @router.post("/chapter")
     async def generate_chapter(request: VibeVoiceChapterRequest):
@@ -1258,6 +1467,7 @@ def create_vibevoice_router(
                 source_file=source_file,
                 voice_sample_root=request.voice_sample_root,
                 audio_root=request.audio_root,
+                chatterbox_settings=request.chatterbox_settings,
             )
 
             try:

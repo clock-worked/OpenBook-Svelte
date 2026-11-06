@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 import re
 import time
-from typing import Any
+from typing import Any, Callable
 
 import numpy as np
 import soundfile as sf
@@ -254,7 +254,13 @@ def generate_line_chunked_chapter_audio(
     seed: int | None,
     join_pause_ms: int,
     resume_existing_chunks: bool = False,
+    on_chunk: Callable[[int, int], None] | None = None,
 ) -> dict[str, Any]:
+    """Generate every chunk in the plan and stitch them into one file.
+
+    ``on_chunk(chunk_index, total_chunks)`` is invoked after each chunk
+    completes (generated or reused) so callers can surface live progress.
+    """
     if not chunk_plan:
         raise ValueError("Chunk generation plan is empty.")
 
@@ -307,6 +313,8 @@ def generate_line_chunked_chapter_audio(
                 f"(lines {start_line}-{end_line}, {int(chunk['charCount'])} chars)",
                 flush=True,
             )
+            if on_chunk is not None:
+                on_chunk(chunk_index, total_chunks)
             continue
 
         print(
@@ -339,6 +347,9 @@ def generate_line_chunked_chapter_audio(
             f"| ETA {_format_hms(eta_sec)}",
             flush=True,
         )
+
+        if on_chunk is not None:
+            on_chunk(chunk_index, total_chunks)
 
         chunk_duration_sec = float(sf.info(str(chunk_output_path)).duration)
         chunk_audio_paths.append(chunk_output_path)

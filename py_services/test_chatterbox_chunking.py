@@ -63,6 +63,8 @@ def _make_service(max_chunk_chars=450, join_pause_ms=0):
     svc.device = "cpu"
     svc.temperature = 0.8
     svc.repetition_penalty = 1.2
+    svc.cfg_weight = None
+    svc.exaggeration = None
     svc.max_chunk_chars = max_chunk_chars
     svc.join_pause_ms = join_pause_ms
     svc.worker_process = None

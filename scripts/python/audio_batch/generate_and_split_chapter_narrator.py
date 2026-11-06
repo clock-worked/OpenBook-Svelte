@@ -224,6 +224,18 @@ def parse_args() -> argparse.Namespace:
         help="Repetition penalty for Chatterbox.",
     )
     parser.add_argument(
+        "--chatterbox-exaggeration",
+        type=float,
+        default=None,
+        help="Chatterbox base-variant exaggeration (expression intensity; ~0.5 neutral). Base only.",
+    )
+    parser.add_argument(
+        "--chatterbox-cfg-weight",
+        type=float,
+        default=None,
+        help="Chatterbox base-variant CFG guidance weight (~0.3 slower/deliberate). Base only.",
+    )
+    parser.add_argument(
         "--seed",
         type=int,
         default=None,
@@ -466,6 +478,8 @@ def run_generation_alignment_mode(
                 temperature=args.chatterbox_temperature,
                 repetition_penalty=args.chatterbox_repetition_penalty,
                 python_executable=args.chatterbox_python,
+                exaggeration=args.chatterbox_exaggeration,
+                cfg_weight=args.chatterbox_cfg_weight,
             )
         else:
             service = VibeVoiceLocalService(

@@ -8,6 +8,7 @@
   import { initRouteProjectContext } from '$lib/services/projectSession';
   import { getProjectInitFailurePolicy } from '$lib/services/routePolicy';
   import { audiobookSettings, parserHints } from '$lib/stores/settings';
+  import { DEFAULT_AUDIO_GENERATOR, sanitizeChatterboxChoice } from '$lib/services/audioGenerator';
   import { history, historyAction } from '$lib/services/history';
   import {
     bookCharacters,
@@ -66,6 +67,8 @@
             sideCharacters: settings.audiobookSettings.sideCharacters || [],
             defaultAccent: settings.audiobookSettings.defaultAccent || 'en-GB',
             speakingRate: settings.audiobookSettings.speakingRate || 1.0,
+            audioGenerator: settings.audiobookSettings.audioGenerator || DEFAULT_AUDIO_GENERATOR,
+            chatterboxSettings: sanitizeChatterboxChoice(settings.audiobookSettings.chatterboxSettings),
           });
         }
         

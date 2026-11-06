@@ -2,7 +2,8 @@
   import { createEventDispatcher } from 'svelte';
   import PillList from '$lib/components/common/PillList.svelte';
   import { API_ENDPOINTS, ApiClientError, apiPostJson, apiRequestJson } from '$lib/services/apiClient';
-  import type { AudiobookSettings, ParserHints } from '$lib/types';
+  import type { AudiobookSettings, AudioGeneratorId, ChatterboxSettingsChoice, ParserHints } from '$lib/types';
+  import { DEFAULT_AUDIO_GENERATOR, DEFAULT_CHATTERBOX_CHOICE } from '$lib/services/audioGenerator';
 
   type ModernBookNlpCacheStatus = {
     available: boolean;
@@ -148,6 +149,51 @@
   
   function handleBlocklistRemove(event: CustomEvent<string>) {
     parserHints.manualBlockList = (parserHints.manualBlockList || []).filter(n => n !== event.detail);
+    notifyUpdate();
+  }
+
+  // === Audio Generation (default generator + Chatterbox settings) ===
+
+  function ensureChatterboxChoice(): ChatterboxSettingsChoice {
+    if (!audiobookSettings.chatterboxSettings) {
+      audiobookSettings.chatterboxSettings = { ...DEFAULT_CHATTERBOX_CHOICE };
+    }
+    const c = audiobookSettings.chatterboxSettings;
+    if (c.preset !== 'expressive' && c.preset !== 'custom') c.preset = 'default';
+    return c;
+  }
+
+  const initialChoice = ensureChatterboxChoice();
+  let generatorId: AudioGeneratorId = audiobookSettings.audioGenerator ?? DEFAULT_AUDIO_GENERATOR;
+  let choicePreset: ChatterboxSettingsChoice['preset'] = initialChoice.preset;
+  let cbTempText = initialChoice.temperature != null ? String(initialChoice.temperature) : '';
+  let cbCfgText = initialChoice.cfgWeight != null ? String(initialChoice.cfgWeight) : '';
+  let cbExagText = initialChoice.exaggeration != null ? String(initialChoice.exaggeration) : '';
+
+  $: isChatterboxGenerator = generatorId === 'chatterbox_base' || generatorId === 'chatterbox_turbo';
+
+  function handleGeneratorChange() {
+    audiobookSettings.audioGenerator = generatorId;
+    notifyUpdate();
+  }
+
+  function handlePresetChange() {
+    ensureChatterboxChoice().preset = choicePreset;
+    notifyUpdate();
+  }
+
+  function parseOptionalNumber(text: string): number | null {
+    const trimmed = text.trim();
+    if (!trimmed) return null;
+    const n = Number(trimmed);
+    return Number.isFinite(n) ? n : null;
+  }
+
+  function handleCustomNumberChange() {
+    const c = ensureChatterboxChoice();
+    c.temperature = parseOptionalNumber(cbTempText);
+    c.cfgWeight = parseOptionalNumber(cbCfgText);
+    c.exaggeration = parseOptionalNumber(cbExagText);
     notifyUpdate();
   }
 </script>
@@ -528,6 +574,83 @@
       />
       <span class="help-text">Characters in this list will be ignored during parsing</span>
     </div>
+  </div>
+
+  <h3 class="subsection-title">Audio Generation</h3>
+  <div class="settings-group">
+    <div class="form-row">
+      <label for="audio-generator" class="field-label">Default Audio Generator</label>
+      <select
+        id="audio-generator"
+        bind:value={generatorId}
+        on:change={handleGeneratorChange}
+      >
+        <option value="chatterbox_base">Chatterbox base (recommended)</option>
+        <option value="chatterbox_turbo">Chatterbox turbo (fastest)</option>
+        <option value="vibevoice">VibeVoice</option>
+        <option value="per_voice">Per-voice assignment (legacy)</option>
+      </select>
+      <span class="help-text">Engine used when generating new audio. Advanced batch generation can override this per run. "Per-voice assignment" uses each voice's own engine.</span>
+    </div>
+
+    {#if isChatterboxGenerator}
+      <div class="form-row">
+        <label for="chatterbox-preset" class="field-label">Chatterbox Settings</label>
+        <select id="chatterbox-preset" bind:value={choicePreset} on:change={handlePresetChange}>
+          <option value="default">Default</option>
+          <option value="expressive">Expressive (exaggeration 0.6)</option>
+          <option value="custom">Custom</option>
+        </select>
+        <span class="help-text">
+          {generatorId === 'chatterbox_turbo'
+            ? 'Turbo only supports temperature. Exaggeration and CFG weight apply to the base model.'
+            : 'Expressive adds exaggerated delivery. Custom fine-tunes temperature, CFG weight, and exaggeration. Blank fields use engine defaults.'}
+        </span>
+      </div>
+      {#if choicePreset === 'custom'}
+        <div class="form-row">
+          <label for="cb-temperature" class="field-label">Temperature</label>
+          <input
+            id="cb-temperature"
+            type="number"
+            step="0.05"
+            min="0"
+            max="2"
+            bind:value={cbTempText}
+            on:change={handleCustomNumberChange}
+            placeholder="0.8 (engine default)"
+          />
+        </div>
+        {#if generatorId === 'chatterbox_base'}
+          <div class="form-row">
+            <label for="cb-cfg" class="field-label">CFG Weight</label>
+            <input
+              id="cb-cfg"
+              type="number"
+              step="0.1"
+              min="0"
+              max="5"
+              bind:value={cbCfgText}
+              on:change={handleCustomNumberChange}
+              placeholder="1.0 (engine default)"
+            />
+          </div>
+          <div class="form-row">
+            <label for="cb-exaggeration" class="field-label">Exaggeration</label>
+            <input
+              id="cb-exaggeration"
+              type="number"
+              step="0.05"
+              min="0"
+              max="2"
+              bind:value={cbExagText}
+              on:change={handleCustomNumberChange}
+              placeholder="1.0 (engine default)"
+            />
+          </div>
+        {/if}
+      {/if}
+    {/if}
   </div>
 </div>
 

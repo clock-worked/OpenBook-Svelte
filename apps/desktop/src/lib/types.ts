@@ -7,6 +7,42 @@
 export type TtsProvider = 'vibevoice_local' | 'chatterbox';
 export type Gender = 'Male' | 'Female' | 'Unknown';
 
+// === Audio Generation (generator + settings) ===
+
+/**
+ * User-facing audio generator choice (settings tab default / advanced batch
+ * override). 'per_voice' keeps the legacy behavior: each voice's assigned
+ * provider is used and no Chatterbox settings are applied.
+ */
+export type AudioGeneratorId =
+  | 'chatterbox_base'
+  | 'chatterbox_turbo'
+  | 'vibevoice'
+  | 'per_voice';
+
+export type ChatterboxPreset = 'default' | 'expressive' | 'custom';
+
+/** Chatterbox generation settings as chosen by the user (UI shape). */
+export interface ChatterboxSettingsChoice {
+  preset: ChatterboxPreset;
+  temperature: number | null;
+  cfgWeight: number | null;
+  exaggeration: number | null;
+}
+
+/**
+ * Which generator produced a line's audio. Recorded in dialogue.json (per
+ * line) and in clip manifests (per clip) at generation time.
+ */
+export interface AudioGenerationRecord {
+  provider: string;
+  variant: string | null;
+  temperature: number | null;
+  cfgWeight: number | null;
+  exaggeration: number | null;
+  generatedAt: string;
+}
+
 // === Characters (Story Characters) ===
 
 export interface Character {
@@ -212,6 +248,7 @@ export interface DialogueLine {
   isConflict: boolean;
   isReturning?: boolean;
   attribution?: LineAttribution;
+  audioGeneration?: AudioGenerationRecord | null;  // Which generator produced this line's audio
 }
 
 export interface DialogueJson {
@@ -360,6 +397,8 @@ export interface AudiobookSettings {
   protagonist?: string | null;
   mainCharacters?: string[];
   sideCharacters?: string[];
+  audioGenerator?: AudioGeneratorId;
+  chatterboxSettings?: ChatterboxSettingsChoice;
 }
 
 export interface ParserHints {

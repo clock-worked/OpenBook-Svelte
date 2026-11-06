@@ -246,6 +246,12 @@ def create_audio_router(
             print(f"  Text: {text_preview}...")
             print(f"  Provider: {request.provider}, Voice: {request.voice_id}")
 
+            chatterbox_settings = (
+                request.chatterbox_settings.model_dump()
+                if request.chatterbox_settings is not None
+                else None
+            )
+
             result = await service.generate_audio_line(
                 line_id=request.line_id,
                 text=request.text,
@@ -256,6 +262,7 @@ def create_audio_router(
                 chapter_title=request.chapter_title,
                 source_file=request.source_file,
                 voice_sample_root=request.voice_sample_root,
+                chatterbox_settings=chatterbox_settings,
             )
 
             if result.get("success"):

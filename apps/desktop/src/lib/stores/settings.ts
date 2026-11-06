@@ -60,6 +60,8 @@ export const defaultAudiobookSettings: AudiobookSettings = {
   sideCharacters: [],
   defaultAccent: 'en-GB',
   speakingRate: 1.0,
+  audioGenerator: 'chatterbox_base',
+  chatterboxSettings: { preset: 'default', temperature: null, cfgWeight: null, exaggeration: null },
 };
 
 export const defaultParserHints: ParserHints = {

@@ -139,6 +139,20 @@ class ReadFileAbsoluteRequest(BaseModel):
     file_path: str
 
 
+class ChatterboxGenerationSettings(BaseModel):
+    """Optional per-request Chatterbox tuning.
+
+    All fields are optional; ``None`` leaves the engine default in place.
+    ``variant`` selects the loaded model ("base" | "turbo"); temperature,
+    cfg_weight and exaggeration are applied per call (cfg_weight/exaggeration
+    only affect the base variant).
+    """
+    variant: Optional[str] = None
+    temperature: Optional[float] = None
+    cfg_weight: Optional[float] = None
+    exaggeration: Optional[float] = None
+
+
 class GenerateAudioLineRequest(BaseModel):
     line_id: int
     text: str
@@ -150,6 +164,7 @@ class GenerateAudioLineRequest(BaseModel):
     source_file: str
     voice_sample_root: Optional[str] = None
     audio_root: Optional[str] = None
+    chatterbox_settings: Optional[ChatterboxGenerationSettings] = None
 
 
 class DeleteCharacterAudioRequest(BaseModel):

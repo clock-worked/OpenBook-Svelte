@@ -18,6 +18,8 @@ export interface AudioQueueItem {
     finishedAt?: number;
     errors?: string[];
     cancelRequested?: boolean;
+    /** Live pipeline phase (e.g. 'generating', 'transcribing') while running. */
+    phase?: string | null;
 }
 
 export interface AudioQueueChapterOverview {
@@ -77,6 +79,7 @@ function normalizeItem(value: unknown): AudioQueueItem | null {
         finishedAt: Number.isFinite(Number(raw.finishedAt)) ? Number(raw.finishedAt) : undefined,
         errors: Array.isArray(raw.errors) ? raw.errors.map((entry) => String(entry)) : undefined,
         cancelRequested: Boolean(raw.cancelRequested),
+        phase: typeof raw.phase === 'string' && raw.phase ? raw.phase : undefined,
     };
 }
 
@@ -212,6 +215,7 @@ export function markJobRunning(id: string): void {
                     startedAt: Date.now(),
                     current: 0,
                     processedCharacters: 0,
+                    phase: undefined,
                 }
                 : item
         ),
@@ -235,6 +239,20 @@ export function updateJobProgress(
                     total,
                     processedCharacters: Math.max(0, Math.floor(processedCharacters ?? item.processedCharacters ?? 0)),
                     totalCharacters: Math.max(0, Math.floor(totalCharacters ?? item.totalCharacters ?? 0)),
+                }
+                : item
+        ),
+    }));
+}
+
+export function updateJobPhase(id: string, phase: string | null): void {
+    audioQueueStore.update((state) => ({
+        ...state,
+        items: state.items.map((item) =>
+            item.id === id
+                ? {
+                    ...item,
+                    phase: phase ? String(phase) : null,
                 }
                 : item
         ),
