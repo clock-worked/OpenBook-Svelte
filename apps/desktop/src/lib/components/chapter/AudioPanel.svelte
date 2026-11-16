@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { get } from 'svelte/store';
-  import { currentChapter, bookRoot, currentScript, chapters } from '$lib/stores/bookState';
+  import { currentChapter, bookRoot, currentScript, chapters, type ChapterStatus } from '$lib/stores/bookState';
   import { characters, colorForCharacter, rgbaToOpaqueHex, buildNameToIdMap, buildIdToNameMap } from '$lib/stores/characters';
   import { voices } from '$lib/stores/speakers';
   import {
@@ -77,6 +77,12 @@
   let advancedPreviewError: string | null = null;
   let advancedPreview: AdvancedBookPreview | null = null;
   let advancedGenerationMode: AdvancedGenerationMode = 'character';
+  // Which chapters the advanced batch covers: all parsed, just the open one, or a custom set.
+  let advancedChapterScope: 'all' | 'current' | 'custom' = 'all';
+  let advancedSelectedChapterTitles = new Set<string>();
+  // Scope key the current preview was built with — a mismatch triggers a re-scan.
+  let advancedPreviewScopeKey = '';
+  let advancedScopeRescanTimer: ReturnType<typeof setTimeout> | null = null;
   let advancedUseFillerForShortBatch = false;
   let advancedFillerText = DEFAULT_ADVANCED_FILLER_TEXT;
   let advancedReplaceLineFinalCommasWithPeriods = true;
@@ -123,6 +129,44 @@
       getVoice: getVoiceForCharacter,
       getChapterSourceFile,
     };
+  }
+
+  /** Stable key for the current chapter-scope selection (drives re-scans). */
+  function advancedScopeKey(): string {
+    if (advancedChapterScope === 'custom') {
+      return `custom:${[...advancedSelectedChapterTitles].sort().join('|')}`;
+    }
+    return advancedChapterScope;
+  }
+
+  /** Chapters the advanced batch should cover, per the scope selection. */
+  function advancedScopedChapters(): ChapterStatus[] {
+    const all = get(chapters);
+    if (advancedChapterScope === 'current') {
+      const current = get(currentChapter);
+      return current ? all.filter((chapter) => chapter.title === current.title) : [];
+    }
+    if (advancedChapterScope === 'custom') {
+      return all.filter((chapter) => advancedSelectedChapterTitles.has(chapter.title));
+    }
+    return all;
+  }
+
+  function toggleAdvancedChapterSelection(title: string) {
+    const next = new Set(advancedSelectedChapterTitles);
+    if (next.has(title)) {
+      next.delete(title);
+    } else {
+      next.add(title);
+    }
+    advancedSelectedChapterTitles = next;
+  }
+
+  function setAllAdvancedChapters(selected: boolean) {
+    const parsed = get(chapters).filter((chapter) => chapter.parsed);
+    advancedSelectedChapterTitles = selected
+      ? new Set(parsed.map((chapter) => chapter.title))
+      : new Set();
   }
 
   // Load character data from characters.json (ID-first approach)
@@ -336,7 +380,10 @@
       await loadCharacterData();
     }
 
-    return planAdvancedPreview(buildPlannerContext());
+    return planAdvancedPreview({
+      ...buildPlannerContext(),
+      chapters: advancedScopedChapters(),
+    });
   }
 
   async function handleOpenAdvancedOverlay() {
@@ -349,6 +396,9 @@
     advancedPreview = null;
     selectedAdvancedCharacterIds = new Set<string>();
     advancedGenerationMode = 'character';
+    advancedChapterScope = 'all';
+    advancedSelectedChapterTitles = new Set();
+    advancedPreviewScopeKey = advancedScopeKey();
     advancedUseFillerForShortBatch = false;
     advancedFillerText = DEFAULT_ADVANCED_FILLER_TEXT;
     advancedReplaceLineFinalCommasWithPeriods = true;
@@ -365,6 +415,7 @@
       if (requestId !== advancedPreviewRequestId) return;
 
       advancedPreview = preview;
+      advancedPreviewScopeKey = advancedScopeKey();
       selectedAdvancedCharacterIds = new Set(preview.characters.map((item) => item.characterId));
     } catch (error) {
       if (requestId !== advancedPreviewRequestId) return;
@@ -386,6 +437,45 @@
     showAdvancedOverlay = false;
     loadingAdvancedPreview = false;
     advancedPreviewError = null;
+  }
+
+  // Re-scan the preview (debounced) when the chapter scope changes while the
+  // overlay is open, so the summary and character list track the selection.
+  $: if (
+    showAdvancedOverlay &&
+    advancedPreview &&
+    !loadingAdvancedPreview &&
+    !advancedSubmitting &&
+    advancedPreviewScopeKey !== advancedScopeKey()
+  ) {
+    if (advancedScopeRescanTimer) clearTimeout(advancedScopeRescanTimer);
+    advancedScopeRescanTimer = setTimeout(() => {
+      advancedScopeRescanTimer = null;
+      void rescanAdvancedPreview();
+    }, 350);
+  }
+
+  async function rescanAdvancedPreview() {
+    const requestId = ++advancedPreviewRequestId;
+    loadingAdvancedPreview = true;
+    advancedPreviewError = null;
+    try {
+      const preview = await buildAdvancedBookPreview();
+      if (requestId !== advancedPreviewRequestId) return;
+
+      advancedPreview = preview;
+      advancedPreviewScopeKey = advancedScopeKey();
+    } catch (error) {
+      if (requestId !== advancedPreviewRequestId) return;
+
+      advancedPreviewError = error instanceof Error
+        ? error.message
+        : 'Failed to build the advanced audio preview.';
+    } finally {
+      if (requestId === advancedPreviewRequestId) {
+        loadingAdvancedPreview = false;
+      }
+    }
   }
 
   function toggleAdvancedCharacterSelection(characterId: string) {
@@ -437,6 +527,11 @@
 
   async function handleQueueAdvancedGeneration() {
     if (!advancedPreview || advancedSubmitting) return;
+
+    if (advancedChapterScope === 'custom' && advancedSelectedChapterTitles.size === 0) {
+      alert('Select at least one chapter for the custom selection.');
+      return;
+    }
 
     if (selectedAdvancedCharacterIds.size === 0) {
       alert('Select at least one character to generate.');
@@ -528,6 +623,12 @@
           ? 'chapter batch'
           : 'speaker-source batch';
       const fillerNote = advancedUseFillerForShortBatch ? ' Short batches will use the configured filler/pretext.' : '';
+      const scopeNote =
+        advancedChapterScope === 'current'
+          ? ' Chapter scope: current chapter only.'
+          : advancedChapterScope === 'custom'
+            ? ` Chapter scope: ${advancedSelectedChapterTitles.size} selected chapter(s).`
+            : '';
       const normalizationNotes = [
         advancedReplaceLineFinalCommasWithPeriods ? ' final commas will be spoken as periods' : '',
         advancedReplaceNumbersWithWords ? ' numbers will be expanded to words' : '',
@@ -540,6 +641,7 @@
         `Queued ${plan.linesQueued} missing line${plan.linesQueued === 1 ? '' : 's'} ` +
         `across ${plan.jobsQueued} ${batchLabel}${plan.jobsQueued === 1 ? '' : 'es'} ` +
         `from ${selectedAdvancedParsedChapterCount} parsed chapter${selectedAdvancedParsedChapterCount === 1 ? '' : 's'}.` +
+        scopeNote +
         fillerNote +
         normalizationNote
       );
@@ -1440,6 +1542,62 @@
     line-height: 1.5;
   }
 
+  .advanced-chapter-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .advanced-link-btn {
+    border: none;
+    background: none;
+    padding: 0;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--app-primary);
+    cursor: pointer;
+  }
+
+  .advanced-link-btn:hover {
+    text-decoration: underline;
+  }
+
+  .advanced-chapter-count {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--app-text-muted);
+  }
+
+  .advanced-chapter-list {
+    margin-top: 8px;
+    max-height: 180px;
+    overflow-y: auto;
+    border: 1px solid var(--app-border);
+    border-radius: 10px;
+    background: var(--app-surface-raised);
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .advanced-chapter-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--app-text);
+    font-size: 13px;
+  }
+
+  .advanced-chapter-row:hover {
+    background: var(--app-surface-subtle);
+  }
+
   .advanced-checkbox-row {
     display: flex;
     gap: 10px;
@@ -2054,6 +2212,57 @@
               <strong>{advancedPreview.missingVoiceLineCount}</strong>
               <span class="advanced-summary-note">{advancedPreview.missingVoiceCharacterCount} character(s) missing a voice</span>
             </div>
+          </div>
+
+          <div class="advanced-section">
+            <h4>Chapters</h4>
+            <p class="advanced-section-note">Choose which chapters this batch covers. Only parsed chapters are eligible.</p>
+            <div class="advanced-mode-grid">
+              <label class="advanced-mode-card" class:active={advancedChapterScope === 'all'}>
+                <input type="radio" bind:group={advancedChapterScope} value="all" />
+                <span>
+                  <span class="advanced-mode-title">All chapters</span>
+                  <span class="advanced-mode-description">Every parsed chapter in the book.</span>
+                </span>
+              </label>
+              <label class="advanced-mode-card" class:active={advancedChapterScope === 'current'}>
+                <input type="radio" bind:group={advancedChapterScope} value="current" />
+                <span>
+                  <span class="advanced-mode-title">Current chapter</span>
+                  <span class="advanced-mode-description">
+                    {#if $currentChapter}Only “{$currentChapter.title}”.{:else}Only the chapter open in the reader.{/if}
+                  </span>
+                </span>
+              </label>
+              <label class="advanced-mode-card" class:active={advancedChapterScope === 'custom'}>
+                <input type="radio" bind:group={advancedChapterScope} value="custom" />
+                <span>
+                  <span class="advanced-mode-title">Custom selection</span>
+                  <span class="advanced-mode-description">Pick specific chapters from the list below.</span>
+                </span>
+              </label>
+            </div>
+            {#if advancedChapterScope === 'custom'}
+              <div class="advanced-chapter-actions">
+                <button class="advanced-link-btn" type="button" on:click={() => setAllAdvancedChapters(true)}>Select all</button>
+                <button class="advanced-link-btn" type="button" on:click={() => setAllAdvancedChapters(false)}>Clear</button>
+                <span class="advanced-chapter-count">
+                  {advancedSelectedChapterTitles.size} of {$chapters.filter((chapter) => chapter.parsed).length} selected
+                </span>
+              </div>
+              <div class="advanced-chapter-list">
+                {#each $chapters.filter((chapter) => chapter.parsed) as chapter (chapter.title)}
+                  <label class="advanced-chapter-row">
+                    <input
+                      type="checkbox"
+                      checked={advancedSelectedChapterTitles.has(chapter.title)}
+                      on:change={() => toggleAdvancedChapterSelection(chapter.title)}
+                    />
+                    <span>{chapter.title}</span>
+                  </label>
+                {/each}
+              </div>
+            {/if}
           </div>
 
           {#if advancedPreview.characters.length === 0}
