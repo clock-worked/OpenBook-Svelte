@@ -3,6 +3,7 @@ import { parserHints } from '$lib/stores/settings';
 import type { Line, DialogueJson, DialogueLine, Character, LineCandidate, ParserHints, CharactersJson } from '$lib/types';
 import { readTextFile, writeCentralCharacters, writeDialogue } from '$lib/services/fs';
 import { computeReturningFlags } from '$lib/services/dialogueReturning';
+import { hasSpeechVerb } from '$lib/services/audioNarration';
 import { buildIdToNameMap, buildNameToIdMap } from '$lib/stores/characters';
 import { API_ENDPOINTS, apiPostJson, toApiClientError } from '$lib/services/apiClient';
 import { resolveBookCharacters } from '$lib/services/chapterCharacterRepository';
@@ -46,12 +47,6 @@ function countWords(text: string): number {
   const cleaned = String(text || '').trim();
   if (!cleaned) return 0;
   return cleaned.split(/\s+/).length;
-}
-
-function hasSpeechVerb(text: string): boolean {
-  const lower = ` ${String(text || '').toLowerCase()} `;
-  const verbs = ['said', 'asked', 'replied', 'answered', 'muttered', 'shouted', 'whispered', 'snapped', 'yelled', 'growled', 'sighed', 'hissed', 'called', 'told', 'added', 'continued', 'remarked', 'noted', 'stated', 'declared', 'insisted'];
-  return verbs.some((verb) => lower.includes(` ${verb} `));
 }
 
 function clampConfidence(value: number): number {

@@ -2,7 +2,9 @@ import { get } from 'svelte/store';
 import { audioRoot, bookRoot, bookRootAbsolutePath, voiceSamplesRoot } from '$lib/stores/bookState';
 import { bookRootPathOverride } from '$lib/stores/settings';
 import type { AudioGeneratorId, ChatterboxSettingsChoice, DialogueLine, CharactersJson } from '$lib/types';
-import { readCentralCharacters, readOptionalJsonRelative } from '$lib/services/fs';
+import { readCentralCharacters, readDialogueForChapter, readOptionalJsonRelative, readTextFile } from '$lib/services/fs';
+import { buildLineTextWithSpeechVerbTags, extractNarrationTags } from '$lib/services/audioNarration';
+import type { NarrationTagCandidate } from '$lib/services/audioNarration';
 import { API_ENDPOINTS, ApiClientError, apiFetch, apiPostJson, apiPostVoid, toApiUrl } from '$lib/services/apiClient';
 import type {
   BackendErrorPayload,
@@ -59,6 +61,12 @@ export interface GenerateAudioCharacterOptions {
   fillerText?: string | null;
   replaceLineFinalCommasWithPeriods?: boolean;
   replaceNumbersWithWords?: boolean;
+  /**
+   * Re-include short narration speech-verb tags (e.g. "Caleb muttered,
+   * shaking his head") next to each line in the TTS text. Frontend-only —
+   * the augmentation happens before the request is built.
+   */
+  includeSpeechVerbNarration?: boolean;
   /**
    * Raw advanced-overlay generator override, kept on queued jobs so the
    * queue can re-resolve provider + settings per job at run time.
@@ -437,6 +445,54 @@ export async function generateAudioForLine(
 /**
  * Generate audio for a character line batch (chapter-scoped or cross-chapter)
  */
+/**
+ * When the speech-verb narration option is on, rebuild each line's TTS text
+ * with the short speech-verb narration tags adjacent to it re-included.
+ * Each affected chapter's dialogue.json + raw source text is read once and
+ * cached for the run. Degrades to the original text per line when a
+ * chapter file cannot be read.
+ */
+async function resolveSpeechVerbAugmentedLineTexts(
+  lines: DialogueLine[],
+  defaultChapterTitle: string,
+  defaultSourceFile: string,
+): Promise<Map<number, string>> {
+  const result = new Map<number, string>();
+  const chapterCache = new Map<string, { tags: NarrationTagCandidate[]; rawText: string | null }>();
+
+  const chapterData = async (chapterTitle: string, sourceFile: string) => {
+    const cached = chapterCache.get(chapterTitle);
+    if (cached) return cached;
+    let tags: NarrationTagCandidate[] = [];
+    let rawText: string | null = null;
+    try {
+      const dialogue = await readDialogueForChapter(chapterTitle);
+      if (dialogue && 'formatVersion' in dialogue) {
+        tags = extractNarrationTags(dialogue.lines);
+      }
+    } catch (error) {
+      console.warn('[audio] speech-verb narration: failed to read dialogue.json', error);
+    }
+    try {
+      rawText = await readTextFile(sourceFile);
+    } catch (error) {
+      console.warn('[audio] speech-verb narration: failed to read chapter text', error);
+      rawText = null;
+    }
+    const entry = { tags, rawText };
+    chapterCache.set(chapterTitle, entry);
+    return entry;
+  };
+
+  for (const line of lines) {
+    const chapterTitle = resolvePlannedLineChapterTitle(line, defaultChapterTitle);
+    const sourceFile = resolvePlannedLineSourceFile(line, defaultSourceFile);
+    const { tags, rawText } = await chapterData(chapterTitle, sourceFile);
+    result.set(Number(line.id), buildLineTextWithSpeechVerbTags(line, tags, rawText));
+  }
+  return result;
+}
+
 export async function generateAudioForCharacter(
   characterName: string,
   characterId: string,
@@ -509,12 +565,18 @@ export async function generateAudioForCharacter(
     const samplesRoot = get(voiceSamplesRoot);
     const resolvedAudioRoot = audioRootFor();
 
+    // Advanced-overlay option: re-include short speech-verb narration tags
+    // (e.g. "Caleb muttered, shaking his head") in each line's TTS text.
+    const speechVerbLineTexts = options.includeSpeechVerbNarration
+      ? await resolveSpeechVerbAugmentedLineTexts(lines, chapterTitle, sourceFile)
+      : null;
+
     const payload: GenerateAudioCharacterRequest = {
       character_name: characterName,
       character_id: characterId,
       lines: lines.map((line) => ({
         id: Number(line.id),
-        text: String((line as any)?.text ?? ''),
+        text: speechVerbLineTexts?.get(Number(line.id)) ?? String((line as any)?.text ?? ''),
         characterId: (line as any)?.characterId ? String((line as any).characterId) : undefined,
         characterName: resolvePlannedLineCharacterName(line) || undefined,
         chosenSpeaker: (line as any)?.chosenSpeaker ? String((line as any).chosenSpeaker) : undefined,

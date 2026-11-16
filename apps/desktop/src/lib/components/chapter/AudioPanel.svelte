@@ -81,6 +81,7 @@
   let advancedFillerText = DEFAULT_ADVANCED_FILLER_TEXT;
   let advancedReplaceLineFinalCommasWithPeriods = true;
   let advancedReplaceNumbersWithWords = false;
+  let advancedIncludeSpeechVerbNarration = false;
   // Per-run generator override for advanced batches ('use_default' = settings tab)
   let advancedGeneratorOverride: AudioGeneratorId | 'use_default' = 'use_default';
   let advancedChoicePreset: ChatterboxSettingsChoice['preset'] = 'default';
@@ -352,6 +353,7 @@
     advancedFillerText = DEFAULT_ADVANCED_FILLER_TEXT;
     advancedReplaceLineFinalCommasWithPeriods = true;
     advancedReplaceNumbersWithWords = false;
+    advancedIncludeSpeechVerbNarration = false;
     advancedGeneratorOverride = 'use_default';
     advancedChoicePreset = 'default';
     advancedCbTempText = '';
@@ -459,6 +461,7 @@
       fillerText: advancedUseFillerForShortBatch ? trimmedFillerText : null,
       replaceLineFinalCommasWithPeriods: advancedReplaceLineFinalCommasWithPeriods,
       replaceNumbersWithWords: advancedReplaceNumbersWithWords,
+      includeSpeechVerbNarration: advancedIncludeSpeechVerbNarration,
       // Raw override is stored so processQueue can re-resolve provider +
       // settings per job at run time (null = use the settings-tab default).
       generatorOverride: advancedGeneratorOverride === 'use_default' ? null : advancedGeneratorOverride,
@@ -528,6 +531,7 @@
       const normalizationNotes = [
         advancedReplaceLineFinalCommasWithPeriods ? ' final commas will be spoken as periods' : '',
         advancedReplaceNumbersWithWords ? ' numbers will be expanded to words' : '',
+        advancedIncludeSpeechVerbNarration ? ' short speech-verb narration tags will be included' : '',
       ].filter(Boolean);
       const normalizationNote = normalizationNotes.length > 0
         ? ` Text normalization:${normalizationNotes.join(' and')}.`
@@ -2145,6 +2149,10 @@
               <label class="advanced-checkbox-row">
                 <input type="checkbox" bind:checked={advancedReplaceNumbersWithWords} />
                 <span>Replace standalone numbers with their spoken-word form before generation.</span>
+              </label>
+              <label class="advanced-checkbox-row">
+                <input type="checkbox" bind:checked={advancedIncludeSpeechVerbNarration} />
+                <span>Include short narration speech-verb tags (e.g. “Caleb muttered, shaking his head”) in the generated line text.</span>
               </label>
               <p class="advanced-helper">This only changes the text sent to TTS for advanced batches. The source chapter text stays unchanged.</p>
             </div>
