@@ -15,7 +15,7 @@ import {
 } from '$lib/services/audio';
 import { triggerAudioUpdate } from '$lib/stores/audioUpdates';
 import { resolveEffectiveAudioGenerator } from '$lib/services/audioGenerator';
-import { recordLineAudioGeneration } from '../shared/chapterPersistence';
+import { recordLineAudioGeneration, recordLineReadAs } from '../shared/chapterPersistence';
 import type { AudioGenerationRecord } from '$lib/types';
 
 async function resolveCharacterIdFromName(characterName: string): Promise<string | null> {
@@ -119,7 +119,8 @@ export async function handleGenerateLineAudio(
   lineId: number,
   normalizedScript: Writable<{ lines: UnifiedLine[]; stats: any } | null>,
   audioExistsCache: Map<string, boolean>,
-  setGenerating: (lineId: number | null) => void
+  setGenerating: (lineId: number | null) => void,
+  textOverride?: string
 ): Promise<void> {
   const ch = get(currentChapter);
   if (!ch) {
@@ -158,6 +159,14 @@ export async function handleGenerateLineAudio(
     return;
   }
 
+  // "Read As" path: speak the edited text; a saved read-as text also takes
+  // precedence over the line's own text on plain Regenerate.
+  const textToSpeak = (textOverride ?? line.readAs ?? line.text).trim();
+  if (!textToSpeak) {
+    alert('Read As text is empty - nothing to generate.');
+    return;
+  }
+
   setGenerating(lineId);
 
   // Resolve which generator + settings to use (settings-tab default,
@@ -174,7 +183,7 @@ export async function handleGenerateLineAudio(
 
   const result = await generateAudioForLine(
     lineId,
-    line.text,
+    textToSpeak,
     line.characterName,
     characterId,
     voice.providerVoiceId,
@@ -191,6 +200,24 @@ export async function handleGenerateLineAudio(
     void recordLineAudioGeneration(ch.title, [lineId], generationRecord).catch((e) => {
       console.warn('[Audio] Failed to record generation info in dialogue.json', e);
     });
+
+    // When the spoken text came from the Read As modal, persist (or clear)
+    // the read-as stamp so future Regenerates keep speaking it. Text
+    // identical to the line's own text clears the stamp.
+    if (textOverride !== undefined) {
+      const readAsText = textToSpeak === line.text.trim() ? null : textToSpeak;
+      void recordLineReadAs(ch.title, [lineId], readAsText).catch((e) => {
+        console.warn('[Audio] Failed to record read-as text in dialogue.json', e);
+      });
+      // Keep the in-memory line in sync so the Read As marker updates.
+      const scr = get(normalizedScript);
+      if (scr) {
+        normalizedScript.set({
+          ...scr,
+          lines: scr.lines.map((l) => (l.id === lineId ? { ...l, readAs: readAsText } : l)),
+        });
+      }
+    }
 
     // Update cache
     const cacheKey = `${ch.title}-${line.characterName}-${lineId}`;
@@ -264,6 +291,25 @@ export async function regenerateAudioLine(
 
   // Generate new audio
   await handleGenerateLineAudio(lineId, normalizedScript, audioExistsCache, setGenerating);
+}
+
+/**
+ * Regenerate audio for a line using custom "read as" text (delete then
+ * generate). The line's own text is left untouched - only the spoken
+ * version changes (e.g. "41/41" -> "41 of 41").
+ */
+export async function readAsAudioLine(
+  lineId: number,
+  text: string,
+  normalizedScript: Writable<{ lines: UnifiedLine[]; stats: any } | null>,
+  audioExistsCache: Map<string, boolean>,
+  setGenerating: (lineId: number | null) => void
+): Promise<void> {
+  // Delete existing audio first
+  await deleteAudioLine(lineId, normalizedScript, audioExistsCache);
+
+  // Generate audio from the edited text
+  await handleGenerateLineAudio(lineId, normalizedScript, audioExistsCache, setGenerating, text);
 }
 
 /**

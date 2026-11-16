@@ -49,10 +49,12 @@
     handleLineAudioContextMenu as audioHandleContextMenu,
     handleGenerateLineAudio,
     regenerateAudioLine,
+    readAsAudioLine,
     deleteAudioLine
   } from '$lib/components/chapter/tools/audio/audioHandlers';
   import GenerateAudioPrompt from '$lib/components/chapter/tools/audio/GenerateAudioPrompt.svelte';
   import AudioContextMenu from '$lib/components/chapter/tools/audio/AudioContextMenu.svelte';
+  import ReadAsOverlay from '$lib/components/chapter/tools/audio/ReadAsOverlay.svelte';
   import { 
     startEditLine,
     saveEditedLine as saveEdit
@@ -259,6 +261,7 @@
   let audioExistsCache = new Map<string, boolean>();
   let generatedAudioLineIds = new Set<number>();
   let generatedAudioLineTexts = new Set<string>();
+  let readAsLineIds = new Set<number>();
   let generatingLineId: number | null = null;
   
   const generatePromptVisible = writable<boolean>(false);
@@ -272,6 +275,11 @@
   const audioCtxMenuY = writable<number>(0);
   let audioCtxMenuLineId: number | null = null;
   let audioCtxMenuCharacterName: string | null = null;
+
+  // Read As (audio) state
+  const readAsVisible = writable<boolean>(false);
+  const readAsText = writable<string>('');
+  let readAsLineId: number | null = null;
 
   // Edit tool state
   const editOverlayVisible = writable<boolean>(false);
@@ -333,6 +341,7 @@
     audioExistsCache.clear();
     generatedAudioLineIds = new Set();
     generatedAudioLineTexts = new Set();
+    readAsLineIds = new Set();
     audioGenerateLineId.set(null);
   }
 
@@ -365,6 +374,15 @@
   $: if ($currentChapter && $normalizedScript) {
     void $audioUpdateTrigger;
     void refreshGeneratedAudioLineIds();
+  }
+
+  // Lines with a custom "Read As" spoken text (persisted in dialogue.json)
+  $: if ($normalizedScript) {
+    readAsLineIds = new Set(
+      $normalizedScript.lines
+        .filter((l) => typeof l.readAs === 'string' && l.readAs)
+        .map((l) => l.id)
+    );
   }
 
   $: if ($normalizedScript && !syncingFromCurrent) {
@@ -535,11 +553,33 @@
       const shouldReplace = confirm('Regenerate this line and replace existing audio?');
       if (!shouldReplace) return;
       await regenerateAudioLine(lineId, normalizedScript, audioExistsCache, (id) => { generatingLineId = id; });
+    } else if (e.detail.action === 'read-as') {
+      const lineId = audioCtxMenuLineId;
+      closeAudioContextMenu();
+      const line = get(normalizedScript)?.lines.find(l => l.id === lineId);
+      if (!line) return;
+      readAsLineId = lineId;
+      readAsText.set(line.text);
+      readAsVisible.set(true);
     } else if (e.detail.action === 'delete') {
       const lineId = audioCtxMenuLineId;
       closeAudioContextMenu();
       await deleteAudioLine(lineId, normalizedScript, audioExistsCache);
     }
+  }
+
+  function closeReadAs() {
+    readAsVisible.set(false);
+    readAsLineId = null;
+    readAsText.set('');
+  }
+
+  async function confirmReadAs(e: CustomEvent<{ text: string }>) {
+    if (readAsLineId === null) return;
+    const lineId = readAsLineId;
+    const text = e.detail.text;
+    closeReadAs();
+    await readAsAudioLine(lineId, text, normalizedScript, audioExistsCache, (id) => { generatingLineId = id; });
   }
 
   // Edit tool handlers
@@ -908,6 +948,7 @@
             toolMode={$toolMode}
             {generatedAudioLineIds}
             {generatedAudioLineTexts}
+            {readAsLineIds}
             on:paragraphMenu={(e) => openCharacterMenu(e.detail.ev, { kind: 'paragraph', lineIds: e.detail.lineIds })}
             on:paragraphAssign={(e) => handleParagraphAssign(e.detail.characterName, e.detail.lineIds)}
             on:lineMenu={(e) => openCharacterMenu(e.detail.ev, { kind: 'line', lineIds: e.detail.lineIds })}
@@ -997,6 +1038,13 @@
   visible={$audioCtxMenuVisible}
   on:action={handleAudioContextAction}
   on:close={closeAudioContextMenu}
+/>
+
+<ReadAsOverlay
+  text={$readAsText}
+  visible={$readAsVisible}
+  on:confirm={confirmReadAs}
+  on:close={closeReadAs}
 />
 
 <!-- Edit Tool UI -->

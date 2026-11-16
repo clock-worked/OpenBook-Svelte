@@ -249,6 +249,7 @@ export interface DialogueLine {
   isReturning?: boolean;
   attribution?: LineAttribution;
   audioGeneration?: AudioGenerationRecord | null;  // Which generator produced this line's audio
+  readAs?: string | null;  // Custom spoken text for this line (Read As); null/absent = speak line.text
 }
 
 export interface DialogueJson {

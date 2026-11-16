@@ -13,6 +13,7 @@ export type UnifiedLine = {
   isConflict: boolean;
   isReturning: boolean;
   audioGeneration?: AudioGenerationRecord | null;
+  readAs?: string | null;  // Custom spoken text (Read As); null/absent = speak the line's own text
   attribution?: {
     confidence: number;
     topCandidateConfidence: number;

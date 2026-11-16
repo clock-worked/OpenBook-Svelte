@@ -18,6 +18,7 @@
   export let animationPlanVersion = 0;
   export let generatedAudioLineIds: Set<number> = new Set();
   export let generatedAudioLineTexts: Set<string> = new Set();
+  export let readAsLineIds: Set<number> = new Set();
 
   const dispatch = createEventDispatcher();
 
@@ -105,6 +106,7 @@
     {toolMode}
     {generatedAudioLineIds}
     {generatedAudioLineTexts}
+    {readAsLineIds}
     on:lineMenu={(e) => dispatch('lineMenu', e.detail)}
     on:selectionMenu={(e) => dispatch('selectionMenu', e.detail)}
     on:joinMenu={(e) => dispatch('joinMenu', e.detail)}

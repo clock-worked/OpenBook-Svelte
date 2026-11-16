@@ -167,6 +167,7 @@ function normalizeLine(
             isNonSpeaker,
             isReturning,
             audioGeneration: (line as any).audioGeneration ?? null,
+            readAs: (line as any).readAs ?? null,
             attribution: normalizedAttribution
         };
     }
@@ -201,6 +202,7 @@ function normalizeLine(
         isNonSpeaker: line.isNonSpeaker === true,
         isReturning: typeof (line as any).isReturning === 'boolean' ? Boolean((line as any).isReturning) : false,
         audioGeneration: (line as any).audioGeneration ?? null,
+        readAs: (line as any).readAs ?? null,
         attribution: normalizedAttribution
     };
 }

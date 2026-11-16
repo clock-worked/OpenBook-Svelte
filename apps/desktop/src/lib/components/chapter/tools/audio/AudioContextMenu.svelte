@@ -1,7 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
   import ContextMenu from '$lib/components/common/ContextMenu.svelte';
-  import { Volume2 } from 'lucide-svelte';
+  import { Volume2, PenLine } from 'lucide-svelte';
 
   export let x: number;
   export let y: number;
@@ -18,6 +18,12 @@
       icon: Volume2,
       action: 'regenerate',
       color: '#1967d2'
+    },
+    {
+      label: 'Read As',
+      icon: PenLine,
+      action: 'read-as',
+      color: '#188038'
     },
     {
       label: 'Delete Audio',

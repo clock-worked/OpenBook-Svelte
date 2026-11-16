@@ -8,7 +8,7 @@
   import { currentChapter, currentScript } from '$lib/stores/bookState';
   import { audioState, seek } from '$lib/stores/audio';
   import { get } from 'svelte/store';
-  import { CheckCircle2, Music } from 'lucide-svelte';
+  import { CheckCircle2, Music, PenLine } from 'lucide-svelte';
 
   export let runs: ParagraphRun[] = [];
   export let hoveredCharacter: string | null = null;
@@ -21,6 +21,7 @@
   export let highlightDelayMs = 0;
   export let generatedAudioLineIds: Set<number> = new Set();
   export let generatedAudioLineTexts: Set<string> = new Set();
+  export let readAsLineIds: Set<number> = new Set();
 
   let layoutVersion = 0;
   
@@ -449,6 +450,10 @@
     return false;
   }
 
+  function runHasReadAs(run: ParagraphRun): boolean {
+    return run.lineId != null && readAsLineIds.has(run.lineId);
+  }
+
   function getLineData(lineId: number | undefined) {
     if (lineId == null) return null;
     const scr = get(currentScript);
@@ -631,7 +636,8 @@
     const confidenceBadge = confidenceBadgeForRun(run);
     const badgeShowsCheck = Boolean(confidenceBadge && (confidenceBadge.confirmed || confidenceBadge.label === '100%'));
     const hasGeneratedAudio = runHasGeneratedAudio(run);
-    const hasPrefixMarker = Boolean(audioLineNumberLabel) || Boolean(confidenceBadge) || hasGeneratedAudio;
+    const hasReadAs = runHasReadAs(run);
+    const hasPrefixMarker = Boolean(audioLineNumberLabel) || Boolean(confidenceBadge) || hasGeneratedAudio || hasReadAs;
     const displayText = displayTextForRun(run, hasPrefixMarker);
 
     return {
@@ -640,6 +646,7 @@
       confidenceBadge,
       badgeShowsCheck,
       hasGeneratedAudio,
+      hasReadAs,
       hasPrefixMarker,
       displayText,
     };
@@ -858,6 +865,9 @@
           {#if showRunMarkers && info.hasGeneratedAudio}
             <span class="generated-audio-marker" aria-hidden="true"><Music size={12} strokeWidth={2.25} /></span>
           {/if}
+          {#if showRunMarkers && info.hasReadAs}
+            <span class="read-as-marker" aria-hidden="true"><PenLine size={12} strokeWidth={2.25} /></span>
+          {/if}
           <span class="run-text">
             {#if animationPhase === 'typing'}
               {#each info.lineChunks as lineChunk, lineIndex}
@@ -887,6 +897,9 @@
           {/if}
           {#if showRunMarkers && info.hasGeneratedAudio}
             <span class="generated-audio-marker" aria-hidden="true"><Music size={12} strokeWidth={2.25} /></span>
+          {/if}
+          {#if showRunMarkers && info.hasReadAs}
+            <span class="read-as-marker" aria-hidden="true"><PenLine size={12} strokeWidth={2.25} /></span>
           {/if}
           <span class="run-text">{#if animationPhase === 'typing'}{#each info.lineChunks as lineChunk, lineIndex}<span class="run-line" class:is-revealed={lineIndex < info.revealedLines}>{lineChunk}</span>{/each}{:else}{info.typedText}{/if}</span>
         </span>
@@ -1020,6 +1033,17 @@
     line-height: 0;
     vertical-align: baseline;
     color: var(--app-primary);
+    opacity: 1;
+  }
+
+  .read-as-marker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 3px;
+    line-height: 0;
+    vertical-align: baseline;
+    color: #188038;
     opacity: 1;
   }
 
