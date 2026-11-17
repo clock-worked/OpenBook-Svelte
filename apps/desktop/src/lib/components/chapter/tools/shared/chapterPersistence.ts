@@ -306,8 +306,9 @@ export async function saveDialogueFromNormalized(params: {
     console.log('[ChapterView] Writing dialogue to relative path:', relativePath);
 
     // writeDialogue (fs) already performs the File System API → backend
-    // fallback internally, so one call is the entire transport.
-    const saved = await writeDialogue(relativePath, dialoguePayload);
+    // fallback internally, so one call is the entire transport. This module
+    // names the write kind: a chapter dialogue save.
+    const saved = await writeDialogue(relativePath, dialoguePayload, true, 'dialogueSave');
     if (saved) {
         console.log('[ChapterView] ✓ Successfully saved dialogue.json');
     } else {

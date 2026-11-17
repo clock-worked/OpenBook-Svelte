@@ -581,6 +581,20 @@ export function getBookCharactersPath(): string {
 // composite that tries the handle first and falls back to the sidecar.
 // The "which storage are we talking to" decision lives here and nowhere
 // else: the public primitives (and their callers) never see it.
+//
+// The transport never infers what a write *means* from its path. The
+// caller names the write kind; the sidecar adapter maps it to an endpoint.
+
+/**
+ * What a write is, as named by its caller (never inferred from the path):
+ *   - `file`         — a plain file write (`/api/save` on the sidecar)
+ *   - `dialogueSave` — a chapter dialogue save, named by the chapter
+ *                      persistence owner. On the sidecar it goes to the
+ *                      combined `/api/save-dialogue` endpoint, which also
+ *                      applies the character-stats delta (ADR 0012).
+ * The File System Access adapter writes both kinds identically.
+ */
+export type WriteKind = 'file' | 'dialogueSave';
 
 interface BookFsTransport {
   /**
@@ -597,11 +611,12 @@ interface BookFsTransport {
   /**
    * Write a file, creating parent directories on demand. The handle
    * adapter writes the string verbatim; the sidecar adapter ships the
-   * parsed JSON value, so `contents` must be JSON text.
+   * parsed JSON value, so `contents` must be JSON text. `kind` selects
+   * the sidecar endpoint (see `WriteKind`).
    * Returns false when the write did not complete through this
    * transport (the composite then falls back to the sidecar).
    */
-  writeText(path: string, contents: string): Promise<boolean>;
+  writeText(path: string, contents: string, kind: WriteKind): Promise<boolean>;
   /**
    * List the entry names of a directory. Returns null when the
    * directory is unreachable through this transport (the composite
@@ -708,11 +723,11 @@ const httpTransport: BookFsTransport = {
       return null;
     }
   },
-  async writeText(path, contents) {
+  async writeText(path, contents, kind) {
     try {
-      // ADR 0012: dialogue saves go to the combined endpoint, which also
+      // ADR 0012: a dialogue save goes to the combined endpoint, which also
       // applies the incremental character-stats delta — one round trip.
-      const endpoint = path.endsWith('/dialogue.json') ? API_ENDPOINTS.saveDialogue : API_ENDPOINTS.save;
+      const endpoint = kind === 'dialogueSave' ? API_ENDPOINTS.saveDialogue : API_ENDPOINTS.save;
       await apiPostVoid<SaveFileRequest>(endpoint, {
         file_path: path,
         content: JSON.parse(contents) as unknown,
@@ -760,9 +775,9 @@ function handleOverSidecar(): BookFsTransport {
       fsaTransport.readText(path, options).then(
         (text) => text ?? httpTransport.readText(path, options),
       ),
-    writeText: (path, contents) =>
-      fsaTransport.writeText(path, contents).then(
-        (ok) => ok || httpTransport.writeText(path, contents),
+    writeText: (path, contents, kind) =>
+      fsaTransport.writeText(path, contents, kind).then(
+        (ok) => ok || httpTransport.writeText(path, contents, kind),
       ),
     listEntries: (dirPath, options) =>
       fsaTransport.listEntries(dirPath, options).then(
@@ -794,8 +809,8 @@ export async function readOptionalJsonRelative<T>(path: string): Promise<T | nul
   return readFileAsJson<T>(path, false);
 }
 
-async function writeFileDirect(path: string, contents: string): Promise<boolean> {
-  return activeTransport().writeText(path, contents);
+async function writeFileDirect(path: string, contents: string, kind: WriteKind = 'file'): Promise<boolean> {
+  return activeTransport().writeText(path, contents, kind);
 }
 
 async function readHistoryFile(path: string): Promise<string | null> {
@@ -864,8 +879,13 @@ export async function captureEditableFiles<T>(
   return capture(0);
 }
 
-async function writeFile(path: string, contents: string, recordHistory = true): Promise<boolean> {
-  if (!recordHistory || path.startsWith('_backups/')) return writeFileDirect(path, contents);
+async function writeFile(
+  path: string,
+  contents: string,
+  recordHistory = true,
+  kind: WriteKind = 'file',
+): Promise<boolean> {
+  if (!recordHistory || path.startsWith('_backups/')) return writeFileDirect(path, contents, kind);
   try {
     await history.write(
       path === 'settings.json' ? 'Change book settings'
@@ -876,9 +896,10 @@ async function writeFile(path: string, contents: string, recordHistory = true): 
       contents,
       () => readHistoryFile(path),
       async (value) => {
+        // Undo/redo of a write re-uses the kind its caller named.
         const success = value === null
           ? await deleteFileDirect('', path)
-          : await writeFileDirect(path, value);
+          : await writeFileDirect(path, value, kind);
         if (!success) throw new Error(`Could not restore or save ${path}`);
       },
       sameEditableJson,
@@ -900,8 +921,18 @@ export async function readOptionalDialogue(path: string): Promise<DialogueJson |
   return readFileAsJson<DialogueJson>(path, false);
 }
 
-export async function writeDialogue(path: string, data: DialogueJson, recordHistory = true): Promise<boolean> {
-  const success = await writeFile(path, JSON.stringify(data, null, 2), recordHistory);
+/**
+ * Write a dialogue document. `kind` defaults to `dialogueSave`, which keeps
+ * today's sidecar routing (`/api/save-dialogue`) for every dialogue writer;
+ * the chapter persistence owner names it explicitly.
+ */
+export async function writeDialogue(
+  path: string,
+  data: DialogueJson,
+  recordHistory = true,
+  kind: WriteKind = 'dialogueSave',
+): Promise<boolean> {
+  const success = await writeFile(path, JSON.stringify(data, null, 2), recordHistory, kind);
   // ADR 0012: with a file-system handle the write went straight to disk, so
   // the sidecar never saw it. One fire-and-forget delta call keeps character
   // stats current without blocking the save.
@@ -1125,17 +1156,8 @@ export async function triggerStatsUpdate(): Promise<void> {
 
 /** @deprecated Use writeDialogue instead */
 export async function writeScript(path: string, data: ScriptJson): Promise<boolean> {
-  const success = await writeFile(path, JSON.stringify(data, null, 2));
-
-  // If we saved any dialogue/script file, update character stats
-  // This covers both v1.0 (script.json) and v2.0 (dialogue.json) formats.
-  // ADR 0012: the delta call replaces the old book-wide rescan trigger.
-  if (success && (path.includes('dialogue.json') || path.includes('.script.json'))) {
-    // Don't await - update in background
-    void applyDialogueStatsDelta(path);
-  }
-
-  return success;
+  // A plain file write: no endpoint or stats-delta inference from the path.
+  return writeFile(path, JSON.stringify(data, null, 2));
 }
 
 export async function readOptionalCharacters(path: string): Promise<CharactersJson | null> {

@@ -28,6 +28,8 @@ import {
   setRootDirHandle,
   writeCentralCharacters,
   writeDialogue,
+  writeEditableJson,
+  writeScript,
 } from '../fs';
 
 describe('readCentralCharacters', () => {
@@ -215,6 +217,26 @@ describe('dialogue save endpoints (ADR 0012)', () => {
     expect(apiPostVoid).toHaveBeenCalledWith('/api/save-dialogue', {
       file_path: 'Ch 1/dialogue.json',
       content: dialogue,
+    });
+  });
+
+  it('never infers the endpoint from the path', async () => {
+    vi.mocked(apiPostVoid).mockResolvedValue(undefined);
+    const script = { chapter: 'Ch 1', sourceFile: '', lines: [], stats: {} };
+
+    // writeScript / writeEditableJson are plain file writes even when the
+    // path is a chapter's dialogue.json: no save-dialogue, no stats delta.
+    expect(await writeScript('Ch 1/dialogue.json', script as never)).toBe(true);
+    expect(await writeEditableJson('Ch 1/dialogue.json', { lines: [] })).toBe(true);
+
+    expect(apiPostVoid).toHaveBeenCalledTimes(2);
+    expect(apiPostVoid).toHaveBeenNthCalledWith(1, '/api/save', {
+      file_path: 'Ch 1/dialogue.json',
+      content: script,
+    });
+    expect(apiPostVoid).toHaveBeenNthCalledWith(2, '/api/save', {
+      file_path: 'Ch 1/dialogue.json',
+      content: { lines: [] },
     });
   });
 
