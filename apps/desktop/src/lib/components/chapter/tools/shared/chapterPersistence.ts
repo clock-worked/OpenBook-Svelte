@@ -5,13 +5,32 @@ import {
     applyDialogueStatsDelta,
     ensureCharacterNameToIdMapCached,
     invalidateCentralCharactersCache,
+    readCentralCharacters,
+    readDialogueForChapter,
     readOptionalDialogue,
+    readTextFile,
     writeDialogue,
     writeDialogueSave,
     type WriteOutcome,
 } from '$lib/services/fs';
-import { normalizeAttribution } from './chapterNormalization';
+import { normalizeAttribution, normalizeScriptData } from './chapterNormalization';
 import { alignChapterLineSpans } from './chapterPresentation';
+
+/**
+ * The dialogue.json format versions read as a versioned (DialogueJson)
+ * document; anything else is a legacy script. This module owns the list:
+ * fs (readDialogueForChapter) and the book migration import it.
+ */
+export const DIALOGUE_FORMAT_VERSIONS: readonly string[] = ['2.0', '3.0', '3.1', '3.2'];
+
+export function isVersionedDialogue(data: unknown): data is DialogueJson {
+    return (
+        !!data
+        && typeof data === 'object'
+        && 'formatVersion' in data
+        && DIALOGUE_FORMAT_VERSIONS.includes(String((data as DialogueJson).formatVersion))
+    );
+}
 
 type ChapterLike = {
     title: string;
@@ -48,22 +67,15 @@ function applyReturningFlags(lines: UnifiedLine[], rawText: string | null): Unif
     }));
 }
 
+/**
+ * Load a chapter (the one owner of chapter load): the dialogue document (or
+ * legacy script) normalized against the book's characters, the chapter text,
+ * spans aligned to the text, returning flags, and the reviewed state.
+ */
 export async function loadChapterContent(params: {
     chapter: ChapterLike;
     root: string;
     unknownThreshold: number;
-    unknownSpeakerLabel: string;
-    readDialogueForChapter: (title: string) => Promise<DialogueJson | ScriptJson | null>;
-    normalizeScriptData: (data: DialogueJson | ScriptJson | null, options: {
-        root?: string;
-        unknownThreshold: number;
-        unknownSpeakerLabel?: string;
-        readCentralCharacters: (root: string) => Promise<{ characters?: any[] } | null>;
-        buildIdToNameMap: (characters: any[]) => Map<string, string>;
-    }) => Promise<NormalizedScriptPayload | null>;
-    readCentralCharacters: (root: string) => Promise<{ characters?: any[] } | null>;
-    buildIdToNameMap: (characters: any[]) => Map<string, string>;
-    readTextFile: (path: string) => Promise<string | null>;
 }): Promise<{
     isV2Format: boolean;
     normalized: NormalizedScriptPayload | null;
@@ -76,33 +88,28 @@ export async function loadChapterContent(params: {
 
     const dialogue = chapter.parsed === false
         ? null
-        : await params.readDialogueForChapter(chapter.title);
+        : await readDialogueForChapter(chapter.title);
     let isV2Format = false;
     let normalized: NormalizedScriptPayload | null = null;
     let currentScript: ScriptJson | null = null;
 
     if (dialogue) {
-        isV2Format =
-            'formatVersion' in dialogue &&
-            (
-                dialogue.formatVersion === '2.0'
-                || dialogue.formatVersion === '3.0'
-                || dialogue.formatVersion === '3.1'
-                || dialogue.formatVersion === '3.2'
-            );
+        isV2Format = isVersionedDialogue(dialogue);
 
-        normalized = await params.normalizeScriptData(dialogue, {
+        // Dynamic import: keeps the characters store graph out of this
+        // module's static imports (fs imports the version list from here).
+        const { buildIdToNameMap } = await import('$lib/stores/characters');
+        normalized = await normalizeScriptData(dialogue, {
             root,
             unknownThreshold: params.unknownThreshold,
-            unknownSpeakerLabel: params.unknownSpeakerLabel,
-            readCentralCharacters: params.readCentralCharacters,
-            buildIdToNameMap: params.buildIdToNameMap,
+            readCentralCharacters,
+            buildIdToNameMap,
         });
     }
 
     let rawText: string | null = null;
     if (chapter.path) {
-        rawText = await params.readTextFile(chapter.path);
+        rawText = await readTextFile(chapter.path);
     }
 
     if (normalized) {

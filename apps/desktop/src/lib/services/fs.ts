@@ -13,6 +13,8 @@ import type {
 } from '$lib/types';
 import { storeProjectHandle } from './persistence';
 import { history } from './history';
+// The dialogue format-version list is owned by the chapter persistence module.
+import { isVersionedDialogue } from '$lib/components/chapter/tools/shared/chapterPersistence';
 import {
   clearRawCharacterFileDocs,
   mapCharacterFile,
@@ -1236,18 +1238,8 @@ export async function readTextFile(path: string): Promise<string | null> {
 export async function readDialogueForChapter(chapterTitle: string): Promise<DialogueJson | ScriptJson | null> {
   try {
     const dialogueParsed = await readFileAsJson<DialogueJson | ScriptJson>(`${chapterTitle}/dialogue.json`);
-    if (
-      dialogueParsed &&
-      typeof dialogueParsed === 'object' &&
-      'formatVersion' in dialogueParsed &&
-      (
-        dialogueParsed.formatVersion === '2.0'
-        || dialogueParsed.formatVersion === '3.0'
-        || dialogueParsed.formatVersion === '3.1'
-        || dialogueParsed.formatVersion === '3.2'
-      )
-    ) {
-      return dialogueParsed as DialogueJson;
+    if (isVersionedDialogue(dialogueParsed)) {
+      return dialogueParsed;
     }
 
     // Fall back to v1.0 script.json

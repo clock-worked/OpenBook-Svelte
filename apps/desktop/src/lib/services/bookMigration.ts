@@ -52,7 +52,7 @@ import {
     normalizeScriptData,
     slugifyCharacterName,
 } from '$lib/components/chapter/tools/shared/chapterNormalization';
-import { saveDialogueFromNormalized } from '$lib/components/chapter/tools/shared/chapterPersistence';
+import { isVersionedDialogue, saveDialogueFromNormalized } from '$lib/components/chapter/tools/shared/chapterPersistence';
 import { recomputeStats } from '$lib/components/chapter/tools/shared/toolUtils';
 import type { UnifiedLine } from '$lib/components/chapter/tools/types';
 
@@ -93,16 +93,11 @@ export interface MigrateBookOptions {
     onProgress?: (message: string) => void;
 }
 
-const VERSIONED_DIALOGUE = new Set(['2.0', '3.0', '3.1', '3.2']);
 const NARRATOR_SENTINEL = 'narrator';
 const BACKUP_DIR_PARTS = ['_backups', 'dialogue-v3'] as const;
 
 function backupTimestamp(): string {
     return new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
-}
-
-function isVersionedDialogue(data: DialogueJson | ScriptJson): data is DialogueJson {
-    return 'formatVersion' in data && VERSIONED_DIALOGUE.has(String((data as DialogueJson).formatVersion));
 }
 
 /** null, the narrator sentinel, and pattern-valid GUIDs are already v3 references. */

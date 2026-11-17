@@ -6,11 +6,11 @@
   import { writable } from 'svelte/store';
   import { conflictCursor, toolMode, audioGenerateLineId } from '$lib/stores/selection';
   import { get } from 'svelte/store';
-  import { readTextFile, readDialogueForChapter, readCentralCharacters, writeScript, readOptionalJsonRelative, listCharacterFiles, captureEditableFiles } from '$lib/services/fs';
+  import { readCentralCharacters, writeScript, readOptionalJsonRelative, listCharacterFiles, captureEditableFiles } from '$lib/services/fs';
   import { readManifest } from '$lib/services/audio';
   import { API_ENDPOINTS, apiPostJson } from '$lib/services/apiClient';
   import type { ReviewChapterRequest, ReviewChapterResponse } from '$lib/services/apiContracts';
-  import { characters, buildIdToNameMap } from '$lib/stores/characters';
+  import { characters } from '$lib/stores/characters';
   import { addBookCharacterAlias, bookCharacters } from '$lib/stores/bookCharacters';
   import { CheckCircle2 } from 'lucide-svelte';
   import ParagraphRow from '$lib/components/chapter/ParagraphRow.svelte';
@@ -20,7 +20,7 @@
   // Tool modules
   import type { UnifiedLine, MenuContext } from '$lib/components/chapter/tools/types';
   import { displayTitle, recomputeStats } from '$lib/components/chapter/tools/shared/toolUtils';
-  import { clampConfidence, normalizeAttribution, normalizeScriptData } from '$lib/components/chapter/tools/shared/chapterNormalization';
+  import { clampConfidence, normalizeAttribution } from '$lib/components/chapter/tools/shared/chapterNormalization';
   import {
     buildChapterAnimationPlanData,
     buildParagraphRuns,
@@ -775,12 +775,6 @@
       chapter: { title: ch.title, path: ch.path, parsed: ch.parsed },
       root,
       unknownThreshold: getUnknownThreshold(),
-      unknownSpeakerLabel: UNKNOWN_SPEAKER_LABEL,
-      readDialogueForChapter,
-      normalizeScriptData,
-      readCentralCharacters,
-      buildIdToNameMap,
-      readTextFile,
     });
     if (seq !== chapterLoadSeq || get(currentChapter)?.title !== ch.title) return;
     isV2Format = loaded.isV2Format;
@@ -833,12 +827,6 @@
             chapter: { title: ch.title, path: ch.path, parsed: ch.parsed },
             root,
             unknownThreshold: getUnknownThreshold(),
-            unknownSpeakerLabel: UNKNOWN_SPEAKER_LABEL,
-            readDialogueForChapter,
-            normalizeScriptData,
-            readCentralCharacters,
-            buildIdToNameMap,
-            readTextFile,
           });
 
           if (seq !== chapterLoadSeq) return; // superseded by newer chapter switch

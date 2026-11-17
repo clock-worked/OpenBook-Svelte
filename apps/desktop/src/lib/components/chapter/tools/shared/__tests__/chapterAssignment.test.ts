@@ -52,20 +52,21 @@ describe('non-speaker role assignment', () => {
     });
 
     it('repairs spans before publishing loaded lines to editing and returning-flag consumers', async () => {
-        const result = await loadChapterContent({
-            chapter: { title: 'Test chapter', path: 'chapter.txt' }, root: 'test-root',
-            unknownThreshold: 0.62, unknownSpeakerLabel: 'Unknown',
-            readDialogueForChapter: async () => ({
+        inMemoryFs.__reset();
+        inMemoryFs.__seed({
+            'Test chapter/dialogue.json': {
                 chapter: 'Test chapter', sourceFile: 'chapter.txt',
                 lines: [{
                     id: 1, text: 'Hello.', span: { start: 20, end: 26 },
                     chosenSpeaker: 'Alice', candidates: [], isConflict: false,
                 }],
                 stats: { numLines: 1, numConflicts: 0 },
-            }),
-            normalizeScriptData, readCentralCharacters: async () => ({ characters: [] }),
-            buildIdToNameMap: () => new Map(),
-            readTextFile: async () => '\u201cHello.\u201d',
+            },
+            'chapter.txt': '\u201cHello.\u201d',
+        });
+        const result = await loadChapterContent({
+            chapter: { title: 'Test chapter', path: 'chapter.txt' }, root: 'test-root',
+            unknownThreshold: 0.62,
         });
         expect(result.normalized?.lines[0].span).toEqual({ start: 1, end: 7 });
         expect(result.currentScript?.lines[0].span).toEqual({ start: 1, end: 7 });

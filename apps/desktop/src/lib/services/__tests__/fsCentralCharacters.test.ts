@@ -21,10 +21,12 @@ vi.mock('$lib/stores/settings', async () => {
 });
 
 import { apiPostJson, apiPostVoid } from '../apiClient';
+import { DIALOGUE_FORMAT_VERSIONS } from '$lib/components/chapter/tools/shared/chapterPersistence';
 import {
   applyDialogueStatsDelta,
   invalidateCentralCharactersCache,
   readCentralCharacters,
+  readDialogueForChapter,
   setRootDirHandle,
   writeCentralCharacters,
   writeDialogue,
@@ -317,5 +319,30 @@ describe('dialogue save endpoints (ADR 0012)', () => {
     });
 
     warn.mockRestore();
+  });
+});
+
+describe('readDialogueForChapter format versions', () => {
+  beforeEach(() => {
+    vi.resetAllMocks();
+    setRootDirHandle(null);
+  });
+
+  it.each([...DIALOGUE_FORMAT_VERSIONS])('returns a %s dialogue.json directly (owner-listed version)', async (version) => {
+    const dialogue = { formatVersion: version, chapterId: 'Ch 1', lines: [] };
+    vi.mocked(apiPostJson).mockResolvedValueOnce({ content: JSON.stringify(dialogue) });
+
+    expect(await readDialogueForChapter('Ch 1')).toEqual(dialogue);
+    expect(apiPostJson).toHaveBeenCalledTimes(1);
+  });
+
+  it('falls back to the v1 script for an unlisted version', async () => {
+    const script = { chapter: 'Ch 1', sourceFile: '', lines: [], stats: {} };
+    vi.mocked(apiPostJson)
+      .mockResolvedValueOnce({ content: JSON.stringify({ formatVersion: '9.9', lines: [] }) })
+      .mockResolvedValueOnce({ content: JSON.stringify(script) });
+
+    expect(await readDialogueForChapter('Ch 1')).toEqual(script);
+    expect(apiPostJson).toHaveBeenNthCalledWith(2, '/api/read-text', { file_path: 'Ch 1/Ch 1.script.json', optional: false });
   });
 });
