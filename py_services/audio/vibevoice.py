@@ -46,6 +46,7 @@ from chapter_audio_test.text_utils import normalize_chapter_text, utc_now_iso
 
 from .provider_profile import is_chatterbox_provider, is_local_chunked_provider
 from .router_support import make_audio_service_ensurer, raise_generation_failure
+from .manifest_store import build_clip as build_manifest_clip, upsert_clips as upsert_manifest_clips
 
 
 DEFAULT_MIN_CHUNK_CHARS = 800
@@ -530,35 +531,6 @@ def _write_character_split_clips(
     return written
 
 
-def _load_or_create_manifest(
-    *,
-    manifest_path: Path,
-    character_id: str,
-    character_name: str,
-    voice_id: str,
-) -> dict[str, Any]:
-    if manifest_path.exists() and manifest_path.is_file():
-        with open(manifest_path, "r", encoding="utf-8") as handle:
-            manifest = json.load(handle)
-        if isinstance(manifest, dict):
-            return manifest
-
-    return {
-        "formatVersion": "2.0",
-        "characterId": character_id,
-        "characterName": character_name,
-        "metadata": {
-            "totalClips": 0,
-            "chapters": [],
-            "sources": {},
-            "voiceIds": {},
-            "primaryVoiceId": voice_id,
-            "lastUpdated": "",
-        },
-        "clips": [],
-    }
-
-
 def _upsert_character_manifest(
     *,
     manifest_path: Path,
@@ -571,111 +543,36 @@ def _upsert_character_manifest(
     split_lines: list[dict[str, Any]],
     generator_info: Optional[dict[str, Any]] = None,
 ) -> dict[str, Any]:
-    manifest = _load_or_create_manifest(
-        manifest_path=manifest_path,
+    """Record the pipeline's split clips in the character manifest (manifest_store)."""
+    generated_at = utc_now_iso()
+    clips = [
+        build_manifest_clip(
+            line_id=int(item["id"]),
+            character_id=character_id,
+            character_name=character_name,
+            text=str(item.get("sourceText") or item["text"]),
+            audio_file=str(item["audioFile"]),
+            chapter=chapter_title,
+            source_file=source_file,
+            voice_id=voice_id,
+            provider=provider,
+            duration=round(float(item.get("durationSec", 0.0)), 4),
+            generated_at=generated_at,
+            generator_info=generator_info,
+            timing={
+                "startSec": round(float(item.get("startSec", 0.0)), 4),
+                "endSec": round(float(item.get("endSec", 0.0)), 4),
+            },
+        )
+        for item in split_lines
+    ]
+    return upsert_manifest_clips(
+        manifest_path,
+        clips,
         character_id=character_id,
         character_name=character_name,
         voice_id=voice_id,
     )
-
-    existing_clips = manifest.get("clips")
-    if not isinstance(existing_clips, list):
-        existing_clips = []
-
-    replacing_ids = {int(item["id"]) for item in split_lines}
-    kept_clips = []
-    for clip in existing_clips:
-        if not isinstance(clip, dict):
-            continue
-        clip_id = clip.get("id")
-        if isinstance(clip_id, int) and clip_id in replacing_ids:
-            continue
-        kept_clips.append(clip)
-
-    generated_at = utc_now_iso()
-    generator_info = generator_info or {}
-    new_clips: list[dict[str, Any]] = []
-    for item in split_lines:
-        new_clips.append(
-            {
-                "id": int(item["id"]),
-                "characterId": character_id,
-                "characterName": character_name,
-                "text": str(item.get("sourceText") or item["text"]),
-                "audioFile": str(item["audioFile"]),
-                "chapter": chapter_title,
-                "sourceFile": source_file,
-                "voiceId": voice_id,
-                "provider": provider,
-                "variant": generator_info.get("variant"),
-                "temperature": generator_info.get("temperature"),
-                "cfgWeight": generator_info.get("cfgWeight"),
-                "exaggeration": generator_info.get("exaggeration"),
-                "emotion": None,
-                "metadata": {
-                    "generatedAt": generated_at,
-                    "duration": round(float(item.get("durationSec", 0.0)), 4),
-                    "startSec": round(float(item.get("startSec", 0.0)), 4),
-                    "endSec": round(float(item.get("endSec", 0.0)), 4),
-                },
-            }
-        )
-
-    all_clips = kept_clips + new_clips
-    all_clips.sort(
-        key=lambda clip: (
-            str(clip.get("chapter", "")),
-            int(clip.get("id", 0)) if isinstance(clip.get("id"), int) else 0,
-        )
-    )
-
-    metadata = manifest.get("metadata")
-    if not isinstance(metadata, dict):
-        metadata = {}
-
-    source_counts: dict[str, int] = {}
-    voice_counts: dict[str, int] = {}
-    chapter_names: set[str] = set()
-
-    for clip in all_clips:
-        chapter_name = clip.get("chapter")
-        if isinstance(chapter_name, str) and chapter_name:
-            chapter_names.add(chapter_name)
-
-        source_name = clip.get("sourceFile")
-        if isinstance(source_name, str) and source_name:
-            source_counts[source_name] = source_counts.get(source_name, 0) + 1
-
-        clip_voice_id = clip.get("voiceId")
-        if isinstance(clip_voice_id, str) and clip_voice_id:
-            voice_counts[clip_voice_id] = voice_counts.get(clip_voice_id, 0) + 1
-
-    existing_primary = metadata.get("primaryVoiceId")
-    if isinstance(existing_primary, str) and existing_primary in voice_counts:
-        primary_voice_id = existing_primary
-    elif voice_counts:
-        primary_voice_id = max(voice_counts.items(), key=lambda item: item[1])[0]
-    else:
-        primary_voice_id = voice_id
-
-    metadata["totalClips"] = len(all_clips)
-    metadata["chapters"] = sorted(chapter_names)
-    metadata["sources"] = source_counts
-    metadata["voiceIds"] = voice_counts
-    metadata["primaryVoiceId"] = primary_voice_id
-    metadata["lastUpdated"] = generated_at
-
-    manifest["formatVersion"] = "2.0"
-    manifest["characterId"] = character_id
-    manifest["characterName"] = character_name
-    manifest["metadata"] = metadata
-    manifest["clips"] = all_clips
-
-    manifest_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(manifest_path, "w", encoding="utf-8") as handle:
-        json.dump(manifest, handle, indent=2, ensure_ascii=False)
-
-    return manifest
 
 
 PIPELINE_PROGRESS_FILENAME = "progress.json"
