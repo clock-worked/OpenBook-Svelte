@@ -1,0 +1,13 @@
+# The audio manifest has one owner per side
+
+The per-character clip manifest (`<audio_root>/<chapter>/audio_lines/<character>/manifest.json`, format v2.0) has one writer module on the backend and one reader on the frontend.
+
+- **Backend:** `py_services/audio/manifest_store.py` defines the schema once (`build_clip`, `new_manifest`, `recompute_metadata`) and owns every write: `upsert_clips` / `upsert_clip`, `remove_clip`, `reconcile` (including bootstrapping a manifest from orphan audio files) and a tolerant `read_manifest`. The callers keep only their triggers: `AudioGenerationService.generate_audio_line` (post-generation), `delete_audio_line`, `reconcile_character_manifest` (the `/api/reconcile-audio-manifest` route) and the VibeVoice chapter pipeline (`audio/vibevoice.py`, which only maps its split lines to clips). Nothing else writes a manifest or restates a clip field.
+- **Frontend:** `services/manifestReader.ts` is the reader: one cache, in-flight sharing, and the fallback chain reconcile endpoint → absolute read → book-relative read. Older sidecars genuinely lack the first two, so a 404 marks an endpoint missing in an injected `ManifestApiProbe` (session latches by default) rather than in module globals. `audio.ts` builds the one instance over HTTP and exposes `readManifest`, the invalidation API and `loadCharacterManifestSummary` (book-wide stats for the book page). The root comes from `audioRootFor` (ADR 0015).
+
+Rules that follow:
+
+1. **Metadata is derived, never incremented.** `totalClips`, `chapters`, `sources`, `voiceIds` are recomputed from `clips` on every write; `primaryVoiceId` keeps its value while a clip still uses it, else becomes the most-used voice.
+2. **An unreadable manifest is not fatal.** It reads as `None`; an upsert starts a fresh manifest and `reconcile` rebuilds one from the audio files (the frontend reconciles on every uncached read, so other clips come back as placeholders).
+
+**Considered options**: keep the Tauri reader (`manifests.ts`) beside the HTTP one (it had one caller and a second cache, and its legacy-format sniffing is moot once the reconcile endpoint returns v2); drop the fallback chain (older sidecars still need it). Accepted costs: regenerating a line no longer double-counts it in `sources`/`voiceIds`, and deleting one clip now updates all metadata, not only `totalClips`; single-line clips are now kept sorted by chapter then id; a non-object (legacy) manifest file is replaced on the next write or reconcile; the book page no longer probes the never-written book-level `<audio_root>/audio_lines/<character>/manifest.json`.
