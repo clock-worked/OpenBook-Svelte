@@ -33,6 +33,7 @@ import type {
   SaveFileRequest,
   SetAudioRootRequest,
   SetBookRootRequest,
+  SetBookRootResponse,
   UpdateCharacterStatsResponse,
 } from './apiContracts';
 
@@ -223,7 +224,10 @@ export async function setBackendBookRoot(rootPath: string): Promise<boolean> {
 
   try {
     const payload: SetBookRootRequest = { root_path: rootPath };
-    await apiPostVoid<SetBookRootRequest>(API_ENDPOINTS.setBookRoot, payload);
+    const result = await apiPostJson<SetBookRootResponse, SetBookRootRequest>(API_ENDPOINTS.setBookRoot, payload);
+    if (result?.stats_rebuilt === false) {
+      console.warn('[fs] Book root set, but the backend could not build character stats; they will be rebuilt on the next dialogue save.');
+    }
     return true;
   } catch (error) {
     const apiError = toApiClientError(error);
