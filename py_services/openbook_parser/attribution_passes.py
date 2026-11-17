@@ -9,6 +9,13 @@ from pathlib import Path
 import re
 from typing import Dict, List, Optional, Sequence, Tuple
 
+from .attribution_decision import (
+    EDGE_PARSER,
+    RANK_SUPPORT_REASONS,
+    PolicyFacts,
+    evaluate_policy,
+)
+
 
 def _load_verbs_from_file(filename: str, default: set[str]) -> set[str]:
     fallback = set(default)
@@ -603,25 +610,9 @@ def rank_candidates(candidates: Sequence[str], signals: LineSignals) -> RankedDe
     scored.sort(key=lambda item: item.score, reverse=True)
     top = scored[0].score if scored else 0.0
     second = scored[1].score if len(scored) > 1 else 0.0
-    margin = top - second
 
     top_reasons = set(scored[0].reasons) if scored else set()
     top_choice = _norm(scored[0].name) if scored else ""
-    hard_reasons = {
-        "parser_match",
-        "coref_support",
-        "legacy_match",
-        "post_quote_attribution",
-        "recent_named_mention",
-        "previous_paragraph_named_mention",
-        "same_paragraph_continuation",
-        "paragraph_sibling_confirmed",
-        "speech_verb",
-        "alias_strength",
-        "learned_descriptor_match",
-        "context_gender_match",
-    }
-    hard_reason_count = len(top_reasons & hard_reasons)
     high_conflict = bool(
         signals.is_returning
         and signals.line_ends_with_question
@@ -636,15 +627,21 @@ def rank_candidates(candidates: Sequence[str], signals: LineSignals) -> RankedDe
         and has_specific_named_candidate
     )
 
-    is_suggestion = bool(
-        signals.used_fallback_alignment
-        or top < 0.74
-        or margin < 0.14
-        or high_conflict
-        or gender_conflict
-        or generic_top_choice
-        or (hard_reason_count == 0 and top < 0.8)
+    # Assert/suggestion: the shared policy spec, parser edge (ADR-0013).
+    outcome = evaluate_policy(
+        EDGE_PARSER,
+        PolicyFacts(
+            top=top,
+            second=second,
+            candidate_count=len(scored),
+            used_fallback_alignment=bool(signals.used_fallback_alignment),
+            question_next_speaker_conflict=high_conflict,
+            gender_conflict=gender_conflict,
+            generic_top_choice=generic_top_choice,
+            has_support_reason=bool(top_reasons & RANK_SUPPORT_REASONS),
+        ),
     )
+    is_suggestion = outcome.is_suggestion
 
     return RankedDecision(
         ranked=scored,
