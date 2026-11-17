@@ -66,6 +66,11 @@ export function classifyProvider(provider: string | null | undefined): ProviderC
   return PROVIDER_INDEX.get(key) ?? null;
 }
 
+/** Every accepted provider string (names + aliases), sorted. */
+export function knownProviderKeys(): string[] {
+  return [...PROVIDER_INDEX.keys()].sort();
+}
+
 /** True for a known provider on the local chunked pipeline. */
 export function isLocalChunkedProvider(provider: string | null | undefined): boolean {
   return classifyProvider(provider)?.endpointKind === 'local_chunked';
