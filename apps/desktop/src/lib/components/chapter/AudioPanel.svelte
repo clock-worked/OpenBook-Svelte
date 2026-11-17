@@ -439,14 +439,21 @@
     advancedPreviewError = null;
   }
 
+  // The scope selection as a plain value, computed with direct reads so the
+  // reactive comparison below is guaranteed to re-run when it changes
+  // (Svelte does not track variables read inside called functions).
+  $: advancedChapterScopeSelectionKey = advancedChapterScope === 'custom'
+    ? `custom:${[...advancedSelectedChapterTitles].sort().join('|')}`
+    : advancedChapterScope;
+
   // Re-scan the preview (debounced) when the chapter scope changes while the
-  // overlay is open, so the summary and character list track the selection.
+  // overlay is open, so the summary, character list and queue track it.
   $: if (
     showAdvancedOverlay &&
     advancedPreview &&
     !loadingAdvancedPreview &&
     !advancedSubmitting &&
-    advancedPreviewScopeKey !== advancedScopeKey()
+    advancedPreviewScopeKey !== advancedChapterScopeSelectionKey
   ) {
     if (advancedScopeRescanTimer) clearTimeout(advancedScopeRescanTimer);
     advancedScopeRescanTimer = setTimeout(() => {
