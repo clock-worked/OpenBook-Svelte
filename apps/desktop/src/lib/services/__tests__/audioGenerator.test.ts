@@ -33,6 +33,8 @@ import {
   resolveChatterboxSettings,
   resolveGeneratorChoice,
   resolveEffectiveAudioGenerator,
+  classifyProvider,
+  isLocalChunkedProvider,
 } from '../audioGenerator';
 
 beforeEach(() => {
@@ -162,5 +164,43 @@ describe('resolveEffectiveAudioGenerator', () => {
     });
     const out = resolveEffectiveAudioGenerator('vibevoice_local', { generator: 'chatterbox_base' });
     expect(out).toEqual({ provider: 'chatterbox', chatterboxSettings: { variant: 'base', exaggeration: EXPRESSIVE_EXAGGERATION } });
+  });
+});
+
+describe('classifyProvider', () => {
+  it('classifies the canonical local providers as local_chunked .wav', () => {
+    expect(classifyProvider('vibevoice_local'))
+      .toEqual({ provider: 'vibevoice_local', endpointKind: 'local_chunked', fileExtension: '.wav' });
+    expect(classifyProvider('chatterbox'))
+      .toEqual({ provider: 'chatterbox', endpointKind: 'local_chunked', fileExtension: '.wav' });
+  });
+
+  it('resolves aliases to their canonical provider (case/whitespace insensitive)', () => {
+    expect(classifyProvider('VibeVoice')?.provider).toBe('vibevoice_local');
+    expect(classifyProvider(' chatterbox-local ')?.provider).toBe('chatterbox');
+    expect(classifyProvider('chirp3')).toEqual({ provider: 'google_tts', endpointKind: 'cloud', fileExtension: '.mp3' });
+    expect(classifyProvider('elevenlabs')).toEqual({ provider: 'elevenlabs', endpointKind: 'cloud', fileExtension: '.mp3' });
+  });
+
+  it('returns null for an unknown provider (no fall-through to a default endpoint)', () => {
+    expect(classifyProvider('openai')).toBeNull();
+    expect(classifyProvider('vibevoice-1.5b')).toBeNull();
+    expect(classifyProvider('')).toBeNull();
+    expect(classifyProvider(null)).toBeNull();
+    expect(classifyProvider(undefined)).toBeNull();
+  });
+
+  it('isLocalChunkedProvider is true only for known local providers', () => {
+    expect(isLocalChunkedProvider('vibevoice_local')).toBe(true);
+    expect(isLocalChunkedProvider('chatterbox')).toBe(true);
+    expect(isLocalChunkedProvider('google_tts')).toBe(false);
+    expect(isLocalChunkedProvider('unknown')).toBe(false);
+  });
+
+  it('every generator choice resolves to a classified provider', () => {
+    for (const id of ['chatterbox_base', 'chatterbox_turbo', 'vibevoice'] as const) {
+      const { provider } = resolveGeneratorChoice(id, null, 'unknown');
+      expect(classifyProvider(provider)?.endpointKind).toBe('local_chunked');
+    }
   });
 });

@@ -11,7 +11,7 @@ vi.mock('$lib/stores/bookState', async () => {
 });
 vi.mock('$lib/stores/settings', async () => {
   const { writable } = await import('svelte/store');
-  return { bookRootPathOverride: writable(null) };
+  return { bookRootPathOverride: writable(null), audiobookSettings: writable({}) };
 });
 vi.mock('../persistence', () => ({ storeProjectHandle: vi.fn() }));
 vi.mock('../apiClient', () => ({

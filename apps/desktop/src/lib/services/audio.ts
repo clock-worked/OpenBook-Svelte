@@ -28,6 +28,7 @@ import {
   resolvePlannedLineSourceFile,
 } from '$lib/services/audioQueuePlanning';
 import { startCharacterPipelineProgressPolling } from '$lib/services/audioPipelineProgress';
+import { classifyProvider, isLocalChunkedProvider } from '$lib/services/audioGenerator';
 
 export interface AudioManifest {
   formatVersion: string;
@@ -402,10 +403,17 @@ export async function generateAudioForLine(
   chatterboxSettings?: ChatterboxSettingsPayload | null
 ): Promise<{ success: boolean; audioPath?: string; error?: string }> {
   try {
+    const classification = classifyProvider(provider);
+    if (!classification) {
+      return {
+        success: false,
+        error: `Failed to generate audio: Unsupported TTS provider: ${provider}`,
+      };
+    }
     const samplesRoot = get(voiceSamplesRoot);
     // Local-model providers (VibeVoice/Chatterbox) share the chunked
     // generation endpoints and the voice-sample root plumbing.
-    const isLocalChunked = /vibevoice|chatterbox/.test(provider.toLowerCase());
+    const isLocalChunked = classification.endpointKind === 'local_chunked';
     const includeSamplesRoot = isLocalChunked && samplesRoot;
     const resolvedAudioRoot = audioRootFor();
     const endpoint = isLocalChunked
@@ -523,10 +531,9 @@ export async function generateAudioForCharacter(
   // A resolved generator override (advanced batch UI / settings tab) wins
   // over the voice's assigned provider for this run.
   const effectiveProvider = options.providerOverride ?? provider;
-  const providerLower = effectiveProvider.toLowerCase();
   // Local-model providers (VibeVoice/Chatterbox) share the chunked
   // character generation pipeline.
-  if (!/vibevoice|chatterbox/.test(providerLower)) {
+  if (!isLocalChunkedProvider(effectiveProvider)) {
     return {
       success: false,
       generatedCount: 0,
