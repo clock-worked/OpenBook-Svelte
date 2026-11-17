@@ -42,6 +42,33 @@ def normalize_chapter_text(text: str) -> str:
     return " ".join(text.split())
 
 
+# Typography -> ASCII. The one shared replacement set every TTS engine starts
+# from (engine adapters add their own rules on top in ``normalize``).
+TYPOGRAPHY_REPLACEMENTS: dict[str, str] = {
+    "\u2018": "'",  # left single quotation mark
+    "\u2019": "'",  # right single quotation mark
+    "\u201c": '"',  # left double quotation mark
+    "\u201d": '"',  # right double quotation mark
+    "\u2013": "-",  # en dash
+    "\u2014": "-",  # em dash
+    "\u2026": "...",  # ellipsis
+    # U+FFFD: a curly quote that was already corrupted upstream; in book
+    # text it is almost always an apostrophe.
+    "\ufffd": "'",
+}
+
+
+def normalize_typography(text: str) -> str:
+    """Replace smart quotes, dashes, ellipses (and U+FFFD) with ASCII.
+
+    Shared primitive for the engine adapters' ``normalize`` and for the
+    cloud TTS path. Does not touch whitespace.
+    """
+    for src, dst in TYPOGRAPHY_REPLACEMENTS.items():
+        text = text.replace(src, dst)
+    return text
+
+
 def safe_name(value: str) -> str:
     cleaned = re.sub(r"[^a-zA-Z0-9_-]+", "-", value.strip())
     cleaned = re.sub(r"-+", "-", cleaned).strip("-")

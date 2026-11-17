@@ -15,6 +15,12 @@ from chapter_audio.generation import (
     split_text_to_max_chars,
     stitch_generated_chunk_audio,
 )
+from chapter_audio.text_utils import normalize_chapter_text, normalize_typography
+
+try:
+    from .audio.provider_profile import ADAPTER_CHATTERBOX
+except ImportError:
+    from audio.provider_profile import ADAPTER_CHATTERBOX
 
 
 def find_chatterbox_python() -> Path:
@@ -36,7 +42,23 @@ def find_chatterbox_python() -> Path:
 
 
 class ChatterboxLocalService:
-    """Chatterbox TTS service running in-process or via persistent worker."""
+    """Chatterbox TTS service running in-process or via persistent worker.
+
+    The Chatterbox adapter at the TTS engine seam
+    (:class:`chapter_audio.engine.AudioEngine`): declares ``adapter``,
+    ``max_chunk_chars`` and ``normalize``.
+    """
+
+    adapter = ADAPTER_CHATTERBOX
+    # Chatterbox is a short-form engine; long single-pass text garbles
+    # (2026-11-05 Chapter 1387 incident). This is the declared per-call limit.
+    DEFAULT_MAX_CHUNK_CHARS = 450
+
+    @staticmethod
+    def normalize(text: str) -> str:
+        """The text Chatterbox hears: shared typography -> ASCII, whitespace
+        collapsed. Idempotent."""
+        return normalize_chapter_text(normalize_typography(text))
 
     def __init__(
         self,
@@ -45,11 +67,16 @@ class ChatterboxLocalService:
         temperature: float = 0.8,
         repetition_penalty: float = 1.2,
         python_executable: Optional[str | Path] = None,
-        max_chunk_chars: int = 450,
+        max_chunk_chars: int = DEFAULT_MAX_CHUNK_CHARS,
         join_pause_ms: int = 0,
         exaggeration: Optional[float] = None,
         cfg_weight: Optional[float] = None,
+        in_process_model: Any = None,
     ) -> None:
+        """``in_process_model`` injects an already-loaded model (anything with
+        ``sr``, ``conds``, ``prepare_conditionals`` and ``generate``) and skips
+        backend start-up -- used by tests to build the adapter through its
+        constructor without a GPU."""
         self.variant = variant.lower().strip()
         self.device = device
         self.temperature = temperature
@@ -61,17 +88,18 @@ class ChatterboxLocalService:
         self.cfg_weight = cfg_weight
         # Chatterbox is a short-form engine; long single-pass text garbles.
         # Split any line longer than this into sentence/word-aware chunks.
-        self.max_chunk_chars = max(1, int(max_chunk_chars))
+        self.max_chunk_chars: Optional[int] = max(1, int(max_chunk_chars))
         self.join_pause_ms = max(0, int(join_pause_ms))
         self.python_executable = (
             Path(python_executable) if python_executable else find_chatterbox_python()
         )
         self.worker_process: Optional[subprocess.Popen] = None
-        self._in_process_model = None
+        self._in_process_model = in_process_model
         self._cached_sample_path: Optional[str] = None
         self.stats: list[dict[str, Any]] = []
 
-        self._init_backend()
+        if self._in_process_model is None:
+            self._init_backend()
 
     def _init_backend(self) -> None:
         # Only attempt in-process load if running directly inside chatterbox_env

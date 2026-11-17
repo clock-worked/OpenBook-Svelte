@@ -27,6 +27,7 @@ if sys.platform == 'win32':
 
 from chatterbox_local_service import ChatterboxLocalService
 from vibevoice_local_service import VibeVoiceLocalService
+from chapter_audio.text_utils import normalize_typography
 
 try:
     from .audio.provider_profile import (
@@ -1028,21 +1029,8 @@ class AudioGenerationService:
     def _normalize_text(self, text: str) -> str:
         """
         Normalize text by replacing smart/curly quotes with straight quotes
-        and handling other problematic Unicode characters.
+        and handling other problematic Unicode characters (U+FFFD becomes an
+        apostrophe). The shared typography primitive,
+        ``chapter_audio.text_utils.normalize_typography``.
         """
-        # Replace smart quotes with straight quotes
-        text = text.replace('’', "'")  # Right single quotation mark (U+2019)
-        text = text.replace('‘', "'")  # Left single quotation mark (U+2018)
-        text = text.replace('”', '"')  # Right double quotation mark (U+201D)
-        text = text.replace('“', '"')  # Left double quotation mark (U+201C)
-        text = text.replace('–', '-')  # En dash (U+2013)
-        text = text.replace('—', '-')  # Em dash (U+2014)
-        text = text.replace('…', '...')  # Ellipsis (U+2026)
-        
-        # Handle replacement characters (U+FFFD) by converting to regular apostrophe if context suggests it
-        # This handles cases where curly quotes were already corrupted
-        if '\ufffd' in text:
-            text = text.replace('\ufffd', "'")
-        
-        return text
-
+        return normalize_typography(text)
