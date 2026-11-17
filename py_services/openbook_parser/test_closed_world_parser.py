@@ -433,6 +433,7 @@ CONFORMANCE_CHAPTER = (
     '\n'
     '"Who goes there?" asked Rogue.\n'
     'She muttered something. "Fine," she said.\n'
+    '"Stop," Morgan said. "What is it?" asked Alex. "Nothing," Morgan said.\n'
 )
 CONFORMANCE_OPTIONS = {
     "pov_mode": "first_person",
@@ -469,6 +470,58 @@ class AttributionConformanceTests(unittest.TestCase):
                 if rule is not None:
                     self.assertIsNotNone(rule_category(rule), rule)
                 self.assertEqual(trace_invariant_violations(line), [])
+
+    def assert_parser_output_conforms(self, lines):
+        dialogue = [line for line in lines if line.line_type == "dialogue"]
+        self.assertTrue(dialogue)
+        for line in dialogue:
+            with self.subTest(text=line.text):
+                self.assertIn("decisionTrace", line.attribution)
+                self.assertEqual(trace_invariant_violations(line), [])
+                for reason in line.attribution["decisionTrace"]["selectedReasons"]:
+                    self.assertIsNotNone(rule_category(reason), reason)
+
+    def test_booknlp_writers_satisfy_the_trace_contract(self):
+        options = {**CONFORMANCE_OPTIONS, "episode_joint_decode": False}
+        lines, _, _ = parse_conformance_chapter(
+            lambda path: BookNLPParserService().parse_file(path, options=options)
+        )
+        self.assert_parser_output_conforms(lines)
+        dialogue = [line for line in lines if line.line_type == "dialogue"]
+        self.assertIn(
+            "0p_protagonist_first_person",
+            dialogue[0].attribution["decisionTrace"]["selectedReasons"],
+        )
+        consistency = next(line for line in dialogue if line.text == "What is it?")
+        self.assertEqual(
+            consistency.attribution["decisionTrace"]["overrideReason"],
+            "same_paragraph_context_consistency",
+        )
+
+    def test_modernbooknlp_override_satisfies_the_trace_contract(self):
+        options = {
+            **CONFORMANCE_OPTIONS,
+            "episode_joint_decode": False,
+            "parser_backend": "modernbooknlp",
+        }
+        service = BookNLPParserService()
+
+        def predictions(path, _catalog):
+            text = Path(path).read_text(encoding="utf-8")
+            start = text.index("Why?")
+            return [ModernBookNLPQuote(start=start, end=start + 4, speaker="Alex", coref_id="7")]
+
+        service.modernbooknlp_service.attribute_file = predictions
+        lines, _, meta = parse_conformance_chapter(
+            lambda path: service.parse_file(path, options=options)
+        )
+        self.assertEqual(meta["backend"], "modernbooknlp")
+        self.assert_parser_output_conforms(lines)
+        accepted = next(line for line in lines if line.text == "Why?")
+        self.assertEqual(accepted.speaker, "Alex")
+        trace = accepted.attribution["decisionTrace"]
+        self.assertEqual(trace["modernBookNLPDecision"], "accepted")
+        self.assertEqual(trace["overrideReason"], "modernbooknlp_joint_attribution")
 
 
 if __name__ == "__main__":
