@@ -19,7 +19,9 @@ from api_models import ChatterboxGenerationSettings
 from audio_generation_service import (
     AudioGenerationService,
     build_chatterbox_generator_info,
+    local_engine_class,
 )
+from chapter_audio.engine import plan_engine_chunks
 from chapter_audio.asr_alignment import (
     build_line_timestamps,
     collect_asr_word_tokens,
@@ -875,6 +877,10 @@ def _run_character_chunk_pipeline(
             self._voice_sample_root = voice_sample_root
             self._provider = str(provider or "").strip().lower()
             self._chatterbox_settings = chatterbox_settings
+            engine_class = local_engine_class(self._provider)
+            self.adapter = engine_class.adapter
+            self.max_chunk_chars = engine_class.max_chunk_chars
+            self.normalize = engine_class.normalize
 
         def generate_audio(
             self,
@@ -914,6 +920,11 @@ def _run_character_chunk_pipeline(
         provider=request.provider,
         chatterbox_settings=chatterbox_settings,
     )
+
+    # Plan-time sub-split: the alignment chunks (>= DEFAULT_MIN_CHUNK_CHARS)
+    # become the engine's true chunks (<= its max_chunk_chars), so the
+    # chunkIndex/chunkTotal progress counts real engine calls.
+    chunk_plan = plan_engine_chunks(chunk_plan, chunk_generator)
 
     _write_pipeline_progress(work_dir, "generating", line_count=len(lines))
 

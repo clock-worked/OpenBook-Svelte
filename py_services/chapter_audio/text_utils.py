@@ -69,6 +69,46 @@ def normalize_typography(text: str) -> str:
     return text
 
 
+def split_text_to_max_chars(text: str, max_chars: int) -> list[str]:
+    """Split ``text`` into pieces of at most ``max_chars`` characters.
+
+    The sentence/word-aware splitter behind both the chapter chunk plan and
+    the engine sub-split (``chapter_audio.engine.engine_text_pieces``).
+    Pieces break on sentence boundaries first, then word boundaries, and
+    small pieces are re-packed so no piece exceeds ``max_chars``.
+    """
+    if len(text) <= max_chars:
+        return [text]
+
+    sentences = re.split(r"(?<=[.!?])\s+", text)
+    pieces: list[str] = []
+    for sentence in sentences:
+        if len(sentence) <= max_chars:
+            pieces.append(sentence)
+            continue
+
+        words = sentence.split()
+        current: list[str] = []
+        for word in words:
+            candidate = " ".join([*current, word])
+            if current and len(candidate) > max_chars:
+                pieces.append(" ".join(current))
+                current = [word]
+            else:
+                current.append(word)
+        if current:
+            pieces.append(" ".join(current))
+
+    packed: list[str] = []
+    for piece in pieces:
+        candidate = " ".join([*packed[-1:], piece]) if packed else piece
+        if packed and len(candidate) <= max_chars:
+            packed[-1] = candidate
+        else:
+            packed.append(piece)
+    return packed
+
+
 def safe_name(value: str) -> str:
     cleaned = re.sub(r"[^a-zA-Z0-9_-]+", "-", value.strip())
     cleaned = re.sub(r"-+", "-", cleaned).strip("-")

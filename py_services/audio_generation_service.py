@@ -27,6 +27,7 @@ if sys.platform == 'win32':
 
 from chatterbox_local_service import ChatterboxLocalService
 from vibevoice_local_service import VibeVoiceLocalService
+from chapter_audio.generation import generate_engine_text
 from chapter_audio.text_utils import normalize_typography
 
 try:
@@ -54,6 +55,26 @@ except ImportError:
 
 
 DEFAULT_CHATTERBOX_VARIANT = "base"
+
+# The local AudioEngine adapter class behind each profile adapter name
+# (chapter_audio/engine.py). Cloud adapters are not chunked engines.
+LOCAL_ENGINE_CLASSES = {
+    ADAPTER_VIBEVOICE: VibeVoiceLocalService,
+    ADAPTER_CHATTERBOX: ChatterboxLocalService,
+}
+
+
+def local_engine_class(provider: Optional[str]):
+    """The AudioEngine adapter class for a local chunked provider.
+
+    Raises ``UnknownProviderError`` for an unknown provider and ``ValueError``
+    for a cloud provider.
+    """
+    profile = resolve_provider_profile(provider)
+    engine_class = LOCAL_ENGINE_CLASSES.get(profile.adapter)
+    if engine_class is None:
+        raise ValueError(f"{profile.display_name} is not a local chunked engine.")
+    return engine_class
 
 
 def build_chatterbox_generator_info(
@@ -137,8 +158,10 @@ class AudioGenerationService:
                     "error": str(exc)
                 }
 
-            # Normalize text to handle smart quotes and other special characters
-            normalized_text = self._normalize_text(text)
+            # Local engines hear their own adapter's ``normalize`` (applied
+            # when the line is planned into engine calls); cloud engines get
+            # the shared typography normalization.
+            normalized_text = text if profile.is_local_chunked else self._normalize_text(text)
 
             # Construct output paths
             character_dir = self.audio_root / chapter_title / "audio_lines" / character_name
@@ -470,10 +493,12 @@ class AudioGenerationService:
                 self.vibevoice_local_service = VibeVoiceLocalService()
 
             with self._vibevoice_lock:
-                self.vibevoice_local_service.generate_audio(
+                # VibeVoice declares no per-call limit: one planned call.
+                generate_engine_text(
+                    self.vibevoice_local_service,
                     text=text,
                     sample_path=sample_path,
-                    output_path=str(output_path),
+                    output_path=output_path,
                 )
             return True, None
         except Exception as exc:
@@ -531,10 +556,13 @@ class AudioGenerationService:
 
             with self._chatterbox_lock:
                 service = self._get_chatterbox_service(variant)
-                service.generate_audio(
+                # Plan the line into <= max_chunk_chars engine calls and
+                # stitch (Chatterbox garbles long single-pass text).
+                generate_engine_text(
+                    service,
                     text=text,
                     sample_path=sample_path,
-                    output_path=str(output_path),
+                    output_path=output_path,
                     temperature=settings.get("temperature"),
                     cfg_weight=settings.get("cfg_weight"),
                     exaggeration=settings.get("exaggeration"),
