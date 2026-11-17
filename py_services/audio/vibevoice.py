@@ -44,6 +44,8 @@ from chapter_audio_test.validation import (
 )
 from chapter_audio_test.text_utils import normalize_chapter_text, utc_now_iso
 
+from .provider_profile import is_chatterbox_provider, is_local_chunked_provider
+
 
 DEFAULT_MIN_CHUNK_CHARS = 800
 DEFAULT_LINE_CHUNK_JOIN_MS = 0
@@ -172,20 +174,6 @@ class VibeVoiceChapterRequest(BaseModel):
     voice_sample_root: Optional[str] = None
     audio_root: Optional[str] = None
     chatterbox_settings: Optional[ChatterboxGenerationSettings] = None
-
-
-def _is_vibevoice_provider(provider: str) -> bool:
-    return "vibevoice" in str(provider or "").strip().lower()
-
-
-def _is_chatterbox_provider(provider: str) -> bool:
-    return "chatterbox" in str(provider or "").strip().lower()
-
-
-def _is_local_chunked_provider(provider: str) -> bool:
-    """Local-model providers supported by the chunked generation pipeline
-    (VibeVoice and Chatterbox)."""
-    return _is_vibevoice_provider(provider) or _is_chatterbox_provider(provider)
 
 
 def _chatterbox_settings_dict(
@@ -898,7 +886,7 @@ def _run_character_chunk_pipeline(
             effective_voice_id = self._voice_id or str(sample_path)
             _ = seed
 
-            if _is_chatterbox_provider(self._provider):
+            if is_chatterbox_provider(self._provider):
                 success, error_details = self._audio_service.generate_chatterbox_text_to_path(
                     text=text,
                     voice_id=effective_voice_id,
@@ -1299,7 +1287,7 @@ def create_vibevoice_router(
 
     @router.post("/character")
     async def generate_character(request: VibeVoiceCharacterRequest):
-        if not _is_local_chunked_provider(request.provider):
+        if not is_local_chunked_provider(request.provider):
             raise HTTPException(
                 status_code=400,
                 detail=(
@@ -1423,7 +1411,7 @@ def create_vibevoice_router(
                 errors.append(f"Line {line_id}: no selected voice mapping for character '{character_id}'")
                 continue
 
-            if not _is_local_chunked_provider(assignment.provider):
+            if not is_local_chunked_provider(assignment.provider):
                 skipped_count += 1
                 errors.append(
                     f"Line {line_id}: provider '{assignment.provider}' is not supported. "
