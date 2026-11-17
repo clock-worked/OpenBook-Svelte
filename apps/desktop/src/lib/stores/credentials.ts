@@ -1,5 +1,22 @@
 import { writable } from 'svelte/store';
-import type { GoogleCredentials } from '$lib/services/google-tts';
+
+/**
+ * Google service-account key JSON (the shape the settings store persists).
+ * Formerly exported by the deleted, unused FE Google TTS client; all real
+ * cloud TTS runs BE-side (py_services/audio_generation_service.py).
+ */
+export interface GoogleCredentials {
+    type: string;
+    project_id: string;
+    private_key_id: string;
+    private_key: string;
+    client_email: string;
+    client_id: string;
+    auth_uri: string;
+    token_uri: string;
+    auth_provider_x509_cert_url: string;
+    client_x509_cert_url: string;
+}
 
 function createStoredWritable<T>(key: string, defaultValue: T) {
     const { subscribe, set, update } = writable<T>(defaultValue);
