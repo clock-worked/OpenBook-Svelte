@@ -12,12 +12,16 @@ Pure: no numpy / soundfile / torch (the Chatterbox adapter is built with a
 fake model that is never called here).
 """
 
+import tempfile
 import unittest
+from unittest import mock
 
+from audio.engine_adapters import VoiceBoundEngine
 from audio.provider_profile import (
     ADAPTER_CHATTERBOX,
     ADAPTER_VIBEVOICE,
     PROVIDER_PROFILES,
+    UnknownProviderError,
     resolve_provider_profile,
 )
 from chapter_audio.engine import (
@@ -265,6 +269,108 @@ class PlanEngineChunksTests(unittest.TestCase):
         engine_plan = plan_engine_chunks(plan, svc)
         self.assertEqual(len(engine_plan), 3)
         self.assertTrue(all(c["charCount"] <= 450 for c in engine_plan))
+
+
+class VoiceBoundEngineTests(unittest.TestCase):
+    def _engine(self, result=(True, None), voice_id="narrator.wav"):
+        calls = []
+
+        def generate_to_path(*, text, voice_id, output_path):
+            calls.append((text, voice_id, output_path))
+            return result
+
+        engine = VoiceBoundEngine(
+            adapter=ADAPTER_CHATTERBOX,
+            display_name="Chatterbox",
+            max_chunk_chars=450,
+            normalize=ChatterboxLocalService.normalize,
+            voice_id=voice_id,
+            generate_to_path=generate_to_path,
+        )
+        return engine, calls
+
+    def test_is_an_audio_engine_with_the_engine_declarations(self):
+        engine, _ = self._engine()
+        self.assertIsInstance(engine, AudioEngine)
+        self.assertEqual(engine.adapter, ADAPTER_CHATTERBOX)
+        self.assertEqual(engine.max_chunk_chars, 450)
+        self.assertEqual(engine.normalize("a\u2019b  c"), "a'b c")
+
+    def test_bound_voice_wins_over_sample_path(self):
+        engine, calls = self._engine()
+        engine.generate_audio(text="Hi.", sample_path="other.wav", output_path="out/1.wav", seed=7)
+        self.assertEqual(len(calls), 1)
+        text, voice_id, output_path = calls[0]
+        self.assertEqual((text, voice_id, output_path.as_posix()), ("Hi.", "narrator.wav", "out/1.wav"))
+
+    def test_sample_path_used_when_no_voice_bound(self):
+        engine, calls = self._engine(voice_id="")
+        engine.generate_audio(text="Hi.", sample_path="sample.wav", output_path="o.wav")
+        self.assertEqual(calls[0][1], "sample.wav")
+
+    def test_failure_raises_with_details_or_fallback(self):
+        engine, _ = self._engine(result=(False, "voice sample not found"))
+        with self.assertRaisesRegex(RuntimeError, "voice sample not found"):
+            engine.generate_audio(text="Hi.", sample_path="s", output_path="o.wav")
+        engine, _ = self._engine(result=(False, None))
+        with self.assertRaisesRegex(RuntimeError, "^Chatterbox generation failed.$"):
+            engine.generate_audio(text="Hi.", sample_path="s", output_path="o.wav")
+
+
+try:  # the composition root needs httpx + google-auth
+    from audio_generation_service import AudioGenerationService
+except ImportError:  # pragma: no cover - depends on the environment
+    AudioGenerationService = None
+
+
+@unittest.skipIf(AudioGenerationService is None, "audio_generation_service deps not installed")
+class CompositionRootWiringTests(unittest.TestCase):
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        with mock.patch.object(AudioGenerationService, "_load_google_credentials"):
+            self.service = AudioGenerationService(self._tmp.name)
+
+    def tearDown(self):
+        self._tmp.cleanup()
+
+    def test_each_local_provider_gets_its_profile_named_adapter(self):
+        chatterbox = self.service.audio_engine("chatterbox_local", voice_id="v", voice_sample_root=None)
+        vibevoice = self.service.audio_engine("vibevoice", voice_id="v", voice_sample_root=None)
+        self.assertEqual((chatterbox.adapter, chatterbox.max_chunk_chars), (ADAPTER_CHATTERBOX, 450))
+        self.assertEqual((vibevoice.adapter, vibevoice.max_chunk_chars), (ADAPTER_VIBEVOICE, None))
+        self.assertIsInstance(chatterbox, AudioEngine)
+        self.assertIsInstance(vibevoice, AudioEngine)
+
+    def test_cloud_and_unknown_providers_have_no_engine(self):
+        with self.assertRaises(ValueError):
+            self.service.audio_engine("google_tts", voice_id="v", voice_sample_root=None)
+        with self.assertRaises(UnknownProviderError):
+            self.service.audio_engine("not-a-provider", voice_id="v", voice_sample_root=None)
+
+    def test_chatterbox_engine_routes_to_the_chatterbox_path_with_settings(self):
+        settings = {"variant": "turbo", "temperature": 0.5}
+        engine = self.service.audio_engine(
+            "chatterbox", voice_id="v.wav", voice_sample_root="/samples", chatterbox_settings=settings
+        )
+        with mock.patch.object(
+            self.service, "generate_chatterbox_text_to_path", return_value=(True, None)
+        ) as chatterbox_path, mock.patch.object(
+            self.service, "generate_vibevoice_text_to_path"
+        ) as vibevoice_path:
+            engine.generate_audio(text="Hi.", sample_path="v.wav", output_path="o.wav")
+        vibevoice_path.assert_not_called()
+        kwargs = chatterbox_path.call_args.kwargs
+        self.assertEqual(kwargs["voice_sample_root"], "/samples")
+        self.assertEqual(kwargs["settings"], settings)
+        self.assertEqual(kwargs["voice_id"], "v.wav")
+
+    def test_vibevoice_engine_routes_to_the_vibevoice_path(self):
+        engine = self.service.audio_engine("vibevoice_local", voice_id="v.wav", voice_sample_root=None)
+        with mock.patch.object(
+            self.service, "generate_vibevoice_text_to_path", return_value=(False, "boom")
+        ):
+            with self.assertRaisesRegex(RuntimeError, "boom"):
+                engine.generate_audio(text="Hi.", sample_path="v.wav", output_path="o.wav")
 
 
 if __name__ == "__main__":

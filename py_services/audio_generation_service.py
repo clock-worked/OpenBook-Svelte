@@ -31,6 +31,7 @@ from chapter_audio.generation import generate_engine_text
 from chapter_audio.text_utils import normalize_typography
 
 try:
+    from .audio.engine_adapters import VoiceBoundEngine
     from .audio.provider_profile import (
         ADAPTER_CHATTERBOX,
         ADAPTER_ELEVENLABS,
@@ -42,6 +43,7 @@ try:
         resolve_provider_profile,
     )
 except ImportError:
+    from audio.engine_adapters import VoiceBoundEngine
     from audio.provider_profile import (
         ADAPTER_CHATTERBOX,
         ADAPTER_ELEVENLABS,
@@ -574,6 +576,52 @@ class AudioGenerationService:
             import traceback
             traceback.print_exc()
             return False, error_msg
+
+    def audio_engine(
+        self,
+        provider: str,
+        *,
+        voice_id: str,
+        voice_sample_root: Optional[str],
+        chatterbox_settings: Optional[Dict[str, Any]] = None,
+    ) -> VoiceBoundEngine:
+        """The ``AudioEngine`` for a local chunked provider, voice bound.
+
+        Composition root of the engine seam: the provider profile names the
+        adapter; ``LOCAL_ENGINE_CLASSES`` supplies its declarations
+        (``max_chunk_chars``, ``normalize``); generation goes through this
+        service's cached model. Raises ``UnknownProviderError`` for an unknown
+        provider and ``ValueError`` for a cloud one.
+        """
+        profile = resolve_provider_profile(provider)
+        engine_class = local_engine_class(profile.name)
+
+        if profile.adapter == ADAPTER_CHATTERBOX:
+            def generate_to_path(*, text, voice_id, output_path):
+                return self.generate_chatterbox_text_to_path(
+                    text=text,
+                    voice_id=voice_id,
+                    output_path=output_path,
+                    voice_sample_root=voice_sample_root,
+                    settings=chatterbox_settings,
+                )
+        else:
+            def generate_to_path(*, text, voice_id, output_path):
+                return self.generate_vibevoice_text_to_path(
+                    text=text,
+                    voice_id=voice_id,
+                    output_path=output_path,
+                    voice_sample_root=voice_sample_root,
+                )
+
+        return VoiceBoundEngine(
+            adapter=profile.adapter,
+            display_name=profile.display_name,
+            max_chunk_chars=engine_class.max_chunk_chars,
+            normalize=engine_class.normalize,
+            voice_id=voice_id,
+            generate_to_path=generate_to_path,
+        )
 
     def generate_chatterbox_text_to_path(
         self,

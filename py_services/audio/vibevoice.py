@@ -19,7 +19,6 @@ from api_models import ChatterboxGenerationSettings
 from audio_generation_service import (
     AudioGenerationService,
     build_chatterbox_generator_info,
-    local_engine_class,
 )
 from chapter_audio.engine import plan_engine_chunks
 from chapter_audio.asr_alignment import (
@@ -46,7 +45,7 @@ from chapter_audio.validation import (
 )
 from chapter_audio.text_utils import normalize_chapter_text, utc_now_iso
 
-from .provider_profile import is_chatterbox_provider, is_local_chunked_provider
+from .provider_profile import is_local_chunked_provider
 from .router_support import make_audio_service_ensurer, raise_generation_failure
 
 
@@ -862,62 +861,12 @@ def _run_character_chunk_pipeline(
     transcription_json_path = work_dir / "transcription_result.json"
     split_validation_report_path = work_dir / "split_validation_report.json"
 
-    class _ServiceChunkGenerator:
-        def __init__(
-            self,
-            *,
-            audio_service: AudioGenerationService,
-            voice_id: str,
-            voice_sample_root: Optional[str],
-            provider: str,
-            chatterbox_settings: Optional[Dict[str, Any]] = None,
-        ) -> None:
-            self._audio_service = audio_service
-            self._voice_id = voice_id
-            self._voice_sample_root = voice_sample_root
-            self._provider = str(provider or "").strip().lower()
-            self._chatterbox_settings = chatterbox_settings
-            engine_class = local_engine_class(self._provider)
-            self.adapter = engine_class.adapter
-            self.max_chunk_chars = engine_class.max_chunk_chars
-            self.normalize = engine_class.normalize
-
-        def generate_audio(
-            self,
-            *,
-            text: str,
-            sample_path: str,
-            output_path: str,
-            seed: int | None,
-        ) -> None:
-            effective_voice_id = self._voice_id or str(sample_path)
-            _ = seed
-
-            if is_chatterbox_provider(self._provider):
-                success, error_details = self._audio_service.generate_chatterbox_text_to_path(
-                    text=text,
-                    voice_id=effective_voice_id,
-                    output_path=Path(output_path),
-                    voice_sample_root=self._voice_sample_root,
-                    settings=self._chatterbox_settings,
-                )
-                fallback_error = "Chatterbox generation failed."
-            else:
-                success, error_details = self._audio_service.generate_vibevoice_text_to_path(
-                    text=text,
-                    voice_id=effective_voice_id,
-                    output_path=Path(output_path),
-                    voice_sample_root=self._voice_sample_root,
-                )
-                fallback_error = "VibeVoice generation failed."
-            if not success:
-                raise RuntimeError(error_details or fallback_error)
-
-    chunk_generator = _ServiceChunkGenerator(
-        audio_service=service,
+    # The AudioEngine adapter for this provider, built at the composition
+    # root (AudioGenerationService.audio_engine; named by the provider profile).
+    chunk_generator = service.audio_engine(
+        request.provider,
         voice_id=request.voice_id,
         voice_sample_root=request.voice_sample_root,
-        provider=request.provider,
         chatterbox_settings=chatterbox_settings,
     )
 

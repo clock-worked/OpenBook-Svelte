@@ -157,6 +157,39 @@ class GenerateEngineTextTests(unittest.TestCase):
             self.assertEqual(calls, 1)
 
 
+try:  # the per-line production entrypoint needs httpx + google-auth
+    from audio_generation_service import AudioGenerationService
+except ImportError:  # pragma: no cover - depends on the environment
+    AudioGenerationService = None
+
+
+@unittest.skipIf(AudioGenerationService is None, "audio_generation_service deps not installed")
+class ProductionLinePathTests(unittest.TestCase):
+    """The per-line route (generate_chatterbox_text_to_path) plans long lines."""
+
+    def test_long_line_is_planned_into_engine_calls(self):
+        from unittest import mock
+
+        with tempfile.TemporaryDirectory() as d:
+            sample = Path(d) / "voice.wav"
+            sample.write_bytes(b"")
+            with mock.patch.object(AudioGenerationService, "_load_google_credentials"):
+                audio_service = AudioGenerationService(d)
+            engine = _make_service()
+            audio_service._chatterbox_services["base"] = engine
+            out = Path(d) / "line.wav"
+            ok, error = audio_service.generate_chatterbox_text_to_path(
+                text="word " * 200,
+                voice_id=str(sample),
+                output_path=out,
+                voice_sample_root=None,
+            )
+            self.assertTrue(ok, error)
+            self.assertEqual(len(engine._in_process_model.calls), 3)
+            self.assertTrue(all(len(c) <= 450 for c in engine._in_process_model.calls))
+            self.assertTrue(out.exists())
+
+
 def _chapter_text(line_count=12, words_per_line=30):
     return "\n".join(
         " ".join(f"w{line}x{word}" for word in range(words_per_line)) + "."
