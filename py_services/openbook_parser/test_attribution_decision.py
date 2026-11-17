@@ -230,7 +230,6 @@ class RuleRegistryTests(unittest.TestCase):
             "recent_named_mention",
             "previous_paragraph_named_mention",
             "same_paragraph_continuation",
-            "paragraph_sibling_confirmed",
             "speech_verb",
             "alias_strength",
             "learned_descriptor_match",

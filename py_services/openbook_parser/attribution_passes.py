@@ -127,7 +127,6 @@ class LineSignals:
     next_dialogue_legacy: Optional[str] = None
     descriptor_match: Optional[str] = None
     post_quote_named_mention: Optional[str] = None
-    paragraph_sibling_speaker: Optional[str] = None
 
 
 @dataclass
@@ -513,10 +512,6 @@ def rank_candidates(candidates: Sequence[str], signals: LineSignals) -> RankedDe
         if signals.next_resolved and key == _norm(signals.next_resolved):
             score += 0.1
             reasons.append("next_continuity")
-
-        if signals.paragraph_sibling_speaker and key == _norm(signals.paragraph_sibling_speaker):
-            score += 0.3
-            reasons.append("paragraph_sibling_confirmed")
 
         if (
             signals.prev_resolved

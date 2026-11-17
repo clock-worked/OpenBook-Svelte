@@ -142,7 +142,6 @@ _RULE_SPECS: Tuple[RuleSpec, ...] = (
     _spec("same_paragraph_continuation", CARRYOVER, ORIGIN_SCORING, GATE_RANK_SUPPORT),
     _spec("prev_continuity", CARRYOVER, ORIGIN_SCORING),
     _spec("next_continuity", CARRYOVER, ORIGIN_SCORING),
-    _spec("paragraph_sibling_confirmed", CARRYOVER, ORIGIN_SCORING, GATE_RANK_SUPPORT),
     _spec("two_sided_continuity", CARRYOVER, ORIGIN_SCORING),
     _spec("coref_support", LOCAL_EVIDENCE, ORIGIN_SCORING, GATE_RANK_SUPPORT, GATE_JEV_LOCAL_SHIELD),
     _spec("alias_strength", LOCAL_EVIDENCE, ORIGIN_SCORING, GATE_RANK_SUPPORT, GATE_JEV_LOCAL_SHIELD),

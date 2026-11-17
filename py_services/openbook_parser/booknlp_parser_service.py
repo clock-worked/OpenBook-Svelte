@@ -360,26 +360,6 @@ class BookNLPParserService:
             for idx, paragraph_index in line_paragraph_index.items()
         }
 
-        # User-confirmed speakers per paragraph: lines the user has explicitly
-        # attributed (resolutionStatus == "user_confirmed") are the strongest
-        # evidence for sibling-line attribution.
-        user_confirmed_speakers_by_paragraph: Dict[int, List[str]] = {}
-        for idx, base_line in enumerate(base_lines):
-            if base_line.line_type != "dialogue":
-                continue
-            attribution = base_line.attribution
-            if not isinstance(attribution, dict):
-                continue
-            if attribution.get("resolutionStatus") != "user_confirmed":
-                continue
-            speaker = str(base_line.speaker or "").strip()
-            if not speaker:
-                continue
-            para_idx = line_paragraph_index.get(idx, -1)
-            if para_idx < 0:
-                continue
-            user_confirmed_speakers_by_paragraph.setdefault(para_idx, []).append(speaker)
-
         uncertain_lines = 0
         resolved_dialogue_by_paragraph: Dict[int, str] = {}
 
@@ -433,7 +413,6 @@ class BookNLPParserService:
                 is_returning_by_line=is_returning_by_line,
                 closed_world_catalog=closed_world_catalog,
                 closed_world=closed_world,
-                user_confirmed_speakers_by_paragraph=user_confirmed_speakers_by_paragraph,
             )
             result = extract_line_signals(extraction_ctx)
             signals = result.signals
