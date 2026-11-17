@@ -45,6 +45,7 @@ from chapter_audio_test.validation import (
 from chapter_audio_test.text_utils import normalize_chapter_text, utc_now_iso
 
 from .provider_profile import is_chatterbox_provider, is_local_chunked_provider
+from .router_support import make_audio_service_ensurer, raise_generation_failure
 
 
 DEFAULT_MIN_CHUNK_CHARS = 800
@@ -1235,22 +1236,13 @@ def create_vibevoice_router(
 ) -> APIRouter:
     router = APIRouter(prefix="/api/vibevoice", tags=["vibevoice"])
 
-    def _ensure_audio_service(audio_root_override: Optional[str]) -> AudioGenerationService:
-        existing = get_audio_service()
-        if existing is not None:
-            return existing
-
-        selected_root = audio_root_override or get_audio_root() or get_book_root()
-        if not selected_root:
-            raise HTTPException(
-                status_code=400,
-                detail="Audio root not configured. Set audio root or provide audio_root in request.",
-            )
-
-        normalized_root = os.path.normpath(selected_root)
-        service = AudioGenerationService(normalized_root)
-        set_audio_service(normalized_root, service)
-        return service
+    _ensure_audio_service = make_audio_service_ensurer(
+        get_audio_root=get_audio_root,
+        get_book_root=get_book_root,
+        get_audio_service=get_audio_service,
+        set_audio_service=set_audio_service,
+        service_factory=AudioGenerationService,
+    )
 
     @router.post("/line")
     async def generate_line(request: VibeVoiceLineRequest):
@@ -1270,14 +1262,7 @@ def create_vibevoice_router(
         )
 
         if not result.get("success"):
-            error_detail = result.get("error", "Generation failed")
-            error_text = str(error_detail).lower()
-            status = 500
-            if "not found" in error_text or "could not be found" in error_text:
-                status = 400
-            elif "required" in error_text or "invalid" in error_text:
-                status = 400
-            raise HTTPException(status_code=status, detail=error_detail)
+            raise_generation_failure(result.get("error", "Generation failed"))
 
         return {
             "success": True,
