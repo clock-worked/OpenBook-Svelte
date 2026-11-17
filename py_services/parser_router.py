@@ -162,8 +162,12 @@ def create_parser_router(get_book_root: Callable[[], str]) -> APIRouter:
                 await asyncio.to_thread(
                     apply_dialogue_stats_delta, Path(book_root), resolved_path, request.content
                 )
-            except Exception as stats_err:
-                print(f"  ⚠️  Error applying character stats delta: {stats_err}")
+            except Exception:  # noqa: BLE001 - stats failures never fail the save
+                logging.getLogger(__name__).warning(
+                    "Dialogue saved but applying the character stats delta failed for '%s'",
+                    request.file_path,
+                    exc_info=True,
+                )
 
             return {"message": "File saved successfully."}
         except HTTPException as http_exc:

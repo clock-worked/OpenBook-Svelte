@@ -1,7 +1,10 @@
-"""Router regression tests for /api/save.
+"""Router regression tests for /api/save and /api/save-dialogue.
 
 SaveRequest.content is a plain dict (Dict[str, Any]); the handler must
 serialize it with json.dumps, not a pydantic model method.
+
+/api/save-dialogue (ADR 0012) writes the dialogue file, then applies the
+character stats delta; a stats failure never fails the save.
 """
 
 import json
@@ -83,3 +86,67 @@ class SaveEndpointTests(unittest.TestCase):
         self.assertEqual(response.status_code, 500)
         self.assertEqual(response.headers.get("access-control-allow-origin"), origin)
         self.assertEqual(response.json()["detail"], "JEV dialogue assist failed: test JEV failure")
+
+
+class SaveDialogueEndpointTests(unittest.TestCase):
+    """Pins the /api/save-dialogue contract: write, then stats delta; a
+    stats failure is logged and never fails the save. /api/save has no
+    stats step."""
+
+    def setUp(self):
+        self._temp_dir = tempfile.TemporaryDirectory(prefix="openbook_save_dialogue_test_")
+        self.book_root = Path(self._temp_dir.name)
+        self._env = mock.patch.dict(os.environ, {"VERCEL_JEV_API_KEY": "test-key"})
+        self._env.start()
+        self.dialogue = {
+            "formatVersion": "3.2",
+            "chapterId": "Chapter 1",
+            "lines": [{"id": 1, "characterId": "AA01BB02", "text": "Hello."}],
+        }
+
+    def tearDown(self):
+        self._env.stop()
+        self._temp_dir.cleanup()
+
+    def _make_client(self) -> TestClient:
+        app = FastAPI()
+        app.include_router(create_parser_router(lambda: str(self.book_root)))
+        return TestClient(app)
+
+    def _post(self, endpoint: str):
+        with self._make_client() as client:
+            return client.post(
+                endpoint,
+                json={"file_path": "Chapter 1/dialogue.json", "content": self.dialogue},
+            )
+
+    def _written(self):
+        return json.loads((self.book_root / "Chapter 1" / "dialogue.json").read_text(encoding="utf-8"))
+
+    def test_save_dialogue_writes_then_applies_stats_delta(self):
+        with mock.patch("parser_router.apply_dialogue_stats_delta") as apply_delta:
+            response = self._post("/api/save-dialogue")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self._written(), self.dialogue)
+        apply_delta.assert_called_once()
+        root_arg, path_arg, content_arg = apply_delta.call_args.args
+        self.assertEqual(Path(root_arg), self.book_root)
+        self.assertEqual(Path(path_arg).resolve(), (self.book_root / "Chapter 1" / "dialogue.json").resolve())
+        self.assertEqual(content_arg, self.dialogue)
+
+    def test_stats_failure_never_fails_the_save(self):
+        with mock.patch(
+            "parser_router.apply_dialogue_stats_delta",
+            side_effect=RuntimeError("accumulator exploded"),
+        ), self.assertLogs("parser_router", level="WARNING") as logs:
+            response = self._post("/api/save-dialogue")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self._written(), self.dialogue)
+        self.assertTrue(any("stats delta failed" in line for line in logs.output))
+
+    def test_plain_save_has_no_stats_step(self):
+        with mock.patch("parser_router.apply_dialogue_stats_delta") as apply_delta:
+            response = self._post("/api/save")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self._written(), self.dialogue)
+        apply_delta.assert_not_called()
