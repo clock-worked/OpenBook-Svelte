@@ -28,6 +28,7 @@ import {
   setRootDirHandle,
   writeCentralCharacters,
   writeDialogue,
+  writeDialogueSave,
   writeEditableJson,
   writeScript,
 } from '../fs';
@@ -205,11 +206,12 @@ describe('dialogue save endpoints (ADR 0012)', () => {
     invalidateCentralCharactersCache();
   });
 
-  it('routes dialogue saves to the combined save-dialogue endpoint', async () => {
+  it('routes a dialogue save to the combined save-dialogue endpoint', async () => {
     const dialogue = { formatVersion: '2.0', lines: [{ characterId: 'alice', text: 'hi' }] };
     vi.mocked(apiPostVoid).mockResolvedValue(undefined);
 
-    expect(await writeDialogue('Ch 1/dialogue.json', dialogue as never)).toBe(true);
+    // The sidecar outcome tells the owner the endpoint applied the delta.
+    expect(await writeDialogueSave('Ch 1/dialogue.json', dialogue as never)).toBe('sidecar');
 
     // One round trip: the combined endpoint applies the stats delta itself,
     // so there is no separate delta call in sidecar mode.
@@ -218,6 +220,28 @@ describe('dialogue save endpoints (ADR 0012)', () => {
       file_path: 'Ch 1/dialogue.json',
       content: dialogue,
     });
+  });
+
+  it('keeps writeDialogue a pure write (plain save endpoint, no stats)', async () => {
+    const dialogue = { formatVersion: '2.0', lines: [{ characterId: 'alice', text: 'hi' }] };
+    vi.mocked(apiPostVoid).mockResolvedValue(undefined);
+
+    expect(await writeDialogue('Ch 1/dialogue.json', dialogue as never)).toBe(true);
+
+    expect(apiPostVoid).toHaveBeenCalledTimes(1);
+    expect(apiPostVoid).toHaveBeenCalledWith('/api/save', {
+      file_path: 'Ch 1/dialogue.json',
+      content: dialogue,
+    });
+  });
+
+  it('reports a failed dialogue save as null', async () => {
+    vi.mocked(apiPostVoid).mockRejectedValue(new Error('disk full'));
+    const error = vi.spyOn(console, 'error').mockImplementation(() => { /* swallow */ });
+
+    expect(await writeDialogueSave('Ch 1/dialogue.json', { lines: [] } as never)).toBeNull();
+
+    error.mockRestore();
   });
 
   it('never infers the endpoint from the path', async () => {
@@ -252,7 +276,7 @@ describe('dialogue save endpoints (ADR 0012)', () => {
     });
   });
 
-  it('fires a fire-and-forget stats delta after a direct FSA dialogue write', async () => {
+  it('reports a direct FSA dialogue write as handle, with no sidecar call', async () => {
     const written: string[] = [];
     const root = {
       kind: 'directory',
@@ -274,15 +298,13 @@ describe('dialogue save endpoints (ADR 0012)', () => {
     vi.mocked(apiPostVoid).mockResolvedValue(undefined);
 
     const dialogue = { formatVersion: '2.0', lines: [{ characterId: 'alice', text: 'hi' }] };
-    expect(await writeDialogue('Ch 1/dialogue.json', dialogue as never)).toBe(true);
+    expect(await writeDialogueSave('Ch 1/dialogue.json', dialogue as never)).toBe('handle');
 
-    // The file went straight to disk through the handle...
+    // The file went straight to disk through the handle; the write itself
+    // has no stats side effect (the owner's stats step applies the delta).
     expect(written).toHaveLength(1);
-    // ...and the sidecar only receives the fire-and-forget delta call.
-    expect(apiPostVoid).toHaveBeenCalledTimes(1);
-    expect(apiPostVoid).toHaveBeenCalledWith('/api/apply-dialogue-stats', {
-      file_path: 'Ch 1/dialogue.json',
-    });
+    expect(apiPostVoid).not.toHaveBeenCalled();
+    setRootDirHandle(null);
   });
 
   it('warns without throwing when the stats delta fails', async () => {

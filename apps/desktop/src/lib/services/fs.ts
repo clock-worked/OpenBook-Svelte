@@ -596,6 +596,16 @@ export function getBookCharactersPath(): string {
  */
 export type WriteKind = 'file' | 'dialogueSave';
 
+/**
+ * Where a write landed: `handle` (File System Access — the sidecar never
+ * saw it) or `sidecar`. Reported so a caller can run its own follow-up step
+ * (e.g. the chapter save's stats step) without inferring the session mode.
+ */
+export type WriteRoute = 'handle' | 'sidecar';
+
+/** A successful write's outcome; `unchanged` = content identical on disk, nothing written. */
+export type WriteOutcome = WriteRoute | 'unchanged';
+
 interface BookFsTransport {
   /**
    * Read a file as raw text (path relative to the book root).
@@ -613,10 +623,10 @@ interface BookFsTransport {
    * adapter writes the string verbatim; the sidecar adapter ships the
    * parsed JSON value, so `contents` must be JSON text. `kind` selects
    * the sidecar endpoint (see `WriteKind`).
-   * Returns false when the write did not complete through this
-   * transport (the composite then falls back to the sidecar).
+   * Returns where the write landed, or null when it did not complete
+   * through this transport (the composite then falls back to the sidecar).
    */
-  writeText(path: string, contents: string, kind: WriteKind): Promise<boolean>;
+  writeText(path: string, contents: string, kind: WriteKind): Promise<WriteRoute | null>;
   /**
    * List the entry names of a directory. Returns null when the
    * directory is unreachable through this transport (the composite
@@ -656,17 +666,17 @@ const fsaTransport: BookFsTransport = {
     }
   },
   async writeText(path, contents) {
-    if (!rootDirHandle) return false;
+    if (!rootDirHandle) return null;
     try {
       const fileHandle = await getFileHandle(rootDirHandle, splitRelPath(path), true);
-      if (!fileHandle) return false;
+      if (!fileHandle) return null;
       const writable = await fileHandle.createWritable();
       await writable.write(contents);
       await writable.close();
-      return true;
+      return 'handle';
     } catch (error) {
       console.warn(`[fs] File System API write failed for ${path}; trying backend`, error);
-      return false;
+      return null;
     }
   },
   async listEntries(dirPath, { jsonOnly }) {
@@ -732,10 +742,10 @@ const httpTransport: BookFsTransport = {
         file_path: path,
         content: JSON.parse(contents) as unknown,
       });
-      return true;
+      return 'sidecar';
     } catch (error) {
       console.error(`Failed to write to ${path}`, error);
-      return false;
+      return null;
     }
   },
   async listEntries(dirPath) {
@@ -777,7 +787,7 @@ function handleOverSidecar(): BookFsTransport {
       ),
     writeText: (path, contents, kind) =>
       fsaTransport.writeText(path, contents, kind).then(
-        (ok) => ok || httpTransport.writeText(path, contents, kind),
+        (route) => route ?? httpTransport.writeText(path, contents, kind),
       ),
     listEntries: (dirPath, options) =>
       fsaTransport.listEntries(dirPath, options).then(
@@ -809,8 +819,8 @@ export async function readOptionalJsonRelative<T>(path: string): Promise<T | nul
   return readFileAsJson<T>(path, false);
 }
 
-async function writeFileDirect(path: string, contents: string, kind: WriteKind = 'file'): Promise<boolean> {
-  return activeTransport().writeText(path, contents, kind);
+async function writeFileDirect(path: string, contents: string): Promise<boolean> {
+  return (await activeTransport().writeText(path, contents, 'file')) !== null;
 }
 
 async function readHistoryFile(path: string): Promise<string | null> {
@@ -885,7 +895,20 @@ async function writeFile(
   recordHistory = true,
   kind: WriteKind = 'file',
 ): Promise<boolean> {
-  if (!recordHistory || path.startsWith('_backups/')) return writeFileDirect(path, contents, kind);
+  return (await writeFileRouted(path, contents, recordHistory, kind)) !== null;
+}
+
+/** writeFile, reporting where the write landed (null = failed). */
+async function writeFileRouted(
+  path: string,
+  contents: string,
+  recordHistory: boolean,
+  kind: WriteKind,
+): Promise<WriteOutcome | null> {
+  if (!recordHistory || path.startsWith('_backups/')) return activeTransport().writeText(path, contents, kind);
+  // history.write skips a byte-identical write; the apply below reports the
+  // route when it does write.
+  let outcome: WriteOutcome = 'unchanged';
   try {
     await history.write(
       path === 'settings.json' ? 'Change book settings'
@@ -897,17 +920,20 @@ async function writeFile(
       () => readHistoryFile(path),
       async (value) => {
         // Undo/redo of a write re-uses the kind its caller named.
-        const success = value === null
-          ? await deleteFileDirect('', path)
-          : await writeFileDirect(path, value, kind);
-        if (!success) throw new Error(`Could not restore or save ${path}`);
+        if (value === null) {
+          if (!await deleteFileDirect('', path)) throw new Error(`Could not restore or save ${path}`);
+          return;
+        }
+        const route = await activeTransport().writeText(path, value, kind);
+        if (!route) throw new Error(`Could not restore or save ${path}`);
+        outcome = route;
       },
       sameEditableJson,
     );
-    return true;
+    return outcome;
   } catch (error) {
     history.reportError(error);
-    return false;
+    return null;
   }
 }
 
@@ -922,24 +948,24 @@ export async function readOptionalDialogue(path: string): Promise<DialogueJson |
 }
 
 /**
- * Write a dialogue document. `kind` defaults to `dialogueSave`, which keeps
- * today's sidecar routing (`/api/save-dialogue`) for every dialogue writer;
- * the chapter persistence owner names it explicitly.
+ * Write a dialogue document — a pure write (`/api/save` on the sidecar), with
+ * no character-stats side effect. Backups, audio-metadata stamps and
+ * remap/migration rewrites use this. A chapter dialogue *save* goes through
+ * the chapter persistence owner, which uses `writeDialogueSave`.
  */
-export async function writeDialogue(
-  path: string,
-  data: DialogueJson,
-  recordHistory = true,
-  kind: WriteKind = 'dialogueSave',
-): Promise<boolean> {
-  const success = await writeFile(path, JSON.stringify(data, null, 2), recordHistory, kind);
-  // ADR 0012: with a file-system handle the write went straight to disk, so
-  // the sidecar never saw it. One fire-and-forget delta call keeps character
-  // stats current without blocking the save.
-  if (success && rootDirHandle) {
-    void applyDialogueStatsDelta(path);
-  }
-  return success;
+export async function writeDialogue(path: string, data: DialogueJson, recordHistory = true): Promise<boolean> {
+  return writeFile(path, JSON.stringify(data, null, 2), recordHistory);
+}
+
+/**
+ * The chapter dialogue save write (kind `dialogueSave`), for the chapter
+ * persistence owner. Records history. On the sidecar it goes to
+ * `/api/save-dialogue`, which applies the stats delta itself; the outcome
+ * says where the write landed (null = failed) so the owner can run its
+ * explicit stats step.
+ */
+export async function writeDialogueSave(path: string, data: DialogueJson): Promise<WriteOutcome | null> {
+  return writeFileRouted(path, JSON.stringify(data, null, 2), true, 'dialogueSave');
 }
 
 /**

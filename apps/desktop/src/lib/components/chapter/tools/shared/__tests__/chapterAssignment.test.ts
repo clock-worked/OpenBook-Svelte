@@ -3,18 +3,18 @@ import { get, writable } from 'svelte/store';
 import { assignCharacterToLines } from '../../review/reviewHandlers';
 import { normalizeAttribution, normalizeScriptData } from '../chapterNormalization';
 import { loadChapterContent, saveDialogueFromNormalized } from '../chapterPersistence';
-import { writeDialogue } from '$lib/services/fs';
+import { writeDialogueSave } from '$lib/services/fs';
 import type { UnifiedLine } from '../../types';
 import type { DialogueJson } from '$lib/types';
 
-// The save pipeline now calls fs writeDialogue directly (the transport is
+// The save pipeline calls fs writeDialogueSave directly (the transport is
 // internal to chapterPersistence), so stub just that one export and keep the
 // rest of the fs module real (reviewHandlers uses getCharactersPath from it).
 vi.mock('$lib/services/fs', async (importOriginal) => {
     const actual = await importOriginal<typeof import('$lib/services/fs')>();
     return {
         ...actual,
-        writeDialogue: vi.fn(async (_path: string, _data: DialogueJson) => true),
+        writeDialogueSave: vi.fn(async (_path: string, _data: DialogueJson) => 'sidecar' as const),
     };
 });
 
@@ -45,7 +45,7 @@ describe('non-speaker role assignment', () => {
                 normalizeAttribution,
             },
         });
-        const saved = vi.mocked(writeDialogue).mock.calls[0][1];
+        const saved = vi.mocked(writeDialogueSave).mock.calls[0][1];
         expect(saved.lines[0]).toMatchObject({ characterId: 'CATHERINE_ID', isNonSpeaker: false });
         const reloaded = await normalizeScriptData(saved, {
             root: 'test-root', unknownThreshold: 0.62,

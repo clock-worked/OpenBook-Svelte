@@ -1,7 +1,13 @@
 import type { AudioGenerationRecord, DialogueJson, ScriptJson } from '$lib/types';
 import type { UnifiedLine } from '$lib/components/chapter/tools/types';
 import { computeReturningFlags, isDialogueSpan } from '$lib/services/dialogueReturning';
-import { readOptionalDialogue, writeDialogue } from '$lib/services/fs';
+import {
+    applyDialogueStatsDelta,
+    readOptionalDialogue,
+    writeDialogue,
+    writeDialogueSave,
+    type WriteOutcome,
+} from '$lib/services/fs';
 import { buildNameToIdMap } from '$lib/stores/characters';
 import { alignChapterLineSpans } from './chapterPresentation';
 
@@ -305,16 +311,42 @@ export async function saveDialogueFromNormalized(params: {
     const relativePath = `${ch.title}/dialogue.json`;
     console.log('[ChapterView] Writing dialogue to relative path:', relativePath);
 
-    // writeDialogue (fs) already performs the File System API → backend
-    // fallback internally, so one call is the entire transport. This module
-    // names the write kind: a chapter dialogue save.
-    const saved = await writeDialogue(relativePath, dialoguePayload, true, 'dialogueSave');
+    const saved = await writeChapterDialogue(relativePath, dialoguePayload);
     if (saved) {
         console.log('[ChapterView] ✓ Successfully saved dialogue.json');
     } else {
         console.error('[ChapterView] ✗ Failed to save dialogue.json');
     }
     return saved;
+}
+
+/**
+ * Write a chapter's dialogue document as a dialogue save, then run the
+ * explicit stats step. The one write path for genuine dialogue saves (the
+ * chapter save above and a fresh parse); every other dialogue writer uses
+ * the pure `writeDialogue` and never touches character stats.
+ */
+export async function writeChapterDialogue(relativePath: string, payload: DialogueJson): Promise<boolean> {
+    // The fs transport performs the File System API → backend fallback
+    // internally, so one call is the entire write. This module names the
+    // write kind: a chapter dialogue save.
+    const outcome = await writeDialogueSave(relativePath, payload);
+    if (outcome === null) return false;
+    applyStatsAfterDialogueSave(relativePath, outcome);
+    return true;
+}
+
+/**
+ * The stats step of a dialogue save (ADR 0012), explicit rather than a
+ * low-level write side effect:
+ *   - `sidecar`   — `/api/save-dialogue` already applied the delta: nothing.
+ *   - `handle`    — the File System Access write never reached the sidecar:
+ *                   ask it to apply the delta (fire-and-forget; stats are
+ *                   eventually consistent and a failure only warns).
+ *   - `unchanged` — nothing was written: nothing.
+ */
+export function applyStatsAfterDialogueSave(relativePath: string, outcome: WriteOutcome): void {
+    if (outcome === 'handle') void applyDialogueStatsDelta(relativePath);
 }
 
 /**

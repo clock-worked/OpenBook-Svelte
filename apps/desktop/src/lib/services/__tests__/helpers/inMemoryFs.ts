@@ -110,6 +110,10 @@ export const inMemoryFs = {
   writeCharacters: async (path: string, data: unknown) => writeJson(path, data),
   writeCentralCharacters: async (_root: string, data: unknown) => writeJson('characters.json', data),
   writeDialogue: async (path: string, data: unknown) => writeJson(path, data),
+  // The chapter dialogue save write: the backend-path case lands on the
+  // sidecar ('sidecar' outcome), whose endpoint applies the stats delta.
+  writeDialogueSave: async (path: string, data: unknown) => (writeJson(path, data) ? 'sidecar' as const : null),
+  applyDialogueStatsDelta: async (_relPath: string) => true,
   writeScript: async (path: string, data: unknown) => writeJson(path, data),
   writeVoices: async (_root: string, data: unknown) => writeJson('voices.json', data),
 
