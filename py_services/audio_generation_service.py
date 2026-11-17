@@ -1,17 +1,16 @@
 """
 Audio generation service for OpenBook.
-Handles TTS provider integration and manifest management.
+Handles TTS provider integration; manifest writes go through
+audio/manifest_store.py.
 """
 
 import os
 import sys
-import json
 import asyncio
 import threading
 from pathlib import Path
 from typing import Optional, Dict, Any, Tuple
 import httpx
-from datetime import datetime
 import base64
 from google.oauth2 import service_account
 from google.auth.transport.requests import Request
@@ -39,6 +38,13 @@ try:
         is_chatterbox_provider,
         resolve_provider_profile,
     )
+    from .audio.manifest_store import (
+        MANIFEST_FILENAME,
+        build_clip as build_manifest_clip,
+        reconcile as reconcile_manifest,
+        remove_clip as remove_manifest_clip,
+        upsert_clip as upsert_manifest_clip,
+    )
 except ImportError:
     from audio.provider_profile import (
         ADAPTER_CHATTERBOX,
@@ -49,6 +55,13 @@ except ImportError:
         UnknownProviderError,
         is_chatterbox_provider,
         resolve_provider_profile,
+    )
+    from audio.manifest_store import (
+        MANIFEST_FILENAME,
+        build_clip as build_manifest_clip,
+        reconcile as reconcile_manifest,
+        remove_clip as remove_manifest_clip,
+        upsert_clip as upsert_manifest_clip,
     )
 
 
@@ -172,25 +185,23 @@ class AudioGenerationService:
             audio_size = audio_path.stat().st_size
             estimated_duration = self._estimate_duration(audio_size)
             
-            # Update manifest
-            manifest_path = character_dir / "manifest.json"
-            generator_info = build_chatterbox_generator_info(provider, chatterbox_settings)
-            await asyncio.to_thread(
-                self._update_manifest,
-                manifest_path,
-                line_id,
-                character_id,
-                character_name,
-                text,
-                audio_filename,
-                chapter_title,
-                source_file,
-                voice_id,
-                provider,
-                emotion,
-                estimated_duration,
-                generator_info,
+            # Record the clip in the character manifest
+            manifest_path = character_dir / MANIFEST_FILENAME
+            clip = build_manifest_clip(
+                line_id=line_id,
+                character_id=character_id,
+                character_name=character_name,
+                text=text,
+                audio_file=audio_filename,
+                chapter=chapter_title,
+                source_file=source_file,
+                voice_id=voice_id,
+                provider=provider,
+                emotion=emotion,
+                duration=round(estimated_duration, 2),
+                generator_info=build_chatterbox_generator_info(provider, chatterbox_settings),
             )
+            await asyncio.to_thread(upsert_manifest_clip, manifest_path, clip)
             
             return {
                 "success": True,
@@ -635,95 +646,6 @@ class AudioGenerationService:
         bytes_per_second = 16000
         return file_size_bytes / bytes_per_second
 
-    def _update_manifest(
-        self,
-        manifest_path: Path,
-        line_id: int,
-        character_id: str,
-        character_name: str,
-        text: str,
-        audio_file: str,
-        chapter: str,
-        source_file: str,
-        voice_id: str,
-        provider: str,
-        emotion: Optional[str],
-        duration: float,
-        generator_info: Optional[Dict[str, Any]] = None,
-    ):
-        """Update or create manifest.json with new clip information."""
-        
-        # Load existing manifest or create new one
-        if manifest_path.exists():
-            with open(manifest_path, 'r', encoding='utf-8') as f:
-                manifest = json.load(f)
-        else:
-            manifest = {
-                "formatVersion": "2.0",
-                "characterId": character_id,
-                "characterName": character_name,
-                "metadata": {
-                    "totalClips": 0,
-                    "chapters": [],
-                    "sources": {},
-                    "voiceIds": {},
-                    "primaryVoiceId": voice_id,
-                    "lastUpdated": ""
-                },
-                "clips": []
-            }
-        
-        # Create new clip entry
-        generator_info = generator_info or {}
-        new_clip = {
-            "id": line_id,
-            "characterId": character_id,
-            "characterName": character_name,
-            "text": text,
-            "audioFile": audio_file,
-            "chapter": chapter,
-            "sourceFile": source_file,
-            "voiceId": voice_id,
-            "provider": provider,
-            "variant": generator_info.get("variant"),
-            "temperature": generator_info.get("temperature"),
-            "cfgWeight": generator_info.get("cfgWeight"),
-            "exaggeration": generator_info.get("exaggeration"),
-            "emotion": emotion,
-            "metadata": {
-                "generatedAt": datetime.utcnow().isoformat() + "Z",
-                "duration": round(duration, 2)
-            }
-        }
-        
-        # Remove existing clip with same ID if it exists
-        manifest["clips"] = [c for c in manifest["clips"] if c["id"] != line_id]
-        
-        # Add new clip
-        manifest["clips"].append(new_clip)
-        
-        # Update metadata
-        manifest["metadata"]["totalClips"] = len(manifest["clips"])
-        
-        # Update chapters list
-        chapters = set(manifest["metadata"]["chapters"])
-        chapters.add(chapter)
-        manifest["metadata"]["chapters"] = sorted(list(chapters))
-        
-        # Update sources
-        sources = manifest["metadata"]["sources"]
-        sources[source_file] = sources.get(source_file, 0) + 1
-        
-        # Update voice IDs
-        voice_ids = manifest["metadata"]["voiceIds"]
-        voice_ids[voice_id] = voice_ids.get(voice_id, 0) + 1
-        
-        manifest["metadata"]["lastUpdated"] = datetime.utcnow().isoformat() + "Z"
-        
-        # Save manifest
-        with open(manifest_path, 'w', encoding='utf-8') as f:
-            json.dump(manifest, f, indent=2, ensure_ascii=False)
-    
     def delete_audio_line(
         self,
         chapter_title: str,
@@ -746,24 +668,9 @@ class AudioGenerationService:
                     print(f"Deleted audio file: {audio_path}")
             
             # Update manifest to remove this clip
-            manifest_path = character_dir / "manifest.json"
-            if manifest_path.exists():
-                with open(manifest_path, 'r', encoding='utf-8') as f:
-                    manifest = json.load(f)
-                
-                # Remove clip from manifest
-                original_count = len(manifest["clips"])
-                manifest["clips"] = [c for c in manifest["clips"] if c["id"] != line_id]
-                
-                if len(manifest["clips"]) < original_count:
-                    # Update metadata
-                    manifest["metadata"]["totalClips"] = len(manifest["clips"])
-                    manifest["metadata"]["lastUpdated"] = datetime.utcnow().isoformat() + "Z"
-                    
-                    # Save updated manifest
-                    with open(manifest_path, 'w', encoding='utf-8') as f:
-                        json.dump(manifest, f, indent=2, ensure_ascii=False)
-                    print(f"Updated manifest, removed clip {line_id}")
+            manifest_path = character_dir / MANIFEST_FILENAME
+            if remove_manifest_clip(manifest_path, line_id):
+                print(f"Updated manifest, removed clip {line_id}")
             
             return True
             
@@ -781,216 +688,7 @@ class AudioGenerationService:
         If the manifest is missing but audio files exist, bootstrap a minimal
         manifest from those files so the UI can reflect generated audio.
         """
-        character_dir = self.audio_root / chapter_title / "audio_lines" / character_name
-        manifest_path = character_dir / "manifest.json"
-
-        def _discover_audio_files() -> Dict[int, str]:
-            audio_files = [
-                path for path in character_dir.iterdir()
-                if path.is_file() and path.suffix.lower() in {".wav", ".mp3"}
-            ]
-
-            by_line_id: Dict[int, str] = {}
-            for audio_file in sorted(audio_files, key=lambda p: p.name.lower()):
-                stem = audio_file.stem
-                line_prefix = stem.split("-", 1)[0]
-                if not line_prefix.isdigit():
-                    continue
-                line_id = int(line_prefix)
-                # Prefer wav when both wav/mp3 exist for same line id.
-                existing_name = by_line_id.get(line_id)
-                if existing_name is None:
-                    by_line_id[line_id] = audio_file.name
-                elif existing_name.lower().endswith(".mp3") and audio_file.suffix.lower() == ".wav":
-                    by_line_id[line_id] = audio_file.name
-
-            return by_line_id
-
-        def _bootstrap_manifest_from_files() -> Dict[str, Any]:
-            by_line_id = _discover_audio_files()
-
-            if not by_line_id:
-                return {
-                    "updated": False,
-                    "added_count": 0,
-                    "removed_count": 0,
-                    "clip_count": 0,
-                    "manifest": None,
-                }
-
-            generated_at = datetime.utcnow().isoformat() + "Z"
-            clips = [
-                {
-                    "id": line_id,
-                    "characterId": character_name.lower().replace(" ", "_"),
-                    "characterName": character_name,
-                    "text": "",
-                    "audioFile": file_name,
-                    "chapter": chapter_title,
-                    "sourceFile": chapter_title,
-                    "voiceId": "",
-                    "provider": "vibevoice_local",
-                    "emotion": None,
-                    "metadata": {
-                        "generatedAt": generated_at,
-                        "duration": 0.0,
-                    },
-                }
-                for line_id, file_name in sorted(by_line_id.items(), key=lambda item: item[0])
-            ]
-
-            manifest = {
-                "formatVersion": "2.0",
-                "characterId": character_name.lower().replace(" ", "_"),
-                "characterName": character_name,
-                "metadata": {
-                    "totalClips": len(clips),
-                    "chapters": [chapter_title],
-                    "sources": {chapter_title: len(clips)},
-                    "voiceIds": {},
-                    "primaryVoiceId": None,
-                    "lastUpdated": generated_at,
-                },
-                "clips": clips,
-            }
-
-            character_dir.mkdir(parents=True, exist_ok=True)
-            with open(manifest_path, 'w', encoding='utf-8') as handle:
-                json.dump(manifest, handle, indent=2, ensure_ascii=False)
-
-            return {
-                "updated": True,
-                "added_count": len(clips),
-                "removed_count": 0,
-                "clip_count": len(clips),
-                "manifest": manifest,
-            }
-
-        if not character_dir.exists() or not character_dir.is_dir():
-            return {
-                "updated": False,
-                "added_count": 0,
-                "removed_count": 0,
-                "clip_count": 0,
-                "manifest": None,
-            }
-
-        if not manifest_path.exists() or not manifest_path.is_file():
-            return _bootstrap_manifest_from_files()
-
-        try:
-            with open(manifest_path, 'r', encoding='utf-8') as handle:
-                manifest = json.load(handle)
-        except Exception as exc:
-            print(f"Error reading manifest for reconciliation: {manifest_path} - {exc}")
-            return _bootstrap_manifest_from_files()
-
-        clips = manifest.get("clips")
-        if not isinstance(clips, list):
-            clips = []
-            manifest["clips"] = clips
-
-        discovered_audio = _discover_audio_files()
-        kept_clips_by_id: Dict[int, Dict[str, Any]] = {}
-        removed_count = 0
-        for clip in clips:
-            if not isinstance(clip, dict):
-                removed_count += 1
-                continue
-
-            line_id = clip.get("id")
-            if not isinstance(line_id, int):
-                removed_count += 1
-                continue
-
-            audio_file = clip.get("audioFile")
-            if not isinstance(audio_file, str) or not audio_file.strip():
-                removed_count += 1
-                continue
-
-            clip_path = character_dir / audio_file
-            if not clip_path.exists() or not clip_path.is_file():
-                removed_count += 1
-                continue
-
-            kept_clips_by_id[line_id] = clip
-
-        added_count = 0
-        generated_at = datetime.utcnow().isoformat() + "Z"
-        for line_id, file_name in discovered_audio.items():
-            existing_clip = kept_clips_by_id.get(line_id)
-            if existing_clip is None:
-                kept_clips_by_id[line_id] = {
-                    "id": line_id,
-                    "characterId": character_name.lower().replace(" ", "_"),
-                    "characterName": character_name,
-                    "text": "",
-                    "audioFile": file_name,
-                    "chapter": chapter_title,
-                    "sourceFile": chapter_title,
-                    "voiceId": "",
-                    "provider": "vibevoice_local",
-                    "emotion": None,
-                    "metadata": {
-                        "generatedAt": generated_at,
-                        "duration": 0.0,
-                    },
-                }
-                added_count += 1
-                continue
-
-            if existing_clip.get("audioFile") != file_name:
-                existing_clip["audioFile"] = file_name
-
-        kept_clips = [kept_clips_by_id[line_id] for line_id in sorted(kept_clips_by_id)]
-
-        updated = removed_count > 0 or added_count > 0
-        manifest["clips"] = kept_clips
-
-        metadata = manifest.get("metadata")
-        if not isinstance(metadata, dict):
-            metadata = {}
-            manifest["metadata"] = metadata
-
-        metadata["totalClips"] = len(kept_clips)
-
-        chapters = sorted({str(c.get("chapter")) for c in kept_clips if isinstance(c.get("chapter"), str) and c.get("chapter")})
-        metadata["chapters"] = chapters
-
-        source_counts: Dict[str, int] = {}
-        voice_counts: Dict[str, int] = {}
-        for clip in kept_clips:
-            source_file = clip.get("sourceFile")
-            if isinstance(source_file, str) and source_file:
-                source_counts[source_file] = source_counts.get(source_file, 0) + 1
-
-            voice_id = clip.get("voiceId")
-            if isinstance(voice_id, str) and voice_id:
-                voice_counts[voice_id] = voice_counts.get(voice_id, 0) + 1
-
-        metadata["sources"] = source_counts
-        metadata["voiceIds"] = voice_counts
-
-        existing_primary = metadata.get("primaryVoiceId")
-        if isinstance(existing_primary, str) and existing_primary in voice_counts:
-            metadata["primaryVoiceId"] = existing_primary
-        elif voice_counts:
-            metadata["primaryVoiceId"] = max(voice_counts.items(), key=lambda item: item[1])[0]
-        else:
-            metadata["primaryVoiceId"] = None
-
-        if updated:
-            metadata["lastUpdated"] = datetime.utcnow().isoformat() + "Z"
-            with open(manifest_path, 'w', encoding='utf-8') as handle:
-                json.dump(manifest, handle, indent=2, ensure_ascii=False)
-
-        return {
-            "updated": updated,
-            "added_count": added_count,
-            "removed_count": removed_count,
-            "clip_count": len(kept_clips),
-            "manifest": manifest,
-        }
+        return reconcile_manifest(self.audio_root, chapter_title, character_name)
     
     def delete_character_audio(
         self,
@@ -1011,7 +709,7 @@ class AudioGenerationService:
                 audio_file.unlink()
             
             # Delete manifest
-            manifest_path = character_dir / "manifest.json"
+            manifest_path = character_dir / MANIFEST_FILENAME
             if manifest_path.exists():
                 manifest_path.unlink()
             
