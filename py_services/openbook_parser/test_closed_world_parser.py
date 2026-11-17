@@ -2,6 +2,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from .attribution_decision import rule_category, trace_invariant_violations
 from .attribution_passes import (
     LineSignals,
     infer_sentence_attributed_speaker,
@@ -421,6 +422,53 @@ class ClosedWorldParserTests(unittest.TestCase):
         self.assertIn("post_quote_mention", alice_entry.reasons)
         # Margin should be wide (not fragile)
         self.assertGreaterEqual(decision.ranked[0].score - decision.ranked[1].score, 0.3)
+
+
+CONFORMANCE_CHAPTER = (
+    '"Hello," I said.\n'
+    '"Hold the line," Morgan said to Alex. "Now."\n'
+    'Alex nodded.\n'
+    '"Why?"\n'
+    '"Because."\n'
+    '\n'
+    '"Who goes there?" asked Rogue.\n'
+    'She muttered something. "Fine," she said.\n'
+)
+CONFORMANCE_OPTIONS = {
+    "pov_mode": "first_person",
+    "protagonists": ["Catherine"],
+    "closed_world_characters": True,
+    "character_catalog": [
+        {"characterId": "catherine", "name": "Catherine", "aliases": [], "gender": "Female"},
+        {"characterId": "alex", "name": "Alex", "aliases": [], "gender": "Male"},
+        {"characterId": "morgan", "name": "Morgan", "aliases": [], "gender": "Female"},
+    ],
+}
+
+
+def parse_conformance_chapter(parse):
+    with tempfile.TemporaryDirectory() as temp_dir:
+        chapter_path = Path(temp_dir) / "chapter.txt"
+        chapter_path.write_text(CONFORMANCE_CHAPTER, encoding="utf-8")
+        return parse(str(chapter_path))
+
+
+class AttributionConformanceTests(unittest.TestCase):
+    """Every writer's output satisfies the owner's trace contract (ADR-0013)."""
+
+    def test_legacy_writer_records_only_a_registered_rule(self):
+        lines, _ = parse_conformance_chapter(
+            lambda path: DialogueParserService().parse_file(path, options=CONFORMANCE_OPTIONS)
+        )
+        dialogue = [line for line in lines if line.line_type == "dialogue"]
+        self.assertTrue(dialogue)
+        for line in dialogue:
+            with self.subTest(text=line.text):
+                self.assertEqual(set(line.attribution), {"legacyRule"})
+                rule = line.attribution["legacyRule"]
+                if rule is not None:
+                    self.assertIsNotNone(rule_category(rule), rule)
+                self.assertEqual(trace_invariant_violations(line), [])
 
 
 if __name__ == "__main__":

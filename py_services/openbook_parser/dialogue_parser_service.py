@@ -13,6 +13,7 @@ os.environ.setdefault("TRANSFORMERS_NO_TF", "1")
 os.environ.setdefault("USE_TF", "0")
 os.environ.setdefault("USE_FLAX", "0")
 
+from .attribution_decision import apply_decision, legacy_decision
 from .knowledge_store import load_knowledge_for_file
 try:
     from .models.character import Character
@@ -898,16 +899,20 @@ class HybridDialogueParser:
                     if is_suggestion:
                         suggestions = speaker.strip('[]').split('|')
                         final_speaker = suggestions[0]
-                    output_lines.append(DialogueLine(
+                    dialogue_line = DialogueLine(
                         text=line_text,
-                        speaker=final_speaker,
+                        speaker=None,
                         line_type="dialogue",
-                        is_suggestion=is_suggestion,
-                        suggestions=suggestions,
                         span_start=span_start,
                         span_end=span_end,
-                        attribution={"legacyRule": chunk.get("attribution_rule")},
+                    )
+                    apply_decision(dialogue_line, legacy_decision(
+                        chunk.get("attribution_rule"),
+                        speaker=final_speaker,
+                        is_suggestion=is_suggestion,
+                        suggestions=suggestions,
                     ))
+                    output_lines.append(dialogue_line)
         return output_lines
 
 
