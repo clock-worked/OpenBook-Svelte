@@ -141,6 +141,7 @@ This is a **dialogue format evolution**. `voices.json` remains a v2-compatible s
 - `decisionTrace` (object|null): parser scoring trace for inspection and debugging.
   - `selectedCandidate` (string|null)
   - `selectedReasons` (string[])
+  - `ruleCategory` (string|null, optional): category of the selected reasons in the attribution rule registry — `HARD`, `CARRYOVER`, `LOCAL_EVIDENCE` or `FIRST_PERSON` (strongest present wins; see ADR-0013). Absent on files written before the field existed.
   - `overrideReason` (string|null, optional)
   - `signals` (object|null)
 - `candidates` (array): richer candidate list for review UI.

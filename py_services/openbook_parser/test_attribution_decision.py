@@ -36,6 +36,7 @@ from .attribution_decision import (
     RULE_CATEGORIES,
     RULE_PREFIXES,
     RULE_REGISTRY,
+    TRACE_DECISION_FIELDS,
     PolicyFacts,
     apply_decision,
     decision_rule_category,
@@ -382,6 +383,10 @@ class ApplyDecisionTests(unittest.TestCase):
         self.assertEqual(trace["selectedReasons"], ["post_quote_attribution", "context_gender_conflict"])
         self.assertIsNot(trace["selectedReasons"], attribution["candidates"][0]["reasons"])
         self.assertEqual(trace["rawCandidatePool"], ["Jake", "Viper"])
+        self.assertEqual(trace["ruleCategory"], HARD)
+        self.assertEqual(
+            list(trace)[:3], ["selectedCandidate", "selectedReasons", "ruleCategory"],
+        )
         self.assertEqual(trace_invariant_violations(line), [])
         self.assertTrue(has_hard_attribution(line))
         self.assertTrue(has_explicit_local_attribution(line))
@@ -428,6 +433,7 @@ class ApplyDecisionTests(unittest.TestCase):
         self.assertEqual(trace["selectedCandidate"], "Viper")
         self.assertEqual(trace["selectedReasons"], ["context_gender_conflict", "same_paragraph_context_consistency"])
         self.assertEqual(trace["overrideReason"], "same_paragraph_context_consistency")
+        self.assertEqual(trace["ruleCategory"], LOCAL_EVIDENCE)  # strongest present
         self.assertTrue(line.attribution["genderConflict"])
         self.assertEqual(trace_invariant_violations(line), [])
 
@@ -503,6 +509,15 @@ class ApplyDecisionTests(unittest.TestCase):
         self.assertEqual(line.attribution["decisionTrace"], trace_before)
         self.assertFalse(line.is_suggestion)
 
+    def test_first_person_override_carries_the_first_person_category(self):
+        line = ranked_line([("Catherine", 0.79, ["parser_match", "legacy_match"])])
+        self.assertEqual(line.attribution["decisionTrace"]["ruleCategory"], LOCAL_EVIDENCE)
+        apply_decision(line, override_decision(
+            "first_person", "Catherine", "0p_protagonist_first_person", is_suggestion=False,
+        ))
+        self.assertEqual(line.attribution["decisionTrace"]["ruleCategory"], FIRST_PERSON)
+        self.assertEqual(trace_invariant_violations(line), [])
+
     def test_invariant_checker_reports_hand_built_drift(self):
         line = make_line("Viper", attribution={
             "genderConflict": False,
@@ -517,7 +532,38 @@ class ApplyDecisionTests(unittest.TestCase):
             "selectedReasons != top candidate reasons",
             "genderConflict not recomputed from selectedReasons",
             "candidate order != ranking",
+            "ruleCategory != category of selectedReasons",
         })
+
+
+# ---------------------------------------------------------------------------
+# Reader-side projection parity
+# ---------------------------------------------------------------------------
+
+
+def pydantic_fields(path: Path, class_name: str) -> set:
+    """Annotated field names of a pydantic model, read from source (no import)."""
+    for node in ast.walk(_tree(path)):
+        if isinstance(node, ast.ClassDef) and node.name == class_name:
+            return {
+                item.target.id
+                for item in node.body
+                if isinstance(item, ast.AnnAssign) and isinstance(item.target, ast.Name)
+            }
+    raise AssertionError(f"{class_name} not found in {path}")
+
+
+class ProjectionParityTests(unittest.TestCase):
+    def test_api_models_trace_preserves_every_owner_decision_field(self):
+        fields = pydantic_fields(PY_SERVICES_DIR / "api_models.py", "AttributionDecisionTrace")
+        self.assertEqual(set(TRACE_DECISION_FIELDS) - fields, set())
+
+    def test_api_models_attribution_preserves_the_owner_selection_fields(self):
+        fields = pydantic_fields(PY_SERVICES_DIR / "api_models.py", "Attribution")
+        for name in ("genderConflict", "decisionTrace", "candidates"):
+            self.assertIn(name, fields)
+        candidate_fields = pydantic_fields(PY_SERVICES_DIR / "api_models.py", "AttributionCandidate")
+        self.assertTrue({"name", "confidence", "reasons"} <= candidate_fields)
 
 
 if __name__ == "__main__":

@@ -428,9 +428,12 @@ PLACEMENT_KEEP = "keep"
 
 #: decisionTrace fields the owner writes as the decision itself (as opposed to
 #: per-stage provenance blocks such as ``signals`` or ``episodeDecoder``).
+#: ``ruleCategory`` is the wire's additive category field (ADR-0013): the
+#: :func:`decision_rule_category` of ``selectedReasons``, rewritten with them.
 TRACE_DECISION_FIELDS: Tuple[str, ...] = (
     "selectedCandidate",
     "selectedReasons",
+    "ruleCategory",
     "overrideReason",
 )
 
@@ -718,6 +721,7 @@ def _write_selection(attribution: dict, trace: dict, chosen: Optional[str], reas
     attribution["genderConflict"] = "context_gender_conflict" in reasons
     trace["selectedCandidate"] = chosen
     trace["selectedReasons"] = reasons
+    trace["ruleCategory"] = decision_rule_category(reasons)
 
 
 def _apply_initial(line, decision: Decision) -> None:
@@ -727,9 +731,11 @@ def _apply_initial(line, decision: Decision) -> None:
         if rows:
             attribution["genderConflict"] = "context_gender_conflict" in rows[0].reasons
         attribution["candidates"] = [row.to_wire() for row in rows]
+        reasons = list(rows[0].reasons) if rows else list(decision.reasons)
         trace: Dict[str, object] = {
             "selectedCandidate": decision.chosen,
-            "selectedReasons": list(rows[0].reasons) if rows else list(decision.reasons),
+            "selectedReasons": reasons,
+            "ruleCategory": decision_rule_category(reasons),
         }
         trace.update(decision.trace_fields)
         attribution["decisionTrace"] = trace
@@ -878,9 +884,11 @@ def trace_invariant_violations(line) -> List[str]:
     """
     attribution = _attribution_of(line)
     trace = _trace_of(line)
-    if not trace or trace.get("selectedCandidate") is None:
-        return []
     violations: List[str] = []
+    if trace and trace.get("ruleCategory") != decision_rule_category(trace.get("selectedReasons") or []):
+        violations.append("ruleCategory != category of selectedReasons")
+    if not trace or trace.get("selectedCandidate") is None:
+        return violations
     rows = [row for row in attribution.get("candidates") or [] if isinstance(row, dict)]
     chosen = trace.get("selectedCandidate")
     reasons = list(trace.get("selectedReasons") or [])
