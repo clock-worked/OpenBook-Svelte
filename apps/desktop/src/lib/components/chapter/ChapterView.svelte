@@ -1,16 +1,15 @@
 <script lang="ts">
   import { onDestroy, onMount, tick } from 'svelte';
   import { history, historyAction } from '$lib/services/history';
-  import { chapters, currentChapter, currentScript, bookRoot, bookRootAbsolutePath, chapterReloadRequest } from '$lib/stores/bookState';
+  import { chapters, currentChapter, currentScript, bookRoot, chapterReloadRequest } from '$lib/stores/bookState';
   import type { ScriptJson, DialogueJson } from '$lib/types';
   import { writable } from 'svelte/store';
   import { conflictCursor, toolMode, audioGenerateLineId } from '$lib/stores/selection';
   import { get } from 'svelte/store';
-  import { readTextFile, readDialogueForChapter, readCentralCharacters, writeCentralCharacters, writeScript, readOptionalJsonRelative, listCharacterFiles, captureEditableFiles } from '$lib/services/fs';
+  import { readTextFile, readDialogueForChapter, readCentralCharacters, writeScript, readOptionalJsonRelative, listCharacterFiles, captureEditableFiles } from '$lib/services/fs';
   import { readManifest } from '$lib/services/audio';
-  import { API_ENDPOINTS, apiFetch, apiPostJson } from '$lib/services/apiClient';
+  import { API_ENDPOINTS, apiPostJson } from '$lib/services/apiClient';
   import type { ReviewChapterRequest, ReviewChapterResponse } from '$lib/services/apiContracts';
-  import { mapRawBookCharacters } from '$lib/services/bookCharacterRepository';
   import { characters, buildIdToNameMap } from '$lib/stores/characters';
   import { addBookCharacterAlias, bookCharacters, forceRefreshBookCharacters } from '$lib/stores/bookCharacters';
   import { CheckCircle2 } from 'lucide-svelte';
@@ -34,10 +33,10 @@
     mergeNormalizedFromLegacy,
   } from '$lib/components/chapter/tools/shared/chapterStateSync';
   import {
-    ensureCentralCharactersForNames as ensureCentralCharactersForNamesShared,
     ensureCharacterNameToIdMapCached,
-  } from '$lib/components/chapter/tools/shared/chapterCharacterBootstrap';
-  import { loadChapterContent, saveDialogueFromNormalized } from '$lib/components/chapter/tools/shared/chapterPersistence';
+    loadChapterContent,
+    saveDialogueFromNormalized,
+  } from '$lib/components/chapter/tools/shared/chapterPersistence';
   import { 
     getCharacterOptionsForLine, 
     getCharacterOptionsForContext,
@@ -113,28 +112,6 @@
       },
       root: get(bookRoot),
       readCentralCharacters,
-    });
-  }
-
-  async function ensureCentralCharactersForNames(names: string[]): Promise<void> {
-    await ensureCentralCharactersForNamesShared({
-      names,
-      root: get(bookRoot),
-      readCentralCharacters,
-      writeCentralCharacters,
-      getBackendRootAbsolutePath: () => get(bookRootAbsolutePath),
-      apiSave: (payload) =>
-        apiFetch(API_ENDPOINTS.save, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        }),
-      onCharactersUpdated: (central) => {
-        bookCharacters.set(mapRawBookCharacters(central as any));
-      },
-      resetCharacterNameToIdCache: () => {
-        characterNameToIdMap = null;
-      },
     });
   }
 
@@ -434,7 +411,6 @@
       if (sourceAlias) aliasLearningCandidates.add(sourceAlias);
     }
 
-    await ensureCentralCharactersForNames([characterName]);
     assignCharacterToLines(lineIds, characterName, normalizedScript, rebuildParagraphRuns, scheduleSave);
 
     const normalizedTarget = characterName.trim().toLowerCase();
@@ -678,7 +654,6 @@
       unknownThreshold: getUnknownThreshold(),
       unknownSpeakerLabel: UNKNOWN_SPEAKER_LABEL,
       repo: {
-        ensureCentralCharactersForNames,
         ensureCharacterNameToIdMap,
         normalizeAttribution,
       },

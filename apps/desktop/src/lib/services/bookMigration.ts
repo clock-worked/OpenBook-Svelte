@@ -450,8 +450,7 @@ async function migrateDialogueFiles(options: MigrateBookOptions, report: BookMig
                 unknownThreshold: options.unknownThreshold,
                 unknownSpeakerLabel,
                 repo: {
-                    // Character creation already happened book-wide above; in a v3 book this bootstrap is a no-op anyway.
-                    ensureCentralCharactersForNames: async () => {},
+                    // Character creation already happened book-wide above.
                     ensureCharacterNameToIdMap: async () => buildNameToIdMap(await readFolderCharacters(root)),
                     normalizeAttribution,
                 },

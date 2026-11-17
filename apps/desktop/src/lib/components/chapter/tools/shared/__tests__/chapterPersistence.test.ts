@@ -33,7 +33,6 @@ describe('saveDialogueFromNormalized — candidate reasons', () => {
         ] as any;
 
         const repo = {
-            ensureCentralCharactersForNames: async () => {},
             ensureCharacterNameToIdMap: async () =>
                 new Map([
                     ['rashid', 'YY3GE4HN'],

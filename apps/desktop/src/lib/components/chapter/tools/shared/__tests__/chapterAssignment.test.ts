@@ -41,7 +41,6 @@ describe('non-speaker role assignment', () => {
             normalized: get(script), chapter: { title: 'Test chapter' },
             rawText, unknownThreshold: 0.62, unknownSpeakerLabel: 'Unknown',
             repo: {
-                ensureCentralCharactersForNames: async () => {},
                 ensureCharacterNameToIdMap: async () => new Map([['catherine', 'CATHERINE_ID']]),
                 normalizeAttribution,
             },

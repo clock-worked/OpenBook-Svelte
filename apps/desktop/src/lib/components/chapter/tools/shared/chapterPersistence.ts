@@ -2,6 +2,7 @@ import type { AudioGenerationRecord, DialogueJson, ScriptJson } from '$lib/types
 import type { UnifiedLine } from '$lib/components/chapter/tools/types';
 import { computeReturningFlags, isDialogueSpan } from '$lib/services/dialogueReturning';
 import { readOptionalDialogue, writeDialogue } from '$lib/services/fs';
+import { buildNameToIdMap } from '$lib/stores/characters';
 import { alignChapterLineSpans } from './chapterPresentation';
 
 type ChapterLike = {
@@ -141,6 +142,28 @@ export async function loadChapterContent(params: {
     };
 }
 
+export async function ensureCharacterNameToIdMapCached(params: {
+    cachedMap: Map<string, string> | null;
+    setCachedMap: (map: Map<string, string>) => void;
+    root: string | null;
+    readCentralCharacters: (root: string) => Promise<{ characters?: any[] } | null>;
+}): Promise<Map<string, string>> {
+    if (params.cachedMap) return params.cachedMap;
+    if (!params.root) return new Map();
+
+    try {
+        const centralChars = await params.readCentralCharacters(params.root);
+        const nextMap = centralChars?.characters ? buildNameToIdMap(centralChars.characters) : new Map<string, string>();
+        params.setCachedMap(nextMap);
+        return nextMap;
+    } catch (error) {
+        console.warn('[ChapterView] Failed to load characters for name-to-ID map:', error);
+        const empty = new Map<string, string>();
+        params.setCachedMap(empty);
+        return empty;
+    }
+}
+
 /**
  * The book's character-resolution services the save pipeline needs, bundled
  * into one `repo` object so this function's interface stays narrow: the
@@ -149,7 +172,6 @@ export async function loadChapterContent(params: {
  * book's resolution callbacks.
  */
 export type ChapterSaveRepo = {
-    ensureCentralCharactersForNames: (names: string[]) => Promise<void>;
     ensureCharacterNameToIdMap: () => Promise<Map<string, string>>;
     normalizeAttribution: NormalizedAttributionFn;
 };
@@ -179,15 +201,6 @@ export async function saveDialogueFromNormalized(params: {
         chapter: ch.title,
     });
 
-    const allNames = new Set<string>();
-    for (const line of linesWithReturning) {
-        if (line.characterName) allNames.add(line.characterName);
-        for (const candidate of line.candidates || []) {
-            if (candidate?.name) allNames.add(candidate.name);
-        }
-    }
-
-    await params.repo.ensureCentralCharactersForNames(Array.from(allNames));
     const nameToIdMap = await params.repo.ensureCharacterNameToIdMap();
 
     const characterBreakdown: Record<string, number> = {};
