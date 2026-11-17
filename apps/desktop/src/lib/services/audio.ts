@@ -162,11 +162,17 @@ export async function getCharacterNameFromId(characterId: string): Promise<strin
 }
 
 /**
- * Resolve the effective audio root: explicit audio root, book absolute
- * path, or the user-configured book root override.
+ * Resolve the effective audio root — the one FE ordering, matching the BE
+ * resolver (`resolve_audio_root` in py_services/audio/router_support.py):
+ *
+ * 1. the explicit audio root,
+ * 2. the user-configured book root override,
+ * 3. the book absolute path.
+ *
+ * The override wins over the book root.
  */
 export function audioRootFor(): string | null {
-  return get(audioRoot) || get(bookRootAbsolutePath) || get(bookRootPathOverride) || null;
+  return get(audioRoot) || get(bookRootPathOverride) || get(bookRootAbsolutePath) || null;
 }
 
 /**

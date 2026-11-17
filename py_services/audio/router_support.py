@@ -5,9 +5,12 @@ Both routers call the same ``AudioGenerationService`` and used to carry
 their own copies of:
 
 - the lazily-created, cached service (``_ensure_audio_service``), and
-- the error-string -> HTTP status sniffing for a failed generation.
+- the error-string -> HTTP status sniffing for a failed generation,
 
-This module is the one copy. It imports nothing heavy at module level
+and the audio-root fallback existed in two orderings across them. This
+module is the one copy of each, including the one BE audio-root resolver
+(:func:`resolve_audio_root`; the FE twin is ``audioRootFor`` in
+``apps/desktop/src/lib/services/audio.ts``). It imports nothing heavy at module level
 (fastapi is imported only when an HTTP error is actually raised), so its
 pure parts are testable without fastapi.
 """
@@ -27,6 +30,24 @@ AUDIO_ROOT_NOT_CONFIGURED_DETAIL = (
 _CLIENT_ERROR_MARKERS = ("not found", "could not be found", "required", "invalid")
 
 ServiceT = TypeVar("ServiceT")
+
+
+def resolve_audio_root(
+    *,
+    configured_audio_root: Optional[str],
+    request_override: Optional[str],
+    book_root: Optional[str],
+) -> Optional[str]:
+    """The effective audio root -- the one canonical ordering:
+
+    1. the explicitly configured audio root (``/api/set-audio-root``),
+    2. the per-request override (a request's ``audio_root`` / ``root``),
+    3. the book root.
+
+    The per-request override wins over the book root. Returns ``None`` when
+    all three are empty.
+    """
+    return configured_audio_root or request_override or book_root or None
 
 
 def generation_error_status(error: Any) -> int:
@@ -60,9 +81,8 @@ def make_audio_service_ensurer(
     """Build the router's ``ensure_audio_service(audio_root_override=None)``.
 
     Returns the cached service when one exists (the override is then not
-    consulted). Otherwise creates one rooted at the first non-empty of
-    override, configured audio root, book root; caches it through
-    ``set_audio_service``; and returns it. Raises a 400 HTTPException when
+    consulted). Otherwise creates one rooted at :func:`resolve_audio_root`;
+    caches it through ``set_audio_service``; and returns it. Raises a 400 HTTPException when
     no root is available.
     """
 
@@ -71,7 +91,11 @@ def make_audio_service_ensurer(
         if existing is not None:
             return existing
 
-        selected_root = audio_root_override or get_audio_root() or get_book_root()
+        selected_root = resolve_audio_root(
+            configured_audio_root=get_audio_root(),
+            request_override=audio_root_override,
+            book_root=get_book_root(),
+        )
         if not selected_root:
             raise _http_error(400, AUDIO_ROOT_NOT_CONFIGURED_DETAIL)
 
@@ -89,4 +113,5 @@ __all__ = [
     "generation_error_status",
     "make_audio_service_ensurer",
     "raise_generation_failure",
+    "resolve_audio_root",
 ]

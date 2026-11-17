@@ -102,17 +102,17 @@ describe('audioRootFor', () => {
     expect(audioRootFor()).toBe('/roots/audio');
   });
 
-  it('falls back to the book absolute path', () => {
+  it('falls back to the settings book root override, which beats the book path', () => {
     bookRootAbsolutePath.set('/roots/book');
     bookRootPathOverride.set('/roots/override');
 
-    expect(audioRootFor()).toBe('/roots/book');
+    expect(audioRootFor()).toBe('/roots/override');
   });
 
-  it('falls back to the settings book root override', () => {
-    bookRootPathOverride.set('/roots/override');
+  it('falls back to the book absolute path last', () => {
+    bookRootAbsolutePath.set('/roots/book');
 
-    expect(audioRootFor()).toBe('/roots/override');
+    expect(audioRootFor()).toBe('/roots/book');
   });
 
   it('returns null when nothing is configured', () => {

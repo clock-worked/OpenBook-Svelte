@@ -13,6 +13,7 @@ from audio.router_support import (
     generation_error_status,
     make_audio_service_ensurer,
     raise_generation_failure,
+    resolve_audio_root,
 )
 
 try:
@@ -92,6 +93,29 @@ class GenerationErrorStatusTests(unittest.TestCase):
         self.assertEqual(ctx.exception.detail, "boom")
 
 
+class ResolveAudioRootTests(unittest.TestCase):
+    def resolve(self, configured=None, override=None, book=None):
+        return resolve_audio_root(
+            configured_audio_root=configured,
+            request_override=override,
+            book_root=book,
+        )
+
+    def test_configured_audio_root_comes_first(self):
+        self.assertEqual(self.resolve("/audio", "/override", "/book"), "/audio")
+
+    def test_per_request_override_beats_book_root(self):
+        self.assertEqual(self.resolve("", "/override", "/book"), "/override")
+        self.assertEqual(self.resolve(None, "/override", "/book"), "/override")
+
+    def test_book_root_is_the_last_fallback(self):
+        self.assertEqual(self.resolve("", "", "/book"), "/book")
+
+    def test_nothing_configured_is_none(self):
+        self.assertIsNone(self.resolve("", "", ""))
+        self.assertIsNone(self.resolve())
+
+
 class EnsureAudioServiceTests(unittest.TestCase):
     def test_returns_the_cached_service_and_ignores_the_override(self):
         cached = FakeService("/cached")
@@ -112,6 +136,14 @@ class EnsureAudioServiceTests(unittest.TestCase):
         runtime = FakeRuntime(book_root="/book")
         service = runtime.ensurer()("/override/")
         self.assertEqual(service.audio_root, os.path.normpath("/override/"))
+
+    def test_configured_audio_root_beats_override_when_creating(self):
+        # A configured root with no cached service (not reachable through
+        # api_runtime_state today, which sets both together) still follows
+        # the canonical order.
+        runtime = FakeRuntime(audio_root="/audio", book_root="/book")
+        service = runtime.ensurer()("/override")
+        self.assertEqual(service.audio_root, os.path.normpath("/audio"))
 
     @needs_fastapi
     def test_no_root_raises_400(self):

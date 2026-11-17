@@ -19,9 +19,17 @@ from api_models import (
 from audio_generation_service import AudioGenerationService
 
 try:
-    from .audio.router_support import make_audio_service_ensurer, raise_generation_failure
+    from .audio.router_support import (
+        make_audio_service_ensurer,
+        raise_generation_failure,
+        resolve_audio_root,
+    )
 except ImportError:
-    from audio.router_support import make_audio_service_ensurer, raise_generation_failure
+    from audio.router_support import (
+        make_audio_service_ensurer,
+        raise_generation_failure,
+        resolve_audio_root,
+    )
 
 VOICE_SAMPLE_METADATA_FILENAME = "openbook_voice_samples.json"
 VOICE_SAMPLE_ALLOWED_EXTS = {".wav", ".mp3", ".flac", ".ogg"}
@@ -349,7 +357,11 @@ def create_audio_router(
         root: str | None = None,
     ):
         try:
-            audio_root = get_audio_root() or get_book_root() or root
+            audio_root = resolve_audio_root(
+                configured_audio_root=get_audio_root(),
+                request_override=root,
+                book_root=get_book_root(),
+            )
             if not audio_root:
                 raise HTTPException(status_code=400, detail="Audio root not configured. Please set audio root path first.")
 
