@@ -39,9 +39,15 @@ let rootDirHandle: FileSystemDirectoryHandle | null = null;
 // ADR 0012: read cache for central character data. One read per book
 // session: invalidated by every character-data write and by root changes.
 let centralCharactersCache: { root: string; value: CharactersJson | null } | null = null;
+// The book's name→id map, derived from the central character data and
+// invalidated with it (the identity caches live and die together).
+let nameToIdMapCache: { root: string; value: Map<string, string> } | null = null;
+let characterCacheGeneration = 0;
 
 export function invalidateCentralCharactersCache(): void {
   centralCharactersCache = null;
+  nameToIdMapCache = null;
+  characterCacheGeneration += 1;
 }
 
 export function requiresBackendDirectoryPicker(): boolean {
@@ -1001,6 +1007,30 @@ export async function readCentralCharacters(root: string): Promise<CharactersJso
   const value = folder ?? await readFileAsJson<CharactersJson>('characters.json', false);
   centralCharactersCache = { root, value };
   return value;
+}
+
+/**
+ * The book's lowercase name/alias → character id map, built from
+ * `readCentralCharacters` and cached with it: every character-data write and
+ * every root change invalidates both. A failed read yields an empty map and
+ * is not cached.
+ */
+export async function ensureCharacterNameToIdMapCached(root: string | null): Promise<Map<string, string>> {
+  if (!root) return new Map();
+  if (nameToIdMapCache && nameToIdMapCache.root === root) return nameToIdMapCache.value;
+  const generation = characterCacheGeneration;
+  try {
+    const central = await readCentralCharacters(root);
+    // Dynamic import: the characters store imports this module.
+    const { buildNameToIdMap } = await import('$lib/stores/characters');
+    const value = central?.characters ? buildNameToIdMap(central.characters) : new Map<string, string>();
+    // An invalidation while this read was in flight wins: don't cache.
+    if (generation === characterCacheGeneration) nameToIdMapCache = { root, value };
+    return value;
+  } catch (error) {
+    console.warn('[fs] Failed to load characters for the name-to-ID map:', error);
+    return new Map();
+  }
 }
 
 export async function writeCentralCharacters(root: string, data: CharactersJson, recordHistory = true): Promise<boolean> {

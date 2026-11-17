@@ -3,12 +3,14 @@ import type { UnifiedLine } from '$lib/components/chapter/tools/types';
 import { computeReturningFlags, isDialogueSpan } from '$lib/services/dialogueReturning';
 import {
     applyDialogueStatsDelta,
+    ensureCharacterNameToIdMapCached,
+    invalidateCentralCharactersCache,
     readOptionalDialogue,
     writeDialogue,
     writeDialogueSave,
     type WriteOutcome,
 } from '$lib/services/fs';
-import { buildNameToIdMap } from '$lib/stores/characters';
+import { normalizeAttribution } from './chapterNormalization';
 import { alignChapterLineSpans } from './chapterPresentation';
 
 type ChapterLike = {
@@ -22,16 +24,6 @@ type NormalizedScriptPayload = {
     stats: any;
     hadAliasChanges?: boolean;
 };
-
-type NormalizedAttributionFn = (
-    existing: any,
-    candidates: Array<{ name: string; characterId?: string | null; confidence: number; reasons?: string[] }>,
-    characterName: string | null,
-    threshold: number,
-    fallbackSourceAlias?: string | null,
-    fallbackSourceCandidates?: string[],
-    unknownSpeakerLabel?: string
-) => any;
 
 function applyReturningFlags(lines: UnifiedLine[], rawText: string | null): UnifiedLine[] {
     if (!lines.length) return lines;
@@ -148,47 +140,20 @@ export async function loadChapterContent(params: {
     };
 }
 
-export async function ensureCharacterNameToIdMapCached(params: {
-    cachedMap: Map<string, string> | null;
-    setCachedMap: (map: Map<string, string>) => void;
-    root: string | null;
-    readCentralCharacters: (root: string) => Promise<{ characters?: any[] } | null>;
-}): Promise<Map<string, string>> {
-    if (params.cachedMap) return params.cachedMap;
-    if (!params.root) return new Map();
-
-    try {
-        const centralChars = await params.readCentralCharacters(params.root);
-        const nextMap = centralChars?.characters ? buildNameToIdMap(centralChars.characters) : new Map<string, string>();
-        params.setCachedMap(nextMap);
-        return nextMap;
-    } catch (error) {
-        console.warn('[ChapterView] Failed to load characters for name-to-ID map:', error);
-        const empty = new Map<string, string>();
-        params.setCachedMap(empty);
-        return empty;
-    }
-}
-
 /**
- * The book's character-resolution services the save pipeline needs, bundled
- * into one `repo` object so this function's interface stays narrow: the
- * transport (fs `writeDialogue`, which already does the File System API →
- * backend fallback internally) is internal, and callers supply only the
- * book's resolution callbacks.
+ * Save a chapter's dialogue (the one owner of chapter save). Callers supply
+ * only what varies; normalization, identity resolution, the transport and
+ * the stats step are internal. Steps, in order: returning flags → disk line
+ * metadata merge → name→id resolution (fs's cached resolver, coherent with
+ * every character-data write) → payload → dialogue save write → stats step.
  */
-export type ChapterSaveRepo = {
-    ensureCharacterNameToIdMap: () => Promise<Map<string, string>>;
-    normalizeAttribution: NormalizedAttributionFn;
-};
-
 export async function saveDialogueFromNormalized(params: {
     normalized: { lines: UnifiedLine[]; stats: any };
     chapter: ChapterLike;
+    root: string;
     rawText: string | null;
     unknownThreshold: number;
     unknownSpeakerLabel: string;
-    repo: ChapterSaveRepo;
     reviewed?: boolean;
     reviewedAt?: string | null;
 }): Promise<boolean> {
@@ -207,7 +172,7 @@ export async function saveDialogueFromNormalized(params: {
         chapter: ch.title,
     });
 
-    const nameToIdMap = await params.repo.ensureCharacterNameToIdMap();
+    const nameToIdMap = await ensureCharacterNameToIdMapCached(params.root);
 
     const characterBreakdown: Record<string, number> = {};
     for (const line of linesWithReturning) {
@@ -230,7 +195,7 @@ export async function saveDialogueFromNormalized(params: {
         reviewedLineCount: params.reviewed ? linesWithReturning.length : undefined,
         lines: linesWithReturning.map((line) => {
             const isNonSpeaker = line.isNonSpeaker === true;
-            const attribution = params.repo.normalizeAttribution(
+            const attribution = normalizeAttribution(
                 line.attribution || null,
                 (line.candidates || []).map((candidate) => ({
                     name: candidate.name,
@@ -347,6 +312,22 @@ export async function writeChapterDialogue(relativePath: string, payload: Dialog
  */
 export function applyStatsAfterDialogueSave(relativePath: string, outcome: WriteOutcome): void {
     if (outcome === 'handle') void applyDialogueStatsDelta(relativePath);
+}
+
+/**
+ * The identity-cache step for character data that changed outside the
+ * frontend's own write path (e.g. the backend's review-chapter descriptor
+ * learning rewrote character files): drop the central-characters and
+ * name→id caches, then reload the book-characters store. Frontend character
+ * writes already invalidate the caches in fs, and a dialogue save changes no
+ * identity data, so a plain save needs no invalidation of its own.
+ */
+export async function refreshCharacterCaches(): Promise<void> {
+    invalidateCentralCharactersCache();
+    // Dynamic import: keeps the store (and its top-level subscriptions) out of
+    // this module's static graph, which services such as fs and the parser load.
+    const { forceRefreshBookCharacters } = await import('$lib/stores/bookCharacters');
+    await forceRefreshBookCharacters();
 }
 
 /**

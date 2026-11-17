@@ -1,22 +1,20 @@
 import { describe, expect, it, vi } from 'vitest';
 import { get, writable } from 'svelte/store';
 import { assignCharacterToLines } from '../../review/reviewHandlers';
-import { normalizeAttribution, normalizeScriptData } from '../chapterNormalization';
+import { normalizeScriptData } from '../chapterNormalization';
 import { loadChapterContent, saveDialogueFromNormalized } from '../chapterPersistence';
-import { writeDialogueSave } from '$lib/services/fs';
+import { inMemoryFs } from '$lib/services/__tests__/helpers/inMemoryFs';
+import { makeCharacterFile } from '$lib/services/__tests__/helpers/fixtures';
 import type { UnifiedLine } from '../../types';
-import type { DialogueJson } from '$lib/types';
 
-// The save pipeline calls fs writeDialogueSave directly (the transport is
-// internal to chapterPersistence), so stub just that one export and keep the
-// rest of the fs module real (reviewHandlers uses getCharactersPath from it).
-vi.mock('$lib/services/fs', async (importOriginal) => {
-    const actual = await importOriginal<typeof import('$lib/services/fs')>();
-    return {
-        ...actual,
-        writeDialogueSave: vi.fn(async (_path: string, _data: DialogueJson) => 'sidecar' as const),
-    };
+// The chapter persistence owner reaches storage and identity resolution only
+// through fs: stub that seam with the in-memory fs.
+vi.mock('$lib/services/fs', async () => {
+    const mod = await import('$lib/services/__tests__/helpers/inMemoryFs');
+    return mod.inMemoryFs;
 });
+
+const G_CATHERINE = 'C4THR1NE';
 
 describe('non-speaker role assignment', () => {
     it('clears the non-speaker flag and retains the chosen role through save and reload', async () => {
@@ -36,21 +34,19 @@ describe('non-speaker role assignment', () => {
         expect(rebuild).toHaveBeenCalledOnce();
         expect(scheduleSave).toHaveBeenCalledOnce();
 
+        inMemoryFs.__reset();
+        inMemoryFs.__seed({ 'characters/Catherine.json': makeCharacterFile({ guid: G_CATHERINE, title: 'Catherine' }) });
         const rawText = `\u201c${line.text}\u201d`;
         await saveDialogueFromNormalized({
-            normalized: get(script), chapter: { title: 'Test chapter' },
+            normalized: get(script), chapter: { title: 'Test chapter' }, root: 'test-root',
             rawText, unknownThreshold: 0.62, unknownSpeakerLabel: 'Unknown',
-            repo: {
-                ensureCharacterNameToIdMap: async () => new Map([['catherine', 'CATHERINE_ID']]),
-                normalizeAttribution,
-            },
         });
-        const saved = vi.mocked(writeDialogueSave).mock.calls[0][1];
-        expect(saved.lines[0]).toMatchObject({ characterId: 'CATHERINE_ID', isNonSpeaker: false });
+        const saved = inMemoryFs.__readJson('Test chapter/dialogue.json');
+        expect(saved.lines[0]).toMatchObject({ characterId: G_CATHERINE, isNonSpeaker: false });
         const reloaded = await normalizeScriptData(saved, {
             root: 'test-root', unknownThreshold: 0.62,
             readCentralCharacters: async () => ({ characters: [] }),
-            buildIdToNameMap: () => new Map([['catherine_id', 'Catherine']]),
+            buildIdToNameMap: () => new Map([[G_CATHERINE.toLowerCase(), 'Catherine']]),
         });
         expect(reloaded?.lines[0]).toMatchObject({ characterName: 'Catherine', isNonSpeaker: false });
     });

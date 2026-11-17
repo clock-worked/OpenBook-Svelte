@@ -25,6 +25,10 @@ import {
 } from '$lib/services/characterFileMapping';
 
 const files = new Map<string, string>();
+// Dialogue-save outcome the next writes report ('sidecar' = backend path) and
+// the stats-delta calls received, so the owner's stats step is observable.
+let dialogueSaveRoute: 'handle' | 'sidecar' = 'sidecar';
+const statsDeltaCalls: string[] = [];
 
 function normalizePath(path: string): string {
   return String(path ?? '')
@@ -102,6 +106,17 @@ export const inMemoryFs = {
   readCharacters: async (path: string) => readJson(path),
   readOptionalCharacters: async (path: string) => readJson(path),
   readCentralCharacters: async (_root: string) => readJson('characters.json'),
+  // Mirrors fs.ts ensureCharacterNameToIdMapCached's source (the characters/
+  // folder first, then the legacy characters.json), uncached: the in-memory
+  // store has no stale-read problem to cache around.
+  ensureCharacterNameToIdMapCached: async (root: string | null): Promise<Map<string, string>> => {
+    if (!root) return new Map();
+    // Dynamic import: the characters store imports $lib/services/fs (this mock).
+    const { buildNameToIdMap } = await import('$lib/stores/characters');
+    const central = (await inMemoryFs.readCharacterFolder(root)) ?? readJson('characters.json');
+    return central?.characters ? buildNameToIdMap(central.characters) : new Map();
+  },
+  invalidateCentralCharactersCache: () => {},
   readDialogue: async (path: string) => readJson(path),
   readOptionalDialogue: async (path: string) => readJson(path),
   readScript: async (path: string) => readJson(path),
@@ -110,10 +125,15 @@ export const inMemoryFs = {
   writeCharacters: async (path: string, data: unknown) => writeJson(path, data),
   writeCentralCharacters: async (_root: string, data: unknown) => writeJson('characters.json', data),
   writeDialogue: async (path: string, data: unknown) => writeJson(path, data),
-  // The chapter dialogue save write: the backend-path case lands on the
-  // sidecar ('sidecar' outcome), whose endpoint applies the stats delta.
-  writeDialogueSave: async (path: string, data: unknown) => (writeJson(path, data) ? 'sidecar' as const : null),
-  applyDialogueStatsDelta: async (_relPath: string) => true,
+  // The chapter dialogue save write: by default the backend-path case lands
+  // on the sidecar ('sidecar' outcome), whose endpoint applies the stats
+  // delta; __setDialogueSaveRoute('handle') simulates a File System Access write.
+  writeDialogueSave: async (path: string, data: unknown): Promise<'handle' | 'sidecar' | null> =>
+    (writeJson(path, data) ? dialogueSaveRoute : null),
+  applyDialogueStatsDelta: async (relPath: string): Promise<boolean> => {
+    statsDeltaCalls.push(normalizePath(relPath));
+    return true;
+  },
   writeScript: async (path: string, data: unknown) => writeJson(path, data),
   writeVoices: async (_root: string, data: unknown) => writeJson('voices.json', data),
 
@@ -137,7 +157,13 @@ export const inMemoryFs = {
   // === Test controls ===
   __reset: () => {
     files.clear();
+    dialogueSaveRoute = 'sidecar';
+    statsDeltaCalls.length = 0;
   },
+  __setDialogueSaveRoute: (route: 'handle' | 'sidecar') => {
+    dialogueSaveRoute = route;
+  },
+  __statsDeltaCalls: (): string[] => [...statsDeltaCalls],
   __seed: (entries: Record<string, unknown>) => {
     for (const [path, value] of Object.entries(entries)) {
       files.set(normalizePath(path), typeof value === 'string' ? value : JSON.stringify(value, null, 2));

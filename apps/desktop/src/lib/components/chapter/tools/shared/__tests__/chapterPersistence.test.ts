@@ -1,62 +1,122 @@
-import { describe, expect, it, vi } from 'vitest';
+// ============================================================================
+// Owner-level tests for chapterPersistence (chapter save + load), stubbed at
+// the fs seam with the in-memory fs (services/__tests__/helpers/inMemoryFs.ts).
+// ============================================================================
 
-vi.mock('$lib/services/fs', () => ({
-    writeDialogue: vi.fn(async () => true),
-    writeDialogueSave: vi.fn(async () => 'sidecar'),
-    applyDialogueStatsDelta: vi.fn(async () => true),
-    readOptionalDialogue: vi.fn(async () => null)
-}));
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { inMemoryFs } from '$lib/services/__tests__/helpers/inMemoryFs';
+import { diffTree, treePaths } from '$lib/services/__tests__/helpers/diffTree';
+import { makeCharacterFile } from '$lib/services/__tests__/helpers/fixtures';
 
-import { applyDialogueStatsDelta, readOptionalDialogue, writeDialogue, writeDialogueSave } from '$lib/services/fs';
-import { recordLineAudioGeneration, saveDialogueFromNormalized, writeChapterDialogue } from '../chapterPersistence';
-import { normalizeAttribution } from '../chapterNormalization';
+vi.mock('$lib/services/fs', async () => {
+    const mod = await import('$lib/services/__tests__/helpers/inMemoryFs');
+    return mod.inMemoryFs;
+});
 
-const mockWriteDialogue = vi.mocked(writeDialogueSave);
+import {
+    applyStatsAfterDialogueSave,
+    recordLineAudioGeneration,
+    saveDialogueFromNormalized,
+    writeChapterDialogue,
+} from '../chapterPersistence';
 
-describe('saveDialogueFromNormalized — candidate reasons', () => {
+const ROOT = 'Book';
+const G_RASHID = 'YY3GE4HN';
+const G_JAHA = 'SJH4X2QK';
+
+function seedRoster(): void {
+    inMemoryFs.__seed({
+        'characters/Rashid.json': makeCharacterFile({ guid: G_RASHID, title: 'Rashid', aliases: ['Rash'] }),
+        'characters/Sergeant Jaha.json': makeCharacterFile({ guid: G_JAHA, title: 'Sergeant Jaha' }),
+    });
+}
+
+function line(overrides: Record<string, unknown> = {}) {
+    return {
+        id: 1,
+        text: 'Hold the line.',
+        span: { start: 0, end: 5 },
+        characterName: 'Rashid',
+        candidates: [
+            { name: 'Rashid', characterId: G_RASHID, confidence: 0.9, reasons: ['recent_named_mention'] },
+            { name: 'Sergeant Jaha', characterId: G_JAHA, confidence: 0.4, reasons: ['speech_verb'] },
+        ],
+        isConflict: false,
+        isNonSpeaker: false,
+        isReturning: false,
+        attribution: null,
+        ...overrides,
+    } as any;
+}
+
+function save(lines: any[], extra: Record<string, unknown> = {}) {
+    return saveDialogueFromNormalized({
+        normalized: { lines, stats: {} },
+        chapter: { title: 'Chapter 1', parsed: true },
+        root: ROOT,
+        rawText: null,
+        unknownThreshold: 0.5,
+        unknownSpeakerLabel: 'Unknown',
+        ...extra,
+    });
+}
+
+beforeEach(() => {
+    inMemoryFs.__reset();
+    seedRoster();
+});
+
+describe('saveDialogueFromNormalized', () => {
+    it('writes the chapter dialogue.json and nothing else', async () => {
+        const before = inMemoryFs.__snapshot();
+
+        expect(await save([line()])).toBe(true);
+
+        expect(treePaths(diffTree(before, inMemoryFs.__snapshot()))).toEqual(['Chapter 1/dialogue.json']);
+        const saved = inMemoryFs.__readJson('Chapter 1/dialogue.json');
+        expect(saved).toMatchObject({ formatVersion: '3.2', chapterId: 'Chapter 1', reviewed: false });
+        expect(saved.lines[0]).toMatchObject({ id: 1, characterId: G_RASHID });
+        expect(saved.stats.characterBreakdown).toEqual({ [G_RASHID]: 1 });
+    });
+
+    it('resolves names through the roster (aliases included) via the fs seam', async () => {
+        expect(await save([line({ characterName: 'Rash', candidates: [] })])).toBe(true);
+        expect(inMemoryFs.__readJson('Chapter 1/dialogue.json').lines[0].characterId).toBe(G_RASHID);
+    });
+
     it('persists per-candidate reasons in the saved attribution', async () => {
-        mockWriteDialogue.mockClear();
+        expect(await save([line()])).toBe(true);
 
-        const lines = [
-            {
-                id: 1,
-                text: 'Hold the line.',
-                span: { start: 0, end: 5 },
-                characterName: 'Rashid',
-                candidates: [
-                    { name: 'Rashid', characterId: 'YY3GE4HN', confidence: 0.9, reasons: ['recent_named_mention'] },
-                    { name: 'Sergeant Jaha', characterId: 'SJH4X2QK', confidence: 0.4, reasons: ['speech_verb'] }
-                ],
-                isConflict: false,
-                isNonSpeaker: false,
-                isReturning: false,
-                attribution: null
-            }
-        ] as any;
+        const saved = inMemoryFs.__readJson('Chapter 1/dialogue.json');
+        const rashid = saved.lines[0].attribution.candidates.find((c: any) => c.name === 'Rashid');
+        expect(rashid.reasons).toEqual(['recent_named_mention']);
+        expect(saved.lines[0].candidates.map((c: any) => c.characterId)).toEqual([G_RASHID, G_JAHA]);
+    });
 
-        const repo = {
-            ensureCharacterNameToIdMap: async () =>
-                new Map([
-                    ['rashid', 'YY3GE4HN'],
-                    ['sergeant jaha', 'SJH4X2QK']
-                ]),
-            normalizeAttribution
-        };
-
-        const saved = await saveDialogueFromNormalized({
-            normalized: { lines, stats: {} },
-            chapter: { title: 'Chapter 1', parsed: true },
-            rawText: null,
-            unknownThreshold: 0.5,
-            unknownSpeakerLabel: 'Unknown',
-            repo: repo as any
+    it('keeps per-line audio metadata that exists only on disk', async () => {
+        const record = { provider: 'test', generatedAt: '2026-11-01T00:00:00.000Z' };
+        inMemoryFs.__seed({
+            'Chapter 1/dialogue.json': {
+                formatVersion: '3.2',
+                chapterId: 'Chapter 1',
+                lines: [{ id: 1, text: 'Hold the line.', audioGeneration: record, readAs: 'Hold. The. Line.' }],
+            },
         });
 
-        expect(saved).toBe(true);
-        expect(mockWriteDialogue).toHaveBeenCalledTimes(1);
-        const payload = mockWriteDialogue.mock.calls[0][1] as any;
-        const rashid = payload.lines[0].attribution.candidates.find((c: any) => c.name === 'Rashid');
-        expect(rashid.reasons).toEqual(['recent_named_mention']);
+        expect(await save([line()])).toBe(true);
+
+        const saved = inMemoryFs.__readJson('Chapter 1/dialogue.json');
+        expect(saved.lines[0].audioGeneration).toEqual(record);
+        expect(saved.lines[0].readAs).toBe('Hold. The. Line.');
+    });
+
+    it('records the reviewed flag only on a reviewed save', async () => {
+        expect(await save([line()], { reviewed: true, reviewedAt: '2026-11-17T00:00:00.000Z' })).toBe(true);
+        expect(inMemoryFs.__readJson('Chapter 1/dialogue.json')).toMatchObject({
+            reviewed: true,
+            reviewedAt: '2026-11-17T00:00:00.000Z',
+            reviewedLineCount: 1,
+        });
     });
 });
 
@@ -64,49 +124,38 @@ describe('dialogue save stats step (ADR 0012)', () => {
     const payload = { formatVersion: '3.2', chapterId: 'Chapter 1', lines: [] } as any;
 
     it('asks the sidecar for the delta after a File System Access write', async () => {
-        vi.mocked(applyDialogueStatsDelta).mockClear();
-        vi.mocked(writeDialogueSave).mockResolvedValueOnce('handle');
+        inMemoryFs.__setDialogueSaveRoute('handle');
 
         expect(await writeChapterDialogue('Chapter 1/dialogue.json', payload)).toBe(true);
-        expect(applyDialogueStatsDelta).toHaveBeenCalledTimes(1);
-        expect(applyDialogueStatsDelta).toHaveBeenCalledWith('Chapter 1/dialogue.json');
+        expect(inMemoryFs.__statsDeltaCalls()).toEqual(['Chapter 1/dialogue.json']);
     });
 
     it('does nothing more when the sidecar endpoint already applied it', async () => {
-        vi.mocked(applyDialogueStatsDelta).mockClear();
-        vi.mocked(writeDialogueSave).mockResolvedValueOnce('sidecar');
-
         expect(await writeChapterDialogue('Chapter 1/dialogue.json', payload)).toBe(true);
-        expect(applyDialogueStatsDelta).not.toHaveBeenCalled();
+        expect(inMemoryFs.__statsDeltaCalls()).toEqual([]);
     });
 
-    it('does nothing when the content was unchanged', async () => {
-        vi.mocked(applyDialogueStatsDelta).mockClear();
-        vi.mocked(writeDialogueSave).mockResolvedValueOnce('unchanged');
-
-        expect(await writeChapterDialogue('Chapter 1/dialogue.json', payload)).toBe(true);
-        expect(applyDialogueStatsDelta).not.toHaveBeenCalled();
+    it('does nothing for an unchanged (skipped) write', () => {
+        applyStatsAfterDialogueSave('Chapter 1/dialogue.json', 'unchanged');
+        expect(inMemoryFs.__statsDeltaCalls()).toEqual([]);
     });
 
-    it('reports a failed write and skips the stats step', async () => {
-        vi.mocked(applyDialogueStatsDelta).mockClear();
-        vi.mocked(writeDialogueSave).mockResolvedValueOnce(null);
+    it('runs on a chapter save', async () => {
+        inMemoryFs.__setDialogueSaveRoute('handle');
 
-        expect(await writeChapterDialogue('Chapter 1/dialogue.json', payload)).toBe(false);
-        expect(applyDialogueStatsDelta).not.toHaveBeenCalled();
+        expect(await save([line()])).toBe(true);
+        expect(inMemoryFs.__statsDeltaCalls()).toEqual(['Chapter 1/dialogue.json']);
     });
 
     it('keeps audio-metadata stamps off the stats path', async () => {
-        vi.mocked(applyDialogueStatsDelta).mockClear();
-        vi.mocked(writeDialogueSave).mockClear();
-        vi.mocked(readOptionalDialogue).mockResolvedValueOnce({
-            formatVersion: '3.2', chapterId: 'Chapter 1', lines: [{ id: 1, text: 'Hi.' }],
-        } as any);
+        inMemoryFs.__setDialogueSaveRoute('handle');
+        inMemoryFs.__seed({
+            'Chapter 1/dialogue.json': { formatVersion: '3.2', chapterId: 'Chapter 1', lines: [{ id: 1, text: 'Hi.' }] },
+        });
 
         await recordLineAudioGeneration('Chapter 1', [1], { provider: 'test' } as any);
 
-        expect(writeDialogue).toHaveBeenCalledTimes(1);
-        expect(writeDialogueSave).not.toHaveBeenCalled();
-        expect(applyDialogueStatsDelta).not.toHaveBeenCalled();
+        expect(inMemoryFs.__readJson('Chapter 1/dialogue.json').lines[0].audioGeneration).toEqual({ provider: 'test' });
+        expect(inMemoryFs.__statsDeltaCalls()).toEqual([]);
     });
 });

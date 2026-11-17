@@ -49,7 +49,6 @@ import { createCentralCharacter } from '$lib/services/characterMutationService';
 import { persistChapterCharactersData } from '$lib/services/chapterCharacterRepository';
 import { buildIdToNameMap, buildNameToIdMap } from '$lib/stores/characters';
 import {
-    normalizeAttribution,
     normalizeScriptData,
     slugifyCharacterName,
 } from '$lib/components/chapter/tools/shared/chapterNormalization';
@@ -446,14 +445,13 @@ async function migrateDialogueFiles(options: MigrateBookOptions, report: BookMig
             const written = await saveDialogueFromNormalized({
                 normalized,
                 chapter: { title: plan.chapter.title, path: plan.chapter.path },
+                // Character creation already happened book-wide above; those
+                // writes invalidated fs's identity caches, so the owner's
+                // name→id resolution sees the expanded folder.
+                root,
                 rawText,
                 unknownThreshold: options.unknownThreshold,
                 unknownSpeakerLabel,
-                repo: {
-                    // Character creation already happened book-wide above.
-                    ensureCharacterNameToIdMap: async () => buildNameToIdMap(await readFolderCharacters(root)),
-                    normalizeAttribution,
-                },
                 reviewed: Boolean(versioned?.reviewed),
                 reviewedAt: versioned?.reviewedAt ?? null,
             });

@@ -11,7 +11,7 @@
   import { API_ENDPOINTS, apiPostJson } from '$lib/services/apiClient';
   import type { ReviewChapterRequest, ReviewChapterResponse } from '$lib/services/apiContracts';
   import { characters, buildIdToNameMap } from '$lib/stores/characters';
-  import { addBookCharacterAlias, bookCharacters, forceRefreshBookCharacters } from '$lib/stores/bookCharacters';
+  import { addBookCharacterAlias, bookCharacters } from '$lib/stores/bookCharacters';
   import { CheckCircle2 } from 'lucide-svelte';
   import ParagraphRow from '$lib/components/chapter/ParagraphRow.svelte';
   import RawTextBlock from '$lib/components/chapter/RawTextBlock.svelte';
@@ -33,8 +33,8 @@
     mergeNormalizedFromLegacy,
   } from '$lib/components/chapter/tools/shared/chapterStateSync';
   import {
-    ensureCharacterNameToIdMapCached,
     loadChapterContent,
+    refreshCharacterCaches,
     saveDialogueFromNormalized,
   } from '$lib/components/chapter/tools/shared/chapterPersistence';
   import { 
@@ -92,28 +92,6 @@
 
   // Internal normalized script store
   const normalizedScript = writable<{ lines: UnifiedLine[]; stats: any } | null>(null);
-  
-  // Cache for character name-to-ID map (built once when needed)
-  let characterNameToIdMap: Map<string, string> | null = null;
-  
-  async function ensureCharacterNameToIdMap() {
-    // Always rebuild the map: the roster can change outside this save's
-    // ensure step (e.g. via the character panel). A stale map makes the
-    // dialogue save silently fall back to 'narrator' for a name that is
-    // actually valid. This is cheap since ADR 0012: readCentralCharacters
-    // is cached per book session and only hits the network again when
-    // character data was written (which is exactly when the map must
-    // change).
-    characterNameToIdMap = null;
-    return ensureCharacterNameToIdMapCached({
-      cachedMap: characterNameToIdMap,
-      setCachedMap: (map) => {
-        characterNameToIdMap = map;
-      },
-      root: get(bookRoot),
-      readCentralCharacters,
-    });
-  }
 
   // Track which format version we're using for saving
   let isV2Format = false;
@@ -650,13 +628,10 @@
     await saveDialogueFromNormalized({
       normalized: scr,
       chapter: { title: ch.title, path: ch.path },
+      root,
       rawText: get(rawText),
       unknownThreshold: getUnknownThreshold(),
       unknownSpeakerLabel: UNKNOWN_SPEAKER_LABEL,
-      repo: {
-        ensureCharacterNameToIdMap,
-        normalizeAttribution,
-      },
       reviewed,
       reviewedAt,
     });
@@ -750,7 +725,10 @@
       }
     } finally {
       // Even if the post-save refresh throws, the flag is already persisted.
-      await forceRefreshBookCharacters();
+      // review-chapter's descriptor learning rewrote character files on the
+      // backend: the owner's cache step drops the identity caches and
+      // reloads the book characters.
+      await refreshCharacterCaches();
       reviewMessage = `Reviewed.${apiNote}`;
       markingReviewed = false;
     }
@@ -808,7 +786,6 @@
     isV2Format = loaded.isV2Format;
     chapterReviewedAt = loaded.reviewedAt;
     setReviewedState(loaded.reviewed);
-    characterNameToIdMap = null;
     if (loaded.normalized) {
       normalizedScript.set({ lines: loaded.normalized.lines, stats: loaded.normalized.stats });
       if (loaded.currentScript) currentScript.set(loaded.currentScript as ScriptJson);
@@ -875,7 +852,6 @@
               currentScript.set(loaded.currentScript as ScriptJson);
             }
             if (loaded.normalized.hadAliasChanges) {
-              characterNameToIdMap = null;
               scheduleSave();
             }
           }
