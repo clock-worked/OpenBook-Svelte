@@ -1,10 +1,10 @@
 import { writable, get } from 'svelte/store';
 import type { CharacterManifestStats, CharactersJson, TtsProvider, Character, Gender, CharacterFile } from '$lib/types';
 import { CHARACTER_GUID_PATTERN } from '$lib/types';
-import { audioRoot, bookRoot, chapters } from '$lib/stores/bookState';
+import { bookRoot, chapters } from '$lib/stores/bookState';
 import { getCharactersPath, readCentralCharacters, readCharacterFile } from '$lib/services/fs';
 import { loadChapterCharactersData, persistChapterCharactersData } from '$lib/services/chapterCharacterRepository';
-import { loadCharacterManifestSummary } from '$lib/services/manifests';
+import { loadCharacterManifestSummary } from '$lib/services/audio';
 import {
   loadBookCharactersData,
   writeCharacterRecord,
@@ -264,12 +264,11 @@ export async function refreshCharacterManifestStats(
   name: string,
   options?: RefreshManifestOptions,
 ): Promise<CharacterManifestStats | null> {
-  const root = get(audioRoot);
-  if (!root) return null;
-  const summary = await loadCharacterManifestSummary(root, name, {
+  const summary = await loadCharacterManifestSummary(name, {
     totalLines: options?.totalLines,
     force: options?.force,
   });
+  if (!summary) return null;
   await upsertBookCharacter(name, { manifestStats: summary.stats });
   return summary.stats;
 }

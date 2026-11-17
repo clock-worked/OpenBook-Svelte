@@ -1,7 +1,7 @@
 import { get } from 'svelte/store';
-import { audioRoot, bookRoot, bookRootAbsolutePath, voiceSamplesRoot } from '$lib/stores/bookState';
+import { audioRoot, bookRoot, bookRootAbsolutePath, chapters, voiceSamplesRoot } from '$lib/stores/bookState';
 import { bookRootPathOverride } from '$lib/stores/settings';
-import type { AudioGeneratorId, ChatterboxSettingsChoice, DialogueLine, CharactersJson } from '$lib/types';
+import type { AudioGeneratorId, CharacterManifestStats, ChatterboxSettingsChoice, DialogueLine, CharactersJson } from '$lib/types';
 import { readCentralCharacters, readDialogueForChapter, readOptionalJsonRelative, readTextFile } from '$lib/services/fs';
 import { buildLineTextWithSpeechVerbTags, extractNarrationTags } from '$lib/services/audioNarration';
 import type { NarrationTagCandidate } from '$lib/services/audioNarration';
@@ -349,6 +349,82 @@ export async function checkAudioExistsForCharacter(
   return {
     exists: chapterClips.length > 0,
     clipCount: chapterClips.length,
+  };
+}
+
+export interface CharacterManifestSummaryOptions {
+  /** Line count the coverage ratio is computed against. */
+  totalLines?: number;
+  /** Drop the cached manifests first, so every chapter is re-read. */
+  force?: boolean;
+  /** Chapters to aggregate; defaults to the open book's chapters. */
+  chapterTitles?: string[];
+}
+
+export interface CharacterManifestSummary {
+  stats: CharacterManifestStats;
+  clips: AudioClip[];
+  /** Chapters that contributed at least one clip. */
+  chapterTitles: string[];
+}
+
+/**
+ * Book-wide manifest stats for one character: every chapter's manifest (read
+ * through `readManifest`, so it shares its cache) aggregated into clip count,
+ * per-voice counts, the most-used voice and coverage of `totalLines`.
+ * `null` when no chapter has a clip for the character.
+ */
+export async function loadCharacterManifestSummary(
+  characterName: string,
+  options?: CharacterManifestSummaryOptions,
+): Promise<CharacterManifestSummary | null> {
+  const titles = (options?.chapterTitles ?? get(chapters).map((chapter) => chapter?.title))
+    .map((title) => String(title || '').trim())
+    .filter((title) => title.length > 0);
+
+  const clips: AudioClip[] = [];
+  const contributing: string[] = [];
+  for (const title of titles) {
+    if (options?.force) {
+      invalidateManifestCache(title, characterName);
+    }
+    const manifest = await readManifest(title, characterName);
+    const chapterClips = Array.isArray(manifest?.clips) ? manifest.clips : [];
+    if (!chapterClips.length) continue;
+    clips.push(...chapterClips);
+    contributing.push(title);
+  }
+
+  if (!clips.length) return null;
+  return {
+    stats: buildCharacterManifestStats(clips, options?.totalLines),
+    clips,
+    chapterTitles: contributing,
+  };
+}
+
+function buildCharacterManifestStats(clips: AudioClip[], totalLines: number | undefined): CharacterManifestStats {
+  const voiceIds: Record<string, number> = {};
+  for (const clip of clips) {
+    if (!clip?.voiceId) continue;
+    voiceIds[clip.voiceId] = (voiceIds[clip.voiceId] ?? 0) + 1;
+  }
+  let primaryVoiceId: string | null = null;
+  let bestCount = -1;
+  for (const [voiceId, count] of Object.entries(voiceIds)) {
+    if (count > bestCount) {
+      primaryVoiceId = voiceId;
+      bestCount = count;
+    }
+  }
+  const total = totalLines ?? 0;
+  return {
+    clipCount: clips.length,
+    totalLines: total,
+    voiceIds,
+    coverageRatio: total > 0 ? clips.length / total : undefined,
+    primaryVoiceId,
+    lastUpdated: new Date().toISOString(),
   };
 }
 
