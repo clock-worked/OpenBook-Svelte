@@ -465,6 +465,9 @@
 
       advancedPreview = preview;
       advancedPreviewScopeKey = advancedScopeKey();
+      // The chapter scope changed: let the character selection mirror the
+      // newly eligible set (same as when the overlay is first opened).
+      selectedAdvancedCharacterIds = new Set(preview.characters.map((item) => item.characterId));
     } catch (error) {
       if (requestId !== advancedPreviewRequestId) return;
 
