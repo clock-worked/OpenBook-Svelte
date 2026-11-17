@@ -17,7 +17,8 @@ vi.mock('$lib/services/fs', async () => {
 
 import type { Character } from '$lib/types';
 import { readCharacterFolder } from '$lib/services/fs';
-import { writeCharacterRecord } from '../bookCharacterRepository';
+import { loadBookCharactersData, writeCharacterRecord } from '../bookCharacterRepository';
+import { characterStats } from '../characterStats';
 
 const ROOT = 'Book-9';
 const GA = 'AA01BB02'; // Alice
@@ -69,5 +70,46 @@ describe('bookCharacterRepository (v3 folder persistence)', () => {
       deleted: [],
       changed: [],
     });
+  });
+});
+
+describe('bookCharacterRepository (stats: the accumulated stats are the one answer)', () => {
+  it('a seeded book loads with the accumulated stats, never re-derived from dialogue; only a missing firstAppearance is backfilled', async () => {
+    inMemoryFs.__reset();
+    inMemoryFs.__seed({
+      // Accumulated stats (ADR 0012) deliberately disagree with the dialogue
+      // below: the answer must be the accumulated stats.
+      'characters/Alice.json': makeCharacterFile({
+        guid: GA,
+        title: 'Alice',
+        stats: { totalLines: 5, chapterCount: 2 },
+      }),
+      'characters/Bob.json': makeCharacterFile({
+        guid: GB,
+        title: 'Bob',
+        firstAppearance: '01-One',
+        stats: { totalLines: 0, chapterCount: 0 },
+      }),
+      '01-One/dialogue.json': { formatVersion: '3.0', lines: [{ id: 'l1', characterId: GB, text: 'Hi.' }] },
+      '02-Two/dialogue.json': { formatVersion: '3.0', lines: [{ id: 'l2', characterId: GA, text: 'Hello.' }] },
+    });
+    const before = inMemoryFs.__snapshot();
+
+    const data = await loadBookCharactersData(ROOT, [
+      { title: '01-One', parsed: true },
+      { title: '02-Two', parsed: true },
+    ]);
+    const byName = new Map(data.characters.map((character) => [character.name, character]));
+
+    expect(characterStats(byName.get('Alice'))).toEqual({ totalLines: 5, chapterCount: 2 });
+    expect(characterStats(byName.get('Bob'))).toEqual({ totalLines: 0, chapterCount: 0 });
+    expect(byName.get('Alice')?.firstAppearance).toBe('02-Two');
+    expect(byName.get('Bob')?.firstAppearance).toBe('01-One');
+
+    const after = inMemoryFs.__snapshot();
+    // Only Alice's file changed (the firstAppearance backfill), and its
+    // stats on disk are still the accumulated ones.
+    expect(diffTree(before, after)).toEqual({ added: [], deleted: [], changed: ['characters/Alice.json'] });
+    expect(inMemoryFs.__readJson('characters/Alice.json').stats).toEqual({ totalLines: 5, chapterCount: 2 });
   });
 });
