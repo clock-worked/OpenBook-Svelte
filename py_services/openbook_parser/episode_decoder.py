@@ -7,7 +7,6 @@ from math import log
 from typing import Iterable, Optional
 
 from .attribution_decision import (
-    HARD_REASONS,  # noqa: F401 - re-exported for existing importers
     apply_decision,
     episode_override_decision,
     has_hard_attribution,

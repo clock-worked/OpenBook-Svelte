@@ -4,6 +4,7 @@ exp2: run queries. Gated targets are grouped into contiguous dialogue runs
 and verified with one batched call per run.
 """
 
+import copy
 import json
 import os
 import tempfile
@@ -11,6 +12,7 @@ import time
 import unittest
 from unittest import mock
 
+from .attribution_decision import apply_decision, initial_decision
 from .dialogue_parser_service import DialogueLine
 from .jev_verify_service import (
     CARRYOVER_RULES,
@@ -64,18 +66,20 @@ def make_line(
     text="sample",
     line_type="dialogue",
 ):
-    value = DialogueLine(text, speaker, line_type=line_type)
-    value.suggestions = [name for name, _score in candidates]
-    value.is_suggestion = suggestion
+    """A ranked parser line, built through the decision owner."""
+    if candidates:
+        assert speaker == candidates[0][0], "the speaker is the top candidate"
+    value = DialogueLine(text, None, line_type=line_type)
     value.span_start, value.span_end = span
-    value.attribution = {
-        "legacyRule": rule,
-        "candidates": [
-            {"name": name, "confidence": score, "reasons": list(reasons or ["legacy_match"])}
-            for name, score in candidates
-        ],
-        "decisionTrace": {"selectedReasons": list(reasons or ["legacy_match"])},
-    }
+    row_reasons = list(reasons or ["legacy_match"])
+    apply_decision(value, initial_decision(
+        "fixture",
+        [(name, score, row_reasons) for name, score in candidates],
+        is_suggestion=suggestion,
+        reasons=row_reasons,
+        fallback_speaker=speaker,
+        attribution_fields={"legacyRule": rule},
+    ))
     return value
 
 
@@ -276,6 +280,22 @@ class ApplyVerdictTests(unittest.TestCase):
         apply_verdict(line, "confirm", "Carmen", 0.9, NAME_LOOKUP, block)
         self.assertFalse(line.is_suggestion)
         self.assertIn("jev_verification_confirmed", line.attribution["candidates"][0]["reasons"])
+
+    def test_no_verdict_rewrites_the_decision_trace(self):
+        cases = [
+            ("downgrade", "Dorian", False),
+            ("downgrade", "None", False),
+            ("confirm", "Carmen", True),
+            ("note", "Dorian", False),
+            ("skip", None, False),
+        ]
+        for action, choice, suggestion in cases:
+            with self.subTest(action=action, choice=choice):
+                line = make_line("Carmen", [("Carmen", 0.6), ("Dorian", 0.55)], suggestion=suggestion)
+                trace_before = copy.deepcopy(line.attribution["decisionTrace"])
+                apply_verdict(line, action, choice, 0.9, NAME_LOOKUP, self._block())
+                self.assertEqual(line.attribution["decisionTrace"], trace_before)
+                self.assertEqual(line.attribution["jevVerification"], self._block())
 
     def test_confirm_does_not_touch_assert(self):
         line = make_line("Carmen", [("Carmen", 0.9)])
