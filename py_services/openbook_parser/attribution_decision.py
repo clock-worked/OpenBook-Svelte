@@ -876,6 +876,23 @@ def has_explicit_local_attribution(line) -> bool:
     return bool(selected_reasons(line) & EXPLICIT_LOCAL_RULES)
 
 
+def trace_is_first_person(trace: Optional[Mapping[str, object]]) -> bool:
+    """The frontend edge's first-person exemption test on a decision trace.
+
+    Reads the wire's ``ruleCategory`` when the trace carries the field; a
+    trace written before the field existed falls back to its selected
+    reasons against the FIRST_PERSON rules.
+    """
+    if not isinstance(trace, Mapping):
+        return False
+    if "ruleCategory" in trace:
+        return trace.get("ruleCategory") == FIRST_PERSON
+    reasons = trace.get("selectedReasons")
+    if not isinstance(reasons, list):
+        return False
+    return any(reason in FIRST_PERSON_RULES for reason in reasons)
+
+
 def trace_invariant_violations(line) -> List[str]:
     """Trace invariants the owner maintains; empty when ``line`` conforms.
 
