@@ -20,20 +20,20 @@ from audio_generation_service import (
     AudioGenerationService,
     build_chatterbox_generator_info,
 )
-from chapter_audio_test.asr_alignment import (
+from chapter_audio.asr_alignment import (
     build_line_timestamps,
     collect_asr_word_tokens,
 )
-from chapter_audio_test.audio_ops import (
+from chapter_audio.audio_ops import (
     load_audio_float_2d,
     refine_line_boundaries_with_silence,
     write_audio_excerpt,
 )
-from chapter_audio_test.generation import (
+from chapter_audio.generation import (
     build_line_chunk_generation_plan,
     generate_line_chunked_chapter_audio,
 )
-from chapter_audio_test.validation import (
+from chapter_audio.validation import (
     attach_validation_summary_to_split_lines,
     attempt_boundary_shift,
     build_split_validation_payload,
@@ -42,7 +42,7 @@ from chapter_audio_test.validation import (
     summarize_validation_reports,
     validate_split_lines,
 )
-from chapter_audio_test.text_utils import normalize_chapter_text, utc_now_iso
+from chapter_audio.text_utils import normalize_chapter_text, utc_now_iso
 
 from .provider_profile import is_chatterbox_provider, is_local_chunked_provider
 from .router_support import make_audio_service_ensurer, raise_generation_failure

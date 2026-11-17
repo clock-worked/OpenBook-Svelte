@@ -21,7 +21,7 @@ from _path_setup import bootstrap_python_script_paths
 
 bootstrap_python_script_paths(__file__)
 
-from py_services.chapter_audio_test.generation import (
+from py_services.chapter_audio.generation import (
     build_line_chunk_generation_plan,
     generate_line_chunked_chapter_audio,
 )

@@ -11,7 +11,7 @@ import time
 from pathlib import Path
 from typing import Any, Optional
 
-from chapter_audio_test.generation import (
+from chapter_audio.generation import (
     split_text_to_max_chars,
     stitch_generated_chunk_audio,
 )

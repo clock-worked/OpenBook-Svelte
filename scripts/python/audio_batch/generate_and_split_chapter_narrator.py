@@ -21,26 +21,26 @@ bootstrap_python_script_paths(__file__)
 
 import soundfile as sf
 
-from py_services.chapter_audio_test.asr_alignment import (
+from py_services.chapter_audio.asr_alignment import (
     build_line_timestamps,
     collect_asr_word_tokens,
 )
-from py_services.chapter_audio_test.audio_ops import (
+from py_services.chapter_audio.audio_ops import (
     load_audio_float_2d,
     refine_line_boundaries_with_silence,
     split_audio_by_lines,
 )
-from py_services.chapter_audio_test.generation import (
+from py_services.chapter_audio.generation import (
     build_line_chunk_generation_plan,
     generate_line_chunked_chapter_audio,
 )
-from py_services.chapter_audio_test.manifest_ops import (
+from py_services.chapter_audio.manifest_ops import (
     build_character_manifests,
     load_existing_split_state,
     load_manifest_lines,
 )
-from py_services.chapter_audio_test.text_utils import normalize_chapter_text, tokenize, utc_now_iso
-from py_services.chapter_audio_test.validation import (
+from py_services.chapter_audio.text_utils import normalize_chapter_text, tokenize, utc_now_iso
+from py_services.chapter_audio.validation import (
     attach_validation_summary_to_split_lines,
     attempt_boundary_shift,
     build_split_validation_payload,

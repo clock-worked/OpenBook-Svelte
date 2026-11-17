@@ -15,7 +15,7 @@ import unittest
 from pathlib import Path
 
 from chatterbox_local_service import ChatterboxLocalService
-from chapter_audio_test.generation import split_text_to_max_chars
+from chapter_audio.generation import split_text_to_max_chars
 
 
 class SplitTextTests(unittest.TestCase):

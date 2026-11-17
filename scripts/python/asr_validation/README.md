@@ -16,7 +16,7 @@ These scripts generate ASR artifacts, compare generated audio against source dia
 ## Shared Dependencies
 
 - Whisper / WhisperX
-- `chapter_audio_test/` from `py_services/` for validation helpers where needed
+- `chapter_audio/` from `py_services/` for validation helpers where needed
 - resource folders under the active book root
 
 ## Outputs
