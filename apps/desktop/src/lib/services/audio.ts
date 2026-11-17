@@ -29,6 +29,7 @@ import {
 } from '$lib/services/audioQueuePlanning';
 import { startCharacterPipelineProgressPolling } from '$lib/services/audioPipelineProgress';
 import { classifyProvider, isLocalChunkedProvider } from '$lib/services/audioGenerator';
+import { createManifestReader, manifestAbsolutePath, type ManifestTransport } from '$lib/services/manifestReader';
 
 export interface AudioManifest {
   formatVersion: string;
@@ -81,12 +82,6 @@ export interface GenerateAudioCharacterOptions {
   chatterboxSettings?: ChatterboxSettingsPayload | null;
 }
 
-const manifestCache = new Map<string, AudioManifest | null>();
-const manifestRequestCache = new Map<string, Promise<AudioManifest | null>>();
-let absoluteReadApiAvailable: boolean | null = null;
-let reconcileManifestApiAvailable: boolean | null = null;
-let hasWarnedMissingAudioRoot = false;
-
 function getBackendErrorMessage(error: unknown, fallback: string): string {
   if (error instanceof ApiClientError) {
     const details = error.details as BackendErrorPayload | string | undefined;
@@ -106,21 +101,6 @@ function getBackendErrorMessage(error: unknown, fallback: string): string {
   }
 
   return fallback;
-}
-
-function getManifestCacheKey(chapterTitle: string, characterName: string): string {
-  return `${chapterTitle}::${characterName.toLowerCase()}`;
-}
-
-function invalidateManifestCache(chapterTitle: string, characterName: string): void {
-  const key = getManifestCacheKey(chapterTitle, characterName);
-  manifestCache.delete(key);
-  manifestRequestCache.delete(key);
-}
-
-export function clearAllManifestCache(): void {
-  manifestCache.clear();
-  manifestRequestCache.clear();
 }
 
 /**
@@ -210,113 +190,70 @@ export function getManifestPath(
   chapterTitle: string,
   characterName: string
 ): string {
-  const root = get(audioRoot) || get(bookRootAbsolutePath);
+  const root = audioRootFor();
   if (!root) {
     return '';
   }
-  return `${root}/${chapterTitle}/audio_lines/${characterName}/manifest.json`;
+  return manifestAbsolutePath(root, chapterTitle, characterName);
+}
+
+/** HTTP/fs transport for the manifest reader (services/manifestReader.ts). */
+const manifestTransport: ManifestTransport = {
+  async reconcile({ chapterTitle, characterName, audioRoot: root }) {
+    const payload: ReconcileAudioManifestRequest = {
+      chapter_title: chapterTitle,
+      character_name: characterName,
+      audio_root: root || null,
+    };
+    try {
+      const data = await apiPostJson<ReconcileAudioManifestResponse, ReconcileAudioManifestRequest>(
+        API_ENDPOINTS.reconcileAudioManifest,
+        payload,
+      );
+      const manifest = data?.manifest && typeof data.manifest === 'object' ? (data.manifest as AudioManifest) : null;
+      return { kind: 'ok', manifest };
+    } catch (error) {
+      if (error instanceof ApiClientError && error.status === 404) return { kind: 'missing' };
+      throw error;
+    }
+  },
+  async readAbsolute(filePath) {
+    const body: ReadFileAbsoluteRequest = { file_path: filePath };
+    const response = await apiFetch(API_ENDPOINTS.readFileAbsolute, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    if (response.ok) return { kind: 'ok', manifest: (await response.json()) as AudioManifest };
+    if (response.status === 404) return { kind: 'missing' };
+    return { kind: 'failed', status: response.status };
+  },
+  readRelative: (relativePath) => readOptionalJsonRelative<AudioManifest>(relativePath),
+};
+
+/** The app's one manifest reader: one cache, one fallback chain. */
+const manifestReader = createManifestReader({
+  transport: manifestTransport,
+  resolveAudioRoot: audioRootFor,
+});
+
+function invalidateManifestCache(chapterTitle: string, characterName: string): void {
+  manifestReader.invalidate(chapterTitle, characterName);
+}
+
+export function clearAllManifestCache(): void {
+  manifestReader.clear();
 }
 
 /**
- * Read a character's audio manifest
- * Note: This tries to read from filesystem using absolute path
+ * Read a character's audio manifest (cached; see services/manifestReader.ts
+ * for the reconcile -> absolute read -> relative read fallback chain).
  */
-export async function readManifest(
+export function readManifest(
   chapterTitle: string,
   characterName: string
 ): Promise<AudioManifest | null> {
-  const cacheKey = getManifestCacheKey(chapterTitle, characterName);
-  if (manifestCache.has(cacheKey)) {
-    return manifestCache.get(cacheKey) ?? null;
-  }
-
-  const inFlightRequest = manifestRequestCache.get(cacheKey);
-  if (inFlightRequest) {
-    return inFlightRequest;
-  }
-
-  const request = (async (): Promise<AudioManifest | null> => {
-    try {
-      const relativePath = `${chapterTitle}/audio_lines/${characterName}/manifest.json`;
-      const root = get(audioRoot) || get(bookRootAbsolutePath);
-      if (!root) {
-        const relativeManifest = await readOptionalJsonRelative<AudioManifest>(relativePath);
-        if (relativeManifest) {
-          return relativeManifest;
-        }
-        if (!hasWarnedMissingAudioRoot) {
-          console.warn('[audio] Audio root not set; skipping manifest reads');
-          hasWarnedMissingAudioRoot = true;
-        }
-        return null;
-      }
-
-      if (absoluteReadApiAvailable === false) {
-        return await readOptionalJsonRelative<AudioManifest>(relativePath);
-      }
-
-      if (reconcileManifestApiAvailable !== false) {
-        try {
-          const reconcilePayload: ReconcileAudioManifestRequest = {
-            chapter_title: chapterTitle,
-            character_name: characterName,
-            audio_root: root || null,
-          };
-          const reconcileData = await apiPostJson<
-            ReconcileAudioManifestResponse,
-            ReconcileAudioManifestRequest
-          >(API_ENDPOINTS.reconcileAudioManifest, reconcilePayload);
-
-          reconcileManifestApiAvailable = true;
-
-          if (reconcileData?.manifest && typeof reconcileData.manifest === 'object') {
-            return reconcileData.manifest as AudioManifest;
-          }
-        } catch (reconcileError) {
-          if (reconcileError instanceof ApiClientError && reconcileError.status === 404) {
-            reconcileManifestApiAvailable = false;
-            console.warn('[audio] /api/reconcile-audio-manifest returned 404; disabling manifest reconciliation for this session');
-          } else {
-            console.warn('[audio] Manifest reconciliation failed; falling back to manifest read:', reconcileError);
-          }
-        }
-      }
-
-      // Get the full absolute path
-      const manifestPath = `${root}/${chapterTitle}/audio_lines/${characterName}/manifest.json`;
-      console.log('[audio] Reading manifest from:', manifestPath);
-
-      // Try to read the file using Node fs (via backend) with absolute path
-      const response = await apiFetch(API_ENDPOINTS.readFileAbsolute, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ file_path: manifestPath }),
-      });
-
-      if (response.ok) {
-        absoluteReadApiAvailable = true;
-        const data = await response.json() as AudioManifest;
-        console.log('[audio] Manifest loaded for', characterName, '- clips:', data.clips?.length);
-        return data;
-      } else if (response.status === 404) {
-        absoluteReadApiAvailable = false;
-        console.warn('[audio] /api/read_file_absolute returned 404; disabling absolute manifest reads for this session');
-        return await readOptionalJsonRelative<AudioManifest>(relativePath);
-      } else {
-        console.log('[audio] Manifest not found for', characterName, '- status:', response.status);
-      }
-      return null;
-    } catch (error) {
-      console.error('[audio] Error reading manifest:', error);
-      return null;
-    }
-  })();
-
-  manifestRequestCache.set(cacheKey, request);
-  const result = await request;
-  manifestRequestCache.delete(cacheKey);
-  manifestCache.set(cacheKey, result);
-  return result;
+  return manifestReader.read(chapterTitle, characterName);
 }
 
 /**
@@ -445,13 +382,10 @@ export async function reconcileAudioManifestForCharacter(
       payload,
     );
 
-    const key = getManifestCacheKey(chapterTitle, characterName);
-    manifestRequestCache.delete(key);
-
     if (data?.manifest && typeof data.manifest === 'object') {
-      manifestCache.set(key, data.manifest as AudioManifest);
+      manifestReader.store(chapterTitle, characterName, data.manifest as AudioManifest);
     } else {
-      manifestCache.delete(key);
+      manifestReader.invalidate(chapterTitle, characterName);
     }
 
     return {
