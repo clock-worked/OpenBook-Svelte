@@ -6,13 +6,13 @@ from dataclasses import dataclass
 from math import log
 from typing import Iterable, Optional
 
+from .attribution_decision import (
+    HARD_REASONS,  # noqa: F401 - re-exported for existing importers
+    apply_decision,
+    episode_override_decision,
+    has_hard_attribution,
+)
 
-HARD_REASONS = {
-    "post_quote_attribution",
-    "post_quote_mention",
-    "2_forward_explicit_tags",
-    "2b_backward_explicit_tags",
-}
 EPSILON = 1e-6
 
 
@@ -26,23 +26,8 @@ def _norm(value: object) -> str:
     return str(value or "").strip().lower()
 
 
-def _trace(line) -> dict:
-    attribution = getattr(line, "attribution", None)
-    if not isinstance(attribution, dict):
-        return {}
-    trace = attribution.get("decisionTrace")
-    return trace if isinstance(trace, dict) else {}
-
-
 def _is_hard(line) -> bool:
-    attribution = getattr(line, "attribution", None)
-    if not isinstance(attribution, dict):
-        return False
-    trace = attribution.get("decisionTrace")
-    trace = trace if isinstance(trace, dict) else {}
-    reasons = {str(reason) for reason in (trace.get("selectedReasons") or [])}
-    legacy_rule = str(attribution.get("legacyRule") or "")
-    return bool(reasons & HARD_REASONS) or legacy_rule in HARD_REASONS
+    return has_hard_attribution(line)
 
 
 def _candidate_scores(line) -> dict[str, tuple[str, float]]:
@@ -147,41 +132,19 @@ def _apply_override(line, chosen_key: str, *, participants: set[str]) -> bool:
     if _norm(getattr(line, "speaker", None)) == chosen_key:
         return False
     original_name = str(getattr(line, "speaker", None) or "").strip()
-    line.speaker = chosen_name
-    line.is_suggestion = True
-    line.suggestions = [
-        selected[0],
-        *[
-            name for name in (getattr(line, "suggestions", None) or [])
-            if _norm(name) != chosen_key
-        ],
-    ]
-    attribution = getattr(line, "attribution", None)
-    if not isinstance(attribution, dict):
-        attribution = {}
-        line.attribution = attribution
-    trace = attribution.setdefault("decisionTrace", {})
-    candidate_rows = attribution.get("candidates")
-    if isinstance(candidate_rows, list):
-        candidate_rows.sort(
-            key=lambda row: 0
-            if isinstance(row, dict) and _norm(row.get("name")) == chosen_key
-            else 1
-        )
-    trace["selectedCandidate"] = chosen_name
-    trace["overrideReason"] = "episode_joint_decode"
-    selected_reasons = list(trace.get("selectedReasons") or [])
-    if "episode_joint_decode" not in selected_reasons:
-        selected_reasons.append("episode_joint_decode")
-    trace["selectedReasons"] = selected_reasons
-    trace["episodeDecoder"] = {
-        "algorithm": "two_participant_viterbi",
-        "transitionDifferent": 0.28,
-        "transitionSame": -0.28,
-        "originalCandidate": original_name,
-        "selectedCandidate": chosen_name,
-        "participants": sorted(participants),
-    }
+    apply_decision(line, episode_override_decision(
+        chosen_name,
+        trace_fields={
+            "episodeDecoder": {
+                "algorithm": "two_participant_viterbi",
+                "transitionDifferent": 0.28,
+                "transitionSame": -0.28,
+                "originalCandidate": original_name,
+                "selectedCandidate": chosen_name,
+                "participants": sorted(participants),
+            },
+        },
+    ))
     return True
 
 

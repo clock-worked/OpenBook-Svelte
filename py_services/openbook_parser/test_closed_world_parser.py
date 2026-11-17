@@ -482,9 +482,9 @@ class AttributionConformanceTests(unittest.TestCase):
                     self.assertIsNotNone(rule_category(reason), reason)
 
     def test_booknlp_writers_satisfy_the_trace_contract(self):
-        options = {**CONFORMANCE_OPTIONS, "episode_joint_decode": False}
+        # Episode decoder on (the default): its overrides must conform too.
         lines, _, _ = parse_conformance_chapter(
-            lambda path: BookNLPParserService().parse_file(path, options=options)
+            lambda path: BookNLPParserService().parse_file(path, options=CONFORMANCE_OPTIONS)
         )
         self.assert_parser_output_conforms(lines)
         dialogue = [line for line in lines if line.line_type == "dialogue"]
