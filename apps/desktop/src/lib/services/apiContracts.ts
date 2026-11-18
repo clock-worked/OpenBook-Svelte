@@ -217,9 +217,15 @@ export interface GenerateAudioCharacterResponse {
   };
 }
 
-/** Live pipeline progress written by the backend while a character run is in flight. */
+/**
+ * Live pipeline progress written by the backend while a character run is in
+ * flight (py_services/audio/pipeline_progress.py). Self-describing: the BE
+ * reports the run's scope, the FE never derives it. Phase/scope names are
+ * pinned by tests/pipeline_progress_vectors.json (see audioPipelineProgress.ts).
+ */
 export interface VibeVoiceCharacterProgressResponse {
   phase: string;
+  scope?: 'single' | 'cross' | null;
   detail?: string | null;
   lineCount?: number | null;
   chunkIndex?: number | null;

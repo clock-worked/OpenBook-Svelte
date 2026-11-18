@@ -27,7 +27,10 @@ import {
   resolvePlannedLineCharacterName,
   resolvePlannedLineSourceFile,
 } from '$lib/services/audioQueuePlanning';
-import { startCharacterPipelineProgressPolling } from '$lib/services/audioPipelineProgress';
+import {
+  startCharacterPipelineProgressPolling,
+  type PipelineProgressRecord,
+} from '$lib/services/audioPipelineProgress';
 import { classifyProvider, isLocalChunkedProvider } from '$lib/services/audioGenerator';
 
 export interface AudioManifest {
@@ -518,12 +521,7 @@ export async function generateAudioForCharacter(
   onProgress?: (current: number, total: number) => void,
   shouldCancel?: () => boolean,
   options: GenerateAudioCharacterOptions = {},
-  onPipelineProgress?: (
-    phase: string,
-    detail: string | null,
-    chunkIndex: number | null,
-    chunkTotal: number | null,
-  ) => void
+  onPipelineProgress?: (record: PipelineProgressRecord) => void
 ): Promise<{ success: boolean; generatedCount: number; errors: string[]; canceled: boolean }> {
   if (shouldCancel?.()) {
     return {
@@ -557,17 +555,13 @@ export async function generateAudioForCharacter(
 
   // While the (long) synchronous generation request is in flight, poll the
   // live pipeline progress so the UI can show which phase the backend is in
-  // (speech generation, WhisperX transcription, splitting, ...).
-  const lineChapters = new Set(
-    lines
-      .map((line) => resolvePlannedLineChapterTitle(line, chapterTitle))
-      .filter((title): title is string => Boolean(title)),
-  );
+  // (speech generation, WhisperX transcription, splitting, ...). The
+  // backend finds the record and reports its scope (single chapter vs book
+  // batch); nothing here derives it.
   const stopProgressPolling = onPipelineProgress
     ? startCharacterPipelineProgressPolling({
         characterName,
         chapterTitle,
-        crossChapter: lineChapters.size > 1,
         audioRoot: audioRootFor() || null,
         requestStart: Date.now(),
         onProgress: onPipelineProgress,

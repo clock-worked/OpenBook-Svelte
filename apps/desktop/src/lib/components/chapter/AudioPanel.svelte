@@ -52,7 +52,7 @@
     type AudioPlannerContext,
     type RebuiltQueuePayload,
   } from '$lib/services/audioQueuePlanning';
-  import { phaseLabel } from '$lib/services/audioPipelineProgress';
+  import { progressLabel } from '$lib/services/audioPipelineProgress';
 
   const DISPLAY_ALPHA = 1.0;
   const CHARACTER_BATCH_TARGET = 800;
@@ -1056,10 +1056,6 @@
         chatterboxSettings: resolved.chatterboxSettings,
       };
 
-      // Tracks the last line-count the chunk progress scaled to, so we only
-      // touch the stores when the number actually moves.
-      let lastChunkScaled = -1;
-
       const result = await generateAudioForCharacter(
         payload.characterName,
         payload.characterId,
@@ -1076,29 +1072,11 @@
         },
         () => isJobCanceled(next.id),
         jobOptions,
-        (phase, detail, chunkIndex, chunkTotal) => {
-          generationPhase = phaseLabel(phase, detail);
-          updateJobPhase(next.id, phase);
-          // Scale the line-count bar with TTS chunk progress so it moves
-          // while speech is being generated (the long pole of the run).
-          if (
-            phase === 'generating' &&
-            typeof chunkIndex === 'number' &&
-            typeof chunkTotal === 'number' &&
-            chunkTotal > 0
-          ) {
-            const scaled = Math.min(
-              payload.lines.length,
-              Math.floor((chunkIndex / chunkTotal) * payload.lines.length),
-            );
-            if (scaled !== lastChunkScaled) {
-              lastChunkScaled = scaled;
-              generationProgress = { current: scaled, total: payload.lines.length };
-              const boundedCurrent = Math.max(0, Math.min(scaled, payload.cumulativeCharacterCounts.length));
-              const processedCharacters = boundedCurrent > 0 ? payload.cumulativeCharacterCounts[boundedCurrent - 1] : 0;
-              updateJobProgress(next.id, scaled, payload.lines.length, processedCharacters, payload.totalCharacters);
-            }
-          }
+        (record) => {
+          // The record is the display: true chunk progress ("chunk 3 of 7")
+          // in the phase label; the line counter counts only finished lines.
+          generationPhase = progressLabel(record);
+          updateJobPhase(next.id, record.phase);
         }
       );
 
