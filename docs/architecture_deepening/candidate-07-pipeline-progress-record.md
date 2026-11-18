@@ -1,6 +1,6 @@
 # Candidate 7 — One pipeline progress record
 
-**Status:** designed (decision record below) — not started
+**Status:** implemented on `refactor/c07-progress-record` (ADR 0019)
 **Part of:** architecture review 2026-11-06, candidates 1–8
 **Companion issue:** see `docs/architecture_deepening/README.md`
 
