@@ -1,14 +1,8 @@
 <script lang="ts">
   import { onDestroy } from 'svelte';
-  import {
-    audioQueue,
-    cancelAllJobs,
-    clearFinishedJobs,
-    removeQueuedJob,
-    type AudioQueueItem,
-  } from '$lib/stores/audioQueue';
+  import { audioQueue, type QueueJob } from '$lib/stores/audioQueue';
   import { ChevronDown, ChevronUp, X } from 'lucide-svelte';
-  import { phaseLabel } from '$lib/services/audioPipelineProgress';
+  import { progressLabel } from '$lib/services/audioPipelineProgress';
 
   type OverlayTab = 'queue' | 'overview';
 
@@ -18,7 +12,7 @@
     missingVoiceTotal: number;
     processed: number;
     percent: number;
-    items: AudioQueueItem[];
+    items: QueueJob[];
     createdAt: number;
   }
 
@@ -42,16 +36,16 @@
   $: runStartAt = $audioQueue.runStartedAt ?? runningItem?.startedAt ?? null;
   $: overviewTotals = Object.values($audioQueue.chapterOverview);
   $: processableTotalFromOverview = overviewTotals.reduce((sum, chapter) => sum + chapter.processableTotal, 0);
-  $: processableTotalFromItems = $audioQueue.items.reduce((sum, item) => sum + Math.max(0, item.total), 0);
+  $: processableTotalFromItems = $audioQueue.items.reduce((sum, item) => sum + Math.max(0, item.totalLines), 0);
   $: processableTotal = processableTotalFromOverview > 0 ? processableTotalFromOverview : processableTotalFromItems;
-  $: processedLines = $audioQueue.items.reduce((sum, item) => sum + Math.max(0, Math.min(item.current, item.total)), 0);
+  $: processedLines = $audioQueue.items.reduce((sum, item) => sum + Math.max(0, Math.min(item.progress.linesDone, item.totalLines)), 0);
   $: totalCharacters = $audioQueue.items.reduce((sum, item) => sum + Math.max(0, item.totalCharacters ?? 0), 0);
-  $: processedCharacters = $audioQueue.items.reduce((sum, item) => sum + Math.max(0, Math.min(item.processedCharacters ?? 0, item.totalCharacters ?? 0)), 0);
+  $: processedCharacters = $audioQueue.items.reduce((sum, item) => sum + Math.max(0, Math.min(item.progress.charactersDone, item.totalCharacters ?? 0)), 0);
   $: elapsedSeconds = runStartAt ? Math.max(0, Math.floor((now - runStartAt) / 1000)) : 0;
   $: completedGenerationRates = $audioQueue.items
     .filter((item) => item.status === 'completed' && item.startedAt && item.finishedAt && item.finishedAt > item.startedAt)
     .map((item) => {
-      const chars = Math.max(0, item.totalCharacters ?? item.processedCharacters ?? 0);
+      const chars = Math.max(0, item.totalCharacters ?? item.progress.charactersDone ?? 0);
       const durationSeconds = Math.max(0, (item.finishedAt! - item.startedAt!) / 1000);
       if (chars <= 0 || durationSeconds <= 0) return 0;
       return chars / durationSeconds;
@@ -156,10 +150,10 @@
 
     for (const row of byChapter.values()) {
       const chapterItems = $audioQueue.items.filter((item) => item.chapterTitle === row.chapterTitle);
-      row.processed = chapterItems.reduce((sum, item) => sum + Math.max(0, Math.min(item.current, item.total)), 0);
+      row.processed = chapterItems.reduce((sum, item) => sum + Math.max(0, Math.min(item.progress.linesDone, item.totalLines)), 0);
 
       if (row.processableTotal <= 0) {
-        row.processableTotal = chapterItems.reduce((sum, item) => sum + Math.max(0, item.total), 0);
+        row.processableTotal = chapterItems.reduce((sum, item) => sum + Math.max(0, item.totalLines), 0);
       }
 
       row.percent = row.processableTotal > 0 ? Math.min(100, (row.processed / row.processableTotal) * 100) : 0;
@@ -222,6 +216,18 @@
     return `${secs}s`;
   }
 
+  // The running job's true progress: the pipeline phase plus candidate 7's
+  // engine-chunk counters. Lines only count once the pipeline finishes them.
+  $: runningProgressText = runningItem?.progress.record
+    ? progressLabel(runningItem.progress.record)
+    : 'Starting…';
+
+  function chunkText(item: QueueJob): string {
+    const record = item.status === 'running' ? item.progress.record : null;
+    if (!record || record.chunkIndex === null || record.chunkTotal === null || record.chunkTotal <= 0) return '';
+    return `chunk ${record.chunkIndex}/${record.chunkTotal}`;
+  }
+
   function toggleChapter(chapterTitle: string): void {
     chapterCollapsed = {
       ...chapterCollapsed,
@@ -256,8 +262,8 @@
           {/if}
         </button>
         {#if !panelCollapsed}
-          <button class="btn ghost" on:click={clearFinishedJobs}>Clear done</button>
-          <button class="btn danger" on:click={cancelAllJobs}>Cancel all</button>
+          <button class="btn ghost" on:click={audioQueue.clearFinished}>Clear done</button>
+          <button class="btn danger" on:click={() => audioQueue.cancel()}>Cancel all</button>
         {/if}
       </div>
     </div>
@@ -266,7 +272,7 @@
       <div class="running-card">
         <div class="running-title">
           {#if runningItem}
-            Generating: {runningItem.characterName}{#if runningItem.phase} · {phaseLabel(runningItem.phase)}{/if}
+            Generating: {runningItem.displayName} · {runningProgressText}
           {:else}
             Waiting for next queued item
           {/if}
@@ -302,11 +308,11 @@
                       {#each chapter.items as item (item.id)}
                         <div class="queue-row">
                           <div class="queue-row-main">
-                            <span class="queue-name">{item.characterName}</span>
-                            <span class="queue-count">{item.current}/{item.total} · {item.status}</span>
+                            <span class="queue-name">{item.displayName}</span>
+                            <span class="queue-count">{item.progress.linesDone}/{item.totalLines}{#if chunkText(item)} · {chunkText(item)}{/if} · {item.status}</span>
                           </div>
                           {#if item.status === 'queued'}
-                            <button class="remove-btn" title="Remove from queue" on:click={() => removeQueuedJob(item.id)}>
+                            <button class="remove-btn" title="Remove from queue" on:click={() => audioQueue.remove(item.id)}>
                               <X size={14} />
                             </button>
                           {/if}

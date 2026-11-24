@@ -28,6 +28,11 @@ export type PlannedDialogueLine = DialogueLine & {
   sourceFile?: string;
   characterName?: string;
   chosenSpeaker?: string;
+  /**
+   * The character the planner attributed the line to (a speaker-source job
+   * mixes characters). Queue bookkeeping only — not sent to the backend.
+   */
+  plannedCharacterId?: string;
 };
 
 export interface PlannerVoiceInfo {
