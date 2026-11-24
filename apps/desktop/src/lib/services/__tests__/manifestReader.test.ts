@@ -1,5 +1,5 @@
 // The manifest reader's fallback chain (services/manifestReader.ts):
-// reconcile endpoint -> absolute read -> relative read, the 404 latches held
+// reconcile endpoint -> stored read -> relative read, the 404 latches held
 // by the injected ManifestApiProbe, and the cache / invalidation API.
 
 import { describe, expect, it } from 'vitest';
@@ -38,13 +38,13 @@ type Step = ManifestFetchResult | Error;
 
 interface FakeTransportScript {
   reconcile?: Step[];
-  absolute?: ManifestFetchResult[];
+  stored?: ManifestFetchResult[];
   relative?: Array<AudioManifest | null | Error>;
 }
 
 function fakeTransport(script: FakeTransportScript) {
   const calls: string[] = [];
-  const absolutePaths: string[] = [];
+  const storedRequests: Array<{ chapterTitle: string; characterName: string; audioRoot: string }> = [];
   const relativePaths: string[] = [];
   const next = <T>(queue: T[] | undefined, name: string): T => {
     if (!queue || queue.length === 0) throw new Error(`unexpected ${name} call`);
@@ -57,10 +57,10 @@ function fakeTransport(script: FakeTransportScript) {
       if (step instanceof Error) throw step;
       return step;
     },
-    async readAbsolute(filePath) {
-      calls.push('absolute');
-      absolutePaths.push(filePath);
-      return next(script.absolute, 'absolute');
+    async readStored(request) {
+      calls.push('stored');
+      storedRequests.push(request);
+      return next(script.stored, 'stored');
     },
     async readRelative(relativePath) {
       calls.push('relative');
@@ -70,7 +70,7 @@ function fakeTransport(script: FakeTransportScript) {
       return step;
     },
   };
-  return { transport, calls, absolutePaths, relativePaths };
+  return { transport, calls, storedRequests, relativePaths };
 }
 
 const silent = { log() {}, warn() {}, error() {} };
@@ -101,25 +101,26 @@ describe('manifest reader fallback chain', () => {
     expect(calls).toEqual(['reconcile']);
   });
 
-  it('falls back to the absolute read when reconcile has no manifest', async () => {
+  it('falls back to the stored read when reconcile has no manifest', async () => {
     const raw = manifest('raw');
-    const { reader, calls, absolutePaths, probe } = makeReader({
+    const { reader, calls, storedRequests, probe } = makeReader({
       reconcile: [{ kind: 'ok', manifest: null }],
-      absolute: [{ kind: 'ok', manifest: raw }],
+      stored: [{ kind: 'ok', manifest: raw }],
     });
 
     expect(await reader.read(CHAPTER, CHARACTER)).toBe(raw);
-    expect(calls).toEqual(['reconcile', 'absolute']);
-    expect(absolutePaths).toEqual([`${ROOT}/${CHAPTER}/audio_lines/${CHARACTER}/manifest.json`]);
+    expect(calls).toEqual(['reconcile', 'stored']);
+    // Addressed by chapter + character + root: no file path crosses the wire.
+    expect(storedRequests).toEqual([{ chapterTitle: CHAPTER, characterName: CHARACTER, audioRoot: ROOT }]);
     expect(probe.isMissing('reconcile')).toBe(false);
-    expect(probe.isMissing('absoluteRead')).toBe(false);
+    expect(probe.isMissing('manifestRead')).toBe(false);
   });
 
   it('latches reconcile off after a 404 and skips it on later reads', async () => {
     const raw = manifest('raw');
     const { reader, calls, probe } = makeReader({
       reconcile: [{ kind: 'missing' }],
-      absolute: [{ kind: 'ok', manifest: raw }],
+      stored: [{ kind: 'ok', manifest: raw }],
     });
 
     expect(await reader.read(CHAPTER, CHARACTER)).toBe(raw);
@@ -127,49 +128,62 @@ describe('manifest reader fallback chain', () => {
 
     reader.invalidate(CHAPTER, CHARACTER);
     expect(await reader.read(CHAPTER, CHARACTER)).toBe(raw);
-    expect(calls).toEqual(['reconcile', 'absolute', 'absolute']);
+    expect(calls).toEqual(['reconcile', 'stored', 'stored']);
   });
 
   it('does not latch on a reconcile failure that is not a 404', async () => {
     const raw = manifest('raw');
     const { reader, calls, probe } = makeReader({
       reconcile: [new Error('500 boom')],
-      absolute: [{ kind: 'ok', manifest: raw }],
+      stored: [{ kind: 'ok', manifest: raw }],
     });
 
     expect(await reader.read(CHAPTER, CHARACTER)).toBe(raw);
     reader.invalidate(CHAPTER, CHARACTER);
     await reader.read(CHAPTER, CHARACTER);
     expect(probe.isMissing('reconcile')).toBe(false);
-    expect(calls).toEqual(['reconcile', 'absolute', 'reconcile', 'absolute']);
+    expect(calls).toEqual(['reconcile', 'stored', 'reconcile', 'stored']);
   });
 
-  it('latches the absolute read off after a 404 and reads relative from then on', async () => {
+  it('latches the stored read off after a 404 and reads relative from then on', async () => {
     const relative = manifest('relative');
     const { reader, calls, relativePaths, probe } = makeReader({
       reconcile: [{ kind: 'ok', manifest: null }],
-      absolute: [{ kind: 'missing' }],
+      stored: [{ kind: 'missing' }],
       relative: [relative],
     });
 
     expect(await reader.read(CHAPTER, CHARACTER)).toBe(relative);
-    expect(probe.isMissing('absoluteRead')).toBe(true);
+    expect(probe.isMissing('manifestRead')).toBe(true);
     expect(relativePaths).toEqual([`${CHAPTER}/audio_lines/${CHARACTER}/manifest.json`]);
 
-    // With absolute reads latched off, even reconcile is skipped.
+    // With stored reads latched off, even reconcile is skipped.
     expect(await reader.read(CHAPTER, 'Bob')).toBe(relative);
-    expect(calls).toEqual(['reconcile', 'absolute', 'relative', 'relative']);
+    expect(calls).toEqual(['reconcile', 'stored', 'relative', 'relative']);
   });
 
-  it('returns (and caches) null for another absolute-read status', async () => {
+  it('returns (and caches) null for another stored-read status', async () => {
     const { reader, calls } = makeReader({
       reconcile: [{ kind: 'ok', manifest: null }],
-      absolute: [{ kind: 'failed', status: 400 }],
+      stored: [{ kind: 'failed', status: 400 }],
     });
 
     expect(await reader.read(CHAPTER, CHARACTER)).toBeNull();
     expect(await reader.read(CHAPTER, CHARACTER)).toBeNull();
-    expect(calls).toEqual(['reconcile', 'absolute']);
+    expect(calls).toEqual(['reconcile', 'stored']);
+  });
+
+  it('a character with no manifest yet reads as null without latching the stored read off', async () => {
+    const raw = manifest('raw');
+    const { reader, calls, probe } = makeReader({
+      reconcile: [{ kind: 'ok', manifest: null }],
+      stored: [{ kind: 'ok', manifest: null }, { kind: 'ok', manifest: raw }],
+    });
+
+    expect(await reader.read(CHAPTER, 'Nobody')).toBeNull();
+    expect(probe.isMissing('manifestRead')).toBe(false);
+    expect(await reader.read(CHAPTER, CHARACTER)).toBe(raw);
+    expect(calls).toEqual(['reconcile', 'stored', 'reconcile', 'stored']);
   });
 
   it('reads relative only when no audio root resolves', async () => {
@@ -185,10 +199,10 @@ describe('manifest reader fallback chain', () => {
     const probe = createSessionApiProbe();
     probe.markMissing('reconcile');
     const raw = manifest('raw');
-    const { reader, calls } = makeReader({ absolute: [{ kind: 'ok', manifest: raw }] }, { probe });
+    const { reader, calls } = makeReader({ stored: [{ kind: 'ok', manifest: raw }] }, { probe });
 
     expect(await reader.read(CHAPTER, CHARACTER)).toBe(raw);
-    expect(calls).toEqual(['absolute']);
+    expect(calls).toEqual(['stored']);
   });
 
   it('turns transport errors into a null read', async () => {
@@ -251,7 +265,7 @@ describe('createSessionApiProbe', () => {
     expect(probe.isMissing('reconcile')).toBe(false);
     probe.markMissing('reconcile');
     expect(probe.isMissing('reconcile')).toBe(true);
-    expect(probe.isMissing('absoluteRead')).toBe(false);
+    expect(probe.isMissing('manifestRead')).toBe(false);
     probe.markAvailable('reconcile');
     expect(probe.isMissing('reconcile')).toBe(false);
   });

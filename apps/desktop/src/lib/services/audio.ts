@@ -7,6 +7,8 @@ import { buildLineTextWithSpeechVerbTags, extractNarrationTags } from '$lib/serv
 import type { NarrationTagCandidate } from '$lib/services/audioNarration';
 import { API_ENDPOINTS, ApiClientError, apiFetch, apiPostJson, apiPostVoid, toApiUrl } from '$lib/services/apiClient';
 import type {
+  AudioManifestRequest,
+  AudioManifestResponse,
   BackendErrorPayload,
   ChapterVoiceAssignmentPayload,
   ChatterboxSettingsPayload,
@@ -18,7 +20,6 @@ import type {
   GenerateAudioChapterResponse,
   GenerateAudioLineRequest,
   GenerateAudioLineSuccessResponse,
-  ReadFileAbsoluteRequest,
   ReconcileAudioManifestRequest,
   ReconcileAudioManifestResponse,
 } from '$lib/services/apiContracts';
@@ -32,7 +33,7 @@ import {
   type PipelineProgressRecord,
 } from '$lib/services/audioPipelineProgress';
 import { classifyProvider, isLocalChunkedProvider } from '$lib/services/audioGenerator';
-import { createManifestReader, manifestAbsolutePath, type ManifestTransport } from '$lib/services/manifestReader';
+import { createManifestReader, type ManifestTransport } from '$lib/services/manifestReader';
 
 export interface AudioManifest {
   formatVersion: string;
@@ -186,20 +187,6 @@ export function getAudioPath(
   return query ? `${baseUrl}?${query}` : baseUrl;
 }
 
-/**
- * Construct the file system path for a character's manifest
- */
-export function getManifestPath(
-  chapterTitle: string,
-  characterName: string
-): string {
-  const root = audioRootFor();
-  if (!root) {
-    return '';
-  }
-  return manifestAbsolutePath(root, chapterTitle, characterName);
-}
-
 /** HTTP/fs transport for the manifest reader (services/manifestReader.ts). */
 const manifestTransport: ManifestTransport = {
   async reconcile({ chapterTitle, characterName, audioRoot: root }) {
@@ -220,14 +207,22 @@ const manifestTransport: ManifestTransport = {
       throw error;
     }
   },
-  async readAbsolute(filePath) {
-    const body: ReadFileAbsoluteRequest = { file_path: filePath };
-    const response = await apiFetch(API_ENDPOINTS.readFileAbsolute, {
+  async readStored({ chapterTitle, characterName, audioRoot: root }) {
+    const body: AudioManifestRequest = {
+      chapter_title: chapterTitle,
+      character_name: characterName,
+      audio_root: root || null,
+    };
+    const response = await apiFetch(API_ENDPOINTS.audioManifest, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     });
-    if (response.ok) return { kind: 'ok', manifest: (await response.json()) as AudioManifest };
+    if (response.ok) {
+      const data = (await response.json()) as AudioManifestResponse;
+      const manifest = data?.manifest && typeof data.manifest === 'object' ? (data.manifest as AudioManifest) : null;
+      return { kind: 'ok', manifest };
+    }
     if (response.status === 404) return { kind: 'missing' };
     return { kind: 'failed', status: response.status };
   },
@@ -250,7 +245,7 @@ export function clearAllManifestCache(): void {
 
 /**
  * Read a character's audio manifest (cached; see services/manifestReader.ts
- * for the reconcile -> absolute read -> relative read fallback chain).
+ * for the reconcile -> stored read -> relative read fallback chain).
  */
 export function readManifest(
   chapterTitle: string,

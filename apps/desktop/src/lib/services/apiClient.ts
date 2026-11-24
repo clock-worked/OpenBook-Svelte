@@ -48,7 +48,7 @@ export const API_ENDPOINTS = {
     saveVoiceSampleMetadata: '/api/save-voice-sample-metadata',
     voiceSamplePreview: (filename: string, samplesRoot: string) =>
         `/api/voice-sample?filename=${encodeURIComponent(filename)}&samples_root=${encodeURIComponent(samplesRoot)}`,
-    readFileAbsolute: '/api/read_file_absolute',
+    audioManifest: '/api/audio-manifest',
     generateAudioLine: '/api/generate_audio_line',
     generateVibeVoiceLine: '/api/vibevoice/line',
     generateVibeVoiceCharacter: '/api/vibevoice/character',
