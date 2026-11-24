@@ -95,4 +95,7 @@ def env_info() -> dict:
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    # Loopback only: the API reads and writes the user's book and audio
+    # folders, so it must not be reachable from the network by default.
+    # Set OPENBOOK_API_HOST (e.g. 0.0.0.0) to opt in deliberately.
+    uvicorn.run(app, host=os.environ.get("OPENBOOK_API_HOST", "127.0.0.1"), port=8000)

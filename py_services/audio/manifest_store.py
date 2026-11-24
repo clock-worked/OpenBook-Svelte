@@ -56,12 +56,35 @@ def utc_timestamp() -> str:
     return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
 
+class ManifestPathError(ValueError):
+    """A chapter title or character name that would leave the audio root."""
+
+
 def character_audio_dir(audio_root: PathLike, chapter_title: str, character_name: str) -> Path:
-    return Path(audio_root) / chapter_title / AUDIO_LINES_DIRNAME / character_name
+    """``<audio_root>/<chapter>/audio_lines/<character>``, kept inside the root.
+
+    Chapter titles and character names arrive from HTTP requests; one that
+    is absolute or climbs out with ``..`` raises :class:`ManifestPathError`
+    instead of addressing a file elsewhere on disk.
+    """
+    root = Path(audio_root)
+    character_dir = root / chapter_title / AUDIO_LINES_DIRNAME / character_name
+    resolved_root = root.resolve()
+    resolved_dir = character_dir.resolve()
+    if resolved_root not in resolved_dir.parents:
+        raise ManifestPathError(
+            f"Chapter {chapter_title!r} / character {character_name!r} is outside the audio root"
+        )
+    return character_dir
 
 
 def manifest_path_for(audio_root: PathLike, chapter_title: str, character_name: str) -> Path:
     return character_audio_dir(audio_root, chapter_title, character_name) / MANIFEST_FILENAME
+
+
+def load(audio_root: PathLike, chapter_title: str, character_name: str) -> Optional[Dict[str, Any]]:
+    """The stored manifest for one character in one chapter, or ``None``. Never writes."""
+    return read_manifest(manifest_path_for(audio_root, chapter_title, character_name))
 
 
 def fallback_character_id(character_name: str) -> str:
