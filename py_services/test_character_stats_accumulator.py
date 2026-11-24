@@ -22,6 +22,7 @@ from update_character_stats import (
     character_counts_in_dialogue,
     derive_character_stats,
     scan_character_chapter_counts,
+    stats_for_character,
     update_character_stats,
 )
 
@@ -134,6 +135,37 @@ class ScanTests(unittest.TestCase):
         })
         self.assertEqual(stats["alice"], {"totalLines": 3, "chapterCount": 2})
         self.assertEqual(stats["bob"], {"totalLines": 1, "chapterCount": 1})
+
+
+class StatsJoinTests(unittest.TestCase):
+    """The one join rule from raw dialogue keys to character records."""
+
+    STATS = {
+        "GUID-A": {"totalLines": 1, "chapterCount": 1},
+        "guid-b": {"totalLines": 2, "chapterCount": 1},
+        "Alice": {"totalLines": 3, "chapterCount": 2},
+        "bob": {"totalLines": 4, "chapterCount": 2},
+    }
+
+    def test_exact_id_wins_over_name(self):
+        record = {"id": "GUID-A", "name": "Alice"}
+        self.assertEqual(stats_for_character(record, self.STATS)["totalLines"], 1)
+
+    def test_case_insensitive_id(self):
+        record = {"id": "GUID-B", "name": "Alice"}
+        self.assertEqual(stats_for_character(record, self.STATS)["totalLines"], 2)
+
+    def test_exact_then_case_insensitive_name(self):
+        self.assertEqual(stats_for_character({"id": "x", "name": "Alice"}, self.STATS)["totalLines"], 3)
+        self.assertEqual(stats_for_character({"id": None, "name": "Bob"}, self.STATS)["totalLines"], 4)
+
+    def test_case_insensitive_resolves_to_first_matching_key(self):
+        stats = {"Carol": {"totalLines": 5}, "CAROL": {"totalLines": 6}}
+        self.assertEqual(stats_for_character({"name": "carol"}, stats)["totalLines"], 5)
+
+    def test_no_match_is_none(self):
+        self.assertIsNone(stats_for_character({"id": "zzz", "name": "Nobody"}, self.STATS))
+        self.assertIsNone(stats_for_character({}, self.STATS))
 
 
 class AccumulatorTests(unittest.TestCase):

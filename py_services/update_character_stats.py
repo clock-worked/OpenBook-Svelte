@@ -101,6 +101,34 @@ def derive_character_stats(matrix: Dict[str, Dict[str, int]]) -> Dict[str, Dict[
     }
 
 
+def stats_for_character(character: Dict, character_stats: Dict) -> Optional[Dict]:
+    """Join one character record to its stats entry, or None (no lines).
+
+    Raw dialogue keys are `characterId` (v2+/v3: the GUID) or
+    `chosenSpeaker` (v1: the name), so a record is matched by, in order:
+    exact id, case-insensitive id, exact name, case-insensitive name.
+    A case-insensitive hit resolves to the first matching key. This is the
+    one join rule for both store writers (v3 folder and legacy file).
+    """
+    char_id = character.get('id')
+    char_name = character.get('name')
+    if char_id and char_id in character_stats:
+        return character_stats[char_id]
+    if char_id:
+        char_id_lower = char_id.lower()
+        key = next((k for k in character_stats if k.lower() == char_id_lower), None)
+        if key is not None:
+            return character_stats[key]
+    if char_name and char_name in character_stats:
+        return character_stats[char_name]
+    if char_name:
+        char_name_lower = char_name.lower()
+        key = next((k for k in character_stats if k.lower() == char_name_lower), None)
+        if key is not None:
+            return character_stats[key]
+    return None
+
+
 def _update_folder_stats(
     book_root: Path,
     records: List[Dict],
@@ -113,29 +141,9 @@ def _update_folder_stats(
     this runs on every dialogue save and would otherwise fan out to
     N files.
     """
-    # Build a normalized version of character_stats for matching
-    normalized_stats = {k.lower(): v for k, v in character_stats.items()}
-
     updated_count = 0
     for character in records:
-        char_id = character.get('id')      # v3: the GUID
-        char_name = character.get('name')   # v3: the title
-        char_id_lower = char_id.lower() if char_id else None
-        char_name_lower = char_name.lower() if char_name else None
-
-        new_stats = None
-        if char_id and char_id in character_stats:
-            new_stats = character_stats[char_id]
-        elif char_id_lower and char_id_lower in normalized_stats:
-            original_key = next((k for k in character_stats.keys() if k.lower() == char_id_lower), None)
-            if original_key:
-                new_stats = character_stats[original_key]
-        elif char_name and char_name in character_stats:
-            new_stats = character_stats[char_name]
-        elif char_name_lower and char_name_lower in normalized_stats:
-            original_key = next((k for k in character_stats.keys() if k.lower() == char_name_lower), None)
-            if original_key:
-                new_stats = character_stats[original_key]
+        new_stats = stats_for_character(character, character_stats)
         if new_stats is None:
             # Character exists but has no lines
             new_stats = {'totalLines': 0, 'chapterCount': 0}
@@ -184,41 +192,11 @@ def _update_legacy_stats(
         # Stats are keyed by either ID (v2.0) or name (v1.0), so check both
         updated_count = 0
         for character in characters_data.get('characters', []):
-            char_id = character.get('id')
-            char_name = character.get('name')
-
-            # Normalize IDs for comparison (case-insensitive)
-            char_id_lower = char_id.lower() if char_id else None
-            char_name_lower = char_name.lower() if char_name else None
-
-            # Build a normalized version of character_stats for matching
-            normalized_stats = {k.lower(): v for k, v in character_stats.items()}
-
-            # Check both ID and name for matches (handles v1.0 and v2.0)
-            matched = False
-            if char_id and char_id in character_stats:
-                character['stats'] = character_stats[char_id]
+            matched_stats = stats_for_character(character, character_stats)
+            if matched_stats is not None:
+                character['stats'] = matched_stats
                 updated_count += 1
-                matched = True
-            elif char_id_lower and char_id_lower in normalized_stats:
-                # Try case-insensitive match on ID
-                original_key = next((k for k in character_stats.keys() if k.lower() == char_id_lower), None)
-                if original_key:
-                    character['stats'] = character_stats[original_key]
-                    updated_count += 1
-                    matched = True
-            elif char_name and char_name in character_stats:
-                character['stats'] = character_stats[char_name]
-                updated_count += 1
-                matched = True
-            elif char_name_lower and char_name_lower in normalized_stats:
-                original_key = next((k for k in character_stats.keys() if k.lower() == char_name_lower), None)
-                if original_key:
-                    character['stats'] = character_stats[original_key]
-                    updated_count += 1
-                    matched = True
-
-            if not matched:
+            else:
                 # Character exists but has no lines
                 character['stats'] = {
                     'totalLines': 0,

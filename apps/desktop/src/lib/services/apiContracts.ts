@@ -68,6 +68,13 @@ export interface SetBookRootRequest {
   root_path: string;
 }
 
+export interface SetBookRootResponse {
+  path?: string;
+  /** False when the stats accumulation build failed (ADR 0012); the root
+   *  switch still succeeded and the build is deferred to the next save. */
+  stats_rebuilt?: boolean;
+}
+
 export interface SetAudioRootRequest {
   audio_root: string;
 }
