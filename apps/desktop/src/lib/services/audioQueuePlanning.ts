@@ -157,19 +157,22 @@ export function buildCumulativeCharacterCounts(lines: DialogueLine[]): { cumulat
 
 /**
  * Copies lines and stamps them with queue context (chapter, source file,
- * character name), filling `chosenSpeaker` when the line has none.
+ * character name, planned character id), filling `chosenSpeaker` when the
+ * line has none.
  */
 export function buildPlannedLinesWithContext(
   lines: DialogueLine[],
   chapterTitle: string,
   sourceFile: string,
   characterName: string,
+  characterId?: string,
 ): PlannedDialogueLine[] {
   return lines.map((line) => ({
     ...(line as any),
     chapterTitle,
     sourceFile,
     characterName,
+    ...(characterId ? { plannedCharacterId: characterId } : {}),
     ...(typeof (line as any)?.chosenSpeaker === 'string' && String((line as any).chosenSpeaker).trim()
       ? {}
       : { chosenSpeaker: characterName }),
@@ -301,21 +304,25 @@ interface ChapterCharacterMissing {
 }
 
 /**
- * Reads one chapter's dialogue, groups lines by character, and returns the
- * per-character missing lines (audio not yet present). Shared by the
- * whole-book and advanced planners.
+ * Groups one chapter script's lines by character and returns, per
+ * character, the lines to generate: only those without audio when
+ * `missingOnly`, else all of them. `onlyCharacterId` narrows to one
+ * character. Shared by every planner — the one implementation of "which
+ * lines are missing for a character in a chapter".
  */
-async function collectChapterMissingLines(
+async function collectScriptCharacterLines(
   ctx: AudioPlannerContext,
-  chapter: ChapterStatus,
+  chapterTitle: string,
+  script: { lines: any[] } | null,
+  opts: { missingOnly: boolean; onlyCharacterId?: string },
 ): Promise<ChapterCharacterMissing[]> {
-  const script = await ctx.readScriptForChapter(chapter.title);
   if (!script?.lines?.length) return [];
 
   const linesByCharacterId = new Map<string, DialogueLine[]>();
   for (const line of script.lines as any[]) {
     const characterId = ctx.resolveCharacterIdFromLine(line);
     if (!characterId) continue;
+    if (opts.onlyCharacterId !== undefined && characterId !== opts.onlyCharacterId) continue;
 
     const existingLines = linesByCharacterId.get(characterId) || [];
     existingLines.push(line as DialogueLine);
@@ -327,10 +334,14 @@ async function collectChapterMissingLines(
     if (characterLines.length === 0) continue;
 
     const characterName = ctx.resolveCharacterName(characterId);
+    if (!opts.missingOnly) {
+      result.push({ characterId, characterName, missingLines: characterLines });
+      continue;
+    }
     const checks = await Promise.all(
       characterLines.map(async (line) => ({
         line,
-        exists: await ctx.isLineAudioPresent({ chapterTitle: chapter.title, characterName, lineId: line.id }),
+        exists: await ctx.isLineAudioPresent({ chapterTitle, characterName, lineId: line.id }),
       }))
     );
 
@@ -340,6 +351,68 @@ async function collectChapterMissingLines(
     result.push({ characterId, characterName, missingLines });
   }
   return result;
+}
+
+/** Reads a chapter and collects its per-character missing lines. */
+async function collectChapterMissingLines(
+  ctx: AudioPlannerContext,
+  chapter: ChapterStatus,
+): Promise<ChapterCharacterMissing[]> {
+  const script = await ctx.readScriptForChapter(chapter.title);
+  return collectScriptCharacterLines(ctx, chapter.title, script, { missingOnly: true });
+}
+
+export type ChapterCharacterPlanResult =
+  | { job: PlannedQueueJob; reason?: undefined }
+  | { job: null; reason: 'no-voice' | 'no-lines' | 'nothing-missing' };
+
+/**
+ * Plans one character's job in one chapter (the panel's per-character
+ * "generate" and whole-chapter paths). The caller passes the script so an
+ * in-memory copy of the open chapter is planned as shown. `missingOnly`
+ * keeps only lines without audio; otherwise every line is regenerated.
+ */
+export async function planChapterCharacter(
+  ctx: AudioPlannerContext,
+  args: {
+    chapter: { title: string; path?: string };
+    script: { lines: any[] } | null;
+    characterId: string;
+    missingOnly: boolean;
+  },
+): Promise<ChapterCharacterPlanResult> {
+  const { chapter, characterId, missingOnly } = args;
+  const voiceInfo = ctx.getVoice(characterId);
+  if (!voiceInfo) return { job: null, reason: 'no-voice' };
+
+  const hasLines = (args.script?.lines ?? []).some((line) => ctx.resolveCharacterIdFromLine(line) === characterId);
+  if (!hasLines) return { job: null, reason: 'no-lines' };
+
+  const [entry] = await collectScriptCharacterLines(ctx, chapter.title, args.script, {
+    missingOnly,
+    onlyCharacterId: characterId,
+  });
+  if (!entry) return { job: null, reason: 'nothing-missing' };
+
+  const sourceFile = ctx.getChapterSourceFile(chapter);
+  const lines = buildPlannedLinesWithContext(entry.missingLines, chapter.title, sourceFile, entry.characterName, characterId);
+  const { cumulative, total } = buildCumulativeCharacterCounts(lines);
+  const mode = missingOnly ? 'missing' : 'full';
+
+  return {
+    job: {
+      jobIdBase: `${characterId}-${mode}`,
+      displayName: entry.characterName,
+      characterId,
+      characterName: entry.characterName,
+      lines,
+      cumulativeCharacterCounts: cumulative,
+      totalCharacters: total,
+      voiceInfo,
+      chapterTitle: chapter.title,
+      sourceFile,
+    },
+  };
 }
 
 export interface ChapterQueueTotals {
@@ -386,7 +459,7 @@ export async function planWholeBookMissing(ctx: AudioPlannerContext): Promise<Wh
       }
 
       const sourceFile = ctx.getChapterSourceFile(chapter);
-      const linesWithContext = buildPlannedLinesWithContext(missingLines, chapter.title, sourceFile, characterName);
+      const linesWithContext = buildPlannedLinesWithContext(missingLines, chapter.title, sourceFile, characterName, characterId);
 
       let job = jobsByCharacterId.get(characterId);
       if (!job) {
@@ -461,7 +534,7 @@ export async function planAdvancedPreview(ctx: AudioPlannerContext): Promise<Adv
       }
 
       const sourceFile = ctx.getChapterSourceFile(chapter);
-      const linesWithContext = buildPlannedLinesWithContext(missingLines, chapter.title, sourceFile, characterName);
+      const linesWithContext = buildPlannedLinesWithContext(missingLines, chapter.title, sourceFile, characterName, characterId);
       const totalCharacters = sumLineCharacters(linesWithContext);
 
       chapterBatches.push({

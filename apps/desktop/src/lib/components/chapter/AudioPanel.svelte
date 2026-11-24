@@ -29,9 +29,9 @@
     planWholeBookMissing,
     planAdvancedPreview,
     planAdvancedGeneration,
+    planChapterCharacter,
     rebuildQueuedJobPayload,
     buildSpeakerSourceBatches,
-    buildCumulativeCharacterCounts,
     type PlannedQueueJob,
     type PlannerVoiceInfo,
     type PlannedSpeakerSourceBatch,
@@ -936,42 +936,20 @@
     // Remove stale clips before enqueueing generation.
     await pruneStaleCharacterAudio(characterId, characterName, scr, ch.title);
 
-    // Get all lines for this character (handle both v2.0 characterId and v1.0 chosenSpeaker)
-    const characterLines = getCharacterLinesForCurrentScript(characterId, characterName, scr);
-
-    if (characterLines.length === 0) {
-      alert(`No lines found for ${characterName}`);
-      return null;
-    }
-
-    let linesToGenerate = characterLines;
-    if (options.missingOnly) {
-      const checks = await Promise.all(
-        characterLines.map(async (line) => ({
-          line,
-          exists: await checkAudioExistsForLine(ch.title, characterName, line.id),
-        }))
-      );
-      linesToGenerate = checks.filter(c => !c.exists).map(c => c.line);
-      if (linesToGenerate.length === 0) {
-        return null;
-      }
-    }
-
-    const mode = options.missingOnly ? 'missing' : 'full';
-    const { cumulative, total } = buildCumulativeCharacterCounts(linesToGenerate);
-    return {
-      jobIdBase: `${characterId}-${mode}`,
-      displayName: characterName,
+    // One planner: the in-memory script of the open chapter, planned the
+    // same way the whole-book and advanced paths plan from disk.
+    const planned = await planChapterCharacter(buildPlannerContext(), {
+      chapter: ch,
+      script: scr,
       characterId,
-      characterName,
-      lines: linesToGenerate,
-      cumulativeCharacterCounts: cumulative,
-      totalCharacters: total,
-      voiceInfo,
-      chapterTitle: ch.title,
-      sourceFile: getChapterSourceFile(ch),
-    };
+      missingOnly: Boolean(options.missingOnly),
+    });
+    if (planned.reason === 'no-voice') {
+      alert(`No voice assigned to ${characterName}`);
+    } else if (planned.reason === 'no-lines') {
+      alert(`No lines found for ${characterName}`);
+    }
+    return planned.job;
   }
 
   async function processQueue() {
