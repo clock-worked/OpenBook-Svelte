@@ -13,6 +13,7 @@ pipeline (``plan_engine_chunks`` + ``generate_line_chunked_chapter_audio``),
 and that the Chatterbox adapter refuses oversized text.
 """
 
+import importlib.util
 import tempfile
 import unittest
 from pathlib import Path
@@ -44,6 +45,16 @@ class SplitTextTests(unittest.TestCase):
         text = "First sentence ends. " * 20  # 420 chars
         for p in split_text_to_max_chars(text, 100):
             self.assertLessEqual(len(p), 100)
+
+
+# The Chatterbox adapter's in-process path (what _FakeModel stands in for)
+# imports torch + torchaudio itself. CI installs a minimal closure without
+# them, so the tests that drive that path run only where torch is present.
+HAS_TORCH = (
+    importlib.util.find_spec("torch") is not None
+    and importlib.util.find_spec("torchaudio") is not None
+)
+requires_torch = unittest.skipUnless(HAS_TORCH, "torch/torchaudio not installed")
 
 
 class _FakeModel:
@@ -101,6 +112,7 @@ class ChatterboxEngineTests(unittest.TestCase):
     def test_fake_backed_service_is_an_audio_engine(self):
         self.assertIsInstance(_make_service(), AudioEngine)
 
+    @requires_torch
     def test_short_text_single_call(self):
         svc = _make_service()
         with tempfile.TemporaryDirectory() as d:
@@ -122,6 +134,7 @@ class ChatterboxEngineTests(unittest.TestCase):
 class GenerateEngineTextTests(unittest.TestCase):
     """The single-line path plans the engine calls (incident regression)."""
 
+    @requires_torch
     def test_long_text_is_planned_and_stitched(self):
         svc = _make_service(max_chunk_chars=450)
         with tempfile.TemporaryDirectory() as d:
@@ -141,6 +154,7 @@ class GenerateEngineTextTests(unittest.TestCase):
             expected = sum(len(c) for c in model.calls) / 24000.0
             self.assertAlmostEqual(info.duration, expected, delta=0.01)
 
+    @requires_torch
     def test_short_text_single_call(self):
         svc = _make_service()
         with tempfile.TemporaryDirectory() as d:
@@ -164,6 +178,7 @@ except ImportError:  # pragma: no cover - depends on the environment
 
 
 @unittest.skipIf(AudioGenerationService is None, "audio_generation_service deps not installed")
+@requires_torch
 class ProductionLinePathTests(unittest.TestCase):
     """The per-line route (generate_chatterbox_text_to_path) plans long lines."""
 
