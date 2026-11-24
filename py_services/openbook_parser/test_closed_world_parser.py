@@ -450,7 +450,10 @@ CONFORMANCE_OPTIONS = {
 def parse_conformance_chapter(parse):
     with tempfile.TemporaryDirectory() as temp_dir:
         chapter_path = Path(temp_dir) / "chapter.txt"
-        chapter_path.write_text(CONFORMANCE_CHAPTER, encoding="utf-8")
+        # LF on every platform: the parser's spans count raw characters
+        # (it reads with newline=''), and the fake ModernBookNLP predictions
+        # compute offsets from this text, so CRLF on Windows would shift them.
+        chapter_path.write_text(CONFORMANCE_CHAPTER, encoding="utf-8", newline="\n")
         return parse(str(chapter_path))
 
 
