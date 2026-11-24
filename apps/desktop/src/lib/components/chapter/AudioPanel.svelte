@@ -24,7 +24,7 @@
   import { readCentralCharacters, readDialogueForChapter } from '$lib/services/fs';
   import { resolveLineCharacterId, resolveCharacterNameForId } from '$lib/services/characterIdentity';
   import { audioQueue, type AudioQueueChapterOverview, type QueueJob } from '$lib/stores/audioQueue';
-  import { createQueueJob, runningJob } from '$lib/services/audioQueueJob';
+  import { createQueueJob, isActiveStatus, runningJob } from '$lib/services/audioQueueJob';
   import {
     planWholeBookMissing,
     planAdvancedPreview,
@@ -48,17 +48,31 @@
 
   type VoiceInfo = PlannerVoiceInfo;
 
+  // Single selected-line generation (outside the queue) only.
   let generatingCharacter: string | null = null;
   let generationProgress = { current: 0, total: 0 };
   let generationPhase: string | null = null;
+  // Queue generation is read from the store's running job.
+  $: queueRunningJob = runningJob($audioQueue);
+  $: queueBusy = queueProcessing || $audioQueue.items.some((item) => isActiveStatus(item.status));
+  $: activeGeneratingCharacter = generatingCharacter ?? queueRunningJob?.characterId ?? null;
+  $: activeGenerationProgress = generatingCharacter
+    ? generationProgress
+    : { current: queueRunningJob?.progress.linesDone ?? 0, total: queueRunningJob?.totalLines ?? 0 };
+  $: activeGenerationPhase = generatingCharacter
+    ? generationPhase
+    : queueRunningJob?.progress.record
+      ? progressLabel(queueRunningJob.progress.record)
+      : null;
   let showOverwriteModal = false;
   let overwriteCharacterId: string | null = null;
   let overwriteClipCount = 0;
   let pruningStale = false;
   let reloadingManifestData = false;
   let audioClipCounts = new Map<string, number>();
+  // Re-entrancy guard for this panel's runner loop only; the queue's
+  // in-flight state (which job runs, its plan and progress) is the store's.
   let queueProcessing = false;
-  const queuedJobs = new Map<string, PlannedQueueJob>();
   let showAdvancedOverlay = false;
   let loadingAdvancedPreview = false;
   let advancedSubmitting = false;
@@ -896,15 +910,13 @@
   ): void {
     if (planned.length === 0) return;
     const runTimestamp = Date.now();
-    const jobs = planned.map((job, index) => {
-      const queueJob = createQueueJob(job, {
+    const jobs = planned.map((job, index) =>
+      createQueueJob(job, {
         id: `${job.jobIdBase}-${runTimestamp}-${index}`,
         generationMode,
         createdAt: runTimestamp,
-      });
-      queuedJobs.set(queueJob.id, job);
-      return queueJob;
-    });
+      }),
+    );
     audioQueue.enqueue(jobs, { chapterOverview });
     void processQueue();
   }
@@ -960,13 +972,12 @@
       const next = audioQueue.next();
       if (!next) {
         queueProcessing = false;
-        generatingCharacter = null;
-        generationProgress = { current: 0, total: 0 };
-        generationPhase = null;
         break;
       }
 
-      let payload = queuedJobs.get(next.id);
+      // The job carries its plan while this session holds it; a job
+      // restored after a restart is rebuilt from disk (same QueueJob type).
+      let payload = next.plan;
       if (!payload) {
         const rebuilt = await buildPayloadFromQueueItem(next);
         if (rebuilt.markComplete) {
@@ -979,24 +990,23 @@
         }
 
         payload = rebuilt.payload;
-        queuedJobs.set(next.id, payload);
       }
 
       if (audioQueue.isCancelRequested(next.id)) {
         audioQueue.finish(next.id, { kind: 'cancel' });
-        queuedJobs.delete(next.id);
         continue;
       }
 
-      // The store allows one running job: if another runner (a previous
-      // mount of this panel) owns the queue, leave the queue to it.
       if (!audioQueue.start(next.id, payload)) {
-        queueProcessing = false;
-        break;
+        // The store allows one running job: if another runner (a previous
+        // mount of this panel) owns the queue, leave the queue to it.
+        // Otherwise the job left the queue meanwhile (removed): move on.
+        if (runningJob(get(audioQueue))) {
+          queueProcessing = false;
+          break;
+        }
+        continue;
       }
-      generatingCharacter = payload.characterId;
-      generationProgress = { current: 0, total: payload.lines.length };
-      generationPhase = null;
 
       // Resolve this job's generator at run time: the advanced-overlay
       // override (stored on the job) wins over the settings-tab default.
@@ -1021,8 +1031,7 @@
         payload.voiceInfo.provider,
         payload.chapterTitle,
         payload.sourceFile,
-        (current, total) => {
-          generationProgress = { current, total };
+        (current) => {
           audioQueue.progress(next.id, { linesDone: current });
         },
         () => audioQueue.isCancelRequested(next.id),
@@ -1030,7 +1039,6 @@
         (record) => {
           // The record is the job's live progress: true chunk progress
           // ("chunk 3 of 7"); the line counter counts only finished lines.
-          generationPhase = progressLabel(record);
           audioQueue.progress(next.id, { record });
         }
       );
@@ -1051,7 +1059,6 @@
         audioQueue.finish(next.id, { kind: 'fail', errors: result.errors });
       }
 
-      queuedJobs.delete(next.id);
       await loadAudioClipCounts();
       triggerAudioUpdate();
     }
@@ -1963,7 +1970,7 @@
       <button
         class="header-icon-btn prune-btn"
         on:click={handlePruneStaleAudio}
-        disabled={sortedCharactersById.length === 0 || pruningStale || queueProcessing}
+        disabled={sortedCharactersById.length === 0 || pruningStale || queueBusy}
         title="Remove audio clips for lines that no longer exist for a character"
         aria-label="Prune stale audio"
       >
@@ -1976,7 +1983,7 @@
       <button
         class="header-icon-btn reload-btn"
         on:click={handleReloadManifestData}
-        disabled={sortedCharactersById.length === 0 || pruningStale || queueProcessing || reloadingManifestData}
+        disabled={sortedCharactersById.length === 0 || pruningStale || queueBusy || reloadingManifestData}
         title="Reload manifest data and refresh audio counts"
         aria-label="Reload manifest data"
       >
@@ -1989,7 +1996,7 @@
       <button
         class="header-icon-btn chapter-btn"
         on:click={handleGenerateWholeChapter}
-        disabled={sortedCharactersById.length === 0 || pruningStale || queueProcessing}
+        disabled={sortedCharactersById.length === 0 || pruningStale || queueBusy}
         title="Queue generation for all voiced characters in this chapter"
         aria-label="Queue chapter missing audio"
       >
@@ -1998,7 +2005,7 @@
       <button
         class="header-icon-btn book-btn"
         on:click={handleGenerateWholeBook}
-        disabled={$chapters.length === 0 || pruningStale || queueProcessing}
+        disabled={$chapters.length === 0 || pruningStale || queueBusy}
         title="Queue generation for all missing audio across the whole book"
         aria-label="Queue book missing audio"
       >
@@ -2007,7 +2014,7 @@
       <button
         class="header-icon-btn advanced-btn"
         on:click={handleOpenAdvancedOverlay}
-        disabled={$chapters.length === 0 || pruningStale || queueProcessing}
+        disabled={$chapters.length === 0 || pruningStale || queueBusy}
         title="Open advanced batch generation"
         aria-label="Open advanced batch generation"
       >
@@ -2020,7 +2027,7 @@
   {#each sortedCharactersById as item (item.id)}
     {@const voiceInfo = getVoiceForCharacter(item.id)}
     {@const lineCount = lineCountsById.get(item.id) || 0}
-    {@const isGenerating = generatingCharacter === item.id}
+    {@const isGenerating = activeGeneratingCharacter === item.id}
     {@const characterName = item.name}
     {@const characterColor = item.character.color ?? colorForCharacter(characterName)}
     
@@ -2050,9 +2057,9 @@
             <span class="spinning">
               <Loader size={16} />
             </span>
-            <span>{generationProgress.current}/{generationProgress.total}</span>
-            {#if generationPhase}
-              <span class="generation-phase-label">{generationPhase}</span>
+            <span>{activeGenerationProgress.current}/{activeGenerationProgress.total}</span>
+            {#if activeGenerationPhase}
+              <span class="generation-phase-label">{activeGenerationPhase}</span>
             {/if}
           {:else}
             {@const existingClips = audioClipCounts.get(item.id) || 0}
