@@ -19,10 +19,14 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          # jsdom 30 needs Node ^22.22.2 || ^24.15.0; local dev runs Node 24.
+          node-version: 24
           cache: npm
           cache-dependency-path: apps/desktop/package-lock.json
       - run: npm ci
+      # tsconfig.json extends .svelte-kit/tsconfig.json, which a fresh
+      # checkout lacks until SvelteKit generates it.
+      - run: npx svelte-kit sync
       - run: npm run test
       - run: npm run build
 
