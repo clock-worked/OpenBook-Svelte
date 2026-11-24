@@ -27,7 +27,11 @@ import {
   resolvePlannedLineCharacterName,
   resolvePlannedLineSourceFile,
 } from '$lib/services/audioQueuePlanning';
-import { startCharacterPipelineProgressPolling } from '$lib/services/audioPipelineProgress';
+import {
+  startCharacterPipelineProgressPolling,
+  type PipelineProgressRecord,
+} from '$lib/services/audioPipelineProgress';
+import { classifyProvider, isLocalChunkedProvider } from '$lib/services/audioGenerator';
 
 export interface AudioManifest {
   formatVersion: string;
@@ -161,11 +165,17 @@ export async function getCharacterNameFromId(characterId: string): Promise<strin
 }
 
 /**
- * Resolve the effective audio root: explicit audio root, book absolute
- * path, or the user-configured book root override.
+ * Resolve the effective audio root — the one FE ordering, matching the BE
+ * resolver (`resolve_audio_root` in py_services/audio/router_support.py):
+ *
+ * 1. the explicit audio root,
+ * 2. the user-configured book root override,
+ * 3. the book absolute path.
+ *
+ * The override wins over the book root.
  */
 export function audioRootFor(): string | null {
-  return get(audioRoot) || get(bookRootAbsolutePath) || get(bookRootPathOverride) || null;
+  return get(audioRoot) || get(bookRootPathOverride) || get(bookRootAbsolutePath) || null;
 }
 
 /**
@@ -402,10 +412,17 @@ export async function generateAudioForLine(
   chatterboxSettings?: ChatterboxSettingsPayload | null
 ): Promise<{ success: boolean; audioPath?: string; error?: string }> {
   try {
+    const classification = classifyProvider(provider);
+    if (!classification) {
+      return {
+        success: false,
+        error: `Failed to generate audio: Unsupported TTS provider: ${provider}`,
+      };
+    }
     const samplesRoot = get(voiceSamplesRoot);
     // Local-model providers (VibeVoice/Chatterbox) share the chunked
     // generation endpoints and the voice-sample root plumbing.
-    const isLocalChunked = /vibevoice|chatterbox/.test(provider.toLowerCase());
+    const isLocalChunked = classification.endpointKind === 'local_chunked';
     const includeSamplesRoot = isLocalChunked && samplesRoot;
     const resolvedAudioRoot = audioRootFor();
     const endpoint = isLocalChunked
@@ -504,12 +521,7 @@ export async function generateAudioForCharacter(
   onProgress?: (current: number, total: number) => void,
   shouldCancel?: () => boolean,
   options: GenerateAudioCharacterOptions = {},
-  onPipelineProgress?: (
-    phase: string,
-    detail: string | null,
-    chunkIndex: number | null,
-    chunkTotal: number | null,
-  ) => void
+  onPipelineProgress?: (record: PipelineProgressRecord) => void
 ): Promise<{ success: boolean; generatedCount: number; errors: string[]; canceled: boolean }> {
   if (shouldCancel?.()) {
     return {
@@ -523,10 +535,9 @@ export async function generateAudioForCharacter(
   // A resolved generator override (advanced batch UI / settings tab) wins
   // over the voice's assigned provider for this run.
   const effectiveProvider = options.providerOverride ?? provider;
-  const providerLower = effectiveProvider.toLowerCase();
   // Local-model providers (VibeVoice/Chatterbox) share the chunked
   // character generation pipeline.
-  if (!/vibevoice|chatterbox/.test(providerLower)) {
+  if (!isLocalChunkedProvider(effectiveProvider)) {
     return {
       success: false,
       generatedCount: 0,
@@ -544,17 +555,13 @@ export async function generateAudioForCharacter(
 
   // While the (long) synchronous generation request is in flight, poll the
   // live pipeline progress so the UI can show which phase the backend is in
-  // (speech generation, WhisperX transcription, splitting, ...).
-  const lineChapters = new Set(
-    lines
-      .map((line) => resolvePlannedLineChapterTitle(line, chapterTitle))
-      .filter((title): title is string => Boolean(title)),
-  );
+  // (speech generation, WhisperX transcription, splitting, ...). The
+  // backend finds the record and reports its scope (single chapter vs book
+  // batch); nothing here derives it.
   const stopProgressPolling = onPipelineProgress
     ? startCharacterPipelineProgressPolling({
         characterName,
         chapterTitle,
-        crossChapter: lineChapters.size > 1,
         audioRoot: audioRootFor() || null,
         requestStart: Date.now(),
         onProgress: onPipelineProgress,

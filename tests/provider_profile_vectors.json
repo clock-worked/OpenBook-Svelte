@@ -1,0 +1,21 @@
+{
+  "description": "Cross-language parity vectors for TTS provider classification. Python: py_services/audio/provider_profile.py (unittest: py_services/test_provider_profile_parity.py). TS: apps/desktop/src/lib/services/audioGenerator.ts classifyProvider (vitest: apps/desktop/src/lib/services/__tests__/providerProfile.test.ts). 'registered' is the exact set of accepted provider strings (names + aliases) on both sides; 'providers' maps an input string to its canonical name, endpoint kind and clip extension; 'unknown' must be rejected by both. Keep both tests green when changing either side.",
+  "registered": ["chatterbox", "chatterbox-local", "chatterbox_local", "chirp", "chirp3", "elevenlabs", "google", "google_tts", "vibevoice", "vibevoice-local", "vibevoice_local"],
+  "providers": [
+    { "provider": "vibevoice_local", "canonical": "vibevoice_local", "endpointKind": "local_chunked", "fileExtension": ".wav" },
+    { "provider": "vibevoice-local", "canonical": "vibevoice_local", "endpointKind": "local_chunked", "fileExtension": ".wav" },
+    { "provider": "vibevoice", "canonical": "vibevoice_local", "endpointKind": "local_chunked", "fileExtension": ".wav" },
+    { "provider": "chatterbox", "canonical": "chatterbox", "endpointKind": "local_chunked", "fileExtension": ".wav" },
+    { "provider": "chatterbox_local", "canonical": "chatterbox", "endpointKind": "local_chunked", "fileExtension": ".wav" },
+    { "provider": "chatterbox-local", "canonical": "chatterbox", "endpointKind": "local_chunked", "fileExtension": ".wav" },
+    { "provider": "google_tts", "canonical": "google_tts", "endpointKind": "cloud", "fileExtension": ".mp3" },
+    { "provider": "chirp3", "canonical": "google_tts", "endpointKind": "cloud", "fileExtension": ".mp3" },
+    { "provider": "google", "canonical": "google_tts", "endpointKind": "cloud", "fileExtension": ".mp3" },
+    { "provider": "chirp", "canonical": "google_tts", "endpointKind": "cloud", "fileExtension": ".mp3" },
+    { "provider": "elevenlabs", "canonical": "elevenlabs", "endpointKind": "cloud", "fileExtension": ".mp3" },
+    { "provider": "VibeVoice_Local", "canonical": "vibevoice_local", "endpointKind": "local_chunked", "fileExtension": ".wav" },
+    { "provider": "  Chatterbox  ", "canonical": "chatterbox", "endpointKind": "local_chunked", "fileExtension": ".wav" },
+    { "provider": "CHIRP3", "canonical": "google_tts", "endpointKind": "cloud", "fileExtension": ".mp3" }
+  ],
+  "unknown": ["", "openai", "google-tts", "vibevoice-1.5b", "chatterbox turbo", "local"]
+}

@@ -18,9 +18,9 @@ These entrypoints run manual or offline generation flows that reuse the same Vib
 These scripts still rely on backend support that stays in `py_services/`:
 
 - `vibevoice_local_service.py`
-- `chapter_audio_test/`
+- `chapter_audio/`
 
-That dependency is intentional. The backend now imports `chapter_audio_test/` too, so it is no longer just a standalone script helper package.
+That dependency is intentional. The backend now imports `chapter_audio/` too, so it is no longer just a standalone script helper package.
 
 ## Why These Are Not In py_services
 

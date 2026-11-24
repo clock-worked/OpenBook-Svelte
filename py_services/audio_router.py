@@ -1,5 +1,4 @@
 import json
-import os
 from contextlib import suppress
 from pathlib import Path
 from typing import Any, Callable, Optional
@@ -18,6 +17,19 @@ from api_models import (
     ScanManifestsRequest,
 )
 from audio_generation_service import AudioGenerationService
+
+try:
+    from .audio.router_support import (
+        make_audio_service_ensurer,
+        raise_generation_failure,
+        resolve_audio_root,
+    )
+except ImportError:
+    from audio.router_support import (
+        make_audio_service_ensurer,
+        raise_generation_failure,
+        resolve_audio_root,
+    )
 
 VOICE_SAMPLE_METADATA_FILENAME = "openbook_voice_samples.json"
 VOICE_SAMPLE_ALLOWED_EXTS = {".wav", ".mp3", ".flac", ".ogg"}
@@ -115,20 +127,13 @@ def create_audio_router(
 ) -> APIRouter:
     router = APIRouter(tags=["audio"])
 
-    def _ensure_audio_service(audio_root_override: Optional[str] = None) -> AudioGenerationService:
-        service = get_audio_service()
-        if service is not None:
-            return service
-
-        fallback_root = audio_root_override or get_audio_root() or get_book_root()
-        if not fallback_root:
-            raise HTTPException(status_code=400, detail="Audio root not configured. Please set audio root path first.")
-
-        normalized_root = os.path.normpath(fallback_root)
-        new_service = AudioGenerationService(normalized_root)
-        set_audio_service(normalized_root, new_service)
-        print(f"Audio root path defaulted to: '{normalized_root}'")
-        return new_service
+    _ensure_audio_service = make_audio_service_ensurer(
+        get_audio_root=get_audio_root,
+        get_book_root=get_book_root,
+        get_audio_service=get_audio_service,
+        set_audio_service=set_audio_service,
+        service_factory=AudioGenerationService,
+    )
 
     @router.post("/api/read_file_absolute")
     async def read_file_absolute(request: ReadFileAbsoluteRequest):
@@ -271,13 +276,7 @@ def create_audio_router(
 
             error_msg = result.get("error", "Unknown error")
             print(f"  [FAILED] Generation failed: {error_msg}")
-            error_text = str(error_msg).lower()
-            status = 500
-            if "not found" in error_text or "could not be found" in error_text:
-                status = 400
-            elif "required" in error_text or "invalid" in error_text:
-                status = 400
-            raise HTTPException(status_code=status, detail=error_msg)
+            raise_generation_failure(error_msg)
         except HTTPException as http_exc:
             raise http_exc
         except Exception as exc:
@@ -358,7 +357,11 @@ def create_audio_router(
         root: str | None = None,
     ):
         try:
-            audio_root = get_audio_root() or get_book_root() or root
+            audio_root = resolve_audio_root(
+                configured_audio_root=get_audio_root(),
+                request_override=root,
+                book_root=get_book_root(),
+            )
             if not audio_root:
                 raise HTTPException(status_code=400, detail="Audio root not configured. Please set audio root path first.")
 

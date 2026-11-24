@@ -1,7 +1,8 @@
 import { get } from 'svelte/store';
 import { parserHints } from '$lib/stores/settings';
 import type { Line, DialogueJson, DialogueLine, Character, LineCandidate, ParserHints, CharactersJson } from '$lib/types';
-import { readTextFile, writeCentralCharacters, writeDialogue } from '$lib/services/fs';
+import { readTextFile, writeCentralCharacters } from '$lib/services/fs';
+import { writeChapterDialogue } from '$lib/components/chapter/tools/shared/chapterPersistence';
 import { computeReturningFlags } from '$lib/services/dialogueReturning';
 import { hasSpeechVerb } from '$lib/services/audioNarration';
 import { buildIdToNameMap, buildNameToIdMap } from '$lib/stores/characters';
@@ -548,8 +549,9 @@ export async function runParserForChapter(args: {
 
     const dialoguePath = `${chapterName}/dialogue.json`;
 
-    // Write the chapter dialogue.json file.
-    const saved = await writeDialogue(dialoguePath, dialogueJson);
+    // Write the chapter dialogue.json file: a genuine dialogue save, so it
+    // goes through the chapter persistence owner (write + stats step).
+    const saved = await writeChapterDialogue(dialoguePath, dialogueJson);
     if (!saved) {
       throw new Error(`Could not save parser output to ${dialoguePath}`);
     }

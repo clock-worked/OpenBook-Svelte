@@ -1,8 +1,36 @@
 import type { AudioGenerationRecord, DialogueJson, ScriptJson } from '$lib/types';
 import type { UnifiedLine } from '$lib/components/chapter/tools/types';
 import { computeReturningFlags, isDialogueSpan } from '$lib/services/dialogueReturning';
-import { readOptionalDialogue, writeDialogue } from '$lib/services/fs';
+import {
+    applyDialogueStatsDelta,
+    ensureCharacterNameToIdMapCached,
+    invalidateCentralCharactersCache,
+    readCentralCharacters,
+    readDialogueForChapter,
+    readOptionalDialogue,
+    readTextFile,
+    writeDialogue,
+    writeDialogueSave,
+    type WriteOutcome,
+} from '$lib/services/fs';
+import { normalizeAttribution, normalizeScriptData } from './chapterNormalization';
 import { alignChapterLineSpans } from './chapterPresentation';
+
+/**
+ * The dialogue.json format versions read as a versioned (DialogueJson)
+ * document; anything else is a legacy script. This module owns the list:
+ * fs (readDialogueForChapter) and the book migration import it.
+ */
+export const DIALOGUE_FORMAT_VERSIONS: readonly string[] = ['2.0', '3.0', '3.1', '3.2'];
+
+export function isVersionedDialogue(data: unknown): data is DialogueJson {
+    return (
+        !!data
+        && typeof data === 'object'
+        && 'formatVersion' in data
+        && DIALOGUE_FORMAT_VERSIONS.includes(String((data as DialogueJson).formatVersion))
+    );
+}
 
 type ChapterLike = {
     title: string;
@@ -15,16 +43,6 @@ type NormalizedScriptPayload = {
     stats: any;
     hadAliasChanges?: boolean;
 };
-
-type NormalizedAttributionFn = (
-    existing: any,
-    candidates: Array<{ name: string; characterId?: string | null; confidence: number; reasons?: string[] }>,
-    characterName: string | null,
-    threshold: number,
-    fallbackSourceAlias?: string | null,
-    fallbackSourceCandidates?: string[],
-    unknownSpeakerLabel?: string
-) => any;
 
 function applyReturningFlags(lines: UnifiedLine[], rawText: string | null): UnifiedLine[] {
     if (!lines.length) return lines;
@@ -49,22 +67,15 @@ function applyReturningFlags(lines: UnifiedLine[], rawText: string | null): Unif
     }));
 }
 
+/**
+ * Load a chapter (the one owner of chapter load): the dialogue document (or
+ * legacy script) normalized against the book's characters, the chapter text,
+ * spans aligned to the text, returning flags, and the reviewed state.
+ */
 export async function loadChapterContent(params: {
     chapter: ChapterLike;
     root: string;
     unknownThreshold: number;
-    unknownSpeakerLabel: string;
-    readDialogueForChapter: (title: string) => Promise<DialogueJson | ScriptJson | null>;
-    normalizeScriptData: (data: DialogueJson | ScriptJson | null, options: {
-        root?: string;
-        unknownThreshold: number;
-        unknownSpeakerLabel?: string;
-        readCentralCharacters: (root: string) => Promise<{ characters?: any[] } | null>;
-        buildIdToNameMap: (characters: any[]) => Map<string, string>;
-    }) => Promise<NormalizedScriptPayload | null>;
-    readCentralCharacters: (root: string) => Promise<{ characters?: any[] } | null>;
-    buildIdToNameMap: (characters: any[]) => Map<string, string>;
-    readTextFile: (path: string) => Promise<string | null>;
 }): Promise<{
     isV2Format: boolean;
     normalized: NormalizedScriptPayload | null;
@@ -77,33 +88,28 @@ export async function loadChapterContent(params: {
 
     const dialogue = chapter.parsed === false
         ? null
-        : await params.readDialogueForChapter(chapter.title);
+        : await readDialogueForChapter(chapter.title);
     let isV2Format = false;
     let normalized: NormalizedScriptPayload | null = null;
     let currentScript: ScriptJson | null = null;
 
     if (dialogue) {
-        isV2Format =
-            'formatVersion' in dialogue &&
-            (
-                dialogue.formatVersion === '2.0'
-                || dialogue.formatVersion === '3.0'
-                || dialogue.formatVersion === '3.1'
-                || dialogue.formatVersion === '3.2'
-            );
+        isV2Format = isVersionedDialogue(dialogue);
 
-        normalized = await params.normalizeScriptData(dialogue, {
+        // Dynamic import: keeps the characters store graph out of this
+        // module's static imports (fs imports the version list from here).
+        const { buildIdToNameMap } = await import('$lib/stores/characters');
+        normalized = await normalizeScriptData(dialogue, {
             root,
             unknownThreshold: params.unknownThreshold,
-            unknownSpeakerLabel: params.unknownSpeakerLabel,
-            readCentralCharacters: params.readCentralCharacters,
-            buildIdToNameMap: params.buildIdToNameMap,
+            readCentralCharacters,
+            buildIdToNameMap,
         });
     }
 
     let rawText: string | null = null;
     if (chapter.path) {
-        rawText = await params.readTextFile(chapter.path);
+        rawText = await readTextFile(chapter.path);
     }
 
     if (normalized) {
@@ -142,25 +148,19 @@ export async function loadChapterContent(params: {
 }
 
 /**
- * The book's character-resolution services the save pipeline needs, bundled
- * into one `repo` object so this function's interface stays narrow: the
- * transport (fs `writeDialogue`, which already does the File System API →
- * backend fallback internally) is internal, and callers supply only the
- * book's resolution callbacks.
+ * Save a chapter's dialogue (the one owner of chapter save). Callers supply
+ * only what varies; normalization, identity resolution, the transport and
+ * the stats step are internal. Steps, in order: returning flags → disk line
+ * metadata merge → name→id resolution (fs's cached resolver, coherent with
+ * every character-data write) → payload → dialogue save write → stats step.
  */
-export type ChapterSaveRepo = {
-    ensureCentralCharactersForNames: (names: string[]) => Promise<void>;
-    ensureCharacterNameToIdMap: () => Promise<Map<string, string>>;
-    normalizeAttribution: NormalizedAttributionFn;
-};
-
 export async function saveDialogueFromNormalized(params: {
     normalized: { lines: UnifiedLine[]; stats: any };
     chapter: ChapterLike;
+    root: string;
     rawText: string | null;
     unknownThreshold: number;
     unknownSpeakerLabel: string;
-    repo: ChapterSaveRepo;
     reviewed?: boolean;
     reviewedAt?: string | null;
 }): Promise<boolean> {
@@ -179,16 +179,7 @@ export async function saveDialogueFromNormalized(params: {
         chapter: ch.title,
     });
 
-    const allNames = new Set<string>();
-    for (const line of linesWithReturning) {
-        if (line.characterName) allNames.add(line.characterName);
-        for (const candidate of line.candidates || []) {
-            if (candidate?.name) allNames.add(candidate.name);
-        }
-    }
-
-    await params.repo.ensureCentralCharactersForNames(Array.from(allNames));
-    const nameToIdMap = await params.repo.ensureCharacterNameToIdMap();
+    const nameToIdMap = await ensureCharacterNameToIdMapCached(params.root);
 
     const characterBreakdown: Record<string, number> = {};
     for (const line of linesWithReturning) {
@@ -211,7 +202,7 @@ export async function saveDialogueFromNormalized(params: {
         reviewedLineCount: params.reviewed ? linesWithReturning.length : undefined,
         lines: linesWithReturning.map((line) => {
             const isNonSpeaker = line.isNonSpeaker === true;
-            const attribution = params.repo.normalizeAttribution(
+            const attribution = normalizeAttribution(
                 line.attribution || null,
                 (line.candidates || []).map((candidate) => ({
                     name: candidate.name,
@@ -292,15 +283,58 @@ export async function saveDialogueFromNormalized(params: {
     const relativePath = `${ch.title}/dialogue.json`;
     console.log('[ChapterView] Writing dialogue to relative path:', relativePath);
 
-    // writeDialogue (fs) already performs the File System API → backend
-    // fallback internally, so one call is the entire transport.
-    const saved = await writeDialogue(relativePath, dialoguePayload);
+    const saved = await writeChapterDialogue(relativePath, dialoguePayload);
     if (saved) {
         console.log('[ChapterView] ✓ Successfully saved dialogue.json');
     } else {
         console.error('[ChapterView] ✗ Failed to save dialogue.json');
     }
     return saved;
+}
+
+/**
+ * Write a chapter's dialogue document as a dialogue save, then run the
+ * explicit stats step. The one write path for genuine dialogue saves (the
+ * chapter save above and a fresh parse); every other dialogue writer uses
+ * the pure `writeDialogue` and never touches character stats.
+ */
+export async function writeChapterDialogue(relativePath: string, payload: DialogueJson): Promise<boolean> {
+    // The fs transport performs the File System API → backend fallback
+    // internally, so one call is the entire write. This module names the
+    // write kind: a chapter dialogue save.
+    const outcome = await writeDialogueSave(relativePath, payload);
+    if (outcome === null) return false;
+    applyStatsAfterDialogueSave(relativePath, outcome);
+    return true;
+}
+
+/**
+ * The stats step of a dialogue save (ADR 0012), explicit rather than a
+ * low-level write side effect:
+ *   - `sidecar`   — `/api/save-dialogue` already applied the delta: nothing.
+ *   - `handle`    — the File System Access write never reached the sidecar:
+ *                   ask it to apply the delta (fire-and-forget; stats are
+ *                   eventually consistent and a failure only warns).
+ *   - `unchanged` — nothing was written: nothing.
+ */
+export function applyStatsAfterDialogueSave(relativePath: string, outcome: WriteOutcome): void {
+    if (outcome === 'handle') void applyDialogueStatsDelta(relativePath);
+}
+
+/**
+ * The identity-cache step for character data that changed outside the
+ * frontend's own write path (e.g. the backend's review-chapter descriptor
+ * learning rewrote character files): drop the central-characters and
+ * name→id caches, then reload the book-characters store. Frontend character
+ * writes already invalidate the caches in fs, and a dialogue save changes no
+ * identity data, so a plain save needs no invalidation of its own.
+ */
+export async function refreshCharacterCaches(): Promise<void> {
+    invalidateCentralCharactersCache();
+    // Dynamic import: keeps the store (and its top-level subscriptions) out of
+    // this module's static graph, which services such as fs and the parser load.
+    const { forceRefreshBookCharacters } = await import('$lib/stores/bookCharacters');
+    await forceRefreshBookCharacters();
 }
 
 /**

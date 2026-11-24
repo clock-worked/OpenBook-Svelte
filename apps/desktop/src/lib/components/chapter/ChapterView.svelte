@@ -1,18 +1,17 @@
 <script lang="ts">
   import { onDestroy, onMount, tick } from 'svelte';
   import { history, historyAction } from '$lib/services/history';
-  import { chapters, currentChapter, currentScript, bookRoot, bookRootAbsolutePath, chapterReloadRequest } from '$lib/stores/bookState';
+  import { chapters, currentChapter, currentScript, bookRoot, chapterReloadRequest } from '$lib/stores/bookState';
   import type { ScriptJson, DialogueJson } from '$lib/types';
   import { writable } from 'svelte/store';
   import { conflictCursor, toolMode, audioGenerateLineId } from '$lib/stores/selection';
   import { get } from 'svelte/store';
-  import { readTextFile, readDialogueForChapter, readCentralCharacters, writeCentralCharacters, writeScript, readOptionalJsonRelative, listCharacterFiles, captureEditableFiles } from '$lib/services/fs';
+  import { readCentralCharacters, writeScript, readOptionalJsonRelative, listCharacterFiles, captureEditableFiles } from '$lib/services/fs';
   import { readManifest } from '$lib/services/audio';
-  import { API_ENDPOINTS, apiFetch, apiPostJson } from '$lib/services/apiClient';
+  import { API_ENDPOINTS, apiPostJson } from '$lib/services/apiClient';
   import type { ReviewChapterRequest, ReviewChapterResponse } from '$lib/services/apiContracts';
-  import { mapRawBookCharacters } from '$lib/services/bookCharacterRepository';
-  import { characters, buildIdToNameMap } from '$lib/stores/characters';
-  import { addBookCharacterAlias, bookCharacters, forceRefreshBookCharacters } from '$lib/stores/bookCharacters';
+  import { characters } from '$lib/stores/characters';
+  import { addBookCharacterAlias, bookCharacters } from '$lib/stores/bookCharacters';
   import { CheckCircle2 } from 'lucide-svelte';
   import ParagraphRow from '$lib/components/chapter/ParagraphRow.svelte';
   import RawTextBlock from '$lib/components/chapter/RawTextBlock.svelte';
@@ -21,7 +20,7 @@
   // Tool modules
   import type { UnifiedLine, MenuContext } from '$lib/components/chapter/tools/types';
   import { displayTitle, recomputeStats } from '$lib/components/chapter/tools/shared/toolUtils';
-  import { clampConfidence, normalizeAttribution, normalizeScriptData } from '$lib/components/chapter/tools/shared/chapterNormalization';
+  import { clampConfidence, normalizeAttribution } from '$lib/components/chapter/tools/shared/chapterNormalization';
   import {
     buildChapterAnimationPlanData,
     buildParagraphRuns,
@@ -34,10 +33,10 @@
     mergeNormalizedFromLegacy,
   } from '$lib/components/chapter/tools/shared/chapterStateSync';
   import {
-    ensureCentralCharactersForNames as ensureCentralCharactersForNamesShared,
-    ensureCharacterNameToIdMapCached,
-  } from '$lib/components/chapter/tools/shared/chapterCharacterBootstrap';
-  import { loadChapterContent, saveDialogueFromNormalized } from '$lib/components/chapter/tools/shared/chapterPersistence';
+    loadChapterContent,
+    refreshCharacterCaches,
+    saveDialogueFromNormalized,
+  } from '$lib/components/chapter/tools/shared/chapterPersistence';
   import { 
     getCharacterOptionsForLine, 
     getCharacterOptionsForContext,
@@ -93,50 +92,6 @@
 
   // Internal normalized script store
   const normalizedScript = writable<{ lines: UnifiedLine[]; stats: any } | null>(null);
-  
-  // Cache for character name-to-ID map (built once when needed)
-  let characterNameToIdMap: Map<string, string> | null = null;
-  
-  async function ensureCharacterNameToIdMap() {
-    // Always rebuild the map: the roster can change outside this save's
-    // ensure step (e.g. via the character panel). A stale map makes the
-    // dialogue save silently fall back to 'narrator' for a name that is
-    // actually valid. This is cheap since ADR 0012: readCentralCharacters
-    // is cached per book session and only hits the network again when
-    // character data was written (which is exactly when the map must
-    // change).
-    characterNameToIdMap = null;
-    return ensureCharacterNameToIdMapCached({
-      cachedMap: characterNameToIdMap,
-      setCachedMap: (map) => {
-        characterNameToIdMap = map;
-      },
-      root: get(bookRoot),
-      readCentralCharacters,
-    });
-  }
-
-  async function ensureCentralCharactersForNames(names: string[]): Promise<void> {
-    await ensureCentralCharactersForNamesShared({
-      names,
-      root: get(bookRoot),
-      readCentralCharacters,
-      writeCentralCharacters,
-      getBackendRootAbsolutePath: () => get(bookRootAbsolutePath),
-      apiSave: (payload) =>
-        apiFetch(API_ENDPOINTS.save, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        }),
-      onCharactersUpdated: (central) => {
-        bookCharacters.set(mapRawBookCharacters(central as any));
-      },
-      resetCharacterNameToIdCache: () => {
-        characterNameToIdMap = null;
-      },
-    });
-  }
 
   // Track which format version we're using for saving
   let isV2Format = false;
@@ -434,7 +389,6 @@
       if (sourceAlias) aliasLearningCandidates.add(sourceAlias);
     }
 
-    await ensureCentralCharactersForNames([characterName]);
     assignCharacterToLines(lineIds, characterName, normalizedScript, rebuildParagraphRuns, scheduleSave);
 
     const normalizedTarget = characterName.trim().toLowerCase();
@@ -674,14 +628,10 @@
     await saveDialogueFromNormalized({
       normalized: scr,
       chapter: { title: ch.title, path: ch.path },
+      root,
       rawText: get(rawText),
       unknownThreshold: getUnknownThreshold(),
       unknownSpeakerLabel: UNKNOWN_SPEAKER_LABEL,
-      repo: {
-        ensureCentralCharactersForNames,
-        ensureCharacterNameToIdMap,
-        normalizeAttribution,
-      },
       reviewed,
       reviewedAt,
     });
@@ -775,7 +725,10 @@
       }
     } finally {
       // Even if the post-save refresh throws, the flag is already persisted.
-      await forceRefreshBookCharacters();
+      // review-chapter's descriptor learning rewrote character files on the
+      // backend: the owner's cache step drops the identity caches and
+      // reloads the book characters.
+      await refreshCharacterCaches();
       reviewMessage = `Reviewed.${apiNote}`;
       markingReviewed = false;
     }
@@ -822,18 +775,11 @@
       chapter: { title: ch.title, path: ch.path, parsed: ch.parsed },
       root,
       unknownThreshold: getUnknownThreshold(),
-      unknownSpeakerLabel: UNKNOWN_SPEAKER_LABEL,
-      readDialogueForChapter,
-      normalizeScriptData,
-      readCentralCharacters,
-      buildIdToNameMap,
-      readTextFile,
     });
     if (seq !== chapterLoadSeq || get(currentChapter)?.title !== ch.title) return;
     isV2Format = loaded.isV2Format;
     chapterReviewedAt = loaded.reviewedAt;
     setReviewedState(loaded.reviewed);
-    characterNameToIdMap = null;
     if (loaded.normalized) {
       normalizedScript.set({ lines: loaded.normalized.lines, stats: loaded.normalized.stats });
       if (loaded.currentScript) currentScript.set(loaded.currentScript as ScriptJson);
@@ -881,12 +827,6 @@
             chapter: { title: ch.title, path: ch.path, parsed: ch.parsed },
             root,
             unknownThreshold: getUnknownThreshold(),
-            unknownSpeakerLabel: UNKNOWN_SPEAKER_LABEL,
-            readDialogueForChapter,
-            normalizeScriptData,
-            readCentralCharacters,
-            buildIdToNameMap,
-            readTextFile,
           });
 
           if (seq !== chapterLoadSeq) return; // superseded by newer chapter switch
@@ -900,7 +840,6 @@
               currentScript.set(loaded.currentScript as ScriptJson);
             }
             if (loaded.normalized.hadAliasChanges) {
-              characterNameToIdMap = null;
               scheduleSave();
             }
           }

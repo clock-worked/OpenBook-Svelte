@@ -11,6 +11,8 @@ from copy import deepcopy
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 from tqdm import tqdm
 
+from chapter_audio.text_utils import normalize_typography
+
 DEFAULT_COMFY_URL = "http://127.0.0.1:8000"
 DEFAULT_COMFY_ROOT = "C:/Users/Chad/Documents/ComfyUI"
 DEFAULT_WORKFLOW_PATH = (
@@ -145,19 +147,9 @@ def write_json(path: str, payload: Dict[str, Any]) -> None:
 
 
 def normalize_text(text: str) -> str:
-    # Replace common typography with ASCII to avoid VibeVoice hiccups.
-    replacements = {
-        "\u2018": "'",
-        "\u2019": "'",
-        "\u201c": "\"",
-        "\u201d": "\"",
-        "\u2013": "-",
-        "\u2014": "-",
-        "\u2026": "...",
-    }
-    for src, dst in replacements.items():
-        text = text.replace(src, dst)
-    return text.strip()
+    # Replace common typography with ASCII to avoid VibeVoice hiccups
+    # (the shared primitive the engine adapters use).
+    return normalize_typography(text).strip()
 
 
 def format_script(text: str) -> str:

@@ -1,0 +1,15 @@
+# One provider profile per language
+
+"Which engine does this TTS provider use, which endpoint does it hit, what file does it write?" has one answer per language, and the two answers are pinned to each other by a shared vector file.
+
+- **Backend:** `py_services/audio/provider_profile.py` is the registry. A provider string (name or alias, normalized `strip().lower()`, matched exactly) resolves to a `ProviderProfile` `{ name, aliases, engine: local_chunked | cloud, endpoint, file_extension, adapter, display_name }`. Public API: `resolve_provider_profile` (raises `UnknownProviderError`, message `Unsupported TTS provider: X`), `find_provider_profile` (returns `None`), `is_local_chunked_provider`, `is_chatterbox_provider`, `known_provider_keys`, and the `ENGINE_*` / `ADAPTER_*` constants. `AudioGenerationService` dispatches on `profile.adapter` through one adapter table and takes the clip extension from the profile. Nothing else restates an alias list.
+- **Frontend:** `apps/desktop/src/lib/services/audioGenerator.ts` is the single home: generator choice → provider (`resolveGeneratorChoice`) → classification (`classifyProvider` → `{ provider, endpointKind, fileExtension } | null`, `isLocalChunkedProvider`, `knownProviderKeys`). `audio.ts` reads the classification to pick an endpoint.
+- **Parity:** `tests/provider_profile_vectors.json` (registered set, input → canonical/endpoint kind/extension, rejected strings), run by `py_services/test_provider_profile_parity.py` and `__tests__/providerProfile.test.ts`. Adding a provider means one BE entry, one FE entry and its vectors.
+- **Unknown providers are rejected, never defaulted.** No path falls through to "cloud" or `.mp3` for a string it doesn't recognize.
+
+Two rules from the same change are binding too:
+
+1. **The audio root has one ordering:** explicit (configured) audio root → per-request override → book root. It is implemented once per language: `resolve_audio_root` in `py_services/audio/router_support.py` and `audioRootFor` in `audio.ts`.
+2. **The router plumbing is shared:** both audio routers get their cached `AudioGenerationService` from `make_audio_service_ensurer` and map a failed generation to an HTTP status with `generation_error_status` / `raise_generation_failure` (`audio/router_support.py`).
+
+**Considered options**: share one registry across languages through generated code (there's no repo precedent; the vector-file pattern already pins the character identity primitives, `tests/character_identity_vectors.json`); keep substring matching (`"vibevoice" in provider`) for leniency (it silently accepts anything that contains an engine name, and the two sides matched differently); consolidate the two generation endpoints into one (deferred: with the profile choosing the endpoint, the split is harmless). Accepted costs: provider strings that only the old substring match accepted are now rejected on `/api/vibevoice/character` and `/chapter`; the unused FE clients `google-tts.ts` and `elevenlabs.ts` are deleted.

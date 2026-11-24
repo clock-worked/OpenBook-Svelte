@@ -21,26 +21,28 @@ bootstrap_python_script_paths(__file__)
 
 import soundfile as sf
 
-from py_services.chapter_audio_test.asr_alignment import (
+from py_services.chapter_audio.asr_alignment import (
     build_line_timestamps,
     collect_asr_word_tokens,
 )
-from py_services.chapter_audio_test.audio_ops import (
+from py_services.chapter_audio.audio_ops import (
     load_audio_float_2d,
     refine_line_boundaries_with_silence,
     split_audio_by_lines,
 )
-from py_services.chapter_audio_test.generation import (
+from py_services.chapter_audio.engine import plan_engine_chunks
+from py_services.chapter_audio.generation import (
     build_line_chunk_generation_plan,
+    generate_engine_text,
     generate_line_chunked_chapter_audio,
 )
-from py_services.chapter_audio_test.manifest_ops import (
+from py_services.chapter_audio.manifest_ops import (
     build_character_manifests,
     load_existing_split_state,
     load_manifest_lines,
 )
-from py_services.chapter_audio_test.text_utils import normalize_chapter_text, tokenize, utc_now_iso
-from py_services.chapter_audio_test.validation import (
+from py_services.chapter_audio.text_utils import normalize_chapter_text, tokenize, utc_now_iso
+from py_services.chapter_audio.validation import (
     attach_validation_summary_to_split_lines,
     attempt_boundary_shift,
     build_split_validation_payload,
@@ -492,16 +494,19 @@ def run_generation_alignment_mode(
 
         if args.no_line_chunk_generate:
             print(f"Generating full chapter audio ({tts_engine}): {full_audio_path}")
-            service.generate_audio(
+            # Planned to the engine's declared max_chunk_chars (one call for
+            # VibeVoice; several stitched calls for Chatterbox).
+            engine_call_count = generate_engine_text(
+                service,
                 text=chapter_text,
                 sample_path=str(args.sample_path.resolve()),
-                output_path=str(full_audio_path),
+                output_path=full_audio_path,
                 seed=effective_seed,
             )
             generation_report = {
                 "engine": tts_engine,
                 "mode": "single-pass",
-                "chunkCount": 1,
+                "chunkCount": engine_call_count,
                 "minChunkChars": None,
             }
         else:
@@ -513,6 +518,8 @@ def run_generation_alignment_mode(
                 min_chunk_chars=args.line_chunk_min_chars,
                 max_chunk_chars=args.line_chunk_max_chars,
             )
+            # Sub-split to the engine's declared per-call limit (true count).
+            chunk_plan = plan_engine_chunks(chunk_plan, service)
             max_chars_desc = f", max {args.line_chunk_max_chars} chars" if args.line_chunk_max_chars else ""
             print(
                 f"Generating chapter audio with line chunking ({tts_engine}) "

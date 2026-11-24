@@ -27,16 +27,56 @@ if sys.platform == 'win32':
 
 from chatterbox_local_service import ChatterboxLocalService
 from vibevoice_local_service import VibeVoiceLocalService
+from chapter_audio.generation import generate_engine_text
+from chapter_audio.text_utils import normalize_typography
+
+try:
+    from .audio.engine_adapters import VoiceBoundEngine
+    from .audio.provider_profile import (
+        ADAPTER_CHATTERBOX,
+        ADAPTER_ELEVENLABS,
+        ADAPTER_GOOGLE_TTS,
+        ADAPTER_VIBEVOICE,
+        ProviderProfile,
+        UnknownProviderError,
+        is_chatterbox_provider,
+        resolve_provider_profile,
+    )
+except ImportError:
+    from audio.engine_adapters import VoiceBoundEngine
+    from audio.provider_profile import (
+        ADAPTER_CHATTERBOX,
+        ADAPTER_ELEVENLABS,
+        ADAPTER_GOOGLE_TTS,
+        ADAPTER_VIBEVOICE,
+        ProviderProfile,
+        UnknownProviderError,
+        is_chatterbox_provider,
+        resolve_provider_profile,
+    )
 
 
 DEFAULT_CHATTERBOX_VARIANT = "base"
 
-# Provider strings (lowercased) that route to the local Chatterbox engine.
-CHATTERBOX_PROVIDER_ALIASES = ("chatterbox", "chatterbox_local", "chatterbox-local")
+# The local AudioEngine adapter class behind each profile adapter name
+# (chapter_audio/engine.py). Cloud adapters are not chunked engines.
+LOCAL_ENGINE_CLASSES = {
+    ADAPTER_VIBEVOICE: VibeVoiceLocalService,
+    ADAPTER_CHATTERBOX: ChatterboxLocalService,
+}
 
 
-def is_chatterbox_provider(provider: Optional[str]) -> bool:
-    return str(provider or "").strip().lower() in CHATTERBOX_PROVIDER_ALIASES
+def local_engine_class(provider: Optional[str]):
+    """The AudioEngine adapter class for a local chunked provider.
+
+    Raises ``UnknownProviderError`` for an unknown provider and ``ValueError``
+    for a cloud provider.
+    """
+    profile = resolve_provider_profile(provider)
+    engine_class = LOCAL_ENGINE_CLASSES.get(profile.adapter)
+    if engine_class is None:
+        raise ValueError(f"{profile.display_name} is not a local chunked engine.")
+    return engine_class
 
 
 def build_chatterbox_generator_info(
@@ -111,59 +151,44 @@ class AudioGenerationService:
             dict with 'success', 'audio_path', and optionally 'error'
         """
         try:
-            # Normalize text to handle smart quotes and other special characters
-            normalized_text = self._normalize_text(text)
-            
+            # Which engine, which extension: one registry lookup.
+            try:
+                profile = resolve_provider_profile(provider)
+            except UnknownProviderError as exc:
+                return {
+                    "success": False,
+                    "error": str(exc)
+                }
+
+            # Local engines hear their own adapter's ``normalize`` (applied
+            # when the line is planned into engine calls); cloud engines get
+            # the shared typography normalization.
+            normalized_text = text if profile.is_local_chunked else self._normalize_text(text)
+
             # Construct output paths
             character_dir = self.audio_root / chapter_title / "audio_lines" / character_name
             character_dir.mkdir(parents=True, exist_ok=True)
-            
-            audio_ext = self._get_audio_extension(provider)
+
+            audio_ext = profile.file_extension
             audio_filename = f"{line_id}-{character_name}{audio_ext}"
             audio_path = character_dir / audio_filename
-            
-            # Generate audio based on provider
-            provider_lower = provider.lower()
-            if provider_lower == "elevenlabs":
-                success = await self._generate_elevenlabs(normalized_text, voice_id, audio_path)
-            elif provider_lower in ["google_tts", "chirp3", "google", "chirp"]:
-                # chirp3 is Google's Chirp 3 model
-                success = await self._generate_google_tts(normalized_text, voice_id, audio_path)
-            elif provider_lower in ["vibevoice_local", "vibevoice-local", "vibevoice"]:
-                success, error_details = await asyncio.to_thread(
-                    self._generate_vibevoice_local,
-                    normalized_text,
-                    voice_id,
-                    audio_path,
-                    voice_sample_root,
-                )
-                if not success:
-                    return {
-                        "success": False,
-                        "error": f"VibeVoice generation failed: {error_details}"
-                    }
-            elif provider_lower in CHATTERBOX_PROVIDER_ALIASES:
-                success, error_details = await asyncio.to_thread(
-                    self._generate_chatterbox_local,
-                    normalized_text,
-                    voice_id,
-                    audio_path,
-                    voice_sample_root,
-                    chatterbox_settings,
-                )
-                if not success:
-                    return {
-                        "success": False,
-                        "error": f"Chatterbox generation failed: {error_details}"
-                    }
-            else:
-                return {
-                    "success": False,
-                    "error": f"Unsupported TTS provider: {provider}"
-                }
-            
+
+            # Generate audio with the profile's engine adapter
+            line_adapter = self._line_adapter(profile)
+            success, error_details = await line_adapter(
+                text=normalized_text,
+                voice_id=voice_id,
+                output_path=audio_path,
+                voice_sample_root=voice_sample_root,
+                chatterbox_settings=chatterbox_settings,
+            )
+
             if not success:
-                # Should be covered by specific provider blocks, but fallback:
+                if error_details is not None:
+                    return {
+                        "success": False,
+                        "error": f"{profile.display_name} generation failed: {error_details}"
+                    }
                 return {
                     "success": False,
                     "error": "Failed to generate audio from TTS provider (Unknown error)"
@@ -204,7 +229,48 @@ class AudioGenerationService:
                 "success": False,
                 "error": error_msg
             }
-    
+
+    # --- Engine adapters for the single-line path -------------------------
+    # Each takes the same keyword arguments and returns (success, error).
+    # ``error`` is None when the engine gave no details (cloud APIs log
+    # theirs); a string (possibly empty) for local engines.
+    # Keyed by ProviderProfile.adapter (audio/provider_profile.py).
+
+    def _line_adapter(self, profile: ProviderProfile):
+        return getattr(self, self._LINE_ADAPTER_METHODS[profile.adapter])
+
+    async def _line_elevenlabs(self, *, text, voice_id, output_path, voice_sample_root, chatterbox_settings):
+        return await self._generate_elevenlabs(text, voice_id, output_path), None
+
+    async def _line_google_tts(self, *, text, voice_id, output_path, voice_sample_root, chatterbox_settings):
+        return await self._generate_google_tts(text, voice_id, output_path), None
+
+    async def _line_vibevoice(self, *, text, voice_id, output_path, voice_sample_root, chatterbox_settings):
+        return await asyncio.to_thread(
+            self._generate_vibevoice_local,
+            text,
+            voice_id,
+            output_path,
+            voice_sample_root,
+        )
+
+    async def _line_chatterbox(self, *, text, voice_id, output_path, voice_sample_root, chatterbox_settings):
+        return await asyncio.to_thread(
+            self._generate_chatterbox_local,
+            text,
+            voice_id,
+            output_path,
+            voice_sample_root,
+            chatterbox_settings,
+        )
+
+    _LINE_ADAPTER_METHODS: Dict[str, str] = {
+        ADAPTER_ELEVENLABS: "_line_elevenlabs",
+        ADAPTER_GOOGLE_TTS: "_line_google_tts",
+        ADAPTER_VIBEVOICE: "_line_vibevoice",
+        ADAPTER_CHATTERBOX: "_line_chatterbox",
+    }
+
     async def _generate_elevenlabs(
         self,
         text: str,
@@ -429,10 +495,12 @@ class AudioGenerationService:
                 self.vibevoice_local_service = VibeVoiceLocalService()
 
             with self._vibevoice_lock:
-                self.vibevoice_local_service.generate_audio(
+                # VibeVoice declares no per-call limit: one planned call.
+                generate_engine_text(
+                    self.vibevoice_local_service,
                     text=text,
                     sample_path=sample_path,
-                    output_path=str(output_path),
+                    output_path=output_path,
                 )
             return True, None
         except Exception as exc:
@@ -490,10 +558,13 @@ class AudioGenerationService:
 
             with self._chatterbox_lock:
                 service = self._get_chatterbox_service(variant)
-                service.generate_audio(
+                # Plan the line into <= max_chunk_chars engine calls and
+                # stitch (Chatterbox garbles long single-pass text).
+                generate_engine_text(
+                    service,
                     text=text,
                     sample_path=sample_path,
-                    output_path=str(output_path),
+                    output_path=output_path,
                     temperature=settings.get("temperature"),
                     cfg_weight=settings.get("cfg_weight"),
                     exaggeration=settings.get("exaggeration"),
@@ -505,6 +576,52 @@ class AudioGenerationService:
             import traceback
             traceback.print_exc()
             return False, error_msg
+
+    def audio_engine(
+        self,
+        provider: str,
+        *,
+        voice_id: str,
+        voice_sample_root: Optional[str],
+        chatterbox_settings: Optional[Dict[str, Any]] = None,
+    ) -> VoiceBoundEngine:
+        """The ``AudioEngine`` for a local chunked provider, voice bound.
+
+        Composition root of the engine seam: the provider profile names the
+        adapter; ``LOCAL_ENGINE_CLASSES`` supplies its declarations
+        (``max_chunk_chars``, ``normalize``); generation goes through this
+        service's cached model. Raises ``UnknownProviderError`` for an unknown
+        provider and ``ValueError`` for a cloud one.
+        """
+        profile = resolve_provider_profile(provider)
+        engine_class = local_engine_class(profile.name)
+
+        if profile.adapter == ADAPTER_CHATTERBOX:
+            def generate_to_path(*, text, voice_id, output_path):
+                return self.generate_chatterbox_text_to_path(
+                    text=text,
+                    voice_id=voice_id,
+                    output_path=output_path,
+                    voice_sample_root=voice_sample_root,
+                    settings=chatterbox_settings,
+                )
+        else:
+            def generate_to_path(*, text, voice_id, output_path):
+                return self.generate_vibevoice_text_to_path(
+                    text=text,
+                    voice_id=voice_id,
+                    output_path=output_path,
+                    voice_sample_root=voice_sample_root,
+                )
+
+        return VoiceBoundEngine(
+            adapter=profile.adapter,
+            display_name=profile.display_name,
+            max_chunk_chars=engine_class.max_chunk_chars,
+            normalize=engine_class.normalize,
+            voice_id=voice_id,
+            generate_to_path=generate_to_path,
+        )
 
     def generate_chatterbox_text_to_path(
         self,
@@ -595,14 +712,6 @@ class AudioGenerationService:
         bytes_per_second = 16000
         return file_size_bytes / bytes_per_second
 
-    def _get_audio_extension(self, provider: str) -> str:
-        provider_lower = provider.lower()
-        if provider_lower in ["vibevoice_local", "vibevoice-local", "vibevoice"]:
-            return ".wav"
-        if provider_lower in ["chatterbox", "chatterbox_local", "chatterbox-local"]:
-            return ".wav"
-        return ".mp3"
-    
     def _update_manifest(
         self,
         manifest_path: Path,
@@ -996,21 +1105,8 @@ class AudioGenerationService:
     def _normalize_text(self, text: str) -> str:
         """
         Normalize text by replacing smart/curly quotes with straight quotes
-        and handling other problematic Unicode characters.
+        and handling other problematic Unicode characters (U+FFFD becomes an
+        apostrophe). The shared typography primitive,
+        ``chapter_audio.text_utils.normalize_typography``.
         """
-        # Replace smart quotes with straight quotes
-        text = text.replace('’', "'")  # Right single quotation mark (U+2019)
-        text = text.replace('‘', "'")  # Left single quotation mark (U+2018)
-        text = text.replace('”', '"')  # Right double quotation mark (U+201D)
-        text = text.replace('“', '"')  # Left double quotation mark (U+201C)
-        text = text.replace('–', '-')  # En dash (U+2013)
-        text = text.replace('—', '-')  # Em dash (U+2014)
-        text = text.replace('…', '...')  # Ellipsis (U+2026)
-        
-        # Handle replacement characters (U+FFFD) by converting to regular apostrophe if context suggests it
-        # This handles cases where curly quotes were already corrupted
-        if '\ufffd' in text:
-            text = text.replace('\ufffd', "'")
-        
-        return text
-
+        return normalize_typography(text)

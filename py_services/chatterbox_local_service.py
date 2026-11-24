@@ -6,15 +6,17 @@ import json
 import os
 import subprocess
 import sys
-import tempfile
 import time
 from pathlib import Path
 from typing import Any, Optional
 
-from chapter_audio_test.generation import (
-    split_text_to_max_chars,
-    stitch_generated_chunk_audio,
-)
+from chapter_audio.engine import require_within_engine_limit
+from chapter_audio.text_utils import normalize_chapter_text, normalize_typography
+
+try:
+    from .audio.provider_profile import ADAPTER_CHATTERBOX
+except ImportError:
+    from audio.provider_profile import ADAPTER_CHATTERBOX
 
 
 def find_chatterbox_python() -> Path:
@@ -36,7 +38,26 @@ def find_chatterbox_python() -> Path:
 
 
 class ChatterboxLocalService:
-    """Chatterbox TTS service running in-process or via persistent worker."""
+    """Chatterbox TTS service running in-process or via persistent worker.
+
+    The Chatterbox adapter at the TTS engine seam
+    (:class:`chapter_audio.engine.AudioEngine`): declares ``adapter``,
+    ``max_chunk_chars`` and ``normalize``.
+    """
+
+    adapter = ADAPTER_CHATTERBOX
+    # Chatterbox is a short-form engine; long single-pass text garbles
+    # (2026-11-05 Chapter 1387 incident). This is the declared per-call limit.
+    DEFAULT_MAX_CHUNK_CHARS = 450
+    # Class-level declaration (what the plan reads before a model is loaded);
+    # an instance built with another ``max_chunk_chars`` overrides it.
+    max_chunk_chars: Optional[int] = DEFAULT_MAX_CHUNK_CHARS
+
+    @staticmethod
+    def normalize(text: str) -> str:
+        """The text Chatterbox hears: shared typography -> ASCII, whitespace
+        collapsed. Idempotent."""
+        return normalize_chapter_text(normalize_typography(text))
 
     def __init__(
         self,
@@ -45,11 +66,15 @@ class ChatterboxLocalService:
         temperature: float = 0.8,
         repetition_penalty: float = 1.2,
         python_executable: Optional[str | Path] = None,
-        max_chunk_chars: int = 450,
-        join_pause_ms: int = 0,
+        max_chunk_chars: int = DEFAULT_MAX_CHUNK_CHARS,
         exaggeration: Optional[float] = None,
         cfg_weight: Optional[float] = None,
+        in_process_model: Any = None,
     ) -> None:
+        """``in_process_model`` injects an already-loaded model (anything with
+        ``sr``, ``conds``, ``prepare_conditionals`` and ``generate``) and skips
+        backend start-up -- used by tests to build the adapter through its
+        constructor without a GPU."""
         self.variant = variant.lower().strip()
         self.device = device
         self.temperature = temperature
@@ -59,19 +84,18 @@ class ChatterboxLocalService:
         # (ChatterboxTurboTTS ignores both.)
         self.exaggeration = exaggeration
         self.cfg_weight = cfg_weight
-        # Chatterbox is a short-form engine; long single-pass text garbles.
-        # Split any line longer than this into sentence/word-aware chunks.
-        self.max_chunk_chars = max(1, int(max_chunk_chars))
-        self.join_pause_ms = max(0, int(join_pause_ms))
+        # Declared per-call limit; the chunk plan sub-splits to it.
+        self.max_chunk_chars: Optional[int] = max(1, int(max_chunk_chars))
         self.python_executable = (
             Path(python_executable) if python_executable else find_chatterbox_python()
         )
         self.worker_process: Optional[subprocess.Popen] = None
-        self._in_process_model = None
+        self._in_process_model = in_process_model
         self._cached_sample_path: Optional[str] = None
         self.stats: list[dict[str, Any]] = []
 
-        self._init_backend()
+        if self._in_process_model is None:
+            self._init_backend()
 
     def _init_backend(self) -> None:
         # Only attempt in-process load if running directly inside chatterbox_env
@@ -165,57 +189,33 @@ class ChatterboxLocalService:
         cfg_weight: Optional[float] = None,
         exaggeration: Optional[float] = None,
     ) -> None:
-        """Generate audio for text using sample_path as reference voice.
+        """Generate one clip for ``text`` using sample_path as reference voice.
 
         Chatterbox is a short-form engine: feeding it a long line in a single
-        call degrades into garbled/truncated audio. Text longer than
-        ``max_chunk_chars`` is split into sentence/word-aware chunks (each
-        <= ``max_chunk_chars``), generated separately, and stitched back
-        together — the same strategy the chapter benchmark pipeline uses to
-        produce clean long-form output.
+        call degrades into garbled/truncated audio. It does *not* re-chunk:
+        text longer than ``max_chunk_chars`` (after :meth:`normalize`) raises
+        :class:`~chapter_audio.engine.EngineChunkTooLongError`. Callers split
+        at plan time -- ``chapter_audio.engine.plan_engine_chunks`` for a
+        chunk plan, ``chapter_audio.generation.generate_engine_text`` for one
+        line -- so every call is one counted chunk.
         """
-        sample_resolved = str(Path(sample_path).resolve())
-        out_resolved = str(Path(output_path).resolve())
+        text = self.normalize(text)
+        require_within_engine_limit(self, text)
 
         # Per-call overrides: ``None`` falls back to the instance defaults.
         effective_temperature = self.temperature if temperature is None else temperature
         effective_cfg_weight = self.cfg_weight if cfg_weight is None else cfg_weight
         effective_exaggeration = self.exaggeration if exaggeration is None else exaggeration
 
-        chunks = split_text_to_max_chars(text, self.max_chunk_chars)
-        if len(chunks) == 1:
-            self._generate_single(
-                chunks[0],
-                sample_resolved,
-                out_resolved,
-                seed,
-                effective_temperature,
-                effective_cfg_weight,
-                effective_exaggeration,
-            )
-            return
-
-        # Long text: generate each chunk to a temp file, then stitch.
-        with tempfile.TemporaryDirectory(prefix="chatterbox_chunks_") as tmp_dir:
-            tmp_dir_path = Path(tmp_dir)
-            chunk_paths = [
-                tmp_dir_path / f"chunk_{i:03d}.wav" for i in range(len(chunks))
-            ]
-            for chunk_text, chunk_path in zip(chunks, chunk_paths):
-                self._generate_single(
-                    chunk_text,
-                    sample_resolved,
-                    str(chunk_path),
-                    seed,
-                    effective_temperature,
-                    effective_cfg_weight,
-                    effective_exaggeration,
-                )
-            stitch_generated_chunk_audio(
-                chunk_audio_paths=chunk_paths,
-                output_path=Path(out_resolved),
-                join_pause_ms=self.join_pause_ms,
-            )
+        self._generate_single(
+            text,
+            str(Path(sample_path).resolve()),
+            str(Path(output_path).resolve()),
+            seed,
+            effective_temperature,
+            effective_cfg_weight,
+            effective_exaggeration,
+        )
 
     def _generate_single(
         self,
