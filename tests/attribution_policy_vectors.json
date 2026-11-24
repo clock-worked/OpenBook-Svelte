@@ -1,0 +1,642 @@
+{
+  "description": "Cross-language vectors for the attribution assert/suggestion policy spec (ADR-0013). Asserted by py_services/openbook_parser/test_attribution_policy_vectors.py (Python, attribution_decision.py) and apps/desktop/src/lib/services/__tests__/attributionPolicy.test.ts (TS, attributionPolicy.ts). 'spec' pins both implementations' constants; 'policy' vectors give a ranked confidence list (top first) plus edge facts and the expected outcome at one edge; 'firstPerson' vectors give a decision trace and whether the frontend first-person exemption holds.",
+  "spec": {
+    "thresholds": {
+      "assertMinTop": 0.74,
+      "assertMinMargin": 0.14,
+      "unsupportedMinTop": 0.8,
+      "contestedMinTop": 0.86
+    },
+    "rules": [
+      {
+        "name": "low_top",
+        "edges": [
+          "parser",
+          "frontend"
+        ]
+      },
+      {
+        "name": "tight_margin",
+        "edges": [
+          "parser"
+        ]
+      },
+      {
+        "name": "unsupported_top",
+        "edges": [
+          "parser"
+        ]
+      },
+      {
+        "name": "fallback_alignment",
+        "edges": [
+          "parser"
+        ]
+      },
+      {
+        "name": "question_next_speaker_conflict",
+        "edges": [
+          "parser"
+        ]
+      },
+      {
+        "name": "gender_conflict",
+        "edges": [
+          "parser"
+        ]
+      },
+      {
+        "name": "generic_top_choice",
+        "edges": [
+          "parser"
+        ]
+      },
+      {
+        "name": "parser_suggestion",
+        "edges": [
+          "frontend"
+        ]
+      },
+      {
+        "name": "contested_top",
+        "edges": [
+          "frontend"
+        ]
+      },
+      {
+        "name": "no_named_candidates",
+        "edges": [
+          "frontend"
+        ]
+      },
+      {
+        "name": "speaker_blocked",
+        "edges": [
+          "frontend"
+        ]
+      }
+    ],
+    "exemptions": {
+      "parser": [],
+      "frontend": [
+        "first_person"
+      ]
+    },
+    "categories": [
+      "HARD",
+      "CARRYOVER",
+      "LOCAL_EVIDENCE",
+      "FIRST_PERSON"
+    ],
+    "categoryPrecedence": [
+      "FIRST_PERSON",
+      "HARD",
+      "LOCAL_EVIDENCE",
+      "CARRYOVER"
+    ],
+    "legacyFirstPersonRules": [
+      "0p_protagonist_first_person",
+      "first_person_override"
+    ]
+  },
+  "policy": [
+    {
+      "name": "parser: clear assert",
+      "edge": "parser",
+      "confidences": [
+        0.9,
+        0.5
+      ],
+      "flags": {
+        "hasSupportReason": true
+      },
+      "expected": {
+        "isSuggestion": false,
+        "firedRules": [],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "parser: single candidate assert",
+      "edge": "parser",
+      "confidences": [
+        0.8
+      ],
+      "flags": {
+        "hasSupportReason": true
+      },
+      "expected": {
+        "isSuggestion": false,
+        "firedRules": [],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "parser: top below assert threshold",
+      "edge": "parser",
+      "confidences": [
+        0.73,
+        0.2
+      ],
+      "flags": {
+        "hasSupportReason": true
+      },
+      "expected": {
+        "isSuggestion": true,
+        "firedRules": [
+          "low_top"
+        ],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "parser: top exactly at assert threshold",
+      "edge": "parser",
+      "confidences": [
+        0.74,
+        0.2
+      ],
+      "flags": {
+        "hasSupportReason": true
+      },
+      "expected": {
+        "isSuggestion": false,
+        "firedRules": [],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "parser: tight margin",
+      "edge": "parser",
+      "confidences": [
+        0.9,
+        0.8
+      ],
+      "flags": {
+        "hasSupportReason": true
+      },
+      "expected": {
+        "isSuggestion": true,
+        "firedRules": [
+          "tight_margin"
+        ],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "parser: margin exactly at threshold",
+      "edge": "parser",
+      "confidences": [
+        0.88,
+        0.74
+      ],
+      "flags": {
+        "hasSupportReason": true
+      },
+      "expected": {
+        "isSuggestion": false,
+        "firedRules": [],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "parser: unsupported top below 0.80",
+      "edge": "parser",
+      "confidences": [
+        0.79,
+        0.2
+      ],
+      "flags": {},
+      "expected": {
+        "isSuggestion": true,
+        "firedRules": [
+          "unsupported_top"
+        ],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "parser: unsupported top at 0.80",
+      "edge": "parser",
+      "confidences": [
+        0.8,
+        0.2
+      ],
+      "flags": {},
+      "expected": {
+        "isSuggestion": false,
+        "firedRules": [],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "parser: fallback alignment",
+      "edge": "parser",
+      "confidences": [
+        0.95,
+        0.2
+      ],
+      "flags": {
+        "hasSupportReason": true,
+        "usedFallbackAlignment": true
+      },
+      "expected": {
+        "isSuggestion": true,
+        "firedRules": [
+          "fallback_alignment"
+        ],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "parser: question/next-speaker conflict",
+      "edge": "parser",
+      "confidences": [
+        0.95,
+        0.2
+      ],
+      "flags": {
+        "hasSupportReason": true,
+        "questionNextSpeakerConflict": true
+      },
+      "expected": {
+        "isSuggestion": true,
+        "firedRules": [
+          "question_next_speaker_conflict"
+        ],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "parser: gender conflict",
+      "edge": "parser",
+      "confidences": [
+        0.95,
+        0.2
+      ],
+      "flags": {
+        "hasSupportReason": true,
+        "genderConflict": true
+      },
+      "expected": {
+        "isSuggestion": true,
+        "firedRules": [
+          "gender_conflict"
+        ],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "parser: generic top choice",
+      "edge": "parser",
+      "confidences": [
+        0.95,
+        0.2
+      ],
+      "flags": {
+        "hasSupportReason": true,
+        "genericTopChoice": true
+      },
+      "expected": {
+        "isSuggestion": true,
+        "firedRules": [
+          "generic_top_choice"
+        ],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "parser: frontend-only facts do not apply",
+      "edge": "parser",
+      "confidences": [
+        0.85,
+        0.5
+      ],
+      "flags": {
+        "hasSupportReason": true,
+        "hasNamedCandidates": false,
+        "speakerBlocked": true,
+        "parserSuggestion": true
+      },
+      "expected": {
+        "isSuggestion": false,
+        "firedRules": [],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "parser: several rules fire",
+      "edge": "parser",
+      "confidences": [
+        0.6,
+        0.55
+      ],
+      "flags": {
+        "genderConflict": true
+      },
+      "expected": {
+        "isSuggestion": true,
+        "firedRules": [
+          "low_top",
+          "tight_margin",
+          "unsupported_top",
+          "gender_conflict"
+        ],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "frontend: clear assert",
+      "edge": "frontend",
+      "confidences": [
+        0.9,
+        0.5
+      ],
+      "flags": {},
+      "expected": {
+        "isSuggestion": false,
+        "firedRules": [],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "frontend: single candidate between 0.74 and 0.86 asserts",
+      "edge": "frontend",
+      "confidences": [
+        0.8
+      ],
+      "flags": {},
+      "expected": {
+        "isSuggestion": false,
+        "firedRules": [],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "frontend: contested top below 0.86",
+      "edge": "frontend",
+      "confidences": [
+        0.85,
+        0.1
+      ],
+      "flags": {},
+      "expected": {
+        "isSuggestion": true,
+        "firedRules": [
+          "contested_top"
+        ],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "frontend: contested top exactly at 0.86",
+      "edge": "frontend",
+      "confidences": [
+        0.86,
+        0.1
+      ],
+      "flags": {},
+      "expected": {
+        "isSuggestion": false,
+        "firedRules": [],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "frontend: low top",
+      "edge": "frontend",
+      "confidences": [
+        0.7
+      ],
+      "flags": {},
+      "expected": {
+        "isSuggestion": true,
+        "firedRules": [
+          "low_top"
+        ],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "frontend: no candidates",
+      "edge": "frontend",
+      "confidences": [],
+      "flags": {},
+      "expected": {
+        "isSuggestion": true,
+        "firedRules": [
+          "low_top"
+        ],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "frontend: parser suggestion un-asserts",
+      "edge": "frontend",
+      "confidences": [
+        0.95
+      ],
+      "flags": {
+        "parserSuggestion": true
+      },
+      "expected": {
+        "isSuggestion": true,
+        "firedRules": [
+          "parser_suggestion"
+        ],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "frontend: no named candidates",
+      "edge": "frontend",
+      "confidences": [
+        0.95
+      ],
+      "flags": {
+        "hasNamedCandidates": false
+      },
+      "expected": {
+        "isSuggestion": true,
+        "firedRules": [
+          "no_named_candidates"
+        ],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "frontend: blocked speaker",
+      "edge": "frontend",
+      "confidences": [
+        0.95
+      ],
+      "flags": {
+        "speakerBlocked": true
+      },
+      "expected": {
+        "isSuggestion": true,
+        "firedRules": [
+          "speaker_blocked"
+        ],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "frontend: tight margin is parser-only",
+      "edge": "frontend",
+      "confidences": [
+        0.95,
+        0.9
+      ],
+      "flags": {},
+      "expected": {
+        "isSuggestion": false,
+        "firedRules": [],
+        "exemptedBy": null
+      }
+    },
+    {
+      "name": "frontend: first-person exemption overrides fired rules",
+      "edge": "frontend",
+      "confidences": [
+        0.6,
+        0.5
+      ],
+      "flags": {
+        "firstPerson": true,
+        "parserSuggestion": true
+      },
+      "expected": {
+        "isSuggestion": false,
+        "firedRules": [
+          "low_top",
+          "parser_suggestion",
+          "contested_top"
+        ],
+        "exemptedBy": "first_person"
+      }
+    },
+    {
+      "name": "frontend: first-person exemption with nothing fired",
+      "edge": "frontend",
+      "confidences": [
+        0.95
+      ],
+      "flags": {
+        "firstPerson": true
+      },
+      "expected": {
+        "isSuggestion": false,
+        "firedRules": [],
+        "exemptedBy": "first_person"
+      }
+    },
+    {
+      "name": "parser: first-person fact is not a parser exemption",
+      "edge": "parser",
+      "confidences": [
+        0.6,
+        0.5
+      ],
+      "flags": {
+        "firstPerson": true,
+        "hasSupportReason": true
+      },
+      "expected": {
+        "isSuggestion": true,
+        "firedRules": [
+          "low_top",
+          "tight_margin"
+        ],
+        "exemptedBy": null
+      }
+    }
+  ],
+  "firstPerson": [
+    {
+      "name": "wire category FIRST_PERSON",
+      "trace": {
+        "ruleCategory": "FIRST_PERSON",
+        "selectedReasons": [
+          "parser_match",
+          "0p_protagonist_first_person"
+        ]
+      },
+      "expected": true
+    },
+    {
+      "name": "wire category wins over reasons",
+      "trace": {
+        "ruleCategory": "HARD",
+        "selectedReasons": [
+          "first_person_override"
+        ]
+      },
+      "expected": false
+    },
+    {
+      "name": "wire null category is not first-person",
+      "trace": {
+        "ruleCategory": null,
+        "selectedReasons": [
+          "first_person_override"
+        ]
+      },
+      "expected": false
+    },
+    {
+      "name": "wire category from an override",
+      "trace": {
+        "ruleCategory": "FIRST_PERSON",
+        "selectedReasons": [
+          "legacy_match",
+          "first_person_override"
+        ]
+      },
+      "expected": true
+    },
+    {
+      "name": "non-first-person category",
+      "trace": {
+        "ruleCategory": "CARRYOVER",
+        "selectedReasons": [
+          "same_paragraph_continuation"
+        ]
+      },
+      "expected": false
+    },
+    {
+      "name": "legacy trace: 0p rule in reasons",
+      "trace": {
+        "selectedReasons": [
+          "parser_match",
+          "0p_protagonist_first_person"
+        ]
+      },
+      "expected": true
+    },
+    {
+      "name": "legacy trace: first_person_override in reasons",
+      "trace": {
+        "selectedReasons": [
+          "first_person_override"
+        ]
+      },
+      "expected": true
+    },
+    {
+      "name": "legacy trace: no first-person reason",
+      "trace": {
+        "selectedReasons": [
+          "post_quote_attribution"
+        ]
+      },
+      "expected": false
+    },
+    {
+      "name": "legacy trace: no reasons",
+      "trace": {},
+      "expected": false
+    }
+  ]
+}

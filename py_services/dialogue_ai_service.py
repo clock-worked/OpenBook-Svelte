@@ -626,9 +626,6 @@ def _orphan_quote_followed_by_narration_speaker(
     if _alignment_is_uncertain(target):
         return None
 
-    if target.get("nextParagraphDialogue"):
-        return None
-
     next_paragraph_text = str(target.get("nextParagraphText") or "").strip()
     if not next_paragraph_text or '"' in next_paragraph_text or "“" in next_paragraph_text:
         return None

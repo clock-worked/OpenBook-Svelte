@@ -4,6 +4,8 @@
 //  docs/schema_characters_v3.md; dialogue/voices lines are separate)
 // ============================================================================
 
+import type { RuleCategory } from '$lib/services/attributionPolicy';
+
 export type TtsProvider = 'vibevoice_local' | 'chatterbox';
 export type Gender = 'Male' | 'Female' | 'Unknown';
 
@@ -185,6 +187,11 @@ export interface LineAttributionCandidate {
 export interface LineAttributionDecisionTrace {
   selectedCandidate?: string | null;
   selectedReasons?: string[];
+  /**
+   * Registry category of the selected reasons, written by the parser's
+   * decision owner (ADR-0013). Absent on traces written before the field.
+   */
+  ruleCategory?: RuleCategory | null;
   overrideReason?: string | null;
   /** Every name the signals proposed, before gating and closed-world filtering. */
   rawCandidatePool?: string[];

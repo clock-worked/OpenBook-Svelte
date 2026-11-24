@@ -13,6 +13,7 @@ import type { JevVerifySummary } from '$lib/services/apiContracts';
 import { setJevVerifySummary } from '$lib/stores/jevDialogueAi';
 import { buildClosedWorldParserOptions } from '$lib/services/parserCatalog';
 import { history } from '$lib/services/history';
+import { evaluatePolicy, traceIsFirstPerson } from '$lib/services/attributionPolicy';
 
 interface ParserOutput {
   script: Line[];
@@ -222,20 +223,22 @@ export function convertLineToDialogueLine(
 
   const hasNamedCandidates = collapsedCandidates.some((candidate) => !!candidate.characterId);
   const resolvedSpeakerId = speakerKey ? (nameToCharIdMap.get(speakerKey) || null) : null;
-  const selectedReasons = parserAttribution?.decisionTrace?.selectedReasons;
+  // Assert/suggestion: the shared policy spec, frontend edge (ADR-0013),
+  // applied to the post-collapse candidate set. The first-person exemption
+  // reads the wire's ruleCategory (legacy traces: the fallback rule set).
   const hasDeterministicFirstPersonAttribution = !!resolvedSpeakerId
-    && Array.isArray(selectedReasons)
-    && selectedReasons.some((reason) =>
-      reason === '0p_protagonist_first_person' || reason === 'first_person_override'
-    );
+    && traceIsFirstPerson(parserAttribution?.decisionTrace);
+  const policyOutcome = evaluatePolicy('frontend', {
+    top: baseConfidence,
+    second: collapsedCandidates[1]?.confidence ?? 0,
+    candidateCount: collapsedCandidates.length,
+    parserSuggestion: line.is_suggestion === true,
+    hasNamedCandidates,
+    speakerBlocked: speakerIsBlocked,
+    firstPerson: hasDeterministicFirstPersonAttribution,
+  });
 
-  const shouldAbstain = !isNarration && !hasDeterministicFirstPersonAttribution && (
-    line.is_suggestion === true
-    || baseConfidence < 0.74
-    || (collapsedCandidates.length > 1 && baseConfidence < 0.86)
-    || !hasNamedCandidates
-    || speakerIsBlocked
-  );
+  const shouldAbstain = !isNarration && policyOutcome.isSuggestion;
 
   const characterId = isNarration
     ? 'narrator'
