@@ -153,6 +153,7 @@ export function createQueueJob(
     totalCharacters: planned.totalCharacters,
     progress: zeroProgress(),
     createdAt: opts.createdAt,
+    cancelRequested: false,
     plan: planned,
   };
 }
