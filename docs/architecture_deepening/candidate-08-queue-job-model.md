@@ -1,6 +1,9 @@
 # Candidate 8 — One queue job model
 
-**Status:** designed (decision record below) — not started
+**Status:** implemented on `refactor/c08-queue-job-model` — decision record: [ADR 0020](../adr/0020-queue-job-model.md)
+
+**As built (where the code had moved since this was written):** line numbers above are from 2026-11-06 (the shadow planner had moved to `AudioPanel.svelte` ~931–1001, `processQueue` to ~1003–1103). The job model's home is a pure module, `services/audioQueueJob.ts` (type, transitions, persisted view), applied by `stores/audioQueue.ts`, so it is tested without a store. The transition set gained `cancel` (the overlay's "Cancel all": queued → canceled, running → cancel requested), and `requeueRunningJobs` became part of the restore. The rebuild reads persisted `lineRefs`, so "the same `QueueJob`" also holds for multi-chapter and speaker-source jobs.
+
 **Part of:** architecture review 2026-11-06, candidates 1–8
 **Companion issue:** see `docs/architecture_deepening/README.md`
 
