@@ -1,17 +1,16 @@
 """
 Audio generation service for OpenBook.
-Handles TTS provider integration and manifest management.
+Handles TTS provider integration; manifest writes go through
+audio/manifest_store.py.
 """
 
 import os
 import sys
-import json
 import asyncio
 import threading
 from pathlib import Path
 from typing import Optional, Dict, Any, Tuple
 import httpx
-from datetime import datetime
 import base64
 from google.oauth2 import service_account
 from google.auth.transport.requests import Request
@@ -27,16 +26,70 @@ if sys.platform == 'win32':
 
 from chatterbox_local_service import ChatterboxLocalService
 from vibevoice_local_service import VibeVoiceLocalService
+from chapter_audio.generation import generate_engine_text
+from chapter_audio.text_utils import normalize_typography
+
+try:
+    from .audio.engine_adapters import VoiceBoundEngine
+    from .audio.provider_profile import (
+        ADAPTER_CHATTERBOX,
+        ADAPTER_ELEVENLABS,
+        ADAPTER_GOOGLE_TTS,
+        ADAPTER_VIBEVOICE,
+        ProviderProfile,
+        UnknownProviderError,
+        is_chatterbox_provider,
+        resolve_provider_profile,
+    )
+    from .audio.manifest_store import (
+        MANIFEST_FILENAME,
+        build_clip as build_manifest_clip,
+        reconcile as reconcile_manifest,
+        remove_clip as remove_manifest_clip,
+        upsert_clip as upsert_manifest_clip,
+    )
+except ImportError:
+    from audio.engine_adapters import VoiceBoundEngine
+    from audio.provider_profile import (
+        ADAPTER_CHATTERBOX,
+        ADAPTER_ELEVENLABS,
+        ADAPTER_GOOGLE_TTS,
+        ADAPTER_VIBEVOICE,
+        ProviderProfile,
+        UnknownProviderError,
+        is_chatterbox_provider,
+        resolve_provider_profile,
+    )
+    from audio.manifest_store import (
+        MANIFEST_FILENAME,
+        build_clip as build_manifest_clip,
+        reconcile as reconcile_manifest,
+        remove_clip as remove_manifest_clip,
+        upsert_clip as upsert_manifest_clip,
+    )
 
 
 DEFAULT_CHATTERBOX_VARIANT = "base"
 
-# Provider strings (lowercased) that route to the local Chatterbox engine.
-CHATTERBOX_PROVIDER_ALIASES = ("chatterbox", "chatterbox_local", "chatterbox-local")
+# The local AudioEngine adapter class behind each profile adapter name
+# (chapter_audio/engine.py). Cloud adapters are not chunked engines.
+LOCAL_ENGINE_CLASSES = {
+    ADAPTER_VIBEVOICE: VibeVoiceLocalService,
+    ADAPTER_CHATTERBOX: ChatterboxLocalService,
+}
 
 
-def is_chatterbox_provider(provider: Optional[str]) -> bool:
-    return str(provider or "").strip().lower() in CHATTERBOX_PROVIDER_ALIASES
+def local_engine_class(provider: Optional[str]):
+    """The AudioEngine adapter class for a local chunked provider.
+
+    Raises ``UnknownProviderError`` for an unknown provider and ``ValueError``
+    for a cloud provider.
+    """
+    profile = resolve_provider_profile(provider)
+    engine_class = LOCAL_ENGINE_CLASSES.get(profile.adapter)
+    if engine_class is None:
+        raise ValueError(f"{profile.display_name} is not a local chunked engine.")
+    return engine_class
 
 
 def build_chatterbox_generator_info(
@@ -111,59 +164,44 @@ class AudioGenerationService:
             dict with 'success', 'audio_path', and optionally 'error'
         """
         try:
-            # Normalize text to handle smart quotes and other special characters
-            normalized_text = self._normalize_text(text)
-            
+            # Which engine, which extension: one registry lookup.
+            try:
+                profile = resolve_provider_profile(provider)
+            except UnknownProviderError as exc:
+                return {
+                    "success": False,
+                    "error": str(exc)
+                }
+
+            # Local engines hear their own adapter's ``normalize`` (applied
+            # when the line is planned into engine calls); cloud engines get
+            # the shared typography normalization.
+            normalized_text = text if profile.is_local_chunked else self._normalize_text(text)
+
             # Construct output paths
             character_dir = self.audio_root / chapter_title / "audio_lines" / character_name
             character_dir.mkdir(parents=True, exist_ok=True)
-            
-            audio_ext = self._get_audio_extension(provider)
+
+            audio_ext = profile.file_extension
             audio_filename = f"{line_id}-{character_name}{audio_ext}"
             audio_path = character_dir / audio_filename
-            
-            # Generate audio based on provider
-            provider_lower = provider.lower()
-            if provider_lower == "elevenlabs":
-                success = await self._generate_elevenlabs(normalized_text, voice_id, audio_path)
-            elif provider_lower in ["google_tts", "chirp3", "google", "chirp"]:
-                # chirp3 is Google's Chirp 3 model
-                success = await self._generate_google_tts(normalized_text, voice_id, audio_path)
-            elif provider_lower in ["vibevoice_local", "vibevoice-local", "vibevoice"]:
-                success, error_details = await asyncio.to_thread(
-                    self._generate_vibevoice_local,
-                    normalized_text,
-                    voice_id,
-                    audio_path,
-                    voice_sample_root,
-                )
-                if not success:
-                    return {
-                        "success": False,
-                        "error": f"VibeVoice generation failed: {error_details}"
-                    }
-            elif provider_lower in CHATTERBOX_PROVIDER_ALIASES:
-                success, error_details = await asyncio.to_thread(
-                    self._generate_chatterbox_local,
-                    normalized_text,
-                    voice_id,
-                    audio_path,
-                    voice_sample_root,
-                    chatterbox_settings,
-                )
-                if not success:
-                    return {
-                        "success": False,
-                        "error": f"Chatterbox generation failed: {error_details}"
-                    }
-            else:
-                return {
-                    "success": False,
-                    "error": f"Unsupported TTS provider: {provider}"
-                }
-            
+
+            # Generate audio with the profile's engine adapter
+            line_adapter = self._line_adapter(profile)
+            success, error_details = await line_adapter(
+                text=normalized_text,
+                voice_id=voice_id,
+                output_path=audio_path,
+                voice_sample_root=voice_sample_root,
+                chatterbox_settings=chatterbox_settings,
+            )
+
             if not success:
-                # Should be covered by specific provider blocks, but fallback:
+                if error_details is not None:
+                    return {
+                        "success": False,
+                        "error": f"{profile.display_name} generation failed: {error_details}"
+                    }
                 return {
                     "success": False,
                     "error": "Failed to generate audio from TTS provider (Unknown error)"
@@ -173,25 +211,23 @@ class AudioGenerationService:
             audio_size = audio_path.stat().st_size
             estimated_duration = self._estimate_duration(audio_size)
             
-            # Update manifest
-            manifest_path = character_dir / "manifest.json"
-            generator_info = build_chatterbox_generator_info(provider, chatterbox_settings)
-            await asyncio.to_thread(
-                self._update_manifest,
-                manifest_path,
-                line_id,
-                character_id,
-                character_name,
-                text,
-                audio_filename,
-                chapter_title,
-                source_file,
-                voice_id,
-                provider,
-                emotion,
-                estimated_duration,
-                generator_info,
+            # Record the clip in the character manifest
+            manifest_path = character_dir / MANIFEST_FILENAME
+            clip = build_manifest_clip(
+                line_id=line_id,
+                character_id=character_id,
+                character_name=character_name,
+                text=text,
+                audio_file=audio_filename,
+                chapter=chapter_title,
+                source_file=source_file,
+                voice_id=voice_id,
+                provider=provider,
+                emotion=emotion,
+                duration=round(estimated_duration, 2),
+                generator_info=build_chatterbox_generator_info(provider, chatterbox_settings),
             )
+            await asyncio.to_thread(upsert_manifest_clip, manifest_path, clip)
             
             return {
                 "success": True,
@@ -204,7 +240,48 @@ class AudioGenerationService:
                 "success": False,
                 "error": error_msg
             }
-    
+
+    # --- Engine adapters for the single-line path -------------------------
+    # Each takes the same keyword arguments and returns (success, error).
+    # ``error`` is None when the engine gave no details (cloud APIs log
+    # theirs); a string (possibly empty) for local engines.
+    # Keyed by ProviderProfile.adapter (audio/provider_profile.py).
+
+    def _line_adapter(self, profile: ProviderProfile):
+        return getattr(self, self._LINE_ADAPTER_METHODS[profile.adapter])
+
+    async def _line_elevenlabs(self, *, text, voice_id, output_path, voice_sample_root, chatterbox_settings):
+        return await self._generate_elevenlabs(text, voice_id, output_path), None
+
+    async def _line_google_tts(self, *, text, voice_id, output_path, voice_sample_root, chatterbox_settings):
+        return await self._generate_google_tts(text, voice_id, output_path), None
+
+    async def _line_vibevoice(self, *, text, voice_id, output_path, voice_sample_root, chatterbox_settings):
+        return await asyncio.to_thread(
+            self._generate_vibevoice_local,
+            text,
+            voice_id,
+            output_path,
+            voice_sample_root,
+        )
+
+    async def _line_chatterbox(self, *, text, voice_id, output_path, voice_sample_root, chatterbox_settings):
+        return await asyncio.to_thread(
+            self._generate_chatterbox_local,
+            text,
+            voice_id,
+            output_path,
+            voice_sample_root,
+            chatterbox_settings,
+        )
+
+    _LINE_ADAPTER_METHODS: Dict[str, str] = {
+        ADAPTER_ELEVENLABS: "_line_elevenlabs",
+        ADAPTER_GOOGLE_TTS: "_line_google_tts",
+        ADAPTER_VIBEVOICE: "_line_vibevoice",
+        ADAPTER_CHATTERBOX: "_line_chatterbox",
+    }
+
     async def _generate_elevenlabs(
         self,
         text: str,
@@ -429,10 +506,12 @@ class AudioGenerationService:
                 self.vibevoice_local_service = VibeVoiceLocalService()
 
             with self._vibevoice_lock:
-                self.vibevoice_local_service.generate_audio(
+                # VibeVoice declares no per-call limit: one planned call.
+                generate_engine_text(
+                    self.vibevoice_local_service,
                     text=text,
                     sample_path=sample_path,
-                    output_path=str(output_path),
+                    output_path=output_path,
                 )
             return True, None
         except Exception as exc:
@@ -490,10 +569,13 @@ class AudioGenerationService:
 
             with self._chatterbox_lock:
                 service = self._get_chatterbox_service(variant)
-                service.generate_audio(
+                # Plan the line into <= max_chunk_chars engine calls and
+                # stitch (Chatterbox garbles long single-pass text).
+                generate_engine_text(
+                    service,
                     text=text,
                     sample_path=sample_path,
-                    output_path=str(output_path),
+                    output_path=output_path,
                     temperature=settings.get("temperature"),
                     cfg_weight=settings.get("cfg_weight"),
                     exaggeration=settings.get("exaggeration"),
@@ -505,6 +587,52 @@ class AudioGenerationService:
             import traceback
             traceback.print_exc()
             return False, error_msg
+
+    def audio_engine(
+        self,
+        provider: str,
+        *,
+        voice_id: str,
+        voice_sample_root: Optional[str],
+        chatterbox_settings: Optional[Dict[str, Any]] = None,
+    ) -> VoiceBoundEngine:
+        """The ``AudioEngine`` for a local chunked provider, voice bound.
+
+        Composition root of the engine seam: the provider profile names the
+        adapter; ``LOCAL_ENGINE_CLASSES`` supplies its declarations
+        (``max_chunk_chars``, ``normalize``); generation goes through this
+        service's cached model. Raises ``UnknownProviderError`` for an unknown
+        provider and ``ValueError`` for a cloud one.
+        """
+        profile = resolve_provider_profile(provider)
+        engine_class = local_engine_class(profile.name)
+
+        if profile.adapter == ADAPTER_CHATTERBOX:
+            def generate_to_path(*, text, voice_id, output_path):
+                return self.generate_chatterbox_text_to_path(
+                    text=text,
+                    voice_id=voice_id,
+                    output_path=output_path,
+                    voice_sample_root=voice_sample_root,
+                    settings=chatterbox_settings,
+                )
+        else:
+            def generate_to_path(*, text, voice_id, output_path):
+                return self.generate_vibevoice_text_to_path(
+                    text=text,
+                    voice_id=voice_id,
+                    output_path=output_path,
+                    voice_sample_root=voice_sample_root,
+                )
+
+        return VoiceBoundEngine(
+            adapter=profile.adapter,
+            display_name=profile.display_name,
+            max_chunk_chars=engine_class.max_chunk_chars,
+            normalize=engine_class.normalize,
+            voice_id=voice_id,
+            generate_to_path=generate_to_path,
+        )
 
     def generate_chatterbox_text_to_path(
         self,
@@ -595,103 +723,6 @@ class AudioGenerationService:
         bytes_per_second = 16000
         return file_size_bytes / bytes_per_second
 
-    def _get_audio_extension(self, provider: str) -> str:
-        provider_lower = provider.lower()
-        if provider_lower in ["vibevoice_local", "vibevoice-local", "vibevoice"]:
-            return ".wav"
-        if provider_lower in ["chatterbox", "chatterbox_local", "chatterbox-local"]:
-            return ".wav"
-        return ".mp3"
-    
-    def _update_manifest(
-        self,
-        manifest_path: Path,
-        line_id: int,
-        character_id: str,
-        character_name: str,
-        text: str,
-        audio_file: str,
-        chapter: str,
-        source_file: str,
-        voice_id: str,
-        provider: str,
-        emotion: Optional[str],
-        duration: float,
-        generator_info: Optional[Dict[str, Any]] = None,
-    ):
-        """Update or create manifest.json with new clip information."""
-        
-        # Load existing manifest or create new one
-        if manifest_path.exists():
-            with open(manifest_path, 'r', encoding='utf-8') as f:
-                manifest = json.load(f)
-        else:
-            manifest = {
-                "formatVersion": "2.0",
-                "characterId": character_id,
-                "characterName": character_name,
-                "metadata": {
-                    "totalClips": 0,
-                    "chapters": [],
-                    "sources": {},
-                    "voiceIds": {},
-                    "primaryVoiceId": voice_id,
-                    "lastUpdated": ""
-                },
-                "clips": []
-            }
-        
-        # Create new clip entry
-        generator_info = generator_info or {}
-        new_clip = {
-            "id": line_id,
-            "characterId": character_id,
-            "characterName": character_name,
-            "text": text,
-            "audioFile": audio_file,
-            "chapter": chapter,
-            "sourceFile": source_file,
-            "voiceId": voice_id,
-            "provider": provider,
-            "variant": generator_info.get("variant"),
-            "temperature": generator_info.get("temperature"),
-            "cfgWeight": generator_info.get("cfgWeight"),
-            "exaggeration": generator_info.get("exaggeration"),
-            "emotion": emotion,
-            "metadata": {
-                "generatedAt": datetime.utcnow().isoformat() + "Z",
-                "duration": round(duration, 2)
-            }
-        }
-        
-        # Remove existing clip with same ID if it exists
-        manifest["clips"] = [c for c in manifest["clips"] if c["id"] != line_id]
-        
-        # Add new clip
-        manifest["clips"].append(new_clip)
-        
-        # Update metadata
-        manifest["metadata"]["totalClips"] = len(manifest["clips"])
-        
-        # Update chapters list
-        chapters = set(manifest["metadata"]["chapters"])
-        chapters.add(chapter)
-        manifest["metadata"]["chapters"] = sorted(list(chapters))
-        
-        # Update sources
-        sources = manifest["metadata"]["sources"]
-        sources[source_file] = sources.get(source_file, 0) + 1
-        
-        # Update voice IDs
-        voice_ids = manifest["metadata"]["voiceIds"]
-        voice_ids[voice_id] = voice_ids.get(voice_id, 0) + 1
-        
-        manifest["metadata"]["lastUpdated"] = datetime.utcnow().isoformat() + "Z"
-        
-        # Save manifest
-        with open(manifest_path, 'w', encoding='utf-8') as f:
-            json.dump(manifest, f, indent=2, ensure_ascii=False)
-    
     def delete_audio_line(
         self,
         chapter_title: str,
@@ -714,24 +745,9 @@ class AudioGenerationService:
                     print(f"Deleted audio file: {audio_path}")
             
             # Update manifest to remove this clip
-            manifest_path = character_dir / "manifest.json"
-            if manifest_path.exists():
-                with open(manifest_path, 'r', encoding='utf-8') as f:
-                    manifest = json.load(f)
-                
-                # Remove clip from manifest
-                original_count = len(manifest["clips"])
-                manifest["clips"] = [c for c in manifest["clips"] if c["id"] != line_id]
-                
-                if len(manifest["clips"]) < original_count:
-                    # Update metadata
-                    manifest["metadata"]["totalClips"] = len(manifest["clips"])
-                    manifest["metadata"]["lastUpdated"] = datetime.utcnow().isoformat() + "Z"
-                    
-                    # Save updated manifest
-                    with open(manifest_path, 'w', encoding='utf-8') as f:
-                        json.dump(manifest, f, indent=2, ensure_ascii=False)
-                    print(f"Updated manifest, removed clip {line_id}")
+            manifest_path = character_dir / MANIFEST_FILENAME
+            if remove_manifest_clip(manifest_path, line_id):
+                print(f"Updated manifest, removed clip {line_id}")
             
             return True
             
@@ -749,216 +765,7 @@ class AudioGenerationService:
         If the manifest is missing but audio files exist, bootstrap a minimal
         manifest from those files so the UI can reflect generated audio.
         """
-        character_dir = self.audio_root / chapter_title / "audio_lines" / character_name
-        manifest_path = character_dir / "manifest.json"
-
-        def _discover_audio_files() -> Dict[int, str]:
-            audio_files = [
-                path for path in character_dir.iterdir()
-                if path.is_file() and path.suffix.lower() in {".wav", ".mp3"}
-            ]
-
-            by_line_id: Dict[int, str] = {}
-            for audio_file in sorted(audio_files, key=lambda p: p.name.lower()):
-                stem = audio_file.stem
-                line_prefix = stem.split("-", 1)[0]
-                if not line_prefix.isdigit():
-                    continue
-                line_id = int(line_prefix)
-                # Prefer wav when both wav/mp3 exist for same line id.
-                existing_name = by_line_id.get(line_id)
-                if existing_name is None:
-                    by_line_id[line_id] = audio_file.name
-                elif existing_name.lower().endswith(".mp3") and audio_file.suffix.lower() == ".wav":
-                    by_line_id[line_id] = audio_file.name
-
-            return by_line_id
-
-        def _bootstrap_manifest_from_files() -> Dict[str, Any]:
-            by_line_id = _discover_audio_files()
-
-            if not by_line_id:
-                return {
-                    "updated": False,
-                    "added_count": 0,
-                    "removed_count": 0,
-                    "clip_count": 0,
-                    "manifest": None,
-                }
-
-            generated_at = datetime.utcnow().isoformat() + "Z"
-            clips = [
-                {
-                    "id": line_id,
-                    "characterId": character_name.lower().replace(" ", "_"),
-                    "characterName": character_name,
-                    "text": "",
-                    "audioFile": file_name,
-                    "chapter": chapter_title,
-                    "sourceFile": chapter_title,
-                    "voiceId": "",
-                    "provider": "vibevoice_local",
-                    "emotion": None,
-                    "metadata": {
-                        "generatedAt": generated_at,
-                        "duration": 0.0,
-                    },
-                }
-                for line_id, file_name in sorted(by_line_id.items(), key=lambda item: item[0])
-            ]
-
-            manifest = {
-                "formatVersion": "2.0",
-                "characterId": character_name.lower().replace(" ", "_"),
-                "characterName": character_name,
-                "metadata": {
-                    "totalClips": len(clips),
-                    "chapters": [chapter_title],
-                    "sources": {chapter_title: len(clips)},
-                    "voiceIds": {},
-                    "primaryVoiceId": None,
-                    "lastUpdated": generated_at,
-                },
-                "clips": clips,
-            }
-
-            character_dir.mkdir(parents=True, exist_ok=True)
-            with open(manifest_path, 'w', encoding='utf-8') as handle:
-                json.dump(manifest, handle, indent=2, ensure_ascii=False)
-
-            return {
-                "updated": True,
-                "added_count": len(clips),
-                "removed_count": 0,
-                "clip_count": len(clips),
-                "manifest": manifest,
-            }
-
-        if not character_dir.exists() or not character_dir.is_dir():
-            return {
-                "updated": False,
-                "added_count": 0,
-                "removed_count": 0,
-                "clip_count": 0,
-                "manifest": None,
-            }
-
-        if not manifest_path.exists() or not manifest_path.is_file():
-            return _bootstrap_manifest_from_files()
-
-        try:
-            with open(manifest_path, 'r', encoding='utf-8') as handle:
-                manifest = json.load(handle)
-        except Exception as exc:
-            print(f"Error reading manifest for reconciliation: {manifest_path} - {exc}")
-            return _bootstrap_manifest_from_files()
-
-        clips = manifest.get("clips")
-        if not isinstance(clips, list):
-            clips = []
-            manifest["clips"] = clips
-
-        discovered_audio = _discover_audio_files()
-        kept_clips_by_id: Dict[int, Dict[str, Any]] = {}
-        removed_count = 0
-        for clip in clips:
-            if not isinstance(clip, dict):
-                removed_count += 1
-                continue
-
-            line_id = clip.get("id")
-            if not isinstance(line_id, int):
-                removed_count += 1
-                continue
-
-            audio_file = clip.get("audioFile")
-            if not isinstance(audio_file, str) or not audio_file.strip():
-                removed_count += 1
-                continue
-
-            clip_path = character_dir / audio_file
-            if not clip_path.exists() or not clip_path.is_file():
-                removed_count += 1
-                continue
-
-            kept_clips_by_id[line_id] = clip
-
-        added_count = 0
-        generated_at = datetime.utcnow().isoformat() + "Z"
-        for line_id, file_name in discovered_audio.items():
-            existing_clip = kept_clips_by_id.get(line_id)
-            if existing_clip is None:
-                kept_clips_by_id[line_id] = {
-                    "id": line_id,
-                    "characterId": character_name.lower().replace(" ", "_"),
-                    "characterName": character_name,
-                    "text": "",
-                    "audioFile": file_name,
-                    "chapter": chapter_title,
-                    "sourceFile": chapter_title,
-                    "voiceId": "",
-                    "provider": "vibevoice_local",
-                    "emotion": None,
-                    "metadata": {
-                        "generatedAt": generated_at,
-                        "duration": 0.0,
-                    },
-                }
-                added_count += 1
-                continue
-
-            if existing_clip.get("audioFile") != file_name:
-                existing_clip["audioFile"] = file_name
-
-        kept_clips = [kept_clips_by_id[line_id] for line_id in sorted(kept_clips_by_id)]
-
-        updated = removed_count > 0 or added_count > 0
-        manifest["clips"] = kept_clips
-
-        metadata = manifest.get("metadata")
-        if not isinstance(metadata, dict):
-            metadata = {}
-            manifest["metadata"] = metadata
-
-        metadata["totalClips"] = len(kept_clips)
-
-        chapters = sorted({str(c.get("chapter")) for c in kept_clips if isinstance(c.get("chapter"), str) and c.get("chapter")})
-        metadata["chapters"] = chapters
-
-        source_counts: Dict[str, int] = {}
-        voice_counts: Dict[str, int] = {}
-        for clip in kept_clips:
-            source_file = clip.get("sourceFile")
-            if isinstance(source_file, str) and source_file:
-                source_counts[source_file] = source_counts.get(source_file, 0) + 1
-
-            voice_id = clip.get("voiceId")
-            if isinstance(voice_id, str) and voice_id:
-                voice_counts[voice_id] = voice_counts.get(voice_id, 0) + 1
-
-        metadata["sources"] = source_counts
-        metadata["voiceIds"] = voice_counts
-
-        existing_primary = metadata.get("primaryVoiceId")
-        if isinstance(existing_primary, str) and existing_primary in voice_counts:
-            metadata["primaryVoiceId"] = existing_primary
-        elif voice_counts:
-            metadata["primaryVoiceId"] = max(voice_counts.items(), key=lambda item: item[1])[0]
-        else:
-            metadata["primaryVoiceId"] = None
-
-        if updated:
-            metadata["lastUpdated"] = datetime.utcnow().isoformat() + "Z"
-            with open(manifest_path, 'w', encoding='utf-8') as handle:
-                json.dump(manifest, handle, indent=2, ensure_ascii=False)
-
-        return {
-            "updated": updated,
-            "added_count": added_count,
-            "removed_count": removed_count,
-            "clip_count": len(kept_clips),
-            "manifest": manifest,
-        }
+        return reconcile_manifest(self.audio_root, chapter_title, character_name)
     
     def delete_character_audio(
         self,
@@ -979,7 +786,7 @@ class AudioGenerationService:
                 audio_file.unlink()
             
             # Delete manifest
-            manifest_path = character_dir / "manifest.json"
+            manifest_path = character_dir / MANIFEST_FILENAME
             if manifest_path.exists():
                 manifest_path.unlink()
             
@@ -996,21 +803,8 @@ class AudioGenerationService:
     def _normalize_text(self, text: str) -> str:
         """
         Normalize text by replacing smart/curly quotes with straight quotes
-        and handling other problematic Unicode characters.
+        and handling other problematic Unicode characters (U+FFFD becomes an
+        apostrophe). The shared typography primitive,
+        ``chapter_audio.text_utils.normalize_typography``.
         """
-        # Replace smart quotes with straight quotes
-        text = text.replace('’', "'")  # Right single quotation mark (U+2019)
-        text = text.replace('‘', "'")  # Left single quotation mark (U+2018)
-        text = text.replace('”', '"')  # Right double quotation mark (U+201D)
-        text = text.replace('“', '"')  # Left double quotation mark (U+201C)
-        text = text.replace('–', '-')  # En dash (U+2013)
-        text = text.replace('—', '-')  # Em dash (U+2014)
-        text = text.replace('…', '...')  # Ellipsis (U+2026)
-        
-        # Handle replacement characters (U+FFFD) by converting to regular apostrophe if context suggests it
-        # This handles cases where curly quotes were already corrupted
-        if '\ufffd' in text:
-            text = text.replace('\ufffd', "'")
-        
-        return text
-
+        return normalize_typography(text)

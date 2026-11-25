@@ -33,8 +33,17 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable, Dict, List, Optional, Sequence, Tuple
 
+from .attribution_decision import (
+    CARRYOVER_RULES,
+    JEV_VERIFICATION_CONFIRMED,
+    JEV_VERIFICATION_DISAGREEMENT,
+    LOCAL_EVIDENCE_REASONS,
+    PLACEMENT_ANNOTATE_TOP,
+    PLACEMENT_PREPEND,
+    apply_decision,
+    verdict_decision,
+)
 from .dialogue_parser_service import DialogueLine
-from .episode_decoder import HARD_REASONS
 
 try:
     from ..character_store import load_characters
@@ -44,26 +53,12 @@ except ImportError:
 SCHEMA_VERSION = "jev-verify/1"
 JEV_MODEL = "jev-latest"
 
-# Turn-taking inheritance rules: the speaker was carried over from an
-# earlier line in the scene, i.e. exactly the failure class JEV should check.
-CARRYOVER_RULES = {
-    "4b_tag_continuation",
-    "4_contiguous_dialogue",
-    "4c_carry_across_short_narration",
-}
-
-# Local (non-carryover) evidence on the top candidate. A line carrying any
-# of these has its own tag/coref/descriptor/gender support and is NOT
-# "turn-taking inheritance", so the carryover gate excludes it.
-# Note: recent/previous paragraph *mention* cues are deliberately NOT local
-# evidence — on a carried-over line the "recent mention" is usually the very
-# speaker being inherited, so it must not shield the line from verification.
-LOCAL_EVIDENCE_REASONS = HARD_REASONS | {
-    "coref_support",
-    "alias_strength",
-    "learned_descriptor_match",
-    "context_gender_match",
-}
+# The carryover gate's rule sets come from the attribution rule registry
+# (attribution_decision): CARRYOVER_RULES are the turn-taking inheritance
+# sieves (the failure class JEV should check); LOCAL_EVIDENCE_REASONS are the
+# top-candidate reasons that give a line its own tag/coref/descriptor/gender
+# support and so exclude it from the gate. Recent/previous paragraph
+# *mention* cues are deliberately not local evidence (see the registry).
 
 NOT_DIALOGUE = "None"
 UNKNOWN_TOKENS = {"", "unknown", "unassigned", "narrator"}
@@ -541,21 +536,6 @@ def decide_verdict(
     return "downgrade" if confidence >= policy.downgrade_conf else "note"
 
 
-def _unique_names(*names: Optional[str]) -> List[str]:
-    seen = set()
-    ordered: List[str] = []
-    for raw in names:
-        name = str(raw or "").strip()
-        if not name:
-            continue
-        key = name.lower()
-        if key in seen:
-            continue
-        seen.add(key)
-        ordered.append(name)
-    return ordered
-
-
 def apply_verdict(
     line: DialogueLine,
     action: str,
@@ -565,44 +545,44 @@ def apply_verdict(
     block: Dict[str, object],
 ) -> None:
     """Apply a verdict additively; decisionTrace stays intact."""
-    attribution = _attribution(line)
-    attribution["jevVerification"] = block
-
+    fields = {"jevVerification": block}
     if action == "downgrade":
         previous_speaker = str(getattr(line, "speaker", None) or "").strip()
         jev_name = None
         if choice and choice != NOT_DIALOGUE:
             jev_name = name_lookup.get(_norm(str(choice)), str(choice).strip())
-        line.is_suggestion = True
         if jev_name and not is_unknown_speaker(jev_name):
             # The JEV pick is the better guess: it goes first.
-            line.speaker = jev_name
-            line.suggestions = _unique_names(jev_name, *(line.suggestions or []))
-            candidates: List[dict] = [
-                {
-                    "name": jev_name,
-                    "confidence": round(float(confidence), 4),
-                    "reasons": ["jev_verification_disagreement"],
-                }
-            ]
-            candidates.extend(
-                row
-                for row in _candidate_rows(line)
-                if _norm(row.get("name")) != _norm(jev_name)
+            decision = verdict_decision(
+                "jev_verify",
+                chosen=jev_name,
+                confidence=confidence,
+                reasons=[JEV_VERIFICATION_DISAGREEMENT],
+                placement=PLACEMENT_PREPEND,
+                is_suggestion=True,
+                promote=True,
+                attribution_fields=fields,
             )
-            attribution["candidates"] = candidates
         else:
             # JEV says "not dialogue": keep the heuristic pick as a guess.
-            line.speaker = previous_speaker
-            line.suggestions = _unique_names(previous_speaker, *(line.suggestions or []))
+            decision = verdict_decision(
+                "jev_verify",
+                chosen=previous_speaker,
+                is_suggestion=True,
+                promote=True,
+                attribution_fields=fields,
+            )
     elif action == "confirm" and getattr(line, "is_suggestion", False):
-        line.is_suggestion = False
-        rows = _candidate_rows(line)
-        if rows:
-            reasons = rows[0].setdefault("reasons", [])
-            if "jev_verification_confirmed" not in reasons:
-                reasons.append("jev_verification_confirmed")
-    line.attribution = attribution
+        decision = verdict_decision(
+            "jev_verify",
+            reasons=[JEV_VERIFICATION_CONFIRMED],
+            placement=PLACEMENT_ANNOTATE_TOP,
+            is_suggestion=False,
+            attribution_fields=fields,
+        )
+    else:
+        decision = verdict_decision("jev_verify", attribution_fields=fields)
+    apply_decision(line, decision)
 
 
 # ---------------------------------------------------------------------------

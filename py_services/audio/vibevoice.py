@@ -20,20 +20,21 @@ from audio_generation_service import (
     AudioGenerationService,
     build_chatterbox_generator_info,
 )
-from chapter_audio_test.asr_alignment import (
+from chapter_audio.engine import plan_engine_chunks
+from chapter_audio.asr_alignment import (
     build_line_timestamps,
     collect_asr_word_tokens,
 )
-from chapter_audio_test.audio_ops import (
+from chapter_audio.audio_ops import (
     load_audio_float_2d,
     refine_line_boundaries_with_silence,
     write_audio_excerpt,
 )
-from chapter_audio_test.generation import (
+from chapter_audio.generation import (
     build_line_chunk_generation_plan,
     generate_line_chunked_chapter_audio,
 )
-from chapter_audio_test.validation import (
+from chapter_audio.validation import (
     attach_validation_summary_to_split_lines,
     attempt_boundary_shift,
     build_split_validation_payload,
@@ -42,7 +43,18 @@ from chapter_audio_test.validation import (
     summarize_validation_reports,
     validate_split_lines,
 )
-from chapter_audio_test.text_utils import normalize_chapter_text, utc_now_iso
+from chapter_audio.text_utils import normalize_chapter_text, utc_now_iso
+
+from .pipeline_progress import (
+    UNKNOWN_CHAPTER,
+    Phase,
+    ProgressTracker,
+    read_progress,
+    resolve_run_location,
+)
+from .provider_profile import is_local_chunked_provider
+from .router_support import make_audio_service_ensurer, raise_generation_failure
+from .manifest_store import build_clip as build_manifest_clip, upsert_clips as upsert_manifest_clips
 
 
 DEFAULT_MIN_CHUNK_CHARS = 800
@@ -172,20 +184,6 @@ class VibeVoiceChapterRequest(BaseModel):
     voice_sample_root: Optional[str] = None
     audio_root: Optional[str] = None
     chatterbox_settings: Optional[ChatterboxGenerationSettings] = None
-
-
-def _is_vibevoice_provider(provider: str) -> bool:
-    return "vibevoice" in str(provider or "").strip().lower()
-
-
-def _is_chatterbox_provider(provider: str) -> bool:
-    return "chatterbox" in str(provider or "").strip().lower()
-
-
-def _is_local_chunked_provider(provider: str) -> bool:
-    """Local-model providers supported by the chunked generation pipeline
-    (VibeVoice and Chatterbox)."""
-    return _is_vibevoice_provider(provider) or _is_chatterbox_provider(provider)
 
 
 def _chatterbox_settings_dict(
@@ -541,35 +539,6 @@ def _write_character_split_clips(
     return written
 
 
-def _load_or_create_manifest(
-    *,
-    manifest_path: Path,
-    character_id: str,
-    character_name: str,
-    voice_id: str,
-) -> dict[str, Any]:
-    if manifest_path.exists() and manifest_path.is_file():
-        with open(manifest_path, "r", encoding="utf-8") as handle:
-            manifest = json.load(handle)
-        if isinstance(manifest, dict):
-            return manifest
-
-    return {
-        "formatVersion": "2.0",
-        "characterId": character_id,
-        "characterName": character_name,
-        "metadata": {
-            "totalClips": 0,
-            "chapters": [],
-            "sources": {},
-            "voiceIds": {},
-            "primaryVoiceId": voice_id,
-            "lastUpdated": "",
-        },
-        "clips": [],
-    }
-
-
 def _upsert_character_manifest(
     *,
     manifest_path: Path,
@@ -582,226 +551,44 @@ def _upsert_character_manifest(
     split_lines: list[dict[str, Any]],
     generator_info: Optional[dict[str, Any]] = None,
 ) -> dict[str, Any]:
-    manifest = _load_or_create_manifest(
-        manifest_path=manifest_path,
+    """Record the pipeline's split clips in the character manifest (manifest_store)."""
+    generated_at = utc_now_iso()
+    clips = [
+        build_manifest_clip(
+            line_id=int(item["id"]),
+            character_id=character_id,
+            character_name=character_name,
+            text=str(item.get("sourceText") or item["text"]),
+            audio_file=str(item["audioFile"]),
+            chapter=chapter_title,
+            source_file=source_file,
+            voice_id=voice_id,
+            provider=provider,
+            duration=round(float(item.get("durationSec", 0.0)), 4),
+            generated_at=generated_at,
+            generator_info=generator_info,
+            timing={
+                "startSec": round(float(item.get("startSec", 0.0)), 4),
+                "endSec": round(float(item.get("endSec", 0.0)), 4),
+            },
+        )
+        for item in split_lines
+    ]
+    return upsert_manifest_clips(
+        manifest_path,
+        clips,
         character_id=character_id,
         character_name=character_name,
         voice_id=voice_id,
     )
 
-    existing_clips = manifest.get("clips")
-    if not isinstance(existing_clips, list):
-        existing_clips = []
-
-    replacing_ids = {int(item["id"]) for item in split_lines}
-    kept_clips = []
-    for clip in existing_clips:
-        if not isinstance(clip, dict):
-            continue
-        clip_id = clip.get("id")
-        if isinstance(clip_id, int) and clip_id in replacing_ids:
-            continue
-        kept_clips.append(clip)
-
-    generated_at = utc_now_iso()
-    generator_info = generator_info or {}
-    new_clips: list[dict[str, Any]] = []
-    for item in split_lines:
-        new_clips.append(
-            {
-                "id": int(item["id"]),
-                "characterId": character_id,
-                "characterName": character_name,
-                "text": str(item.get("sourceText") or item["text"]),
-                "audioFile": str(item["audioFile"]),
-                "chapter": chapter_title,
-                "sourceFile": source_file,
-                "voiceId": voice_id,
-                "provider": provider,
-                "variant": generator_info.get("variant"),
-                "temperature": generator_info.get("temperature"),
-                "cfgWeight": generator_info.get("cfgWeight"),
-                "exaggeration": generator_info.get("exaggeration"),
-                "emotion": None,
-                "metadata": {
-                    "generatedAt": generated_at,
-                    "duration": round(float(item.get("durationSec", 0.0)), 4),
-                    "startSec": round(float(item.get("startSec", 0.0)), 4),
-                    "endSec": round(float(item.get("endSec", 0.0)), 4),
-                },
-            }
-        )
-
-    all_clips = kept_clips + new_clips
-    all_clips.sort(
-        key=lambda clip: (
-            str(clip.get("chapter", "")),
-            int(clip.get("id", 0)) if isinstance(clip.get("id"), int) else 0,
-        )
-    )
-
-    metadata = manifest.get("metadata")
-    if not isinstance(metadata, dict):
-        metadata = {}
-
-    source_counts: dict[str, int] = {}
-    voice_counts: dict[str, int] = {}
-    chapter_names: set[str] = set()
-
-    for clip in all_clips:
-        chapter_name = clip.get("chapter")
-        if isinstance(chapter_name, str) and chapter_name:
-            chapter_names.add(chapter_name)
-
-        source_name = clip.get("sourceFile")
-        if isinstance(source_name, str) and source_name:
-            source_counts[source_name] = source_counts.get(source_name, 0) + 1
-
-        clip_voice_id = clip.get("voiceId")
-        if isinstance(clip_voice_id, str) and clip_voice_id:
-            voice_counts[clip_voice_id] = voice_counts.get(clip_voice_id, 0) + 1
-
-    existing_primary = metadata.get("primaryVoiceId")
-    if isinstance(existing_primary, str) and existing_primary in voice_counts:
-        primary_voice_id = existing_primary
-    elif voice_counts:
-        primary_voice_id = max(voice_counts.items(), key=lambda item: item[1])[0]
-    else:
-        primary_voice_id = voice_id
-
-    metadata["totalClips"] = len(all_clips)
-    metadata["chapters"] = sorted(chapter_names)
-    metadata["sources"] = source_counts
-    metadata["voiceIds"] = voice_counts
-    metadata["primaryVoiceId"] = primary_voice_id
-    metadata["lastUpdated"] = generated_at
-
-    manifest["formatVersion"] = "2.0"
-    manifest["characterId"] = character_id
-    manifest["characterName"] = character_name
-    manifest["metadata"] = metadata
-    manifest["clips"] = all_clips
-
-    manifest_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(manifest_path, "w", encoding="utf-8") as handle:
-        json.dump(manifest, handle, indent=2, ensure_ascii=False)
-
-    return manifest
-
-
-PIPELINE_PROGRESS_FILENAME = "progress.json"
-
-
-def _resolve_character_work_root(
-    audio_root: Path,
-    character_name: str,
-    *,
-    single_chapter: bool,
-    chapter_title: str,
-) -> Path:
-    """Work-root layout shared by the chunk pipeline and the progress route.
-
-    Single-chapter runs write under the chapter's audio_lines folder;
-    cross-chapter (book batch) runs share a _book_batch folder.
-    """
-    if single_chapter:
-        return audio_root / chapter_title / "audio_lines" / character_name
-    return audio_root / "_book_batch" / character_name
-
-
-def _resolve_character_work_dir(
-    service: AudioGenerationService,
-    request: VibeVoiceCharacterRequest,
-) -> Path:
-    """Re-derive the pipeline work dir from a request (pure text work)."""
-    default_chapter_title = str(request.chapter_title or "").strip() or "unknown"
-    lines = _normalize_character_lines(
-        request.lines,
-        character_id=request.character_id,
-        character_name=request.character_name,
-        fallback_chapter_title=default_chapter_title,
-        fallback_source_file=default_chapter_title,
-        replace_line_final_commas_with_periods=bool(request.replace_line_final_commas_with_periods),
-        replace_numbers_with_words=bool(request.replace_numbers_with_words),
-    )
-    input_chapters = sorted(
-        {
-            str(line.get("chapterTitle") or default_chapter_title).strip() or default_chapter_title
-            for line in lines
-        }
-    )
-    work_root = _resolve_character_work_root(
-        service.audio_root,
-        request.character_name,
-        single_chapter=len(input_chapters) == 1,
-        chapter_title=input_chapters[0],
-    )
-    return work_root / "_chunk_pipeline"
-
-
-def _write_pipeline_progress(
-    work_dir: Path,
-    phase: str,
-    *,
-    detail: Optional[str] = None,
-    line_count: Optional[int] = None,
-    chunk_index: Optional[int] = None,
-    chunk_total: Optional[int] = None,
-) -> None:
-    """Atomically record pipeline progress so the UI can poll it.
-
-    Never raises: progress bookkeeping must not break generation.
-    ``startedAt`` is preserved from the previous entry so the whole run
-    carries one stable start timestamp. ``chunkIndex``/``chunkTotal``
-    track TTS chunk progress within the generating phase.
-    """
-    try:
-        work_dir.mkdir(parents=True, exist_ok=True)
-        progress_path = work_dir / PIPELINE_PROGRESS_FILENAME
-        previous: Dict[str, Any] = {}
-        if progress_path.exists():
-            try:
-                loaded = json.loads(progress_path.read_text(encoding="utf-8"))
-                if isinstance(loaded, dict):
-                    previous = loaded
-            except Exception:
-                previous = {}
-        started_at = previous.get("startedAt") or utc_now_iso()
-        payload: Dict[str, Any] = {
-            "phase": phase,
-            "detail": detail,
-            "lineCount": line_count,
-            "chunkIndex": chunk_index,
-            "chunkTotal": chunk_total,
-            "startedAt": started_at,
-            "updatedAt": utc_now_iso(),
-        }
-        if line_count is None:
-            previous_count = previous.get("lineCount")
-            if isinstance(previous_count, int):
-                payload["lineCount"] = previous_count
-        if chunk_index is None:
-            previous_index = previous.get("chunkIndex")
-            if isinstance(previous_index, int):
-                payload["chunkIndex"] = previous_index
-        if chunk_total is None:
-            previous_total = previous.get("chunkTotal")
-            if isinstance(previous_total, int):
-                payload["chunkTotal"] = previous_total
-        tmp_path = progress_path.with_suffix(".json.tmp")
-        tmp_path.write_text(
-            json.dumps(payload, indent=2, ensure_ascii=False),
-            encoding="utf-8",
-        )
-        os.replace(tmp_path, progress_path)
-    except Exception as exc:
-        logging.getLogger(__name__).warning("Failed to write pipeline progress: %s", exc)
-
 
 def _run_character_chunk_pipeline(
     service: AudioGenerationService,
     request: VibeVoiceCharacterRequest,
+    progress: Optional[ProgressTracker] = None,
 ) -> dict[str, Any]:
+    progress = progress if progress is not None else ProgressTracker()
     default_chapter_title = str(request.chapter_title or "").strip() or "unknown"
     default_source_file = str(request.source_file or "").strip() or default_chapter_title
 
@@ -848,85 +635,38 @@ def _run_character_chunk_pipeline(
         min_chunk_chars=DEFAULT_MIN_CHUNK_CHARS,
     )
 
-    input_chapters = sorted(
-        {
-            str(line.get("chapterTitle") or default_chapter_title).strip() or default_chapter_title
-            for line in lines
-        }
-    )
-
-    work_root = _resolve_character_work_root(
+    location = resolve_run_location(
         service.audio_root,
         request.character_name,
-        single_chapter=len(input_chapters) == 1,
-        chapter_title=input_chapters[0],
+        (line.get("chapterTitle") for line in lines),
+        default_chapter_title=default_chapter_title,
     )
-
+    progress.bind(location)
+    work_root = location.work_root
     work_root.mkdir(parents=True, exist_ok=True)
 
-    work_dir = work_root / "_chunk_pipeline"
-    _write_pipeline_progress(work_dir, "starting", line_count=len(lines))
+    work_dir = location.work_dir
+    progress.write(Phase.STARTING, line_count=len(lines))
     chunks_dir = work_dir / "generation_chunks"
     full_audio_path = work_dir / "full_character.wav"
     transcription_json_path = work_dir / "transcription_result.json"
     split_validation_report_path = work_dir / "split_validation_report.json"
 
-    class _ServiceChunkGenerator:
-        def __init__(
-            self,
-            *,
-            audio_service: AudioGenerationService,
-            voice_id: str,
-            voice_sample_root: Optional[str],
-            provider: str,
-            chatterbox_settings: Optional[Dict[str, Any]] = None,
-        ) -> None:
-            self._audio_service = audio_service
-            self._voice_id = voice_id
-            self._voice_sample_root = voice_sample_root
-            self._provider = str(provider or "").strip().lower()
-            self._chatterbox_settings = chatterbox_settings
-
-        def generate_audio(
-            self,
-            *,
-            text: str,
-            sample_path: str,
-            output_path: str,
-            seed: int | None,
-        ) -> None:
-            effective_voice_id = self._voice_id or str(sample_path)
-            _ = seed
-
-            if _is_chatterbox_provider(self._provider):
-                success, error_details = self._audio_service.generate_chatterbox_text_to_path(
-                    text=text,
-                    voice_id=effective_voice_id,
-                    output_path=Path(output_path),
-                    voice_sample_root=self._voice_sample_root,
-                    settings=self._chatterbox_settings,
-                )
-                fallback_error = "Chatterbox generation failed."
-            else:
-                success, error_details = self._audio_service.generate_vibevoice_text_to_path(
-                    text=text,
-                    voice_id=effective_voice_id,
-                    output_path=Path(output_path),
-                    voice_sample_root=self._voice_sample_root,
-                )
-                fallback_error = "VibeVoice generation failed."
-            if not success:
-                raise RuntimeError(error_details or fallback_error)
-
-    chunk_generator = _ServiceChunkGenerator(
-        audio_service=service,
+    # The AudioEngine adapter for this provider, built at the composition
+    # root (AudioGenerationService.audio_engine; named by the provider profile).
+    chunk_generator = service.audio_engine(
+        request.provider,
         voice_id=request.voice_id,
         voice_sample_root=request.voice_sample_root,
-        provider=request.provider,
         chatterbox_settings=chatterbox_settings,
     )
 
-    _write_pipeline_progress(work_dir, "generating", line_count=len(lines))
+    # Plan-time sub-split: the alignment chunks (>= DEFAULT_MIN_CHUNK_CHARS)
+    # become the engine's true chunks (<= its max_chunk_chars), so the
+    # chunkIndex/chunkTotal progress counts real engine calls.
+    chunk_plan = plan_engine_chunks(chunk_plan, chunk_generator)
+
+    progress.write(Phase.GENERATING, line_count=len(lines))
 
     generation_report = generate_line_chunked_chapter_audio(
         service=chunk_generator,
@@ -937,9 +677,8 @@ def _run_character_chunk_pipeline(
         min_chunk_chars=DEFAULT_MIN_CHUNK_CHARS,
         seed=None,
         join_pause_ms=DEFAULT_LINE_CHUNK_JOIN_MS,
-        on_chunk=lambda index, total: _write_pipeline_progress(
-            work_dir,
-            "generating",
+        on_chunk=lambda index, total: progress.write(
+            Phase.GENERATING,
             line_count=len(lines),
             chunk_index=index,
             chunk_total=total,
@@ -949,7 +688,7 @@ def _run_character_chunk_pipeline(
 
     audio_duration_sec = float(sf.info(str(full_audio_path)).duration)
 
-    _write_pipeline_progress(work_dir, "transcribing")
+    progress.write(Phase.TRANSCRIBING)
 
     transcription, transcription_engine = _transcribe_with_whisperx_alignment(
         audio_path=full_audio_path,
@@ -972,7 +711,7 @@ def _run_character_chunk_pipeline(
             "No WhisperX word timestamps were produced for chunked character generation."
         )
 
-    _write_pipeline_progress(work_dir, "aligning")
+    progress.write(Phase.ALIGNING)
 
     line_timestamps, alignment_report = build_line_timestamps(
         lines=lines,
@@ -994,7 +733,7 @@ def _run_character_chunk_pipeline(
         min_line_ms=BOUNDARY_MIN_LINE_MS,
     )
 
-    _write_pipeline_progress(work_dir, "splitting")
+    progress.write(Phase.SPLITTING)
 
     full_audio_2d, split_sample_rate = load_audio_float_2d(full_audio_path)
     split_lines = _write_character_split_clips(
@@ -1055,13 +794,13 @@ def _run_character_chunk_pipeline(
 
         return chapters
 
-    _write_pipeline_progress(work_dir, "finalizing")
+    progress.write(Phase.FINALIZING)
 
     # Persist manifests as soon as split clips are first written so the UI can
     # reflect generated audio even if later validation steps fail.
     chapters_affected = _upsert_split_manifests(split_lines)
 
-    _write_pipeline_progress(work_dir, "validating")
+    progress.write(Phase.VALIDATING)
 
     release_accelerator_cache()
     validation_engine, transcribe_split_clip = create_split_validation_transcriber(
@@ -1207,7 +946,7 @@ def _run_character_chunk_pipeline(
             f"{final_validation_summary['flaggedLineCount']} line(s) after readjustment."
         )
 
-    _write_pipeline_progress(work_dir, "done", line_count=len(split_lines))
+    progress.write(Phase.DONE, line_count=len(split_lines))
 
     return {
         "pipelineMode": "chunked-character-v1",
@@ -1247,22 +986,13 @@ def create_vibevoice_router(
 ) -> APIRouter:
     router = APIRouter(prefix="/api/vibevoice", tags=["vibevoice"])
 
-    def _ensure_audio_service(audio_root_override: Optional[str]) -> AudioGenerationService:
-        existing = get_audio_service()
-        if existing is not None:
-            return existing
-
-        selected_root = audio_root_override or get_audio_root() or get_book_root()
-        if not selected_root:
-            raise HTTPException(
-                status_code=400,
-                detail="Audio root not configured. Set audio root or provide audio_root in request.",
-            )
-
-        normalized_root = os.path.normpath(selected_root)
-        service = AudioGenerationService(normalized_root)
-        set_audio_service(normalized_root, service)
-        return service
+    _ensure_audio_service = make_audio_service_ensurer(
+        get_audio_root=get_audio_root,
+        get_book_root=get_book_root,
+        get_audio_service=get_audio_service,
+        set_audio_service=set_audio_service,
+        service_factory=AudioGenerationService,
+    )
 
     @router.post("/line")
     async def generate_line(request: VibeVoiceLineRequest):
@@ -1282,14 +1012,7 @@ def create_vibevoice_router(
         )
 
         if not result.get("success"):
-            error_detail = result.get("error", "Generation failed")
-            error_text = str(error_detail).lower()
-            status = 500
-            if "not found" in error_text or "could not be found" in error_text:
-                status = 400
-            elif "required" in error_text or "invalid" in error_text:
-                status = 400
-            raise HTTPException(status_code=status, detail=error_detail)
+            raise_generation_failure(result.get("error", "Generation failed"))
 
         return {
             "success": True,
@@ -1299,7 +1022,7 @@ def create_vibevoice_router(
 
     @router.post("/character")
     async def generate_character(request: VibeVoiceCharacterRequest):
-        if not _is_local_chunked_provider(request.provider):
+        if not is_local_chunked_provider(request.provider):
             raise HTTPException(
                 status_code=400,
                 detail=(
@@ -1311,18 +1034,15 @@ def create_vibevoice_router(
 
         service = _ensure_audio_service(request.audio_root)
 
+        progress = ProgressTracker()
         try:
-            return await asyncio.to_thread(_run_character_chunk_pipeline, service, request)
+            return await asyncio.to_thread(
+                _run_character_chunk_pipeline, service, request, progress
+            )
         except HTTPException as http_exc:
             raise http_exc
         except Exception as exc:
-            try:
-                failed_work_dir = _resolve_character_work_dir(service, request)
-                _write_pipeline_progress(
-                    failed_work_dir, "failed", detail=str(exc)[:500]
-                )
-            except Exception:
-                pass
+            progress.fail(str(exc))
             raise HTTPException(
                 status_code=500,
                 detail=f"Chunked character generation failed: {exc}",
@@ -1332,33 +1052,19 @@ def create_vibevoice_router(
     async def get_character_progress(
         character_name: str,
         chapter_title: str = "",
-        cross_chapter: bool = False,
         audio_root: Optional[str] = None,
     ):
-        """Poll live pipeline progress for a character generation run."""
+        """Poll live pipeline progress for a character generation run.
+
+        Returns the self-describing record (audio/pipeline_progress.py):
+        the BE finds it in either location and reports its ``scope``.
+        """
         service = _ensure_audio_service(audio_root)
-        work_dir = (
-            _resolve_character_work_root(
-                service.audio_root,
-                character_name,
-                single_chapter=not cross_chapter,
-                chapter_title=chapter_title or "unknown",
-            )
-            / "_chunk_pipeline"
+        return read_progress(
+            service.audio_root,
+            character_name,
+            chapter_title=chapter_title or UNKNOWN_CHAPTER,
         )
-        progress_path = work_dir / PIPELINE_PROGRESS_FILENAME
-        if progress_path.exists():
-            try:
-                return json.loads(progress_path.read_text(encoding="utf-8"))
-            except Exception:
-                pass
-        return {
-            "phase": "unknown",
-            "detail": None,
-            "lineCount": None,
-            "startedAt": None,
-            "updatedAt": None,
-        }
 
     @router.post("/chapter")
     async def generate_chapter(request: VibeVoiceChapterRequest):
@@ -1423,7 +1129,7 @@ def create_vibevoice_router(
                 errors.append(f"Line {line_id}: no selected voice mapping for character '{character_id}'")
                 continue
 
-            if not _is_local_chunked_provider(assignment.provider):
+            if not is_local_chunked_provider(assignment.provider):
                 skipped_count += 1
                 errors.append(
                     f"Line {line_id}: provider '{assignment.provider}' is not supported. "

@@ -11,14 +11,22 @@ jobs:
     defaults:
       run:
         working-directory: apps/desktop
+    env:
+      # apps/desktop/.npmrc pins script-shell to the Windows Git Bash path
+      # for local dev; the Linux runner has no such file.
+      npm_config_script_shell: /bin/bash
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          # jsdom 30 needs Node ^22.22.2 || ^24.15.0; local dev runs Node 24.
+          node-version: 24
           cache: npm
           cache-dependency-path: apps/desktop/package-lock.json
       - run: npm ci
+      # tsconfig.json extends .svelte-kit/tsconfig.json, which a fresh
+      # checkout lacks until SvelteKit generates it.
+      - run: npx svelte-kit sync
       - run: npm run test
       - run: npm run build
 
@@ -33,8 +41,11 @@ jobs:
         with:
           python-version: "3.11"
       # Minimal closure for the discovered tests (verified in a bare venv).
-      # The full requirements.txt pulls torch/diffusers — not needed here.
-      - run: pip install fastapi httpx spacy
+      # The full requirements.txt pulls torch/diffusers — not needed here;
+      # tests that drive the in-process Chatterbox path skip without torch.
+      # soundfile: chapter_audio + audio/vibevoice import it at module level.
+      # google-auth + requests: audio_generation_service (via api_runtime_state).
+      - run: pip install fastapi httpx spacy soundfile google-auth requests
       # Discovery picks up every test_*.py automatically; local-only suites
       # (local_chapter_review_service, openbook_parser/local_modernbooknlp_service)
       # use a local_ prefix so they are skipped.

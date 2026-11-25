@@ -1,0 +1,11 @@
+# Chapter persistence has one owner
+
+`chapterPersistence.ts` is the single owner of chapter save and load. Its interface is only what varies (save: chapter, normalized lines, root, raw text, unknown threshold, speaker label, reviewed state; load: chapter, root, unknown threshold); normalization, identity resolution, the transport and the stats step are internal. Three seam placements follow and are binding:
+
+1. **The transport never infers endpoint semantics from a path.** The caller names the write kind (`WriteKind`: `file` | `dialogueSave`) and the `fs` transport only maps kind to endpoint. Only the owner names `dialogueSave`.
+2. **Stats-after-save is an explicit owner step, never a low-level write side effect.** `writeDialogue` is a pure write. A dialogue save reports where it landed and the owner's stats step acts on that: a sidecar save (`/api/save-dialogue`) already applied the delta; a File System Access write asks the sidecar to apply it (fire-and-forget, ADR 0012); an unchanged write does nothing. Only genuine dialogue saves (chapter save, fresh parse) touch stats, never backups, audio-metadata stamps or remap/migration rewrites. On the backend, a stats failure never fails the save; it is logged, and a route test pins it.
+3. **`chapterPersistence` owns the dialogue format-version list.** `fs` and the book migration import it; nothing else restates it.
+
+Identity caches (central characters and the name→id map) live together in `fs` and are invalidated by every frontend character write. When character data changes outside that path, the owner's `refreshCharacterCaches` step is the one place that invalidates them and reloads the book-characters store.
+
+**Considered options**: keep the six-file relay with its callback bags (each hop's hidden policy stays invisible and untested); keep path-sniffing in the transport but make the two heuristics agree (endpoint semantics would still be inferred, and session mode would still decide side effects); move stats into the backend for both I/O modes (FSA writes never reach the backend, so the frontend needs the explicit step anyway). Accepted cost: the pre-v3 roster backfill at save (`ensureCentralCharactersForNames`) is deleted, so legacy-format books no longer gain root `characters.json` entries at save; v3 books are unaffected.

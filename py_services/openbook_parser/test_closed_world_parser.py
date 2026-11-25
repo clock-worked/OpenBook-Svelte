@@ -2,6 +2,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from .attribution_decision import rule_category, trace_invariant_violations
 from .attribution_passes import (
     LineSignals,
     infer_sentence_attributed_speaker,
@@ -421,6 +422,109 @@ class ClosedWorldParserTests(unittest.TestCase):
         self.assertIn("post_quote_mention", alice_entry.reasons)
         # Margin should be wide (not fragile)
         self.assertGreaterEqual(decision.ranked[0].score - decision.ranked[1].score, 0.3)
+
+
+CONFORMANCE_CHAPTER = (
+    '"Hello," I said.\n'
+    '"Hold the line," Morgan said to Alex. "Now."\n'
+    'Alex nodded.\n'
+    '"Why?"\n'
+    '"Because."\n'
+    '\n'
+    '"Who goes there?" asked Rogue.\n'
+    'She muttered something. "Fine," she said.\n'
+    '"Stop," Morgan said. "What is it?" asked Alex. "Nothing," Morgan said.\n'
+)
+CONFORMANCE_OPTIONS = {
+    "pov_mode": "first_person",
+    "protagonists": ["Catherine"],
+    "closed_world_characters": True,
+    "character_catalog": [
+        {"characterId": "catherine", "name": "Catherine", "aliases": [], "gender": "Female"},
+        {"characterId": "alex", "name": "Alex", "aliases": [], "gender": "Male"},
+        {"characterId": "morgan", "name": "Morgan", "aliases": [], "gender": "Female"},
+    ],
+}
+
+
+def parse_conformance_chapter(parse):
+    with tempfile.TemporaryDirectory() as temp_dir:
+        chapter_path = Path(temp_dir) / "chapter.txt"
+        # LF on every platform: the parser's spans count raw characters
+        # (it reads with newline=''), and the fake ModernBookNLP predictions
+        # compute offsets from this text, so CRLF on Windows would shift them.
+        chapter_path.write_text(CONFORMANCE_CHAPTER, encoding="utf-8", newline="\n")
+        return parse(str(chapter_path))
+
+
+class AttributionConformanceTests(unittest.TestCase):
+    """Every writer's output satisfies the owner's trace contract (ADR-0013)."""
+
+    def test_legacy_writer_records_only_a_registered_rule(self):
+        lines, _ = parse_conformance_chapter(
+            lambda path: DialogueParserService().parse_file(path, options=CONFORMANCE_OPTIONS)
+        )
+        dialogue = [line for line in lines if line.line_type == "dialogue"]
+        self.assertTrue(dialogue)
+        for line in dialogue:
+            with self.subTest(text=line.text):
+                self.assertEqual(set(line.attribution), {"legacyRule"})
+                rule = line.attribution["legacyRule"]
+                if rule is not None:
+                    self.assertIsNotNone(rule_category(rule), rule)
+                self.assertEqual(trace_invariant_violations(line), [])
+
+    def assert_parser_output_conforms(self, lines):
+        dialogue = [line for line in lines if line.line_type == "dialogue"]
+        self.assertTrue(dialogue)
+        for line in dialogue:
+            with self.subTest(text=line.text):
+                self.assertIn("decisionTrace", line.attribution)
+                self.assertEqual(trace_invariant_violations(line), [])
+                for reason in line.attribution["decisionTrace"]["selectedReasons"]:
+                    self.assertIsNotNone(rule_category(reason), reason)
+
+    def test_booknlp_writers_satisfy_the_trace_contract(self):
+        # Episode decoder on (the default): its overrides must conform too.
+        lines, _, _ = parse_conformance_chapter(
+            lambda path: BookNLPParserService().parse_file(path, options=CONFORMANCE_OPTIONS)
+        )
+        self.assert_parser_output_conforms(lines)
+        dialogue = [line for line in lines if line.line_type == "dialogue"]
+        self.assertIn(
+            "0p_protagonist_first_person",
+            dialogue[0].attribution["decisionTrace"]["selectedReasons"],
+        )
+        consistency = next(line for line in dialogue if line.text == "What is it?")
+        self.assertEqual(
+            consistency.attribution["decisionTrace"]["overrideReason"],
+            "same_paragraph_context_consistency",
+        )
+
+    def test_modernbooknlp_override_satisfies_the_trace_contract(self):
+        options = {
+            **CONFORMANCE_OPTIONS,
+            "episode_joint_decode": False,
+            "parser_backend": "modernbooknlp",
+        }
+        service = BookNLPParserService()
+
+        def predictions(path, _catalog):
+            text = Path(path).read_text(encoding="utf-8")
+            start = text.index("Why?")
+            return [ModernBookNLPQuote(start=start, end=start + 4, speaker="Alex", coref_id="7")]
+
+        service.modernbooknlp_service.attribute_file = predictions
+        lines, _, meta = parse_conformance_chapter(
+            lambda path: service.parse_file(path, options=options)
+        )
+        self.assertEqual(meta["backend"], "modernbooknlp")
+        self.assert_parser_output_conforms(lines)
+        accepted = next(line for line in lines if line.text == "Why?")
+        self.assertEqual(accepted.speaker, "Alex")
+        trace = accepted.attribution["decisionTrace"]
+        self.assertEqual(trace["modernBookNLPDecision"], "accepted")
+        self.assertEqual(trace["overrideReason"], "modernbooknlp_joint_attribution")
 
 
 if __name__ == "__main__":

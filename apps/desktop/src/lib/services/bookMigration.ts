@@ -49,11 +49,10 @@ import { createCentralCharacter } from '$lib/services/characterMutationService';
 import { persistChapterCharactersData } from '$lib/services/chapterCharacterRepository';
 import { buildIdToNameMap, buildNameToIdMap } from '$lib/stores/characters';
 import {
-    normalizeAttribution,
     normalizeScriptData,
     slugifyCharacterName,
 } from '$lib/components/chapter/tools/shared/chapterNormalization';
-import { saveDialogueFromNormalized } from '$lib/components/chapter/tools/shared/chapterPersistence';
+import { isVersionedDialogue, saveDialogueFromNormalized } from '$lib/components/chapter/tools/shared/chapterPersistence';
 import { recomputeStats } from '$lib/components/chapter/tools/shared/toolUtils';
 import type { UnifiedLine } from '$lib/components/chapter/tools/types';
 
@@ -94,16 +93,11 @@ export interface MigrateBookOptions {
     onProgress?: (message: string) => void;
 }
 
-const VERSIONED_DIALOGUE = new Set(['2.0', '3.0', '3.1', '3.2']);
 const NARRATOR_SENTINEL = 'narrator';
 const BACKUP_DIR_PARTS = ['_backups', 'dialogue-v3'] as const;
 
 function backupTimestamp(): string {
     return new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
-}
-
-function isVersionedDialogue(data: DialogueJson | ScriptJson): data is DialogueJson {
-    return 'formatVersion' in data && VERSIONED_DIALOGUE.has(String((data as DialogueJson).formatVersion));
 }
 
 /** null, the narrator sentinel, and pattern-valid GUIDs are already v3 references. */
@@ -446,15 +440,13 @@ async function migrateDialogueFiles(options: MigrateBookOptions, report: BookMig
             const written = await saveDialogueFromNormalized({
                 normalized,
                 chapter: { title: plan.chapter.title, path: plan.chapter.path },
+                // Character creation already happened book-wide above; those
+                // writes invalidated fs's identity caches, so the owner's
+                // name→id resolution sees the expanded folder.
+                root,
                 rawText,
                 unknownThreshold: options.unknownThreshold,
                 unknownSpeakerLabel,
-                repo: {
-                    // Character creation already happened book-wide above; in a v3 book this bootstrap is a no-op anyway.
-                    ensureCentralCharactersForNames: async () => {},
-                    ensureCharacterNameToIdMap: async () => buildNameToIdMap(await readFolderCharacters(root)),
-                    normalizeAttribution,
-                },
                 reviewed: Boolean(versioned?.reviewed),
                 reviewedAt: versioned?.reviewedAt ?? null,
             });

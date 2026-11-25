@@ -210,3 +210,40 @@ describe('per-provider request payloads', () => {
     });
   });
 });
+
+describe('buildDialogueAiPayload — attribution projection parity', () => {
+  it('preserves every decision field the attribution owner writes', () => {
+    const decisionTrace = {
+      selectedCandidate: 'Alice',
+      selectedReasons: ['parser_match', 'first_person_override'],
+      ruleCategory: 'FIRST_PERSON' as const,
+      overrideReason: 'first_person_override',
+    };
+    const input = makeInput([
+      makeLine({
+        id: 1,
+        text: 'Hi',
+        characterName: 'Alice',
+        attribution: {
+          confidence: 0.9,
+          topCandidateConfidence: 0.9,
+          marginToSecond: 0.5,
+          misattributionRisk: 0.1,
+          resolutionStatus: 'auto',
+          thresholdUsed: 0.62,
+          sourceAlias: 'Alice',
+          genderConflict: false,
+          decisionTrace,
+          candidates: [{ characterId: 'alice', name: 'Alice', confidence: 0.9, reasons: ['parser_match'] }],
+        } as any,
+      }),
+    ]);
+
+    const payload = buildDialogueAiPayload(input);
+    const attribution = payload.lines[0].attribution!;
+
+    expect(attribution.decisionTrace).toEqual(decisionTrace);
+    expect(attribution.genderConflict).toBe(false);
+    expect(attribution.candidates[0].reasons).toEqual(['parser_match']);
+  });
+});

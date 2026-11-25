@@ -26,9 +26,9 @@ Move a file into `scripts/python/` when all of these are true:
 - `audio_generation_service.py`, `chapter_service.py`, `vibevoice_local_service.py`
 - `openbook_cli.py`, `update_character_stats.py`
 - `openbook_parser/`
-- `chapter_audio_test/`
+- `chapter_audio/`
 
-`chapter_audio_test/` stays in `py_services/` on purpose. It started as a standalone helper package, but the current VibeVoice backend router imports it directly for chunked generation, ASR alignment, boundary refinement, and split validation.
+`chapter_audio/` stays in `py_services/` on purpose. It started as a standalone helper package, but the current VibeVoice backend router imports it directly for chunked generation, ASR alignment, boundary refinement, and split validation.
 
 ## Utility Categories
 
@@ -52,7 +52,7 @@ That bootstrap adds these locations to `sys.path`:
 - `py_services`
 - each immediate category folder under `scripts/python`
 
-This keeps the moved entrypoints runnable from anywhere while still allowing them to reuse backend support modules such as `vibevoice_local_service.py` and `chapter_audio_test/`.
+This keeps the moved entrypoints runnable from anywhere while still allowing them to reuse backend support modules such as `vibevoice_local_service.py` and `chapter_audio/`.
 
 ## Running Scripts
 

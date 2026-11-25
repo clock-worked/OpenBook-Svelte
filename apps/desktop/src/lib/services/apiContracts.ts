@@ -68,6 +68,13 @@ export interface SetBookRootRequest {
   root_path: string;
 }
 
+export interface SetBookRootResponse {
+  path?: string;
+  /** False when the stats accumulation build failed (ADR 0012); the root
+   *  switch still succeeded and the build is deferred to the next save. */
+  stats_rebuilt?: boolean;
+}
+
 export interface SetAudioRootRequest {
   audio_root: string;
 }
@@ -217,9 +224,15 @@ export interface GenerateAudioCharacterResponse {
   };
 }
 
-/** Live pipeline progress written by the backend while a character run is in flight. */
+/**
+ * Live pipeline progress written by the backend while a character run is in
+ * flight (py_services/audio/pipeline_progress.py). Self-describing: the BE
+ * reports the run's scope, the FE never derives it. Phase/scope names are
+ * pinned by tests/pipeline_progress_vectors.json (see audioPipelineProgress.ts).
+ */
 export interface VibeVoiceCharacterProgressResponse {
   phase: string;
+  scope?: 'single' | 'cross' | null;
   detail?: string | null;
   lineCount?: number | null;
   chunkIndex?: number | null;

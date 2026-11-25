@@ -49,7 +49,6 @@ class ExtractionContext:
     is_returning_by_line: dict
     closed_world_catalog: dict
     closed_world: bool
-    user_confirmed_speakers_by_paragraph: dict = None
 
 
 @dataclass
@@ -181,16 +180,6 @@ def extract_line_signals(ctx: ExtractionContext) -> ExtractionResult:
         ctx.previous_dialogue_by_line.get(line_idx) is not None and prev_resolved
     )
 
-    # --- Paragraph sibling (user-confirmed) signal ---
-    paragraph_sibling_speaker = None
-    if paragraph_index >= 0 and ctx.user_confirmed_speakers_by_paragraph:
-        sibling_speakers = ctx.user_confirmed_speakers_by_paragraph.get(paragraph_index)
-        if sibling_speakers:
-            # Pick the most common user-confirmed speaker in this paragraph
-            paragraph_sibling_speaker = max(
-                sibling_speakers, key=lambda s: sibling_speakers.count(s)
-            )
-
     # --- Assemble LineSignals ---
     legacy_name = str(line.speaker or "").strip()
     signals = LineSignals(
@@ -218,7 +207,6 @@ def extract_line_signals(ctx: ExtractionContext) -> ExtractionResult:
         line_ends_with_question=str(line.text or "").strip().endswith("?"),
         next_dialogue_legacy=next_legacy,
         descriptor_match=descriptor_speaker,
-        paragraph_sibling_speaker=paragraph_sibling_speaker,
     )
 
     return ExtractionResult(

@@ -25,6 +25,10 @@ import {
 } from '$lib/services/characterFileMapping';
 
 const files = new Map<string, string>();
+// Dialogue-save outcome the next writes report ('sidecar' = backend path) and
+// the stats-delta calls received, so the owner's stats step is observable.
+let dialogueSaveRoute: 'handle' | 'sidecar' = 'sidecar';
+const statsDeltaCalls: string[] = [];
 
 function normalizePath(path: string): string {
   return String(path ?? '')
@@ -102,6 +106,17 @@ export const inMemoryFs = {
   readCharacters: async (path: string) => readJson(path),
   readOptionalCharacters: async (path: string) => readJson(path),
   readCentralCharacters: async (_root: string) => readJson('characters.json'),
+  // Mirrors fs.ts ensureCharacterNameToIdMapCached's source (the characters/
+  // folder first, then the legacy characters.json), uncached: the in-memory
+  // store has no stale-read problem to cache around.
+  ensureCharacterNameToIdMapCached: async (root: string | null): Promise<Map<string, string>> => {
+    if (!root) return new Map();
+    // Dynamic import: the characters store imports $lib/services/fs (this mock).
+    const { buildNameToIdMap } = await import('$lib/stores/characters');
+    const central = (await inMemoryFs.readCharacterFolder(root)) ?? readJson('characters.json');
+    return central?.characters ? buildNameToIdMap(central.characters) : new Map();
+  },
+  invalidateCentralCharactersCache: () => {},
   readDialogue: async (path: string) => readJson(path),
   readOptionalDialogue: async (path: string) => readJson(path),
   readScript: async (path: string) => readJson(path),
@@ -110,6 +125,15 @@ export const inMemoryFs = {
   writeCharacters: async (path: string, data: unknown) => writeJson(path, data),
   writeCentralCharacters: async (_root: string, data: unknown) => writeJson('characters.json', data),
   writeDialogue: async (path: string, data: unknown) => writeJson(path, data),
+  // The chapter dialogue save write: by default the backend-path case lands
+  // on the sidecar ('sidecar' outcome), whose endpoint applies the stats
+  // delta; __setDialogueSaveRoute('handle') simulates a File System Access write.
+  writeDialogueSave: async (path: string, data: unknown): Promise<'handle' | 'sidecar' | null> =>
+    (writeJson(path, data) ? dialogueSaveRoute : null),
+  applyDialogueStatsDelta: async (relPath: string): Promise<boolean> => {
+    statsDeltaCalls.push(normalizePath(relPath));
+    return true;
+  },
   writeScript: async (path: string, data: unknown) => writeJson(path, data),
   writeVoices: async (_root: string, data: unknown) => writeJson('voices.json', data),
 
@@ -122,9 +146,12 @@ export const inMemoryFs = {
   readOptionalJsonRelative: async (path: string) => readJson(path),
   // Mirrors fs.ts readDialogueForChapter: versioned dialogue.json first, then
   // the v1 script.json, then dialogue.json as a legacy non-versioned script.
+  // The version list comes from its owner (chapterPersistence); dynamic
+  // import because that module imports $lib/services/fs (this mock).
   readDialogueForChapter: async (chapterTitle: string) => {
+    const { isVersionedDialogue } = await import('$lib/components/chapter/tools/shared/chapterPersistence');
     const dialogue = readJson(`${chapterTitle}/dialogue.json`);
-    if (dialogue && ['2.0', '3.0', '3.1', '3.2'].includes(String(dialogue.formatVersion))) return dialogue;
+    if (isVersionedDialogue(dialogue)) return dialogue;
     const script = readJson(`${chapterTitle}/${chapterTitle}.script.json`);
     if (script) return script;
     return dialogue ?? null;
@@ -133,7 +160,13 @@ export const inMemoryFs = {
   // === Test controls ===
   __reset: () => {
     files.clear();
+    dialogueSaveRoute = 'sidecar';
+    statsDeltaCalls.length = 0;
   },
+  __setDialogueSaveRoute: (route: 'handle' | 'sidecar') => {
+    dialogueSaveRoute = route;
+  },
+  __statsDeltaCalls: (): string[] => [...statsDeltaCalls],
   __seed: (entries: Record<string, unknown>) => {
     for (const [path, value] of Object.entries(entries)) {
       files.set(normalizePath(path), typeof value === 'string' ? value : JSON.stringify(value, null, 2));

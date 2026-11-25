@@ -1,0 +1,26 @@
+{
+  "_comment": "Cross-language shape of the pipeline progress record (candidate 7). Python: py_services/audio/pipeline_progress.py (test_pipeline_progress.py). TS: apps/desktop/src/lib/services/audioPipelineProgress.ts (__tests__/pipelineProgress.test.ts). Phases are in run order.",
+  "phases": [
+    "starting",
+    "generating",
+    "transcribing",
+    "aligning",
+    "splitting",
+    "finalizing",
+    "validating",
+    "done",
+    "failed",
+    "unknown"
+  ],
+  "scopes": ["single", "cross"],
+  "recordKeys": [
+    "phase",
+    "scope",
+    "detail",
+    "lineCount",
+    "chunkIndex",
+    "chunkTotal",
+    "startedAt",
+    "updatedAt"
+  ]
+}

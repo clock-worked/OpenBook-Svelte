@@ -13,6 +13,8 @@ import type {
 } from '$lib/types';
 import { storeProjectHandle } from './persistence';
 import { history } from './history';
+// The dialogue format-version list is owned by the chapter persistence module.
+import { isVersionedDialogue } from '$lib/components/chapter/tools/shared/chapterPersistence';
 import {
   clearRawCharacterFileDocs,
   mapCharacterFile,
@@ -31,6 +33,7 @@ import type {
   SaveFileRequest,
   SetAudioRootRequest,
   SetBookRootRequest,
+  SetBookRootResponse,
   UpdateCharacterStatsResponse,
 } from './apiContracts';
 
@@ -39,9 +42,15 @@ let rootDirHandle: FileSystemDirectoryHandle | null = null;
 // ADR 0012: read cache for central character data. One read per book
 // session: invalidated by every character-data write and by root changes.
 let centralCharactersCache: { root: string; value: CharactersJson | null } | null = null;
+// The book's name→id map, derived from the central character data and
+// invalidated with it (the identity caches live and die together).
+let nameToIdMapCache: { root: string; value: Map<string, string> } | null = null;
+let characterCacheGeneration = 0;
 
 export function invalidateCentralCharactersCache(): void {
   centralCharactersCache = null;
+  nameToIdMapCache = null;
+  characterCacheGeneration += 1;
 }
 
 export function requiresBackendDirectoryPicker(): boolean {
@@ -215,7 +224,10 @@ export async function setBackendBookRoot(rootPath: string): Promise<boolean> {
 
   try {
     const payload: SetBookRootRequest = { root_path: rootPath };
-    await apiPostVoid<SetBookRootRequest>(API_ENDPOINTS.setBookRoot, payload);
+    const result = await apiPostJson<SetBookRootResponse, SetBookRootRequest>(API_ENDPOINTS.setBookRoot, payload);
+    if (result?.stats_rebuilt === false) {
+      console.warn('[fs] Book root set, but the backend could not build character stats; they will be rebuilt on the next dialogue save.');
+    }
     return true;
   } catch (error) {
     const apiError = toApiClientError(error);
@@ -581,6 +593,30 @@ export function getBookCharactersPath(): string {
 // composite that tries the handle first and falls back to the sidecar.
 // The "which storage are we talking to" decision lives here and nowhere
 // else: the public primitives (and their callers) never see it.
+//
+// The transport never infers what a write *means* from its path. The
+// caller names the write kind; the sidecar adapter maps it to an endpoint.
+
+/**
+ * What a write is, as named by its caller (never inferred from the path):
+ *   - `file`         — a plain file write (`/api/save` on the sidecar)
+ *   - `dialogueSave` — a chapter dialogue save, named by the chapter
+ *                      persistence owner. On the sidecar it goes to the
+ *                      combined `/api/save-dialogue` endpoint, which also
+ *                      applies the character-stats delta (ADR 0012).
+ * The File System Access adapter writes both kinds identically.
+ */
+export type WriteKind = 'file' | 'dialogueSave';
+
+/**
+ * Where a write landed: `handle` (File System Access — the sidecar never
+ * saw it) or `sidecar`. Reported so a caller can run its own follow-up step
+ * (e.g. the chapter save's stats step) without inferring the session mode.
+ */
+export type WriteRoute = 'handle' | 'sidecar';
+
+/** A successful write's outcome; `unchanged` = content identical on disk, nothing written. */
+export type WriteOutcome = WriteRoute | 'unchanged';
 
 interface BookFsTransport {
   /**
@@ -597,11 +633,12 @@ interface BookFsTransport {
   /**
    * Write a file, creating parent directories on demand. The handle
    * adapter writes the string verbatim; the sidecar adapter ships the
-   * parsed JSON value, so `contents` must be JSON text.
-   * Returns false when the write did not complete through this
-   * transport (the composite then falls back to the sidecar).
+   * parsed JSON value, so `contents` must be JSON text. `kind` selects
+   * the sidecar endpoint (see `WriteKind`).
+   * Returns where the write landed, or null when it did not complete
+   * through this transport (the composite then falls back to the sidecar).
    */
-  writeText(path: string, contents: string): Promise<boolean>;
+  writeText(path: string, contents: string, kind: WriteKind): Promise<WriteRoute | null>;
   /**
    * List the entry names of a directory. Returns null when the
    * directory is unreachable through this transport (the composite
@@ -641,17 +678,17 @@ const fsaTransport: BookFsTransport = {
     }
   },
   async writeText(path, contents) {
-    if (!rootDirHandle) return false;
+    if (!rootDirHandle) return null;
     try {
       const fileHandle = await getFileHandle(rootDirHandle, splitRelPath(path), true);
-      if (!fileHandle) return false;
+      if (!fileHandle) return null;
       const writable = await fileHandle.createWritable();
       await writable.write(contents);
       await writable.close();
-      return true;
+      return 'handle';
     } catch (error) {
       console.warn(`[fs] File System API write failed for ${path}; trying backend`, error);
-      return false;
+      return null;
     }
   },
   async listEntries(dirPath, { jsonOnly }) {
@@ -708,19 +745,19 @@ const httpTransport: BookFsTransport = {
       return null;
     }
   },
-  async writeText(path, contents) {
+  async writeText(path, contents, kind) {
     try {
-      // ADR 0012: dialogue saves go to the combined endpoint, which also
+      // ADR 0012: a dialogue save goes to the combined endpoint, which also
       // applies the incremental character-stats delta — one round trip.
-      const endpoint = path.endsWith('/dialogue.json') ? API_ENDPOINTS.saveDialogue : API_ENDPOINTS.save;
+      const endpoint = kind === 'dialogueSave' ? API_ENDPOINTS.saveDialogue : API_ENDPOINTS.save;
       await apiPostVoid<SaveFileRequest>(endpoint, {
         file_path: path,
         content: JSON.parse(contents) as unknown,
       });
-      return true;
+      return 'sidecar';
     } catch (error) {
       console.error(`Failed to write to ${path}`, error);
-      return false;
+      return null;
     }
   },
   async listEntries(dirPath) {
@@ -760,9 +797,9 @@ function handleOverSidecar(): BookFsTransport {
       fsaTransport.readText(path, options).then(
         (text) => text ?? httpTransport.readText(path, options),
       ),
-    writeText: (path, contents) =>
-      fsaTransport.writeText(path, contents).then(
-        (ok) => ok || httpTransport.writeText(path, contents),
+    writeText: (path, contents, kind) =>
+      fsaTransport.writeText(path, contents, kind).then(
+        (route) => route ?? httpTransport.writeText(path, contents, kind),
       ),
     listEntries: (dirPath, options) =>
       fsaTransport.listEntries(dirPath, options).then(
@@ -795,7 +832,7 @@ export async function readOptionalJsonRelative<T>(path: string): Promise<T | nul
 }
 
 async function writeFileDirect(path: string, contents: string): Promise<boolean> {
-  return activeTransport().writeText(path, contents);
+  return (await activeTransport().writeText(path, contents, 'file')) !== null;
 }
 
 async function readHistoryFile(path: string): Promise<string | null> {
@@ -864,8 +901,26 @@ export async function captureEditableFiles<T>(
   return capture(0);
 }
 
-async function writeFile(path: string, contents: string, recordHistory = true): Promise<boolean> {
-  if (!recordHistory || path.startsWith('_backups/')) return writeFileDirect(path, contents);
+async function writeFile(
+  path: string,
+  contents: string,
+  recordHistory = true,
+  kind: WriteKind = 'file',
+): Promise<boolean> {
+  return (await writeFileRouted(path, contents, recordHistory, kind)) !== null;
+}
+
+/** writeFile, reporting where the write landed (null = failed). */
+async function writeFileRouted(
+  path: string,
+  contents: string,
+  recordHistory: boolean,
+  kind: WriteKind,
+): Promise<WriteOutcome | null> {
+  if (!recordHistory || path.startsWith('_backups/')) return activeTransport().writeText(path, contents, kind);
+  // history.write skips a byte-identical write; the apply below reports the
+  // route when it does write.
+  let outcome: WriteOutcome = 'unchanged';
   try {
     await history.write(
       path === 'settings.json' ? 'Change book settings'
@@ -876,17 +931,21 @@ async function writeFile(path: string, contents: string, recordHistory = true): 
       contents,
       () => readHistoryFile(path),
       async (value) => {
-        const success = value === null
-          ? await deleteFileDirect('', path)
-          : await writeFileDirect(path, value);
-        if (!success) throw new Error(`Could not restore or save ${path}`);
+        // Undo/redo of a write re-uses the kind its caller named.
+        if (value === null) {
+          if (!await deleteFileDirect('', path)) throw new Error(`Could not restore or save ${path}`);
+          return;
+        }
+        const route = await activeTransport().writeText(path, value, kind);
+        if (!route) throw new Error(`Could not restore or save ${path}`);
+        outcome = route;
       },
       sameEditableJson,
     );
-    return true;
+    return outcome;
   } catch (error) {
     history.reportError(error);
-    return false;
+    return null;
   }
 }
 
@@ -900,15 +959,25 @@ export async function readOptionalDialogue(path: string): Promise<DialogueJson |
   return readFileAsJson<DialogueJson>(path, false);
 }
 
+/**
+ * Write a dialogue document — a pure write (`/api/save` on the sidecar), with
+ * no character-stats side effect. Backups, audio-metadata stamps and
+ * remap/migration rewrites use this. A chapter dialogue *save* goes through
+ * the chapter persistence owner, which uses `writeDialogueSave`.
+ */
 export async function writeDialogue(path: string, data: DialogueJson, recordHistory = true): Promise<boolean> {
-  const success = await writeFile(path, JSON.stringify(data, null, 2), recordHistory);
-  // ADR 0012: with a file-system handle the write went straight to disk, so
-  // the sidecar never saw it. One fire-and-forget delta call keeps character
-  // stats current without blocking the save.
-  if (success && rootDirHandle) {
-    void applyDialogueStatsDelta(path);
-  }
-  return success;
+  return writeFile(path, JSON.stringify(data, null, 2), recordHistory);
+}
+
+/**
+ * The chapter dialogue save write (kind `dialogueSave`), for the chapter
+ * persistence owner. Records history. On the sidecar it goes to
+ * `/api/save-dialogue`, which applies the stats delta itself; the outcome
+ * says where the write landed (null = failed) so the owner can run its
+ * explicit stats step.
+ */
+export async function writeDialogueSave(path: string, data: DialogueJson): Promise<WriteOutcome | null> {
+  return writeFileRouted(path, JSON.stringify(data, null, 2), true, 'dialogueSave');
 }
 
 /**
@@ -944,6 +1013,30 @@ export async function readCentralCharacters(root: string): Promise<CharactersJso
   const value = folder ?? await readFileAsJson<CharactersJson>('characters.json', false);
   centralCharactersCache = { root, value };
   return value;
+}
+
+/**
+ * The book's lowercase name/alias → character id map, built from
+ * `readCentralCharacters` and cached with it: every character-data write and
+ * every root change invalidates both. A failed read yields an empty map and
+ * is not cached.
+ */
+export async function ensureCharacterNameToIdMapCached(root: string | null): Promise<Map<string, string>> {
+  if (!root) return new Map();
+  if (nameToIdMapCache && nameToIdMapCache.root === root) return nameToIdMapCache.value;
+  const generation = characterCacheGeneration;
+  try {
+    const central = await readCentralCharacters(root);
+    // Dynamic import: the characters store imports this module.
+    const { buildNameToIdMap } = await import('$lib/stores/characters');
+    const value = central?.characters ? buildNameToIdMap(central.characters) : new Map<string, string>();
+    // An invalidation while this read was in flight wins: don't cache.
+    if (generation === characterCacheGeneration) nameToIdMapCache = { root, value };
+    return value;
+  } catch (error) {
+    console.warn('[fs] Failed to load characters for the name-to-ID map:', error);
+    return new Map();
+  }
 }
 
 export async function writeCentralCharacters(root: string, data: CharactersJson, recordHistory = true): Promise<boolean> {
@@ -1125,17 +1218,8 @@ export async function triggerStatsUpdate(): Promise<void> {
 
 /** @deprecated Use writeDialogue instead */
 export async function writeScript(path: string, data: ScriptJson): Promise<boolean> {
-  const success = await writeFile(path, JSON.stringify(data, null, 2));
-
-  // If we saved any dialogue/script file, update character stats
-  // This covers both v1.0 (script.json) and v2.0 (dialogue.json) formats.
-  // ADR 0012: the delta call replaces the old book-wide rescan trigger.
-  if (success && (path.includes('dialogue.json') || path.includes('.script.json'))) {
-    // Don't await - update in background
-    void applyDialogueStatsDelta(path);
-  }
-
-  return success;
+  // A plain file write: no endpoint or stats-delta inference from the path.
+  return writeFile(path, JSON.stringify(data, null, 2));
 }
 
 export async function readOptionalCharacters(path: string): Promise<CharactersJson | null> {
@@ -1158,18 +1242,8 @@ export async function readTextFile(path: string): Promise<string | null> {
 export async function readDialogueForChapter(chapterTitle: string): Promise<DialogueJson | ScriptJson | null> {
   try {
     const dialogueParsed = await readFileAsJson<DialogueJson | ScriptJson>(`${chapterTitle}/dialogue.json`);
-    if (
-      dialogueParsed &&
-      typeof dialogueParsed === 'object' &&
-      'formatVersion' in dialogueParsed &&
-      (
-        dialogueParsed.formatVersion === '2.0'
-        || dialogueParsed.formatVersion === '3.0'
-        || dialogueParsed.formatVersion === '3.1'
-        || dialogueParsed.formatVersion === '3.2'
-      )
-    ) {
-      return dialogueParsed as DialogueJson;
+    if (isVersionedDialogue(dialogueParsed)) {
+      return dialogueParsed;
     }
 
     // Fall back to v1.0 script.json

@@ -1,54 +1,21 @@
 from __future__ import annotations
 
 from pathlib import Path
-import re
+import tempfile
 import time
 from typing import Any, Callable
 
 import numpy as np
 import soundfile as sf
 
-from .text_utils import normalize_chapter_text
-
-
-def split_text_to_max_chars(text: str, max_chars: int) -> list[str]:
-    """Split ``text`` into pieces of at most ``max_chars`` characters.
-
-    Public so TTS services (e.g. Chatterbox, a short-form engine) can reuse the
-    same sentence/word-aware chunking the chapter pipeline uses. Pieces break
-    on sentence boundaries first, then word boundaries, and small pieces are
-    re-packed so no piece exceeds ``max_chars``.
-    """
-    if len(text) <= max_chars:
-        return [text]
-
-    sentences = re.split(r"(?<=[.!?])\s+", text)
-    pieces: list[str] = []
-    for sentence in sentences:
-        if len(sentence) <= max_chars:
-            pieces.append(sentence)
-            continue
-
-        words = sentence.split()
-        current: list[str] = []
-        for word in words:
-            candidate = " ".join([*current, word])
-            if current and len(candidate) > max_chars:
-                pieces.append(" ".join(current))
-                current = [word]
-            else:
-                current.append(word)
-        if current:
-            pieces.append(" ".join(current))
-
-    packed: list[str] = []
-    for piece in pieces:
-        candidate = " ".join([*packed[-1:], piece]) if packed else piece
-        if packed and len(candidate) <= max_chars:
-            packed[-1] = candidate
-        else:
-            packed.append(piece)
-    return packed
+from .engine import (
+    AudioEngine,
+    alignment_chunk_count,
+    engine_text_pieces,
+    require_within_engine_limit,
+)
+# split_text_to_max_chars lives in text_utils; re-exported here for callers.
+from .text_utils import normalize_chapter_text, split_text_to_max_chars
 
 
 def _format_hms(total_seconds: float | None) -> str:
@@ -243,9 +210,59 @@ def stitch_generated_chunk_audio(
     }
 
 
+def generate_engine_text(
+    engine: AudioEngine,
+    *,
+    text: str,
+    sample_path: str,
+    output_path: Path,
+    seed: int | None = None,
+    join_pause_ms: int = 0,
+    **engine_kwargs: Any,
+) -> int:
+    """Generate one text through ``engine``, planning its calls up front.
+
+    The single-text counterpart of the chunk plan: the text is normalized and
+    sub-split to the engine's declared ``max_chunk_chars``
+    (:func:`chapter_audio.engine.engine_text_pieces`); one piece is generated
+    straight to ``output_path``, several are generated to temp files and
+    stitched. ``engine_kwargs`` (e.g. Chatterbox's per-call sampling
+    overrides) are passed to every ``generate_audio`` call.
+
+    Returns the number of engine calls made.
+    """
+    pieces = engine_text_pieces(engine, text)
+    if len(pieces) == 1:
+        engine.generate_audio(
+            text=pieces[0],
+            sample_path=sample_path,
+            output_path=str(output_path),
+            seed=seed,
+            **engine_kwargs,
+        )
+        return 1
+
+    with tempfile.TemporaryDirectory(prefix="engine_chunks_") as tmp_dir:
+        piece_paths = [Path(tmp_dir) / f"chunk_{i:03d}.wav" for i in range(len(pieces))]
+        for piece, piece_path in zip(pieces, piece_paths):
+            engine.generate_audio(
+                text=piece,
+                sample_path=sample_path,
+                output_path=str(piece_path),
+                seed=seed,
+                **engine_kwargs,
+            )
+        stitch_generated_chunk_audio(
+            chunk_audio_paths=piece_paths,
+            output_path=Path(output_path),
+            join_pause_ms=join_pause_ms,
+        )
+    return len(pieces)
+
+
 def generate_line_chunked_chapter_audio(
     *,
-    service: Any,
+    service: AudioEngine,
     chunk_plan: list[dict[str, Any]],
     sample_path: Path,
     output_path: Path,
@@ -258,11 +275,18 @@ def generate_line_chunked_chapter_audio(
 ) -> dict[str, Any]:
     """Generate every chunk in the plan and stitch them into one file.
 
-    ``on_chunk(chunk_index, total_chunks)`` is invoked after each chunk
-    completes (generated or reused) so callers can surface live progress.
+    One ``service.generate_audio`` call per plan entry. For an engine with a
+    declared ``max_chunk_chars`` the plan must already be sub-split to it
+    (:func:`chapter_audio.engine.plan_engine_chunks`); an oversized chunk is
+    rejected before anything is generated. ``on_chunk(chunk_index,
+    total_chunks)`` is invoked after each chunk completes (generated or
+    reused) so callers can surface live progress -- the counts are the true
+    engine-call counts.
     """
     if not chunk_plan:
         raise ValueError("Chunk generation plan is empty.")
+    for chunk in chunk_plan:
+        require_within_engine_limit(service, str(chunk["text"]))
 
     chunks_dir.mkdir(parents=True, exist_ok=True)
     if not resume_existing_chunks:
@@ -376,6 +400,8 @@ def generate_line_chunked_chapter_audio(
         "mode": "line-chunked",
         "minChunkChars": int(min_chunk_chars),
         "chunkCount": total_chunks,
+        "alignmentChunkCount": alignment_chunk_count(chunk_plan),
+        "engineMaxChunkChars": getattr(service, "max_chunk_chars", None),
         "reusedChunkCount": reused_chunk_count,
         "chunksDir": str(chunks_dir.resolve()),
         "chunks": chunk_reports,

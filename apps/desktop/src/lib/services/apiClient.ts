@@ -55,12 +55,10 @@ export const API_ENDPOINTS = {
     vibevoiceCharacterProgress: (params: {
         characterName: string;
         chapterTitle?: string;
-        crossChapter?: boolean;
         audioRoot?: string | null;
     }) =>
         `/api/vibevoice/character/progress?character_name=${encodeURIComponent(params.characterName)}` +
         `&chapter_title=${encodeURIComponent(params.chapterTitle || '')}` +
-        `&cross_chapter=${params.crossChapter ? 'true' : 'false'}` +
         `&audio_root=${encodeURIComponent(params.audioRoot || '')}`,
     generateVibeVoiceChapter: '/api/vibevoice/chapter',
     deleteCharacterAudio: '/api/delete_character_audio',

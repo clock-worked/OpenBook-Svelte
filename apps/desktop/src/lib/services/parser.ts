@@ -1,7 +1,8 @@
 import { get } from 'svelte/store';
 import { parserHints } from '$lib/stores/settings';
 import type { Line, DialogueJson, DialogueLine, Character, LineCandidate, ParserHints, CharactersJson } from '$lib/types';
-import { readTextFile, writeCentralCharacters, writeDialogue } from '$lib/services/fs';
+import { readTextFile, writeCentralCharacters } from '$lib/services/fs';
+import { writeChapterDialogue } from '$lib/components/chapter/tools/shared/chapterPersistence';
 import { computeReturningFlags } from '$lib/services/dialogueReturning';
 import { hasSpeechVerb } from '$lib/services/audioNarration';
 import { buildIdToNameMap, buildNameToIdMap } from '$lib/stores/characters';
@@ -12,6 +13,7 @@ import type { JevVerifySummary } from '$lib/services/apiContracts';
 import { setJevVerifySummary } from '$lib/stores/jevDialogueAi';
 import { buildClosedWorldParserOptions } from '$lib/services/parserCatalog';
 import { history } from '$lib/services/history';
+import { evaluatePolicy, traceIsFirstPerson } from '$lib/services/attributionPolicy';
 
 interface ParserOutput {
   script: Line[];
@@ -221,20 +223,22 @@ export function convertLineToDialogueLine(
 
   const hasNamedCandidates = collapsedCandidates.some((candidate) => !!candidate.characterId);
   const resolvedSpeakerId = speakerKey ? (nameToCharIdMap.get(speakerKey) || null) : null;
-  const selectedReasons = parserAttribution?.decisionTrace?.selectedReasons;
+  // Assert/suggestion: the shared policy spec, frontend edge (ADR-0013),
+  // applied to the post-collapse candidate set. The first-person exemption
+  // reads the wire's ruleCategory (legacy traces: the fallback rule set).
   const hasDeterministicFirstPersonAttribution = !!resolvedSpeakerId
-    && Array.isArray(selectedReasons)
-    && selectedReasons.some((reason) =>
-      reason === '0p_protagonist_first_person' || reason === 'first_person_override'
-    );
+    && traceIsFirstPerson(parserAttribution?.decisionTrace);
+  const policyOutcome = evaluatePolicy('frontend', {
+    top: baseConfidence,
+    second: collapsedCandidates[1]?.confidence ?? 0,
+    candidateCount: collapsedCandidates.length,
+    parserSuggestion: line.is_suggestion === true,
+    hasNamedCandidates,
+    speakerBlocked: speakerIsBlocked,
+    firstPerson: hasDeterministicFirstPersonAttribution,
+  });
 
-  const shouldAbstain = !isNarration && !hasDeterministicFirstPersonAttribution && (
-    line.is_suggestion === true
-    || baseConfidence < 0.74
-    || (collapsedCandidates.length > 1 && baseConfidence < 0.86)
-    || !hasNamedCandidates
-    || speakerIsBlocked
-  );
+  const shouldAbstain = !isNarration && policyOutcome.isSuggestion;
 
   const characterId = isNarration
     ? 'narrator'
@@ -548,8 +552,9 @@ export async function runParserForChapter(args: {
 
     const dialoguePath = `${chapterName}/dialogue.json`;
 
-    // Write the chapter dialogue.json file.
-    const saved = await writeDialogue(dialoguePath, dialogueJson);
+    // Write the chapter dialogue.json file: a genuine dialogue save, so it
+    // goes through the chapter persistence owner (write + stats step).
+    const saved = await writeChapterDialogue(dialoguePath, dialogueJson);
     if (!saved) {
       throw new Error(`Could not save parser output to ${dialoguePath}`);
     }

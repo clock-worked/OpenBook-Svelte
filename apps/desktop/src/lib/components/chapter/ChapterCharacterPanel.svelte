@@ -22,7 +22,7 @@
   import { addBookCharacter, addBookCharacterAlias, upsertBookCharacter, renameBookCharacter, removeBookCharacter, bookCharacters, detachBookCharacterAlias, setBookCharacterDescriptors, forceRefreshBookCharacters, mergeBookCharacters } from '$lib/stores/bookCharacters';
   import { historyAction } from '$lib/services/history';
   import { buildClosedWorldReviewItems, planClosedWorldDescriptorAssignments, resolveClosedWorldCandidateAsAlias, type ClosedWorldReviewItem } from '$lib/services/closedWorldCharacterWorkflow';
-  import { computeChapterLineCounts } from '$lib/services/characterChapterStats';
+  import { chapterLineCounts as countChapterLines } from '$lib/services/characterStats';
   import { normalizeCharacterKey } from '$lib/services/characterDomain';
   import {
     dialogueAiAssistState,
@@ -276,10 +276,11 @@
     return others;
   })();
 
-  // Chapter-specific line counts for the list badges + details stats.
-  // Extracted to a pure helper (GUID-keyed in v3, chosenSpeaker fallback for
-  // v1-script chapters) so the derivation is never duplicated.
-  $: chapterLineCounts = computeChapterLineCounts($currentScript?.lines, $bookCharacters.characters);
+  // Chapter-specific line counts for the list badges + details stats: the
+  // per-chapter view of characterStats.ts (GUID-keyed in v3, chosenSpeaker
+  // fallback for v1-script chapters). Book-wide counts come from the
+  // accumulated stats, never from this.
+  $: chapterLineCounts = countChapterLines($currentScript?.lines, $bookCharacters.characters);
 
   $: sortedBookCharacters = (() => {
     const list = $bookCharacters.characters

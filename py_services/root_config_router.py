@@ -1,4 +1,5 @@
 import asyncio
+import logging
 import os
 import threading
 import tkinter as tk
@@ -10,6 +11,8 @@ from api_models import SetAudioRootRequest, SetRootRequest
 from api_runtime_state import ApiRuntimeState
 from character_stats_accumulator import stats_accumulator
 
+
+logger = logging.getLogger(__name__)
 
 _directory_picker_lock = threading.Lock()
 
@@ -49,17 +52,29 @@ def create_root_config_router(runtime_state: ApiRuntimeState) -> APIRouter:
         # ADR 0012: (re)build the in-memory stats accumulation when a book
         # is selected — the one full scan it pays per book session. A failure
         # only defers the build (the delta path builds lazily), so it must
-        # not fail the book selection.
+        # not fail the book selection; it is logged and reported in the
+        # response (`stats_rebuilt`), never silent.
+        stats_rebuilt = True
         try:
             await asyncio.to_thread(stats_accumulator.build, normalized_book_root)
-        except Exception as exc:
-            print(f"Stats accumulation build deferred: {exc}")
+        except Exception:  # noqa: BLE001 - a stats failure never fails the root switch
+            stats_rebuilt = False
+            logger.warning(
+                "Book root set but the stats accumulation build failed for '%s'; "
+                "it will be built lazily on the next dialogue save",
+                normalized_book_root,
+                exc_info=True,
+            )
 
         if not runtime_state.get_audio_root():
             normalized_audio_root = runtime_state.initialize_audio_service(normalized_book_root)
             print(f"Audio root path defaulted to book root: '{normalized_audio_root}'")
 
-        return {"message": "Book root path set successfully.", "path": normalized_book_root}
+        return {
+            "message": "Book root path set successfully.",
+            "path": normalized_book_root,
+            "stats_rebuilt": stats_rebuilt,
+        }
 
     @router.post("/api/set-audio-root")
     async def set_audio_root(request: SetAudioRootRequest):

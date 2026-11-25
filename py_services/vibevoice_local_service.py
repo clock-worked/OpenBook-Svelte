@@ -11,6 +11,13 @@ import types
 from pathlib import Path
 from typing import Optional, Tuple, Any
 
+try:
+    from .audio.provider_profile import ADAPTER_VIBEVOICE
+    from .chapter_audio.text_utils import normalize_typography
+except ImportError:
+    from audio.provider_profile import ADAPTER_VIBEVOICE
+    from chapter_audio.text_utils import normalize_typography
+
 DEFAULT_DATA_DIR = Path(__file__).parent / "openbook_parser" / "data"
 DEFAULT_VIBEVOICE_MODEL_PATH = str(DEFAULT_DATA_DIR / "VibeVoice-Large-Q8")
 DEFAULT_VIBEVOICE_REPO_PATH = str(DEFAULT_DATA_DIR / "VibeVoice-ComfyUI")
@@ -51,19 +58,14 @@ def ensure_transformers_flash_attention_compat() -> None:
 
 
 def normalize_text(text: str) -> str:
-    """Apply TTS-only cleanup without modifying the source chapter text."""
+    """Apply TTS-only cleanup without modifying the source chapter text.
 
-    replacements = {
-        "\u2018": "'",
-        "\u2019": "'",
-        "\u201c": '"',
-        "\u201d": '"',
-        "\u2013": "-",
-        "\u2014": "-",
-        "\u2026": "...",
-    }
-    for src, dst in replacements.items():
-        text = text.replace(src, dst)
+    VibeVoice's normalization (``VibeVoiceLocalService.normalize``): the
+    shared typography set plus VibeVoice-specific pause/abbreviation rules.
+    Idempotent.
+    """
+
+    text = normalize_typography(text)
 
     text = BRACKETED_UNKNOWN_RE.sub(" unknown ", text)
     text = LEVEL_ABBREVIATION_RE.sub("level", text)
@@ -248,6 +250,17 @@ def load_vibevoice_backend(
 
 
 class VibeVoiceLocalService:
+    """The VibeVoice adapter at the TTS engine seam
+    (:class:`chapter_audio.engine.AudioEngine`).
+
+    VibeVoice is long-form: it declares no per-call limit
+    (``max_chunk_chars = None``), so the chunk plan never sub-splits for it.
+    """
+
+    adapter = ADAPTER_VIBEVOICE
+    max_chunk_chars: Optional[int] = None
+    normalize = staticmethod(normalize_text)
+
     def __init__(
         self,
         model_path: Optional[str] = None,

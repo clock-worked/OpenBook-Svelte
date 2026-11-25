@@ -108,38 +108,30 @@ export async function writeCharacterRecord(root: string, record: Character, reco
     return writeCharacterFile(root, `${sanitizeCharacterFileStem(normalized.name)}.json`, file);
 }
 
-// === Derived stats (dialogue-driven) ===
-
-interface DerivedStatsEntry {
-    totalLines: number;
-    chapters: Set<string>;
-    firstAppearance: string | null;
-}
+// === Missing defaults (firstAppearance backfill) ===
+//
+// Character stats are NOT derived here: the backend's accumulated stats
+// (ADR 0012) on each record are the one answer, read via characterStats.ts.
+// Loading only backfills a missing `firstAppearance` from the dialogue.
 
 /**
  * Walk each parsed chapter's dialogue (falling back to legacy script.json)
- * and accumulate per-identity line counts / chapter sets. `resolveIdentity`
+ * and record the first chapter each identity speaks in. `resolveIdentity`
  * maps a normalized raw identity (GUID in v3, id/alias in v2) to the stable
  * record key, or undefined when the identity is unknown.
  */
-async function collectDerivedStats(
-    root: string,
+async function collectFirstAppearances(
     chapterList: ChapterCharacterContext[],
     resolveIdentity: (normalizedKey: string) => string | undefined,
-): Promise<Map<string, DerivedStatsEntry>> {
-    const derivedStats = new Map<string, DerivedStatsEntry>();
+): Promise<Map<string, string>> {
+    const firstAppearances = new Map<string, string>();
 
     const recordUsage = (rawIdentity: unknown, chapterTitle: string): void => {
         const key = normalizeCharacterKey(String(rawIdentity || ''));
         if (!key) return;
         const identityKey = resolveIdentity(key);
-        if (!identityKey) return;
-
-        const entry = derivedStats.get(identityKey) ?? { totalLines: 0, chapters: new Set<string>(), firstAppearance: null };
-        entry.totalLines += 1;
-        entry.chapters.add(chapterTitle);
-        if (!entry.firstAppearance) entry.firstAppearance = chapterTitle;
-        derivedStats.set(identityKey, entry);
+        if (!identityKey || firstAppearances.has(identityKey)) return;
+        firstAppearances.set(identityKey, chapterTitle);
     };
 
     for (const chapter of chapterList) {
@@ -159,48 +151,38 @@ async function collectDerivedStats(
         }
     }
 
-    return derivedStats;
+    return firstAppearances;
 }
 
 /**
- * v3 folder mode: recompute per-record derived stats with GUID-exact matching
- * (v3 dialogue `characterId` values ARE the GUIDs) and write ONLY the files
- * whose stats changed (write-only-on-change, per-file).
+ * v3 folder mode: backfill a missing `firstAppearance` with GUID-exact
+ * matching (v3 dialogue `characterId` values ARE the GUIDs) and write ONLY
+ * the files that changed (write-only-on-change, per-file).
  */
-async function syncFolderCharacterStats(
+async function syncFolderCharacterDefaults(
     root: string,
     data: CharactersJson,
     chapterList: ChapterCharacterContext[],
 ): Promise<CharactersJson | null> {
+    if (data.characters.every((character) => character.firstAppearance)) return null;
+
     const guidLookup = new Map<string, string>();
     for (const character of data.characters) {
         if (character.guid) guidLookup.set(normalizeCharacterKey(character.guid), character.guid);
     }
 
-    const derivedStats = await collectDerivedStats(root, chapterList, (key) => guidLookup.get(key));
+    const firstAppearances = await collectFirstAppearances(chapterList, (key) => guidLookup.get(key));
 
     let updated = false;
     const nextCharacters: Character[] = [];
     for (const character of data.characters) {
-        const derived = character.guid ? derivedStats.get(character.guid) : undefined;
-        const totalLines = derived?.totalLines ?? 0;
-        const chapterCount = derived?.chapters.size ?? 0;
-        const nextFirstAppearance = character.firstAppearance ?? derived?.firstAppearance ?? null;
-
-        const changed =
-            character.stats.totalLines !== totalLines
-            || character.stats.chapterCount !== chapterCount
-            || character.firstAppearance !== nextFirstAppearance;
-        if (!changed) {
+        const derived = character.guid ? firstAppearances.get(character.guid) : undefined;
+        if (character.firstAppearance || !derived) {
             nextCharacters.push(character);
             continue;
         }
 
-        const next: Character = {
-            ...character,
-            firstAppearance: nextFirstAppearance,
-            stats: { totalLines, chapterCount },
-        };
+        const next: Character = { ...character, firstAppearance: derived };
         nextCharacters.push(next);
 
         // Write-only-on-change: rewrite exactly this character's file.
@@ -221,10 +203,12 @@ export async function syncMissingBookCharacterDefaults(
     // Folder mode ⇔ the records carry v3 GUIDs (Tier 1 / post-migration load).
     const isFolderMode = rawData.characters.some((character) => isCharacterGuid(character.guid));
     if (isFolderMode) {
-        return syncFolderCharacterStats(root, rawData, chapterList);
+        return syncFolderCharacterDefaults(root, rawData, chapterList);
     }
 
-    // Legacy mode: today's characters.json behavior, unchanged.
+    // Legacy mode (characters.json): the same firstAppearance backfill.
+    if (rawData.characters.every((character: any) => character.firstAppearance)) return null;
+
     const idLookup = new Map<string, string>();
     const nameLookup = new Map<string, string>();
     for (const character of rawData.characters) {
@@ -240,50 +224,17 @@ export async function syncMissingBookCharacterDefaults(
         }
     }
 
-    const derivedStats = await collectDerivedStats(root, chapterList, (key) => idLookup.get(key) ?? nameLookup.get(key));
+    const firstAppearances = await collectFirstAppearances(chapterList, (key) => idLookup.get(key) ?? nameLookup.get(key));
 
     let updated = false;
     const next: CharactersJson = {
         ...rawData,
         formatVersion: rawData.formatVersion || '2.0',
         characters: rawData.characters.map((char: any) => {
-            const characterId = String(char.id || '').trim();
-            const derived = derivedStats.get(characterId);
-            const totalLines = derived?.totalLines ?? 0;
-            const chapterCount = derived?.chapters.size ?? 0;
-
-            let nextChar = { ...char };
-            if (!nextChar.firstAppearance && derived?.firstAppearance) {
-                nextChar.firstAppearance = derived.firstAppearance;
-                updated = true;
-            }
-
-            const stats = { ...(nextChar.stats ?? {}) } as { totalLines?: number; chapterCount?: number };
-            let statsUpdated = false;
-
-            if (stats.totalLines !== totalLines) {
-                stats.totalLines = totalLines;
-                statsUpdated = true;
-            }
-            if (stats.chapterCount !== chapterCount) {
-                stats.chapterCount = chapterCount;
-                statsUpdated = true;
-            }
-            if (statsUpdated) {
-                nextChar.stats = stats;
-                updated = true;
-            }
-
-            if (nextChar.count !== totalLines) {
-                nextChar.count = totalLines;
-                updated = true;
-            }
-            if (nextChar.chapterCount !== chapterCount) {
-                nextChar.chapterCount = chapterCount;
-                updated = true;
-            }
-
-            return nextChar;
+            const derived = firstAppearances.get(String(char.id || '').trim());
+            if (char.firstAppearance || !derived) return char;
+            updated = true;
+            return { ...char, firstAppearance: derived };
         }),
     };
 

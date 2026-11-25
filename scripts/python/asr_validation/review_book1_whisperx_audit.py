@@ -20,7 +20,7 @@ from _path_setup import bootstrap_python_script_paths
 
 PATHS = bootstrap_python_script_paths(__file__)
 
-from py_services.chapter_audio_test.validation import create_split_validation_transcriber
+from py_services.chapter_audio.validation import create_split_validation_transcriber
 from scripts.python.asr_validation.asr_chapter_audio_audit import discover_chapter_dirs, run_chapter_audit
 
 try:

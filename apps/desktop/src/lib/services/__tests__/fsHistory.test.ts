@@ -9,7 +9,7 @@ const backend = vi.hoisted(() => ({
 }));
 
 vi.mock('../apiClient', () => ({
-  API_ENDPOINTS: { save: 'save', readText: 'read', deleteFile: 'delete', listFiles: 'list' },
+  API_ENDPOINTS: { save: 'save', saveDialogue: 'save-dialogue', readText: 'read', deleteFile: 'delete', listFiles: 'list' },
   apiPostJson: vi.fn(async (endpoint: string, payload: { file_path: string }) => {
     if (backend.failRead) throw new Error('Backend unavailable');
     if (endpoint === 'list') {
@@ -35,7 +35,7 @@ vi.mock('$lib/stores/settings', async () => {
 
 import { apiPostVoid } from '../apiClient';
 import { history } from '../history';
-import { captureEditableFiles, deleteFile, listCharacterFiles, setRootDirHandle, writeCharacterFile, writeEditableJson } from '../fs';
+import { captureEditableFiles, deleteFile, listCharacterFiles, setRootDirHandle, writeCharacterFile, writeDialogueSave, writeEditableJson } from '../fs';
 import { mergeCentralCharacters, renameCentralCharacter } from '../characterMutationService';
 
 function seed(path: string, content: unknown) {
@@ -65,6 +65,29 @@ describe('file-backed edit history', () => {
     expect(read('Chapter/dialogue.json')).toEqual(original);
     await history.redo();
     expect(read('Chapter/dialogue.json')).toEqual(edited);
+  });
+
+  it('records a chapter dialogue save in history; undo/redo keep the save-dialogue kind', async () => {
+    const original = { formatVersion: '3.2', lines: [{ id: 1, characterId: null, text: 'One.' }] };
+    seed('Chapter/dialogue.json', original);
+    const saved = { formatVersion: '3.2', lines: [{ id: 1, characterId: 'AA01BB02', text: 'One.' }] };
+
+    expect(await writeDialogueSave('Chapter/dialogue.json', saved as never)).toBe('sidecar');
+    expect(vi.mocked(apiPostVoid)).toHaveBeenLastCalledWith('save-dialogue', { file_path: 'Chapter/dialogue.json', content: saved });
+
+    await history.undo();
+    expect(read('Chapter/dialogue.json')).toEqual(original);
+    expect(vi.mocked(apiPostVoid)).toHaveBeenLastCalledWith('save-dialogue', { file_path: 'Chapter/dialogue.json', content: original });
+    await history.redo();
+    expect(read('Chapter/dialogue.json')).toEqual(saved);
+  });
+
+  it('reports an identical dialogue save as unchanged without writing', async () => {
+    const doc = { formatVersion: '3.2', lines: [{ id: 1, text: 'One.' }] };
+    seed('Chapter/dialogue.json', doc);
+
+    expect(await writeDialogueSave('Chapter/dialogue.json', doc as never)).toBe('unchanged');
+    expect(vi.mocked(apiPostVoid)).not.toHaveBeenCalled();
   });
 
   it('restores character creation and deletion on disk', async () => {

@@ -26,7 +26,8 @@
   import SpeakerManager from '$lib/components/book/SpeakerManager.svelte';
   import CharacterContextViewer from '$lib/components/book/CharacterContextViewer.svelte';
   import { ArrowUpDown, ChevronDown, ChevronRight, Loader2, Play, RefreshCw } from 'lucide-svelte';
-  import type { Character, CharacterManifestStats } from '$lib/types';
+  import type { CharacterManifestStats } from '$lib/types';
+  import { characterChapterCount, characterLineCount } from '$lib/services/characterStats';
   import { 
     voices, 
     saveVoicesData, 
@@ -250,7 +251,7 @@
   $: sortedCharacters = (() => {
     const items = $bookCharacters.characters.map((c, idx) => ({ character: c, idx }));
     if (selectedSort === 'alpha') items.sort((a, b) => a.character.name.localeCompare(b.character.name));
-    if (selectedSort === 'lines') items.sort((a, b) => (b.character.count || 0) - (a.character.count || 0));
+    if (selectedSort === 'lines') items.sort((a, b) => characterLineCount(b.character) - characterLineCount(a.character));
     return items;
   })();
 
@@ -270,7 +271,7 @@
     
     // Sort characters within each group by totalLines (descending)
     for (const items of groups.values()) {
-      items.sort((a, b) => (b.character.count || 0) - (a.character.count || 0));
+      items.sort((a, b) => characterLineCount(b.character) - characterLineCount(a.character));
     }
     
     // Convert to array and sort by chapter order
@@ -322,12 +323,8 @@
   // List of available character names for PillList components
   $: availableCharacters = $bookCharacters.characters.map(c => c.name);
   $: zeroLineCharacterNames = $bookCharacters.characters
-    .filter((character) => getCharacterLineCount(character) === 0)
+    .filter((character) => characterLineCount(character) === 0)
     .map((character) => character.name);
-
-  function getCharacterLineCount(character: Character): number {
-    return Math.max(0, character.stats?.totalLines ?? character.count ?? 0);
-  }
 
   function toggleExpanded(name: string) {
     const next = !expanded[name];
@@ -335,7 +332,7 @@
     if (next) {
       const char = $bookCharacters.characters.find((c) => c.name === name);
       if (char && !char.manifestStats && !manifestLoading[name]) {
-        loadManifest(name, char.count, false);
+        loadManifest(name, characterLineCount(char), false);
       }
     }
   }
@@ -759,7 +756,7 @@
                         <div class="color-picker-wrapper">
                           <Dropdown showCaret={false} align="left" minWidth={180} title="Change color">
                             <span class="line-count-badge" style={`background:${colorMap.get(it.character.name) || '#ccc'}`}>
-                              {it.character.count || 0}
+                              {characterLineCount(it.character)}
                             </span>
                             <div slot="panel" let:close>
                               <ColorPicker
@@ -784,9 +781,9 @@
                             {/if}
                           </div>
                           <span class="character-stats">
-                            {it.character.count || 0} lines
-                            {#if it.character.chapterCount}
-                              · Appears in {it.character.chapterCount} chapter{it.character.chapterCount === 1 ? '' : 's'}
+                            {characterLineCount(it.character)} lines
+                            {#if characterChapterCount(it.character)}
+                              · Appears in {characterChapterCount(it.character)} chapter{characterChapterCount(it.character) === 1 ? '' : 's'}
                             {/if}
                           </span>
                         </div>
@@ -900,7 +897,7 @@
                 <div class="color-picker-wrapper">
                   <Dropdown showCaret={false} align="left" minWidth={180} title="Change color">
                     <span class="line-count-badge" style={`background:${colorMap.get(it.character.name) || '#ccc'}`}>
-                      {it.character.count || 0}
+                      {characterLineCount(it.character)}
                     </span>
                     <div slot="panel" let:close>
                       <ColorPicker
@@ -925,9 +922,9 @@
                     {/if}
                   </div>
                   <span class="character-stats">
-                    {it.character.count || 0} lines
-                    {#if it.character.chapterCount}
-                      · Appears in {it.character.chapterCount} chapter{it.character.chapterCount === 1 ? '' : 's'}
+                    {characterLineCount(it.character)} lines
+                    {#if characterChapterCount(it.character)}
+                      · Appears in {characterChapterCount(it.character)} chapter{characterChapterCount(it.character) === 1 ? '' : 's'}
                     {/if}
                   </span>
                 </div>

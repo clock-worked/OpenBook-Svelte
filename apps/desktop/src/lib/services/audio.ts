@@ -1,7 +1,7 @@
 import { get } from 'svelte/store';
-import { audioRoot, bookRoot, bookRootAbsolutePath, voiceSamplesRoot } from '$lib/stores/bookState';
+import { audioRoot, bookRoot, bookRootAbsolutePath, chapters, voiceSamplesRoot } from '$lib/stores/bookState';
 import { bookRootPathOverride } from '$lib/stores/settings';
-import type { AudioGeneratorId, ChatterboxSettingsChoice, DialogueLine, CharactersJson } from '$lib/types';
+import type { AudioGeneratorId, CharacterManifestStats, ChatterboxSettingsChoice, DialogueLine, CharactersJson } from '$lib/types';
 import { readCentralCharacters, readDialogueForChapter, readOptionalJsonRelative, readTextFile } from '$lib/services/fs';
 import { buildLineTextWithSpeechVerbTags, extractNarrationTags } from '$lib/services/audioNarration';
 import type { NarrationTagCandidate } from '$lib/services/audioNarration';
@@ -27,7 +27,12 @@ import {
   resolvePlannedLineCharacterName,
   resolvePlannedLineSourceFile,
 } from '$lib/services/audioQueuePlanning';
-import { startCharacterPipelineProgressPolling } from '$lib/services/audioPipelineProgress';
+import {
+  startCharacterPipelineProgressPolling,
+  type PipelineProgressRecord,
+} from '$lib/services/audioPipelineProgress';
+import { classifyProvider, isLocalChunkedProvider } from '$lib/services/audioGenerator';
+import { createManifestReader, manifestAbsolutePath, type ManifestTransport } from '$lib/services/manifestReader';
 
 export interface AudioManifest {
   formatVersion: string;
@@ -80,12 +85,6 @@ export interface GenerateAudioCharacterOptions {
   chatterboxSettings?: ChatterboxSettingsPayload | null;
 }
 
-const manifestCache = new Map<string, AudioManifest | null>();
-const manifestRequestCache = new Map<string, Promise<AudioManifest | null>>();
-let absoluteReadApiAvailable: boolean | null = null;
-let reconcileManifestApiAvailable: boolean | null = null;
-let hasWarnedMissingAudioRoot = false;
-
 function getBackendErrorMessage(error: unknown, fallback: string): string {
   if (error instanceof ApiClientError) {
     const details = error.details as BackendErrorPayload | string | undefined;
@@ -105,21 +104,6 @@ function getBackendErrorMessage(error: unknown, fallback: string): string {
   }
 
   return fallback;
-}
-
-function getManifestCacheKey(chapterTitle: string, characterName: string): string {
-  return `${chapterTitle}::${characterName.toLowerCase()}`;
-}
-
-function invalidateManifestCache(chapterTitle: string, characterName: string): void {
-  const key = getManifestCacheKey(chapterTitle, characterName);
-  manifestCache.delete(key);
-  manifestRequestCache.delete(key);
-}
-
-export function clearAllManifestCache(): void {
-  manifestCache.clear();
-  manifestRequestCache.clear();
 }
 
 /**
@@ -161,11 +145,17 @@ export async function getCharacterNameFromId(characterId: string): Promise<strin
 }
 
 /**
- * Resolve the effective audio root: explicit audio root, book absolute
- * path, or the user-configured book root override.
+ * Resolve the effective audio root — the one FE ordering, matching the BE
+ * resolver (`resolve_audio_root` in py_services/audio/router_support.py):
+ *
+ * 1. the explicit audio root,
+ * 2. the user-configured book root override,
+ * 3. the book absolute path.
+ *
+ * The override wins over the book root.
  */
 export function audioRootFor(): string | null {
-  return get(audioRoot) || get(bookRootAbsolutePath) || get(bookRootPathOverride) || null;
+  return get(audioRoot) || get(bookRootPathOverride) || get(bookRootAbsolutePath) || null;
 }
 
 /**
@@ -203,113 +193,70 @@ export function getManifestPath(
   chapterTitle: string,
   characterName: string
 ): string {
-  const root = get(audioRoot) || get(bookRootAbsolutePath);
+  const root = audioRootFor();
   if (!root) {
     return '';
   }
-  return `${root}/${chapterTitle}/audio_lines/${characterName}/manifest.json`;
+  return manifestAbsolutePath(root, chapterTitle, characterName);
+}
+
+/** HTTP/fs transport for the manifest reader (services/manifestReader.ts). */
+const manifestTransport: ManifestTransport = {
+  async reconcile({ chapterTitle, characterName, audioRoot: root }) {
+    const payload: ReconcileAudioManifestRequest = {
+      chapter_title: chapterTitle,
+      character_name: characterName,
+      audio_root: root || null,
+    };
+    try {
+      const data = await apiPostJson<ReconcileAudioManifestResponse, ReconcileAudioManifestRequest>(
+        API_ENDPOINTS.reconcileAudioManifest,
+        payload,
+      );
+      const manifest = data?.manifest && typeof data.manifest === 'object' ? (data.manifest as AudioManifest) : null;
+      return { kind: 'ok', manifest };
+    } catch (error) {
+      if (error instanceof ApiClientError && error.status === 404) return { kind: 'missing' };
+      throw error;
+    }
+  },
+  async readAbsolute(filePath) {
+    const body: ReadFileAbsoluteRequest = { file_path: filePath };
+    const response = await apiFetch(API_ENDPOINTS.readFileAbsolute, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    if (response.ok) return { kind: 'ok', manifest: (await response.json()) as AudioManifest };
+    if (response.status === 404) return { kind: 'missing' };
+    return { kind: 'failed', status: response.status };
+  },
+  readRelative: (relativePath) => readOptionalJsonRelative<AudioManifest>(relativePath),
+};
+
+/** The app's one manifest reader: one cache, one fallback chain. */
+const manifestReader = createManifestReader({
+  transport: manifestTransport,
+  resolveAudioRoot: audioRootFor,
+});
+
+function invalidateManifestCache(chapterTitle: string, characterName: string): void {
+  manifestReader.invalidate(chapterTitle, characterName);
+}
+
+export function clearAllManifestCache(): void {
+  manifestReader.clear();
 }
 
 /**
- * Read a character's audio manifest
- * Note: This tries to read from filesystem using absolute path
+ * Read a character's audio manifest (cached; see services/manifestReader.ts
+ * for the reconcile -> absolute read -> relative read fallback chain).
  */
-export async function readManifest(
+export function readManifest(
   chapterTitle: string,
   characterName: string
 ): Promise<AudioManifest | null> {
-  const cacheKey = getManifestCacheKey(chapterTitle, characterName);
-  if (manifestCache.has(cacheKey)) {
-    return manifestCache.get(cacheKey) ?? null;
-  }
-
-  const inFlightRequest = manifestRequestCache.get(cacheKey);
-  if (inFlightRequest) {
-    return inFlightRequest;
-  }
-
-  const request = (async (): Promise<AudioManifest | null> => {
-    try {
-      const relativePath = `${chapterTitle}/audio_lines/${characterName}/manifest.json`;
-      const root = get(audioRoot) || get(bookRootAbsolutePath);
-      if (!root) {
-        const relativeManifest = await readOptionalJsonRelative<AudioManifest>(relativePath);
-        if (relativeManifest) {
-          return relativeManifest;
-        }
-        if (!hasWarnedMissingAudioRoot) {
-          console.warn('[audio] Audio root not set; skipping manifest reads');
-          hasWarnedMissingAudioRoot = true;
-        }
-        return null;
-      }
-
-      if (absoluteReadApiAvailable === false) {
-        return await readOptionalJsonRelative<AudioManifest>(relativePath);
-      }
-
-      if (reconcileManifestApiAvailable !== false) {
-        try {
-          const reconcilePayload: ReconcileAudioManifestRequest = {
-            chapter_title: chapterTitle,
-            character_name: characterName,
-            audio_root: root || null,
-          };
-          const reconcileData = await apiPostJson<
-            ReconcileAudioManifestResponse,
-            ReconcileAudioManifestRequest
-          >(API_ENDPOINTS.reconcileAudioManifest, reconcilePayload);
-
-          reconcileManifestApiAvailable = true;
-
-          if (reconcileData?.manifest && typeof reconcileData.manifest === 'object') {
-            return reconcileData.manifest as AudioManifest;
-          }
-        } catch (reconcileError) {
-          if (reconcileError instanceof ApiClientError && reconcileError.status === 404) {
-            reconcileManifestApiAvailable = false;
-            console.warn('[audio] /api/reconcile-audio-manifest returned 404; disabling manifest reconciliation for this session');
-          } else {
-            console.warn('[audio] Manifest reconciliation failed; falling back to manifest read:', reconcileError);
-          }
-        }
-      }
-
-      // Get the full absolute path
-      const manifestPath = `${root}/${chapterTitle}/audio_lines/${characterName}/manifest.json`;
-      console.log('[audio] Reading manifest from:', manifestPath);
-
-      // Try to read the file using Node fs (via backend) with absolute path
-      const response = await apiFetch(API_ENDPOINTS.readFileAbsolute, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ file_path: manifestPath }),
-      });
-
-      if (response.ok) {
-        absoluteReadApiAvailable = true;
-        const data = await response.json() as AudioManifest;
-        console.log('[audio] Manifest loaded for', characterName, '- clips:', data.clips?.length);
-        return data;
-      } else if (response.status === 404) {
-        absoluteReadApiAvailable = false;
-        console.warn('[audio] /api/read_file_absolute returned 404; disabling absolute manifest reads for this session');
-        return await readOptionalJsonRelative<AudioManifest>(relativePath);
-      } else {
-        console.log('[audio] Manifest not found for', characterName, '- status:', response.status);
-      }
-      return null;
-    } catch (error) {
-      console.error('[audio] Error reading manifest:', error);
-      return null;
-    }
-  })();
-
-  manifestRequestCache.set(cacheKey, request);
-  const result = await request;
-  manifestRequestCache.delete(cacheKey);
-  manifestCache.set(cacheKey, result);
-  return result;
+  return manifestReader.read(chapterTitle, characterName);
 }
 
 /**
@@ -345,6 +292,82 @@ export async function checkAudioExistsForCharacter(
   };
 }
 
+export interface CharacterManifestSummaryOptions {
+  /** Line count the coverage ratio is computed against. */
+  totalLines?: number;
+  /** Drop the cached manifests first, so every chapter is re-read. */
+  force?: boolean;
+  /** Chapters to aggregate; defaults to the open book's chapters. */
+  chapterTitles?: string[];
+}
+
+export interface CharacterManifestSummary {
+  stats: CharacterManifestStats;
+  clips: AudioClip[];
+  /** Chapters that contributed at least one clip. */
+  chapterTitles: string[];
+}
+
+/**
+ * Book-wide manifest stats for one character: every chapter's manifest (read
+ * through `readManifest`, so it shares its cache) aggregated into clip count,
+ * per-voice counts, the most-used voice and coverage of `totalLines`.
+ * `null` when no chapter has a clip for the character.
+ */
+export async function loadCharacterManifestSummary(
+  characterName: string,
+  options?: CharacterManifestSummaryOptions,
+): Promise<CharacterManifestSummary | null> {
+  const titles = (options?.chapterTitles ?? get(chapters).map((chapter) => chapter?.title))
+    .map((title) => String(title || '').trim())
+    .filter((title) => title.length > 0);
+
+  const clips: AudioClip[] = [];
+  const contributing: string[] = [];
+  for (const title of titles) {
+    if (options?.force) {
+      invalidateManifestCache(title, characterName);
+    }
+    const manifest = await readManifest(title, characterName);
+    const chapterClips = Array.isArray(manifest?.clips) ? manifest.clips : [];
+    if (!chapterClips.length) continue;
+    clips.push(...chapterClips);
+    contributing.push(title);
+  }
+
+  if (!clips.length) return null;
+  return {
+    stats: buildCharacterManifestStats(clips, options?.totalLines),
+    clips,
+    chapterTitles: contributing,
+  };
+}
+
+function buildCharacterManifestStats(clips: AudioClip[], totalLines: number | undefined): CharacterManifestStats {
+  const voiceIds: Record<string, number> = {};
+  for (const clip of clips) {
+    if (!clip?.voiceId) continue;
+    voiceIds[clip.voiceId] = (voiceIds[clip.voiceId] ?? 0) + 1;
+  }
+  let primaryVoiceId: string | null = null;
+  let bestCount = -1;
+  for (const [voiceId, count] of Object.entries(voiceIds)) {
+    if (count > bestCount) {
+      primaryVoiceId = voiceId;
+      bestCount = count;
+    }
+  }
+  const total = totalLines ?? 0;
+  return {
+    clipCount: clips.length,
+    totalLines: total,
+    voiceIds,
+    coverageRatio: total > 0 ? clips.length / total : undefined,
+    primaryVoiceId,
+    lastUpdated: new Date().toISOString(),
+  };
+}
+
 export async function reconcileAudioManifestForCharacter(
   chapterTitle: string,
   characterName: string,
@@ -362,13 +385,10 @@ export async function reconcileAudioManifestForCharacter(
       payload,
     );
 
-    const key = getManifestCacheKey(chapterTitle, characterName);
-    manifestRequestCache.delete(key);
-
     if (data?.manifest && typeof data.manifest === 'object') {
-      manifestCache.set(key, data.manifest as AudioManifest);
+      manifestReader.store(chapterTitle, characterName, data.manifest as AudioManifest);
     } else {
-      manifestCache.delete(key);
+      manifestReader.invalidate(chapterTitle, characterName);
     }
 
     return {
@@ -402,10 +422,17 @@ export async function generateAudioForLine(
   chatterboxSettings?: ChatterboxSettingsPayload | null
 ): Promise<{ success: boolean; audioPath?: string; error?: string }> {
   try {
+    const classification = classifyProvider(provider);
+    if (!classification) {
+      return {
+        success: false,
+        error: `Failed to generate audio: Unsupported TTS provider: ${provider}`,
+      };
+    }
     const samplesRoot = get(voiceSamplesRoot);
     // Local-model providers (VibeVoice/Chatterbox) share the chunked
     // generation endpoints and the voice-sample root plumbing.
-    const isLocalChunked = /vibevoice|chatterbox/.test(provider.toLowerCase());
+    const isLocalChunked = classification.endpointKind === 'local_chunked';
     const includeSamplesRoot = isLocalChunked && samplesRoot;
     const resolvedAudioRoot = audioRootFor();
     const endpoint = isLocalChunked
@@ -504,12 +531,7 @@ export async function generateAudioForCharacter(
   onProgress?: (current: number, total: number) => void,
   shouldCancel?: () => boolean,
   options: GenerateAudioCharacterOptions = {},
-  onPipelineProgress?: (
-    phase: string,
-    detail: string | null,
-    chunkIndex: number | null,
-    chunkTotal: number | null,
-  ) => void
+  onPipelineProgress?: (record: PipelineProgressRecord) => void
 ): Promise<{ success: boolean; generatedCount: number; errors: string[]; canceled: boolean }> {
   if (shouldCancel?.()) {
     return {
@@ -523,10 +545,9 @@ export async function generateAudioForCharacter(
   // A resolved generator override (advanced batch UI / settings tab) wins
   // over the voice's assigned provider for this run.
   const effectiveProvider = options.providerOverride ?? provider;
-  const providerLower = effectiveProvider.toLowerCase();
   // Local-model providers (VibeVoice/Chatterbox) share the chunked
   // character generation pipeline.
-  if (!/vibevoice|chatterbox/.test(providerLower)) {
+  if (!isLocalChunkedProvider(effectiveProvider)) {
     return {
       success: false,
       generatedCount: 0,
@@ -544,17 +565,13 @@ export async function generateAudioForCharacter(
 
   // While the (long) synchronous generation request is in flight, poll the
   // live pipeline progress so the UI can show which phase the backend is in
-  // (speech generation, WhisperX transcription, splitting, ...).
-  const lineChapters = new Set(
-    lines
-      .map((line) => resolvePlannedLineChapterTitle(line, chapterTitle))
-      .filter((title): title is string => Boolean(title)),
-  );
+  // (speech generation, WhisperX transcription, splitting, ...). The
+  // backend finds the record and reports its scope (single chapter vs book
+  // batch); nothing here derives it.
   const stopProgressPolling = onPipelineProgress
     ? startCharacterPipelineProgressPolling({
         characterName,
         chapterTitle,
-        crossChapter: lineChapters.size > 1,
         audioRoot: audioRootFor() || null,
         requestStart: Date.now(),
         onProgress: onPipelineProgress,

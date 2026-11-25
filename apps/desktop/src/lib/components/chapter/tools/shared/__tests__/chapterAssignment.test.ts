@@ -1,22 +1,20 @@
 import { describe, expect, it, vi } from 'vitest';
 import { get, writable } from 'svelte/store';
 import { assignCharacterToLines } from '../../review/reviewHandlers';
-import { normalizeAttribution, normalizeScriptData } from '../chapterNormalization';
+import { normalizeScriptData } from '../chapterNormalization';
 import { loadChapterContent, saveDialogueFromNormalized } from '../chapterPersistence';
-import { writeDialogue } from '$lib/services/fs';
+import { inMemoryFs } from '$lib/services/__tests__/helpers/inMemoryFs';
+import { makeCharacterFile } from '$lib/services/__tests__/helpers/fixtures';
 import type { UnifiedLine } from '../../types';
-import type { DialogueJson } from '$lib/types';
 
-// The save pipeline now calls fs writeDialogue directly (the transport is
-// internal to chapterPersistence), so stub just that one export and keep the
-// rest of the fs module real (reviewHandlers uses getCharactersPath from it).
-vi.mock('$lib/services/fs', async (importOriginal) => {
-    const actual = await importOriginal<typeof import('$lib/services/fs')>();
-    return {
-        ...actual,
-        writeDialogue: vi.fn(async (_path: string, _data: DialogueJson) => true),
-    };
+// The chapter persistence owner reaches storage and identity resolution only
+// through fs: stub that seam with the in-memory fs.
+vi.mock('$lib/services/fs', async () => {
+    const mod = await import('$lib/services/__tests__/helpers/inMemoryFs');
+    return mod.inMemoryFs;
 });
+
+const G_CATHERINE = 'C4THR1NE';
 
 describe('non-speaker role assignment', () => {
     it('clears the non-speaker flag and retains the chosen role through save and reload', async () => {
@@ -36,41 +34,39 @@ describe('non-speaker role assignment', () => {
         expect(rebuild).toHaveBeenCalledOnce();
         expect(scheduleSave).toHaveBeenCalledOnce();
 
+        inMemoryFs.__reset();
+        inMemoryFs.__seed({ 'characters/Catherine.json': makeCharacterFile({ guid: G_CATHERINE, title: 'Catherine' }) });
         const rawText = `\u201c${line.text}\u201d`;
         await saveDialogueFromNormalized({
-            normalized: get(script), chapter: { title: 'Test chapter' },
+            normalized: get(script), chapter: { title: 'Test chapter' }, root: 'test-root',
             rawText, unknownThreshold: 0.62, unknownSpeakerLabel: 'Unknown',
-            repo: {
-                ensureCentralCharactersForNames: async () => {},
-                ensureCharacterNameToIdMap: async () => new Map([['catherine', 'CATHERINE_ID']]),
-                normalizeAttribution,
-            },
         });
-        const saved = vi.mocked(writeDialogue).mock.calls[0][1];
-        expect(saved.lines[0]).toMatchObject({ characterId: 'CATHERINE_ID', isNonSpeaker: false });
+        const saved = inMemoryFs.__readJson('Test chapter/dialogue.json');
+        expect(saved.lines[0]).toMatchObject({ characterId: G_CATHERINE, isNonSpeaker: false });
         const reloaded = await normalizeScriptData(saved, {
             root: 'test-root', unknownThreshold: 0.62,
             readCentralCharacters: async () => ({ characters: [] }),
-            buildIdToNameMap: () => new Map([['catherine_id', 'Catherine']]),
+            buildIdToNameMap: () => new Map([[G_CATHERINE.toLowerCase(), 'Catherine']]),
         });
         expect(reloaded?.lines[0]).toMatchObject({ characterName: 'Catherine', isNonSpeaker: false });
     });
 
     it('repairs spans before publishing loaded lines to editing and returning-flag consumers', async () => {
-        const result = await loadChapterContent({
-            chapter: { title: 'Test chapter', path: 'chapter.txt' }, root: 'test-root',
-            unknownThreshold: 0.62, unknownSpeakerLabel: 'Unknown',
-            readDialogueForChapter: async () => ({
+        inMemoryFs.__reset();
+        inMemoryFs.__seed({
+            'Test chapter/dialogue.json': {
                 chapter: 'Test chapter', sourceFile: 'chapter.txt',
                 lines: [{
                     id: 1, text: 'Hello.', span: { start: 20, end: 26 },
                     chosenSpeaker: 'Alice', candidates: [], isConflict: false,
                 }],
                 stats: { numLines: 1, numConflicts: 0 },
-            }),
-            normalizeScriptData, readCentralCharacters: async () => ({ characters: [] }),
-            buildIdToNameMap: () => new Map(),
-            readTextFile: async () => '\u201cHello.\u201d',
+            },
+            'chapter.txt': '\u201cHello.\u201d',
+        });
+        const result = await loadChapterContent({
+            chapter: { title: 'Test chapter', path: 'chapter.txt' }, root: 'test-root',
+            unknownThreshold: 0.62,
         });
         expect(result.normalized?.lines[0].span).toEqual({ start: 1, end: 7 });
         expect(result.currentScript?.lines[0].span).toEqual({ start: 1, end: 7 });

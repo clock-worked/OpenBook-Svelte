@@ -18,7 +18,6 @@
     readFileAsJson,
     scanChapters,
     selectBookDirectory,
-    triggerStatsUpdate,
   } from "$lib/services/fs";
   import { runParserForChapter } from "$lib/services/parser";
   import {
@@ -167,13 +166,13 @@
           }
         }
       } catch {}
-      // Trigger backend to recalculate character stats from all dialogue files
+      // The fresh parse saved through the chapter persistence owner, whose
+      // explicit stats step already applied this chapter's delta (ADR 0012/
+      // 0014) — no full rebuild. Reload the characters to pick it up.
       try {
-        await triggerStatsUpdate();
-        // Reload central characters.json to get updated stats
         await forceRefreshBookCharacters();
       } catch (err) {
-        console.warn("[Regenerate] Failed to update character stats:", err);
+        console.warn("[Regenerate] Failed to reload characters:", err);
       }
       // Re-read the chapter even if its load key didn't change (re-parse of an
       // already-parsed chapter).

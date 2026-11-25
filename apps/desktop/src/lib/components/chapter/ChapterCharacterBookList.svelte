@@ -1,8 +1,9 @@
 <script lang="ts">
   import { ChevronDown, ChevronRight } from 'lucide-svelte';
+  import { characterLineCount, type CharacterStatsSource } from '$lib/services/characterStats';
 
   export let open: boolean;
-  export let items: Array<{ character: { name: string; color: string | null; count?: number }, index: number }> = [];
+  export let items: Array<{ character: CharacterStatsSource & { name: string; color: string | null }, index: number }> = [];
   export let selectedName: string | null = null;
   export let onToggle: () => void;
   export let onSelect: (name: string) => void;
@@ -202,7 +203,7 @@
               <button
                 class="delete-btn"
                 title={`Delete ${item.character.name}`}
-                on:click|stopPropagation={() => onDelete(item.character.name, item.character.count || 0)}
+                on:click|stopPropagation={() => onDelete(item.character.name, characterLineCount(item.character))}
               >
                 x
               </button>

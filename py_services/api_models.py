@@ -50,6 +50,7 @@ class AttributionCandidate(BaseModel):
 class AttributionDecisionTrace(BaseModel):
     selectedCandidate: Optional[str] = None
     selectedReasons: Optional[List[str]] = None
+    ruleCategory: Optional[str] = None
     overrideReason: Optional[str] = None
     signals: Optional[Dict[str, Any]] = None
 

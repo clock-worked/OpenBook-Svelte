@@ -19,7 +19,7 @@ import {
     saveDialogueFromNormalized,
     writeChapterScriptEdits,
 } from '../chapterPersistence';
-import { normalizeAttribution, normalizeScriptData } from '../chapterNormalization';
+import { normalizeAttribution } from '../chapterNormalization';
 import { mergeNormalizedFromLegacy } from '../chapterStateSync';
 
 const TITLE = 'Ch1';
@@ -68,17 +68,7 @@ function seedBook() {
 const chapter = { title: TITLE, path: `${TITLE}/${TITLE}.txt`, parsed: true, scriptPath: `${TITLE}/dialogue.json` };
 
 async function load() {
-    return loadChapterContent({
-        chapter,
-        root: 'book',
-        unknownThreshold: 0.5,
-        unknownSpeakerLabel: 'Unknown',
-        readDialogueForChapter: inMemoryFs.readDialogueForChapter,
-        normalizeScriptData,
-        readCentralCharacters: inMemoryFs.readCentralCharacters,
-        buildIdToNameMap: (chars: any[]) => new Map(chars.map((c) => [String(c.id).toLowerCase(), c.name])),
-        readTextFile: inMemoryFs.readTextFile,
-    });
+    return loadChapterContent({ chapter, root: 'book', unknownThreshold: 0.5 });
 }
 
 /** ChapterView's reaction to `currentScript.set(...)`: merge + save. */
@@ -88,14 +78,10 @@ async function chapterViewSyncSave(normalized: any, script: ScriptJson) {
     await saveDialogueFromNormalized({
         normalized: merged,
         chapter,
+        root: 'book',
         rawText: RAW,
         unknownThreshold: 0.5,
         unknownSpeakerLabel: 'Unknown',
-        repo: {
-            ensureCentralCharactersForNames: async () => {},
-            ensureCharacterNameToIdMap: async () => nameToId,
-            normalizeAttribution,
-        },
     });
 }
 

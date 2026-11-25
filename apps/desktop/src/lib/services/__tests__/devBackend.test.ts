@@ -1,7 +1,15 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-vi.mock('node:child_process', () => ({ spawn: vi.fn(() => ({ on: vi.fn() })) }));
-vi.mock('node:fs', () => ({ existsSync: vi.fn() }));
+// dev-backend.mjs tees the child's stdout/stderr to .dev/backend.log, so the
+// fakes need piped streams and the log-file calls.
+vi.mock('node:child_process', () => ({
+  spawn: vi.fn(() => ({ on: vi.fn(), stdout: { on: vi.fn() }, stderr: { on: vi.fn() } })),
+}));
+vi.mock('node:fs', () => ({
+  existsSync: vi.fn(),
+  mkdirSync: vi.fn(),
+  createWriteStream: vi.fn(() => ({ write: vi.fn() })),
+}));
 vi.mock('tree-kill', () => ({ default: vi.fn() }));
 
 import { spawn } from 'node:child_process';

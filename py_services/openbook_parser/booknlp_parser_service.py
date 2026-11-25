@@ -21,8 +21,22 @@ from .attribution_passes import (
     quote_boundary_quality,
     rank_candidates,
 )
+from .attribution_decision import (
+    CLOSED_WORLD_UNRESOLVED,
+    FIRST_PERSON_RULES,
+    MODERNBOOKNLP_JOINT_ATTRIBUTION,
+    SAME_PARAGRAPH_CONTEXT_CONSISTENCY,
+    CandidateRow,
+    Decision,
+    apply_decision,
+    has_explicit_local_attribution,
+    initial_decision,
+    override_decision,
+    synthetic_override_decision,
+    verdict_decision,
+)
 from .dialogue_parser_service import DialogueLine, DialogueParserService
-from .episode_decoder import HARD_REASONS, decode_dialogue_episodes
+from .episode_decoder import decode_dialogue_episodes
 from .knowledge_store import load_knowledge_for_file
 from .modernbooknlp_service import ModernBookNLPService, align_dialogue_lines
 
@@ -146,42 +160,28 @@ def _unique_suggestions(*names: Optional[str]) -> List[str]:
     return ordered
 
 
-def _build_line_attribution(
+def _ranked_decision(
     signals: LineSignals,
     decision,
     legacy_rule: Optional[str] = None,
     raw_pool: Optional[List[str]] = None,
     dropped: Optional[List[str]] = None,
-) -> Dict[str, object]:
-    selected_entry = next(
-        (
-            entry
-            for entry in decision.ranked
-            if _normalize_text(entry.name) == _normalize_text(decision.chosen_name)
-        ),
-        decision.ranked[0] if decision.ranked else None,
-    )
-    selected_reasons = list(selected_entry.reasons) if selected_entry else []
-
-    return {
-        "parserBackend": "legacy",
-        "legacyRule": legacy_rule,
-        "contextGender": signals.context_gender,
-        "contextGenderCue": signals.context_gender_cue,
-        "genderConflict": bool(
-            selected_entry and "context_gender_conflict" in selected_entry.reasons
-        ),
-        "candidates": [
-            {
-                "name": entry.name,
-                "confidence": round(float(entry.score), 4),
-                "reasons": list(entry.reasons),
-            }
+) -> Decision:
+    """The parser's initial decision for one line, from rank_candidates."""
+    return initial_decision(
+        "parser_rank",
+        [
+            CandidateRow(entry.name, float(entry.score), tuple(entry.reasons))
             for entry in decision.ranked
         ],
-        "decisionTrace": {
-            "selectedCandidate": decision.chosen_name,
-            "selectedReasons": selected_reasons,
+        is_suggestion=decision.is_suggestion,
+        attribution_fields={
+            "parserBackend": "legacy",
+            "legacyRule": legacy_rule,
+            "contextGender": signals.context_gender,
+            "contextGenderCue": signals.context_gender_cue,
+        },
+        trace_fields={
             "rawCandidatePool": list(raw_pool or []),
             "droppedCandidates": list(dropped or []),
             "signals": {
@@ -206,56 +206,7 @@ def _build_line_attribution(
                 "contextGenderCue": signals.context_gender_cue,
             },
         },
-    }
-
-
-def _apply_attribution_override(line: DialogueLine, chosen_name: str, override_reason: str) -> None:
-    if not isinstance(line.attribution, dict):
-        return
-
-    candidate_rows = line.attribution.get("candidates")
-    if not isinstance(candidate_rows, list):
-        return
-
-    chosen_key = _normalize_text(chosen_name)
-    chosen_index = next(
-        (
-            index
-            for index, row in enumerate(candidate_rows)
-            if _normalize_text((row or {}).get("name")) == chosen_key
-        ),
-        None,
     )
-    if chosen_index is None:
-        return
-
-    if chosen_index > 0:
-        chosen_row = candidate_rows.pop(chosen_index)
-        candidate_rows.insert(0, chosen_row)
-
-    selected_row = candidate_rows[0] if candidate_rows else {}
-    selected_reasons = list(selected_row.get("reasons") or [])
-    if override_reason not in selected_reasons:
-        selected_reasons.append(override_reason)
-        selected_row["reasons"] = selected_reasons
-
-    line.attribution["genderConflict"] = "context_gender_conflict" in selected_reasons
-    trace = line.attribution.setdefault("decisionTrace", {})
-    trace["selectedCandidate"] = chosen_name
-    trace["selectedReasons"] = selected_reasons
-    trace["overrideReason"] = override_reason
-
-
-def _has_explicit_local_attribution(line: DialogueLine) -> bool:
-    attribution = line.attribution if isinstance(line.attribution, dict) else {}
-    trace = attribution.get("decisionTrace")
-    if not isinstance(trace, dict):
-        return False
-    reasons = {str(reason) for reason in trace.get("selectedReasons") or []}
-    return bool(reasons & (HARD_REASONS | {
-        "0p_protagonist_first_person",
-        "first_person_override",
-    }))
 
 
 class BookNLPParserService:
@@ -360,26 +311,6 @@ class BookNLPParserService:
             for idx, paragraph_index in line_paragraph_index.items()
         }
 
-        # User-confirmed speakers per paragraph: lines the user has explicitly
-        # attributed (resolutionStatus == "user_confirmed") are the strongest
-        # evidence for sibling-line attribution.
-        user_confirmed_speakers_by_paragraph: Dict[int, List[str]] = {}
-        for idx, base_line in enumerate(base_lines):
-            if base_line.line_type != "dialogue":
-                continue
-            attribution = base_line.attribution
-            if not isinstance(attribution, dict):
-                continue
-            if attribution.get("resolutionStatus") != "user_confirmed":
-                continue
-            speaker = str(base_line.speaker or "").strip()
-            if not speaker:
-                continue
-            para_idx = line_paragraph_index.get(idx, -1)
-            if para_idx < 0:
-                continue
-            user_confirmed_speakers_by_paragraph.setdefault(para_idx, []).append(speaker)
-
         uncertain_lines = 0
         resolved_dialogue_by_paragraph: Dict[int, str] = {}
 
@@ -433,7 +364,6 @@ class BookNLPParserService:
                 is_returning_by_line=is_returning_by_line,
                 closed_world_catalog=closed_world_catalog,
                 closed_world=closed_world,
-                user_confirmed_speakers_by_paragraph=user_confirmed_speakers_by_paragraph,
             )
             result = extract_line_signals(extraction_ctx)
             signals = result.signals
@@ -479,20 +409,20 @@ class BookNLPParserService:
                 ]
 
             if not dialogue_candidates:
-                line.speaker = legacy_name
-                line.is_suggestion = True
-                line.suggestions = _unique_suggestions(legacy_name)
-                line.attribution = {
-                    "parserBackend": "legacy",
-                    "candidates": [],
-                    "decisionTrace": {
-                        "selectedCandidate": None,
-                        "selectedReasons": ["closed_world_unresolved"],
+                apply_decision(line, initial_decision(
+                    "parser_rank",
+                    [],
+                    is_suggestion=True,
+                    reasons=[CLOSED_WORLD_UNRESOLVED],
+                    fallback_speaker=legacy_name,
+                    suggestions=_unique_suggestions(legacy_name),
+                    attribution_fields={"parserBackend": "legacy"},
+                    trace_fields={
                         "rawCandidatePool": raw_pool_names,
                         "droppedCandidates": dropped_candidates,
                         "signals": {"sourceCandidate": legacy_name},
                     },
-                }
+                ))
                 uncertain_lines += 1
                 continue
 
@@ -505,30 +435,26 @@ class BookNLPParserService:
             signals.candidate_genders = candidate_genders
 
             decision = rank_candidates(dialogue_candidates, signals)
-            line.speaker = decision.chosen_name
-            line.is_suggestion = decision.is_suggestion
-            line.suggestions = [entry.name for entry in decision.ranked]
-            line.attribution = _build_line_attribution(
+            apply_decision(line, _ranked_decision(
                 signals,
                 decision,
                 legacy_rule=legacy_rule,
                 raw_pool=raw_pool_names,
                 dropped=dropped_candidates,
-            )
-            if legacy_rule in {"0p_protagonist_first_person", "first_person_override"}:
+            ))
+            if legacy_rule in FIRST_PERSON_RULES:
                 protagonist_name = (
                     canonicalize_closed_world_name(legacy_name, closed_world_catalog)
                     if closed_world
                     else legacy_name
                 )
                 if protagonist_name:
-                    line.speaker = protagonist_name
-                    line.is_suggestion = False
-                    line.suggestions = _unique_suggestions(
+                    apply_decision(line, override_decision(
+                        "first_person",
                         protagonist_name,
-                        *line.suggestions,
-                    )
-                    _apply_attribution_override(line, protagonist_name, legacy_rule)
+                        legacy_rule,
+                        is_suggestion=False,
+                    ))
             if line.is_suggestion:
                 uncertain_lines += 1
             elif paragraph_index >= 0 and line.speaker:
@@ -543,7 +469,7 @@ class BookNLPParserService:
             line = base_lines[line_idx]
             if not line.is_suggestion or not line.suggestions or len(line.suggestions) < 2:
                 continue
-            if _has_explicit_local_attribution(line):
+            if has_explicit_local_attribution(line):
                 continue
 
             current_paragraph = line_paragraph_index.get(line_idx, -1)
@@ -575,14 +501,11 @@ class BookNLPParserService:
 
             for candidate in line.suggestions:
                 if _normalize_text(candidate) == _normalize_text(previous_speaker):
-                    reordered = _unique_suggestions(candidate, *line.suggestions)
-                    line.speaker = reordered[0]
-                    line.suggestions = reordered
-                    _apply_attribution_override(
-                        line,
-                        reordered[0],
-                        "same_paragraph_context_consistency",
-                    )
+                    apply_decision(line, override_decision(
+                        "paragraph_consistency",
+                        str(candidate).strip(),
+                        SAME_PARAGRAPH_CONTEXT_CONSISTENCY,
+                    ))
                     break
 
         episode_decoder_enabled = bool((options or {}).get("episode_joint_decode", True))
@@ -605,47 +528,34 @@ class BookNLPParserService:
                 modernbooknlp_aligned = len(aligned)
                 for line_index, prediction in aligned.items():
                     line = base_lines[line_index]
-                    previous_speaker = str(line.speaker or "").strip() or None
-                    attribution = line.attribution if isinstance(line.attribution, dict) else {}
-                    trace = attribution.setdefault("decisionTrace", {})
                     modernbooknlp_metadata = {
                         "corefId": prediction.coref_id,
                         "nominalMentions": list(prediction.nominal_mentions),
                         "quoteSpan": {"start": prediction.start, "end": prediction.end},
-                        "previousSpeaker": previous_speaker,
+                        "previousSpeaker": str(line.speaker or "").strip() or None,
                         "proposedSpeaker": prediction.speaker,
                     }
-                    trace["modernBookNLP"] = modernbooknlp_metadata
-                    if _has_explicit_local_attribution(line):
-                        trace["modernBookNLPDecision"] = (
-                            "rejected_explicit_local_attribution"
-                        )
-                        line.attribution = attribution
+                    if has_explicit_local_attribution(line):
+                        apply_decision(line, verdict_decision(
+                            "modernbooknlp",
+                            trace_fields={
+                                "modernBookNLP": modernbooknlp_metadata,
+                                "modernBookNLPDecision": "rejected_explicit_local_attribution",
+                            },
+                        ))
                         continue
-                    line.speaker = prediction.speaker
-                    line.is_suggestion = False
-                    line.suggestions = _unique_suggestions(prediction.speaker, *line.suggestions)
-                    attribution["parserBackend"] = "modernbooknlp"
-                    attribution["candidates"] = [
-                        {
-                            "name": prediction.speaker,
-                            "confidence": 0.9,
-                            "reasons": ["modernbooknlp_joint_attribution"],
+                    apply_decision(line, synthetic_override_decision(
+                        "modernbooknlp",
+                        prediction.speaker,
+                        0.9,
+                        MODERNBOOKNLP_JOINT_ATTRIBUTION,
+                        is_suggestion=False,
+                        attribution_fields={"parserBackend": "modernbooknlp"},
+                        trace_fields={
+                            "modernBookNLP": modernbooknlp_metadata,
+                            "modernBookNLPDecision": "accepted",
                         },
-                        *[
-                            candidate
-                            for candidate in attribution.get("candidates", [])
-                            if _normalize_text((candidate or {}).get("name"))
-                            != _normalize_text(prediction.speaker)
-                        ],
-                    ]
-                    trace.update({
-                        "selectedCandidate": prediction.speaker,
-                        "selectedReasons": ["modernbooknlp_joint_attribution"],
-                        "overrideReason": "modernbooknlp_joint_attribution",
-                        "modernBookNLPDecision": "accepted",
-                    })
-                    line.attribution = attribution
+                    ))
                 backend = "modernbooknlp"
             except Exception as exc:
                 fallback_reason = f"modernbooknlp_failed: {exc}"
