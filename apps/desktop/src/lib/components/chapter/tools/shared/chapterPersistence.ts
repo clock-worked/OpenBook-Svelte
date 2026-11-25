@@ -1,7 +1,7 @@
 import type { AudioGenerationRecord, DialogueJson, ScriptJson } from '$lib/types';
 import type { UnifiedLine } from '$lib/components/chapter/tools/types';
 import { computeReturningFlags, isDialogueSpan } from '$lib/services/dialogueReturning';
-import { readOptionalDialogue, writeDialogue } from '$lib/services/fs';
+import { getScriptPath, readOptionalDialogue, writeDialogue, writeScript } from '$lib/services/fs';
 import { alignChapterLineSpans } from './chapterPresentation';
 
 type ChapterLike = {
@@ -301,6 +301,87 @@ export async function saveDialogueFromNormalized(params: {
         console.error('[ChapterView] ✗ Failed to save dialogue.json');
     }
     return saved;
+}
+
+function isVersionedDialogue(doc: unknown): doc is DialogueJson {
+    return !!doc
+        && typeof doc === 'object'
+        && typeof (doc as DialogueJson).formatVersion === 'string'
+        && Array.isArray((doc as DialogueJson).lines);
+}
+
+/**
+ * Persist speaker edits made on the loader's v1 `currentScript` view (set
+ * speaker, merge/rename, remove character, reviewed lines).
+ *
+ * When the chapter has a versioned dialogue.json, the edits are applied to
+ * that document in place — `characterId`, `isConflict`, `isNonSpeaker`,
+ * `attribution` per line, plus the stats — so everything the v1 view does
+ * not carry (formatVersion, metadata, audioGeneration, readAs, …) survives
+ * (ADR 0003: write the current schema only). Only a chapter with no
+ * versioned dialogue.json gets the v1 script written to `scriptPath`.
+ *
+ * `nameToId` maps lower-cased names and aliases to character ids. A line
+ * whose new speaker name it cannot resolve keeps its current characterId;
+ * a line carrying an explicit `characterId` (reviewed lines) uses that.
+ */
+export async function writeChapterScriptEdits(params: {
+    chapter: { title: string; scriptPath?: string };
+    script: ScriptJson;
+    nameToId: Map<string, string>;
+    unknownSpeakerLabel?: string;
+}): Promise<boolean> {
+    const { chapter, script, nameToId } = params;
+    const unknownKey = (params.unknownSpeakerLabel ?? 'Unknown').trim().toLowerCase();
+    const dialoguePath = `${chapter.title}/dialogue.json`;
+    const doc = await readOptionalDialogue(dialoguePath);
+
+    if (!isVersionedDialogue(doc)) {
+        return writeScript(chapter.scriptPath ?? getScriptPath(chapter.title), script);
+    }
+
+    const edits = new Map(script.lines.map((line) => [line.id, line] as const));
+    for (const line of doc.lines) {
+        const edit = edits.get(line.id) as (ScriptJson['lines'][number] & { characterId?: string | null }) | undefined;
+        if (!edit) continue;
+        const isNonSpeaker = edit.isNonSpeaker === true;
+        const name = String(edit.chosenSpeaker ?? '').trim();
+        const nameKey = name.toLowerCase();
+
+        if (isNonSpeaker) {
+            line.characterId = null;
+            line.candidates = [];
+        } else if (Object.prototype.hasOwnProperty.call(edit, 'characterId')) {
+            line.characterId = edit.characterId ?? null;
+        } else if (!name || nameKey === unknownKey) {
+            line.characterId = null;
+        } else {
+            const id = nameToId.get(nameKey);
+            if (id) {
+                line.characterId = id;
+            } else {
+                console.warn(`[ChapterPersistence] Speaker "${name}" not in the book roster; line ${line.id} keeps its characterId`);
+            }
+        }
+        line.isNonSpeaker = isNonSpeaker;
+        line.isConflict = isNonSpeaker ? false : !!edit.isConflict;
+        if (edit.attribution) {
+            line.attribution = edit.attribution as any;
+            const customTags = line.metadata?.customTags as Record<string, unknown> | undefined;
+            if (customTags && 'attribution' in customTags) customTags.attribution = edit.attribution;
+        }
+    }
+
+    const characterBreakdown: Record<string, number> = {};
+    let conflicts = 0;
+    for (const line of doc.lines) {
+        if (line.isConflict) conflicts += 1;
+        if (line.isNonSpeaker || !line.characterId) continue;
+        characterBreakdown[line.characterId] = (characterBreakdown[line.characterId] || 0) + 1;
+    }
+    doc.stats = { ...doc.stats, totalLines: doc.lines.length, conflicts, characterBreakdown };
+
+    return writeDialogue(dialoguePath, doc);
 }
 
 /**
