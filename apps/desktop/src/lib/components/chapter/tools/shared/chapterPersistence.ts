@@ -4,6 +4,7 @@ import { computeReturningFlags, isDialogueSpan } from '$lib/services/dialogueRet
 import {
     applyDialogueStatsDelta,
     ensureCharacterNameToIdMapCached,
+    getScriptPath,
     invalidateCentralCharactersCache,
     readCentralCharacters,
     readDialogueForChapter,
@@ -11,6 +12,7 @@ import {
     readTextFile,
     writeDialogue,
     writeDialogueSave,
+    writeScript,
     type WriteOutcome,
 } from '$lib/services/fs';
 import { normalizeAttribution, normalizeScriptData } from './chapterNormalization';
@@ -290,6 +292,184 @@ export async function saveDialogueFromNormalized(params: {
         console.error('[ChapterView] ✗ Failed to save dialogue.json');
     }
     return saved;
+}
+
+/** A versioned dialogue.json whose lines can be edited in place. */
+function isEditableDialogue(doc: unknown): doc is DialogueJson {
+    return isVersionedDialogue(doc) && Array.isArray(doc.lines);
+}
+
+/**
+ * Persist speaker edits made on the loader's v1 `currentScript` view (set
+ * speaker, merge/rename, remove character, reviewed lines).
+ *
+ * When the chapter has a versioned dialogue.json, the edits are applied to
+ * that document in place — `characterId`, `isConflict`, `isNonSpeaker`,
+ * `attribution` per line, plus the stats — so everything the v1 view does
+ * not carry (formatVersion, metadata, audioGeneration, readAs, …) survives
+ * (ADR 0003: write the current schema only). Only a chapter with no
+ * versioned dialogue.json gets the v1 script written to `scriptPath`.
+ *
+ * `nameToId` maps lower-cased names and aliases to character ids. A line
+ * whose new speaker name it cannot resolve keeps its current characterId;
+ * a line carrying an explicit `characterId` (reviewed lines) uses that.
+ */
+export async function writeChapterScriptEdits(params: {
+    chapter: { title: string; scriptPath?: string };
+    script: ScriptJson;
+    nameToId: Map<string, string>;
+    unknownSpeakerLabel?: string;
+}): Promise<boolean> {
+    const { chapter, script, nameToId } = params;
+    const unknownKey = (params.unknownSpeakerLabel ?? 'Unknown').trim().toLowerCase();
+    const dialoguePath = `${chapter.title}/dialogue.json`;
+    const doc = await readOptionalDialogue(dialoguePath);
+
+    if (!isEditableDialogue(doc)) {
+        return writeScript(chapter.scriptPath ?? getScriptPath(chapter.title), script);
+    }
+
+    const edits = new Map(script.lines.map((line) => [line.id, line] as const));
+    for (const line of doc.lines) {
+        const edit = edits.get(line.id) as (ScriptJson['lines'][number] & { characterId?: string | null }) | undefined;
+        if (!edit) continue;
+        const isNonSpeaker = edit.isNonSpeaker === true;
+        const name = String(edit.chosenSpeaker ?? '').trim();
+        const nameKey = name.toLowerCase();
+
+        if (isNonSpeaker) {
+            line.characterId = null;
+            line.candidates = [];
+        } else if (Object.prototype.hasOwnProperty.call(edit, 'characterId')) {
+            line.characterId = edit.characterId ?? null;
+        } else if (!name || nameKey === unknownKey) {
+            line.characterId = null;
+        } else {
+            const id = nameToId.get(nameKey);
+            if (id) {
+                line.characterId = id;
+            } else {
+                console.warn(`[ChapterPersistence] Speaker "${name}" not in the book roster; line ${line.id} keeps its characterId`);
+            }
+        }
+        line.isNonSpeaker = isNonSpeaker;
+        line.isConflict = isNonSpeaker ? false : !!edit.isConflict;
+        if (edit.attribution) {
+            line.attribution = edit.attribution as any;
+            const customTags = line.metadata?.customTags as Record<string, unknown> | undefined;
+            if (customTags && 'attribution' in customTags) customTags.attribution = edit.attribution;
+        }
+    }
+
+    recomputeDialogueStats(doc);
+    return writeDialogue(dialoguePath, doc);
+}
+
+function recomputeDialogueStats(doc: DialogueJson): void {
+    const characterBreakdown: Record<string, number> = {};
+    let conflicts = 0;
+    for (const line of doc.lines) {
+        if (line.isConflict) conflicts += 1;
+        if (line.isNonSpeaker || !line.characterId) continue;
+        characterBreakdown[line.characterId] = (characterBreakdown[line.characterId] || 0) + 1;
+    }
+    doc.stats = { ...doc.stats, totalLines: doc.lines.length, conflicts, characterBreakdown };
+}
+
+/**
+ * Count the lines of a chapter's versioned dialogue.json spoken by
+ * `characterId`. Returns `null` when the chapter has no versioned
+ * dialogue.json (the caller falls back to the legacy v1 script).
+ */
+export async function countCharacterIdInDialogue(
+    chapterTitle: string,
+    characterId: string
+): Promise<number | null> {
+    const doc = await readOptionalDialogue(`${chapterTitle}/dialogue.json`);
+    if (!isEditableDialogue(doc)) return null;
+    let total = 0;
+    for (const line of doc.lines) {
+        if (!line.isNonSpeaker && line.characterId === characterId) total += 1;
+    }
+    return total;
+}
+
+/**
+ * Book-wide character reassign for one chapter: every line of the versioned
+ * dialogue.json whose `characterId` is `oldId` moves to `newId` (`null` =
+ * Unknown, flagged as a conflict for review). Candidate ids (the line's and
+ * its attribution's) are remapped the same way — merged into an existing
+ * `newId` candidate at the higher confidence, or dropped when `newId` is
+ * null. Everything else on the document (metadata, audioGeneration, readAs,
+ * review state, …) is kept (ADR 0003: write the current schema only).
+ *
+ * Returns `null` when the chapter has no versioned dialogue.json (the caller
+ * keeps the legacy v1 path), otherwise how many lines were reassigned; the
+ * file is only written when that is > 0.
+ */
+export async function reassignCharacterIdInDialogue(
+    chapterTitle: string,
+    oldId: string,
+    newId: string | null
+): Promise<number | null> {
+    if (!oldId || oldId === newId) return null;
+    const dialoguePath = `${chapterTitle}/dialogue.json`;
+    const doc = await readOptionalDialogue(dialoguePath);
+    if (!isEditableDialogue(doc)) return null;
+
+    let reassigned = 0;
+    let touched = false;
+    for (const line of doc.lines) {
+        if (Array.isArray(line.candidates) && line.candidates.some((c) => c?.characterId === oldId)) {
+            line.candidates = remapLineCandidates(line.candidates, oldId, newId);
+            touched = true;
+        }
+
+        const attributionCandidates = line.attribution?.candidates;
+        if (Array.isArray(attributionCandidates)) {
+            for (const candidate of attributionCandidates) {
+                if (candidate?.characterId === oldId) {
+                    candidate.characterId = newId;
+                    touched = true;
+                }
+            }
+        }
+
+        if (line.characterId === oldId) {
+            line.characterId = newId;
+            // Same rule as the v1 path: Unknown needs review; a named
+            // replacement is a conflict only when the line had competing
+            // candidates and none of them is the replacement.
+            line.isConflict = newId === null
+                || (line.candidates.length > 1 && !line.candidates.some((c) => c.characterId === newId));
+            reassigned += 1;
+            touched = true;
+        }
+    }
+
+    if (!touched) return 0;
+    recomputeDialogueStats(doc);
+    const saved = await writeDialogue(dialoguePath, doc);
+    if (!saved) throw new Error(`Failed to save reassigned dialogue for ${chapterTitle}`);
+    return reassigned;
+}
+
+function remapLineCandidates(
+    candidates: DialogueJson['lines'][number]['candidates'],
+    oldId: string,
+    newId: string | null
+): DialogueJson['lines'][number]['candidates'] {
+    const byId = new Map<string, DialogueJson['lines'][number]['candidates'][number]>();
+    for (const candidate of candidates) {
+        if (!candidate) continue;
+        const id = candidate.characterId === oldId ? newId : candidate.characterId;
+        if (!id) continue;
+        const existing = byId.get(id);
+        if (!existing || candidate.confidence > existing.confidence) {
+            byId.set(id, { ...candidate, characterId: id });
+        }
+    }
+    return Array.from(byId.values()).sort((left, right) => right.confidence - left.confidence);
 }
 
 /**
