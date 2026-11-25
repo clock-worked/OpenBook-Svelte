@@ -7,11 +7,16 @@ import re
 import sys
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
+from pathlib import Path
 
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-PARENT_DIR = os.path.dirname(SCRIPT_DIR)
-if PARENT_DIR not in sys.path:
-    sys.path.insert(0, PARENT_DIR)
+# scripts/python bootstrap: puts py_services (and the repo root) on sys.path.
+SCRIPTS_PYTHON_DIR = Path(__file__).resolve().parents[1]
+if str(SCRIPTS_PYTHON_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_PYTHON_DIR))
+
+from _path_setup import bootstrap_python_script_paths  # noqa: E402
+
+bootstrap_python_script_paths(__file__)
 
 
 @dataclass

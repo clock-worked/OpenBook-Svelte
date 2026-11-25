@@ -10,10 +10,10 @@ Verdict classes:
   narration     - curated as Narrator (excluded from problem counts)
   unlabeled     - no curated characterId
 
-Local-only: the ``local_`` prefix means CI test discovery skips this file.
+Needs the full local parser stack (BookNLP), so it is not run in CI.
 
 Usage:
-    python -m py_services.local_attribution_audit <book_root> [book_root ...]
+    python scripts/python/research/local_attribution_audit.py <book_root> [book_root ...]
         [--chapter FILTER] [--report OUT.md]
 """
 
@@ -27,7 +27,16 @@ import time
 from pathlib import Path
 from typing import Dict, Generator, List, Optional, Tuple
 
-from .openbook_parser.booknlp_parser_service import BookNLPParserService
+# scripts/python bootstrap: puts py_services (and the repo root) on sys.path.
+SCRIPTS_PYTHON_DIR = Path(__file__).resolve().parents[1]
+if str(SCRIPTS_PYTHON_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_PYTHON_DIR))
+
+from _path_setup import bootstrap_python_script_paths  # noqa: E402
+
+bootstrap_python_script_paths(__file__)
+
+from openbook_parser.booknlp_parser_service import BookNLPParserService
 
 
 # ---------------------------------------------------------------------------
