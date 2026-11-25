@@ -23,27 +23,15 @@
   import { audioUpdateTrigger, triggerAudioUpdate } from '$lib/stores/audioUpdates';
   import { readCentralCharacters, readDialogueForChapter } from '$lib/services/fs';
   import { resolveLineCharacterId, resolveCharacterNameForId } from '$lib/services/characterIdentity';
-  import {
-    enqueueAudioJob,
-    getNextQueuedJob,
-    isJobCanceled,
-    requeueRunningJobs,
-    markJobCanceled,
-    markJobCompleted,
-    markJobFailed,
-    markJobRunning,
-    setQueueChapterOverview,
-    updateJobProgress,
-    updateJobPhase,
-    type AudioQueueItem,
-  } from '$lib/stores/audioQueue';
+  import { audioQueue, type AudioQueueChapterOverview, type QueueJob } from '$lib/stores/audioQueue';
+  import { createQueueJob, isActiveStatus, runningJob } from '$lib/services/audioQueueJob';
   import {
     planWholeBookMissing,
     planAdvancedPreview,
     planAdvancedGeneration,
+    planChapterCharacter,
     rebuildQueuedJobPayload,
     buildSpeakerSourceBatches,
-    buildCumulativeCharacterCounts,
     type PlannedQueueJob,
     type PlannerVoiceInfo,
     type PlannedSpeakerSourceBatch,
@@ -60,17 +48,31 @@
 
   type VoiceInfo = PlannerVoiceInfo;
 
+  // Single selected-line generation (outside the queue) only.
   let generatingCharacter: string | null = null;
   let generationProgress = { current: 0, total: 0 };
   let generationPhase: string | null = null;
+  // Queue generation is read from the store's running job.
+  $: queueRunningJob = runningJob($audioQueue);
+  $: queueBusy = queueProcessing || $audioQueue.items.some((item) => isActiveStatus(item.status));
+  $: activeGeneratingCharacter = generatingCharacter ?? queueRunningJob?.characterId ?? null;
+  $: activeGenerationProgress = generatingCharacter
+    ? generationProgress
+    : { current: queueRunningJob?.progress.linesDone ?? 0, total: queueRunningJob?.totalLines ?? 0 };
+  $: activeGenerationPhase = generatingCharacter
+    ? generationPhase
+    : queueRunningJob?.progress.record
+      ? progressLabel(queueRunningJob.progress.record)
+      : null;
   let showOverwriteModal = false;
   let overwriteCharacterId: string | null = null;
   let overwriteClipCount = 0;
   let pruningStale = false;
   let reloadingManifestData = false;
   let audioClipCounts = new Map<string, number>();
+  // Re-entrancy guard for this panel's runner loop only; the queue's
+  // in-flight state (which job runs, its plan and progress) is the store's.
   let queueProcessing = false;
-  const queuedJobs = new Map<string, PlannedQueueJob>();
   let showAdvancedOverlay = false;
   let loadingAdvancedPreview = false;
   let advancedSubmitting = false;
@@ -302,13 +304,16 @@
 
     const missingVoiceLineCount = missingVoices.reduce((sum, item) => sum + (lineCountsById.get(item.id) || 0), 0);
 
-    let totalQueuedLines = 0;
+    const planned: PlannedQueueJob[] = [];
     for (const item of queueTargets) {
-      const queuedCount = await enqueueCharacterGeneration(item.id, { missingOnly: true });
-      totalQueuedLines += queuedCount;
+      const job = await planCharacterGeneration(item.id, { missingOnly: true });
+      if (job) planned.push(job);
     }
 
-    setQueueChapterOverview(ch.title, totalQueuedLines, missingVoiceLineCount);
+    const totalQueuedLines = planned.reduce((sum, job) => sum + job.lines.length, 0);
+    enqueuePlannedJobs(planned, 'missing', [
+      { chapterTitle: ch.title, processableTotal: totalQueuedLines, missingVoiceTotal: missingVoiceLineCount },
+    ]);
 
     if (totalQueuedLines === 0) {
       alert('No missing audio lines found for voiced characters in this chapter.');
@@ -332,30 +337,15 @@
       return;
     }
 
-    const queueRunTimestamp = Date.now();
-    let jobCounter = 0;
-
-    for (const job of plan.jobs) {
-      const jobId = `${job.jobIdBase}-${queueRunTimestamp}-${jobCounter++}`;
-      queuedJobs.set(jobId, job);
-      enqueueAudioJob({
-        id: jobId,
-        characterId: job.characterId,
-        characterName: job.displayName,
-        chapterTitle: job.chapterTitle,
-        generationMode: 'missing',
-        total: job.lines.length,
-        totalCharacters: job.totalCharacters,
-      });
-    }
-
-    for (const [chapterTitle, totals] of plan.chapterTotals.entries()) {
-      setQueueChapterOverview(chapterTitle, totals.queuedLines, totals.missingVoiceLines);
-    }
-
-    if (!queueProcessing) {
-      void processQueue();
-    }
+    enqueuePlannedJobs(
+      plan.jobs,
+      'missing',
+      Array.from(plan.chapterTotals.entries()).map(([chapterTitle, totals]) => ({
+        chapterTitle,
+        processableTotal: totals.queuedLines,
+        missingVoiceTotal: totals.missingVoiceLines,
+      })),
+    );
 
     const chaptersWithQueuedJobs = Array.from(plan.chapterTotals.values())
       .filter((totals) => totals.queuedCharacterBatches > 0)
@@ -587,23 +577,6 @@
         return;
       }
 
-      const queueRunTimestamp = Date.now();
-      let jobCounter = 0;
-
-      for (const job of plan.jobs) {
-        const jobId = `${job.jobIdBase}-${queueRunTimestamp}-${jobCounter++}`;
-        queuedJobs.set(jobId, job);
-        enqueueAudioJob({
-          id: jobId,
-          characterId: job.characterId,
-          characterName: job.displayName,
-          chapterTitle: job.chapterTitle,
-          generationMode: 'missing',
-          total: job.lines.length,
-          totalCharacters: job.totalCharacters,
-        });
-      }
-
       const chapterMissingVoiceTotals = new Map(
         advancedPreview.chapterOverview.map((entry) => [entry.chapterTitle, entry.missingVoiceTotal])
       );
@@ -613,17 +586,15 @@
         ...chapterMissingVoiceTotals.keys(),
       ]);
 
-      for (const chapterTitle of chapterTitles) {
-        const processableTotal = plan.chapterProcessableTotals.get(chapterTitle) || 0;
-        const missingVoiceTotal = chapterMissingVoiceTotals.get(chapterTitle) || 0;
-        if (processableTotal > 0 || missingVoiceTotal > 0) {
-          setQueueChapterOverview(chapterTitle, processableTotal, missingVoiceTotal);
-        }
-      }
+      const chapterOverview = [...chapterTitles]
+        .map((chapterTitle) => ({
+          chapterTitle,
+          processableTotal: plan.chapterProcessableTotals.get(chapterTitle) || 0,
+          missingVoiceTotal: chapterMissingVoiceTotals.get(chapterTitle) || 0,
+        }))
+        .filter((entry) => entry.processableTotal > 0 || entry.missingVoiceTotal > 0);
 
-      if (!queueProcessing) {
-        void processQueue();
-      }
+      enqueuePlannedJobs(plan.jobs, 'missing', chapterOverview);
 
       showAdvancedOverlay = false;
 
@@ -873,7 +844,7 @@
     }
   }
 
-  async function buildPayloadFromQueueItem(item: AudioQueueItem): Promise<RebuiltQueuePayload> {
+  async function buildPayloadFromQueueItem(item: QueueJob): Promise<RebuiltQueuePayload> {
     return rebuildQueuedJobPayload(
       {
         resolveChapterPath: (title) => get(chapters).find((entry) => entry.title === title)?.path,
@@ -928,76 +899,69 @@
     return removed;
   }
 
+  /**
+   * Adds planned jobs to the queue as one transition (with the chapter
+   * overview) and starts the runner. Job ids are `<jobIdBase>-<run>-<n>`.
+   */
+  function enqueuePlannedJobs(
+    planned: PlannedQueueJob[],
+    generationMode: 'missing' | 'full',
+    chapterOverview: AudioQueueChapterOverview[] = [],
+  ): void {
+    if (planned.length === 0) return;
+    const runTimestamp = Date.now();
+    const jobs = planned.map((job, index) =>
+      createQueueJob(job, {
+        id: `${job.jobIdBase}-${runTimestamp}-${index}`,
+        generationMode,
+        createdAt: runTimestamp,
+      }),
+    );
+    audioQueue.enqueue(jobs, { chapterOverview });
+    void processQueue();
+  }
+
   async function enqueueCharacterGeneration(characterId: string, options: { missingOnly?: boolean } = {}): Promise<number> {
+    const job = await planCharacterGeneration(characterId, options);
+    if (!job) return 0;
+    enqueuePlannedJobs([job], options.missingOnly ? 'missing' : 'full');
+    return job.lines.length;
+  }
+
+  async function planCharacterGeneration(
+    characterId: string,
+    options: { missingOnly?: boolean } = {},
+  ): Promise<PlannedQueueJob | null> {
     const ch = get(currentChapter);
     const root = get(bookRoot);
     const scr = get(currentScript);
     
-    if (!ch || !root || !scr) return 0;
+    if (!ch || !root || !scr) return null;
 
     const characterName = resolveCharacterNameForId(characterId, characterIdToName);
     const voiceInfo = getVoiceForCharacter(characterId);
     if (!voiceInfo) {
       alert(`No voice assigned to ${characterName}`);
-      return 0;
+      return null;
     }
 
     // Remove stale clips before enqueueing generation.
     await pruneStaleCharacterAudio(characterId, characterName, scr, ch.title);
 
-    // Get all lines for this character (handle both v2.0 characterId and v1.0 chosenSpeaker)
-    const characterLines = getCharacterLinesForCurrentScript(characterId, characterName, scr);
-
-    if (characterLines.length === 0) {
+    // One planner: the in-memory script of the open chapter, planned the
+    // same way the whole-book and advanced paths plan from disk.
+    const planned = await planChapterCharacter(buildPlannerContext(), {
+      chapter: ch,
+      script: scr,
+      characterId,
+      missingOnly: Boolean(options.missingOnly),
+    });
+    if (planned.reason === 'no-voice') {
+      alert(`No voice assigned to ${characterName}`);
+    } else if (planned.reason === 'no-lines') {
       alert(`No lines found for ${characterName}`);
-      return 0;
     }
-
-    let linesToGenerate = characterLines;
-    if (options.missingOnly) {
-      const checks = await Promise.all(
-        characterLines.map(async (line) => ({
-          line,
-          exists: await checkAudioExistsForLine(ch.title, characterName, line.id),
-        }))
-      );
-      linesToGenerate = checks.filter(c => !c.exists).map(c => c.line);
-      if (linesToGenerate.length === 0) {
-        return 0;
-      }
-    }
-
-    const mode = options.missingOnly ? 'missing' : 'full';
-    const jobId = `${characterId}-${mode}-${Date.now()}`;
-    const { cumulative, total } = buildCumulativeCharacterCounts(linesToGenerate);
-    queuedJobs.set(jobId, {
-      jobIdBase: `${characterId}-${mode}`,
-      displayName: characterName,
-      characterId,
-      characterName,
-      lines: linesToGenerate,
-      cumulativeCharacterCounts: cumulative,
-      totalCharacters: total,
-      voiceInfo,
-      chapterTitle: ch.title,
-      sourceFile: getChapterSourceFile(ch),
-    });
-
-    enqueueAudioJob({
-      id: jobId,
-      characterId,
-      characterName,
-      chapterTitle: ch.title,
-      generationMode: mode,
-      total: linesToGenerate.length,
-      totalCharacters: total,
-    });
-
-    if (!queueProcessing) {
-      void processQueue();
-    }
-
-    return linesToGenerate.length;
+    return planned.job;
   }
 
   async function processQueue() {
@@ -1005,41 +969,44 @@
     queueProcessing = true;
 
     while (true) {
-      const next = getNextQueuedJob();
+      const next = audioQueue.next();
       if (!next) {
         queueProcessing = false;
-        generatingCharacter = null;
-        generationProgress = { current: 0, total: 0 };
-        generationPhase = null;
         break;
       }
 
-      let payload = queuedJobs.get(next.id);
+      // The job carries its plan while this session holds it; a job
+      // restored after a restart is rebuilt from disk (same QueueJob type).
+      let payload = next.plan;
       if (!payload) {
         const rebuilt = await buildPayloadFromQueueItem(next);
         if (rebuilt.markComplete) {
-          markJobCompleted(next.id);
+          audioQueue.finish(next.id, { kind: 'ok' });
           continue;
         }
         if (!rebuilt.payload) {
-          markJobFailed(next.id, [rebuilt.error || 'Unable to rebuild queued payload for job.']);
+          audioQueue.finish(next.id, { kind: 'fail', errors: [rebuilt.error || 'Unable to rebuild queued payload for job.'] });
           continue;
         }
 
         payload = rebuilt.payload;
-        queuedJobs.set(next.id, payload);
       }
 
-      if (isJobCanceled(next.id)) {
-        markJobCanceled(next.id);
-        queuedJobs.delete(next.id);
+      if (audioQueue.isCancelRequested(next.id)) {
+        audioQueue.finish(next.id, { kind: 'cancel' });
         continue;
       }
 
-      markJobRunning(next.id);
-      generatingCharacter = payload.characterId;
-      generationProgress = { current: 0, total: payload.lines.length };
-      generationPhase = null;
+      if (!audioQueue.start(next.id, payload)) {
+        // The store allows one running job: if another runner (a previous
+        // mount of this panel) owns the queue, leave the queue to it.
+        // Otherwise the job left the queue meanwhile (removed): move on.
+        if (runningJob(get(audioQueue))) {
+          queueProcessing = false;
+          break;
+        }
+        continue;
+      }
 
       // Resolve this job's generator at run time: the advanced-overlay
       // override (stored on the job) wins over the settings-tab default.
@@ -1064,26 +1031,22 @@
         payload.voiceInfo.provider,
         payload.chapterTitle,
         payload.sourceFile,
-        (current, total) => {
-          generationProgress = { current, total };
-          const boundedCurrent = Math.max(0, Math.min(current, payload.cumulativeCharacterCounts.length));
-          const processedCharacters = boundedCurrent > 0 ? payload.cumulativeCharacterCounts[boundedCurrent - 1] : 0;
-          updateJobProgress(next.id, current, total, processedCharacters, payload.totalCharacters);
+        (current) => {
+          audioQueue.progress(next.id, { linesDone: current });
         },
-        () => isJobCanceled(next.id),
+        () => audioQueue.isCancelRequested(next.id),
         jobOptions,
         (record) => {
-          // The record is the display: true chunk progress ("chunk 3 of 7")
-          // in the phase label; the line counter counts only finished lines.
-          generationPhase = progressLabel(record);
-          updateJobPhase(next.id, record.phase);
+          // The record is the job's live progress: true chunk progress
+          // ("chunk 3 of 7"); the line counter counts only finished lines.
+          audioQueue.progress(next.id, { record });
         }
       );
 
       if (result.canceled) {
-        markJobCanceled(next.id);
+        audioQueue.finish(next.id, { kind: 'cancel' });
       } else if (result.success) {
-        markJobCompleted(next.id);
+        audioQueue.finish(next.id, { kind: 'ok' });
         // Record which generator produced this batch in dialogue.json (best-effort).
         const record = buildGenerationRecord(resolved);
         const lineIds = payload.lines
@@ -1093,10 +1056,9 @@
           console.warn('[Audio] Failed to record generator in dialogue.json:', e)
         );
       } else {
-        markJobFailed(next.id, result.errors);
+        audioQueue.finish(next.id, { kind: 'fail', errors: result.errors });
       }
 
-      queuedJobs.delete(next.id);
       await loadAudioClipCounts();
       triggerAudioUpdate();
     }
@@ -1118,8 +1080,10 @@
   }
 
   onMount(() => {
-    requeueRunningJobs();
-    if (getNextQueuedJob()) {
+    // A restart already re-queued interrupted jobs (the store's restore).
+    // A job still running here belongs to a live runner from an earlier
+    // mount; start() refuses a second runner, so only resume when idle.
+    if (!runningJob(get(audioQueue)) && audioQueue.next()) {
       void processQueue();
     }
   });
@@ -2006,7 +1970,7 @@
       <button
         class="header-icon-btn prune-btn"
         on:click={handlePruneStaleAudio}
-        disabled={sortedCharactersById.length === 0 || pruningStale || queueProcessing}
+        disabled={sortedCharactersById.length === 0 || pruningStale || queueBusy}
         title="Remove audio clips for lines that no longer exist for a character"
         aria-label="Prune stale audio"
       >
@@ -2019,7 +1983,7 @@
       <button
         class="header-icon-btn reload-btn"
         on:click={handleReloadManifestData}
-        disabled={sortedCharactersById.length === 0 || pruningStale || queueProcessing || reloadingManifestData}
+        disabled={sortedCharactersById.length === 0 || pruningStale || queueBusy || reloadingManifestData}
         title="Reload manifest data and refresh audio counts"
         aria-label="Reload manifest data"
       >
@@ -2032,7 +1996,7 @@
       <button
         class="header-icon-btn chapter-btn"
         on:click={handleGenerateWholeChapter}
-        disabled={sortedCharactersById.length === 0 || pruningStale || queueProcessing}
+        disabled={sortedCharactersById.length === 0 || pruningStale || queueBusy}
         title="Queue generation for all voiced characters in this chapter"
         aria-label="Queue chapter missing audio"
       >
@@ -2041,7 +2005,7 @@
       <button
         class="header-icon-btn book-btn"
         on:click={handleGenerateWholeBook}
-        disabled={$chapters.length === 0 || pruningStale || queueProcessing}
+        disabled={$chapters.length === 0 || pruningStale || queueBusy}
         title="Queue generation for all missing audio across the whole book"
         aria-label="Queue book missing audio"
       >
@@ -2050,7 +2014,7 @@
       <button
         class="header-icon-btn advanced-btn"
         on:click={handleOpenAdvancedOverlay}
-        disabled={$chapters.length === 0 || pruningStale || queueProcessing}
+        disabled={$chapters.length === 0 || pruningStale || queueBusy}
         title="Open advanced batch generation"
         aria-label="Open advanced batch generation"
       >
@@ -2063,7 +2027,7 @@
   {#each sortedCharactersById as item (item.id)}
     {@const voiceInfo = getVoiceForCharacter(item.id)}
     {@const lineCount = lineCountsById.get(item.id) || 0}
-    {@const isGenerating = generatingCharacter === item.id}
+    {@const isGenerating = activeGeneratingCharacter === item.id}
     {@const characterName = item.name}
     {@const characterColor = item.character.color ?? colorForCharacter(characterName)}
     
@@ -2093,9 +2057,9 @@
             <span class="spinning">
               <Loader size={16} />
             </span>
-            <span>{generationProgress.current}/{generationProgress.total}</span>
-            {#if generationPhase}
-              <span class="generation-phase-label">{generationPhase}</span>
+            <span>{activeGenerationProgress.current}/{activeGenerationProgress.total}</span>
+            {#if activeGenerationPhase}
+              <span class="generation-phase-label">{activeGenerationPhase}</span>
             {/if}
           {:else}
             {@const existingClips = audioClipCounts.get(item.id) || 0}
