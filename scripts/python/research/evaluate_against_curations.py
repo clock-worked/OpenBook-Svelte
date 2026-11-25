@@ -4,8 +4,19 @@ import os
 import re
 from collections import defaultdict
 from typing import Dict, List, Tuple
+import sys
+from pathlib import Path
 
-from dialogue_parser_service import DialogueParserService
+# scripts/python bootstrap: puts py_services (and the repo root) on sys.path.
+SCRIPTS_PYTHON_DIR = Path(__file__).resolve().parents[1]
+if str(SCRIPTS_PYTHON_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_PYTHON_DIR))
+
+from _path_setup import bootstrap_python_script_paths  # noqa: E402
+
+bootstrap_python_script_paths(__file__)
+
+from openbook_parser.dialogue_parser_service import DialogueParserService
 
 
 def iter_chapter_items(book_root: str) -> List[Tuple[str, str, str]]:

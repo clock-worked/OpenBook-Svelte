@@ -3,7 +3,7 @@
 import unittest
 
 from .attribution_decision import apply_decision, initial_decision, trace_invariant_violations
-from .dialogue_parser_service import DialogueLine
+from .models.dialogue_line import DialogueLine
 from .episode_decoder import decode_dialogue_episodes
 
 

@@ -23,11 +23,8 @@ from local_dialogue_ai_service import LocalDialogueAiService
 from jev_client import JevClient
 from jev_service import JevService
 from openbook_parser.booknlp_parser_service import BookNLPParserService
-from openbook_parser.dialogue_parser_service import (
-    DialogueLine,
-    DialogueParserService,
-    script_to_dict_list,
-)
+from openbook_parser.dialogue_parser_service import DialogueParserService
+from openbook_parser.models.dialogue_line import DialogueLine, script_to_dict_list
 from openbook_parser.jev_verify_service import (
     JevVerifyCache,
     VerifyPolicy,

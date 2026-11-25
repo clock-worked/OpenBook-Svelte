@@ -40,6 +40,7 @@ Move a file into `scripts/python/` when all of these are true:
 | `finishing/` | One-off chapter/book cleanup and replacement utilities | Offline finishing edits |
 | `dev_smoke/` | Lightweight backend and model smoke checks | Regression checks, not runtime code |
 | `setup/` | Environment/bootstrap helpers for external repos or models | Installation/setup only |
+| `research/` | Parser and attribution evaluations, A/B runs, report merges, curation ingest | Offline experiments; product code never imports from here |
 
 ## Import Model For Moved Scripts
 

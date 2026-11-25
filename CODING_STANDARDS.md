@@ -14,6 +14,12 @@ is judgement guidance for agents and humans.
   in a common module under public names (`dialogue_ai_common.py`, from
   `refactor/architecture-deepening`).
   Check: `py_services/test_import_boundaries.py`.
+- **Product code never imports scripts.** Evaluations, A/B runs, audits and
+  other offline tools live in `scripts/python/<category>/` (research code in
+  `scripts/python/research/`) and reach `py_services` through
+  `scripts/python/_path_setup.py`. Nothing in `py_services` imports from
+  `scripts/python`.
+  Check: `py_services/test_import_boundaries.py`.
 - **Safe file I/O** goes through a shared module (`safe_io.py`, from
   `refactor/architecture-deepening`) rather than being duplicated per service.
 

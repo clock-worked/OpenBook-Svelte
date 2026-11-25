@@ -60,14 +60,14 @@ Before and after heuristic changes, run the curated gate and compare dialogue ac
 
 ```bash
 # BookNLP current state (save baseline snapshot)
-.venv/Scripts/python.exe py_services/openbook_parser/evaluate_heuristics_gate.py \
+.venv/Scripts/python.exe scripts/python/research/evaluate_heuristics_gate.py \
   "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Data/Resources/A-Practical-Guide-To-Evil/Book-1" \
   --backend booknlp \
   --chapter-regex "^(0[1-9]|1[0-8])-" \
   --save-summary "C:/temp/openbook_book1_first18_baseline.json"
 
 # After heuristics change: compare against baseline and fail on regression
-.venv/Scripts/python.exe py_services/openbook_parser/evaluate_heuristics_gate.py \
+.venv/Scripts/python.exe scripts/python/research/evaluate_heuristics_gate.py \
   "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Data/Resources/A-Practical-Guide-To-Evil/Book-1" \
   --backend booknlp \
   --chapter-regex "^(0[1-9]|1[0-8])-" \
@@ -82,7 +82,7 @@ This gate reports dialogue accuracy (overall + per chapter) and exits with code 
 Run parser-only versus parser-plus-AI evaluation against curated `dialogue.json` chapters and save a baseline for future comparisons.
 
 ```bash
-.venv/Scripts/python.exe py_services/openbook_parser/evaluate_dialogue_ai_against_curations.py \
+.venv/Scripts/python.exe scripts/python/research/evaluate_dialogue_ai_against_curations.py \
   "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Data/Resources/Primal-Hunter/Book-15+" \
   --backend booknlp \
   --chapter-regex "^(000[1-9]|0010) -" \
@@ -92,7 +92,7 @@ Run parser-only versus parser-plus-AI evaluation against curated `dialogue.json`
 To compare future changes against that baseline and fail on regression:
 
 ```bash
-.venv/Scripts/python.exe py_services/openbook_parser/evaluate_dialogue_ai_against_curations.py \
+.venv/Scripts/python.exe scripts/python/research/evaluate_dialogue_ai_against_curations.py \
   "C:/Users/Chad/Documents/Code/Python/Useful-Scripts/Data/Resources/Primal-Hunter/Book-15+" \
   --backend booknlp \
   --chapter-regex "^(000[1-9]|0010) -" \
@@ -127,14 +127,14 @@ The service expects the model to return only a character ID or `None`. Recognize
 
 ```bash
 # Save baseline for Book-14 Chapter 1 sample
-.venv/Scripts/python.exe py_services/openbook_parser/evaluate_heuristics_gate.py \
+.venv/Scripts/python.exe scripts/python/research/evaluate_heuristics_gate.py \
   "C:/Users/Chad/Documents/Code/JavaScript/OpenBook-svelte/py_services/samples" \
   --backend booknlp \
   --chapter-regex "^primal-hunter-book14-ch01$" \
   --save-summary "C:/temp/primal_hunter_book14_ch1_baseline.json"
 
 # Compare current heuristics to the saved baseline and fail on regression
-.venv/Scripts/python.exe py_services/openbook_parser/evaluate_heuristics_gate.py \
+.venv/Scripts/python.exe scripts/python/research/evaluate_heuristics_gate.py \
   "C:/Users/Chad/Documents/Code/JavaScript/OpenBook-svelte/py_services/samples" \
   --backend booknlp \
   --chapter-regex "^primal-hunter-book14-ch01$" \

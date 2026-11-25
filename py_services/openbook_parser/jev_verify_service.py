@@ -43,7 +43,7 @@ from .attribution_decision import (
     apply_decision,
     verdict_decision,
 )
-from .dialogue_parser_service import DialogueLine
+from .models.dialogue_line import DialogueLine
 
 try:
     from ..character_store import load_characters

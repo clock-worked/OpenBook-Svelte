@@ -55,3 +55,53 @@ class ImportBoundaryTests(unittest.TestCase):
             violations,
             "cross-service private imports:\n" + "\n".join(violations),
         )
+
+
+SCRIPTS_DIR = MODULE_DIR.parent / "scripts" / "python"
+
+
+def _script_module_names():
+    """Top-level names a py_services module could use to reach scripts/python."""
+    names = {"scripts", "_path_setup"}
+    for path in SCRIPTS_DIR.rglob("*.py"):
+        names.add(path.stem)
+    for path in SCRIPTS_DIR.iterdir():
+        if path.is_dir() and not path.name.startswith("__"):
+            names.add(path.name)  # category packages: research, asr_validation, ...
+    return names - {"__init__"}
+
+
+class ProductDoesNotImportScriptsTests(unittest.TestCase):
+    """Product code never imports research or utility scripts (N5).
+
+    scripts/python/ holds offline experiments and manual tools. They may
+    import py_services; py_services must not import them, or the research
+    code freezes product internals again.
+    """
+
+    def test_py_services_never_imports_scripts(self):
+        script_names = _script_module_names()
+        product_names = {path.stem for path in MODULE_DIR.rglob("*.py")}
+        violations = []
+        for path in sorted(MODULE_DIR.rglob("*.py")):
+            if path.stem.startswith("test_") or "__pycache__" in path.parts:
+                continue
+            tree = ast.parse(path.read_text(encoding="utf-8"))
+            for node in ast.walk(tree):
+                if isinstance(node, ast.ImportFrom) and node.level == 0 and node.module:
+                    tops = [node.module.split(".")[0]]
+                elif isinstance(node, ast.Import):
+                    tops = [alias.name.split(".")[0] for alias in node.names]
+                else:
+                    continue
+                for top in tops:
+                    # A name that is also a py_services module is that module.
+                    if top in script_names and top not in product_names:
+                        violations.append(f"{path.relative_to(MODULE_DIR)}: imports {top}")
+        self.assertFalse(violations, "py_services imports scripts/python:\n" + "\n".join(violations))
+
+    def test_the_check_sees_the_research_scripts(self):
+        # Guard against the check silently passing because it found nothing.
+        names = _script_module_names()
+        self.assertIn("research", names)
+        self.assertIn("evaluate_against_curations_v2", names)

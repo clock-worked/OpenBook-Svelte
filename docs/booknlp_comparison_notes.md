@@ -8,13 +8,13 @@ Two attribution systems were compared against curated `dialogue.json` labels:
 
 1. Current OpenBook parser
 - Rule-based attribution with coreference support.
-- Evaluated using [py_services/openbook_parser/evaluate_against_curations_v2.py](../py_services/openbook_parser/evaluate_against_curations_v2.py).
+- Evaluated using [scripts/python/research/evaluate_against_curations_v2.py](../scripts/python/research/evaluate_against_curations_v2.py).
 
 2. BookNLP pipeline
 - Entity + quote + coreference pipeline from BookNLP.
-- Converted to OpenBook-style line attribution via [py_services/openbook_parser/booknlp_ab_eval_v2.py](../py_services/openbook_parser/booknlp_ab_eval_v2.py).
+- Converted to OpenBook-style line attribution via [scripts/python/research/booknlp_ab_eval_v2.py](../scripts/python/research/booknlp_ab_eval_v2.py).
 
-Merged comparison output is generated with [py_services/openbook_parser/merge_ab_reports.py](../py_services/openbook_parser/merge_ab_reports.py).
+Merged comparison output is generated with [scripts/python/research/merge_ab_reports.py](../scripts/python/research/merge_ab_reports.py).
 
 ## How BookNLP works in this integration
 BookNLP processes each chapter text and writes intermediate files (tokens, entities, quotes, book summaries). The OpenBook adapter then:
@@ -25,7 +25,7 @@ BookNLP processes each chapter text and writes intermediate files (tokens, entit
 4. Aligns BookNLP quote lines to curated dialogue lines by normalized quote text (with positional fallback).
 5. Scores predicted speaker against curated `characterId`.
 
-Key implementation details are in [py_services/openbook_parser/booknlp_ab_eval_v2.py](../py_services/openbook_parser/booknlp_ab_eval_v2.py).
+Key implementation details are in [scripts/python/research/booknlp_ab_eval_v2.py](../scripts/python/research/booknlp_ab_eval_v2.py).
 
 ## Environment setup used
 A dedicated environment was created to isolate BookNLP and avoid conflicts with the main parser environment:
