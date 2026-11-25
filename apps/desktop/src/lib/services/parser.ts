@@ -1,13 +1,13 @@
 import { get } from 'svelte/store';
 import { parserHints } from '$lib/stores/settings';
 import type { Line, DialogueJson, DialogueLine, Character, LineCandidate, ParserHints, CharactersJson } from '$lib/types';
-import { readTextFile, writeCentralCharacters } from '$lib/services/fs';
+import { readTextFile } from '$lib/services/fs';
+import { layoutPath, openBook } from '$lib/services/bookFormat';
 import { writeChapterDialogue } from '$lib/components/chapter/tools/shared/chapterPersistence';
 import { computeReturningFlags } from '$lib/services/dialogueReturning';
 import { hasSpeechVerb } from '$lib/services/audioNarration';
 import { buildIdToNameMap, buildNameToIdMap } from '$lib/stores/characters';
 import { API_ENDPOINTS, apiPostJson, toApiClientError } from '$lib/services/apiClient';
-import { resolveBookCharacters } from '$lib/services/chapterCharacterRepository';
 import { ALWAYS_BLOCKED_CHARACTER_NAMES, buildUniqueCharacterId, normalizeCharacterKey } from '$lib/services/characterIdentity';
 import type { JevVerifySummary } from '$lib/services/apiContracts';
 import { setJevVerifySummary } from '$lib/stores/jevDialogueAi';
@@ -348,7 +348,7 @@ async function readChapterText(input: string): Promise<string> {
  * `characters.json`. An empty book resolves to an empty v2.0 catalog.
  */
 async function resolveBookCatalog(): Promise<CharactersJson> {
-  const catalog = await resolveBookCharacters('');
+  const catalog = await openBook('').read('characters');
   return catalog ?? { formatVersion: '2.0', characters: [] };
 }
 
@@ -542,7 +542,7 @@ export async function runParserForChapter(args: {
     // of truth (IN-2) — the central file is left untouched.
     const { characters: bootstrapped, nameToCharIdMap } = bootstrapCharacters(bookCatalog, parsedCharacters, chapterName);
     if (bootstrapped.formatVersion !== '3.0') {
-      await writeCentralCharacters('', bootstrapped);
+      await openBook('').write('characters', bootstrapped);
     }
     const idToNameMap = buildIdToNameMap(bootstrapped.characters);
 
@@ -550,11 +550,12 @@ export async function runParserForChapter(args: {
     const dialogueJson = assembleDialogueJson(chapterName, dialogueLines);
     const numConflicts = dialogueJson.stats.conflicts;
 
-    const dialoguePath = `${chapterName}/dialogue.json`;
+    // Which file the chapter now loads from (ChapterStatus.scriptPath).
+    const dialoguePath = layoutPath('dialogue', chapterName);
 
     // Write the chapter dialogue.json file: a genuine dialogue save, so it
     // goes through the chapter persistence owner (write + stats step).
-    const saved = await writeChapterDialogue(dialoguePath, dialogueJson);
+    const saved = await writeChapterDialogue(chapterName, dialogueJson);
     if (!saved) {
       throw new Error(`Could not save parser output to ${dialoguePath}`);
     }

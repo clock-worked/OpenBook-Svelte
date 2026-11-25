@@ -1,0 +1,69 @@
+{
+  "_comment": "Book format vectors (services/bookFormat.ts, ADR 0021). Each case opens one fixture book, runs one read or write, and states the result and the files written. A write's `written` is the one path it creates or changes (null = refused, nothing written).",
+  "books": {
+    "v2": {
+      "characters.json": { "formatVersion": "2.0", "characters": [{ "id": "alice", "name": "Alice" }] },
+      "voices.json": { "formatVersion": "2.0", "voices": [] },
+      "settings.json": { "parserHints": [] },
+      "speaker_blocklist.json": { "blocked": ["Someone"] },
+      "Ch1/dialogue.json": { "formatVersion": "3.2", "lines": [{ "id": 1 }] },
+      "Ch1/Ch1.characters.json": { "formatVersion": "2.0", "characters": [{ "id": "alice" }] },
+      "Ch2/Ch2.script.json": { "chapter": "Ch2", "lines": [{ "id": 7 }] },
+      "Ch3/dialogue.json": { "chapter": "Ch3", "lines": [{ "id": 9 }] },
+      "Ch4/dialogue-old.json": { "chapter": "Ch4", "lines": [{ "id": 11 }] }
+    },
+    "v3": {
+      "characters/Alice.json": { "formatVersion": "3.0", "guid": "AB12CD34", "title": "Alice" },
+      "voices.json": { "formatVersion": "3.0", "voices": [] },
+      "settings.json": { "parserHints": ["x"] },
+      "Ch1/dialogue.json": { "formatVersion": "3.2", "lines": [{ "id": 1 }] }
+    }
+  },
+  "cases": [
+    { "name": "version of a v2 book", "book": "v2", "op": "version", "expect": "2.0" },
+    { "name": "version of a v3 book", "book": "v3", "op": "version", "expect": "3.0" },
+
+    { "name": "v2 dialogue", "book": "v2", "op": "read", "doc": "dialogue", "chapter": "Ch1", "expect": { "formatVersion": "3.2", "lines": [{ "id": 1 }] } },
+    { "name": "v2 absent dialogue is null", "book": "v2", "op": "read", "doc": "dialogue", "chapter": "Ch2", "expect": null },
+    { "name": "v2 script", "book": "v2", "op": "read", "doc": "script", "chapter": "Ch2", "expect": { "chapter": "Ch2", "lines": [{ "id": 7 }] } },
+    { "name": "v2 roster", "book": "v2", "op": "read", "doc": "roster", "chapter": "Ch1", "expect": { "formatVersion": "2.0", "characters": [{ "id": "alice" }] } },
+    { "name": "v2 voices", "book": "v2", "op": "read", "doc": "voices", "expect": { "formatVersion": "2.0", "voices": [] } },
+    { "name": "v2 settings", "book": "v2", "op": "read", "doc": "settings", "expect": { "parserHints": [] } },
+    { "name": "v2 characters come from characters.json", "book": "v2", "op": "read", "doc": "characters", "expectNames": ["Alice"] },
+    { "name": "v2 speaker blocklist", "book": "v2", "op": "read", "doc": "speakerBlocklist", "expect": { "blocked": ["Someone"] } },
+
+    { "name": "v3 absent roster is null (issue #2)", "book": "v3", "op": "read", "doc": "roster", "chapter": "Ch1", "expect": null },
+    { "name": "v3 characters come from the folder", "book": "v3", "op": "read", "doc": "characters", "expectNames": ["Alice"] },
+    { "name": "v3 absent script is null", "book": "v3", "op": "read", "doc": "script", "chapter": "Ch1", "expect": null },
+    { "name": "v3 absent speaker blocklist is null", "book": "v3", "op": "read", "doc": "speakerBlocklist", "expect": null },
+
+    { "name": "chapter dialogue: versioned dialogue.json", "book": "v2", "op": "readChapterDialogue", "chapter": "Ch1", "expect": { "formatVersion": "3.2", "lines": [{ "id": 1 }] } },
+    { "name": "chapter dialogue: v1 script", "book": "v2", "op": "readChapterDialogue", "chapter": "Ch2", "expect": { "chapter": "Ch2", "lines": [{ "id": 7 }] } },
+    { "name": "chapter dialogue: non-versioned dialogue.json", "book": "v2", "op": "readChapterDialogue", "chapter": "Ch3", "expect": { "chapter": "Ch3", "lines": [{ "id": 9 }] } },
+    { "name": "chapter dialogue: dialogue-old.json", "book": "v2", "op": "readChapterDialogue", "chapter": "Ch4", "expect": { "chapter": "Ch4", "lines": [{ "id": 11 }] } },
+    { "name": "chapter dialogue: none", "book": "v3", "op": "readChapterDialogue", "chapter": "Ch9", "expect": null },
+
+    { "name": "v2 roster write", "book": "v2", "op": "write", "doc": "roster", "chapter": "Ch1", "value": { "formatVersion": "2.0", "characters": [] }, "expectResult": true, "written": "Ch1/Ch1.characters.json" },
+    { "name": "v3 roster write is refused (issue #2)", "book": "v3", "op": "write", "doc": "roster", "chapter": "Ch1", "value": { "formatVersion": "2.0", "characters": [] }, "expectResult": false, "written": null },
+    { "name": "v3 roster write allowed for the migration", "book": "v3", "op": "write", "doc": "roster", "chapter": "Ch1", "value": { "formatVersion": "3.0", "characters": [] }, "options": { "allowRetiredInV3": true }, "expectResult": true, "written": "Ch1/Ch1.characters.json" },
+    { "name": "v2 characters.json write", "book": "v2", "op": "write", "doc": "characters", "value": { "formatVersion": "2.0", "characters": [] }, "expectResult": true, "written": "characters.json" },
+    { "name": "v3 characters.json write is refused", "book": "v3", "op": "write", "doc": "characters", "value": { "formatVersion": "2.0", "characters": [] }, "expectResult": false, "written": null },
+    { "name": "v3 dialogue write", "book": "v3", "op": "write", "doc": "dialogue", "chapter": "Ch1", "value": { "formatVersion": "3.2", "lines": [] }, "expectResult": true, "written": "Ch1/dialogue.json" },
+    { "name": "v3 voices write", "book": "v3", "op": "write", "doc": "voices", "value": { "formatVersion": "3.0", "voices": [{ "id": "v" }] }, "expectResult": true, "written": "voices.json" },
+    { "name": "v3 settings write", "book": "v3", "op": "write", "doc": "settings", "value": { "parserHints": [] }, "expectResult": true, "written": "settings.json" },
+    { "name": "v2 script write", "book": "v2", "op": "write", "doc": "script", "chapter": "Ch2", "value": { "chapter": "Ch2", "lines": [] }, "expectResult": true, "written": "Ch2/Ch2.script.json" },
+    { "name": "backup write lands under the backup tree", "book": "v3", "op": "write", "doc": "roster", "chapter": "Ch1", "value": { "formatVersion": "2.0", "characters": [] }, "options": { "backupDir": "_backups/run1" }, "expectResult": true, "written": "_backups/run1/Ch1/Ch1.characters.json" }
+  ],
+  "paths": [
+    { "path": "voices.json", "expect": { "doc": "voices" } },
+    { "path": "settings.json", "expect": { "doc": "settings" } },
+    { "path": "characters.json", "expect": { "doc": "characters" } },
+    { "path": "book.characters.json", "expect": { "doc": "legacyBookCharacters" } },
+    { "path": "characters/Alice.json", "expect": { "doc": "characterFile", "fileName": "Alice.json" } },
+    { "path": "Ch1/dialogue.json", "expect": { "doc": "dialogue", "chapter": "Ch1" } },
+    { "path": "Ch1/Ch1.script.json", "expect": { "doc": "script", "chapter": "Ch1" } },
+    { "path": "Ch1/Ch1.characters.json", "expect": { "doc": "roster", "chapter": "Ch1" } },
+    { "path": "Ch1/audio_lines/Alice/manifest.json", "expect": null },
+    { "path": "Ch1/notes.json", "expect": null }
+  ]
+}

@@ -33,17 +33,12 @@ import type { ChapterStatus } from '$lib/stores/bookState';
 import type { Character, CharactersJson, DialogueJson, ScriptJson } from '$lib/types';
 import { CHARACTER_GUID_PATTERN } from '$lib/types';
 import {
-    getCharactersPath,
-    getDialoguePath,
     listCharacterFiles,
     readCharacterFolder,
-    readDialogueForChapter,
-    readOptionalCharacters,
     readOptionalJsonRelative,
     readTextFile,
-    writeCharacters,
-    writeDialogue,
 } from '$lib/services/fs';
+import { isVersionedDialogue, layoutPath, openBook } from '$lib/services/bookFormat';
 import { migrateCharactersV1ToV3, migrateCharactersV2ToV3 } from '$lib/services/characterMigration';
 import { createCentralCharacter } from '$lib/services/characterMutationService';
 import { persistChapterCharactersData } from '$lib/services/chapterCharacterRepository';
@@ -52,7 +47,7 @@ import {
     normalizeScriptData,
     slugifyCharacterName,
 } from '$lib/components/chapter/tools/shared/chapterNormalization';
-import { isVersionedDialogue, saveDialogueFromNormalized } from '$lib/components/chapter/tools/shared/chapterPersistence';
+import { saveDialogueFromNormalized } from '$lib/components/chapter/tools/shared/chapterPersistence';
 import { recomputeStats } from '$lib/components/chapter/tools/shared/toolUtils';
 import type { UnifiedLine } from '$lib/components/chapter/tools/types';
 
@@ -205,8 +200,10 @@ async function migrateCharacterStore(
     onProgress?: (message: string) => void,
 ): Promise<boolean> {
     const hasFolder = (await listCharacterFiles(root)).length > 0;
-    const hasV2 = (await readOptionalJsonRelative<any>('characters.json')) != null;
-    const hasV1 = !hasV2 && (await readOptionalJsonRelative<any>('book.characters.json')) != null;
+    // The legacy stores are probed by raw path: book.read('characters')
+    // would answer from the folder first.
+    const hasV2 = (await readOptionalJsonRelative<any>(layoutPath('characters'))) != null;
+    const hasV1 = !hasV2 && (await readOptionalJsonRelative<any>(layoutPath('legacyBookCharacters'))) != null;
 
     if (!hasV2 && !hasV1) {
         report.characters = hasFolder
@@ -254,9 +251,10 @@ interface ChapterPlan {
 
 async function planChapters(chapters: ChapterStatus[], root: string): Promise<ChapterPlan[]> {
     const plans: ChapterPlan[] = [];
+    const book = openBook(root);
     for (const chapter of chapters) {
-        const dialogue = chapter.parsed === false ? null : await readDialogueForChapter(chapter.title);
-        const rosterRaw = await readOptionalCharacters(getCharactersPath(chapter.title));
+        const dialogue = chapter.parsed === false ? null : await book.readChapterDialogue(chapter.title);
+        const rosterRaw = await book.read('roster', chapter.title);
         const dialogueStale = dialogue != null && (!isVersionedDialogue(dialogue) || collectStaleDialogueRefs(dialogue).length > 0);
         plans.push({
             chapter,
@@ -324,12 +322,13 @@ async function backupPreImages(
     const touched = plans.filter((plan) => plan.dialogueStale || plan.rosterStale.length > 0);
     if (touched.length === 0) return;
     const backupDir = `${BACKUP_DIR_PARTS.join('/')}/${backupTimestamp()}`;
+    const book = openBook(root);
     for (const plan of touched) {
         if (plan.dialogue && plan.dialogueStale) {
-            await writeDialogue(`${backupDir}/${getDialoguePath(plan.chapter.title)}`, plan.dialogue as DialogueJson);
+            await book.write('dialogue', plan.chapter.title, plan.dialogue as DialogueJson, { backupDir });
         }
         if (plan.rosterRaw && (plan.dialogueStale || plan.rosterStale.length > 0)) {
-            await writeCharacters(`${backupDir}/${getCharactersPath(plan.chapter.title)}`, plan.rosterRaw);
+            await book.write('roster', plan.chapter.title, plan.rosterRaw, { backupDir });
         }
     }
     report.backupDir = backupDir;
@@ -385,7 +384,7 @@ async function rewriteRoster(
         formatVersion: '3.0',
         characters: [...next.values()].map((character) => ({ ...character, id: character.guid as string })),
     };
-    const ok = await persistChapterCharactersData(root, getCharactersPath(plan.chapter.title), roster, {
+    const ok = await persistChapterCharactersData(root, plan.chapter.title, roster, {
         bypassV3Guard: true, // the migration is the one flow that writes v3 rosters
     });
     if (ok) report.dialogue.rostersRewritten += 1;

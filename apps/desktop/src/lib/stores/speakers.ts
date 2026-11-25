@@ -12,7 +12,7 @@ import {
   deduplicateVoicesAndAssignments,
   mergeDiscoveredVoices,
 } from '$lib/services/voiceDomain';
-import { readVoices, writeVoices } from '$lib/services/fs';
+import { openBook } from '$lib/services/bookFormat';
 import { history, historyAction } from '$lib/services/history';
 import type { VoiceSampleEntry } from '$lib/services/apiContracts';
 
@@ -31,7 +31,7 @@ export async function loadVoices(): Promise<void> {
 
   try {
     console.log('[voices] Loading voices from:', root);
-    const data = await readVoices(root);
+    const data = await openBook(root).read('voices');
     if (data) {
       const deduped = deduplicateVoicesAndAssignments(data.voices || [], data.assignments || []);
 
@@ -279,7 +279,7 @@ export async function saveVoicesData(recordHistory = true): Promise<void> {
 
   try {
     const data = get(voices);
-    if (!await writeVoices(root, data, recordHistory)) throw new Error('Could not save voices.json');
+    if (!await openBook(root).write('voices', data, { history: recordHistory })) throw new Error('Could not save voices.json');
     console.log('[voices] Saved voices.json:', data.voices.length, 'voices,', data.assignments.length, 'assignments');
   } catch (err) {
     console.error('Error saving voices:', err);

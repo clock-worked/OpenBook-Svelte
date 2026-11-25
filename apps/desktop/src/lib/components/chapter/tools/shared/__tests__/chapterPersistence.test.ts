@@ -13,10 +13,9 @@ vi.mock('$lib/services/fs', async () => {
     return mod.inMemoryFs;
 });
 
+import { DIALOGUE_FORMAT_VERSIONS } from '$lib/services/bookFormat';
 import {
     applyStatsAfterDialogueSave,
-    DIALOGUE_FORMAT_VERSIONS,
-    isVersionedDialogue,
     loadChapterContent,
     recordLineAudioGeneration,
     saveDialogueFromNormalized,
@@ -129,12 +128,12 @@ describe('dialogue save stats step (ADR 0012)', () => {
     it('asks the sidecar for the delta after a File System Access write', async () => {
         inMemoryFs.__setDialogueSaveRoute('handle');
 
-        expect(await writeChapterDialogue('Chapter 1/dialogue.json', payload)).toBe(true);
+        expect(await writeChapterDialogue('Chapter 1', payload)).toBe(true);
         expect(inMemoryFs.__statsDeltaCalls()).toEqual(['Chapter 1/dialogue.json']);
     });
 
     it('does nothing more when the sidecar endpoint already applied it', async () => {
-        expect(await writeChapterDialogue('Chapter 1/dialogue.json', payload)).toBe(true);
+        expect(await writeChapterDialogue('Chapter 1', payload)).toBe(true);
         expect(inMemoryFs.__statsDeltaCalls()).toEqual([]);
     });
 
@@ -220,20 +219,5 @@ describe('loadChapterContent', () => {
         expect(loaded.normalized).toBeNull();
         expect(loaded.currentScript).toBeNull();
         expect(loaded.rawText).toBe('\u201cHold the line.\u201d');
-    });
-});
-
-describe('dialogue format-version list (single source)', () => {
-    it('lists the versions the app reads as versioned dialogue', () => {
-        expect([...DIALOGUE_FORMAT_VERSIONS]).toEqual(['2.0', '3.0', '3.1', '3.2']);
-    });
-
-    it('classifies documents by the list', () => {
-        for (const version of DIALOGUE_FORMAT_VERSIONS) {
-            expect(isVersionedDialogue({ formatVersion: version, lines: [] })).toBe(true);
-        }
-        expect(isVersionedDialogue({ formatVersion: '1.0', lines: [] })).toBe(false);
-        expect(isVersionedDialogue({ chapter: 'Chapter 1', lines: [] })).toBe(false);
-        expect(isVersionedDialogue(null)).toBe(false);
     });
 });

@@ -4,35 +4,14 @@ import { computeReturningFlags, isDialogueSpan } from '$lib/services/dialogueRet
 import {
     applyDialogueStatsDelta,
     ensureCharacterNameToIdMapCached,
-    getScriptPath,
     invalidateCentralCharactersCache,
     readCentralCharacters,
-    readDialogueForChapter,
-    readOptionalDialogue,
     readTextFile,
-    writeDialogue,
-    writeDialogueSave,
-    writeScript,
     type WriteOutcome,
 } from '$lib/services/fs';
+import { classifyBookPath, isVersionedDialogue, layoutPath, openBook } from '$lib/services/bookFormat';
 import { normalizeAttribution, normalizeScriptData } from './chapterNormalization';
 import { alignChapterLineSpans } from './chapterPresentation';
-
-/**
- * The dialogue.json format versions read as a versioned (DialogueJson)
- * document; anything else is a legacy script. This module owns the list:
- * fs (readDialogueForChapter) and the book migration import it.
- */
-export const DIALOGUE_FORMAT_VERSIONS: readonly string[] = ['2.0', '3.0', '3.1', '3.2'];
-
-export function isVersionedDialogue(data: unknown): data is DialogueJson {
-    return (
-        !!data
-        && typeof data === 'object'
-        && 'formatVersion' in data
-        && DIALOGUE_FORMAT_VERSIONS.includes(String((data as DialogueJson).formatVersion))
-    );
-}
 
 type ChapterLike = {
     title: string;
@@ -90,7 +69,7 @@ export async function loadChapterContent(params: {
 
     const dialogue = chapter.parsed === false
         ? null
-        : await readDialogueForChapter(chapter.title);
+        : await openBook(root).readChapterDialogue(chapter.title);
     let isV2Format = false;
     let normalized: NormalizedScriptPayload | null = null;
     let currentScript: ScriptJson | null = null;
@@ -99,7 +78,7 @@ export async function loadChapterContent(params: {
         isV2Format = isVersionedDialogue(dialogue);
 
         // Dynamic import: keeps the characters store graph out of this
-        // module's static imports (fs imports the version list from here).
+        // module's static imports.
         const { buildIdToNameMap } = await import('$lib/stores/characters');
         normalized = await normalizeScriptData(dialogue, {
             root,
@@ -282,10 +261,9 @@ export async function saveDialogueFromNormalized(params: {
         },
     };
 
-    const relativePath = `${ch.title}/dialogue.json`;
-    console.log('[ChapterView] Writing dialogue to relative path:', relativePath);
+    console.log('[ChapterView] Writing dialogue for chapter:', ch.title);
 
-    const saved = await writeChapterDialogue(relativePath, dialoguePayload);
+    const saved = await writeChapterDialogue(ch.title, dialoguePayload);
     if (saved) {
         console.log('[ChapterView] ✓ Successfully saved dialogue.json');
     } else {
@@ -322,11 +300,15 @@ export async function writeChapterScriptEdits(params: {
 }): Promise<boolean> {
     const { chapter, script, nameToId } = params;
     const unknownKey = (params.unknownSpeakerLabel ?? 'Unknown').trim().toLowerCase();
-    const dialoguePath = `${chapter.title}/dialogue.json`;
-    const doc = await readOptionalDialogue(dialoguePath);
+    const book = openBook('');
+    const doc = await book.read('dialogue', chapter.title);
 
     if (!isEditableDialogue(doc)) {
-        return writeScript(chapter.scriptPath ?? getScriptPath(chapter.title), script);
+        // No versioned dialogue.json: the v1 view goes back to the document
+        // the chapter loaded from (an unversioned dialogue.json, else the script).
+        return chapter.scriptPath && classifyBookPath(chapter.scriptPath)?.doc === 'dialogue'
+            ? book.write('dialogue', chapter.title, script as unknown as DialogueJson)
+            : book.write('script', chapter.title, script);
     }
 
     const edits = new Map(script.lines.map((line) => [line.id, line] as const));
@@ -362,7 +344,7 @@ export async function writeChapterScriptEdits(params: {
     }
 
     recomputeDialogueStats(doc);
-    return writeDialogue(dialoguePath, doc);
+    return book.write('dialogue', chapter.title, doc);
 }
 
 function recomputeDialogueStats(doc: DialogueJson): void {
@@ -385,7 +367,7 @@ export async function countCharacterIdInDialogue(
     chapterTitle: string,
     characterId: string
 ): Promise<number | null> {
-    const doc = await readOptionalDialogue(`${chapterTitle}/dialogue.json`);
+    const doc = await openBook('').read('dialogue', chapterTitle);
     if (!isEditableDialogue(doc)) return null;
     let total = 0;
     for (const line of doc.lines) {
@@ -413,8 +395,8 @@ export async function reassignCharacterIdInDialogue(
     newId: string | null
 ): Promise<number | null> {
     if (!oldId || oldId === newId) return null;
-    const dialoguePath = `${chapterTitle}/dialogue.json`;
-    const doc = await readOptionalDialogue(dialoguePath);
+    const book = openBook('');
+    const doc = await book.read('dialogue', chapterTitle);
     if (!isEditableDialogue(doc)) return null;
 
     let reassigned = 0;
@@ -449,7 +431,7 @@ export async function reassignCharacterIdInDialogue(
 
     if (!touched) return 0;
     recomputeDialogueStats(doc);
-    const saved = await writeDialogue(dialoguePath, doc);
+    const saved = await book.write('dialogue', chapterTitle, doc);
     if (!saved) throw new Error(`Failed to save reassigned dialogue for ${chapterTitle}`);
     return reassigned;
 }
@@ -476,15 +458,15 @@ function remapLineCandidates(
  * Write a chapter's dialogue document as a dialogue save, then run the
  * explicit stats step. The one write path for genuine dialogue saves (the
  * chapter save above and a fresh parse); every other dialogue writer uses
- * the pure `writeDialogue` and never touches character stats.
+ * a plain `book.write('dialogue', …)` and never touches character stats.
  */
-export async function writeChapterDialogue(relativePath: string, payload: DialogueJson): Promise<boolean> {
+export async function writeChapterDialogue(chapterTitle: string, payload: DialogueJson): Promise<boolean> {
     // The fs transport performs the File System API → backend fallback
-    // internally, so one call is the entire write. This module names the
+    // internally, so one call is the entire write. The book format names the
     // write kind: a chapter dialogue save.
-    const outcome = await writeDialogueSave(relativePath, payload);
+    const outcome = await openBook('').saveDialogue(chapterTitle, payload);
     if (outcome === null) return false;
-    applyStatsAfterDialogueSave(relativePath, outcome);
+    applyStatsAfterDialogueSave(layoutPath('dialogue', chapterTitle), outcome);
     return true;
 }
 
@@ -529,7 +511,7 @@ async function readDiskLineMetadata(chapterTitle: string): Promise<{
     const audioGeneration = new Map<number, AudioGenerationRecord>();
     const readAs = new Map<number, string>();
     try {
-        const doc = await readOptionalDialogue(`${chapterTitle}/dialogue.json`);
+        const doc = await openBook('').read('dialogue', chapterTitle);
         if (!doc || !Array.isArray(doc.lines)) return { audioGeneration, readAs };
         for (const line of doc.lines) {
             if (!line || typeof line.id !== 'number') continue;
@@ -553,8 +535,8 @@ export async function recordLineAudioGeneration(
     record: AudioGenerationRecord
 ): Promise<void> {
     if (!chapterTitle || lineIds.length === 0) return;
-    const relativePath = `${chapterTitle}/dialogue.json`;
-    const doc = await readOptionalDialogue(relativePath);
+    const book = openBook('');
+    const doc = await book.read('dialogue', chapterTitle);
     if (!doc || !Array.isArray(doc.lines)) {
         console.warn('[Audio] Cannot record generator: no dialogue.json for', chapterTitle);
         return;
@@ -569,7 +551,7 @@ export async function recordLineAudioGeneration(
     }
     if (!touched) return;
     // recordHistory=false: a generator stamp is metadata, not a content edit.
-    const saved = await writeDialogue(relativePath, doc, false);
+    const saved = await book.write('dialogue', chapterTitle, doc, { history: false });
     if (!saved) {
         console.warn('[Audio] Failed to write generator record to dialogue.json');
     }
@@ -586,8 +568,8 @@ export async function recordLineReadAs(
     text: string | null
 ): Promise<void> {
     if (!chapterTitle || lineIds.length === 0) return;
-    const relativePath = `${chapterTitle}/dialogue.json`;
-    const doc = await readOptionalDialogue(relativePath);
+    const book = openBook('');
+    const doc = await book.read('dialogue', chapterTitle);
     if (!doc || !Array.isArray(doc.lines)) {
         console.warn('[Audio] Cannot record read-as text: no dialogue.json for', chapterTitle);
         return;
@@ -602,7 +584,7 @@ export async function recordLineReadAs(
     }
     if (!touched) return;
     // recordHistory=false: a read-as stamp is metadata, not a content edit.
-    const saved = await writeDialogue(relativePath, doc, false);
+    const saved = await book.write('dialogue', chapterTitle, doc, { history: false });
     if (!saved) {
         console.warn('[Audio] Failed to write read-as text to dialogue.json');
     }

@@ -21,7 +21,9 @@
   import { recordLineAudioGeneration } from '$lib/components/chapter/tools/shared/chapterPersistence';
   import { audioGenerateLineId } from '$lib/stores/selection';
   import { audioUpdateTrigger, triggerAudioUpdate } from '$lib/stores/audioUpdates';
-  import { readCentralCharacters, readDialogueForChapter } from '$lib/services/fs';
+  import { readCentralCharacters } from '$lib/services/fs';
+  import { openBook } from '$lib/services/bookFormat';
+  const readDialogueForChapter = (title: string) => openBook(get(bookRoot) ?? '').readChapterDialogue(title);
   import { resolveLineCharacterId, resolveCharacterNameForId } from '$lib/services/characterIdentity';
   import {
     enqueueAudioJob,

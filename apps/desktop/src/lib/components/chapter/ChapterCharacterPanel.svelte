@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { CharactersJson, Character, Gender, ScriptJson } from '$lib/types';
+  import type { CharactersJson, Character, DialogueJson, Gender, ScriptJson } from '$lib/types';
   import { writable, get } from 'svelte/store';
   import { currentChapter, bookRoot, currentScript, chapters, requestChapterReload } from '$lib/stores/bookState';
   import { selection, conflictCursor, tracedLine } from '$lib/stores/selection';
   import { characters, colorForCharacter, rgbaToOpaqueHex, opaqueHexToRgba, refreshChapterCharactersFromFile, buildNameToIdMap } from '$lib/stores/characters';
-  import { getScriptPath, readFileAsJson, getCharactersPath } from '$lib/services/fs';
+  import { openBook } from '$lib/services/bookFormat';
   import { countCharacterIdInDialogue, reassignCharacterIdInDialogue, writeChapterScriptEdits } from '$lib/components/chapter/tools/shared/chapterPersistence';
   import { loadChapterCharactersData, persistChapterCharactersData, type PersistChapterCharactersOptions } from '$lib/services/chapterCharacterRepository';
   // removed generateChapterAudio per UI change
@@ -54,6 +54,11 @@
 
   let sortMode: SortMode = 'name';
   let activeTab: ChapterPanelTab = 'characters';
+
+  /** The chapter's document as a script (the legacy fallbacks included). */
+  function readChapterScript(ch: any): Promise<ScriptJson | null> {
+    return openBook(get(bookRoot) ?? '').readChapterDialogue(ch.title) as Promise<ScriptJson | null>;
+  }
   let compactTabs = false;
   $: panelTabs = [
     { value: 'characters' as const, label: 'Characters', hasAlert: false },
@@ -328,11 +333,10 @@
   ): Promise<void> {
     const root = get(bookRoot);
     if (!root) return;
-    const path = getCharactersPath(chapterTitle);
-    const existing = await loadChapterCharactersData(root, path);
+    const existing = await loadChapterCharactersData(root, chapterTitle);
     const next = updater(existing);
     if (!next) return;
-    await persistChapterCharactersData(root, path, next);
+    await persistChapterCharactersData(root, chapterTitle, next);
     if (get(currentChapter)?.title === chapterTitle) {
       await refreshChapterCharactersFromFile();
     }
@@ -370,8 +374,7 @@
           requestChapterReload();
         }
       } else {
-        const path = (ch as any).scriptPath ?? getScriptPath(ch.title);
-        const scr = await readFileAsJson<ScriptJson>(path);
+        const scr = await readChapterScript(ch);
         if (!scr?.lines) continue;
         for (const line of scr.lines) {
           if (normalizeCharacterKey(line.chosenSpeaker || '') === 'narrator') continue;
@@ -382,7 +385,7 @@
           }
         }
         if (changed) {
-          await saveChapterScriptEdits({ title: ch.title, scriptPath: path }, scr);
+          await saveChapterScriptEdits(ch, scr);
           if (get(currentChapter)?.title === ch.title) {
             currentScript.set(scr);
           }
@@ -424,8 +427,7 @@
         total += v3Count;
         continue;
       }
-      const path = (chapter as any).scriptPath ?? getScriptPath(chapter.title);
-      const scr = await readFileAsJson<ScriptJson>(path);
+      const scr = await readChapterScript(chapter);
       if (!scr?.lines) continue;
       for (const line of scr.lines) {
         if (!line.chosenSpeaker) continue;
@@ -556,11 +558,10 @@
     const ch: any = get(currentChapter);
     const root = get(bookRoot);
     if (!ch || !root) return;
-    const path = getCharactersPath(ch.title);
-    const existing = await loadChapterCharactersData(root, path);
+    const existing = await loadChapterCharactersData(root, ch.title);
     const next = updater(existing);
     if (!next) return;
-    await persistChapterCharactersData(root, path, next, options);
+    await persistChapterCharactersData(root, ch.title, next, options);
     await refreshChapterCharactersFromFile();
   }
 

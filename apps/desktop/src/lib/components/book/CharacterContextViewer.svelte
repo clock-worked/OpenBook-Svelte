@@ -24,10 +24,11 @@
     }
     
     try {
-      const { readDialogueForChapter, readTextFile } = await import('$lib/services/fs');
-      
+      const { readTextFile } = await import('$lib/services/fs');
+      const { openBook } = await import('$lib/services/bookFormat');
+
       // Load dialogue to find character's lines
-      const dialogue = await readDialogueForChapter(firstAppearanceChapter);
+      const dialogue = await openBook('').readChapterDialogue(firstAppearanceChapter);
       if (!dialogue) {
         error = 'Could not load dialogue';
         loading = false;

@@ -6,6 +6,7 @@ import {
     readCharacterFile,
     writeCharacterFile,
 } from '$lib/services/fs';
+import { layoutPath } from '$lib/services/bookFormat';
 import {
     mintCharacterGuid,
     normalizeAliasList,
@@ -180,9 +181,9 @@ async function renameCentralCharacterImpl(
     if (inPlace) return { ok: true };
 
     // (5) Delete the old file (only after verification above).
-    const deleted = await deleteFile(root, `characters/${record.fileName}`);
+    const deleted = await deleteFile(root, layoutPath('characterFile', record.fileName));
     if (!deleted) {
-        console.warn('[characterMutations] Rename left the old character file behind:', `characters/${record.fileName}`);
+        console.warn('[characterMutations] Rename left the old character file behind:', layoutPath('characterFile', record.fileName));
         return {
             ok: true,
             warning: 'The old character file could not be deleted; it will be cleaned up on the next load.',
@@ -378,7 +379,7 @@ export async function deleteCentralCharacter(
 ): Promise<boolean> {
     const fileName = String(record.fileName || '').trim();
     if (!fileName) return false;
-    return deleteFile(root, `characters/${fileName}`);
+    return deleteFile(root, layoutPath('characterFile', fileName));
 }
 
 /**
@@ -440,9 +441,9 @@ async function mergeCentralCharactersImpl(
     await remapCharacterGuidInChapterRosters(root, chapterTitles, sourceGuid, targetGuid);
 
     // 3. LAST: delete the source file.
-    const deleted = await deleteFile(root, `characters/${source.fileName}`);
+    const deleted = await deleteFile(root, layoutPath('characterFile', source.fileName));
     if (!deleted) {
-        console.warn('[characterMutations] Merge left the source character file behind:', `characters/${source.fileName}`);
+        console.warn('[characterMutations] Merge left the source character file behind:', layoutPath('characterFile', source.fileName));
         return {
             ok: true,
             warning: 'The merged source character file could not be deleted; it will be cleaned up on the next load.',

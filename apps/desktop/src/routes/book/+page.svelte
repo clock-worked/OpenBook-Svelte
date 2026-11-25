@@ -3,7 +3,9 @@
   import { goto } from '$app/navigation';
   import { get } from 'svelte/store';
   import { bookRoot, chapters, audioRoot, bookRootAbsolutePath, voiceSamplesRoot } from '$lib/stores/bookState';
-  import { scanChapters, listChaptersFromBackend, getRootDirHandle, readSettings, writeSettings, readSpeakerBlocklist, resolveBookRootPath, setBackendAudioRoot, triggerStatsUpdate } from '$lib/services/fs';
+  import { getRootDirHandle } from '$lib/services/fs';
+  import { scanChapters, listChaptersFromBackend, resolveBookRootPath, setBackendAudioRoot, triggerStatsUpdate } from '$lib/services/workspaceRoot';
+  import { openBook } from '$lib/services/bookFormat';
   import { pickDirectoryAbsolutePath } from '$lib/services/directoryPicker';
   import { initRouteProjectContext } from '$lib/services/projectSession';
   import { getProjectInitFailurePolicy } from '$lib/services/routePolicy';
@@ -55,7 +57,7 @@
     if (!root) return;
     
     try {
-      const settings = await readSettings(root);
+      const settings = await openBook(root).read('settings');
       if (settings) {
         // Load audiobook settings
         if (settings.audiobookSettings) {
@@ -100,7 +102,7 @@
       } else {
         // No settings.json exists, try to migrate from old speaker_blocklist.json
         console.log('No settings.json found, checking for legacy speaker_blocklist.json...');
-        const legacyBlocklist = await readSpeakerBlocklist(root);
+        const legacyBlocklist = await openBook(root).read('speakerBlocklist');
         
         if (legacyBlocklist?.blocked_speakers) {
           console.log('Migrating legacy blocklist:', legacyBlocklist.blocked_speakers);
@@ -149,7 +151,7 @@
     };
     
     try {
-      if (!await writeSettings(root, settings, recordHistory)) throw new Error('Could not save book settings.');
+      if (!await openBook(root).write('settings', settings, { history: recordHistory })) throw new Error('Could not save book settings.');
     } catch (error) {
       console.error('Error saving settings:', error);
       history.reportError(error);

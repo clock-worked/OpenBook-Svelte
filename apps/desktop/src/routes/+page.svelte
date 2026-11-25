@@ -1,7 +1,7 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { bookRoot, chapters, bookRootAbsolutePath, audioRoot } from '$lib/stores/bookState';
-  import { requiresBackendDirectoryPicker, selectBookDirectory, selectBookDirectoryPath } from '$lib/services/fs';
+  import { requiresBackendDirectoryPicker, selectBookDirectory, selectBookDirectoryPath, syncBookRootFromHandle } from '$lib/services/workspaceRoot';
   import { loadProjectFromAbsolutePath } from '$lib/services/landingProject';
   import { onMount } from 'svelte';
   import { tick } from 'svelte';
@@ -10,7 +10,6 @@
   import { clearStoredProjectHandle } from '$lib/services/persistence';
   import { applyProjectHandle, getStoredProjectAvailability, restoreStoredProject } from '$lib/services/projectSession';
   import { beginLandingAction, clearFlagAfterDelay } from '$lib/services/landingInteraction';
-  import { syncBookRootFromHandle } from '$lib/services/fs';
   import { bookRootPathOverride } from '$lib/stores/settings';
 
   // Dev mode detection

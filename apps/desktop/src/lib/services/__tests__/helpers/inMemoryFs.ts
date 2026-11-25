@@ -53,13 +53,7 @@ function writeJson(path: string, data: unknown): boolean {
 }
 
 export const inMemoryFs = {
-  // === Path helpers (pure; mirror fs.ts) ===
-  getBookCharactersPath: () => 'characters.json',
-  getCentralCharactersPath: () => 'characters.json',
-  getCharactersPath: (title: string) => `${title}/${title}.characters.json`,
-  getDialoguePath: (title: string) => `${title}/dialogue.json`,
-  getScriptPath: (title: string) => `${title}/${title}.script.json`,
-  getVoicesPath: () => 'voices.json',
+  // === Root info ===
   getRootDirInfo: () => ({ name: 'none', hasHandle: false }),
 
   // === v3.0 character folder primitives ===
@@ -104,8 +98,9 @@ export const inMemoryFs = {
 
   // === Legacy JSON read/write (the names the services import) ===
   readCharacters: async (path: string) => readJson(path),
-  readOptionalCharacters: async (path: string) => readJson(path),
-  readCentralCharacters: async (_root: string) => readJson('characters.json'),
+  // Mirrors fs.ts: the v3 characters/ folder first, then characters.json.
+  readCentralCharacters: async (root: string) =>
+    (await inMemoryFs.readCharacterFolder(root)) ?? readJson('characters.json'),
   // Mirrors fs.ts ensureCharacterNameToIdMapCached's source (the characters/
   // folder first, then the legacy characters.json), uncached: the in-memory
   // store has no stale-read problem to cache around.
@@ -117,14 +112,8 @@ export const inMemoryFs = {
     return central?.characters ? buildNameToIdMap(central.characters) : new Map();
   },
   invalidateCentralCharactersCache: () => {},
-  readDialogue: async (path: string) => readJson(path),
-  readOptionalDialogue: async (path: string) => readJson(path),
-  readScript: async (path: string) => readJson(path),
-  readOptionalScript: async (path: string) => readJson(path),
-  readVoices: async (_root: string) => readJson('voices.json'),
-  writeCharacters: async (path: string, data: unknown) => writeJson(path, data),
   writeCentralCharacters: async (_root: string, data: unknown) => writeJson('characters.json', data),
-  writeDialogue: async (path: string, data: unknown) => writeJson(path, data),
+  writeEditableJson: async (path: string, data: unknown) => writeJson(path, data),
   // The chapter dialogue save write: by default the backend-path case lands
   // on the sidecar ('sidecar' outcome), whose endpoint applies the stats
   // delta; __setDialogueSaveRoute('handle') simulates a File System Access write.
@@ -134,8 +123,6 @@ export const inMemoryFs = {
     statsDeltaCalls.push(normalizePath(relPath));
     return true;
   },
-  writeScript: async (path: string, data: unknown) => writeJson(path, data),
-  writeVoices: async (_root: string, data: unknown) => writeJson('voices.json', data),
 
   // === Text read (used by the migration's readInventoried / rescan) ===
   readTextFile: async (path: string) => files.get(normalizePath(path)) ?? null,
@@ -144,18 +131,6 @@ export const inMemoryFs = {
   readJsonRelative: async (path: string) => readJson(path),
   readFileAsJson: async (path: string) => readJson(path),
   readOptionalJsonRelative: async (path: string) => readJson(path),
-  // Mirrors fs.ts readDialogueForChapter: versioned dialogue.json first, then
-  // the v1 script.json, then dialogue.json as a legacy non-versioned script.
-  // The version list comes from its owner (chapterPersistence); dynamic
-  // import because that module imports $lib/services/fs (this mock).
-  readDialogueForChapter: async (chapterTitle: string) => {
-    const { isVersionedDialogue } = await import('$lib/components/chapter/tools/shared/chapterPersistence');
-    const dialogue = readJson(`${chapterTitle}/dialogue.json`);
-    if (isVersionedDialogue(dialogue)) return dialogue;
-    const script = readJson(`${chapterTitle}/${chapterTitle}.script.json`);
-    if (script) return script;
-    return dialogue ?? null;
-  },
 
   // === Test controls ===
   __reset: () => {

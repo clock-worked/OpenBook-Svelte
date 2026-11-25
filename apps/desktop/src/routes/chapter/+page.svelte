@@ -9,7 +9,8 @@
   import PlaybackBar from '$lib/components/chapter/PlaybackBar.svelte';
   import Toolbar from '$lib/components/chapter/Toolbar.svelte';
   import { bookRoot, chapters, autoSelectChapter } from '$lib/stores/bookState';
-  import { listChaptersFromBackend, readSettings, scanChapters } from '$lib/services/fs';
+  import { listChaptersFromBackend, scanChapters } from '$lib/services/workspaceRoot';
+  import { openBook } from '$lib/services/bookFormat';
   import { initRouteProjectContext } from '$lib/services/projectSession';
   import { getProjectInitFailurePolicy } from '$lib/services/routePolicy';
   import { get } from 'svelte/store';
@@ -48,7 +49,7 @@
   }
 
   async function loadParserHints() {
-    const settings = await readSettings(get(bookRoot));
+    const settings = await openBook(get(bookRoot) ?? '').read('settings');
     if (!settings?.parserHints) return;
 
     const defaults = get(parserHints);

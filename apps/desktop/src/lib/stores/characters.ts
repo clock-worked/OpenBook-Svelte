@@ -1,7 +1,7 @@
 import { writable, get } from 'svelte/store';
 import type { CharacterConfig, CharactersJson, Character } from '$lib/types';
 import { currentScript, bookRoot, currentChapter } from '$lib/stores/bookState';
-import { readCentralCharacters, getCharactersPath } from '$lib/services/fs';
+import { readCentralCharacters } from '$lib/services/fs';
 import { loadChapterCharactersData } from '$lib/services/chapterCharacterRepository';
 import { defaultColors } from '$lib/theme/colors';
 import { bookCharacters } from '$lib/stores/bookCharacters';
@@ -107,8 +107,7 @@ async function loadChapterExtras(ch: any, root: string | null): Promise<void> {
   }
 
   try {
-    const path = getCharactersPath(ch.title);
-    const data = await loadChapterCharactersData(root, path);
+    const data = await loadChapterCharactersData(root, ch.title);
     if (token !== _chapterLoadToken) return;
     const next = new Map<string, CharacterConfig>();
     if (data?.characters) {

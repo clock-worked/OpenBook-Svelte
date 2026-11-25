@@ -1,14 +1,5 @@
 import type { CharactersJson } from '$lib/types';
-import {
-    getCharactersPath,
-    getDialoguePath,
-    readOptionalCharacters,
-    readOptionalDialogue,
-    readVoices,
-    writeCharacters,
-    writeDialogue,
-    writeVoices,
-} from '$lib/services/fs';
+import { openBook } from '$lib/services/bookFormat';
 import {
     CROCKFORD_BASE32_ALPHABET,
     normalizeCharacterKey,
@@ -120,10 +111,10 @@ export async function remapCharacterIdInDialogueFiles(
 ): Promise<void> {
     if (!oldCharacterId || !newCharacterId || oldCharacterId === newCharacterId) return;
 
+    const book = openBook(root);
     for (const chapter of chapterList) {
         try {
-            const dialoguePath = getDialoguePath(chapter.title);
-            const dialogueData: any = await readOptionalDialogue(dialoguePath);
+            const dialogueData: any = await book.read('dialogue', chapter.title);
             if (!dialogueData || !Array.isArray(dialogueData.lines)) continue;
 
             let changed = false;
@@ -162,7 +153,7 @@ export async function remapCharacterIdInDialogueFiles(
             }
 
             if (changed) {
-                await writeDialogue(dialoguePath, dialogueData);
+                await book.write('dialogue', chapter.title, dialogueData);
             }
         } catch {
         }
@@ -177,7 +168,8 @@ export async function remapCharacterIdInVoicesAssignments(
     if (!oldCharacterId || !newCharacterId || oldCharacterId === newCharacterId) return;
 
     try {
-        const voicesData: any = await readVoices(root);
+        const book = openBook(root);
+        const voicesData: any = await book.read('voices');
         if (!voicesData || !Array.isArray(voicesData.assignments)) return;
 
         let changed = false;
@@ -188,7 +180,7 @@ export async function remapCharacterIdInVoicesAssignments(
         });
 
         if (changed) {
-            await writeVoices(root, voicesData);
+            await book.write('voices', voicesData);
         }
     } catch {
     }
@@ -199,9 +191,9 @@ export async function remapCharacterIdInVoicesAssignments(
  * `characters[].id` exact-match) and re-persist.
  *
  * v3 rosters are plain reference files (id = GUID), so this is a pure
- * exact-string substitution. It persists through the same raw
- * `readOptionalCharacters`/`writeCharacters` pair the chapter repository
- * uses — deliberately NOT through `persistChapterCharactersData`, whose v2
+ * exact-string substitution of an existing roster, so it may write one in
+ * a v3 book (`allowRetiredInV3`) — deliberately NOT through
+ * `persistChapterCharactersData`, whose v2
  * canonicalization resolves references against the root `characters.json`
  * (absent in v3 books) and would drop every entry.
  */
@@ -213,11 +205,11 @@ export async function remapCharacterGuidInChapterRosters(
 ): Promise<void> {
     if (!oldGuid || !newGuid || oldGuid === newGuid) return;
 
+    const book = openBook(root);
     for (const title of chapterTitles) {
         if (!title) continue;
         try {
-            const charactersPath = getCharactersPath(title);
-            const raw: any = await readOptionalCharacters(charactersPath);
+            const raw: any = await book.read('roster', title);
             if (!raw || !Array.isArray(raw.characters)) continue;
 
             let changed = false;
@@ -239,7 +231,7 @@ export async function remapCharacterGuidInChapterRosters(
                 });
 
             if (changed) {
-                await writeCharacters(charactersPath, { ...raw, characters });
+                await book.write('roster', title, { ...raw, characters }, { allowRetiredInV3: true });
             }
         } catch {
         }

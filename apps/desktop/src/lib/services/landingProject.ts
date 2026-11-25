@@ -1,11 +1,5 @@
 import type { ChapterStatus } from '$lib/stores/bookState';
-import {
-    listChaptersFromBackend,
-    scanChapters,
-    setBackendAudioRoot,
-    setBackendBookRoot,
-    syncBookRootFromHandle,
-} from '$lib/services/fs';
+import { listChaptersFromBackend, scanChapters, setBackendAudioRoot, setBackendBookRoot, syncBookRootFromHandle } from '$lib/services/workspaceRoot';
 
 export async function loadProjectFromHandle(opts: {
     handle: FileSystemDirectoryHandle;

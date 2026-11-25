@@ -5,7 +5,7 @@
 // 1. The v3 roster invariants (Issue #2): normal editing flows must not
 //    (re)create chapter roster files in v3 books — ADR 0003
 //    read-legacy-write-current.
-// 2. The resolveBookCharacters resolution order the parser now consumes:
+// 2. The book's character resolution order (book.read('characters')):
 //    the v3 characters/ folder first, the legacy root characters.json as
 //    fallback, null when the book has neither.
 //
@@ -26,11 +26,14 @@ import type { Character, CharactersJson } from '$lib/types';
 import {
   loadChapterCharactersData,
   persistChapterCharactersData,
-  resolveBookCharacters,
 } from '../chapterCharacterRepository';
+import { openBook } from '../bookFormat';
+
+const resolveBookCharacters = (root: string) => openBook(root).read('characters');
 
 const ROOT = 'Book-9';
 const GA = 'AA01BB02'; // Alice
+const CHAPTER = 'Ch47';
 const ROSTER = 'Ch47/Ch47.characters.json';
 
 function makeCharacter(overrides: Partial<Character> & { name: string }): Character {
@@ -65,7 +68,7 @@ describe('chapterCharacterRepository (v3 roster invariants, issue #2)', () => {
       formatVersion: '3.0',
       characters: [makeCharacter({ name: 'Alice' })],
     };
-    const ok = await persistChapterCharactersData(ROOT, ROSTER, data);
+    const ok = await persistChapterCharactersData(ROOT, CHAPTER, data);
 
     expect(ok).toBe(false);
     expect(inMemoryFs.__has(ROSTER)).toBe(false);
@@ -83,7 +86,7 @@ describe('chapterCharacterRepository (v3 roster invariants, issue #2)', () => {
       formatVersion: '3.0',
       characters: [makeCharacter({ name: 'Alice' })],
     };
-    const ok = await persistChapterCharactersData(ROOT, ROSTER, data, { bypassV3Guard: true });
+    const ok = await persistChapterCharactersData(ROOT, CHAPTER, data, { bypassV3Guard: true });
 
     expect(ok).toBe(true);
     expect(inMemoryFs.__readJson(ROSTER)).toEqual({
@@ -105,7 +108,7 @@ describe('chapterCharacterRepository (v3 roster invariants, issue #2)', () => {
       formatVersion: '2.0',
       characters: [{ id: 'alice', name: 'Alice', gender: 'Female' } as Character],
     };
-    const ok = await persistChapterCharactersData(ROOT, ROSTER, data);
+    const ok = await persistChapterCharactersData(ROOT, CHAPTER, data);
 
     expect(ok).toBe(true);
     expect(inMemoryFs.__readJson(ROSTER)).toEqual({
@@ -125,7 +128,7 @@ describe('chapterCharacterRepository (v3 roster invariants, issue #2)', () => {
       formatVersion: '3.0',
       characters: [makeCharacter({ name: 'Alice' })],
     };
-    const ok = await persistChapterCharactersData(ROOT, ROSTER, data);
+    const ok = await persistChapterCharactersData(ROOT, CHAPTER, data);
 
     expect(ok).toBe(false);
     expect(inMemoryFs.__readText(ROSTER)).toBe(before[ROSTER]);
@@ -134,7 +137,7 @@ describe('chapterCharacterRepository (v3 roster invariants, issue #2)', () => {
   it('roster absent: loadChapterCharactersData resolves to null (missing roster = empty roster, not an error)', async () => {
     seedV3Book();
 
-    const data = await loadChapterCharactersData(ROOT, ROSTER);
+    const data = await loadChapterCharactersData(ROOT, CHAPTER);
 
     expect(data).toBeNull();
   });
@@ -157,7 +160,7 @@ const LEGACY_STORE = {
   ],
 };
 
-describe('chapterCharacterRepository.resolveBookCharacters', () => {
+describe("bookFormat read('characters')", () => {
   beforeEach(() => {
     inMemoryFs.__reset();
   });

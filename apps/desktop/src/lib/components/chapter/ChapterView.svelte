@@ -6,7 +6,8 @@
   import { writable } from 'svelte/store';
   import { conflictCursor, toolMode, audioGenerateLineId } from '$lib/stores/selection';
   import { get } from 'svelte/store';
-  import { readCentralCharacters, writeScript, readOptionalJsonRelative, listCharacterFiles, captureEditableFiles } from '$lib/services/fs';
+  import { readCentralCharacters, readOptionalJsonRelative, listCharacterFiles, captureEditableFiles } from '$lib/services/fs';
+  import { classifyBookPath, layoutPath } from '$lib/services/bookFormat';
   import { readManifest } from '$lib/services/audio';
   import { API_ENDPOINTS, apiPostJson } from '$lib/services/apiClient';
   import type { ReviewChapterRequest, ReviewChapterResponse } from '$lib/services/apiContracts';
@@ -175,7 +176,11 @@
   onMount(() => {
     const unsubscribeHistory = history.onRestore(async (keys) => {
       const title = get(currentChapter)?.title;
-      if (!keys.some((key) => key.startsWith(`${title}/`) || key.startsWith('characters/') || key === 'characters.json')) return;
+      if (!keys.some((key) => {
+        if (key.startsWith(`${title}/`)) return true; // anything in this chapter's folder
+        const doc = classifyBookPath(key)?.doc;
+        return doc === 'characterFile' || doc === 'characters';
+      })) return;
       reviewMenuVisible.set(false);
       editOverlayVisible.set(false);
       editingLineId = null;
@@ -669,7 +674,11 @@
     if (!chapter || !root) return;
     const files = await listCharacterFiles(root, true);
     await captureEditableFiles('Mark chapter reviewed',
-      [`${chapter.title}/dialogue.json`, 'characters.json', ...files.map((file) => `characters/${file}`)],
+      [
+        layoutPath('dialogue', chapter.title),
+        layoutPath('characters'),
+        ...files.map((file) => layoutPath('characterFile', file)),
+      ],
       markChapterReviewedImpl);
   });
 
