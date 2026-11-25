@@ -433,14 +433,3 @@ export interface ParserHints {
     unknownThreshold?: number;
   };
 }
-
-// ============================================================================
-// Voice Models (for UI)
-// ============================================================================
-
-export interface VoiceModel {
-  voiceId: string;
-  name: string;
-  provider: TtsProvider;
-}
-

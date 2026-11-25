@@ -1,7 +1,7 @@
 import { get, type Writable } from 'svelte/store';
 import type { UnifiedLine } from '../types';
 import { currentChapter, bookRoot } from '$lib/stores/bookState';
-import { audioState, playLine } from '$lib/stores/audio';
+import { playLine } from '$lib/stores/audio';
 import { voices } from '$lib/stores/speakers';
 import { readCentralCharacters } from '$lib/services/fs';
 import { buildNameToIdMap } from '$lib/stores/characters';
@@ -310,33 +310,6 @@ export async function readAsAudioLine(
 
   // Generate audio from the edited text
   await handleGenerateLineAudio(lineId, normalizedScript, audioExistsCache, setGenerating, text);
-}
-
-/**
- * Seek within playing audio
- */
-export async function handleLineSeek(lineId: number, event: MouseEvent): Promise<void> {
-  const state = get(audioState);
-  if (state.currentLineId !== lineId) return;
-
-  const target = event.currentTarget as HTMLElement;
-  const rect = target.getBoundingClientRect();
-  const x = event.clientX - rect.left;
-  const percentage = x / rect.width;
-
-  // Import seek function from audio store
-  const { seek } = await import('$lib/stores/audio');
-  seek(percentage * state.duration);
-}
-
-/**
- * Get audio progress percentage for a line
- */
-export function getAudioProgress(lineId: number): number {
-  const state = get(audioState);
-  if (state.currentLineId !== lineId) return 0;
-  if (state.duration === 0) return 0;
-  return (state.currentTime / state.duration) * 100;
 }
 
 

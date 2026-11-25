@@ -17,8 +17,7 @@ const DEFAULT_VOICE_SAMPLES_ROOT: string | null = null;
 
 const scriptRootStore = writable<string | null>(DEFAULT_SCRIPT_ROOT);
 
-export const scriptRoot = scriptRootStore;
-// Backward compatibility: existing code references bookRoot for script assets
+// The book root that script assets are read relative to.
 export const bookRoot = scriptRootStore;
 // Store for the FileSystemDirectoryHandle (browser-based file access)
 export const bookRootHandle = writable<FileSystemDirectoryHandle | null>(null);

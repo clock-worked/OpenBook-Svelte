@@ -221,7 +221,3 @@ export function buildClosedWorldReviewItems(
   }
   return items;
 }
-
-export function preferredCharacterId(displayName: string): string {
-  return slugifyCharacterId(displayName);
-}
