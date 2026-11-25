@@ -21,19 +21,19 @@ vi.mock('$lib/stores/settings', async () => {
 });
 
 import { apiPostJson, apiPostVoid } from '../apiClient';
-import { DIALOGUE_FORMAT_VERSIONS } from '$lib/components/chapter/tools/shared/chapterPersistence';
+import { DIALOGUE_FORMAT_VERSIONS, openBook } from '../bookFormat';
 import {
   applyDialogueStatsDelta,
   invalidateCentralCharactersCache,
   readCentralCharacters,
-  readDialogueForChapter,
   setRootDirHandle,
   writeCentralCharacters,
-  writeDialogue,
   writeDialogueSave,
   writeEditableJson,
-  writeScript,
 } from '../fs';
+
+// The chapter dialogue read with its legacy fallbacks, through the real fs.
+const readDialogueForChapter = (chapter: string) => openBook('').readChapterDialogue(chapter);
 
 describe('readCentralCharacters', () => {
   beforeEach(() => {
@@ -224,11 +224,11 @@ describe('dialogue save endpoints (ADR 0012)', () => {
     });
   });
 
-  it('keeps writeDialogue a pure write (plain save endpoint, no stats)', async () => {
+  it('keeps a plain dialogue write pure (plain save endpoint, no stats)', async () => {
     const dialogue = { formatVersion: '2.0', lines: [{ characterId: 'alice', text: 'hi' }] };
     vi.mocked(apiPostVoid).mockResolvedValue(undefined);
 
-    expect(await writeDialogue('Ch 1/dialogue.json', dialogue as never)).toBe(true);
+    expect(await writeEditableJson('Ch 1/dialogue.json', dialogue)).toBe(true);
 
     expect(apiPostVoid).toHaveBeenCalledTimes(1);
     expect(apiPostVoid).toHaveBeenCalledWith('/api/save', {
@@ -250,9 +250,9 @@ describe('dialogue save endpoints (ADR 0012)', () => {
     vi.mocked(apiPostVoid).mockResolvedValue(undefined);
     const script = { chapter: 'Ch 1', sourceFile: '', lines: [], stats: {} };
 
-    // writeScript / writeEditableJson are plain file writes even when the
-    // path is a chapter's dialogue.json: no save-dialogue, no stats delta.
-    expect(await writeScript('Ch 1/dialogue.json', script as never)).toBe(true);
+    // writeEditableJson is a plain file write even when the path is a
+    // chapter's dialogue.json: no save-dialogue, no stats delta.
+    expect(await writeEditableJson('Ch 1/dialogue.json', script)).toBe(true);
     expect(await writeEditableJson('Ch 1/dialogue.json', { lines: [] })).toBe(true);
 
     expect(apiPostVoid).toHaveBeenCalledTimes(2);
@@ -322,7 +322,7 @@ describe('dialogue save endpoints (ADR 0012)', () => {
   });
 });
 
-describe('readDialogueForChapter format versions', () => {
+describe("book.readChapterDialogue format versions", () => {
   beforeEach(() => {
     vi.resetAllMocks();
     setRootDirHandle(null);
@@ -343,6 +343,6 @@ describe('readDialogueForChapter format versions', () => {
       .mockResolvedValueOnce({ content: JSON.stringify(script) });
 
     expect(await readDialogueForChapter('Ch 1')).toEqual(script);
-    expect(apiPostJson).toHaveBeenNthCalledWith(2, '/api/read-text', { file_path: 'Ch 1/Ch 1.script.json', optional: false });
+    expect(apiPostJson).toHaveBeenNthCalledWith(2, '/api/read-text', { file_path: 'Ch 1/Ch 1.script.json', optional: true });
   });
 });

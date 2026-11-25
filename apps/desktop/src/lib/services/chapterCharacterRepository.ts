@@ -1,11 +1,5 @@
 import type { Character, CharactersJson } from '$lib/types';
-import {
-    readCentralCharacters,
-    readCharacterFolder,
-    readFileAsJson,
-    readOptionalCharacters,
-    writeCharacters,
-} from '$lib/services/fs';
+import { openBook, type Book } from '$lib/services/bookFormat';
 import { normalizeCharacterKey } from '$lib/services/characterIdentity';
 
 interface ChapterCharacterReference {
@@ -15,33 +9,6 @@ interface ChapterCharacterReference {
 interface ChapterCharacterReferencesJson {
     formatVersion: string;
     characters: ChapterCharacterReference[];
-}
-
-/**
- * The v3 book's character set read from the `characters/` folder, or `null`
- * when the book is not v3 (folder missing/empty, or the read failed).
- * This is the v3 detection predicate shared by the roster read/write paths.
- */
-async function readV3BookCharacters(root: string): Promise<CharactersJson | null> {
-    try {
-        const folder = await readCharacterFolder(root);
-        return folder && folder.characters.length > 0 ? folder : null;
-    } catch (err) {
-        console.warn('[chapterCharacters] v3 folder read failed; treating book as non-v3:', err);
-        return null;
-    }
-}
-
-/**
- * Resolve the book's character set for roster hydration: the v3
- * `characters/` folder first, falling back to the legacy root
- * `characters.json` for unmigrated books.
- *
- * Exported so the parser can consume the same resolved catalog (a resolved
- * catalog, never a raw path) when building its closed-world options.
- */
-export async function resolveBookCharacters(root: string): Promise<CharactersJson | null> {
-    return (await readV3BookCharacters(root)) ?? readCentralCharacters(root);
 }
 
 /**
@@ -74,23 +41,21 @@ function buildCentralLookups(central: CharactersJson | null): {
 }
 
 /**
- * Load chapter-level character references and hydrate them from the book's
- * character set (v3 folder records in v3 books, characters.json otherwise).
- * Legacy chapter records that contain names are resolved to their canonical
- * book character during the same read.
+ * Load a chapter's roster and hydrate it from the book's character set (v3
+ * folder records in v3 books, characters.json otherwise). Legacy chapter
+ * records that contain names are resolved to their canonical book character
+ * during the same read. A missing roster reads as null: in v3 books the
+ * roster is retired, and absent means empty.
  */
 export async function loadChapterCharactersData(
     root: string,
-    path: string,
-    optional = true,
+    chapterTitle: string,
 ): Promise<CharactersJson | null> {
-    // Optional by default: in v3 books a chapter roster file may legitimately
-    // not exist — a missing roster is an empty roster, not an error.
-    const raw: any = await (optional ? readOptionalCharacters(path) : readFileAsJson<CharactersJson>(path));
+    const book = openBook(root);
+    const raw: any = await book.read('roster', chapterTitle);
     if (!raw || !Array.isArray(raw.characters)) return null;
 
-    const central = await resolveBookCharacters(root);
-    const { byId, byName } = buildCentralLookups(central);
+    const { byId, byName } = buildCentralLookups(await book.read('characters'));
     const hydrated: Character[] = [];
     const seenIds = new Set<string>();
 
@@ -136,20 +101,19 @@ export interface PersistChapterCharactersOptions {
 
 export async function persistChapterCharactersData(
     root: string,
-    path: string,
+    chapterTitle: string,
     data: CharactersJson,
     options: PersistChapterCharactersOptions = {},
 ): Promise<boolean> {
-    // v3 (ADR 0003 read-legacy-write-current): a populated characters/ folder
-    // is the book's live character set; normal editing flows never write
-    // chapter roster files in v3 books.
-    if (!options.bypassV3Guard && (await readV3BookCharacters(root)) != null) {
-        console.warn('[chapterCharacters] v3 guard: roster write blocked (no bypass)', path);
+    // The book format refuses a roster write in a v3 book (ADR 0003, 0021)
+    // unless the caller is one of the allowed flows; check before resolving.
+    const book: Book = openBook(root);
+    if (!options.bypassV3Guard && (await book.version()) === '3.0') {
+        console.warn('[chapterCharacters] v3 book: roster write blocked (no bypass)', chapterTitle);
         return false;
     }
 
-    const central = await resolveBookCharacters(root);
-    const { byId, byName } = buildCentralLookups(central);
+    const { byId, byName } = buildCentralLookups(await book.read('characters'));
     const references: ChapterCharacterReference[] = [];
     const seenIds = new Set<string>();
 
@@ -176,7 +140,9 @@ export async function persistChapterCharactersData(
         formatVersion: data.formatVersion || '2.0',
         characters: references,
     };
-    const ok = await writeCharacters(path, serialized as unknown as CharactersJson);
-    console.log('[chapterCharacters] roster written:', path, `(${references.length} refs), ok=${ok}`);
+    const ok = await book.write('roster', chapterTitle, serialized as unknown as CharactersJson, {
+        allowRetiredInV3: options.bypassV3Guard,
+    });
+    console.log('[chapterCharacters] roster written:', chapterTitle, `(${references.length} refs), ok=${ok}`);
     return ok;
 }

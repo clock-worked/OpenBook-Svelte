@@ -1,10 +1,10 @@
 <script lang="ts">
-  import type { CharactersJson, Character, Gender, ScriptJson } from '$lib/types';
+  import type { CharactersJson, Character, DialogueJson, Gender, ScriptJson } from '$lib/types';
   import { writable, get } from 'svelte/store';
   import { currentChapter, bookRoot, bookRootAbsolutePath, currentScript, chapters, requestChapterReload } from '$lib/stores/bookState';
   import { selection, conflictCursor, tracedLine } from '$lib/stores/selection';
   import { characters, colorForCharacter, rgbaToOpaqueHex, opaqueHexToRgba, refreshChapterCharactersFromFile } from '$lib/stores/characters';
-  import { getScriptPath, readFileAsJson, writeScript, getCharactersPath } from '$lib/services/fs';
+  import { classifyBookPath, layoutPath, openBook } from '$lib/services/bookFormat';
   import { loadChapterCharactersData, persistChapterCharactersData, type PersistChapterCharactersOptions } from '$lib/services/chapterCharacterRepository';
   // removed generateChapterAudio per UI change
   import { defaultColors } from '$lib/theme/colors';
@@ -54,6 +54,26 @@
 
   let sortMode: SortMode = 'name';
   let activeTab: ChapterPanelTab = 'characters';
+
+  // The chapter's script view is written back to the document the chapter
+  // was loaded from: dialogue.json when the chapter has one (ch.scriptPath),
+  // else the v1 script. Pre-existing behaviour kept by N2: this writes the
+  // v1 script shape over a current dialogue.json.
+  function chapterScriptDoc(ch: any): 'dialogue' | 'script' {
+    return ch?.scriptPath && classifyBookPath(ch.scriptPath)?.doc === 'dialogue' ? 'dialogue' : 'script';
+  }
+
+  function writeChapterScript(ch: any, scr: ScriptJson): Promise<boolean> {
+    const book = openBook(get(bookRoot) ?? '');
+    return chapterScriptDoc(ch) === 'dialogue'
+      ? book.write('dialogue', ch.title, scr as unknown as DialogueJson)
+      : book.write('script', ch.title, scr);
+  }
+
+  /** The chapter's document as a script (the legacy fallbacks included). */
+  function readChapterScript(ch: any): Promise<ScriptJson | null> {
+    return openBook(get(bookRoot) ?? '').readChapterDialogue(ch.title) as Promise<ScriptJson | null>;
+  }
   let compactTabs = false;
   $: panelTabs = [
     { value: 'characters' as const, label: 'Characters', hasAlert: false },
@@ -207,9 +227,9 @@
       changed = true;
     }
     if (!changed) return;
-    const scriptPath = ch.scriptPath ?? getScriptPath(ch.title);
-    let saved = await writeScript(scriptPath, scr);
+    let saved = await writeChapterScript(ch, scr);
     if (!saved && get(bookRootAbsolutePath)) {
+      const scriptPath = layoutPath(chapterScriptDoc(ch), ch.title);
       const response = await apiFetch(API_ENDPOINTS.save, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -324,11 +344,10 @@
   ): Promise<void> {
     const root = get(bookRoot);
     if (!root) return;
-    const path = getCharactersPath(chapterTitle);
-    const existing = await loadChapterCharactersData(root, path);
+    const existing = await loadChapterCharactersData(root, chapterTitle);
     const next = updater(existing);
     if (!next) return;
-    await persistChapterCharactersData(root, path, next);
+    await persistChapterCharactersData(root, chapterTitle, next);
     if (get(currentChapter)?.title === chapterTitle) {
       await refreshChapterCharactersFromFile();
     }
@@ -341,8 +360,7 @@
     const oldKey = normalizeCharacterKey(oldName);
     const newKey = normalizeCharacterKey(newName);
     for (const ch of chapterList) {
-      const path = (ch as any).scriptPath ?? getScriptPath(ch.title);
-      const scr = await readFileAsJson<ScriptJson>(path);
+      const scr = await readChapterScript(ch);
       if (!scr) continue;
       let changed = false;
       for (const line of scr.lines) {
@@ -354,7 +372,7 @@
         }
       }
       if (changed) {
-        await writeScript(path, scr);
+        await writeChapterScript(ch, scr);
         if (get(currentChapter)?.title === ch.title) {
           currentScript.set(scr);
         }
@@ -388,8 +406,7 @@
     let total = 0;
     const chapterList = get(chapters);
     for (const chapter of chapterList) {
-      const path = (chapter as any).scriptPath ?? getScriptPath(chapter.title);
-      const scr = await readFileAsJson<ScriptJson>(path);
+      const scr = await readChapterScript(chapter);
       if (!scr?.lines) continue;
       for (const line of scr.lines) {
         if (!line.chosenSpeaker) continue;
@@ -520,11 +537,10 @@
     const ch: any = get(currentChapter);
     const root = get(bookRoot);
     if (!ch || !root) return;
-    const path = getCharactersPath(ch.title);
-    const existing = await loadChapterCharactersData(root, path);
+    const existing = await loadChapterCharactersData(root, ch.title);
     const next = updater(existing);
     if (!next) return;
-    await persistChapterCharactersData(root, path, next, options);
+    await persistChapterCharactersData(root, ch.title, next, options);
     await refreshChapterCharactersFromFile();
   }
 
@@ -616,7 +632,7 @@
           line.isConflict = !line.chosenSpeaker || (line.candidates && line.candidates.length > 1 && !line.candidates.some(c => c.name === newName));
         }
       }
-      await writeScript(ch.scriptPath ?? getScriptPath(ch.title), scr);
+      await writeChapterScript(ch, scr);
       currentScript.set(scr);
     }
     // Update book-level characters using merge semantics to preserve aliases on conflict
@@ -655,8 +671,7 @@
     const ch: any = get(currentChapter);
     const root = get(bookRoot);
     if (ch && root) {
-      const path = ch.scriptPath ?? getScriptPath(ch.title);
-      await writeScript(path, scr);
+      await writeChapterScript(ch, scr);
       currentScript.set(scr);
     }
     ensureCharacterInList(name);
@@ -1154,7 +1169,7 @@
               line.isConflict = true;
             }
           }
-          await writeScript(ch.scriptPath ?? getScriptPath(ch.title), scr);
+          await writeChapterScript(ch, scr);
           currentScript.set(scr);
         }
         await removeBookCharacter(name);

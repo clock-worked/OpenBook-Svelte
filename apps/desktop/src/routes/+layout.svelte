@@ -7,6 +7,7 @@
   import { bookRootPathOverride, audiobookSettings, parserHints, defaultAudiobookSettings, defaultParserHints } from '$lib/stores/settings';
   import type { AudiobookSettings, ParserHints } from '$lib/types';
   import { readEditableJson } from '$lib/services/fs';
+  import { classifyBookPath, layoutPath } from '$lib/services/bookFormat';
   import HistoryControls from '$lib/components/common/HistoryControls.svelte';
   import { page } from '$app/stores';
   import { forceRefreshBookCharacters } from '$lib/stores/bookCharacters';
@@ -29,17 +30,18 @@
     ];
     const unsubscribeRestore = history.onRestore(async (keys) => {
       if (get(bookRoot)) {
-        if (keys.includes('voices.json')) await loadVoices();
-        if (keys.some((key) => key.includes('/') || key === 'characters.json')) {
+        const docs = keys.map((key) => classifyBookPath(key)?.doc);
+        if (docs.includes('voices')) await loadVoices();
+        if (keys.some((key, index) => key.includes('/') || docs[index] === 'characters')) {
           clearRawCharacterFileDocs();
           await forceRefreshBookCharacters();
         }
-        if (keys.includes('settings.json')) {
+        if (docs.includes('settings')) {
           const settings = await readEditableJson<{
             audiobookSettings?: AudiobookSettings;
             parserHints?: ParserHints;
             voiceSamplesRoot?: string | null;
-          }>('settings.json');
+          }>(layoutPath('settings'));
           audiobookSettings.set({
             ...structuredClone(defaultAudiobookSettings), narrators: ['Narrator'], ...settings?.audiobookSettings,
           });

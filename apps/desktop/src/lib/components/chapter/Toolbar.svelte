@@ -13,12 +13,11 @@
   import { conflictCursor, toolMode } from "$lib/stores/selection";
   import { appTheme, defaultNarrator } from "$lib/stores/settings";
   import {
-    getScriptPath,
     listChaptersFromBackend,
-    readFileAsJson,
     scanChapters,
     selectBookDirectory,
   } from "$lib/services/fs";
+  import { layoutPath, openBook } from "$lib/services/bookFormat";
   import { runParserForChapter } from "$lib/services/parser";
   import {
     RefreshCw,
@@ -89,7 +88,7 @@
     const ch: any = get(currentChapter);
     if (!ch || !ch.scriptPath) return;
     try {
-      const data = await readFileAsJson<ScriptJson>(ch.scriptPath);
+      const data = (await openBook(get(bookRoot) ?? "").readChapterDialogue(ch.title)) as ScriptJson | null;
       if (!data) {
         conflictCursor.set(null);
         return;
@@ -135,7 +134,7 @@
       const scriptPath =
         result.ok && result.scriptPath
           ? result.scriptPath
-          : getScriptPath(ch.title);
+          : layoutPath("dialogue", ch.title);
       console.debug("[Regenerate] Wrote script to", {
         scriptPath,
         counts: {

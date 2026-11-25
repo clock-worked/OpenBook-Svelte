@@ -2,7 +2,8 @@ import { get } from 'svelte/store';
 import { audioRoot, bookRoot, bookRootAbsolutePath, chapters, voiceSamplesRoot } from '$lib/stores/bookState';
 import { bookRootPathOverride } from '$lib/stores/settings';
 import type { AudioGeneratorId, CharacterManifestStats, ChatterboxSettingsChoice, DialogueLine, CharactersJson } from '$lib/types';
-import { readCentralCharacters, readDialogueForChapter, readOptionalJsonRelative, readTextFile } from '$lib/services/fs';
+import { readCentralCharacters, readOptionalJsonRelative, readTextFile } from '$lib/services/fs';
+import { openBook } from '$lib/services/bookFormat';
 import { buildLineTextWithSpeechVerbTags, extractNarrationTags } from '$lib/services/audioNarration';
 import type { NarrationTagCandidate } from '$lib/services/audioNarration';
 import { API_ENDPOINTS, ApiClientError, apiFetch, apiPostJson, apiPostVoid, toApiUrl } from '$lib/services/apiClient';
@@ -493,7 +494,7 @@ async function resolveSpeechVerbAugmentedLineTexts(
     let tags: NarrationTagCandidate[] = [];
     let rawText: string | null = null;
     try {
-      const dialogue = await readDialogueForChapter(chapterTitle);
+      const dialogue = await openBook('').readChapterDialogue(chapterTitle);
       if (dialogue && 'formatVersion' in dialogue) {
         tags = extractNarrationTags(dialogue.lines);
       }

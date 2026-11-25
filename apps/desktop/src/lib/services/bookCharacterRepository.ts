@@ -1,16 +1,11 @@
 import type { Character, CharacterConfig, CharacterFile, CharactersJson, ScriptJson } from '$lib/types';
 import { CHARACTER_GUID_PATTERN } from '$lib/types';
 import {
-    getBookCharactersPath,
-    getCharactersPath,
-    getDialoguePath,
-    getScriptPath,
     readCharacterFolder,
-    readDialogue,
     readFileAsJson,
-    writeCentralCharacters,
     writeCharacterFile,
 } from '$lib/services/fs';
+import { layoutPath, openBook } from '$lib/services/bookFormat';
 import { getRawCharacterFileDoc } from '$lib/services/characterFileMapping';
 import { normalizeCharacterGender } from '$lib/services/characterGender';
 import {
@@ -134,18 +129,19 @@ async function collectFirstAppearances(
         firstAppearances.set(identityKey, chapterTitle);
     };
 
+    // Chapter documents do not depend on the root (paths are book-relative).
+    const book = openBook('');
     for (const chapter of chapterList) {
         if (chapter.parsed === false) continue;
         try {
-            const dialogue = await readDialogue(getDialoguePath(chapter.title));
+            const dialogue = await book.read('dialogue', chapter.title);
             if (dialogue?.lines) {
                 for (const line of dialogue.lines) recordUsage((line as any).characterId, chapter.title);
                 continue;
             }
 
             // Legacy fallback for books that have not yet migrated to dialogue.json.
-            const scriptPath: string = chapter.scriptPath ?? getScriptPath(chapter.title);
-            const script = await readFileAsJson<ScriptJson>(scriptPath);
+            const script = await book.read('script', chapter.title);
             for (const line of script?.lines ?? []) recordUsage((line as any).chosenSpeaker, chapter.title);
         } catch {
         }
@@ -239,7 +235,7 @@ export async function syncMissingBookCharacterDefaults(
     };
 
     if (!updated) return null;
-    await writeCentralCharacters(root, next, false);
+    await openBook(root).write('characters', next, { history: false });
     return next;
 }
 
@@ -259,7 +255,8 @@ export async function loadBookCharactersData(
     }
 
     // Tier 2 (v2): characters.json present, folder absent/empty.
-    const legacyPath = getBookCharactersPath();
+    // Read by raw path: this is the auto-migrate-on-open probe of the v2 store.
+    const legacyPath = layoutPath('characters');
     console.log('[bookCharacters] No v3 folder; checking legacy file:', legacyPath);
     const legacyRaw = await readFileAsJson<CharactersJson>(legacyPath);
 
@@ -342,11 +339,12 @@ export async function deriveCharactersFromChapters(
     chapterList: ChapterCharacterContext[],
 ): Promise<CharactersJson> {
     const accMap = new Map<string, DerivedBookCharacter>();
+    const book = openBook(root);
 
     for (const chapter of chapterList) {
         if (chapter.parsed === false) continue;
         try {
-            const chars = await loadChapterCharactersData(root, getCharactersPath(chapter.title));
+            const chars = await loadChapterCharactersData(root, chapter.title);
             if (chars && Array.isArray(chars.characters)) {
                 for (const character of chars.characters) {
                     const normalized = normalizeCharacterConfig(character as any);
@@ -377,8 +375,7 @@ export async function deriveCharactersFromChapters(
             }
 
             if (chapter.parsed) {
-                const scriptPath: string = chapter.scriptPath ?? getScriptPath(chapter.title);
-                const script = await readFileAsJson<ScriptJson>(scriptPath);
+                const script = await book.readChapterDialogue(chapter.title) as ScriptJson | null;
                 if (!script) continue;
 
                 for (const line of script.lines) {
@@ -414,8 +411,7 @@ export async function deriveCharactersFromChapters(
     for (const chapter of chapterList) {
         try {
             if (!chapter.parsed) continue;
-            const scriptPath: string = chapter.scriptPath ?? getScriptPath(chapter.title);
-            const script = await readFileAsJson<ScriptJson>(scriptPath);
+            const script = await book.readChapterDialogue(chapter.title) as ScriptJson | null;
             if (!script) continue;
 
             for (const line of script.lines) {

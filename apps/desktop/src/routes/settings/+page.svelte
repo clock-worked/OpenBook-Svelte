@@ -3,7 +3,8 @@
     import { appTheme, bookRootPathOverride, parserHints, type AppTheme } from '$lib/stores/settings';
     import { bookRoot, bookRootAbsolutePath, chapters } from '$lib/stores/bookState';
     import { forceRefreshBookCharacters } from '$lib/stores/bookCharacters';
-    import { setBackendBookRoot, getRootDirInfo, readEditableJson, writeEditableJson, triggerStatsUpdate } from '$lib/services/fs';
+    import { setBackendBookRoot, getRootDirInfo, readEditableJson, triggerStatsUpdate } from '$lib/services/fs';
+    import { layoutPath, openBook } from '$lib/services/bookFormat';
     import { history } from '$lib/services/history';
     import type { ParserHints } from '$lib/types';
     import { API_ENDPOINTS, apiFetch } from '$lib/services/apiClient';
@@ -120,8 +121,8 @@
               parserHints.set(JSON.parse(text) as ParserHints);
             });
           if (get(bookRoot)) {
-            const settings = await readEditableJson<Record<string, unknown>>('settings.json');
-            if (!await writeEditableJson('settings.json', { ...settings, parserHints: get(parserHints) })) {
+            const settings = await readEditableJson<Record<string, unknown>>(layoutPath('settings'));
+            if (!await openBook(get(bookRoot) ?? '').write('settings', { ...settings, parserHints: get(parserHints) })) {
               throw new Error('Could not save attribution settings.');
             }
           }

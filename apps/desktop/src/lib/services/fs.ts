@@ -6,15 +6,9 @@ import type {
   Character,
   DialogueJson,
   CharactersJson,
-  VoicesJson,
-  // Legacy v1.0 types
-  ScriptJson,
-  LineItem
 } from '$lib/types';
 import { storeProjectHandle } from './persistence';
 import { history } from './history';
-// The dialogue format-version list is owned by the chapter persistence module.
-import { isVersionedDialogue } from '$lib/components/chapter/tools/shared/chapterPersistence';
 import {
   clearRawCharacterFileDocs,
   mapCharacterFile,
@@ -535,52 +529,6 @@ export async function scanChapters(root: FileSystemDirectoryHandle): Promise<Cha
   return chapters;
 }
 
-export function getChapterDir(title: string): string {
-  // Paths are relative to the book root (rootDirHandle / backend book root),
-  // so they never include the root directory name.
-  return title;
-}
-
-// === v2.0 Paths ===
-
-export function getDialoguePath(title: string): string {
-  return `${getChapterDir(title)}/dialogue.json`;
-}
-
-export function getCentralCharactersPath(): string {
-  // Paths are relative to rootDirHandle, not including root directory name
-  return `characters.json`;
-}
-
-export function getVoicesPath(): string {
-  // Paths are relative to rootDirHandle, not including root directory name
-  return `voices.json`;
-}
-
-export function getSettingsPath(): string {
-  // Paths are relative to rootDirHandle, not including root directory name
-  return `settings.json`;
-}
-
-// === Legacy v1.0 Paths (deprecated) ===
-
-/** @deprecated Use getDialoguePath instead */
-export function getScriptPath(title: string): string {
-  return `${getChapterDir(title)}/${title}.script.json`;
-}
-
-/** @deprecated Chapter-level characters are deprecated in v2.0 */
-export function getCharactersPath(title: string): string {
-  return `${getChapterDir(title)}/${title}.characters.json`;
-}
-
-/** @deprecated Use getCentralCharactersPath instead */
-export function getBookCharactersPath(): string {
-  // When using File System Access API, paths are relative to rootDirHandle
-  // So we just return the filename, not a full path
-  return `characters.json`;
-}
-
 // === Transport seam ===
 //
 // Every file read/write/list/delete in this module goes through a
@@ -949,25 +897,7 @@ async function writeFileRouted(
   }
 }
 
-// === v2.0 Read/Write Functions ===
-
-export async function readDialogue(path: string): Promise<DialogueJson | null> {
-  return readFileAsJson<DialogueJson>(path);
-}
-
-export async function readOptionalDialogue(path: string): Promise<DialogueJson | null> {
-  return readFileAsJson<DialogueJson>(path, false);
-}
-
-/**
- * Write a dialogue document — a pure write (`/api/save` on the sidecar), with
- * no character-stats side effect. Backups, audio-metadata stamps and
- * remap/migration rewrites use this. A chapter dialogue *save* goes through
- * the chapter persistence owner, which uses `writeDialogueSave`.
- */
-export async function writeDialogue(path: string, data: DialogueJson, recordHistory = true): Promise<boolean> {
-  return writeFile(path, JSON.stringify(data, null, 2), recordHistory);
-}
+// === Chapter dialogue save ===
 
 /**
  * The chapter dialogue save write (kind `dialogueSave`), for the chapter
@@ -993,16 +923,6 @@ export async function applyDialogueStatsDelta(relPath: string): Promise<boolean>
     console.warn(`[fs] Failed to apply dialogue stats delta for ${relPath}:`, error);
     return false;
   }
-}
-
-export async function readVoices(root: string): Promise<VoicesJson | null> {
-  // When using FileSystemDirectoryHandle, rootDirHandle is already at the book directory level
-  return readFileAsJson<VoicesJson>('voices.json');
-}
-
-export async function writeVoices(root: string, data: VoicesJson, recordHistory = true): Promise<boolean> {
-  // When using FileSystemDirectoryHandle, rootDirHandle is already at the book directory level
-  return writeFile('voices.json', JSON.stringify(data, null, 2), recordHistory);
 }
 
 export async function readCentralCharacters(root: string): Promise<CharactersJson | null> {
@@ -1044,19 +964,6 @@ export async function writeCentralCharacters(root: string, data: CharactersJson,
   const success = await writeFile('characters.json', JSON.stringify(data, null, 2), recordHistory);
   if (success) invalidateCentralCharactersCache();
   return success;
-}
-
-export async function readSettings(root: string): Promise<any | null> {
-  return readFileAsJson<any>('settings.json');
-}
-
-export async function writeSettings(root: string, data: any, recordHistory = true): Promise<boolean> {
-  return writeFile('settings.json', JSON.stringify(data, null, 2), recordHistory);
-}
-
-// Legacy: Read old speaker_blocklist.json format
-export async function readSpeakerBlocklist(root: string): Promise<any | null> {
-  return readFileAsJson<any>('speaker_blocklist.json');
 }
 
 // === v3.0 Character Folder Primitives ===
@@ -1148,8 +1055,6 @@ async function deleteFileDirect(root: string, relPath: string): Promise<boolean>
   return activeTransport().deleteEntry(relPath);
 }
 
-// === Legacy v1.0 Functions (for backward compatibility) ===
-
 export async function deleteFile(root: string, relPath: string, recordHistory = true): Promise<boolean> {
   if (!recordHistory) return deleteFileDirect(root, relPath);
   try {
@@ -1165,15 +1070,6 @@ export async function deleteFile(root: string, relPath: string, recordHistory = 
     history.reportError(error);
     return false;
   }
-}
-
-/** @deprecated Use readDialogue instead */
-export async function readScript(path: string): Promise<ScriptJson | null> {
-  return readFileAsJson<ScriptJson>(path);
-}
-
-export async function readOptionalScript(path: string): Promise<ScriptJson | null> {
-  return readFileAsJson<ScriptJson>(path, false);
 }
 
 /**
@@ -1216,69 +1112,7 @@ export async function triggerStatsUpdate(): Promise<void> {
   }
 }
 
-/** @deprecated Use writeDialogue instead */
-export async function writeScript(path: string, data: ScriptJson): Promise<boolean> {
-  // A plain file write: no endpoint or stats-delta inference from the path.
-  return writeFile(path, JSON.stringify(data, null, 2));
-}
-
-export async function readOptionalCharacters(path: string): Promise<CharactersJson | null> {
-  return readFileAsJson<CharactersJson>(path, false);
-}
-
-/** @deprecated Use writeCentralCharacters instead */
-export async function writeCharacters(path: string, data: CharactersJson, recordHistory = true): Promise<boolean> {
-  return writeFile(path, JSON.stringify(data, null, 2), recordHistory);
-}
-
 export async function readTextFile(path: string): Promise<string | null> {
   // Plain text read: no `optional` flag is forwarded to the sidecar.
   return activeTransport().readText(path, {});
-}
-
-/**
- * Read dialogue for a chapter, trying v2.0 format first, falling back to v1.0
- */
-export async function readDialogueForChapter(chapterTitle: string): Promise<DialogueJson | ScriptJson | null> {
-  try {
-    const dialogueParsed = await readFileAsJson<DialogueJson | ScriptJson>(`${chapterTitle}/dialogue.json`);
-    if (isVersionedDialogue(dialogueParsed)) {
-      return dialogueParsed;
-    }
-
-    // Fall back to v1.0 script.json
-    const scriptParsed = await readFileAsJson<ScriptJson>(`${chapterTitle}/${chapterTitle}.script.json`);
-    if (scriptParsed) {
-      return scriptParsed as ScriptJson;
-    }
-
-    // Retry dialogue.json as legacy/non-versioned JSON
-    if (dialogueParsed) {
-      return dialogueParsed as ScriptJson;
-    }
-
-    // Compatibility fallback used in some migrated chapters
-    const dialogueOldParsed = await readFileAsJson<ScriptJson>(`${chapterTitle}/dialogue-old.json`);
-    if (dialogueOldParsed) {
-      return dialogueOldParsed as ScriptJson;
-    }
-
-    return null;
-  } catch (e) {
-    return null;
-  }
-}
-
-/** @deprecated Use readDialogueForChapter instead */
-export async function readScriptForChapter(chapterTitle: string): Promise<ScriptJson | null> {
-  if (!rootDirHandle) return null;
-  try {
-    const chapterDirHandle = await rootDirHandle.getDirectoryHandle(chapterTitle, { create: false });
-    const scriptFileHandle = await chapterDirHandle.getFileHandle(`${chapterTitle}.script.json`, { create: false });
-    const file = await scriptFileHandle.getFile();
-    const contents = await file.text();
-    return JSON.parse(contents) as ScriptJson;
-  } catch (e) {
-    return null;
-  }
 }

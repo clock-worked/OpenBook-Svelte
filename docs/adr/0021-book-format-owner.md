@@ -14,7 +14,7 @@ doc: dialogue | script | roster | voices | settings | characters | speakerBlockl
 
 Four rules are binding:
 
-1. **Callers name a document, never a path.** The layout table is private. Only two jobs get a raw path, through `layoutPath`: history capture (and routing history changes back to documents with `classifyBookPath`), and the migration's file inventory.
+1. **Callers name a document, never a path.** The layout table is private. Only a few jobs get a raw path, through `layoutPath`: history capture (and routing history changes back to documents with `classifyBookPath`), the migration's file inventory and legacy-store probes, and `ChapterStatus.scriptPath` (which file a chapter loads from). The fs character-folder primitives and the scanner of the workspace's chapters keep their own file names.
 2. **The v2/v3 decision is made once, here.** A book is v3 when its `characters/` folder holds at least one valid character file. If the folder read fails, the book counts as v2, as the old roster guard did.
 3. **Retired documents are refused in a v3 book.** A chapter roster and the v2 `characters.json` both return `false` and write nothing. `allowRetiredInV3` lets the migration and an explicit user roster add through (the exemption issue #2 kept), and `backupDir` writes a copy into a backup tree, without history.
 4. **The dialogue format-version list lives here** (`DIALOGUE_FORMAT_VERSIONS`, `isVersionedDialogue`). It moved from the chapter persistence module, which removes the fs -> chapterPersistence import cycle.

@@ -75,11 +75,12 @@ import {
     listCharacterFiles,
     readCharacterFile,
     readTextFile,
-    writeCharacters,
     writeCharacterFile,
-    writeDialogue,
-    writeVoices,
+    writeEditableJson,
 } from '$lib/services/fs';
+// The migration inventories files by raw path (byte-identity, rescan), so it
+// takes its paths from the book format's layout.
+import { layoutPath } from '$lib/services/bookFormat';
 
 // === Pinned public interface (Lane 5 imports this; do not deviate) ===
 
@@ -112,9 +113,9 @@ export async function migrateCharactersV2ToV3(
 ): Promise<V3MigrationResult> {
     return migrateStoreToV3(root, chapterNames, {
         mode: 'v2',
-        legacyRelPath: 'characters.json',
+        legacyRelPath: layoutPath('characters'),
         loadRecords: async () => {
-            const doc = await readInventoried(root, 'characters.json');
+            const doc = await readInventoried(root, layoutPath('characters'));
             if (doc == null) return null;
             if (!Array.isArray(doc?.characters)) {
                 throw new MigrationAbort('characters.json: expected a "characters" array');
@@ -137,9 +138,9 @@ export async function migrateCharactersV1ToV3(
 ): Promise<V3MigrationResult> {
     return migrateStoreToV3(root, chapterNames, {
         mode: 'v1',
-        legacyRelPath: 'book.characters.json',
+        legacyRelPath: layoutPath('legacyBookCharacters'),
         loadRecords: async () => {
-            const doc = await readInventoried(root, 'book.characters.json');
+            const doc = await readInventoried(root, layoutPath('legacyBookCharacters'));
             if (doc == null) return null;
             if (!Array.isArray(doc?.characters)) {
                 throw new MigrationAbort('book.characters.json: expected a "characters" array');
@@ -706,7 +707,7 @@ async function inventoryReferences(
 
     for (const chapter of chapters) {
         // <Ch>/dialogue.json (four reference sites)
-        const dialoguePath = `${chapter}/dialogue.json`;
+        const dialoguePath = layoutPath('dialogue', chapter);
         const dialogue = await readInventoried(root, dialoguePath);
         if (dialogue != null) {
             inventory.add(dialoguePath);
@@ -715,14 +716,14 @@ async function inventoryReferences(
             counts.dialogueRefs += outcome.refs;
             outcome.unresolved.forEach((site) => unresolved.dialogue.push(`${dialoguePath}: ${site}`));
             if (outcome.changed) changes.push({ path: dialoguePath, writer: 'dialogue', payload: copy, refs: outcome.refs });
-        } else if ((await readTextFile(`${chapter}/${chapter}.script.json`)) != null) {
+        } else if ((await readTextFile(layoutPath('script', chapter))) != null) {
             // R11: v1-script chapters have no characterId slot; they stay
             // name-based and are flagged (never silently remapped).
             v1ScriptOnlyChapters.push(chapter);
         }
 
         // <Ch>/<Ch>.characters.json (roster)
-        const rosterPath = `${chapter}/${chapter}.characters.json`;
+        const rosterPath = layoutPath('roster', chapter);
         const roster = await readInventoried(root, rosterPath);
         if (roster != null) {
             inventory.add(rosterPath);
@@ -735,14 +736,15 @@ async function inventoryReferences(
     }
 
     // voices.json
-    const voices = await readInventoried(root, 'voices.json');
+    const voicesPath = layoutPath('voices');
+    const voices = await readInventoried(root, voicesPath);
     if (voices != null) {
-        inventory.add('voices.json');
+        inventory.add(voicesPath);
         const copy = structuredClone(voices);
         const outcome = walkVoices(copy, resolve, remap);
         counts.voiceRefs += outcome.refs;
-        outcome.unresolved.forEach((site) => unresolved.voices.push(`voices.json: ${site}`));
-        if (outcome.changed) changes.push({ path: 'voices.json', writer: 'voices', payload: copy, refs: outcome.refs });
+        outcome.unresolved.forEach((site) => unresolved.voices.push(`${voicesPath}: ${site}`));
+        if (outcome.changed) changes.push({ path: voicesPath, writer: 'voices', payload: copy, refs: outcome.refs });
     }
 
     // audio manifests: chapter × surface name (title + aliases)
@@ -768,18 +770,10 @@ async function inventoryReferences(
 
 // === Stage 5: ordered apply + post-apply rescan ===
 
-async function writeReferenceFile(root: string, change: ReferenceChange): Promise<boolean> {
-    switch (change.writer) {
-        case 'dialogue':
-            return writeDialogue(change.path, change.payload as DialogueJson, false);
-        case 'voices':
-            return writeVoices(root, change.payload as VoicesJson, false);
-        case 'roster':
-        case 'manifest':
-            // The generic single-file JSON writer (house pattern for
-            // arbitrary-path JSON files such as rosters and manifests).
-            return writeCharacters(change.path, change.payload as CharactersJson, false);
-    }
+async function writeReferenceFile(_root: string, change: ReferenceChange): Promise<boolean> {
+    // Every reference file (dialogue, roster, voices, manifest) is rewritten
+    // in place at its inventoried path, without history.
+    return writeEditableJson(change.path, change.payload, false);
 }
 
 function isStaleSiteValue(value: any, resolve: Resolver, remap: Record<string, string>): boolean {
@@ -904,7 +898,7 @@ async function applyPlan(
         } catch {
             continue; // unreadable pre-image: nothing to mirror
         }
-        const ok = await writeCharacters(`${backupDir}/${relPath}`, parsed as CharactersJson);
+        const ok = await writeEditableJson(`${backupDir}/${relPath}`, parsed, false);
         if (!ok) {
             throw new MigrationAbort(`Backup failed for ${relPath} before any book change was written.`);
         }
@@ -913,8 +907,8 @@ async function applyPlan(
     // Stage 5a: all character files, in mint order.
     for (const cluster of plan.clusters) {
         const ok = await writeCharacterFile(root, cluster.fileName, buildV3File(cluster), false);
-        if (!ok) throw new MigrationAbort(`Failed to write characters/${cluster.fileName}`);
-        writtenSoFar.push(`characters/${cluster.fileName}`);
+        if (!ok) throw new MigrationAbort(`Failed to write ${layoutPath('characterFile', cluster.fileName)}`);
+        writtenSoFar.push(layoutPath('characterFile', cluster.fileName));
     }
 
     // Stage 5b: every touched reference file (deterministic order).
@@ -952,7 +946,7 @@ async function applyPlan(
         ...started,
         ok: true,
         changedFiles: writtenSoFar,
-        createdCharacterFiles: plan.clusters.map((cluster) => `characters/${cluster.fileName}`),
+        createdCharacterFiles: plan.clusters.map((cluster) => layoutPath('characterFile', cluster.fileName)),
         retiredLegacy: true,
         remap: plan.remap,
     };
