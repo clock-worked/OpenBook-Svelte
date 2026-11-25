@@ -105,7 +105,9 @@ export const inMemoryFs = {
   // === Legacy JSON read/write (the names the services import) ===
   readCharacters: async (path: string) => readJson(path),
   readOptionalCharacters: async (path: string) => readJson(path),
-  readCentralCharacters: async (_root: string) => readJson('characters.json'),
+  // Mirrors fs.ts: the v3 characters/ folder first, then characters.json.
+  readCentralCharacters: async (root: string) =>
+    (await inMemoryFs.readCharacterFolder(root)) ?? readJson('characters.json'),
   // Mirrors fs.ts ensureCharacterNameToIdMapCached's source (the characters/
   // folder first, then the legacy characters.json), uncached: the in-memory
   // store has no stale-read problem to cache around.
@@ -125,6 +127,7 @@ export const inMemoryFs = {
   writeCharacters: async (path: string, data: unknown) => writeJson(path, data),
   writeCentralCharacters: async (_root: string, data: unknown) => writeJson('characters.json', data),
   writeDialogue: async (path: string, data: unknown) => writeJson(path, data),
+  writeEditableJson: async (path: string, data: unknown) => writeJson(path, data),
   // The chapter dialogue save write: by default the backend-path case lands
   // on the sidecar ('sidecar' outcome), whose endpoint applies the stats
   // delta; __setDialogueSaveRoute('handle') simulates a File System Access write.
