@@ -37,7 +37,7 @@ EXPECTED_ROUTES = {
     ("POST", "/api/parse"),
     ("POST", "/api/coref-health"),
     ("POST", "/api/list-voice-samples"),
-    ("POST", "/api/read_file_absolute"),
+    ("POST", "/api/audio-manifest"),
     ("POST", "/api/generate_audio_line"),
     ("POST", "/api/delete_character_audio"),
     ("POST", "/api/delete_audio_line"),
@@ -97,7 +97,8 @@ def run_smoke() -> None:
             sample_root.mkdir(parents=True, exist_ok=True)
             (sample_root / "narrator.wav").write_bytes(b"RIFF")
 
-            manifest_path = root / "manifest.json"
+            manifest_path = root / "TestChapter" / "audio_lines" / "Narrator" / "manifest.json"
+            manifest_path.parent.mkdir(parents=True, exist_ok=True)
             manifest_payload = {"formatVersion": "2.0", "ok": True}
             manifest_path.write_text(json.dumps(manifest_payload), encoding="utf-8")
 
@@ -127,9 +128,12 @@ def run_smoke() -> None:
                 if "narrator.wav" not in sample_files:
                     raise AssertionError(f"Expected narrator.wav in samples, got payload={response.json()}")
 
-                response = client.post("/api/read_file_absolute", json={"file_path": str(manifest_path)})
-                assert_status(response, 200, "read_file_absolute")
-                if response.json().get("ok") is not True:
+                response = client.post(
+                    "/api/audio-manifest",
+                    json={"chapter_title": "TestChapter", "character_name": "Narrator", "audio_root": str(root)},
+                )
+                assert_status(response, 200, "audio-manifest")
+                if (response.json().get("manifest") or {}).get("ok") is not True:
                     raise AssertionError(f"Expected manifest payload, got={response.json()}")
 
                 response = client.get("/api/audio/TestChapter/Narrator/999")

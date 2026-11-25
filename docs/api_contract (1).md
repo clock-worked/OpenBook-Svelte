@@ -37,7 +37,7 @@ The following backend routes are currently governed by the centralized client:
 - `POST /api/update-character-stats`
 - `POST /api/scan-voice-manifests`
 - `POST /api/list-voice-samples`
-- `POST /api/read_file_absolute`
+- `POST /api/audio-manifest`
 - `POST /api/generate_audio_line`
 - `POST /api/vibevoice/line`
 - `POST /api/vibevoice/chapter`

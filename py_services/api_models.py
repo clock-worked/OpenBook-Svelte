@@ -136,8 +136,12 @@ class SaveVoiceSampleMetadataRequest(BaseModel):
     tags: List[str] = []
 
 
-class ReadFileAbsoluteRequest(BaseModel):
-    file_path: str
+class AudioManifestRequest(BaseModel):
+    """Read one character's stored manifest in one chapter (read-only)."""
+
+    chapter_title: str
+    character_name: str
+    audio_root: Optional[str] = None
 
 
 class ChatterboxGenerationSettings(BaseModel):

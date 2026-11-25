@@ -11,20 +11,22 @@ from api_models import (
     DeleteCharacterAudioRequest,
     GenerateAudioLineRequest,
     ListVoiceSamplesRequest,
+    AudioManifestRequest,
     ReconcileAudioManifestRequest,
-    ReadFileAbsoluteRequest,
     SaveVoiceSampleMetadataRequest,
     ScanManifestsRequest,
 )
 from audio_generation_service import AudioGenerationService
 
 try:
+    from .audio.manifest_store import ManifestPathError, load as load_manifest
     from .audio.router_support import (
         make_audio_service_ensurer,
         raise_generation_failure,
         resolve_audio_root,
     )
 except ImportError:
+    from audio.manifest_store import ManifestPathError, load as load_manifest
     from audio.router_support import (
         make_audio_service_ensurer,
         raise_generation_failure,
@@ -134,31 +136,6 @@ def create_audio_router(
         set_audio_service=set_audio_service,
         service_factory=AudioGenerationService,
     )
-
-    @router.post("/api/read_file_absolute")
-    async def read_file_absolute(request: ReadFileAbsoluteRequest):
-        try:
-            file_path = Path(request.file_path)
-
-            if not file_path.is_absolute():
-                raise HTTPException(status_code=400, detail="File path must be absolute")
-            if not file_path.exists():
-                raise HTTPException(status_code=404, detail=f"File not found: {file_path}")
-            if not file_path.is_file():
-                raise HTTPException(status_code=400, detail=f"Path is not a file: {file_path}")
-
-            with open(file_path, "r", encoding="utf-8") as handle:
-                return json.load(handle)
-        except HTTPException as http_exc:
-            raise http_exc
-        except json.JSONDecodeError as exc:
-            raise HTTPException(status_code=400, detail=f"Invalid JSON file: {str(exc)}") from exc
-        except Exception as exc:
-            print(f"Error reading file {request.file_path}: {exc}")
-            import traceback
-
-            traceback.print_exc()
-            raise HTTPException(status_code=500, detail=str(exc)) from exc
 
     @router.post("/api/list-voice-samples")
     async def list_voice_samples(request: ListVoiceSamplesRequest):
@@ -341,13 +318,30 @@ def create_audio_router(
             traceback.print_exc()
             raise HTTPException(status_code=500, detail=str(exc)) from exc
 
+    @router.post("/api/audio-manifest")
+    async def read_audio_manifest(request: AudioManifestRequest):
+        """The stored manifest for one character in one chapter. Read-only.
+
+        Addressed by chapter + character under the audio root (never by a
+        file path), so it cannot read anything but a manifest.
+        """
+        service = _ensure_audio_service(request.audio_root)
+        try:
+            manifest = load_manifest(service.audio_root, request.chapter_title, request.character_name)
+        except ManifestPathError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        return {"manifest": manifest}
+
     @router.post("/api/reconcile-audio-manifest")
     async def reconcile_audio_manifest(request: ReconcileAudioManifestRequest):
         service = _ensure_audio_service(request.audio_root)
-        return service.reconcile_character_manifest(
-            chapter_title=request.chapter_title,
-            character_name=request.character_name,
-        )
+        try:
+            return service.reconcile_character_manifest(
+                chapter_title=request.chapter_title,
+                character_name=request.character_name,
+            )
+        except ManifestPathError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
 
     @router.get("/api/audio/{chapter_title}/{character_name}/{line_id}")
     async def serve_audio_file(

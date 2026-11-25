@@ -130,8 +130,15 @@ export interface ReviewChapterResponse {
   descriptorsAdded: number;
 }
 
-export interface ReadFileAbsoluteRequest {
-  file_path: string;
+/** POST /api/audio-manifest: one character's stored manifest in one chapter (read-only). */
+export interface AudioManifestRequest {
+  chapter_title: string;
+  character_name: string;
+  audio_root?: string | null;
+}
+
+export interface AudioManifestResponse {
+  manifest?: ManifestData | Record<string, unknown> | null;
 }
 
 export interface ChapterVoiceAssignmentPayload {

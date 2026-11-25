@@ -6,8 +6,10 @@
 //
 // Fallback chain, for a configured audio root:
 //   1. POST /api/reconcile-audio-manifest  (aligns with disk, returns v2)
-//   2. POST /api/read_file_absolute        (raw manifest at <root>/...)
+//   2. POST /api/audio-manifest            (stored manifest, read-only)
 //   3. book-root-relative read             (fs transport)
+// Steps 1 and 2 address the manifest by chapter + character; the backend
+// resolves the path inside the audio root, so no file path crosses the wire.
 // Older sidecars lack 1 and/or 2. A 404 from one marks it missing in the
 // reader's ManifestApiProbe for the probe's lifetime (the session, by
 // default), and later reads skip it. Without an audio root only 3 is tried.
@@ -15,7 +17,7 @@
 import type { AudioManifest } from './audio';
 
 /** The optional sidecar endpoints the chain probes. */
-export type ManifestApi = 'reconcile' | 'absoluteRead';
+export type ManifestApi = 'reconcile' | 'manifestRead';
 
 /**
  * Remembers which optional endpoints the sidecar has. `isMissing` is true
@@ -54,8 +56,12 @@ export interface ManifestTransport {
     characterName: string;
     audioRoot: string;
   }): Promise<ManifestFetchResult>;
-  /** Absolute-path read endpoint. */
-  readAbsolute(filePath: string): Promise<ManifestFetchResult>;
+  /** Read-only stored-manifest endpoint. */
+  readStored(request: {
+    chapterTitle: string;
+    characterName: string;
+    audioRoot: string;
+  }): Promise<ManifestFetchResult>;
   /** Book-root-relative read; `null` when the file is absent. */
   readRelative(relativePath: string): Promise<AudioManifest | null>;
 }
@@ -81,10 +87,6 @@ export interface ManifestReader {
 
 export function manifestRelativePath(chapterTitle: string, characterName: string): string {
   return `${chapterTitle}/audio_lines/${characterName}/manifest.json`;
-}
-
-export function manifestAbsolutePath(root: string, chapterTitle: string, characterName: string): string {
-  return `${root}/${manifestRelativePath(chapterTitle, characterName)}`;
 }
 
 function cacheKey(chapterTitle: string, characterName: string): string {
@@ -113,7 +115,7 @@ export function createManifestReader(deps: ManifestReaderDeps): ManifestReader {
       return null;
     }
 
-    if (probe.isMissing('absoluteRead')) {
+    if (probe.isMissing('manifestRead')) {
       return transport.readRelative(relativePath);
     }
 
@@ -134,19 +136,18 @@ export function createManifestReader(deps: ManifestReaderDeps): ManifestReader {
       }
     }
 
-    const manifestPath = manifestAbsolutePath(root, chapterTitle, characterName);
-    const absolute = await transport.readAbsolute(manifestPath);
-    if (absolute.kind === 'ok') {
-      probe.markAvailable('absoluteRead');
-      logger.log('[audio] Manifest loaded for', characterName, '- clips:', absolute.manifest?.clips?.length);
-      return absolute.manifest;
+    const stored = await transport.readStored({ chapterTitle, characterName, audioRoot: root });
+    if (stored.kind === 'ok') {
+      probe.markAvailable('manifestRead');
+      logger.log('[audio] Manifest loaded for', characterName, '- clips:', stored.manifest?.clips?.length);
+      return stored.manifest;
     }
-    if (absolute.kind === 'missing') {
-      probe.markMissing('absoluteRead');
-      logger.warn('[audio] /api/read_file_absolute returned 404; disabling absolute manifest reads for this session');
+    if (stored.kind === 'missing') {
+      probe.markMissing('manifestRead');
+      logger.warn('[audio] /api/audio-manifest returned 404; disabling stored manifest reads for this session');
       return transport.readRelative(relativePath);
     }
-    logger.log('[audio] Manifest not found for', characterName, '- status:', absolute.status);
+    logger.log('[audio] Manifest not found for', characterName, '- status:', stored.status);
     return null;
   }
 
