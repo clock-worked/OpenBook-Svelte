@@ -372,6 +372,11 @@ export async function writeChapterScriptEdits(params: {
         }
     }
 
+    recomputeDialogueStats(doc);
+    return writeDialogue(dialoguePath, doc);
+}
+
+function recomputeDialogueStats(doc: DialogueJson): void {
     const characterBreakdown: Record<string, number> = {};
     let conflicts = 0;
     for (const line of doc.lines) {
@@ -380,8 +385,102 @@ export async function writeChapterScriptEdits(params: {
         characterBreakdown[line.characterId] = (characterBreakdown[line.characterId] || 0) + 1;
     }
     doc.stats = { ...doc.stats, totalLines: doc.lines.length, conflicts, characterBreakdown };
+}
 
-    return writeDialogue(dialoguePath, doc);
+/**
+ * Count the lines of a chapter's versioned dialogue.json spoken by
+ * `characterId`. Returns `null` when the chapter has no versioned
+ * dialogue.json (the caller falls back to the legacy v1 script).
+ */
+export async function countCharacterIdInDialogue(
+    chapterTitle: string,
+    characterId: string
+): Promise<number | null> {
+    const doc = await readOptionalDialogue(`${chapterTitle}/dialogue.json`);
+    if (!isVersionedDialogue(doc)) return null;
+    let total = 0;
+    for (const line of doc.lines) {
+        if (!line.isNonSpeaker && line.characterId === characterId) total += 1;
+    }
+    return total;
+}
+
+/**
+ * Book-wide character reassign for one chapter: every line of the versioned
+ * dialogue.json whose `characterId` is `oldId` moves to `newId` (`null` =
+ * Unknown, flagged as a conflict for review). Candidate ids (the line's and
+ * its attribution's) are remapped the same way — merged into an existing
+ * `newId` candidate at the higher confidence, or dropped when `newId` is
+ * null. Everything else on the document (metadata, audioGeneration, readAs,
+ * review state, …) is kept (ADR 0003: write the current schema only).
+ *
+ * Returns `null` when the chapter has no versioned dialogue.json (the caller
+ * keeps the legacy v1 path), otherwise how many lines were reassigned; the
+ * file is only written when that is > 0.
+ */
+export async function reassignCharacterIdInDialogue(
+    chapterTitle: string,
+    oldId: string,
+    newId: string | null
+): Promise<number | null> {
+    if (!oldId || oldId === newId) return null;
+    const dialoguePath = `${chapterTitle}/dialogue.json`;
+    const doc = await readOptionalDialogue(dialoguePath);
+    if (!isVersionedDialogue(doc)) return null;
+
+    let reassigned = 0;
+    let touched = false;
+    for (const line of doc.lines) {
+        if (Array.isArray(line.candidates) && line.candidates.some((c) => c?.characterId === oldId)) {
+            line.candidates = remapLineCandidates(line.candidates, oldId, newId);
+            touched = true;
+        }
+
+        const attributionCandidates = line.attribution?.candidates;
+        if (Array.isArray(attributionCandidates)) {
+            for (const candidate of attributionCandidates) {
+                if (candidate?.characterId === oldId) {
+                    candidate.characterId = newId;
+                    touched = true;
+                }
+            }
+        }
+
+        if (line.characterId === oldId) {
+            line.characterId = newId;
+            // Same rule as the v1 path: Unknown needs review; a named
+            // replacement is a conflict only when the line had competing
+            // candidates and none of them is the replacement.
+            line.isConflict = newId === null
+                || (line.candidates.length > 1 && !line.candidates.some((c) => c.characterId === newId));
+            reassigned += 1;
+            touched = true;
+        }
+    }
+
+    if (!touched) return 0;
+    recomputeDialogueStats(doc);
+    const saved = await writeDialogue(dialoguePath, doc);
+    if (!saved) throw new Error(`Failed to save reassigned dialogue for ${chapterTitle}`);
+    return reassigned;
+}
+
+function remapLineCandidates(
+    candidates: DialogueJson['lines'][number]['candidates'],
+    oldId: string,
+    newId: string | null
+): DialogueJson['lines'][number]['candidates'] {
+    const byId = new Map<string, DialogueJson['lines'][number]['candidates'][number]>();
+    for (const candidate of candidates) {
+        if (!candidate) continue;
+        const id = candidate.characterId === oldId ? newId : candidate.characterId;
+        if (!id) continue;
+        const existing = byId.get(id);
+        if (!existing || candidate.confidence > existing.confidence) {
+            byId.set(id, { ...candidate, characterId: id });
+        }
+    }
+    return Array.from(byId.values()).sort((left, right) => right.confidence - left.confidence);
 }
 
 /**

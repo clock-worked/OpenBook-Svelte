@@ -5,7 +5,7 @@
   import { selection, conflictCursor, tracedLine } from '$lib/stores/selection';
   import { characters, colorForCharacter, rgbaToOpaqueHex, opaqueHexToRgba, refreshChapterCharactersFromFile, buildNameToIdMap } from '$lib/stores/characters';
   import { getScriptPath, readFileAsJson, getCharactersPath } from '$lib/services/fs';
-  import { writeChapterScriptEdits } from '$lib/components/chapter/tools/shared/chapterPersistence';
+  import { countCharacterIdInDialogue, reassignCharacterIdInDialogue, writeChapterScriptEdits } from '$lib/components/chapter/tools/shared/chapterPersistence';
   import { loadChapterCharactersData, persistChapterCharactersData, type PersistChapterCharactersOptions } from '$lib/services/chapterCharacterRepository';
   // removed generateChapterAudio per UI change
   import { defaultColors } from '$lib/theme/colors';
@@ -337,29 +337,54 @@
     }
   }
 
+  /**
+   * Resolve a speaker name to its book-roster id. Unknown maps to `null`
+   * (v3 dialogue has no Unknown character, just `characterId: null`);
+   * `undefined` = not in the roster.
+   */
+  function resolveRosterId(name: string): string | null | undefined {
+    const key = String(name || '').trim().toLowerCase();
+    if (!key || key === 'unknown') return null;
+    return buildNameToIdMap(get(bookCharacters).characters).get(key);
+  }
+
   async function reassignCharacterAcrossBook(oldName: string, newName: string): Promise<void> {
     const root = get(bookRoot);
     if (!root) return;
     const chapterList = get(chapters);
     const oldKey = normalizeCharacterKey(oldName);
     const newKey = normalizeCharacterKey(newName);
+    const oldId = resolveRosterId(oldName);
+    const newId = resolveRosterId(newName);
     for (const ch of chapterList) {
-      const path = (ch as any).scriptPath ?? getScriptPath(ch.title);
-      const scr = await readFileAsJson<ScriptJson>(path);
-      if (!scr) continue;
       let changed = false;
-      for (const line of scr.lines) {
-        if (normalizeCharacterKey(line.chosenSpeaker || '') === 'narrator') continue;
-        if (normalizeCharacterKey(line.chosenSpeaker || '') === oldKey) {
-          line.chosenSpeaker = newName;
-          line.isConflict = !line.chosenSpeaker || (line.candidates && line.candidates.length > 1 && !line.candidates.some(c => c.name === newName));
-          changed = true;
+      // v3 chapters: reassign by id inside dialogue.json (null = no versioned
+      // dialogue.json, fall back to the legacy v1 script below).
+      const reassigned = oldId && newId !== undefined
+        ? await reassignCharacterIdInDialogue(ch.title, oldId, newId)
+        : null;
+      if (reassigned !== null) {
+        changed = reassigned > 0;
+        if (changed && get(currentChapter)?.title === ch.title) {
+          requestChapterReload();
         }
-      }
-      if (changed) {
-        await saveChapterScriptEdits({ title: ch.title, scriptPath: path }, scr);
-        if (get(currentChapter)?.title === ch.title) {
-          currentScript.set(scr);
+      } else {
+        const path = (ch as any).scriptPath ?? getScriptPath(ch.title);
+        const scr = await readFileAsJson<ScriptJson>(path);
+        if (!scr?.lines) continue;
+        for (const line of scr.lines) {
+          if (normalizeCharacterKey(line.chosenSpeaker || '') === 'narrator') continue;
+          if (normalizeCharacterKey(line.chosenSpeaker || '') === oldKey) {
+            line.chosenSpeaker = newName;
+            line.isConflict = !line.chosenSpeaker || (line.candidates && line.candidates.length > 1 && !line.candidates.some(c => c.name === newName));
+            changed = true;
+          }
+        }
+        if (changed) {
+          await saveChapterScriptEdits({ title: ch.title, scriptPath: path }, scr);
+          if (get(currentChapter)?.title === ch.title) {
+            currentScript.set(scr);
+          }
         }
       }
 
@@ -381,6 +406,7 @@
     const canonicalEntry = get(bookCharacters).characters.find(
       (character) => normalizeCharacterKey(character.name) === normalizeCharacterKey(characterName)
     );
+    const characterId = canonicalEntry?.id || resolveRosterId(characterName) || null;
     const namesToMatch = new Set<string>([
       normalizeCharacterKey(characterName),
       normalizeCharacterKey(canonicalEntry?.name || ''),
@@ -391,6 +417,12 @@
     let total = 0;
     const chapterList = get(chapters);
     for (const chapter of chapterList) {
+      // v3 chapters count by id (covers aliases); null = legacy v1 script.
+      const v3Count = characterId ? await countCharacterIdInDialogue(chapter.title, characterId) : null;
+      if (v3Count !== null) {
+        total += v3Count;
+        continue;
+      }
       const path = (chapter as any).scriptPath ?? getScriptPath(chapter.title);
       const scr = await readFileAsJson<ScriptJson>(path);
       if (!scr?.lines) continue;
