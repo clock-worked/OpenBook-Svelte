@@ -1,10 +1,11 @@
 <script lang="ts">
   import type { CharactersJson, Character, DialogueJson, Gender, ScriptJson } from '$lib/types';
   import { writable, get } from 'svelte/store';
-  import { currentChapter, bookRoot, bookRootAbsolutePath, currentScript, chapters, requestChapterReload } from '$lib/stores/bookState';
+  import { currentChapter, bookRoot, currentScript, chapters, requestChapterReload } from '$lib/stores/bookState';
   import { selection, conflictCursor, tracedLine } from '$lib/stores/selection';
-  import { characters, colorForCharacter, rgbaToOpaqueHex, opaqueHexToRgba, refreshChapterCharactersFromFile } from '$lib/stores/characters';
-  import { classifyBookPath, layoutPath, openBook } from '$lib/services/bookFormat';
+  import { characters, colorForCharacter, rgbaToOpaqueHex, opaqueHexToRgba, refreshChapterCharactersFromFile, buildNameToIdMap } from '$lib/stores/characters';
+  import { openBook } from '$lib/services/bookFormat';
+  import { countCharacterIdInDialogue, reassignCharacterIdInDialogue, writeChapterScriptEdits } from '$lib/components/chapter/tools/shared/chapterPersistence';
   import { loadChapterCharactersData, persistChapterCharactersData, type PersistChapterCharactersOptions } from '$lib/services/chapterCharacterRepository';
   // removed generateChapterAudio per UI change
   import { defaultColors } from '$lib/theme/colors';
@@ -20,7 +21,6 @@
   import Dropdown from '$lib/components/common/Dropdown.svelte';
   import { addBookCharacter, addBookCharacterAlias, upsertBookCharacter, renameBookCharacter, removeBookCharacter, bookCharacters, detachBookCharacterAlias, setBookCharacterDescriptors, forceRefreshBookCharacters, mergeBookCharacters } from '$lib/stores/bookCharacters';
   import { historyAction } from '$lib/services/history';
-  import { apiFetch, API_ENDPOINTS } from '$lib/services/apiClient';
   import { buildClosedWorldReviewItems, planClosedWorldDescriptorAssignments, resolveClosedWorldCandidateAsAlias, type ClosedWorldReviewItem } from '$lib/services/closedWorldCharacterWorkflow';
   import { chapterLineCounts as countChapterLines } from '$lib/services/characterStats';
   import { normalizeCharacterKey } from '$lib/services/characterDomain';
@@ -54,21 +54,6 @@
 
   let sortMode: SortMode = 'name';
   let activeTab: ChapterPanelTab = 'characters';
-
-  // The chapter's script view is written back to the document the chapter
-  // was loaded from: dialogue.json when the chapter has one (ch.scriptPath),
-  // else the v1 script. Pre-existing behaviour kept by N2: this writes the
-  // v1 script shape over a current dialogue.json.
-  function chapterScriptDoc(ch: any): 'dialogue' | 'script' {
-    return ch?.scriptPath && classifyBookPath(ch.scriptPath)?.doc === 'dialogue' ? 'dialogue' : 'script';
-  }
-
-  function writeChapterScript(ch: any, scr: ScriptJson): Promise<boolean> {
-    const book = openBook(get(bookRoot) ?? '');
-    return chapterScriptDoc(ch) === 'dialogue'
-      ? book.write('dialogue', ch.title, scr as unknown as DialogueJson)
-      : book.write('script', ch.title, scr);
-  }
 
   /** The chapter's document as a script (the legacy fallbacks included). */
   function readChapterScript(ch: any): Promise<ScriptJson | null> {
@@ -227,19 +212,23 @@
       changed = true;
     }
     if (!changed) return;
-    let saved = await writeChapterScript(ch, scr);
-    if (!saved && get(bookRootAbsolutePath)) {
-      const scriptPath = layoutPath(chapterScriptDoc(ch), ch.title);
-      const response = await apiFetch(API_ENDPOINTS.save, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ file_path: scriptPath, content: scr }),
-      });
-      saved = response.ok;
-    }
+    const saved = await saveChapterScriptEdits(ch, scr);
     if (!saved) throw new Error(`Failed to save reviewed character lines (${[...assignments.keys()].join(', ')})`);
     currentScript.set({ ...scr, lines: [...scr.lines] });
     await forceRefreshBookCharacters();
+  }
+
+  /**
+   * Persist speaker edits on the v1 `currentScript` view. A chapter with a
+   * dialogue.json gets the edits applied to that document in place (ADR 0003);
+   * only a legacy chapter gets the v1 script written.
+   */
+  function saveChapterScriptEdits(ch: { title: string; scriptPath?: string }, scr: ScriptJson): Promise<boolean> {
+    return writeChapterScriptEdits({
+      chapter: ch,
+      script: scr,
+      nameToId: buildNameToIdMap(get(bookCharacters).characters),
+    });
   }
 
   $: {
@@ -353,28 +342,53 @@
     }
   }
 
+  /**
+   * Resolve a speaker name to its book-roster id. Unknown maps to `null`
+   * (v3 dialogue has no Unknown character, just `characterId: null`);
+   * `undefined` = not in the roster.
+   */
+  function resolveRosterId(name: string): string | null | undefined {
+    const key = String(name || '').trim().toLowerCase();
+    if (!key || key === 'unknown') return null;
+    return buildNameToIdMap(get(bookCharacters).characters).get(key);
+  }
+
   async function reassignCharacterAcrossBook(oldName: string, newName: string): Promise<void> {
     const root = get(bookRoot);
     if (!root) return;
     const chapterList = get(chapters);
     const oldKey = normalizeCharacterKey(oldName);
     const newKey = normalizeCharacterKey(newName);
+    const oldId = resolveRosterId(oldName);
+    const newId = resolveRosterId(newName);
     for (const ch of chapterList) {
-      const scr = await readChapterScript(ch);
-      if (!scr) continue;
       let changed = false;
-      for (const line of scr.lines) {
-        if (normalizeCharacterKey(line.chosenSpeaker || '') === 'narrator') continue;
-        if (normalizeCharacterKey(line.chosenSpeaker || '') === oldKey) {
-          line.chosenSpeaker = newName;
-          line.isConflict = !line.chosenSpeaker || (line.candidates && line.candidates.length > 1 && !line.candidates.some(c => c.name === newName));
-          changed = true;
+      // v3 chapters: reassign by id inside dialogue.json (null = no versioned
+      // dialogue.json, fall back to the legacy v1 script below).
+      const reassigned = oldId && newId !== undefined
+        ? await reassignCharacterIdInDialogue(ch.title, oldId, newId)
+        : null;
+      if (reassigned !== null) {
+        changed = reassigned > 0;
+        if (changed && get(currentChapter)?.title === ch.title) {
+          requestChapterReload();
         }
-      }
-      if (changed) {
-        await writeChapterScript(ch, scr);
-        if (get(currentChapter)?.title === ch.title) {
-          currentScript.set(scr);
+      } else {
+        const scr = await readChapterScript(ch);
+        if (!scr?.lines) continue;
+        for (const line of scr.lines) {
+          if (normalizeCharacterKey(line.chosenSpeaker || '') === 'narrator') continue;
+          if (normalizeCharacterKey(line.chosenSpeaker || '') === oldKey) {
+            line.chosenSpeaker = newName;
+            line.isConflict = !line.chosenSpeaker || (line.candidates && line.candidates.length > 1 && !line.candidates.some(c => c.name === newName));
+            changed = true;
+          }
+        }
+        if (changed) {
+          await saveChapterScriptEdits(ch, scr);
+          if (get(currentChapter)?.title === ch.title) {
+            currentScript.set(scr);
+          }
         }
       }
 
@@ -396,6 +410,7 @@
     const canonicalEntry = get(bookCharacters).characters.find(
       (character) => normalizeCharacterKey(character.name) === normalizeCharacterKey(characterName)
     );
+    const characterId = canonicalEntry?.id || resolveRosterId(characterName) || null;
     const namesToMatch = new Set<string>([
       normalizeCharacterKey(characterName),
       normalizeCharacterKey(canonicalEntry?.name || ''),
@@ -406,6 +421,12 @@
     let total = 0;
     const chapterList = get(chapters);
     for (const chapter of chapterList) {
+      // v3 chapters count by id (covers aliases); null = legacy v1 script.
+      const v3Count = characterId ? await countCharacterIdInDialogue(chapter.title, characterId) : null;
+      if (v3Count !== null) {
+        total += v3Count;
+        continue;
+      }
       const scr = await readChapterScript(chapter);
       if (!scr?.lines) continue;
       for (const line of scr.lines) {
@@ -632,7 +653,7 @@
           line.isConflict = !line.chosenSpeaker || (line.candidates && line.candidates.length > 1 && !line.candidates.some(c => c.name === newName));
         }
       }
-      await writeChapterScript(ch, scr);
+      await saveChapterScriptEdits(ch, scr);
       currentScript.set(scr);
     }
     // Update book-level characters using merge semantics to preserve aliases on conflict
@@ -671,7 +692,7 @@
     const ch: any = get(currentChapter);
     const root = get(bookRoot);
     if (ch && root) {
-      await writeChapterScript(ch, scr);
+      await saveChapterScriptEdits(ch, scr);
       currentScript.set(scr);
     }
     ensureCharacterInList(name);
@@ -1169,7 +1190,7 @@
               line.isConflict = true;
             }
           }
-          await writeChapterScript(ch, scr);
+          await saveChapterScriptEdits(ch, scr);
           currentScript.set(scr);
         }
         await removeBookCharacter(name);
