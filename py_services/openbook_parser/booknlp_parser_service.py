@@ -35,7 +35,8 @@ from .attribution_decision import (
     synthetic_override_decision,
     verdict_decision,
 )
-from .dialogue_parser_service import DialogueLine, DialogueParserService
+from .dialogue_parser_service import DialogueParserService
+from .models.dialogue_line import DialogueLine
 from .episode_decoder import decode_dialogue_episodes
 from .knowledge_store import load_knowledge_for_file
 from .modernbooknlp_service import ModernBookNLPService, align_dialogue_lines

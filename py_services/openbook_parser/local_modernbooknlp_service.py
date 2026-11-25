@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 import torch
 
-from .dialogue_parser_service import DialogueLine
+from .models.dialogue_line import DialogueLine
 from .modernbooknlp_service import (
     CACHE_DIRECTORY,
     CACHE_MANIFEST,
