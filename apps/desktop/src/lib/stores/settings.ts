@@ -47,8 +47,6 @@ function createStoredWritable<T>(key: string, defaultValue: T, historyLabel?: st
   };
 }
 
-export const pythonBin = writable<string>('python');
-export const estimatedCostPerChar = writable<number>(0.0);
 export const defaultNarrator = writable<string>('Narrator');
 
 export const defaultAudiobookSettings: AudiobookSettings = {

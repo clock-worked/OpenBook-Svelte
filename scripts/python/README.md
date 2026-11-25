@@ -24,7 +24,7 @@ Move a file into `scripts/python/` when all of these are true:
 - `api_server.py`, `api_runtime_state.py`, `api_models.py`
 - `audio_router.py`, `parser_router.py`, `root_config_router.py`, `audio/`
 - `audio_generation_service.py`, `chapter_service.py`, `vibevoice_local_service.py`
-- `openbook_cli.py`, `update_character_stats.py`
+- `update_character_stats.py`
 - `openbook_parser/`
 - `chapter_audio/`
 
