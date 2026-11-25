@@ -3,7 +3,8 @@
   import { goto } from '$app/navigation';
   import { get } from 'svelte/store';
   import { bookRoot, chapters, audioRoot, bookRootAbsolutePath, voiceSamplesRoot } from '$lib/stores/bookState';
-  import { scanChapters, listChaptersFromBackend, getRootDirHandle, resolveBookRootPath, setBackendAudioRoot, triggerStatsUpdate } from '$lib/services/fs';
+  import { getRootDirHandle } from '$lib/services/fs';
+  import { scanChapters, listChaptersFromBackend, resolveBookRootPath, setBackendAudioRoot, triggerStatsUpdate } from '$lib/services/workspaceRoot';
   import { openBook } from '$lib/services/bookFormat';
   import { pickDirectoryAbsolutePath } from '$lib/services/directoryPicker';
   import { initRouteProjectContext } from '$lib/services/projectSession';

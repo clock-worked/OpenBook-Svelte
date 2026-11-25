@@ -3,7 +3,8 @@
     import { appTheme, bookRootPathOverride, parserHints, type AppTheme } from '$lib/stores/settings';
     import { bookRoot, bookRootAbsolutePath, chapters } from '$lib/stores/bookState';
     import { forceRefreshBookCharacters } from '$lib/stores/bookCharacters';
-    import { setBackendBookRoot, getRootDirInfo, readEditableJson, triggerStatsUpdate } from '$lib/services/fs';
+    import { getRootDirInfo, readEditableJson } from '$lib/services/fs';
+    import { setBackendBookRoot, triggerStatsUpdate } from '$lib/services/workspaceRoot';
     import { layoutPath, openBook } from '$lib/services/bookFormat';
     import { history } from '$lib/services/history';
     import type { ParserHints } from '$lib/types';

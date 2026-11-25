@@ -1,7 +1,8 @@
 import { get } from 'svelte/store';
 import { bookRoot, bookRootHandle } from '$lib/stores/bookState';
 import { bookRootAbsolutePath } from '$lib/stores/bookState';
-import { setBackendBookRoot, setRootDirHandle } from '$lib/services/fs';
+import { setRootDirHandle } from '$lib/services/fs';
+import { setBackendBookRoot } from '$lib/services/workspaceRoot';
 import { getStoredProjectHandle, updateLastAccessed, verifyHandlePermission } from '$lib/services/persistence';
 import { bookRootPathOverride } from '$lib/stores/settings';
 

@@ -1,4 +1,4 @@
-import { getAbsolutePathFromHandle } from '$lib/services/fs';
+import { getAbsolutePathFromHandle } from '$lib/services/workspaceRoot';
 
 export async function pickDirectoryAbsolutePath(mode: FileSystemPermissionMode = 'read'): Promise<string | null> {
     if (!window.showDirectoryPicker) {

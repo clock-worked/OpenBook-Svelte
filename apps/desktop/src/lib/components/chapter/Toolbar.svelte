@@ -12,11 +12,7 @@
   } from "$lib/stores/bookState";
   import { conflictCursor, toolMode } from "$lib/stores/selection";
   import { appTheme, defaultNarrator } from "$lib/stores/settings";
-  import {
-    listChaptersFromBackend,
-    scanChapters,
-    selectBookDirectory,
-  } from "$lib/services/fs";
+  import { listChaptersFromBackend, scanChapters, selectBookDirectory } from "$lib/services/workspaceRoot";
   import { layoutPath, openBook } from "$lib/services/bookFormat";
   import { runParserForChapter } from "$lib/services/parser";
   import {
